@@ -44,7 +44,7 @@ Core Member & Teaching Assistant | 2025-09 - Present
 ### NJU NOVA (Nanjing University Intelligent Data Decision Studio)
 Core Member | 2025-09 - Present  
 - Deliver two lectures on full-stack development for studio members, covering front-end and back-end technology integration, project engineering practices, and problem-solving in actual development.  
-- Participate in the studio's interdisciplinary data decision-making projects, responsible for technical scheme design and core module development, collaborating with team members to promote project progress.  
+- Participate in the studio's multi-source information aggregation projects, responsible for designing technical solutions and developing core modules, collaborating with team members to ensure project progress and integration efficiency.  
 
 
 ## Works
