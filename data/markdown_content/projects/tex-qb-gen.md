@@ -1,10 +1,6 @@
-<div align="center">
+English | [简体中文](https://github.com/ChouYuanjue/TeX-QB-Gen/blob/master/README_zh-CN.md)
 
-English | [简体中文](README_zh-CN.md)
-
-<img src="assets/banner.jpg" width="640px"  alt="TEXQBGEN"/>  
-
-</div>
+![banner](https://github.com/ChouYuanjue/TeX-QB-Gen/blob/master/assets/banner.jpg)
 
 # TeX Question Bank Generator (TeX-QB-Gen)
 
