@@ -33,6 +33,20 @@ Undergraduate Student (Jianxiong Academy)
 ### Peking University 2025 Winter School for Outstanding High School Students 
 2025-01 | Selected participant
 
+## Academic & Professional Engagement
+
+### NJU AIA (Nanjing University Artificial Intelligence Association)
+Core Member & Teaching Assistant | 2025-09 - Present  
+- Serve as a core member in organizing academic activities and technical sharing sessions for the association, focusing on AI basic theory and practical application popularization.  
+- Provide one-on-one Q&A guidance for undergraduate members on Python programming, machine learning fundamentals, and assist in organizing hands-on experimental courses.  
+- Scheduled to host a teaching session on Variational Autoencoder (VAE) for the association in the next semester, designing practical cases to help members understand model principles and application scenarios.  
+
+### NJU NOVA (Nanjing University Intelligent Data Decision Studio)
+Core Member | 2025-09 - Present  
+- Deliver two lectures on full-stack development for studio members, covering front-end and back-end technology integration, project engineering practices, and problem-solving in actual development.  
+- Participate in the studio's interdisciplinary data decision-making projects, responsible for technical scheme design and core module development, collaborating with team members to promote project progress.  
+
+
 ## Works
 
 ### Navigating the Full-Stack Ecosystem: Implementation Strategies and Knowledge Graphs for Information Aggregation
