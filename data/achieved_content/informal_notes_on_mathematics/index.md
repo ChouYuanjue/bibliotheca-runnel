@@ -15,7 +15,7 @@ Originally published via FigShare, this project is no longer updated. DOI: [10.6
 
 As of **9:00, September 18, 2025**, the total number of views of this project on FigShare reached **5,899**, with a total download count of **2,345**.
 
-![Screenshot of FigShare Homepage](figshare.png)
+![Screenshot of FigShare Homepage](/achieved/informal_notes_on_mathematics/figshare.png)
 
 ## Project Structure
 The project is organized by year and file type, mainly including the following contents:
