@@ -1,0 +1,40 @@
+document: N-20220723.md
+processed_at: '2025-09-19 10:47:14'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document explores the divisibility properties of polynomials related
+  to roots of unity, focusing on conditions under which polynomials of the form \(x^{kn}
+  + x^{(k-1)n} + \cdots + x^n + 1\) share a common factor \(P(x)\), such as \(x^2
+  + x + 1\). Key findings indicate that \(x^{2n} + x^n + 1\) is divisible by \(x^2
+  + x + 1\) if and only if \(n \not\equiv 0 \pmod{3}\), and generalizations show that
+  for \(Q_{k,n}(x) = \sum_{i=0}^k x^{in}\), it shares a factor \(P_k(x)\) (the \(k\)th
+  cyclotomic polynomial) precisely when \(\gcd(n, k+1) = 1\). The analysis leverages
+  properties of roots of unity, complex exponentials, and factorization techniques,
+  with proofs involving set equalities of roots and modular arithmetic conditions.
+keywords:
+- roots of unity
+- complex solutions
+- equation xⁿ=1
+- group theory
+- order
+- real solutions
+- Euler's formula
+- cyclotomic polynomials
+- polynomial factorization
+- modular arithmetic
+- complex plane
+- WolframAlpha
+- Cotes' Theorem
+- Visual Complex Analysis
+- divisibility
+- gcd
+- primitive roots
+- biquadratic factors
+- irreducible polynomials
+- difference of squares
+- exponent reduction
+- set equality
+- bijection
+- roots distribution
+- polynomial factors
+- cyclotomic polynomials
+- common factors

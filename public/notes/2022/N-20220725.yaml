@@ -1,0 +1,28 @@
+document: N-20220725.md
+processed_at: '2025-09-19 10:47:32'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal mathematics notes on determinants, focusing
+  on calculating inversion numbers and determinant properties. Key topics include
+  inversion number computation for permutations (e.g., τ(426315)=8), determinant sign
+  determination based on inversion parity, and properties such as transpose invariance,
+  sign change with row swaps, scalar factoring, additive splitting, and row operations.
+  Methods for determinant calculation are demonstrated, including the diagonal rule
+  (for 2x2 and 3x3 matrices) and triangulation. Examples illustrate zero-value cases
+  (e.g., proportional rows) and practical computations, with exercises reinforcing
+  concepts like inversion numbers and determinant evaluation. Errors in row operation
+  applications are noted, emphasizing proper elementary transformations.
+keywords:
+- determinants
+- inversion number
+- permutation
+- matrix
+- linear algebra
+- properties of determinants
+- transpose
+- row operations
+- triangularization
+- diagonal rule
+- elementary row operations
+- cofactor expansion
+- mathematical computation
+- WolframAlpha

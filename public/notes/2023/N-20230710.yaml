@@ -1,0 +1,94 @@
+document: N-20230710.md
+processed_at: '2025-09-19 11:11:16'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This expository article by Runnel Cheung provides a comparative analysis
+  of three foundational frameworks in mathematics: set theory, category theory, and
+  type theory. Set theory, formalized through ZFC axioms, treats mathematical objects
+  as sets and underpins classical mathematics. Category theory emphasizes morphisms
+  and structural relationships, offering a unifying language across disciplines. Type
+  theory, rooted in constructive and computational principles, connects logic and
+  programming via the Curry-Howard correspondence. The paper examines historical origins,
+  axiomatic structures, applications, and philosophical implications, concluding with
+  modern developments like univalent foundations that aim to synthesize these approaches.'
+keywords:
+- Set Theory
+- Category Theory
+- Type Theory
+- ZFC
+- ZF
+- Axiom of Choice
+- Naïve Set Theory
+- Russell's Paradox
+- Axiomatic Set Theory
+- Morphisms
+- Functors
+- Natural Transformations
+- Homotopy Type Theory
+- Univalent Foundations
+- Curry-Howard Correspondence
+- Dependent Types
+- Constructive Mathematics
+- Proof Assistants
+- Formal Verification
+- Programming Languages
+- Computational Content
+- Abstraction
+- Equality
+- Philosophical Underpinnings
+- Historical Development
+- Mathematical Foundations
+- Comparative Analysis
+- Applications
+- Computer Science
+- Logic
+- Algebra
+- Topology
+- Probability
+- Algebraic Topology
+- Algebraic Geometry
+- Categorical Logic
+- Functional Programming
+- Monads
+- Lambda Calculus
+- Type Constructors
+- Product Types
+- Sum Types
+- Function Types
+- Identity Morphism
+- Composition Law
+- Associativity
+- Axiom of Extensionality
+- Axiom of Pairing
+- Axiom of Union
+- Axiom of Power Set
+- Axiom of Infinity
+- Axiom of Replacement
+- Axiom of Separation
+- Proper Classes
+- Continuum Hypothesis
+- ETCS
+- Homology
+- Cohomology
+- Schemes
+- Sheaves
+- Toposes
+- Coq
+- Agda
+- Lean
+- Dedekind Cuts
+- Cauchy Sequences
+- von Neumann Construction
+- Cardinalities
+- Infinity
+- Structural Relationships
+- Unifying Language
+- Computational Framework
+- Logical Paradoxes
+- Ramified Type Theory
+- Per Martin-Löf
+- Alonzo Church
+- Bertrand Russell
+- Samuel Eilenberg
+- Saunders Mac Lane
+- Georg Cantor
+- Zermelo-Fraenkel

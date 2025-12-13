@@ -1,0 +1,28 @@
+document: N-20220417.md
+processed_at: '2025-09-19 10:35:15'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document covers fundamental inequalities in mathematics, focusing on
+  power means (including QM-AM-GM-HM relationships), Hölder's inequality, and inequalities
+  involving functions such as convexity, Jensen's inequality, and Karamata's inequality.
+  It provides proofs, examples (e.g., from Taiwan TST 2014), and techniques like Ravi
+  substitution and Schur's inequality, concluding with applications and exercises
+  linking these concepts to classical results like Cauchy-Schwarz and weighted means.
+keywords:
+- Power Mean
+- QM-AM-GM-HM theorem
+- Quadratic Mean
+- Harmonic Mean
+- Ravi substitution
+- Schur inequality
+- Hölder's inequality
+- Cauchy's inequality
+- Jensen's inequality
+- Karamata's inequality
+- convex function
+- concave function
+- majorization
+- weights
+- homogeneous inequality
+- cyclic sum
+- vector form
+- substitution tricks

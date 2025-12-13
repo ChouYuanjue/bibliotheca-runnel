@@ -1,0 +1,29 @@
+document: N-20220803.md
+processed_at: '2025-09-19 10:49:09'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents a collection of mathematical problems and solutions
+  focused on arithmetic and geometric sequences, as well as trigonometric applications
+  in triangles. Key topics include determining triangle properties using logarithmic
+  and trigonometric identities (e.g., Example 121 concludes the triangle is isosceles),
+  verifying and analyzing arithmetic and geometric sequences (e.g., Examples 122–124,
+  132), solving for sums, terms, and ratios in sequences (e.g., Examples 123, 126–131),
+  and finding parameter constraints (e.g., Example 128 derives d ∈ (-∞, -1-2√5] ∪
+  [2√5, +∞)). Conclusions involve specific values, such as k ≤ -10 in Example 125
+  and x = 18 in Example 132, alongside general insights into sequence behaviors and
+  properties.
+keywords:
+- mathematics
+- arithmetic progression
+- geometric progression
+- triangle
+- logarithm
+- trigonometric functions
+- series summation
+- common difference
+- common ratio
+- sequence properties
+- mathematical proofs
+- algebraic manipulation
+- inequalities
+- limits
+- convergence

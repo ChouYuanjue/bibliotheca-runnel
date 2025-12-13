@@ -1,0 +1,62 @@
+document: N-20250211.md
+processed_at: '2025-09-19 11:13:42'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document provides a comprehensive overview of geometric transformations—affine,
+  projective, inversion, Euclidean, and similarity—and their applications to conic
+  sections, emphasizing invariants and classification. Affine transformations preserve
+  collinearity and parallelism but not distances; projective geometry introduces points
+  at infinity and cross-ratio invariance; inversion is conformal and maps circles
+  to circles or lines. The discussion highlights connections to the Erlangen Program,
+  illustrating how different geometries unify and classify conics through transformation
+  groups and invariants.
+keywords:
+- Affine Transformations
+- Projective Geometry
+- Inversion Transformations
+- Euclidean Transformations
+- Similarity Transformations
+- Möbius Transformations
+- Conic Sections
+- Erlangen Program
+- Collinearity Preservation
+- Ratio Preservation
+- Parallelism
+- Affine Combinations
+- Translation
+- Linear Transformation
+- Scaling
+- Rotation
+- Shearing
+- Reflection
+- Affine Invariants
+- Affine Ratio
+- Projective Space
+- Homogeneous Coordinates
+- Projective Transformation
+- Homography
+- Cross-Ratio
+- Projective Duality
+- Dual Conic
+- Points at Infinity
+- Line at Infinity
+- Inversion
+- Circle Inversion
+- Conformal Map
+- Angle Preservation
+- Complex Analysis
+- Analytic Functions
+- Rigid Motions
+- Isometries
+- Orthogonal Matrix
+- Uniform Scaling
+- Group Theory
+- GL(n)
+- E(n)
+- Nondegenerate Ellipse
+- Unit Circle
+- Hyperbola
+- Parabola
+- Quadratic Equation
+- Tangency Conditions
+- Metric Properties
+- Geometric Invariants

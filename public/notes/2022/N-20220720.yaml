@@ -1,0 +1,32 @@
+document: N-20220720.md
+processed_at: '2025-09-19 10:46:11'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal notes on mathematics, focusing on combinatorial
+  principles, calculus, and geometric proofs. Key topics include enumeration, addition
+  and multiplication principles, inclusion-exclusion, permutations, combinations,
+  binomial theorem applications, and derivative calculations. Examples cover counting
+  problems, series expansions, inequalities, and geometric properties in 3D shapes.
+  Findings include solutions to specific problems like counting non-multiples of 6
+  or 8 up to 2021 (1517 numbers), expansion coefficients, and function comparisons.
+  Conclusions emphasize methodical approaches to combinatorial and calculus problems,
+  with proofs validating geometric relationships and derivative-based inequalities.
+keywords:
+- enumeration
+- combinatorics
+- calculus
+- geometry
+- trigonometry
+- probability
+- set theory
+- functions
+- inequalities
+- algebra
+- number theory
+- sequences
+- series
+- optimization
+- mathematical induction
+- limits
+- derivatives
+- binomial theorem
+- Taylor series

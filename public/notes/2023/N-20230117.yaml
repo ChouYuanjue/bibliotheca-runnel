@@ -1,0 +1,32 @@
+document: N-20230117.md
+processed_at: '2025-09-19 11:04:22'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document contains informal mathematical notes dated January 17, 2023,
+  focusing on function exercises and set theory problems. Key findings include proofs
+  for various function properties: non-negativity (f(x) ≥ 0 for all x), boundedness
+  and continuity (|f(x₁) - f(x₂)| < 1/2 under certain conditions), evenness (f(-x)
+  = f(x)), and specific values (e.g., f(1) = 1/3). It also explores integer-valued
+  quadratic functions and solves problems involving logarithmic relationships (e.g.,
+  b² = 9a, bc = 81) and set partitions with perfect squares. Conclusions demonstrate
+  rigorous derivations of function behaviors and identities, though some sections
+  note unresolved or challenging aspects.'
+keywords:
+- mathematics
+- functions
+- inequalities
+- proofs
+- sets
+- symmetry
+- polynomials
+- integers
+- bounded functions
+- logarithms
+- quadratic equations
+- absolute value
+- even functions
+- domain
+- range
+- periodic functions
+- square numbers
+- set partition
+- mathematical exercises

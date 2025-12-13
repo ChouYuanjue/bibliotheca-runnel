@@ -1,0 +1,36 @@
+document: N-20230801.md
+processed_at: '2025-09-19 11:11:44'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document is a reading note on Hitchin''s seminal paper "The Self-Duality
+  Equations on a Riemann Surface," focusing on the reduction of four-dimensional self-dual
+  Yang-Mills equations to two-dimensional Riemann surfaces, resulting in the Hitchin
+  equations: \( F_A + [\Phi, \Phi^*] = 0 \) and \( \partial_A \Phi = 0 \). It explores
+  the mathematical foundations of Yang-Mills theory, the role of Higgs bundles, and
+  the construction of moduli spaces with integrable system structures via spectral
+  curves and Hitchin fibration. Key connections to geometric Langlands conjecture
+  and S-duality in physics are discussed, alongside stability conditions, open problems,
+  and potential generalizations to non-compact or higher-dimensional settings.'
+keywords:
+- Hitchin equations
+- Higgs bundles
+- Hitchin moduli space
+- Spectral curve
+- Hitchin fibration
+- Integrable system
+- Geometric Langlands
+- S-duality
+- Yang--Mills equations
+- Self-duality (instantons)
+- Stability conditions
+- Dolbeault complex
+- Characteristic polynomial
+- Jacobian / Prym varieties
+- Moduli space singularities
+- Non-compact groups and higher-dimensional generalizations
+- Mirror symmetry
+- Energy functional / Variational principle
+- Local coordinates and holomorphic structure
+- Hodge star operator
+- Simpson / Non-abelian Hodge theory
+- Spectral data
+- Gauge invariance / Lie algebra invariance

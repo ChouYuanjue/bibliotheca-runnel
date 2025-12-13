@@ -1,0 +1,31 @@
+document: N-20220411.md
+processed_at: '2025-09-19 10:34:38'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document provides informal notes on matrix inverses and rotation matrices
+  in linear algebra. Key points include: a matrix is invertible if and only if it
+  has n pivots or a non-zero determinant, with uniqueness of the inverse and solutions
+  to Ax=b and Ax=0 highlighted. Specific formulas for 2x2 and diagonal matrix inverses
+  are given, alongside properties like (AB)⁻¹=B⁻¹A⁻¹. Two methods for computing inverses
+  are discussed: the adjugate matrix approach (A⁻¹=1/|A| A*) and Gaussian elimination.
+  The notes also cover rotation matrices, deriving Rθ for planar rotations about the
+  origin using basis vectors and linear combinations, and clarify that rotations about
+  arbitrary points are not linear transformations. Overall, the document summarizes
+  fundamental concepts and computational techniques for matrix inverses and rotations.'
+keywords:
+- matrix inverse
+- invertible matrix
+- identity matrix
+- elimination
+- pivot
+- linear independence
+- determinant
+- cofactor
+- algebraic cofactor
+- adjugate matrix
+- Gaussian elimination
+- row operations
+- rotation matrix
+- linear transformation
+- basis vectors
+- coordinate transformation
+- affine transformation

@@ -1,0 +1,22 @@
+document: N-20220315.md
+processed_at: '2025-09-18 22:58:19'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document seriously solved some wrong problems on textbook. Contains assorted exercises: quadratic function analysis (vertex, axis of symmetry, roots and parameter conditions), geometry problems about parabolas and hyperbolas and their intersections, symbolic solutions with complicated radical expressions, constrained optimization using Lagrange multipliers for x^2 - y^3 = 2, and numeric approximations / plotted sample points. The file records derivations, algebraic manipulations, and numerical roots alongside brief commentary.'
+keywords:
+- Quadratic functions
+- Parabola
+- vertex
+- axis of symmetry
+- Roots and intersections
+- Parameter analysis
+- Parabola–hyperbola intersection
+- Equation solving
+- Complex roots
+- Radical expressions
+- Lagrange multipliers
+- Constrained optimization
+- Numerical approximations
+- Plot points
+- Algebraic manipulation
+- Symmetry axis
+- Problem-solving notes

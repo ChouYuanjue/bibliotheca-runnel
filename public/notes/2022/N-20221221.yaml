@@ -1,0 +1,39 @@
+document: N-20221221.md
+processed_at: '2025-09-19 11:00:33'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents informal notes on topology, focusing on metric spaces
+  and homeomorphisms. Key points include: metric spaces may not be complete (e.g.,
+  Q), but can be completed (e.g., Q to R); homeomorphisms require bijective continuous
+  functions with continuous inverses, unlike group isomorphisms, and are not preserved
+  under metric properties like completeness or boundedness (e.g., (0,1) homeomorphic
+  to R but differing in these properties). Examples illustrate homeomorphisms (e.g.,
+  torus to coffee cup, (-1,1) to R) and non-homeomorphic continuous bijections. The
+  open set condition for continuity is stated and partially proven. Additionally,
+  sets in metric spaces can be both open and closed (clopen), demonstrated with M
+  = [0,1] ∪ (2,3). The notes emphasize transitioning from metric-based concepts to
+  broader topological ideas.'
+keywords:
+- metric spaces
+- completeness
+- completion theorem
+- homeomorphism
+- continuous bijection
+- equivalence relation
+- open sets
+- closed sets
+- clopen sets
+- boundedness
+- total boundedness
+- continuity
+- pre-image
+- metric topology
+- topological equivalence
+- deformation
+- torus
+- circle
+- real numbers
+- rational numbers
+- discrete space
+- unit interval
+- unit square
+- open condition theorem

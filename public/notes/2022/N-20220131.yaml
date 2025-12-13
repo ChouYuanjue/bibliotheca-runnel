@@ -1,0 +1,49 @@
+document: N-20220131.md
+processed_at: '2025-09-19 10:30:43'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents a summary and translation of Tom Leinster's "Rethinking
+  Set Theory," which introduces the Elementary Theory of the Category of Sets (ETCS)
+  as an alternative to Zermelo-Fraenkel set theory with the Axiom of Choice (ZFC).
+  ETCS uses functions as a primitive concept, defining elements as functions from
+  a terminal set, and includes ten axioms covering composition, terminal and empty
+  sets, Cartesian products, function sets, inverse images, subset classifiers, natural
+  numbers, and the axiom of choice. It argues that ETCS aligns better with mathematicians'
+  intuitive use of sets, avoids ZFC's issues (like requiring all elements to be sets),
+  and is equally expressive when augmented with an eleventh axiom (replacement). The
+  approach is elementary, avoiding advanced category theory, and aims to provide a
+  more natural foundation for most mathematical practice.
+keywords:
+- ETCS
+- ZFC
+- set theory
+- functions
+- axioms
+- category theory
+- terminal set
+- empty set
+- Cartesian products
+- function sets
+- inverse images
+- characteristic functions
+- natural numbers
+- surjection
+- right inverse
+- isomorphism
+- injection
+- subset classifier
+- replacement axiom
+- disjoint union
+- power set
+- Grothendieck
+- algebraic geometry
+- EGA
+- SGA
+- McLarty
+- Lawvere
+- Mac Lane
+- Moerdijk
+- Mathias
+- Mitchell
+- Osius
+- Tierney
+- Trimble

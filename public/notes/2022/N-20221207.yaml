@@ -1,0 +1,69 @@
+document: N-20221207.md
+processed_at: '2025-09-19 10:57:55'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents informal mathematical notes covering various problems
+  in set theory, algebra, and function analysis. Key findings include: for a non-empty
+  set A ⊆ {x ≤ 2021, x ∈ N}, the maximum number of elements |A| is 1348, achieved
+  when A = {674, 675, ..., 2021}; the condition A ⊆ (C-B) ∪ (B-C) is equivalent to
+  A ∩ B ∩ C = ∅; among six distinct real numbers, at most two algebraic expressions
+  can simultaneously be positive; sets M = {4n+6m} and N = {10a+8b} are equal; for
+  f(x)=ax²+x with value range [4,9], n-m ∈ [4,8√5]; and for T(a) functions, m ≤ 1
+  is the maximum lower bound. Conclusions involve proofs, set relations, and function
+  properties.'
+keywords:
+- set theory
+- mathematical proofs
+- number sets
+- union
+- intersection
+- set operations
+- cardinality
+- inequalities
+- algebraic expressions
+- functions
+- domain
+- range
+- limits
+- derivatives
+- L'Hôpital's rule
+- T(a) function
+- monotonicity
+- optimization
+- discrete mathematics
+- combinatorics
+- real numbers
+- integers
+- natural numbers
+- modulus
+- extremum
+- conditions
+- necessity
+- sufficiency
+- disjoint union
+- Venn diagrams
+- quadratic functions
+- roots
+- vertex
+- value range
+- slope
+- increasing function
+- reflection
+- methodology
+- construction
+- maximum value
+- minimum value
+- equivalence
+- subsets
+- elements
+- summation
+- difference
+- symmetric difference
+- intersection condition
+- disjoint sets
+- proof techniques
+- counterexamples
+- parameter analysis
+- inequalities solving
+- function properties
+- mathematical reasoning
+- problem-solving strategies

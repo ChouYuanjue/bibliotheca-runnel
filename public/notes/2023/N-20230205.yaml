@@ -1,0 +1,34 @@
+document: N-20230205.md
+processed_at: '2025-09-19 11:06:43'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents mathematical notes on functions and transformations,
+  focusing on symmetry, periodicity, and graphical properties. Key findings include
+  determining symmetry centers (e.g., (-2,3) for f(x)=x/(x+1)+(x+1)/(x+2)+(x+2)/(x+3)),
+  solving for parameters like a=-4/3 to achieve center symmetry, and identifying maximum
+  values (e.g., f(x) max=16 under x=-2 symmetry). It explores absolute value sets,
+  zero counts (e.g., 6 zeros for h(x)=g(x)-f(x)), and functional equations, concluding
+  with periodicity analysis (e.g., T=352 yielding 177 distinct values) and specific
+  outputs like f(2019)=-1/2. The work emphasizes analytical techniques for function
+  behavior and symmetry.
+keywords:
+- functions
+- graphs
+- transformations
+- symmetry
+- center of symmetry
+- axis of symmetry
+- periodicity
+- even functions
+- odd functions
+- absolute value
+- Cartesian plane
+- Manhattan distance
+- maximum value
+- zeros
+- trigonometric functions
+- cosine
+- derivative
+- monotonicity
+- functional equations
+- greatest common divisor
+- amplitude

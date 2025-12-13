@@ -1,0 +1,35 @@
+document: N-20220802.md
+processed_at: '2025-09-19 10:48:46'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document provides informal notes on trigonometry, covering fundamental
+  concepts such as angles, radian measure, trigonometric functions (sine, cosine,
+  tangent), identities (e.g., Pythagorean and angle sum/difference formulas), reduction
+  formulas, double-angle and half-angle formulas, and product-to-sum/sum-to-product
+  transformations. It also discusses trigonometric function graphs, periodicity, inverse
+  trigonometric functions, and applications in solving triangles using the sine and
+  cosine laws, along with area formulas including Heron's formula. Examples illustrate
+  problem-solving techniques, such as simplifying expressions and determining angle
+  ranges based on trigonometric inequalities. The notes conclude with triangle-specific
+  identities and relationships among trigonometric ratios in geometric contexts.
+keywords:
+- Trigonometry
+- Angles
+- Radians
+- Trigonometric Functions
+- Sine
+- Cosine
+- Tangent
+- Unit Circle
+- Pythagorean Identity
+- Reduction Formulas
+- Angle Addition Formulas
+- Double Angle Formulas
+- Half Angle Formulas
+- Sum-to-Product Formulas
+- Product-to-Sum Formulas
+- Periodic Functions
+- Inverse Trigonometric Functions
+- Law of Sines
+- Law of Cosines
+- Triangle Area Formulas
+- Heron's Formula

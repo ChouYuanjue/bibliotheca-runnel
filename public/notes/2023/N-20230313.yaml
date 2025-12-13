@@ -1,0 +1,43 @@
+document: N-20230313.md
+processed_at: '2025-09-19 11:09:59'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents advanced concepts in category theory, illustrating
+  how mathematical structures can be reinterpreted categorically. It demonstrates
+  that partially ordered sets (posets) form categories where objects are set elements
+  and arrows represent order relations, with no distinct objects being isomorphic.
+  Groups are shown to be one-object categories where all morphisms are isomorphisms,
+  capturing symmetries. The text further discusses universal constructions: products
+  as universal cones and coproducts as universal cocones, exemplified in Set by disjoint
+  unions (using tagged elements). Finally, it defines monomorphisms (left-cancellative
+  maps) and epimorphisms (right-cancellative maps) as categorical generalizations
+  of injectivity and surjectivity, noting that in concrete categories, surjective
+  implies epic.'
+keywords:
+- Category Theory
+- Posets
+- Categories
+- Objects
+- Arrows
+- Identity Arrow
+- Composition
+- Isomorphism
+- Isomorphic
+- Groups
+- One-Object Categories
+- Symmetries
+- Invertible
+- Morphisms
+- Binary Operation
+- Product
+- Cone
+- Universal Cone
+- Coproduct
+- Universal Cocone
+- Limits
+- Disjoint Union
+- Cartesian Product
+- Monic
+- Monomorphism
+- Epic
+- Epimorphism
+- Commutative Diagram

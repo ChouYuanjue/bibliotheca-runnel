@@ -1,0 +1,51 @@
+document: N-20230310.md
+processed_at: '2025-09-19 18:14:42'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document provides an informal yet comprehensive overview of derivatives
+  in mathematics, covering foundational concepts, rules, and applications. It defines
+  derivatives geometrically as the slope of a tangent line and formally via limits,
+  detailing differentiation rules including linearity, Leibniz (product), quotient,
+  chain, and inverse function rules. It lists derivatives of elementary functions
+  and discusses extrema, Fermat''s lemma, and methods for identifying local maxima/minima
+  using first and second derivatives. The text applies derivatives to prove key inequalities:
+  Young''s, Hölder''s, Minkowski''s, and Jensen''s inequality for convex functions,
+  with examples and exercises illustrating these concepts. It concludes with practical
+  problems involving function analysis, optimization, and comparisons, emphasizing
+  the utility of derivatives in theoretical and applied contexts.'
+keywords:
+- derivative
+- Leibniz
+- Newton
+- Kepler problem
+- secant line
+- tangent line
+- limit
+- function
+- differentiation
+- linearity
+- Leibniz rule
+- chain rule
+- inverse function
+- elementary functions
+- critical point
+- Fermat's lemma
+- extremum
+- Young's inequality
+- Hölder's inequality
+- Minkowski inequality
+- Cauchy-Schwarz inequality
+- convex function
+- Jensen's inequality
+- Euler's theorem
+- Fermat's little theorem
+- graph theory
+- vertices
+- edges
+- monotonicity
+- second derivative test
+- Lagrange theorem
+- mean value theorem
+- optimization
+- inequalities
+- calculus
+- mathematical analysis

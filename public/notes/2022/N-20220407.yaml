@@ -1,0 +1,39 @@
+document: N-20220407.md
+processed_at: '2025-09-19 10:33:53'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents mathematical exercises and proofs focusing on complex
+  numbers and vector spaces. Key topics include finding multiplicative inverses and
+  roots in complex numbers, verifying algebraic properties like commutativity and
+  associativity in C and Fⁿ, and proving the uniqueness of additive inverses and multiplicative
+  identities. It defines vector spaces, demonstrates that (-1)v equals the additive
+  inverse -v, and explores whether extended real numbers with infinity form a vector
+  space. The text also covers subspaces, providing conditions and examples such as
+  sets of continuous or differentiable functions, and sequences with limit zero, noting
+  that subspaces must contain the zero vector and be closed under addition and scalar
+  multiplication. It concludes by classifying subspaces of R² and R³ as lines and
+  planes through the origin.
+keywords:
+- complex numbers
+- real numbers
+- vector space
+- subspaces
+- additive inverse
+- scalar multiplication
+- commutativity
+- associativity
+- distributive property
+- continuous functions
+- differentiable functions
+- sequences
+- limit
+- linear algebra
+- calculus
+- R^n
+- C^n
+- F^n
+- additive identity
+- closed under addition
+- closed under scalar multiplication
+- Euler's formula
+- cube root
+- square roots

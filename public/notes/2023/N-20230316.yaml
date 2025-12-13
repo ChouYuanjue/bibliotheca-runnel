@@ -1,0 +1,50 @@
+document: N-20230316.md
+processed_at: '2025-09-19 11:10:39'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document provides a comprehensive overview of fixed point theory and
+  its applications across mathematics and computer science. It introduces the basic
+  concept of fixed points, where a function maps a point to itself, and explains iterative
+  methods for finding them. Key theorems covered include Banach's contraction mapping
+  theorem, which guarantees unique fixed points under contraction conditions, along
+  with extensions like Krasnoselskii, Meir-Keeler, and Geraghty theorems for non-contractive
+  cases. It also discusses Brouwer and Schauder theorems in topology, Tarski's theorem
+  in ordered sets, and applications in numerical methods (Picard iteration, Newton-Raphson),
+  dynamical systems (stability analysis), and computer science (Y combinator, recursion).
+  The document emphasizes the unifying idea that fixed points represent equilibrium
+  or stable states across diverse fields, underpinning both theoretical proofs and
+  practical algorithms.
+keywords:
+- fixed point
+- iteration sequence
+- Banach fixed point theorem
+- contraction mapping
+- complete metric space
+- Cauchy sequence
+- convergence
+- Krasnoselskii fixed point theorem
+- compact operator
+- Meir-Keeler fixed point theorem
+- Geraghty fixed point theorem
+- Brouwer fixed point theorem
+- Schauder fixed point theorem
+- Tarski fixed point theorem
+- complete lattice
+- Picard iteration
+- Newton-Raphson method
+- Lipschitz condition
+- stability analysis
+- Lyapunov stability
+- lambda calculus
+- Y combinator
+- Kleene fixed point theorem
+- Lefschetz fixed point theorem
+- homotopy theory
+- homology groups
+- fixed point index
+- numerical methods
+- differential equations
+- nonlinear equations
+- dynamical systems
+- functional programming
+- recursion
+- category theory

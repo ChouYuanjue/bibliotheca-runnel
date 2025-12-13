@@ -1,0 +1,31 @@
+document: N-20230127.md
+processed_at: '2025-09-19 11:05:58'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This research investigates the factorization of polynomials of the form ∑x^(in)
+  from i=0 to k, focusing on conditions under which common factors exist. Initially,
+  it proves that x^(2n)+x^n+1 has factor x^2+x+1 if and only if n is not divisible
+  by 3, using primitive roots and direct factorization. The study then generalizes
+  to polynomials ∑x^(in) for k≥2, disproving the initial conjecture that ∑x^i divides
+  ∑x^(in) when n is not divisible by (k+1). Using MATLAB for visualization and complex
+  analysis, it demonstrates that when n is not divisible by (k+1), these polynomials
+  share common real-coefficient factors P(x), with roots expressed exponentially showing
+  periodic argument distributions. The conclusion highlights the value of employing
+  multiple methods, including computational tools, to address complex mathematical
+  problems.
+keywords:
+- polynomial factorization
+- primitive cubic root
+- MATLAB
+- complex plane
+- roots of unity
+- cyclotomic polynomials
+- factorization methods
+- algebraic number theory
+- exponential form
+- real coefficients
+- integer coefficients
+- gcd
+- modulus
+- periodicity
+- mathematical research
+- computational mathematics

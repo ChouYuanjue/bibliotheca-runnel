@@ -1,0 +1,29 @@
+document: N-20220323.md
+processed_at: '2025-09-19 10:33:02'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document introduces complex analysis by contrasting pathological real
+  functions (e.g., Cantor, Weierstraß, and smooth non-analytic functions) with holomorphic
+  functions in complex analysis. It defines complex differentiability, emphasizing
+  that the limit must hold from all directions in the complex plane, illustrated by
+  the non-holomorphic conjugation function. Holomorphic functions are defined as those
+  complex-differentiable everywhere in their domain, with entire functions as a special
+  case. Examples include polynomials, exponentials, trigonometric functions, and their
+  combinations via standard rules, highlighting their well-behaved nature compared
+  to real functions.
+keywords:
+- Complex Analysis
+- holomorphic functions
+- Devil's Staircase
+- Cantor function
+- Weierstraß function
+- smooth functions
+- Taylor series
+- complex derivative
+- complex conjugation
+- entire functions
+- polynomials
+- complex exponential
+- trigonometric functions
+- sum rule
+- product rule
+- chain rule

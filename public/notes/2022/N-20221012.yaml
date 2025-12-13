@@ -1,0 +1,30 @@
+document: N-20221012.md
+processed_at: '2025-09-19 10:53:07'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents informal mathematical notes covering several fundamental
+  inequalities: Bernoulli''s inequality (for products of terms with xi > -1), power
+  mean inequality (monotonicity of Mr(a) in r), Cauchy''s inequality and its corollaries
+  (including weighted sum and triangle-type forms), Chebyshev''s inequality (for ordered
+  sequences), Jensen''s inequality (for convex functions, stating function of mean
+  ≤ mean of functions), Hölder''s inequality (generalizing Cauchy with exponents p,q
+  > 1, including Young''s inequality), and Minkowski''s inequality (two forms for
+  p-norms of sums). Each inequality is defined with conditions, mathematical expressions,
+  and equality cases, focusing on real numbers and sequences, primarily serving as
+  a reference for properties and applications in mathematical analysis.'
+keywords:
+- Bernoulli inequality
+- power mean inequality
+- Cauchy inequality
+- Chebyshev inequality
+- Jensen inequality
+- Hölder inequality
+- Minkowski inequality
+- convex function
+- monotonic function
+- weighted inequality
+- Young inequality
+- real numbers
+- positive real numbers
+- sequences
+- mathematical inequalities
+- mathematical analysis

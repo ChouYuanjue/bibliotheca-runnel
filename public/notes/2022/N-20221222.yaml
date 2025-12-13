@@ -1,0 +1,38 @@
+document: N-20221222.md
+processed_at: '2025-09-19 11:01:16'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents informal notes on topology, focusing on redefining
+  metric concepts using open sets in topological spaces. Key topics include continuity
+  defined via pre-images of open sets, homeomorphisms as bijections preserving open
+  sets, and closed sets with closures. It highlights limitations: completeness and
+  boundedness are metric-specific and not topological, sequences behave poorly, and
+  non-metrizable spaces exist. Separation axioms are introduced, emphasizing Hausdorff
+  spaces where distinct points have disjoint neighborhoods. Subspace topology is defined
+  via intersections. Connectedness is characterized by absence of nontrivial clopen
+  sets, with examples of disconnected (e.g., discrete spaces, rationals) and connected
+  sets (e.g., intervals). Path-connectedness, a stronger notion, requires continuous
+  paths between points and implies connectedness, with examples like R² and S¹. Conclusions
+  note that while many metric ideas generalize, some properties are inherently metric-dependent.'
+keywords:
+- topological space
+- continuity
+- homeomorphism
+- closed set
+- closure
+- metric properties
+- complete
+- totally bounded
+- sequences
+- convergent sequences
+- metrizable
+- separation axioms
+- Hausdorff
+- metric spaces
+- Zariski topology
+- subspace topology
+- connected spaces
+- clopen set
+- disconnected space
+- path-connected spaces
+- path
+- continuous function

@@ -1,0 +1,31 @@
+document: N-20221030.md
+processed_at: '2025-09-19 10:53:44'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document outlines fundamental properties of integers, covering well-ordering,
+  divisibility, greatest common divisors (g.c.d.), least common multiples (l.c.m.),
+  and their relationship (dl=ab). It details the Division and Euclidean Algorithms
+  for computing g.c.d., including an example, and notes that g.c.d. can be expressed
+  as a linear combination. Primes and composites are defined, with the key property
+  that primes dividing a product must divide one factor. The Fundamental Theorem of
+  Arithmetic asserts unique prime factorization, and a formula for g.c.d. using prime
+  exponents is provided. Finally, the Euler φ-function is introduced, defined as the
+  count of numbers coprime to n, with formulas for prime powers and multiplicative
+  properties, enabling computation via prime factorization.
+keywords:
+- Well Ordering of Z
+- divides
+- greatest common divisor
+- g.c.d.
+- relatively prime
+- least common multiple
+- l.c.m.
+- Division Algorithm
+- quotient
+- remainder
+- Euclidean Algorithm
+- Z-linear combination
+- prime
+- composite
+- Fundamental Theorem of Arithmetic
+- Euler φ-function
+- multiplicative function

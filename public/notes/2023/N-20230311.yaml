@@ -1,0 +1,43 @@
+document: N-20230311.md
+processed_at: '2025-09-19 11:09:41'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document compares Riemann and Lebesgue integration, highlighting their
+  definitions, properties, and applications. Riemann integration relies on partitioning
+  intervals and summing function values, but fails for functions with dense discontinuities
+  (e.g., Dirichlet function). Lebesgue integration, based on measure theory, handles
+  such functions by focusing on value distributions and supports powerful convergence
+  theorems (monotone, dominated). It is more flexible for limits, infinite intervals,
+  and applications in probability, Fourier analysis, and functional analysis, though
+  Riemann remains intuitive for basic computations. The summary includes theoretical
+  advantages, numerical considerations, and historical context.
+keywords:
+- Lebesgue integral
+- Riemann integral
+- measure theory
+- σ-algebra
+- simple functions
+- monotone convergence theorem
+- dominated convergence theorem
+- Dirichlet function
+- Fourier analysis
+- probability theory
+- functional analysis
+- numerical integration
+- Monte Carlo method
+- topology
+- abstract algebra
+- category theory
+- limit theorems
+- convergence
+- integration methods
+- mathematical analysis
+- calculus
+- set theory
+- measure space
+- measurable functions
+- integration theory
+- comparison of integrals
+- mathematical concepts
+- research branches
+- methodologies
+- technologies

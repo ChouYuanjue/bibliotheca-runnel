@@ -1,0 +1,37 @@
+document: N-20221223.md
+processed_at: '2025-09-19 11:01:35'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document covers two main mathematical topics: homotopy theory in topology
+  and algebraic structures in group theory. In homotopy, it introduces path homotopy
+  as continuous deformation between paths with fixed endpoints, defines simply connected
+  spaces where all paths are homotopic, and uses examples like C and C\{0} to illustrate
+  these concepts. In algebra, it defines semigroups, monoids, and groups with their
+  properties, provides propositions characterizing groups, and gives examples including
+  integers under addition and symmetric groups. It also covers homomorphisms, defining
+  various types (mono-, epi-, iso-, endo-, auto-morphisms) and their compositions,
+  with examples like canonical epimorphisms from Z to Zm. The document concludes with
+  a theorem on congruence relations forming quotient monoids/groups.'
+keywords:
+- homotopy
+- simply connected spaces
+- path homotopy
+- continuous deformation
+- semigroup
+- monoid
+- group
+- abelian
+- commutative
+- binary operation
+- associative
+- identity element
+- inverse element
+- equivalence relation
+- congruence relation
+- homomorphism
+- monomorphism
+- epimorphism
+- isomorphism
+- endomorphism
+- automorphism
+- symmetric group
+- permutations

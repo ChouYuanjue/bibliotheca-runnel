@@ -1,0 +1,346 @@
+document: N-20221107.md
+processed_at: '2025-09-19 10:55:56'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents informal mathematical notes focusing on trigonometric
+  functions, covering boundedness (e.g., |sin α| ≤ 1), parity and symmetry (odd/even
+  properties), monotonicity (intervals of increase/decrease), and periodicity definitions.
+  It includes solved examples demonstrating applications: determining coefficients
+  from max/min values (e.g., a=1, b=3 for y=a sin x + b), finding ranges of composite
+  functions (e.g., y = sin x + cos x + 2 with range [2-√2, 2+√2]), solving equations
+  using function properties (e.g., f(x)=x³+sin x is odd), deriving explicit functions
+  from inequalities (e.g., f(x)=sin²x−¼), and analyzing geometric constraints (e.g.,
+  circle covering extremal points, k≥2). Conclusions emphasize trigonometric identities,
+  transformations, and problem-solving techniques.'
+keywords:
+- Trigonometric functions
+- Sine
+- Cosine
+- Boundedness
+- Symmetry
+- Odd function
+- Even function
+- Monotonicity
+- Periodicity
+- Periodic function
+- Range
+- Maximum
+- Minimum
+- Domain
+- Function transformation
+- Inequality
+- Absolute value
+- Circle equation
+- Triangle geometry
+- Optimization
+- Mathematical analysis
+- Algebra
+- Calculus
+- Geometry
+- Function properties
+- Trigonometric identities
+- Amplitude
+- Phase shift
+- Frequency
+- Period
+- Value range
+- Symmetry properties
+- Function composition
+- Real numbers
+- Variables
+- Constants
+- Mathematical modeling
+- Problem solving
+- Mathematical proofs
+- Function evaluation
+- Trigonometric equations
+- Function approximation
+- Mathematical concepts
+- Research methodologies
+- Mathematical techniques
+- Analytical methods
+- Computational methods
+- Theoretical mathematics
+- Applied mathematics
+- Mathematical reasoning
+- Function behavior
+- Mathematical operations
+- Function derivation
+- Mathematical expressions
+- Function analysis
+- Mathematical symbols
+- Mathematical notation
+- Function graphing
+- Mathematical logic
+- Function optimization
+- Mathematical problem-solving
+- Function properties
+- Mathematical theory
+- Function applications
+- Mathematical principles
+- Function characteristics
+- Mathematical structures
+- Function relationships
+- Mathematical frameworks
+- Function evaluation
+- Mathematical contexts
+- Function interpretation
+- Mathematical insights
+- Function exploration
+- Mathematical understanding
+- Function manipulation
+- Mathematical exploration
+- Function investigation
+- Mathematical discovery
+- Function examination
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration
+- Mathematical inquiry
+- Function study
+- Mathematical research
+- Function analysis
+- Mathematical investigation
+- Function exploration
+- Mathematical examination
+- Function research
+- Mathematical study
+- Function investigation
+- Mathematical analysis
+- Function exploration

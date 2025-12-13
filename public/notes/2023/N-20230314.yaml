@@ -1,0 +1,31 @@
+document: N-20230314.md
+processed_at: '2025-09-19 11:10:17'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document continues a discussion on category theory, focusing on free
+  and forgetful functors, which informally describe mappings that either add structure
+  (free) or remove it (forgetful). Examples include forgetful functors from categories
+  like Vectk and Grp to Set, and free functors from Set to Vectk or Grp. It introduces
+  faithful and full functors, relating them to the definition of concrete categories—those
+  with a faithful functor to Set. Additionally, it explores functors from a group
+  (as a one-object category) to Set, showing these correspond to group actions, and
+  functors between groups correspond to group homomorphisms, emphasizing how functors
+  preserve composition and structure.
+keywords:
+- Category Theory
+- Free Functors
+- Forgetful Functors
+- Vectk
+- Set
+- Grp
+- CRing
+- Abelian Group
+- Vector Space
+- Basis
+- Faithful Functor
+- Full Functor
+- Concrete Category
+- Hom Sets
+- Locally Small
+- Group Action
+- Homomorphisms
+- Functor Composition

@@ -1,0 +1,31 @@
+document: N-20220501.md
+processed_at: '2025-09-19 10:36:32'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal notes on mathematical concepts, focusing
+  primarily on optimization techniques using Lagrange multipliers and Hessian matrices.
+  It introduces the Lagrangian function for constrained optimization, demonstrates
+  its application through examples such as minimizing \(x^2 + y^2\) subject to \(x
+  + y = 1\), and explains the use of Kuhn-Tucker conditions. The notes detail the
+  Hessian matrix for second-order partial derivatives, its role in determining local
+  minima (e.g., via Sylvester's criterion), and extend to bordered Hessians for constrained
+  problems. Additional topics include Taylor expansions, derivative fundamentals,
+  and a MATLAB example for eigenvalue computation of a Hessian. The content is pedagogical,
+  emphasizing theoretical foundations and practical computations in multivariable
+  calculus and optimization.
+keywords:
+- Lagrange multipliers
+- Hessian matrix
+- Kuhn-Tucker conditions
+- Sylvester's criterion
+- leading principal minors
+- Cholesky decomposition
+- bordered Hessian matrix
+- gradient
+- partial derivatives
+- optimization
+- calculus
+- MATLAB
+- eigenvalues
+- Euler method
+- Lyapunov stability
+- MathOverflow

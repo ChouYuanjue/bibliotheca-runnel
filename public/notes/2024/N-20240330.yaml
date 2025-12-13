@@ -1,0 +1,33 @@
+document: N-20240330.md
+processed_at: '2025-09-19 11:13:18'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document covers three mathematical topics: combinatorial geometry,
+  Euler''s formula for polyhedra, and algebraic topology. In combinatorial geometry,
+  it proves that for 207 non-collinear points, no more than 2017 triangles can have
+  maximum area ("good" triangles), using convex hull properties and contradiction.
+  Euler''s formula (V - E + F = 2) is derived via induction and applied to classify
+  regular polyhedra, showing only five exist. The topology section defines the degree
+  of maps between spheres via homology groups and introduces quotient groups, normal
+  subgroups, and coset multiplication, linking to modular arithmetic like Z/nZ. Key
+  findings include bounds on geometric configurations, polyhedral constraints, and
+  algebraic structures in topology.'
+keywords:
+- combinatorial geometry
+- triangle area
+- convex hull
+- Euler's formula
+- polyhedron
+- vertices
+- edges
+- faces
+- mathematical induction
+- contraction
+- regular polyhedra
+- Euler characteristic
+- topological invariant
+- homeomorphism
+- degree
+- homology group
+- normal subgroup
+- quotient group
+- cosets

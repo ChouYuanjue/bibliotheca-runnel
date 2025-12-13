@@ -1,0 +1,36 @@
+document: N-20221211.md
+processed_at: '2025-09-19 10:58:51'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document provides informal notes on calculus, focusing on derivatives.
+  It introduces key concepts such as difference quotients, limits, and derivative
+  definitions, then systematically derives formulas for derivatives of various functions,
+  including polynomials, exponentials, trigonometric functions, and their inverses.
+  Examples illustrate applications, such as finding tangent lines and proving derivative
+  rules like the product, quotient, and chain rules. The notes conclude with derivatives
+  of inverse trigonometric functions, highlighting mathematical rigor and potential
+  ambiguities in sign conventions.
+keywords:
+- derivative
+- limit
+- difference quotient
+- velocity
+- acceleration
+- secant slope
+- tangent slope
+- derivative notation
+- power rule
+- exponential function
+- natural logarithm
+- trigonometric functions
+- inverse trigonometric functions
+- elementary functions
+- sum rule
+- product rule
+- quotient rule
+- chain rule
+- inverse function derivative
+- arcsin
+- arccos
+- arctan
+- arccot
+- arcsec

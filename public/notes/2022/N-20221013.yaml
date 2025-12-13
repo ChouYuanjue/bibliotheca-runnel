@@ -1,0 +1,34 @@
+document: N-20221013.md
+processed_at: '2025-09-19 10:53:27'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents informal mathematical notes covering three main topics:
+  polygon area calculation using the shoelace formula, polynomial remainder theorem
+  and applications, and modular arithmetic including congruence properties and Euler''s
+  theorem. Key findings include: the polygon area formula derivation with an example
+  calculation; the polynomial remainder theorem proof and its application to finding
+  remainders when dividing by quadratic factors; and modular arithmetic concepts demonstrating
+  that n² mod values are restricted (0,1 for mod 3/4; 0,1,4 for mod 8), the digit-sum
+  congruence property mod 9, and Euler''s theorem applications for computing remainders
+  of large powers. The document concludes with solved problems illustrating these
+  concepts, such as finding maximum values of trigonometric expressions related to
+  circle geometry and computing remainders of large numbers modulo primes.'
+keywords:
+- polygon area formula
+- coordinates
+- vertices
+- summation
+- directed area
+- circle equation
+- vectors
+- Remainder Theorem
+- polynomial division
+- degree
+- quotient
+- remainder
+- congruence modulo
+- Euler's theorem
+- Euler's totient function
+- prime numbers
+- modular arithmetic
+- digit sum
+- properties of congruence

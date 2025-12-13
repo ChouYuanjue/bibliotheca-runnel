@@ -1,0 +1,38 @@
+document: N-20220713.md
+processed_at: '2025-09-19 10:38:38'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents informal notes on mathematical analysis, focusing
+  on real numbers and metric spaces. Key points include: Lemma 3 establishes that
+  for any positive real number, there exists a larger positive number and a smaller
+  positive number, proven via ε-δ language. The text emphasizes a geometric perspective
+  in analysis, visualizing real numbers as points on a line. Theorem 5 (Supremum Principle)
+  states that every non-empty, bounded-above subset of real numbers has a least upper
+  bound (supremum), proven using nested intervals and geometric reasoning, with dual
+  results for infimum. The notes also introduce metric spaces, defining them as sets
+  with a distance function satisfying non-negativity, symmetry, and the triangle inequality.
+  Examples include Euclidean, Manhattan, Chebyshev, and discrete metrics on various
+  sets, along with subspace metrics and the concept of density in metric spaces. The
+  interplay between axiomatic foundations (e.g., Archimedes'' axiom and nested interval
+  principle) and geometric intuition is highlighted throughout.'
+keywords:
+- real numbers
+- mathematical analysis
+- epsilon-delta language
+- geometric perspective
+- axioms
+- interval nesting principle
+- supremum principle
+- bounded sets
+- upper bound
+- lower bound
+- supremum
+- infimum
+- metric space
+- distance function
+- Euclidean space
+- Manhattan distance
+- Chebyshev distance
+- discrete metric
+- subspace
+- induced metric
+- dense sets

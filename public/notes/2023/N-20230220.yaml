@@ -1,0 +1,31 @@
+document: N-20230220.md
+processed_at: '2025-09-19 11:08:00'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal mathematical explorations into alternative
+  proofs of trigonometric sum and difference angle formulas, focusing on sine, cosine,
+  and tangent. It begins with a cross product method for proving the sine difference
+  formula, then discusses rotation matrices and Euler's formula for deriving sine
+  and cosine formulas. The author expresses interest in directly proving the tangent
+  sum formula and attempts using reciprocal basis vectors, achieving a derivation
+  for the tangent difference formula through matrix operations and geometric interpretations.
+  A projection vector approach is also attempted but deemed unsuccessful, reverting
+  to basic trigonometric ratios. The key findings include successful derivations using
+  cross products, rotation matrices, Euler's formula, and reciprocal basis methods,
+  while highlighting challenges in directly proving the tangent sum formula with vector-based
+  techniques.
+keywords:
+- trigonometric functions
+- angle sum and difference formulas
+- cross product
+- dot product
+- rotation matrix
+- Euler's formula
+- complex numbers
+- reciprocal basis
+- Gaussian elimination
+- projection vector
+- matrix multiplication
+- orthogonal decomposition
+- vector methods
+- geometric proofs
+- trigonometric identities

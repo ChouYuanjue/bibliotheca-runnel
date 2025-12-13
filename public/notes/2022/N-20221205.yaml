@@ -1,0 +1,53 @@
+document: N-20221205.md
+processed_at: '2025-09-19 10:57:30'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document is a set of informal mathematics lecture notes focusing on
+  set theory and combinatorial principles. Key topics include summation and product
+  notations, De Morgan's laws, the inclusion-exclusion principle, pigeonhole principle,
+  addition and multiplication principles, permutations, combinations, binomial theorem,
+  and properties of subsets. It provides proofs and examples, such as calculating
+  intersections, set operations, and solving problems involving integer sets and functions.
+  The notes conclude with exercises demonstrating applications of these concepts,
+  including proofs of irrationality and combinatorial identities.
+keywords:
+- Set theory
+- summation notation
+- product notation
+- De Morgan's laws
+- inclusion-exclusion principle
+- pigeonhole principle
+- addition principle
+- multiplication principle
+- permutations
+- combinations
+- binomial theorem
+- Gauss function
+- irrational numbers
+- prime numbers
+- finite sets
+- combinatorial mathematics
+- mathematical induction
+- set operations
+- cardinality
+- subset enumeration
+- number theory
+- proof techniques
+- mathematical logic
+- discrete mathematics
+- algebraic identities
+- function properties
+- monotonic functions
+- set intersection
+- set union
+- set difference
+- symmetric difference
+- mathematical symbols
+- factorial
+- combinatorial identities
+- mathematical proofs
+- mathematical examples
+- mathematical problems
+- mathematical concepts
+- mathematical methodologies
+- mathematical technologies
+- research branches

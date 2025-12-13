@@ -1,0 +1,45 @@
+document: N-20210207.md
+processed_at: '2025-09-19 10:28:32'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document covers foundational concepts in set theory, including the Axiom
+  of Choice and its equivalence to the existence of choice functions, definitions
+  of partially and totally ordered sets, Zorn's Lemma, and the Well Ordering Principle.
+  It introduces cardinal numbers, equipollence, and finite/infinite sets, proving
+  key results such as Cantor's theorem (|A| < |P(A)|), the Schröder-Bernstein theorem,
+  trichotomy for cardinals, and properties of infinite sets (e.g., every infinite
+  set has a denumerable subset, and for infinite cardinals α and β with β ≤ α, α +
+  β = α and αβ = α). It concludes with corollaries on the cardinality of finite subsets
+  of infinite sets.
+keywords:
+- Axiom of Choice
+- choice function
+- partially ordered set
+- partial ordering
+- reflexive
+- transitive
+- antisymmetric
+- comparable
+- total ordering
+- linear ordering
+- simple ordering
+- maximal element
+- upper bound
+- chain
+- Zorn's lemma
+- well ordered
+- Well Ordering Principle
+- Principle of Mathematical Induction
+- equipollent
+- finite set
+- infinite set
+- cardinal number
+- equivalence class
+- sum of cardinals
+- product of cardinals
+- power set
+- injective map
+- bijective map
+- Law of Trichotomy
+- denumerable subset
+- infinite cardinal
+- finite cardinal

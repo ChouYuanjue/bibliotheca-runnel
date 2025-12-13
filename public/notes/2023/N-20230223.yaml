@@ -1,0 +1,25 @@
+document: N-20230223.md
+processed_at: '2025-09-19 11:08:22'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal mathematical notes focusing on trigonometric
+  identities and matrix determinants. It begins by correcting a prior error in a trigonometric
+  expression involving angles α and β, then explores solving a system of equations
+  given sinα+sinβ=1/2 and cosα-cosβ=1/3 to find cosαcosβ, proposing two methods—one
+  algebraic involving rational and irrational components, and another matrix-based
+  approach that was incomplete. The notes also review multiple-angle formulas and
+  recurrence relations for sin(nx), cos(nx), and tan(nx). Finally, it proves that
+  the determinant of a specific tridiagonal n×n matrix with 2cosθ on the diagonal
+  and 1s on the sub- and super-diagonals equals cos(nθ), using a recurrence relation
+  and induction.
+keywords:
+- Trigonometry
+- Multiple-angle formulas
+- Recurrence relations
+- Matrix determinant
+- Algebraic manipulation
+- Trigonometric identities
+- Proof by induction
+- Mathematical notation
+- Research branches
+- Methodologies
+- Concepts

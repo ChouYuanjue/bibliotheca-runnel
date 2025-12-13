@@ -1,0 +1,42 @@
+document: N-20221120.md
+processed_at: '2025-09-19 10:56:44'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document provides an introduction to elliptic curves (ECs), defined
+  by equations of the form y² = x³ + ax + b, emphasizing that valid ECs must avoid
+  double or triple roots, ensured by the condition 4a³ + 27b² ≠ 0. It outlines proofs
+  for this criterion and introduces elliptic curve arithmetic, defining a group operation
+  via geometric point addition: for distinct points, the sum is found by drawing a
+  line through them, finding its third intersection with the curve, and reflecting
+  across the x-axis, with formulas derived using slopes and Vieta’s theorem. Point
+  doubling (adding a point to itself) uses tangent slopes from implicit differentiation.
+  The summary includes handling the special case of vertical lines by introducing
+  a point at infinity (∞) to ensure closure, making ECs suitable for cryptographic
+  applications like group-based cryptosystems.'
+keywords:
+- Elliptic Curve
+- EC
+- y² = x³ + ax + b
+- double roots
+- triple roots
+- cusp
+- self-intersection
+- 4a³+27b²≠0
+- cryptosystems
+- group operations
+- Diffie-Hellman
+- discrete exponentiation
+- one-way function
+- elliptic curve arithmetic
+- point addition
+- slope
+- point-slope formula
+- Vieta's Theorem
+- cubic polynomials
+- Rational Zero Test
+- point doubling
+- implicit differentiation
+- tangent line
+- reflection
+- point at infinity
+- vertical lines
+- infinite slope

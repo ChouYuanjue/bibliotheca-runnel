@@ -1,0 +1,42 @@
+document: N-20230201.md
+processed_at: '2025-09-19 11:06:22'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document investigates gravitational fields, beginning with proofs that
+  a uniform spherical shell exerts zero gravitational force on an interior point,
+  using geometric and integral methods. It extends the analysis to non-spherical objects,
+  deriving the gravitational potential and field for a uniform cuboid mass, showing
+  deviations from spherical symmetry, such as stronger attraction at cube corners.
+  Numerical simulations using the Runge-Kutta method demonstrate orbital dynamics
+  around a cubic planet, revealing precession and distortion due to non-uniform gravitational
+  fields. The conclusion emphasizes that only spherical masses can be treated as point
+  masses, while others require integration methods, with Cartesian coordinates being
+  more practical than spherical ones for non-spherical cases.
+keywords:
+- gravitational force
+- spherical shell
+- geometric proof
+- integration method
+- mass density
+- gravitational field
+- Newtonian potential
+- cuboid
+- rectangular solid
+- Runge-Kutta method
+- orbital equations
+- satellite orbit
+- equipotential surfaces
+- numerical simulation
+- MATLAB
+- coordinate systems
+- Cartesian coordinates
+- spherical coordinates
+- precession
+- gravitational potential
+- uniform density
+- variable density
+- calculus
+- differential equations
+- symmetry
+- gravitational attraction
+- celestial mechanics
+- computational physics

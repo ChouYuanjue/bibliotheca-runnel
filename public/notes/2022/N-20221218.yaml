@@ -1,0 +1,37 @@
+document: N-20221218.md
+processed_at: '2025-09-19 11:00:06'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document provides an introduction to metric spaces and basic topology,
+  covering definitions and properties of boundedness, metrics, convergence, continuity,
+  norms, inner products, and open/closed sets. Key topics include equivalent characterizations
+  of boundedness, examples of various metrics (Euclidean, discrete, Manhattan, British
+  railway, p-adic, uniform), proofs of uniqueness of limits and continuity criteria,
+  and the relationships between norms, metrics, and inner products (including the
+  Cauchy-Schwarz inequality). It also defines topological spaces, illustrates examples
+  like discrete and finite complement topologies, and discusses bases and comparisons
+  of topologies. The material connects analysis concepts to general metric and topological
+  settings, emphasizing foundational definitions and properties.
+keywords:
+- metric space
+- boundedness
+- convergence
+- continuity
+- discrete metric
+- Euclidean metric
+- Manhattan metric
+- British railway metric
+- p-adic metric
+- uniform metric
+- norm
+- inner product
+- Cauchy-Schwarz inequality
+- open ball
+- closed ball
+- open subset
+- closed subset
+- limit point
+- topological space
+- discrete topology
+- indiscrete topology
+- finite complement topology
+- basis

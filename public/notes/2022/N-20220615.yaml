@@ -1,0 +1,24 @@
+document: N-20220615.md
+processed_at: '2025-09-19 10:36:56'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents the 2020 Vserossiyskaya Olimpiada po Elementarnoy
+  Matematike (VOEM) early round, a Russian elementary mathematics competition. It
+  includes instructions for participants, scoring details, and four mathematical problems:
+  optimizing distances from points on a circle to fixed coordinates (Question 1),
+  maximizing squared distances on a parabola over intervals (Question 2), solving
+  circle packing problems for minimal bounding circle diameter and square side length
+  (Question 3), and finding the smallest integer solution to a rational equation (Question
+  4). The summary covers the test structure, rules, and key problem statements without
+  solutions.'
+keywords:
+- mathematics
+- olympiad
+- coordinate system
+- points
+- distance
+- parabola
+- circle packing
+- square packing
+- optimization
+- integer solution
+- equation

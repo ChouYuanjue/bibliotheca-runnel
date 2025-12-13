@@ -1,0 +1,52 @@
+document: N-20220205.md
+processed_at: '2025-09-19 10:31:07'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document provides a comparative analysis of axiomatic set theory systems,
+  focusing on ZFC, NBG, KM, and NF. It outlines their historical development, motivations
+  (e.g., resolving paradoxes like Russell's), and core axioms. Key findings highlight
+  ZFC's dominance due to its simplicity and broad applicability, though it struggles
+  with proper classes. NBG and KM extend ZFC by introducing classes to handle large
+  collections, with KM offering stronger axioms for richer class descriptions. NF
+  allows limited self-reference via stratification but faces unresolved consistency
+  issues. The document concludes that each system represents a trade-off between intuition
+  and rigor, with ongoing debates on consistency, expressiveness, and potential hybrid
+  approaches for future research.
+keywords:
+- ZFC
+- NBG
+- KM
+- New Foundations
+- NF
+- set theory
+- axiomatic systems
+- classes
+- proper classes
+- axioms
+- extension axiom
+- empty set axiom
+- pairing axiom
+- union axiom
+- power set axiom
+- regularity axiom
+- replacement axiom
+- infinity axiom
+- axiom of choice
+- Russell's paradox
+- Cantor
+- infinite sets
+- continuum
+- self-reference
+- stratification
+- consistency
+- equivalence
+- conservative extension
+- large categories
+- category theory
+- transfinite induction
+- topology
+- algebra
+- analysis
+- mathematical logic
+- model theory
+- open problems
+- computer-assisted proof

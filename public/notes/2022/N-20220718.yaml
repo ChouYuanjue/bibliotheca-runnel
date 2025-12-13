@@ -1,0 +1,39 @@
+document: N-20220718.md
+processed_at: '2025-09-19 10:40:32'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents informal mathematical notes covering two main topics:
+  recurrence sequences and real number construction via Dedekind cuts. For recurrence
+  sequences, it details methods for solving linear and fractional recurrence relations
+  using fixed-point techniques and characteristic equations, including examples and
+  step-by-step derivations. The second part focuses on foundational real analysis,
+  proving properties of Dedekind cuts, defining operations on real numbers, and establishing
+  results such as the density of rationals and irrationals in intervals. It also includes
+  exercises on metric spaces, supremum properties, and the existence of irrational
+  numbers like √2, with proofs leveraging axioms and set-theoretic arguments.'
+keywords:
+- fixed point method
+- recurrence relations
+- linear recurrence
+- fractional recurrence
+- characteristic equation
+- Dedekind cut
+- field axioms
+- order axioms
+- supremum
+- Archimedes axiom
+- metric space
+- distance function
+- dense set
+- rational numbers
+- irrational numbers
+- Euclidean space
+- inner product
+- Cauchy-Schwarz inequality
+- quadratic polynomial
+- quadratic formula
+- submetric space
+- induced metric
+- supremum principle
+- irrationality proof
+- dense rational points
+- dense irrational numbers

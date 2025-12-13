@@ -1,0 +1,28 @@
+document: N-20210206.md
+processed_at: '2025-09-19 10:28:05'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document covers foundational mathematical concepts including Cartesian
+  products, equivalence relations (defined by reflexivity, symmetry, and transitivity)
+  and their properties such as partitions and quotient classes, generalized Cartesian
+  products as indexed functions with projections, Peano axioms defining natural numbers
+  and the Principle of Mathematical Induction, and integer arithmetic topics like
+  the Division Algorithm, divisibility, greatest common divisor, and congruence modulo
+  m with its equivalence classes and algebraic properties.
+keywords:
+- Cartesian product
+- equivalence relation
+- reflexive
+- symmetric
+- transitive
+- equivalence class
+- quotient class
+- partition
+- indexed family
+- projection map
+- universal property
+- Peano axioms
+- Principle of Mathematical Induction
+- Division Algorithm
+- divides
+- greatest common divisor
+- congruence modulo

@@ -1,0 +1,38 @@
+document: N-20220708.md
+processed_at: '2025-09-19 10:37:31'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents informal mathematical notes covering advanced geometry
+  and trigonometry topics. Key geometric lemmas include: Lemma 1.17 proves that reflecting
+  a triangle''s orthocenter over a side places it on the circumcircle, and reflecting
+  over the midpoint makes the corresponding line a diameter. Lemma 1.18 establishes
+  properties of incenter/excenter reflections showing concyclic points and exterior
+  angle bisectors. The notes introduce directed angles modulo 180° with nine fundamental
+  properties and applications, including proving Miquel''s Theorem for concurrent
+  circles. Vector operations and identities are covered, along with comprehensive
+  trigonometric formulas: basic definitions, Pythagorean identities, reduction formulas,
+  angle addition/subtraction rules, and product-to-sum/sum-to-product transformations.
+  The material blends geometric proofs with algebraic techniques, emphasizing directed
+  angles for handling complex configurations.'
+keywords:
+- orthocenter
+- reflection
+- diameter
+- incenter
+- excenter
+- directed angles
+- clockwise
+- modulo 180
+- Miquel point
+- vectors
+- triangle inequality
+- trigonometry
+- sine
+- cosine
+- tangent
+- cotangent
+- secant
+- cosecant
+- trigonometric identities
+- angle addition formulas
+- double-angle formulas
+- sum-to-product formulas

@@ -1,0 +1,29 @@
+document: N-20220628.md
+processed_at: '2025-09-19 10:37:11'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal notes on integration techniques in mathematics,
+  focusing on methods such as term-by-term integration, partial fractions, integration
+  by parts, and substitution (both first and second types). Key examples include integrating
+  rational functions, trigonometric integrals, and irrational expressions, with detailed
+  step-by-step solutions and occasional reflections on errors or alternative approaches.
+  The notes emphasize practical problem-solving strategies, including handling repeated
+  factors in denominators, choosing substitutions for simplification, and applying
+  standard trigonometric substitutions for expressions involving square roots.
+keywords:
+- integration techniques
+- partial fractions
+- integration by parts
+- substitution method
+- trigonometric substitution
+- rationalization
+- polynomial decomposition
+- logarithmic integration
+- exponential integration
+- trigonometric integration
+- differential operator
+- integration table
+- calculus
+- mathematics
+- research branches
+- methodologies
+- important concepts

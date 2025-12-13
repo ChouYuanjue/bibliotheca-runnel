@@ -1,0 +1,41 @@
+document: N-20220911.md
+processed_at: '2025-09-19 10:51:36'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document provides a comprehensive summary of formulas and concepts
+  related to lines and circles in coordinate geometry. Key topics covered include:
+  slope and inclination angle formulas; conditions for parallel and perpendicular
+  lines; five forms of linear equations (point-slope, slope-intercept, two-point,
+  intercept, and general); direction and normal vectors; vector-based equations; angle
+  formulas between lines; distance formulas (between points, point to line, and parallel
+  lines); and four types of line families (fixed-point, concurrent, parallel, and
+  perpendicular). It also introduces circle equations (standard and general forms)
+  and discusses line-circle and circle-circle positional relationships, including
+  geometric and algebraic criteria. Several examples illustrate applications, such
+  as range determination under constraints, maximum distance calculations, and geometric
+  problem-solving involving triangles and curves. The document serves as a condensed
+  reference for fundamental principles in two-dimensional analytic geometry.'
+keywords:
+- slope
+- inclination angle
+- parallel lines
+- perpendicular lines
+- point-slope form
+- slope-intercept form
+- two-point form
+- intercept form
+- general form
+- direction vector
+- normal vector
+- vector equation
+- angle between lines
+- distance formula
+- point-to-line distance
+- parallel lines distance
+- line family equations
+- circle equation
+- standard form
+- general form
+- geometric method
+- algebraic method
+- tangent line
+- circle-to-circle positions

@@ -1,0 +1,34 @@
+document: N-20230107.md
+processed_at: '2025-09-19 11:03:10'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal notes on combinatorics, covering fundamental
+  concepts and methods. Key topics include permutations with repetition (n^r), arrangements
+  of non-distinct elements (n!/(n₁!n₂!...nₖ!)), multiset combinations (grouping n
+  distinct elements into k subsets), and combinations with repetition (C(n+r-1, r)),
+  which is linked to non-negative integer solutions of equations like z₁+...+zₙ=r.
+  It also discusses distance combinations (selecting r numbers from {1,...,n} with
+  minimum gap m, resulting in C(n-(r-1)m, r)) and provides exercises involving combinatorial
+  counts, proofs of identities (e.g., ∑jC(n,j)=n2^(n-1)), and practical applications
+  such as coloring polyhedra and organizing sports pairings. The notes emphasize combinatorial
+  principles, algebraic connections, and problem-solving techniques.
+keywords:
+- Combinatorics
+- Permutations
+- Combinations
+- Repeated Permutations
+- Multinomial Coefficients
+- Multiset Permutations
+- Multinomial Theorem
+- Multiplication Principle
+- Non-negative Integer Solutions
+- Positive Integer Solutions
+- Distance Combinations
+- Set Theory
+- Combinatorial Proofs
+- Binomial Coefficients
+- Stars and Bars Method
+- Generating Functions
+- Combinatorial Identities
+- Exercises
+- Proofs
+- Applications

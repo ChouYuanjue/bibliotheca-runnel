@@ -1,0 +1,35 @@
+document: N-20220721.md
+processed_at: '2025-09-19 10:46:42'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal mathematical notes covering probability theory
+  and algebraic substitutions. It begins by defining fundamental probability concepts
+  such as random experiments, sample spaces, events, classical probability (with an
+  example calculating the probability of keys not matching locks), geometric probability,
+  conditional probability, and independence. The second part focuses on algebraic
+  substitutions for solving inequalities under constraints like abc=1, introducing
+  transformations such as x=a+1/a and deriving relations like x²+y²+z²−xyz=4. Applications
+  include proving classical inequalities (e.g., Nesbitt's inequality) and solving
+  problems involving acute triangles and polynomials, demonstrating that polynomials
+  vanishing under specific substitutions must be divisible by x²+y²+z²−xyz−4. Key
+  findings emphasize the utility of substitutions in simplifying and solving algebraic
+  and probabilistic problems.
+keywords:
+- random experiment
+- sample point
+- sample space
+- finite set
+- random event
+- basic event
+- classical probability
+- geometric probability
+- conditional probability
+- independent events
+- substitution method
+- inequalities
+- algebraic relations
+- polynomials
+- trigonometric identities
+- acute triangle
+- Nesbitt inequality
+- discriminant
+- polynomial division

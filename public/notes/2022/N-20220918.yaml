@@ -1,0 +1,32 @@
+document: N-20220918.md
+processed_at: '2025-09-19 10:52:26'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents two mathematical proofs: first, it demonstrates that
+  for any natural number n, 512 divides the expression 3^(2n) - 32n² + 24n - 1 by
+  reducing the problem through successive differences and showing divisibility by
+  8 for a base case. Second, it proves that for the alternating harmonic series up
+  to 1/1319 expressed as p/q in lowest terms, p is divisible by the prime number 1979
+  by regrouping terms into pairs whose numerators are multiples of 1979 and leveraging
+  coprimality. Both proofs utilize algebraic manipulation, properties of divisibility,
+  and number theory concepts.'
+keywords:
+- mathematics
+- theorem
+- proof
+- divisibility
+- induction
+- integer sequences
+- harmonic series
+- prime numbers
+- greatest common divisor
+- mathematical induction
+- difference sequences
+- algebraic manipulation
+- summation
+- pairing method
+- number theory
+- exponentiation
+- polynomials
+- rational numbers
+- mathematical notation
+- formal proof techniques

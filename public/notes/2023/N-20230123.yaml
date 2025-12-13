@@ -1,0 +1,38 @@
+document: N-20230123.md
+processed_at: '2025-09-19 11:05:23'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal notes on mathematics, focusing on calculus
+  and vector analysis. Key topics include derivatives of composite functions, integration
+  concepts such as Riemann sums, definite and indefinite integrals, the Fundamental
+  Theorem of Calculus, and the Newton-Leibniz formula. It provides worked examples
+  applying these concepts to problems involving springs, chains, and motion, using
+  techniques like separation of variables. The notes also cover differential equations,
+  vector operations including dot and cross products, and physical applications such
+  as torque, angular velocity, and gravitational forces. Conclusions emphasize practical
+  problem-solving through integration, differentiation, and vector analysis, with
+  examples illustrating mathematical derivations and physical interpretations.
+keywords:
+- composite function derivative
+- chain rule
+- Riemann sum
+- definite integral
+- indefinite integral
+- antiderivative
+- Fundamental Theorem of Calculus
+- Newton-Leibniz formula
+- linear density
+- surface density
+- volume density
+- separation of variables
+- differential equations
+- vector cross product
+- determinant
+- algebraic cofactor
+- torque
+- angular velocity
+- solid angle
+- spherical coordinates
+- scalar product
+- vector product
+- triple scalar product
+- triple vector product

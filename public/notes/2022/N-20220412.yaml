@@ -1,0 +1,45 @@
+document: N-20220412.md
+processed_at: '2025-09-19 10:34:58'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal notes on linear algebra, focusing on definitions
+  and concepts. Key definitions include unit vectors, Kronecker delta (representing
+  identity matrices), Einstein's summation convention, matrix rank, transpose, Hermitian
+  conjugate, symmetric and skew-Hermitian matrices, trace, linear independence, spanning
+  sets, basis vectors (including orthonormal and standard bases), and vector space
+  dimension. It also details Gaussian elimination steps for solving linear systems,
+  with corollaries on solution count (no solution, infinite solutions with arbitrary
+  constants, or unique solution) and structure (general solution as sum of homogeneous
+  solution and particular solution). The notes emphasize foundational linear algebra
+  tools and their applications in solving equations.
+keywords:
+- Linear Algebra
+- unit vector
+- Kronecker delta
+- identity matrix
+- Einstein summation convention
+- free suffix
+- dummy suffix
+- rank
+- column rank
+- row rank
+- Gaussian elimination
+- row echelon form
+- solution count
+- unique solution
+- infinite solutions
+- no solution
+- general solution
+- special solution
+- inhomogeneous equations
+- homogeneous equations
+- transpose
+- Hermitian conjugate
+- symmetric matrix
+- skew-Hermitian matrix
+- trace
+- linearly independent vectors
+- spanning set
+- basis vectors
+- standard basis
+- orthonormal basis
+- dimension

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "doge-repo",
+    "title": "doge-repo",
+    "description": "QQ机器人豆子 Doge的源码库。包括v2（使用CQP），v3（使用mirai），v4（使用AstrBot，当前版本）。",
+    "githubUrl": "https://github.com/ChouYuanjue/doge-repo",
+    "stars": 8,
+    "language": "Python",
+    "topics": [],
+    "updatedAt": "2025-09-28T13:26:35Z",
+    "slug": "doge-repo"
+  },
+  {
+    "id": "tangut_chinese_translator",
+    "title": "Tangut_Chinese_Translator",
+    "description": "一个西夏文-中文双向翻译器",
+    "githubUrl": "https://github.com/ChouYuanjue/Tangut_Chinese_Translator",
+    "stars": 1,
+    "language": "JavaScript",
+    "topics": [],
+    "updatedAt": "2025-09-17T11:36:28Z",
+    "slug": "tangut_chinese_translator"
+  },
+  {
+    "id": "ai_emoji_kitchen_lab",
+    "title": "AI_Emoji_Kitchen_Lab",
+    "description": "这是一个基于深度学习的表情符号（Emoji）融合项目，旨在于通过大模型实现Google Emoji Kitchen风格的表情符号融合，能够将两个不同的emoji融合成一个全新的、富有创意的emoji图像。",
+    "githubUrl": "https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab",
+    "stars": 1,
+    "language": "Python",
+    "topics": [],
+    "updatedAt": "2025-10-09T04:18:52Z",
+    "slug": "ai_emoji_kitchen_lab"
+  },
+  {
+    "id": "pdf_summary_tool",
+    "title": "PDF_Summary_Tool",
+    "description": "一个强大的Python工具，用于将PDF文档转换为结构化文本，并利用先进的AI模型生成高质量的内容总结和关键词提炼。",
+    "githubUrl": "https://github.com/ChouYuanjue/PDF_Summary_Tool",
+    "stars": 9,
+    "language": "Python",
+    "topics": [],
+    "updatedAt": "2025-12-10T06:40:42Z",
+    "slug": "pdf_summary_tool"
+  },
+  {
+    "id": "tex-qb-gen",
+    "title": "TeX-QB-Gen",
+    "description": "Generate question banks directly from textbooks.  Leverage OpenRouter's multimodal/text models and local OCR capabilities to extract math problems and solutions from images, web pages, or PDFs, and generate uniformly formatted TeX question banks.",
+    "githubUrl": "https://github.com/ChouYuanjue/TeX-QB-Gen",
+    "stars": 3,
+    "language": "Python",
+    "topics": [],
+    "updatedAt": "2025-10-10T12:01:12Z",
+    "slug": "tex-qb-gen"
+  }
+]

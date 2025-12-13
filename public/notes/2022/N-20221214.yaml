@@ -1,0 +1,41 @@
+document: N-20221214.md
+processed_at: '2025-09-19 10:59:14'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document discusses Tarski''s circle-squaring problem, which asks whether
+  a disk and square of equal area in the plane are equidecomposable by isometries.
+  It contrasts this with dissection congruence in polygons (resolved by the Wallace-Bolyai-Gerwein
+  theorem) and polyhedra (addressed via Dehn invariants). The Banach-Tarski paradox
+  and measure theory implications are noted, particularly differences between dimensions.
+  Laczkovich''s 1990 affirmative solution is highlighted: using the axiom of choice,
+  he proved that bounded sets in R^k with equal positive Lebesgue measure and boundaries
+  of upper Minkowski dimension less than k are equidecomposable. His approach involves
+  translations on the torus, graph theory, and a refined ergodic theorem leveraging
+  Diophantine approximation to ensure nearly uniform distribution of set elements
+  in orbits.'
+keywords:
+- Tarski's circle-squaring problem
+- equidecomposable
+- isometries
+- Lebesgue measure
+- dissection congruence
+- polygons
+- Wallace-Bolyai-Gerwein theorem
+- Hilbert's third problem
+- polytopes
+- Dehn invariant
+- tensor product
+- Vitali sets
+- Banach-Tarski paradox
+- Banach measures
+- scissors congruence
+- convex circular perimeter
+- concave circular perimeter
+- Laczkovich's solution
+- Minkowski dimension
+- torus
+- random translations
+- Zd action
+- Borel bijection
+- ergodic theorem
+- Diophantine approximation
+- discrepancy theory

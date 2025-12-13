@@ -1,0 +1,34 @@
+document: N-20221126.md
+processed_at: '2025-09-19 10:57:10'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document provides an informal academic overview of modular arithmetic,
+  focusing on congruence relations, residue classes, and Euler's totient function.
+  It defines congruence modulo m and outlines fundamental properties such as reflexivity,
+  symmetry, transitivity, and operations under addition, multiplication, and exponentiation.
+  Key concepts include residue classes, complete residue systems, reduced residue
+  classes, and Euler's φ function, with formulas for computing φ(n) based on prime
+  factorization. The document includes proofs and examples demonstrating applications,
+  such as determining the last digit of large powers, solving linear congruences,
+  and addressing classic problems like the Chinese Remainder Theorem. Exercises reinforce
+  properties of squares modulo different bases (e.g., squares modulo 4 are 0 or 1)
+  and practical problem-solving techniques. Overall, it serves as a concise educational
+  resource on foundational number theory topics.
+keywords:
+- congruence
+- modular arithmetic
+- residue classes
+- complete residue system
+- reduced residue system
+- Euler's totient function
+- prime numbers
+- divisibility
+- mathematical induction
+- Chinese remainder theorem
+- modulo operations
+- properties of congruence
+- quadratic residues
+- exponentiation modulo
+- arithmetic modulo
+- integer properties
+- mathematical proofs
+- number theory

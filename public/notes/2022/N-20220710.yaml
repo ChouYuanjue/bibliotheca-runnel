@@ -1,0 +1,38 @@
+document: N-20220710.md
+processed_at: '2025-09-19 10:38:04'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal mathematics notes covering vector operations
+  in plane geometry, including coordinate representations, dot products, and angle
+  calculations, followed by an axiomatic construction of real numbers. It defines
+  ℝ as an ordered field satisfying field axioms (F1-F9), order axioms (O1-O5), Archimedes'
+  axiom (A), and the nested interval property (I). Key proofs include the uniqueness
+  of additive/multiplicative inverses, properties of inequalities, and the embedding
+  of rational numbers into ℝ via an injective homomorphism ι:ℚ→ℝ. The notes conclude
+  that ℝ, defined by these axioms, contains all rationals and necessitates the nested
+  interval axiom to ensure existence of irrationals like √2, while excluding infinitesimals.
+  The text emphasizes foundational rigor and highlights limitations in standard secondary
+  education treatments of real numbers.
+keywords:
+- vector
+- coordinate system
+- basis
+- dot product
+- magnitude
+- angle
+- cosine
+- field axioms
+- group
+- ring
+- domain
+- space
+- order axioms
+- Archimedes axiom
+- Dedekind cut
+- rational numbers
+- irrational numbers
+- injection
+- well-defined
+- infinitesimal
+- non-standard analysis
+- nested interval axiom
+- real numbers

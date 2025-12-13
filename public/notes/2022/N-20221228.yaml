@@ -1,0 +1,31 @@
+document: N-20221228.md
+processed_at: '2025-09-19 11:02:22'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal mathematical notes focusing on quotient spaces
+  and product topology within category theory and algebraic topology. Key concepts
+  include defining quotient spaces through equivalence relations, such as identifying
+  endpoints of an interval to form a circle (D¹/∼ ≈ S¹) or generalizing to Dⁿ/Sⁿ⁻¹
+  = Sⁿ, and illustrating examples like cylinders and tori from square identifications.
+  It also covers the product topology on Cartesian products (e.g., ℝ×ℝ as ℝ², S¹×S¹
+  as a torus), with basis elements U×V for open sets U and V, and discusses nuances
+  in notation and interpretations of quotient sets, highlighting potential ambiguities
+  in mathematical conventions.
+keywords:
+- Category Theory
+- Topology
+- Algebraic Topology
+- Quotient Space
+- Equivalence Relation
+- Interval Modulo Endpoints
+- D¹
+- S¹
+- Boundary
+- Cylinder
+- Torus
+- X/A
+- Quotient Set
+- Product Topology
+- Basis
+- Open Set
+- Euclidean Plane
+- Unit Square

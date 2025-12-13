@@ -1,0 +1,30 @@
+document: N-20220320.md
+processed_at: '2025-09-19 10:32:19'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal notes on calculus, focusing on the mean value
+  theorem and its extensions. It covers Rolle's theorem, the standard mean value theorem,
+  and Cauchy's (ratio) mean value theorem, emphasizing conditions for differentiability
+  and continuity. The notes highlight that differentiability implies continuity, but
+  not vice versa, illustrated by the Weierstrass function—a continuous yet nowhere
+  differentiable function defined by an infinite cosine series, demonstrating counterintuitive
+  mathematical concepts.
+keywords:
+- Calculus
+- Mean Value Theorem
+- Rolle's Theorem
+- Continuous Function
+- Differentiable
+- Open Interval
+- Derivative
+- Ratio Mean Value Theorem
+- Cauchy's Mean Value Theorem
+- Real-Valued Function
+- Neighborhood
+- Limit
+- Differentiability
+- Continuity
+- Weierstrass Function
+- Weierstrass Cosine Function
+- Series
+- Oscillations
+- Nowhere Differentiable

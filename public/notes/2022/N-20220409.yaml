@@ -1,0 +1,30 @@
+document: N-20220409.md
+processed_at: '2025-09-19 10:34:13'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal mathematical notes covering calculus, differential
+  equations, and linear algebra. Key topics include the Faà di Bruno formula for higher
+  derivatives of composite functions, Leibniz notation manipulations for differentials
+  (e.g., dy, d²y), and matrix algebra concepts such as matrix multiplication properties
+  (non-commutativity, associativity), block matrix operations for efficient computation,
+  and Schur complements for elimination. An example computes a specific inverse matrix
+  element (b₃₃=524800) using block matrix diagonalization. The notes reference advanced
+  texts but focus on practical problem-solving, skipping foundational sections for
+  brevity.
+keywords:
+- calculus
+- differential equations
+- linear algebra
+- multivariate calculus
+- Leibniz notation
+- chain rule
+- derivatives
+- determinants
+- matrix multiplication
+- block matrices
+- Schur complement
+- diagonalization
+- Faà di Bruno formula
+- topology
+- maximal ideals
+- power series
+- manifolds

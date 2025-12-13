@@ -1,0 +1,33 @@
+document: N-20220810.md
+processed_at: '2025-09-19 10:50:29'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal mathematical notes focused on inequalities,
+  covering fundamental inequalities such as the basic inequality (a² + b² ≥ 2ab),
+  AM-GM inequality (arithmetic mean-geometric mean), Cauchy-Schwarz inequality in
+  two and three dimensions, and the triangle inequality (including absolute value
+  and vector forms). It includes proofs and applications, demonstrating techniques
+  for establishing inequalities like (a+b+c)/3 ≥ ³√abc and (a+b+c+d)/4 ≥ ⁴√abcd, as
+  well as solving problems involving constraints (e.g., a+b+c=1) and maximizing expressions
+  under given conditions. Examples illustrate the use of inequalities in various contexts,
+  with proofs relying on algebraic manipulation, mean inequalities, and properties
+  like equality conditions. The document concludes with geometric interpretations
+  and cautionary notes on applying the triangle inequality effectively. Key findings
+  confirm the validity of these inequalities under specified conditions, with equality
+  cases identified where applicable.
+keywords:
+- inequalities
+- AM-GM inequality
+- Cauchy-Schwarz inequality
+- triangle inequality
+- metric space
+- absolute value
+- proof techniques
+- optimization
+- vectors
+- geometric interpretation
+- mathematical concepts
+- real numbers
+- non-negative numbers
+- equality conditions
+- mathematical proofs
+- problem solving

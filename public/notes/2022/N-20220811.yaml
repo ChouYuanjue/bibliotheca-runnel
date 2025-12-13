@@ -1,0 +1,36 @@
+document: N-20220811.md
+processed_at: '2025-09-19 10:50:53'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal mathematical notes containing ten problems
+  (A1-A8, B9-B10) primarily focused on inequalities, optimization, and algebraic proofs,
+  with extensive use of Cauchy-Schwarz inequality and other techniques. Key findings
+  include deriving necessary conditions for inequalities (e.g., A2), solving maximization
+  problems (A3), proving bounds on triangle angles (A5), and establishing product
+  constraints (A7, B9). Conclusions demonstrate equality conditions, such as specific
+  variable relationships (A4, A6), and validate inequalities under given constraints
+  (B10), emphasizing rigorous mathematical reasoning and problem-solving strategies.
+keywords:
+- Cauchy-Schwarz inequality
+- optimization
+- derivatives
+- inequalities
+- proof techniques
+- mathematical analysis
+- algebra
+- geometry
+- trigonometry
+- calculus
+- maximization
+- minimization
+- equality conditions
+- real numbers
+- positive reals
+- triangle angles
+- systems of equations
+- AM-GM inequality
+- substitution method
+- vector spaces
+- norms
+- inequalities in triangles
+- polynomial identities
+- algebraic manipulation

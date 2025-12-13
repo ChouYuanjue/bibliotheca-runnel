@@ -1,0 +1,63 @@
+document: N-20220806.md
+processed_at: '2025-09-19 10:49:45'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document is a collection of informal mathematical notes dated August
+  6, 2022, focusing on set theory, number theory, and algebraic problems. Key topics
+  include defining and manipulating sets (e.g., Example 1: B = {-2, -3} with sum -5),
+  proving closure properties under addition and subtraction (Example 2), and determining
+  maximum subset sizes under divisibility constraints (Example 3: |M| ≤ 21). It explores
+  functional equations (Example 4: A ⊆ B for f(x) = x² + ax + b), combinatorial arguments
+  (Example 6: sums as perfect squares), and constructive proofs (Example 8: existence
+  of subset T). Exercises cover solving systems, set intersections, inequalities,
+  and modular arithmetic, with conclusions like the non-existence of certain parameters
+  (A4) and optimal set constructions (A11: max |S| = 44). The notes emphasize proof
+  techniques, counterexamples, and bounds, often using contradiction and induction.'
+keywords:
+- set theory
+- number theory
+- algebra
+- mathematical proofs
+- Dedekind cut
+- divisibility
+- closed sets
+- quadratic functions
+- fixed points
+- modular arithmetic
+- combinatorial mathematics
+- inequalities
+- mathematical induction
+- group theory
+- harmonic mean
+- arithmetic progression
+- geometric progression
+- real numbers
+- integers
+- subsets
+- union
+- intersection
+- square numbers
+- modulus
+- congruence
+- factorization
+- inequalities
+- mathematical logic
+- problem solving
+- mathematical competition
+- CM0
+- Z/6Z
+- kZ
+- f(f(x))
+- A⊆B
+- T subset
+- s ∈ [-n
+- n]
+- matrix
+- modulus 7
+- square roots
+- supremum
+- contradiction
+- mathematical reasoning
+- mathematical concepts
+- research branches
+- methodologies
+- technologies

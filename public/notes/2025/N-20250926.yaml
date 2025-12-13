@@ -1,0 +1,40 @@
+document: N-20250926.md
+processed_at: '2025-10-09 18:30:05'
+model_used: deepseek/deepseek-chat-v3.1
+summary: 'This document explores matrix calculus and tensor "collapse" in the context
+  of neural network backpropagation. It demonstrates that while the gradient ∂y/∂W
+  for a linear layer z = Wx + b is theoretically a 3D tensor (m×m×n), it collapses
+  into a simple outer product ∂y/∂W = (∂y/∂z)xᵀ due to sparsity from element-wise
+  activation functions and the chain rule. Two rigorous proofs are provided: one using
+  Einstein summation convention with Kronecker delta to handle indices component-wise,
+  and another employing vectorization and Kronecker products for formal matrix-level
+  derivation. Both methods confirm the same efficient gradient computation, avoiding
+  explicit storage of the high-dimensional tensor.'
+keywords:
+- matrix calculus
+- tensor collapse
+- multilayer perceptron
+- MLP
+- gradient descent
+- loss function
+- cross-entropy
+- softmax
+- backpropagation
+- partial derivatives
+- chain rule
+- Einstein summation convention
+- Kronecker delta
+- sparse tensor
+- outer product
+- vectorization
+- Kronecker product
+- linear transformation
+- activation function
+- sigmoid
+- ReLU
+- Jacobian matrix
+- matrix derivatives
+- tensor analysis
+- machine learning
+- neural networks
+- linear algebra

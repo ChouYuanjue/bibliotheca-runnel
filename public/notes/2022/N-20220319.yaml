@@ -1,0 +1,30 @@
+document: N-20220319.md
+processed_at: '2025-09-19 10:31:52'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document provides an informal review of calculus concepts, focusing
+  on sequences, limits, derivatives, and integration. It defines sequences and their
+  convergence using the ε-N definition, illustrated with an example proving lim n/(n+1)=1.
+  It introduces limits of functions via the ε-δ definition, emphasizing behavior near
+  but not at a point. Derivatives are defined as rates of change, with explanations
+  of O and o notations for asymptotic behavior. Key differentiation rules are covered:
+  chain, product, quotient, and Leibniz''s rule for higher derivatives. Integration
+  is presented as a limit of sums, approximating area under curves, and the Fundamental
+  Theorem of Calculus is stated and proved, showing differentiation and integration
+  are inverse operations. The notes conclude with a concise proof of the theorem.'
+keywords:
+- Calculus
+- Sequences
+- Convergence
+- Limits
+- Real Numbers
+- Derivatives
+- Differentiation
+- O Notation
+- o Notation
+- Chain Rule
+- Product Rule
+- Quotient Rule
+- Leibniz's Rule
+- Integration
+- Riemann Integral
+- Fundamental Theorem of Calculus

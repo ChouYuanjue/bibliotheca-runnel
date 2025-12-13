@@ -1,0 +1,61 @@
+{
+  "navigation": [
+    {
+      "title": "Home",
+      "path": "/",
+      "tier": 1
+    },
+    {
+      "title": "CV",
+      "path": "/cv",
+      "tier": 1
+    },
+    {
+      "title": "Library",
+      "path": "/library",
+      "tier": 1,
+      "children": [
+        {
+          "title": "Notes",
+          "path": "/library/notes",
+          "tier": 2
+        },
+        {
+          "title": "Classics",
+          "path": "/library/classics",
+          "tier": 2
+        },
+        {
+          "title": "Linguistics",
+          "path": "/library/linguistics",
+          "tier": 2
+        },
+        {
+          "title": "Criticisms",
+          "path": "/library/criticisms",
+          "tier": 2
+        }
+      ]
+    },
+    {
+      "title": "Projects",
+      "path": "/projects",
+      "tier": 1
+    },
+    {
+      "title": "Organizations",
+      "path": "/organizations",
+      "tier": 1
+    },
+    {
+      "title": "Achieved",
+      "path": "/achieved",
+      "tier": 1
+    },
+    {
+      "title": "Fragments",
+      "path": "/fragments",
+      "tier": 1
+    }
+  ]
+}

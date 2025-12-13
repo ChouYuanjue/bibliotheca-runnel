@@ -1,0 +1,41 @@
+document: N-20221229.md
+processed_at: '2025-09-19 11:02:46'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal notes on algebraic topology and algebra,
+  focusing on topological constructions and group theory. Key topics include the disjoint
+  union and wedge sum of topological spaces, with examples like S¹ ∨ S¹ forming a
+  figure eight. It introduces CW complexes, detailing their construction through skeletons
+  and cells, and provides examples such as Sⁿ and D². The torus and Klein bottle are
+  described as CW complexes with specific attaching words (aba⁻¹b⁻¹ and abab⁻¹, respectively).
+  Additionally, group theory concepts are covered, including congruence modulo a subgroup,
+  cosets, and the index of a subgroup, with proofs and properties discussed. The notes
+  blend geometric intuition with formal definitions, emphasizing foundational structures
+  in algebraic topology and algebra.
+keywords:
+- Algebraic Topology
+- Algebra
+- S¹
+- T
+- Torus
+- Disjoint union
+- Wedge sum
+- Topological spaces
+- CW complexes
+- k-skeleton
+- k-cell
+- Attaching map
+- Klein bottle
+- ℝPⁿ
+- ℂPⁿ
+- Subgroup
+- Cosets
+- Index
+- Equivalence relation
+- Homomorphism
+- Homeomorphism
+- Figure eight
+- Cylinder
+- Sphere
+- Disk
+- Boundary
+- Attaching word

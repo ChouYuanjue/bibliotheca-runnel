@@ -1,0 +1,31 @@
+document: N-20221209.md
+processed_at: '2025-09-19 10:58:14'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents informal mathematics lecture notes covering several
+  exercises on number theory, set theory, and combinatorics. Key topics include: counting
+  composite numbers and primes up to 120 using inclusion-exclusion; applying the inclusion-exclusion
+  principle to set combinations; analyzing quadratic equations with real roots; proving
+  the irrationality of √2; demonstrating properties of power sets through induction;
+  solving systems of equations; and proving that among 1999 sets each of size 45,
+  there exists a common element, with conclusions on union sizes. The exercises employ
+  mathematical reasoning, proofs by contradiction, and combinatorial arguments, showcasing
+  fundamental concepts in discrete mathematics.'
+keywords:
+- composite numbers
+- prime numbers
+- inclusion-exclusion principle
+- quadratic equations
+- irrational numbers
+- set theory
+- mathematical induction
+- proof techniques
+- combinatorics
+- set operations
+- cardinality
+- intersection
+- union
+- contradiction
+- rational numbers
+- real numbers
+- subsets
+- mathematical logic

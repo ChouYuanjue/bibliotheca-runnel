@@ -1,0 +1,36 @@
+document: N-20220813.md
+processed_at: '2025-09-19 10:51:15'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal notes on complex analysis, focusing on holomorphic
+  functions and contour integrals. It explains that holomorphic functions are exceptionally
+  well-behaved, with properties including that contour integrals over loops are zero,
+  they are determined by their Taylor series, and minimal data (like boundary values
+  or a sequence of points) can specify the entire function. The text defines contour
+  integrals, illustrates their computation with an example involving the unit circle
+  (showing ∫ z^m dz is 2πi only for m = -1 and zero otherwise), and discusses their
+  geometric interpretation via Riemann sums. It concludes with the Cauchy-Goursat
+  theorem, stating that for a holomorphic function in a simply connected domain, the
+  contour integral over any loop is zero.
+keywords:
+- complex functions
+- holomorphic functions
+- contour integrals
+- Taylor series
+- Cauchy-Riemann equations
+- unit circle
+- Riemann sum
+- midpoint Riemann sum
+- trapezoidal rule
+- simply connected
+- Cauchy-Goursat theorem
+- loops
+- paths
+- parametrization
+- bounded length
+- differentiable functions
+- integration
+- complex plane
+- real line
+- geometric description
+- cancellation
+- backwards contour

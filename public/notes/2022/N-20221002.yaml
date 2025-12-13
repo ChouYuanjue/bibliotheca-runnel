@@ -1,0 +1,47 @@
+document: N-20221002.md
+processed_at: '2025-09-19 10:52:52'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal notes on mathematics, focusing on field theory
+  and finite fields. It covers the definition and properties of fields, including
+  examples like ℂ, ℚ, and ℝ, and discusses field extensions, such as ℂ/ℝ. The notes
+  detail finite fields F_p of prime order and their polynomial rings, explaining constructions
+  like F_p[x]/(f(x)) to create fields of order p^n. Factorization of polynomials over
+  finite fields is explored, including irreducibility criteria and algorithms like
+  Berlekamp and Cantor-Zassenhaus. The Frobenius endomorphism and its role in field
+  theory are highlighted, along with methods for determining polynomial roots and
+  factorization in extensions. The document concludes with a brief calculus example,
+  illustrating the derivative definition. Overall, it provides a concise overview
+  of key concepts in algebra related to fields and polynomials.
+keywords:
+- Finite fields
+- field extensions
+- polynomial factorization
+- Frobenius automorphism
+- Berlekamp algorithm
+- Cantor-Zassenhaus algorithm
+- Eisenstein criterion
+- field theory
+- Galois fields
+- Fp[x]
+- Fq[x]
+- Fpn
+- Fqm
+- irreducible polynomials
+- polynomial rings
+- quotient rings
+- field elements
+- algebraic structures
+- mathematical notations
+- research methodologies
+- factorization techniques
+- computational mathematics
+- Matlab
+- GF
+- degree of polynomials
+- roots of polynomials
+- field characteristics
+- prime fields
+- extension fields
+- mathematical concepts
+- research branches
+- technologies

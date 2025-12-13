@@ -1,0 +1,33 @@
+document: N-20230209.md
+processed_at: '2025-09-19 11:07:10'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document provides an informal introduction to tensors, beginning with
+  vector operations including a proof of the vector triple product identity and an
+  example problem. It defines tensors as linear operators mapping vectors to vectors,
+  introduces concepts such as direct products (dyads), transposes, symmetry properties,
+  and Cartesian component representation using matrices. Examples include projection
+  operators and the cross product tensor, illustrating how tensors can be expressed
+  in matrix form. The notes emphasize foundational tensor properties and their mathematical
+  representations, connecting abstract definitions to practical computations.
+keywords:
+- Tensor
+- vector
+- vector triple product
+- wedge product
+- Grassman algebra
+- Euclidean spaces
+- projection
+- direct product
+- dyads
+- transpose
+- symmetric tensor
+- skew tensor
+- antisymmetric tensor
+- singular tensor
+- Cartesian components
+- matrix representation
+- cross product
+- dot product
+- linear transformation
+- identity tensor
+- zero tensor

@@ -1,0 +1,40 @@
+document: N-20220715.md
+processed_at: '2025-09-19 10:39:04'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents informal mathematical notes covering two main topics:
+  conic sections and the construction of real numbers via Dedekind cuts. For conic
+  sections, it defines ellipses, hyperbolas, and parabolas, detailing their standard
+  equations, foci, axes, eccentricity, and geometric properties, including derivations
+  and proofs such as maximizing ∠F1PF2 in ellipses. The second part focuses on Dedekind
+  cuts to construct real numbers, defining order relations, addition operations, and
+  verifying algebraic axioms (associativity, commutativity, etc.), with proofs for
+  properties like density of rationals/irrationals and the existence of additive inverses.
+  The notes emphasize rigorous definitions and proofs, linking concepts to foundational
+  real analysis and linear spaces.'
+keywords:
+- conic sections
+- ellipse
+- parabola
+- hyperbola
+- standard equation
+- foci
+- major axis
+- minor axis
+- eccentricity
+- second definition
+- third definition
+- Dedekind cut
+- real numbers
+- rational numbers
+- irrational numbers
+- dense set
+- metric space
+- linear space
+- vector space
+- axioms
+- addition
+- scalar multiplication
+- order structure
+- addition structure
+- proof techniques
+- mathematical concepts

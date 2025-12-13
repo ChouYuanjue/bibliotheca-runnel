@@ -1,0 +1,32 @@
+document: N-20221119.md
+processed_at: '2025-09-19 10:56:21'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal notes on number theory, focusing on prime
+  and composite numbers. Key topics include definitions and properties of primes and
+  composites, Euclid's proof of infinite primes, the Sieve of Eratosthenes, the Fundamental
+  Theorem of Arithmetic, divisor functions τ(n) and σ(n), perfect numbers, factorial
+  prime factorization, and conditions for square numbers. It also covers modular arithmetic,
+  Fermat's Little Theorem, and various proofs and examples, such as constructing prime
+  tables, finding primes with specific forms (e.g., 4k-1), and demonstrating that
+  the harmonic series is not an integer. The notes include solved problems on topics
+  like coprime sums, consecutive composites, and divisibility conditions, concluding
+  with exercises reinforcing these concepts.
+keywords:
+- prime numbers
+- composite numbers
+- Sieve of Eratosthenes
+- Euclid's theorem
+- fundamental theorem of arithmetic
+- divisor function
+- sum of divisors
+- perfect numbers
+- factorial decomposition
+- square numbers
+- congruence
+- Fermat's little theorem
+- greatest common divisor
+- least common multiple
+- modular arithmetic
+- prime factorization
+- harmonic series
+- number theory

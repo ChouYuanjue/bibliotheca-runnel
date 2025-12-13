@@ -1,0 +1,35 @@
+document: N-20230116.md
+processed_at: '2025-09-19 11:03:57'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents supplementary exercises on mathematical functions,
+  focusing on functional equations and combinatorial problems. Key solutions include:
+  Exercise 2.2.9 determines the number of involutions \( f \) on \( \{1,2,...,10\}
+  \) with \( |f(k)-k| \leq 2 \), concluding there are 401 such functions. Exercise
+  2.2.10 solves \( f(x + f(x+y)) + f(xy) = x + f(x-y) + yf(x) \), finding only \(
+  f(x)=x \) or \( f(x)=2-x \) satisfy the equation. Other exercises cover inequalities,
+  function properties (e.g., monotonicity, symmetry), and conditions for integer outputs,
+  with proofs and derivations provided for each. The document emphasizes analytical
+  techniques and verification of solutions.'
+keywords:
+- function composition
+- idA
+- recurrence relation
+- fixed point
+- functional equation
+- monotonic function
+- symmetric function
+- Gauss function
+- bounded function
+- integer-valued polynomial
+- inequality proof
+- function properties
+- mathematical analysis
+- combinatorics
+- real numbers
+- domain
+- range
+- function transformation
+- inverse function
+- mathematical proof
+- function counting
+- recursive definition

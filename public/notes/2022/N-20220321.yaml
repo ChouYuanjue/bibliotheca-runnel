@@ -1,0 +1,28 @@
+document: N-20220321.md
+processed_at: '2025-09-19 10:32:38'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document provides an informal introduction to complex analysis, covering
+  fundamental operations like addition and multiplication of complex numbers, their
+  representation in polar form, and Euler's formula derived via Taylor series and
+  geometric interpretation using motion on the unit circle. It discusses Cotes' result
+  on regular n-gons and roots of unity, showing how complex numbers simplify factorization
+  of zⁿ - 1 into real linear and quadratic factors, emphasizing geometric insights
+  and connections to physics.
+keywords:
+- Complex Analysis
+- parallelogram law
+- polar coordinates
+- Euler's Formula
+- Taylor's series
+- Needham
+- velocity
+- derivative
+- unit circle
+- Cotes' result
+- regular n-gon
+- roots of unity
+- Descartes' Factor Theorem
+- factorization
+- conjugate pairs
+- quadratic factors
+- geometric interpretation

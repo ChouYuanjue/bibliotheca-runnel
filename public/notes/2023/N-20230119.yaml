@@ -1,0 +1,44 @@
+document: N-20230119.md
+processed_at: '2025-09-19 11:05:04'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents an overview of key theorems in Euclidean plane geometry,
+  focusing on Ceva's theorem (used to prove concurrency of lines), Menelaus' theorem
+  (for proving collinearity of points), Ptolemy's theorem and its generalization (relating
+  sides and diagonals of cyclic quadrilaterals), Simson's theorem (on collinearity
+  of perpendicular feet from a point on the circumcircle), and Euler's theorem (establishing
+  collinearity of the circumcenter, centroid, and orthocenter, along with Euler's
+  formula R² - d² = 2Rr and the inequality R ≥ 2r). Each theorem includes proofs and
+  discussions of their converses and applications.
+keywords:
+- Ceva's theorem
+- Menelaus's theorem
+- Ptolemy's theorem
+- Generalized Ptolemy's theorem
+- Simson's theorem
+- Euler's theorem
+- Euclidean geometry
+- plane geometry
+- triangle
+- quadrilateral
+- circle
+- circumcircle
+- incircle
+- centroid
+- orthocenter
+- circumcenter
+- Euler line
+- Simson line
+- concurrency
+- collinearity
+- cyclic quadrilateral
+- similarity
+- ratios
+- area ratios
+- complex numbers
+- modulus
+- triangle inequality
+- Euler's inequality
+- equilateral triangle
+- proof techniques
+- geometric theorems
+- inverse theorems

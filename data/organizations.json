@@ -1,0 +1,57 @@
+[
+  {
+    "slug": "nju-aia",
+    "title": "NJU AIA",
+    "role": "Core Member & Teaching Assitant",
+    "date": "2025-09",
+    "endDate": "Present",
+    "icon": "/organizations/nju-aia/icon.jpg",
+    "website": "https://nju-aia.github.io/about/",
+    "description": "Nanjing University Artificial Intelligence Association.",
+    "content": "# About Us\r\n\r\nWe are the NJU-AIA Association. Our mission is to popularize AI knowledge to more interested students, regardless of whether they are AI majors. We provide introductory guidance on AI theories and practical skills. At the same time, we aim to attract more AI students to form a vibrant AI community.\r\n\r\n## Our Goals\r\n\r\n*   **Popularize AI Knowledge**\r\n*   **Provide Introductory Guidance**\r\n*   **Form a Vibrant AI Community**\r\n*   **Promote Academic Exchange**\r\n*   **Encourage Practical Innovation**\r\n\r\n## Our Activities\r\n\r\n### Regular Discussion and Sharing Meetings\r\nExchange insights on the development direction of the AI field, and discuss practical problems encountered in coursework applications and AI coding.\r\n\r\n### Project/Competition Guidance\r\nSelect and complete 1 to 2 AI projects/competitions each semester to promote member exchange and cooperation, creating a creative environment."
+  },
+  {
+    "slug": "nju-nova",
+    "title": "NJU NOVA",
+    "role": "Core Member",
+    "date": "2025-09",
+    "endDate": "Present",
+    "icon": "/organizations/nju-nova/icon.jpg",
+    "website": "https://nova.yuque.com/r/organizations/homepage",
+    "description": "Nanjing University Intelligent Data Decision Studio.",
+    "content": "# About Us\r\n\r\nNanjing University Intelligent Data Decision Studio (NOVA) was founded in 2017, initially as an academic salon organized by a group of technology enthusiasts. Today, NOVA has evolved into a student club open to all undergraduates, centered on \"Problem-Oriented, Cooperation-Accelerated, and Self-Driven\" principles. We focus not only on AI technology itself but also on how technology can be reasonably used and practically implemented to solve real-world problems.\r\n\r\n## 💡 What We Believe\r\n\r\nIn this era of rapid knowledge iteration and booming AI development, the core competitiveness of university students lies in problem awareness, self-learning ability, and hands-on practical skills.\r\n\r\nTherefore, NOVA always adheres to:\r\n\r\n*   **Values as the Bond, Not Entry Thresholds**: We welcome all students willing to learn and share, regardless of their background or major.\r\n*   **Projects as the Carrier, Not Classroom Teaching**: We do not offer lecture-style teaching but build a team to research, work, and create together.\r\n*   **Sharing as the Culture, Not Competitive Involution**: You don't need to \"win against others,\" but rather awaken your inner drive and accelerate evolution through shared collaboration.\r\n\r\n## 🛠 What We Do\r\n\r\nAt NOVA, every member has the opportunity to participate in and lead:\r\n\r\n*   🤖 **Frontier Technology Exploration**: LLM QA systems, AI agent research, Generative AI applications.\r\n*   🧶 **Real-World Scenario Applications**: Freshman dormitory allocation, intelligent transformation of administrative workflows, voice synthesis for freshman greetings.\r\n*   📚 **Knowledge Accumulation & Collaboration**: Writing project documentation, forming project groups, holding weekly exchange meetings.\r\n*   🌱 **Cross-Grade Exchange & Sharing**: Breaking information barriers through club activities, broadening horizons to academia and industry.\r\n\r\n### Freshman Dormitory Allocation Project\r\nFrom traditional clustering matching and genetic annealing to evaluation scoring and feature extraction based on AI large models, we have been exploring personalized dormitory allocation schemes, striving for \"seeking common ground while reserving differences, and harmony in diversity.\"\r\n\r\n### AI Agent Exploration\r\nWe maintain a constant focus on and exploration of large models. The club explores core technologies such as large model tool invocation and agent tool flow construction, deriving application scenarios like agent-based information aggregation and recommendation platforms, intelligent scheduling systems, and reimbursement material recognition systems.\r\n\r\n### Generative AI Application Exploration\r\nWe actively explore multimodal generative AI and its applications, discovering more possibilities in image generation, voice synthesis, and video generation.\r\n\r\n## 🌐 Our Resources & Platforms\r\n\r\n*   🧠 **Yuque Knowledge Platform**: Member sharing, project documentation, and study notes are all open for online collaboration.\r\n*   🧮 **Club Technical Resources**: Virtual machines, GPUs, VPNs, and other software/hardware tools are fully available.\r\n*   🤝 **Cross-Campus Linkage Mechanism**: Members from Gulou, Xianlin, and Suzhou campuses can synchronously participate in projects or exchange activities. We regularly hold academic salons and organize alumni to return and share frontier trends in academia and industry."
+  },
+  {
+    "slug": "chaoli-forum",
+    "title": "Chaoli Forum",
+    "role": "Mathematics Moderator",
+    "date": "2021-08",
+    "endDate": "Present",
+    "icon": "/organizations/chaoli-forum/icon.png",
+    "website": "https://chaoli.club/",
+    "description": "An online academic exchange platform, focusing on natural science discussions.",
+    "content": "# About Us\r\n\r\nChaoli Forum (chaoli.club) is an online academic exchange platform established in 2014, originating from the four major academic communities (Mathematics, Physics, Chemistry, and Biology) on Baidu Tieba. Currently, the forum members mainly include undergraduate and graduate students majoring in basic disciplines, middle school students who love science, and enthusiastic young university teachers. The daily visits exceed 20,000.\r\n\r\nThe forum content focuses on the exchange and discussion of natural science issues, featuring sections such as Mathematics, Physics, Chemistry, Biology, Computer Technology, and Social Sciences. The forum supports features like LaTeX formulas and Markdown notes. With a simple and user-friendly interface, it facilitates daily in-depth mathematical and scientific discussions."
+  },
+  {
+    "slug": "geek-college",
+    "title": "Geek College",
+    "role": "Doyen & Former Organizer",
+    "date": "2020-07",
+    "endDate": "2022-04",
+    "icon": "/organizations/geek-college/icon.jpg",
+    "website": "https://space.bilibili.com/451615707/",
+    "description": "A community dedicated to helping geek teenagers grow, fostering curiosity in science and arts through lectures, mentorship, and peer support.",
+    "content": "# About Us\r\n\r\n*Original text adapted from a Zhihu article by Keyao Peng.*\r\n\r\n## Our Origin & Mission\r\n\r\nIn the internet age, teenagers with curiosity and passion (\"geeks\") often seek a sense of belonging. While the internet offers vast information, it can also be a harsh place for young, impressionable minds.\r\n\r\n\"Geek College\" was founded to provide a safe, supportive environment for these teenagers. Our mission is to **\"help geek teenagers grow and navigate through adolescence.\"** We believe that this period is crucial for cultivating academic interests and literacy.\r\n\r\nWhile \"geek\" might seem like an outdated term, the geek spirit—curiosity and the desire to explore—is timeless. Whether it's mathematics, physics, history, or art, we welcome anyone with a thirst for knowledge, regardless of their age or background.\r\n\r\n## What We Do\r\n\r\n### 1. Lectures & Sharing\r\nOur main activity is **Lectures**. These are hosted by one or more speakers and feature interaction with the audience. We encourage teenagers to step up and share their knowledge, as teaching is one of the best ways to learn.\r\n\r\n### 2. Mentorship & Guidance\r\nWe provide consultation on various issues faced during growth, including:\r\n*   **College Major Guide**: Helping choose the right path.\r\n*   **Self-Study Guide**: Learning how to learn.\r\n*   **Reading Recommendations**: Curated lists for curious minds.\r\n*   **Psychological Support**: Navigating the emotional challenges of adolescence.\r\n\r\n### 3. Academic Writing\r\nWe encourage members to organize their learnings into written forms. We cooperate with **Chaoli Forum** to publish these works, fostering a culture of serious academic discussion.\r\n\r\n## Our Structure: The Semester System\r\nTo maintain vitality, we operate on a **Semester System**. We recognize that as teenagers grow, their needs change. A \"term\" lasts about 1 or 2 years, after which members \"graduate.\" We organize graduation activities and encourage graduates to continue participating in the next term as mentors or alumni.\r\n\r\n## A Metaphor for Us\r\n\r\n> In a cold night, two children lit a bonfire. More and more lost children came to the fire. They felt incredibly happy.\r\n>\r\n> When dawn came, the children slowly found their own paths and left one by one. But they would never forget the bonfire that once gave them warmth.\r\n>\r\n> The bonfire will continue to exist, guiding more children who come after."
+  },
+  {
+    "slug": "math-tieba",
+    "title": "Mathematics Tieba",
+    "role": "Administrator",
+    "date": "2020-07",
+    "endDate": "Present",
+    "icon": "/organizations/math-tieba/icon.jpg",
+    "website": "https://tieba.baidu.com/f?kw=%E6%95%B0%E5%AD%A6",
+    "description": "One of the largest mathematics forums on the Chinese Internet, based on Baidu Tieba.",
+    "content": "# About Us\r\n\r\nBaidu Mathematics Tieba was founded on December 3, 2003. It is one of the largest mathematics forums on the Chinese Internet and is known as one of the four major science academic Tiebas, along with Physics Tieba, Chemistry Tieba, and Biology Tieba.\r\n\r\nBefore you lies an infinite ocean of mathematics. Are you ready to set sail?\r\n\r\nWelcome to the Mathematics Tieba family. Here, mathematics enthusiasts from all over the country gather to discuss mathematical problems covering elementary school, middle school, and university levels. Let's swim and play together in this infinite ocean."
+  }
+]

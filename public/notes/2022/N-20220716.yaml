@@ -1,0 +1,36 @@
+document: N-20220716.md
+processed_at: '2025-09-19 10:39:33'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal mathematics notes focusing on conic sections,
+  specifically the positional relationships between lines and ellipses, parabolas,
+  and hyperbolas. Key topics include determining intersection points (0, 1, or 2)
+  through solving quadratic equations derived from line-conic systems, distinguishing
+  between tangency and intersection cases, and solving applied problems involving
+  distances, areas, and parameter ranges. Examples illustrate methods for finding
+  tangent lines, calculating maximum areas (e.g., △PAB area up to 20√5), and determining
+  constraints like k > 1 or k < -1 for line-ellipse intersections. The notes emphasize
+  algebraic techniques, such as discriminant analysis and Shoelace Theorem for area
+  computation, alongside conceptual clarifications (e.g., tangency requires a double
+  root). Conclusions derive specific results, such as p = 2 for a parabola focus-circle
+  distance minimization.
+keywords:
+- conic sections
+- ellipse
+- parabola
+- position relationship
+- intersection
+- tangent
+- discriminant
+- quadratic equation
+- implicit differentiation
+- shoelace theorem
+- focus
+- directrix
+- area maximization
+- slope
+- range of k
+- Beijing exam problem
+- ellipse standard equation
+- asymptote
+- calculus
+- geometry

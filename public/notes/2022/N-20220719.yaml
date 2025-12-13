@@ -1,0 +1,44 @@
+document: N-20220719.md
+processed_at: '2025-09-19 10:40:59'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal notes on solid geometry, covering fundamental
+  axioms, definitions, and theorems related to spatial relationships among points,
+  lines, and planes. Key axioms establish conditions for plane uniqueness and intersections.
+  Definitions classify positional relationships between lines (coplanar intersecting,
+  parallel, or skew) and between lines and planes (contained, intersecting, or parallel).
+  Theorems address parallelism and perpendicularity, including criteria for line-plane
+  and plane-plane parallelism, properties of parallel lines, and angle relationships
+  when sides are parallel. It introduces concepts like line-plane angles, projections,
+  the three-perpendicular theorem, and the three-cosine theorem. Dihedral angles and
+  their measures are defined, along with criteria and properties for perpendicular
+  planes. Examples test understanding of geometric propositions, and distance definitions
+  for points, parallel entities, and skew lines are provided. The notes conclude with
+  a proof involving a regular hexagon in a cube and perpendicularity.
+keywords:
+- Solid geometry
+- axioms
+- points
+- lines
+- planes
+- coplanar
+- non-coplanar
+- skew lines
+- intersecting lines
+- parallel lines
+- line-plane relationships
+- plane-plane relationships
+- theorems
+- proofs
+- angle between lines
+- perpendicular lines
+- line perpendicular to plane
+- projection
+- three perpendiculars theorem
+- three cosines theorem
+- dihedral angle
+- plane angle
+- perpendicular planes
+- distance
+- point to plane distance
+- parallel distance
+- skew lines distance

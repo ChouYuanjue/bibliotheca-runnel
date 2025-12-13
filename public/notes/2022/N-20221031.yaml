@@ -1,0 +1,38 @@
+document: N-20221031.md
+processed_at: '2025-09-19 10:54:10'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal notes on elementary number theory, focusing
+  on divisibility properties and theorems. Key concepts covered include the definition
+  of divisibility, properties such as reflexivity and transitivity, the division algorithm,
+  greatest common divisors (GCD), least common multiples (LCM), and Bézout's identity,
+  which states that for integers \(a\) and \(b\), there exist integers \(s\) and \(t\)
+  such that \(as + bt = \gcd(a,b)\). Advanced properties explore relationships like
+  \(\gcd(a,b)=1\) and \(a \mid bc\) implying \(a \mid c\), and formulas such as \(\gcd(a^m
+  - 1, a^n - 1) = a^{\gcd(m,n)} - 1\). The document includes proofs using mathematical
+  induction and provides illustrative examples and exercises, such as demonstrating
+  divisibility conditions, computing GCDs of expressions like \(2^{200}-1\) and \(2^{88}-1\),
+  and solving problems involving integer triples where sums plus one are divisible
+  by the third number. Conclusions affirm foundational results and specific integer
+  solutions, reinforcing the applicability of divisibility theory in problem-solving.
+keywords:
+- divisibility
+- greatest common divisor
+- least common multiple
+- Euclidean algorithm
+- Bézout's identity
+- mathematical induction
+- division algorithm
+- prime numbers
+- factorization
+- number theory
+- integer arithmetic
+- modular arithmetic
+- proofs
+- theorems
+- examples
+- exercises
+- properties
+- concepts
+- methodologies
+- research branches
+- technologies

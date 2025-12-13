@@ -1,0 +1,30 @@
+document: N-20221105.md
+processed_at: '2025-09-19 10:54:25'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents informal mathematical notes focusing
+  on problem-solving examples from an Olympiad tutorial. Key examples include: determining
+  maximum values of periodic functions using transformation properties (Example 1),
+  finding minima of rational functions through algebraic manipulation (Example 2),
+  analyzing logarithmic function transformations to compute maxima (Example 4), and
+  solving cubic function symmetry problems to derive parameters and extremum values
+  (Example 5). The final section proves an inequality for positive real numbers with
+  product 1, demonstrating that the sum of reciprocal terms is at least 3/2 using
+  algebraic inequalities and substitutions. Overall, the document illustrates advanced
+  techniques in function analysis, optimization, and inequality proofs in mathematics.'
+keywords:
+- mathematics
+- functions
+- periodic functions
+- maximum value
+- minimum value
+- real numbers
+- logarithmic functions
+- transformation
+- symmetry
+- cubic functions
+- inequality
+- proof
+- optimization
+- calculus
+- algebra
+- mathematical concepts

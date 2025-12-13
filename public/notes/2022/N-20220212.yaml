@@ -1,0 +1,47 @@
+document: N-20220212.md
+processed_at: '2025-09-19 10:31:30'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document provides an informal introduction to Riemann surfaces, defined
+  as Hausdorff, second-countable, connected topological spaces with a complex structure,
+  locally modeled on open subsets of ℂ. Key topics include definitions of Riemann
+  surfaces and complex manifolds, examples such as open subsets of ℂ, the Riemann
+  sphere, and complex tori, and mappings between Riemann surfaces emphasizing holomorphicity.
+  Important results covered are the correspondence between meromorphic functions on
+  a Riemann surface and holomorphic maps to the Riemann sphere, the constant degree
+  of nonconstant holomorphic maps between compact Riemann surfaces, the equality of
+  zeros and poles (counting multiplicities) for nonconstant meromorphic functions
+  on compact Riemann surfaces, the Hurwitz formula relating genera and mapping degrees,
+  and the identity theorem asserting that holomorphic maps agreeing on an open subset
+  are identical everywhere. The text highlights the elegance and rigidity of the theory,
+  particularly on compact surfaces.
+keywords:
+- Riemann surfaces
+- complex analysis
+- differential geometry
+- holomorphic functions
+- meromorphic functions
+- compact surfaces
+- genus
+- elliptic curves
+- hyperelliptic curves
+- topological manifolds
+- smooth manifolds
+- complex manifolds
+- Hausdorff property
+- coordinate charts
+- transition maps
+- analytic functions
+- Riemann sphere
+- stereographic projection
+- complex torus
+- quotient spaces
+- mapping degree
+- ramification points
+- branch points
+- Hurwitz formula
+- identity theorem
+- local coordinates
+- multiplicity
+- zeros
+- poles
+- rigid mapping

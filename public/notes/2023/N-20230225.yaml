@@ -1,0 +1,47 @@
+document: N-20230225.md
+processed_at: '2025-09-19 11:08:47'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document provides an informal overview of nonstandard analysis (NSA),
+  introduced by Abraham Robinson, which extends standard analysis by incorporating
+  infinitesimals and infinite numbers through the hyperreal number system *R, constructed
+  via ultrafilters and ultraproducts. Key concepts include the transfer principle,
+  which ensures first-order logical statements hold in both standard and nonstandard
+  systems, and definitions of continuity, derivatives, and integrals using infinitesimals
+  for more intuitive proofs. NSA distinguishes internal and external sets and applies
+  to probability via Loeb measures. While NSA offers intuitive and sometimes simpler
+  proofs, it relies on model theory and set theory foundations, maintaining logical
+  equivalence with standard analysis but with trade-offs in accessibility and application
+  scope.
+keywords:
+- Nonstandard Analysis
+- NSA
+- Standard Analysis
+- SA
+- Abraham Robinson
+- infinitesimals
+- infinite numbers
+- hyperreal numbers
+- ultrafilter
+- ultraproduct
+- transfer principle
+- first-order logic
+- internal sets
+- external sets
+- continuity
+- derivatives
+- standard part mapping
+- integration
+- Lebesgue measure
+- Loeb measure
+- probability theory
+- series
+- limits
+- saturation
+- model theory
+- compactness theorem
+- Loś's theorem
+- hyperstructures
+- algebraic operations
+- research branches
+- methodologies
+- concepts

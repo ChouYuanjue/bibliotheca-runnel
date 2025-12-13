@@ -1,0 +1,31 @@
+document: N-20220405.md
+processed_at: '2025-09-19 10:33:31'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents informal mathematical notes covering three main topics:
+  (1) Fréchet differentiability and complex differentiability, demonstrating through
+  directional limits that f(z)=conjugate(z) is not differentiable and linking Fréchet
+  differentiability to Cauchy-Riemann conditions; (2) Hessian matrices and Taylor
+  expansions for constrained optimization, including a theorem on bordered Hessian
+  criteria for local maxima and an applied example proving √ab+√bc+√ca-√abc≥2 under
+  a+b+c=ab+bc+ca using Lagrange multipliers and Hessian analysis at a=b=c=1; (3) polynomial
+  factorization over finite fields and Galois theory, with observations on GF(p) arithmetic
+  and examples of polynomial behavior in different fields. The notes reflect exploratory
+  learning with practical examples and unresolved questions for future study.'
+keywords:
+- Fréchet derivative
+- complex differentiability
+- Cauchy-Riemann equations
+- normed vector spaces
+- bounded linear operator
+- Landau notation
+- Hessian matrix
+- Taylor expansion
+- Lagrange multipliers
+- bordered Hessian
+- constrained optimization
+- finite fields
+- polynomial factorization
+- Galois theory
+- GF(p)
+- principal minors
+- local extremum

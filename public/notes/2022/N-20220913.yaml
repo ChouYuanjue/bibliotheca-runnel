@@ -1,0 +1,25 @@
+document: N-20220913.md
+processed_at: '2025-09-19 10:52:02'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document presents informal mathematical notes focusing on divisibility
+  in integers. It defines divisibility and lists key theorems, such as properties
+  of divisibility relations and the condition |a| ≤ |b| when a divides b. Examples
+  demonstrate solving divisibility problems using techniques like polynomial reduction
+  and inequality analysis. A specific problem proves that the sum of powers 1¹⁹⁸³
+  + 2¹⁹⁸³ + ... + 1983¹⁹⁸³ is divisible by the sum 1+2+...+1983, utilizing pairing
+  strategies and divisibility properties. The conclusions emphasize applying divisibility
+  conditions and algebraic manipulations to establish results.
+keywords:
+- divisibility
+- number theory
+- integers
+- theorems
+- properties
+- examples
+- reduction method
+- inequalities
+- algebraic expressions
+- proof techniques
+- summation
+- pairing method
+- mathematical concepts

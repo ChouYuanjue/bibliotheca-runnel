@@ -1,0 +1,37 @@
+document: N-20220801.md
+processed_at: '2025-09-19 10:48:26'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document is a collection of informal mathematical notes focusing on
+  high school-level set theory, functions, and related problems. Key topics include:
+  calculation of subset numbers using power sets (|2^A| = 2^|A|), De Morgan''s laws,
+  inclusion-exclusion principles, and set representation examples. It explores properties
+  of specific sets (e.g., A = {a | a = x² - y²}), mappings, and functions, including
+  injectivity, surjectivity, and periodic points. Numerous solved problems illustrate
+  concepts such as Venn diagrams, function equations, inequalities, domains, and extremal
+  values. Conclusions often derive from logical deductions or algebraic manipulations,
+  emphasizing foundational techniques in combinatorics, algebra, and real analysis.
+  The notes are practice-oriented, with examples ranging from basic set operations
+  to advanced functional equations.'
+keywords:
+- set theory
+- subsets
+- characteristic function
+- De Morgan's laws
+- inclusion-exclusion principle
+- Venn diagrams
+- mappings
+- bijections
+- fixed subsets
+- permutations
+- cyclic notation
+- injective functions
+- functional equations
+- inequalities
+- logarithms
+- exponential functions
+- floor function
+- periodic points
+- domain
+- range
+- minimization
+- Fermat point

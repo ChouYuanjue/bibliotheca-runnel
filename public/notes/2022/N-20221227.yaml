@@ -1,0 +1,28 @@
+document: N-20221227.md
+processed_at: '2025-09-19 11:02:02'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: This document covers advanced topics in category theory and topology, presenting
+  examples of categories such as Abelian groups (Ab), modules over a ring (ModA),
+  rings (Rings), topological spaces (Top), and partially ordered sets (posets), which
+  can be interpreted as categories. It defines subcategories and functors, including
+  forgetful functors (e.g., Veck → Sets) and covariant functors like the fundamental
+  group and homology functors. The text transitions to topology, discussing spheres
+  (Sⁿ), balls (Dⁿ), and homeomorphisms, proving that open intervals are homeomorphic
+  to ℝ and introducing quotient topology (X/~) with examples like Dⁿ/Sⁿ⁻¹ ≅ Sⁿ. Key
+  conclusions include the structural parallels between algebraic and topological categories
+  and the utility of functors in preserving categorical properties.
+keywords:
+- Category Theory
+- Abelian Groups
+- Modules
+- Rings
+- Topological Spaces
+- Partially Ordered Sets
+- Subcategory
+- Functor
+- Forgetful Functor
+- Fundamental Group
+- Homology
+- Spheres
+- Homeomorphism
+- Quotient Topology

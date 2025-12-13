@@ -1,0 +1,42 @@
+document: N-20220717.md
+processed_at: '2025-09-19 10:40:07'
+model_used: deepseek/deepseek-chat-v3.1:free
+summary: 'This document presents informal mathematical notes covering two main topics:
+  sequences and group theory. For sequences, it discusses converting recurrence relations
+  to closed-form expressions, solving problems involving arithmetic and geometric
+  sequences, and deriving formulas for sums and specific terms. Examples include verifying
+  recurrence relations, solving step-counting problems, and determining properties
+  of finite sequences. In group theory, it defines groups, provides examples (cyclic,
+  dihedral, symmetric, linear groups) and non-examples, and explores properties like
+  inverses, associativity, and isomorphisms. Key findings include proofs of group
+  properties, demonstrations of non-isomorphism (e.g., D24 and S4), and isomorphisms
+  like Z/(p-1)Z ≅ (Z/pZ)× for primes. Conclusions emphasize foundational techniques
+  in sequences and group axioms, with practical applications in problem-solving.'
+keywords:
+- sequences
+- recurrence relations
+- generating functions
+- arithmetic sequences
+- geometric sequences
+- group theory
+- binary operation
+- identity element
+- associativity
+- inverse element
+- closure
+- abelian group
+- non-abelian group
+- cyclic group
+- complex unit circle
+- addition modulo n
+- multiplication modulo p
+- general linear group
+- special linear group
+- symmetric group
+- permutation
+- dihedral group
+- isomorphism
+- primitive roots
+- cancellation law
+- product group
+- trivial group
