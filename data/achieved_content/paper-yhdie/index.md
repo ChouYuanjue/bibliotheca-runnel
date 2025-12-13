@@ -5,11 +5,11 @@ date: "2020-09-12"
 description: "The junk paper focuses on a fictional mathematical object called “YH-DIE.” It explores the continuity of this object, its mappings on algebraic varieties, and how it serves as an intersection point between algebraic geometry and partial differential equations. The paper also asserts that the equations governing minimal surfaces represent a special case of this general framework."
 ---
 
+I initially wrote this paper as a way to practice $\LaTeX$ and, at the same time, to playfully tease my friend Yuheng.
+
 [PDF DRAFT](achieved/paper-yhdie/PAPER-YHDIE.pdf)
 
 [BACKGROUND STORY](https://chaoli.club/index.php/5633)
-
-I wrote this paper initially to practice $\LaTeX$.
 
 > ## Abstract  
 > YH-DIE must have continuity. Given the basic algebraic clusters of homogeneous configurations, we can get the basic three equations:  

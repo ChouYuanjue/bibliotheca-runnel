@@ -2,8 +2,10 @@
 title: "PAPER: Chunpinative Geometry: A Synthetic Framework for Complementary Angle Structures"
 state: "FICTIONAL"
 date: "2025-01-31"
-description: "This paper presents the foundations of Chunpinative Geometry, a novel geometric framework anchored in the Dual-Complementary Principle (D-C-P), which asserts the axiomatic equivalence of angles and their complements (\\(\\alpha \\equiv \\pi - \\alpha \\pmod{\\mathfrak{C}}\\)). Departing from classical Euclidean axioms, it synthesizes tropical deformation techniques, derived non-Archimedean structures, and a reimagined Erlangen program to construct a self-consistent theory of complementary angle spaces. The framework axiomatizes rigid C-spaces, where angle quantization and metric degeneracies arise naturally from the D-C-P axiom. It resolves anomalies such as the CZL Lemma through quasi-schematic methods and establishes the complementarity group G as a symmetry governing geometric transformations, bridging synthetic geometry with deformation quantization."
+description: "This paper presents the foundations of Chunpinative Geometry, a novel geometric framework anchored in the Dual-Complementary Principle (D-C-P), which asserts the axiomatic equivalence of angles and their complements ( $\\(\\alpha \\equiv \\pi - \\alpha \\pmod{\\mathfrak{C}}\\)$ ). Departing from classical Euclidean axioms, it synthesizes tropical deformation techniques, derived non-Archimedean structures, and a reimagined Erlangen program to construct a self-consistent theory of complementary angle spaces. The framework axiomatizes rigid C-spaces, where angle quantization and metric degeneracies arise naturally from the D-C-P axiom. It resolves anomalies such as the CZL Lemma through quasi-schematic methods and establishes the complementarity group G as a symmetry governing geometric transformations, bridging synthetic geometry with deformation quantization."
 ---
+
+In memory of my middle school math teacher Ms. Ding, who was my guide into the world of mathematics.
 
 [PDF DRAFT](achieved/paper-cpg/PAPER-CPG.pdf)
 
