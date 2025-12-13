@@ -34,10 +34,11 @@ export default function MarkdownRenderer({ content, className }: MarkdownRendere
             const child = Array.isArray(children) ? children[0] : children;
             if (
               React.isValidElement(child) &&
-              typeof child.props?.className === "string" &&
-              child.props.className.includes("language-mermaid")
+              typeof (child.props as any)?.className === "string" &&
+              (child.props as any).className.includes("language-mermaid")
             ) {
-              return <div {...props}>{children}</div>;
+              const { node, ref, ...rest } = props as any;
+              return <div {...rest}>{children}</div>;
             }
 
             return <pre {...props}>{children}</pre>;
