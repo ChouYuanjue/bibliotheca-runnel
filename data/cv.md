@@ -27,11 +27,11 @@ Undergraduate Student (Jianxiong Academy)
 
 ## Academic Programs
 
-### Peking University 2024 Summer School for Outstanding High School Students, Yuanpei College 
-2024-07 | Selected participant
-
 ### Peking University 2025 Winter School for Outstanding High School Students 
 2025-01 | Selected participant
+
+### Peking University 2024 Summer School for Outstanding High School Students, Yuanpei College 
+2024-07 | Selected participant
 
 ## Academic & Professional Engagement
 

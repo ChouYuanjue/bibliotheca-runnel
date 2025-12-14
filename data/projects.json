@@ -53,5 +53,16 @@
     "topics": [],
     "updatedAt": "2025-10-10T12:01:12Z",
     "slug": "tex-qb-gen"
+  },
+  {
+    "id": "bibliotheca-runnel",
+    "title": "bibliotheca-runnel",
+    "description": "This is the personal academic portal and digital archive of myself. It serves as a curated collection of knowledge, spanning from informal mathematical notes to classical literary works and linguistic research.",
+    "githubUrl": "https://github.com/ChouYuanjue/bibliotheca-runnel",
+    "stars": 3,
+    "language": "TypeScript",
+    "topics": [],
+    "updatedAt": "2025-12-14T13:03:00Z",
+    "slug": "bibliotheca-runnel"
   }
 ]

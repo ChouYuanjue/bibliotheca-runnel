@@ -7,7 +7,7 @@ description: "The junk paper focuses on a fictional mathematical object called â
 
 I initially wrote this paper as a way to practice $\LaTeX$ and, at the same time, to playfully tease my friend Yuheng.
 
-[PDF DRAFT](achieved/paper-yhdie/PAPER-YHDIE.pdf)
+[PDF DRAFT](/achieved/paper-yhdie/PAPER-YHDIE.pdf)
 
 [BACKGROUND STORY](https://chaoli.club/index.php/5633)
 

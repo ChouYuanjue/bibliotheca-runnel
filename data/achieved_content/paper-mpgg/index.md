@@ -7,7 +7,7 @@ description: "This paper explores non-cooperative Pen-PL games, modeling the pro
 
 I originally wrote this paper as a way to practice TikZ. It was also meant to document the amusing memories of Kangpeng Xu (Player X) and Minglang Hu (Player H) flicking pens during our middle school breaks.
 
-[PDF DRAFT](achieved/paper-mpgg/PAPER-MPGG.pdf)
+[PDF DRAFT](/achieved/paper-mpgg/PAPER-MPGG.pdf)
 
 > ## Abstract
 > Consider non-cooperative pen games where both players act strategically and heavily influence each other. In spam and malware detection, players exploit randomization to obfuscate malicious data and increase their chances of evading detection at test time. The result shows Pen-PL Games have a probability distribution that approximates a Gaussian distribution according to some probability distribution defined over the respective strategy set. With quadratic cost functions and multivariate Gaussian processes, evolving according to first order autoregressive models, we show that Pen-PL "smooth" curve signaling rules are optimal. Finally, we show that computing a socially optimal Pen-PL network placement is NP-hard and that this result holds for all P-PL-G distributions.
