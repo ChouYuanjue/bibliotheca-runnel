@@ -44,15 +44,19 @@ function generateLinguistics() {
                 title: meta.title,
                 description: meta.description || '',
                 slug: slug,
+                date: meta.date || '',
                 tags: meta.tags || []
             });
         }
     });
 
-    // Sort by slug or some other criteria if needed. 
-    // Since we removed date, maybe just alphabetical or keep order?
-    // Let's sort by ID for stability if IDs are present, otherwise Slug.
-    articles.sort((a, b) => (a.id || a.slug).localeCompare(b.id || b.slug));
+    // Sort by date descending
+    articles.sort((a, b) => {
+        if (a.date && b.date) {
+            return new Date(b.date) - new Date(a.date);
+        }
+        return (a.id || a.slug).localeCompare(b.id || b.slug);
+    });
 
     fs.writeFileSync(OUTPUT_FILE, JSON.stringify(articles, null, 2));
     console.log(`Generated linguistics.json with ${articles.length} articles.`);

@@ -1,46 +1,26 @@
 [
   {
-    "id": "miscellanea-i",
-    "title": "Miscellanea I. A Phonological Study of Near-/i/ Vowels Across Languages",
-    "description": "An IPA-based phonological analysis of near-/i/ vowels in various languages, including an examination of the actual realization of vowels in Chinese Pinyin syllables like zi, ci, and si, Japanese su (す), and Russian y (ы).",
-    "slug": "miscellanea-i-near-i-vowels",
+    "id": "miscellanea-xi",
+    "title": "Miscellanea XI. Assessing the Authenticity of Contested Historical and Linguistic Artifacts",
+    "description": "A dialectical critique concerning the authenticity and verification of various contested historical and linguistic artifacts, including the Kunlun Stone Inscriptions (Chinese: 昆仑石刻), Gansang Stone Inscriptions (Chinese: 甘桑石刻), Yao ancient script (Chinese: 瑶族古文字), Zheda bamboo slips (Chinese: 浙大简), the Gelao's Nine Heavens Great Pu History Record (Chinese: 仡佬的九天大濮史录), and the Nüshu mother coin (Chinese: 女书的雕母钱).",
+    "slug": "miscellanea-xi-contested-artifacts",
+    "date": "2025-08-02",
     "tags": [
-      "Phonology",
-      "IPA",
-      "Comparative Linguistics"
+      "Paleography",
+      "History",
+      "Authenticity"
     ]
   },
   {
-    "id": "miscellanea-ii",
-    "title": "Miscellanea II. Reconstructing Tangut Phonology: An Analysis of Gong Hwang-cherng's Symbols",
-    "description": "A reconstruction of Tangut (Chinese: 西夏文) phonology by correlating selected Tangut textual data and their corresponding Chinese phonetic transcriptions, specifically aiming to establish the actual correspondence between Gong Hwang-cherng (Chinese: 龚煌城)'s proposed reconstruction symbols and the International Phonetic Alphabet (IPA).",
-    "slug": "miscellanea-ii-tangut-phonology",
+    "id": "miscellanea-x",
+    "title": "Miscellanea X. The Lacanian L-Schema in Hemingway's The Old Man and the Sea",
+    "description": "A Lacanian linguistic analysis utilizing the \"L-schema\" (or L'Automaton) to examine the structural and architectural characteristics of Ernest Hemingway's literary corpus, with a specific focus on the novel The Old Man and the Sea.",
+    "slug": "miscellanea-x-lacanian-l-schema",
+    "date": "2025-03-10",
     "tags": [
-      "Tangut",
-      "Phonology",
-      "Historical Linguistics"
-    ]
-  },
-  {
-    "id": "miscellanea-iii",
-    "title": "Miscellanea III. The Everlasting Sound of the Partridge (千古鹧鸪声)",
-    "description": "An investigation into the origin of two distinct literary \"phonetic representations\" (Chinese: “音译”) of the partridge (Chinese: 鹧鸪) call in ancient Chinese literature—namely, “行不得也哥哥” (Literally: 'Cannot go, my elder brother') and “懊恼泽家” (Literally: 'Vexed/Regretful, settle down for your family')—by analyzing the actual phonology of Middle Chinese.",
-    "slug": "miscellanea-iii-partridge-sound",
-    "tags": [
-      "Middle Chinese",
-      "Literature",
-      "Phonology"
-    ]
-  },
-  {
-    "id": "miscellanea-iv",
-    "title": "Miscellanea IV. The Tragedy and Comedy of Xiding Language",
-    "description": "An analysis of the features, variants, and evolution of the constructed language known as Xiding Language (Chinese: 希顶语). The study also includes a description of the current dynamics within the domestic Chinese online linguistics community and the personal history of the language's creator, Huang Quefei (Chinese: 黄雀飞).",
-    "slug": "miscellanea-iv-xiding-language",
-    "tags": [
-      "Conlang",
-      "Sociolinguistics",
-      "Xiding"
+      "Lacan",
+      "Psychoanalysis",
+      "Literature"
     ]
   },
   {
@@ -48,6 +28,7 @@
     "title": "Miscellanea IX. Saussure, Lacan, and the Language of Hemingway",
     "description": "A philosophical analysis of Ernest Hemingway's literary style, employing the Saussurean and Lacanian concepts of the signifier (French: signifiant) and the signified (French: signifié) to explore the deeper linguistic and philosophical implications of his work.",
     "slug": "miscellanea-ix-saussure-lacan-hemingway",
+    "date": "2024-11-15",
     "tags": [
       "Philosophy of Language",
       "Semiotics",
@@ -55,25 +36,15 @@
     ]
   },
   {
-    "id": "miscellanea-v",
-    "title": "Miscellanea V. Fit to Be Called Langdang, But Daring Not to Speak Longzhong (堪作郎当语，不敢语龙钟)",
-    "description": "An etymological and phonological analysis demonstrating the cognate relationship between the Chinese words “郎当” and “龙钟”. Drawing on ancient poetry and historical anecdotes, the essay examines the nuanced emotional similarities and differences between the terms, concluding with personal reflections.",
-    "slug": "miscellanea-v-langdang-longzhong",
+    "id": "miscellanea-viii",
+    "title": "Miscellanea VIII. Notes on German Orthography and Morphology",
+    "description": "An introductory overview of the principles governing German orthography (German: Rechtschreibung) and word formation (morphology), while also earnestly expanding upon the classic “Euro-English” jest regarding the \"Germanification\" of English.",
+    "slug": "miscellanea-viii-german-orthography",
+    "date": "2024-08-01",
     "tags": [
-      "Etymology",
-      "Chinese Philology",
-      "Poetry"
-    ]
-  },
-  {
-    "id": "miscellanea-vi",
-    "title": "Miscellanea VI. A Phonetic Study of Suqian Dialects",
-    "description": "An investigative phonetic transcription (IPA) of two distinct dialects within Suqian (Chinese: 宿迁): the local Suqian dialect and the Shuyang County (Chinese: 沭阳县) dialect. The analysis concludes that these dialects correspond to Zhongyuan Mandarin (Chinese: 中原官话) and Huaibei Mandarin (Chinese: 淮北官话), respectively.",
-    "slug": "miscellanea-vi-suqian-dialects",
-    "tags": [
-      "Dialectology",
-      "Mandarin",
-      "Fieldwork"
+      "German",
+      "Orthography",
+      "Morphology"
     ]
   },
   {
@@ -81,6 +52,7 @@
     "title": "Miscellanea VII. Harp in Tsarskoye Selo (Арфа в Царском Селе)",
     "description": "An examination of the historical and cultural factors, including the phenomenon of галломания, that led to the significant number of shared lexical items between Russian and French despite their divergent linguistic origins. The essay also specifically highlights the substantial contributions of Pushkin to the development of the Russian language.",
     "slug": "miscellanea-vii-harp-tsarskoye-selo",
+    "date": "2024-04-20",
     "tags": [
       "Russian",
       "French",
@@ -89,36 +61,75 @@
     ]
   },
   {
-    "id": "miscellanea-viii",
-    "title": "Miscellanea VIII. Notes on German Orthography and Morphology",
-    "description": "An introductory overview of the principles governing German orthography (German: Rechtschreibung) and word formation (morphology), while also earnestly expanding upon the classic “Euro-English” jest regarding the \"Germanification\" of English.",
-    "slug": "miscellanea-viii-german-orthography",
+    "id": "miscellanea-vi",
+    "title": "Miscellanea VI. A Phonetic Study of Suqian Dialects",
+    "description": "An investigative phonetic transcription (IPA) of two distinct dialects within Suqian (Chinese: 宿迁): the local Suqian dialect and the Shuyang County (Chinese: 沭阳县) dialect. The analysis concludes that these dialects correspond to Zhongyuan Mandarin (Chinese: 中原官话) and Huaibei Mandarin (Chinese: 淮北官话), respectively.",
+    "slug": "miscellanea-vi-suqian-dialects",
+    "date": "2024-01-10",
     "tags": [
-      "German",
-      "Orthography",
-      "Morphology"
+      "Dialectology",
+      "Mandarin",
+      "Fieldwork"
     ]
   },
   {
-    "id": "miscellanea-x",
-    "title": "Miscellanea X. The Lacanian L-Schema in Hemingway's The Old Man and the Sea",
-    "description": "A Lacanian linguistic analysis utilizing the \"L-schema\" (or L'Automaton) to examine the structural and architectural characteristics of Ernest Hemingway's literary corpus, with a specific focus on the novel The Old Man and the Sea.",
-    "slug": "miscellanea-x-lacanian-l-schema",
+    "id": "miscellanea-v",
+    "title": "Miscellanea V. Fit to Be Called Langdang, But Daring Not to Speak Longzhong (堪作郎当语，不敢语龙钟)",
+    "description": "An etymological and phonological analysis demonstrating the cognate relationship between the Chinese words “郎当” and “龙钟”. Drawing on ancient poetry and historical anecdotes, the essay examines the nuanced emotional similarities and differences between the terms, concluding with personal reflections.",
+    "slug": "miscellanea-v-langdang-longzhong",
+    "date": "2023-10-25",
     "tags": [
-      "Lacan",
-      "Psychoanalysis",
-      "Literature"
+      "Etymology",
+      "Chinese Philology",
+      "Poetry"
     ]
   },
   {
-    "id": "miscellanea-xi",
-    "title": "Miscellanea XI. Assessing the Authenticity of Contested Historical and Linguistic Artifacts",
-    "description": "A dialectical critique concerning the authenticity and verification of various contested historical and linguistic artifacts, including the Kunlun Stone Inscriptions (Chinese: 昆仑石刻), Gansang Stone Inscriptions (Chinese: 甘桑石刻), Yao ancient script (Chinese: 瑶族古文字), Zheda bamboo slips (Chinese: 浙大简), the Gelao's Nine Heavens Great Pu History Record (Chinese: 仡佬的九天大濮史录), and the Nüshu mother coin (Chinese: 女书的雕母钱).",
-    "slug": "miscellanea-xi-contested-artifacts",
+    "id": "miscellanea-iv",
+    "title": "Miscellanea IV. The Tragedy and Comedy of Xiding Language",
+    "description": "An analysis of the features, variants, and evolution of the constructed language known as Xiding Language (Chinese: 希顶语). The study also includes a description of the current dynamics within the domestic Chinese online linguistics community and the personal history of the language's creator, Huang Quefei (Chinese: 黄雀飞).",
+    "slug": "miscellanea-iv-xiding-language",
+    "date": "2023-07-15",
     "tags": [
-      "Paleography",
-      "History",
-      "Authenticity"
+      "Conlang",
+      "Sociolinguistics",
+      "Xiding"
+    ]
+  },
+  {
+    "id": "miscellanea-iii",
+    "title": "Miscellanea III. The Everlasting Sound of the Partridge (千古鹧鸪声)",
+    "description": "An investigation into the origin of two distinct literary \"phonetic representations\" (Chinese: “音译”) of the partridge (Chinese: 鹧鸪) call in ancient Chinese literature—namely, “行不得也哥哥” (Literally: 'Cannot go, my elder brother') and “懊恼泽家” (Literally: 'Vexed/Regretful, settle down for your family')—by analyzing the actual phonology of Middle Chinese.",
+    "slug": "miscellanea-iii-partridge-sound",
+    "date": "2023-04-05",
+    "tags": [
+      "Middle Chinese",
+      "Literature",
+      "Phonology"
+    ]
+  },
+  {
+    "id": "miscellanea-ii",
+    "title": "Miscellanea II. Reconstructing Tangut Phonology: An Analysis of Gong Hwang-cherng's Symbols",
+    "description": "A reconstruction of Tangut (Chinese: 西夏文) phonology by correlating selected Tangut textual data and their corresponding Chinese phonetic transcriptions, specifically aiming to establish the actual correspondence between Gong Hwang-cherng (Chinese: 龚煌城)'s proposed reconstruction symbols and the International Phonetic Alphabet (IPA).",
+    "slug": "miscellanea-ii-tangut-phonology",
+    "date": "2022-12-20",
+    "tags": [
+      "Tangut",
+      "Phonology",
+      "Historical Linguistics"
+    ]
+  },
+  {
+    "id": "miscellanea-i",
+    "title": "Miscellanea I. A Phonological Study of Near-/i/ Vowels Across Languages",
+    "description": "An IPA-based phonological analysis of near-/i/ vowels in various languages, including an examination of the actual realization of vowels in Chinese Pinyin syllables like zi, ci, and si, Japanese su (す), and Russian y (ы).",
+    "slug": "miscellanea-i-near-i-vowels",
+    "date": "2022-09-10",
+    "tags": [
+      "Phonology",
+      "IPA",
+      "Comparative Linguistics"
     ]
   }
 ]
