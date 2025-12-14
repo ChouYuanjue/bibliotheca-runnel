@@ -7,6 +7,7 @@ const scripts = [
     'generate-organizations.js',
     'generate-notes-index.js',
     'generate-linguistics.js',
+    'generate-fragments.js',
     'parse-classics.js',
     // 'refresh-projects.js',
     'generate-cv-pdf.js'
