@@ -5,9 +5,9 @@ date: "2025-01-31"
 description: "This paper presents the foundations of Chunpinative Geometry, a novel geometric framework anchored in the Dual-Complementary Principle (D-C-P), which asserts the axiomatic equivalence of angles and their complements. Departing from classical Euclidean axioms, it synthesizes tropical deformation techniques, derived non-Archimedean structures, and a reimagined Erlangen program to construct a self-consistent theory of complementary angle spaces. The framework axiomatizes rigid C-spaces, where angle quantization and metric degeneracies arise naturally from the D-C-P axiom. It resolves anomalies such as the CZL Lemma through quasi-schematic methods and establishes the complementarity group G as a symmetry governing geometric transformations, bridging synthetic geometry with deformation quantization."
 ---
 
-In memory of my middle school math teacher Ms. Ding, who was my guide into the world of mathematics.
+For my middle school math teacher Ms. Ding, who was my guide into the world of mathematics.
 
-[PDF DRAFT](achieved/paper-cpg/PAPER-CPG.pdf)
+[PDF DRAFT](/achieved/paper-cpg/PAPER-CPG.pdf)
 
 > ## Abstract
 > This paper presents the foundations of Chunpinative Geometry, a novel geometric framework anchored in the Dual-Complementary Principle (D-C-P), which asserts the equivalence of angles and their complements. Departing from classical Euclidean axioms, we synthesize tropical deformation techniques, derived non-Archimedean structures, and a reimagined Erlangen program to construct a self-consistent theory of complementary angle spaces. Central to this framework is the axiomatization of rigid C-spaces, where angle quantization and metric degeneracies arise naturally from the D-C-P axiom. We resolve longstanding anomalies such as the CZL Lemma through quasi-schematic methods and establish the complementarity group G as a symmetry governing geometric transformations. The theory bridges synthetic geometry with deformation quantization, while experimental validations in quantum error correction and crystalline materials highlight its interdisciplinary reach. By redefining angle complementarity as an active geometric operator, this work challenges classical paradigms and opens pathways for applications in topological matter and algorithmic optimization.
