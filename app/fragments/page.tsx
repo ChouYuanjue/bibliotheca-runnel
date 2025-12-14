@@ -27,7 +27,7 @@ export default function FragmentsIndex() {
                   {item.date}
                 </span>
               </div>
-              <h2 className="text-xl font-serif font-semibold text-gray-900 group-hover:text-blue-700 mb-3 line-clamp-2">
+              <h2 className="text-xl font-serif font-semibold text-gray-900 group-hover:text-blue-700 mb-3">
                 {item.title}
               </h2>
               {item.description && (

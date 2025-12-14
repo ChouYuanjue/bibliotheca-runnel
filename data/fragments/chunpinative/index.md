@@ -51,4 +51,3 @@ Specifically, the analytic continuation transforms the original space into a map
 ## 2. Supplementary Note on Chunpinative Geometry
 
 It should be noted that the above content is only the initial attempt of the construction of Chunpinative Geometry, and there may be problems such as incomplete logical derivation and unclear concept definition. The core purpose is to use the form of geometric theory to carry out humorous expression. The later complete and self-consistent version of Chunpinative Geometry has been improved and sorted out, and can be viewed through the link: [https://www.runnelzhang.com/achieved/paper-cpg](https://www.runnelzhang.com/achieved/paper-cpg). The improved version will supplement the strict proof of the lemma, the detailed definition of the space operation, and the specific form of the measure, making the entire theory more rigorous and self-consistent.
-> （注：文档部分内容可能由 AI 生成）

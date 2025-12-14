@@ -49,27 +49,27 @@ This paper lays the groundwork for the "Yamada Field" (Y-Field), a structure whe
 
 Here, the theory expands to logarithmic functions and complex analysis, creating even more startling discontinuities.
 
-- **Redefining Logarithms:**Since $\log(z)$ has a singularity at $z=0$ and a pole at $z=\infty$, and since the "point at infinity" is now the "origin" (via $1/0=0$), Saitoh concludes:"In this paper, we will show that $\log 0 = \log \infty = 0$ by the division by zero $z/0 = 0$."
+- **Redefining Logarithms:** Since $\log(z)$ has a singularity at $z=0$ and a pole at $z=\infty$, and since the "point at infinity" is now the "origin" (via $1/0=0$), Saitoh concludes:"In this paper, we will show that $\log 0 = \log \infty = 0$ by the division by zero $z/0 = 0$."
 
-- **The $1/z$ Mapping:**He relies heavily on the mapping $W = 1/z$. In standard analysis, $z \to 0$ implies $W \to \infty$. Saitoh argues that the image of $z=0$ is exactly $W=0$."The image of $z = 0$ is $W = 0$ (should be defined)... The division by zero will give great impacts to complex analysis and to our ideas for the space and universe."
+- **The $1/z$ Mapping:** He relies heavily on the mapping $W = 1/z$. In standard analysis, $z \to 0$ implies $W \to \infty$. Saitoh argues that the image of $z=0$ is exactly $W=0$."The image of $z = 0$ is $W = 0$ (should be defined)... The division by zero will give great impacts to complex analysis and to our ideas for the space and universe."
 
-- **Schrödinger's Euler Identity:**This leads to bizarre multivalued definitions.$e^0 = 1$ (standard definition).
+- **Schrödinger's Euler Identity:** This leads to bizarre multivalued definitions.$e^0 = 1$ (standard definition).
 
 - $e^0 = 0$ (via the "division by zero" logic where the value at a singularity is zero).
 
 He acknowledges this "strong discontinuity" but accepts it as a "natural way" the universe works.
 
-**Applications to Differential Equations:**He solves differential equations by simply ignoring the singular parts. If a term contains a $1/x$ and $x=0$, that term vanishes."For the differential equation... we have the solution... Then, if $\mu = 0$, we obtain, immediately, by the division by zero [a solution where the singular term vanishes]."
+**Applications to Differential Equations:** He solves differential equations by simply ignoring the singular parts. If a term contains a $1/x$ and $x=0$, that term vanishes."For the differential equation... we have the solution... Then, if $\mu = 0$, we obtain, immediately, by the division by zero [a solution where the singular term vanishes]."
 
-**The "Zero" Constant:**He posits that $0^0 = 1$ is convenient for Taylor series, but $0^0 = 0$ is also valid depending on context. He also claims $\cos 0 = 1$ and $\cos 0 = 0$ are both "valid" in different contexts (reflection of infinity to the origin).
+**The "Zero" Constant:** He posits that $0^0 = 1$ is convenient for Taylor series, but $0^0 = 0$ is also valid depending on context. He also claims $\cos 0 = 1$ and $\cos 0 = 0$ are both "valid" in different contexts (reflection of infinity to the origin).
 
 ## Selected Quotes
 
-- **On the ambition of the project:**"The division by zero has a long and mysterious story over the world... however, Sin-Ei Takahasi established a simple and decisive interpretation."
+- **On the ambition of the project:** "The division by zero has a long and mysterious story over the world... however, Sin-Ei Takahasi established a simple and decisive interpretation."
 
-- **On the redefinition of infinity:**"The point at infinity is represented by zero, that is, the coincidence of the point at infinity and the origin."
+- **On the redefinition of infinity:** "The point at infinity is represented by zero, that is, the coincidence of the point at infinity and the origin."
 
-- **On the "Zero" value of functions:**"We wish to consider also the value $\cos 0 = 0$. The values $e^0 = 0$ and $\cos 0 = 0$ may be considered that the values at the point at infinity are reflected to the origin."
+- **On the "Zero" value of functions:** "We wish to consider also the value $\cos 0 = 0$. The values $e^0 = 0$ and $\cos 0 = 0$ may be considered that the values at the point at infinity are reflected to the origin."
 
 ## A Serious Critique
 
