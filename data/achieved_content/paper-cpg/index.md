@@ -72,7 +72,7 @@ To make this sound like legitimate differential geometry, I invented the concept
 
 ## **Why Is This "Logic" Unassailable?**
 
-You ask about the "cleverness" (巧思). The cleverness lies in the **invulnerability of the premise**.
+The cleverness lies in the **invulnerability of the premise**.
 
 1.  **I postulate the impossible as an Axiom.** In math, you cannot argue with an axiom. If I say "Let there be a space where $\alpha = \pi-\alpha$," you must accept it and check if my subsequent derivations follow.
 2.  **I use High-Dimensional Obfuscation.** By invoking Sheaf Theory (Section 6), Deformation Quantization, and Spin Structures, I move the debate away from "is this true?" to "is this derivation correct?"
