@@ -3,7 +3,7 @@ title: "From Cthulhu to Borges: Cosmic Horror, Sublime Aesthetics, and Mythic Di
 date: "2024-10-13"
 type: "LECTURE"
 image: "/library/criticisms/cthulhu-borges/image.jpg"
-description: "This field note details an unexpected ethnographic encounter and iconographic verification process during a Sichuan-Tibet border journey. What began as a casual visit to Chuansi Temple and Gami Monastery culminated in a crucial, impromptu \"field investigation\" within a local homestay's private shrine room (Jīngtáng). The record traces the journey of identifying two key Buddhist images: the initial misidentification of a Yellow Jambhala (黄财神) relief, corrected through expert group chat verification by analyzing features such as the peaceful aspect and Jewel-Spitting Mongoose; and the subsequent analysis of a vibrant Five-Color Dakinis (五色空行母) thangka."
+description: "This lecture explores the intellectual and aesthetic intersections between H.P. Lovecraft’s Cthulhu Mythos and Jorge Luis Borges’ literary oeuvre. It examines the 'horror sublime aesthetics' and the contemporary evolution of the Cthulhu Mythos in online literature through the framework of mythic displacement."
 ---
 
 [SLIDES FOR LECTURE](/library/criticisms/cthulhu-borges/slide.pptx)
