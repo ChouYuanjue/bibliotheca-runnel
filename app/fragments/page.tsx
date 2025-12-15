@@ -1,5 +1,9 @@
 import Link from "next/link";
 import fragmentsData from "@/data/fragments.json";
+import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
 
 const data = fragmentsData as Record<string, { title: string; date: string; description?: string }>;
 
@@ -28,7 +32,15 @@ export default function FragmentsIndex() {
                 </span>
               </div>
               <h2 className="text-xl font-serif font-semibold text-gray-900 group-hover:text-blue-700 mb-3">
-                {item.title}
+                <ReactMarkdown
+                  remarkPlugins={[remarkMath]}
+                  rehypePlugins={[rehypeKatex]}
+                  components={{
+                    p: ({ node, ...props }) => <span {...props} />,
+                  }}
+                >
+                  {item.title}
+                </ReactMarkdown>
               </h2>
               {item.description && (
                 <p className="text-gray-600 text-sm line-clamp-3 flex-grow">

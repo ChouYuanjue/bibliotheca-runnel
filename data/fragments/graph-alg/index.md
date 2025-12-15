@@ -4,93 +4,196 @@ date: "2021-06-21"
 ---
 
 ## Overview
+I have finally traced the definitive origin of this elegant piece of graphical mathematics by Dr. Peng! The fragment I was studying belongs to the seminal work **"Graphical Linear Algebra"** (specifically, see **arXiv:2105.06244**). This paper provides the rigorous categorical "source code" for representing linear algebra not through grids of numbers, but through the topology of string diagrams.
 
-I am thrilled to have finally traced the origin of this elegant piece of graphical mathematics introduced by Dr. Peng! This fragment, extracted from the paper **"Graphical Linear Algebra"** (arXiv:2105.06244), introduces a categorical framework for representing matrices and linear maps. It defines an equational theory, named $\mathbf{cb}_k$ (for *bicommutative bialgebra* structure with *scalars* over a ring $k$), which is proven to be a **presentation for the prop $\mathbf{Mat}_k$**—the prop of matrices over $k$ under the direct sum. Essentially, this work provides a rigorous and complete graphical calculus, where every linear algebra identity can be proven by diagrammatic manipulation. The accompanying website, [graphicallinearalgebra.net](https://graphicallinearalgebra.net/), serves as a comprehensive resource for this exciting categorical approach.
+The specific formalism identified is the theory $\mathbf{cb}_k$ (standing for *commutative bialgebra* with *scalars* over a ring $k$). The central result is breathtaking in its simplicity and power: this diagrammatic language is a complete presentation for the prop $\mathbf{Mat}_k$. In other words, **diagrams are matrices**, and topological manipulation is linear algebra.
 
-[DEMO](fragments/graph-alg/demo.jpeg)
+For those interested in a more pedagogical entry point, the authors maintain an incredible resource at **[graphicallinearalgebra.net](https://graphicallinearalgebra.net/)**, which unfolds this theory as a narrative about the interaction between two fundamental operations: Copying and Adding. Below is a detailed academic note synthesizing the formal definition from the paper with the intuitive insights from the website.
+
+![DEMO](fragments/graph-alg/demo.jpeg)
+
+***
+
+## Academic Note: The Prop $\mathbf{cb}_k$ and Diagrammatic Reasoning
+
+### 1. Introduction to the Formalism
+The core idea is to define a **Prop** (Product and Permutation category)—a symmetric monoidal category where objects are natural numbers representing wire counts ($n, m, \dots$) and morphisms are diagrams mapping $n$ inputs to $m$ outputs.
+
+The specific prop defined in the literature is $\mathbf{cb}_k$. It models the behavior of matrices over a ring $k$ equipped with the direct sum operation.
+
+### 2. Generators: The Alphabet of Linear Algebra
+According to **Definition 1.1** (based on [34, Defn 3.4] in the source), the language is built from three distinct classes of generators.
+
+*(Note: In the diagrams below, time flows from bottom to top. Inputs are at the bottom, outputs are at the top.)*
+
+**A. The Copying Structure (The "White" Comonoid)**
+These generators form a commutative comonoid structure.
+*   **The Copier ($\Delta$):** A white node splitting 1 wire into 2.
+    $$
+    \begin{matrix}
+    \mid & \mid \\
+    \nwarrow & \nearrow \\
+       & \circ & \\
+       & \mid &
+    \end{matrix}
+    $$
+    *   *Semantics:* This represents the linear map $V \to V \oplus V$ given by $v \mapsto (v, v)$. In the blog's terminology, this is the "Crema"—the ability to clone data.
+
+*   **The Discarder/Counit ($\epsilon$):** A white node terminating a wire.
+    $$
+    \begin{matrix}
+       \circ \\
+       \mid
+    \end{matrix}
+    $$
+    *   *Semantics:* This is the map $V \to \{0\}$, effectively "deleting" a variable.
+
+**B. The Adding Structure (The "Grey" Monoid)**
+These generators form a commutative monoid structure.
+*   **The Adder ($\mu$):** A grey (shaded) node merging 2 wires into 1.
+    $$
+    \begin{matrix}
+       & \mid & \\
+       & \bullet & \\
+    \nearrow & & \nwarrow \\
+    \mid & & \mid
+    \end{matrix}
+    $$
+    *   *Semantics:* This represents the linear map $V \oplus V \to V$ given by $(u, v) \mapsto u + v$. The blog refers to this as "Zucchero"—combining resources.
+
+*   **The Zero/Unit ($\eta$):** A grey node starting a wire from nothing.
+    $$
+    \begin{matrix}
+       \mid \\
+       \bullet
+    \end{matrix}
+    $$
+    *   *Semantics:* This injects the additive identity (0) into the wire ($k \to V$).
+
+**C. The Scalar Structure**
+*   **Scalar Multiplication:** A box or bead labeled with $a \in k$.
+    $$
+    \begin{matrix}
+       \mid \\
+       \boxed{a} \\
+       \mid
+    \end{matrix}
+    $$
+    *   *Semantics:* Represents the map $v \mapsto a \cdot v$.
 
 ---
 
-## Detailed Note on the Prop $\mathbf{cb}_k$
+### 3. The Equational Theory (Relations)
+The power of $\mathbf{cb}_k$ comes from the rules governing how these nodes interact. The system is defined modulo the equations of a **Bicommutative Bialgebra**.
 
-The fragment presents the foundational definition and proposition establishing the graphical calculus.
+**I. Monoid and Comonoid Laws**
+*   **Associativity (Grey):** Connecting two Adders in sequence is equivalent regardless of grouping.
+    $$
+    \begin{matrix}
+    \mid \\ \bullet \\ \nearrow \ \nwarrow \\ \mid \quad \ \bullet \\ \quad \ \nearrow \ \nwarrow
+    \end{matrix}
+    \quad = \quad
+    \begin{matrix}
+    \mid \\ \bullet \\ \nearrow \ \nwarrow \\ \bullet \quad \ \mid \\ \nearrow \ \nwarrow \quad
+    \end{matrix}
+    $$
+*   **Co-associativity (White):** The same law applies to the Copying structure (upside down).
+*   **Commutativity:** The Adder and Copier are symmetric; swapping input/output wires changes nothing.
 
-### I. Definition of the Prop $\mathbf{cb}_k$
-
-**Original Text: Definition 1.1. [34, Defn. 3.4] Given a ring $k$, let $\mathbf{cb}_k$ denote the prop given by the generators ${}^1$:**
+**II. The Bialgebra Law**
+This is the most critical equation in the entire system. It defines how Addition and Copying interact. It asserts that **copying the result of an addition** is the same as **adding the results of copies**.
 
 $$
-\includegraphics[max width=\textwidth]{Prop_Generators.png}
+\text{Diagrammatically:}
+$$
+$$
+\begin{matrix}
+  \mid & & \mid \\
+  \nwarrow & & \nearrow \\
+   & \circ & \\
+   & \mid & \\
+   & \bullet & \\
+  \nearrow & & \nwarrow \\
+  \mid & & \mid
+\end{matrix}
+\quad = \quad
+\begin{matrix}
+   & \mid & & \mid & \\
+   & \bullet & & \bullet & \\
+   \nearrow & & \times & & \nwarrow \\
+   & \circ & & \circ & \\
+   & \mid & & \mid &
+\end{matrix}
 $$
 
-**modulo the equations of a bicommutative bialgebra:**
+*   **Left Hand Side:** Add two inputs ($\bullet$), then Copy the result ($\circ$).
+*   **Right Hand Side:** Copy both inputs first ($\circ \circ$), swap the inner wires ($\times$), and Add them separately ($\bullet \bullet$).
 
-$$
-\includegraphics[max width=\textwidth]{Bicommutative_Bialgebra_Equations.png}
-$$
+Algebraically, this enforces the distributive law:
+$$ \Delta(x + y) = \Delta(x) + \Delta(y) $$
 
-**and the additional equations:**
+**III. Scalar Relations**
+The "Additional Equations" ensure the scalars behave as a Ring:
+*   **Multiplication:** Composing box $a$ and box $b$ equals box $ab$.
+    $$
+    \begin{matrix} \boxed{b} \\ \mid \\ \boxed{a} \end{matrix} \quad = \quad \begin{matrix} \boxed{ab} \end{matrix}
+    $$
+*   **Additivity:** Parallel scalars summed together equal the scalar of the sum.
+    $$
+    \begin{matrix}
+    \mid \\ \bullet \\ \nearrow \ \nwarrow \\ \boxed{a} \quad \boxed{b} \\ \nwarrow \ \nearrow \\ \circ \\ \mid
+    \end{matrix}
+    \quad = \quad
+    \begin{matrix}
+    \mid \\ \boxed{a+b} \\ \mid
+    \end{matrix}
+    $$
+*   **Identity:** A scalar box of $1$ is just a wire. A scalar box of $0$ is equivalent to Discarding then creating a Zero unit ($\epsilon$ followed by $\eta$).
 
-$$
-\includegraphics[max width=\textwidth]{Additional_Equations.png}
-$$
+---
 
-**Explanation of Generators:**
+### 4. The Main Result: Completeness
+**Proposition 1.2 [34, Prop. 3.9] states:**
+> Given a ring $k$, $\mathbf{cb}_k$ is a presentation for the prop $\mathbf{Mat}_k$ of matrices over $k$ under the direct sum.
 
-The prop $\mathbf{cb}_k$ is generated by a set of basic diagrammatic operations, which correspond to fundamental linear algebraic operations:
+**Interpretation:**
+This is a **Soundness and Completeness** theorem.
+1.  **Soundness:** Every equation derivable in diagrams is a true statement about matrices.
+2.  **Completeness:** *Every* true statement about matrices can be proven using these diagrams.
 
-1.  **White Comonoid (Copying):** $\includegraphics[scale=0.3]{white_comonoid_copy.png}$ (Copy) and $\includegraphics[scale=0.3]{white_comonoid_unit.png}$ (Discard/Unit of Monoid). The white node represents the **comultiplication** ($\Delta: V \to V \otimes V$) and **counit** ($\epsilon: V \to k$) structures derived from the categorical *product* (direct sum). In the matrix context, this represents **copying a vector**.
-2.  **Grey Monoid (Addition):** $\includegraphics[scale=0.3]{grey_monoid_add.png}$ (Add) and $\includegraphics[scale=0.3]{grey_monoid_unit.png}$ (Zero/Unit of Comonoid). The grey node represents the **multiplication** ($\mu: V \otimes V \to V$) and **unit** ($\eta: k \to V$) structures derived from the categorical *coproduct* (direct sum). This represents **adding two vectors** or inserting the **zero vector**.
-3.  **Scalar Multiplication:** $\includegraphics[scale=0.3]{scalar_multiplication_a.png}$ (for all $a \in k$). This generator represents multiplication by a scalar $a \in k$ as a linear map $V \to V$.
+There is an isomorphism of categories:
+$$ \mathbf{cb}_k \cong \mathbf{Mat}_k $$
+This transforms linear algebra from a theory of coordinates to a theory of **connectivity**.
 
-**Explanation of Relations (Equations):**
+---
 
-The relations ensure that these generators behave like the operations of linear algebra:
+## Commentary: Methodology and Applications
 
-1.  **Bicommutative Bialgebra Equations (White & Grey):**
-    *   **Commutativity & Associativity (Monoid/Grey):** The grey node is an associative and commutative operation (addition). The two equations in the second line ensure the grey operation is associative and commutative.
-    *   **Co-commutativity & Co-associativity (Comonoid/White):** The white node is a co-associative and co-commutative operation (copying). The first two equations in the top line ensure the white operation is co-associative and co-commutative.
-    *   **Unit/Counit & Zero/Unit Laws:** The identity laws for the monoid/comonoid structures.
-    *   **Bialgebra Law (Distributivity):** The key interaction relation: The second line, third equation (left to right), $\includegraphics[scale=0.3]{bialgebra_law_1.png}$, and its counterpart, $\includegraphics[scale=0.3]{bialgebra_law_2.png}$, express the distributive property relating the addition (grey) and copying (white) structures, ensuring the necessary compatibility for vector space structure (i.e., $\Delta$ and $\epsilon$ are algebra homomorphisms, and $\mu$ and $\eta$ are coalgebra homomorphisms). This is what makes it a *bicommutative bialgebra* (or *special Frobenius algebra*).
+### Why Graphical Linear Algebra?
+The transition from classical matrix notation ($A_{ij}$) to the $\mathbf{cb}_k$ calculus is analogous to the shift from assembly language to a high-level programming language.
 
-2.  **Additional Equations (Scalar Interaction):** These relations define how scalar multiplication interacts with the addition (grey) and copying (white) operations:
-    *   The first three equations $\includegraphics[scale=0.3]{additional_eq_1_2_3.png}$ enforce linearity, ensuring that copying distributes over scalar multiplication, and that scaling a vector before copying is the same as copying then scaling both results.
-    *   The final equations enforce the ring axioms:
-        *   Multiplication composition: $\includegraphics[scale=0.3]{scalar_mult_composition.png}$ ensures $(a \circ b) = ab$ (ring multiplication).
-        *   Unit element: $\includegraphics[scale=0.3]{scalar_unit_element.png}$ ensures the scalar $1$ is the identity map.
-        *   Addition: $\includegraphics[scale=0.3]{scalar_addition_final.png}$ ensures $(a \oplus b) = a+b$ (ring addition, via the grey monoid).
-        *   Zero element: $\includegraphics[scale=0.3]{scalar_zero_element.png}$ ensures the scalar $0$ is the additive identity.
+1.  **Basis Independence:**
+    Classical linear algebra forces us to choose a basis immediately to write down a matrix. In $\mathbf{cb}_k$, we manipulate the linear maps directly via their structural properties (Copy/Add). We only "compile" to a matrix when absolutely necessary.
 
-### II. The Main Result
+2.  **Topological Insight:**
+    Many properties of linear maps (like the trace, transpose, or feedback) are topological.
+    *   **Transpose:** Corresponds to rotating the diagram 180 degrees.
+    *   **Trace:** Corresponds to connecting an output wire back to an input wire (a loop).
+    *   Standard algebraic proofs involving indices ($\sum_k A_{ik}B_{kj}$) are notoriously error-prone. The diagrammatic proof is often a visual tautology—you simply "pull the wires straight."
 
-**Original Text: Proposition 1.2. [34, Prop. 3.9] Given a ring $k$, $\mathbf{cb}_k$ is a presentation for the prop $\mathbf{Mat}_k$, of matrices over $k$ under the direct sum.**
+3.  **Connection to Quantum Mechanics (ZX-Calculus):**
+    The structure of $\mathbf{cb}_k$ is strikingly similar to the **ZX-calculus** used in quantum computing. In ZX, we also have two colors (Green and Red spiders) that satisfy a bialgebra law.
+    *   In Linear Algebra ($\mathbf{cb}_k$): The structures are "Copy" ($\circ$) and "Add" ($\bullet$).
+    *   In Quantum (ZX): The structures correspond to complementary observables (Z and X bases).
+    Mastering $\mathbf{cb}_k$ is an excellent prerequisite for understanding categorical quantum mechanics.
 
-**Original Text: One should interpret the grey monoid as addition and the white comonoid as copying.**
+### Applicability
+This method is most effective when:
+*   **Analyzing Large Networks:** Signal flow graphs and electrical circuits are naturally modeled by these diagrams.
+*   **Proving Structural Identities:** When proving identities that hold for *any* dimension $n$, diagrams are superior to matrices, which often require fixing $n$.
+*   **Tensor Networks:** In machine learning and physics, the management of indices in tensor contractions is painful. Diagrammatic notation handles these contractions implicitly via wire connectivity.
 
-This proposition is the central claim: the formal, diagrammatic system $\mathbf{cb}_k$ is *isomorphic* to the category of matrices over the ring $k$, where the categorical structure is defined by the **prop** $\mathbf{Mat}_k$.
-
-**Concept: What is a Prop?**
-
-A Prop (Product-and-Permutation Category) is a symmetric monoidal category where the objects are natural numbers (or objects indexed by natural numbers) and the monoidal product ($\otimes$) of objects is the categorical product (or coproduct).
-
-*   **In $\mathbf{Mat}_k$:** The objects are free $k$-modules (or vector spaces, if $k$ is a field), $k^n$, indexed by $n \in \mathbb{N}$. The maps are $n \times m$ matrices over $k$. The monoidal product is the **direct sum** ($k^n \oplus k^m \cong k^{n+m}$).
-
-The result means any matrix identity can be translated into a $\mathbf{cb}_k$ diagram, and any proof involving matrix manipulation can be carried out purely by applying the diagrammatic equations.
-
-## Characteristics and Applicability of the $\mathbf{cb}_k$ Calculus
-
-### 1. Characteristics of the Method
-
-*   **Completeness:** The calculus is *complete* (Proposition 1.2), meaning the listed generators and relations are sufficient to derive *every* identity in linear algebra over a ring $k$.
-*   **Equational/Diagrammatic Proofs:** Proofs are entirely diagrammatic and syntactic (like algebraic manipulation), removing the need to appeal to coordinates, basis vectors, or explicit matrix entries. This provides an *internal language* for linear algebra.
-*   **Basis-Independent:** The calculus inherently works with linear maps without relying on a choice of basis until a specific matrix representation is required, aligning with the principles of categorical algebra.
-*   **Focus on Structure:** It explicitly models the **additive structure** (grey monoid) and the **cloning/discarding structure** (white comonoid) and their required compatibility via the bicommutative bialgebra axioms.
-
-### 2. Suitable Applications
-
-This graphical calculus is particularly well-suited for problems involving:
-
-*   **Tensor Products and Direct Sums:** The prop structure inherently handles the direct sum (as the monoidal product), and the diagrams simplify compositions of linear maps defined across complex tensor/direct sum structures.
-*   **Categorical Abstraction:** It serves as a tool for abstracting linear algebra concepts to a categorical setting, which is useful in fields like categorical quantum mechanics and theoretical computer science.
-*   **Simplifying Complex Proofs:** Identities involving the trace, transpose, and complex compositions (which can be cumbersome in coordinate notation) often become visually obvious and simpler to prove using the diagrammatic rewrite rules. For instance, the calculus is closely related to the **ZX-Calculus**, which is widely used for simplifying quantum circuit and quantum operation identities.
-*   **General Rings:** The definition works over an arbitrary ring $k$, highlighting that the core algebraic structure of matrices holds beyond fields (vector spaces).
+## References
+*   **Primary Paper:** *Graphical Linear Algebra*, arXiv:2105.06244.
+*   **Original Definitions:** Bonchi, Sobociński, Zanasi, *Interacting Hopf Algebras*, J. Pure Appl. Algebra (2014).
+*   **Web Resource:** [Graphical Linear Algebra](https://graphicallinearalgebra.net/) - A pedagogical blog by Pawel Sobocinski.
