@@ -14,7 +14,7 @@ const librarySections = [
     color: "bg-amber-50 hover:bg-amber-100",
   },
   {
-    title: "Linguistics Miscellanea",
+    title: "Linguistic Miscellanea",
     description: "Notes on phonology, syntax, and historical linguistics.",
     path: "/library/linguistics",
     color: "bg-emerald-50 hover:bg-emerald-100",
