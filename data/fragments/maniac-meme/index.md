@@ -19,7 +19,7 @@ This document serves as a **Self-Correcting Lexicon of Mathematical Cryptography
 | 随便 | Whatever/Up to you | $\text{AC}$ |
 | 你去忙吧 | You go on with your work | $\Delta t \to \infty, \text{ where } \Delta t \text{ is interaction time}$ |
 | 我不会 | I can't do it | $\text{Problem} \in \mathbf{RE} \setminus \mathbf{R}$ |
-| 唯一真神 | The only true God | $\sum = /2$ |
+| 唯一真神 | The only true God | $\sum = \frac{ }{2}$ |
 | 你好烦 | You are annoying | $\dim_{\mathbb{C}} H^0(X, K_X) = \infty$ |
 | 要你管 | None of your business/Mind your own business | $\text{Aut}(G) \not\cong \text{Inn}(G)$ |
 | 滚 | Get lost/Go away | $\text{Proof of } \text{ind}(D) = \int_M \hat{A}(M) \text{ is acceptable}$ |
@@ -66,7 +66,7 @@ The meme's effectiveness lies in its technical density, which often draws from m
 *   **Concept:** **Computability Theory**. $\mathbf{R}$ (Decidable) are problems with an algorithm. $\mathbf{RE}$ (Recursively Enumerable) are problems where a "yes" answer can be verified. $\mathbf{RE} \setminus \mathbf{R}$ is the set of **undecidable problems**.
 *   **Mathematical Humor:** "I can't do it" is an assertion that the task is fundamentally and provably undecidable by any general algorithm.
 
-### 7. The only true God $\rightarrow \sum = /2$
+### 7. The only true God $\rightarrow \sum = \frac{ }{2}$
 
 *   **Concept:** **Notational Fallacy/Academic Satire**. This specific, visually ambiguous notation is a direct satire of the **Jiang Ping incident**, where a purported mathematical genius made an absurd notational error—the $\sum$ symbol was visually confused with a fraction line and the number 2, suggesting a grotesque error in writing an equation or a simple division/sum.
 *   **Mathematical Humor:** Instead of referencing established but paradoxical math (like divergent series summation), this entry satirizes the phenomenon of **pseudo-mathematical genius** by enshrining a clear notational absurdity as a "divine truth."
