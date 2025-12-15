@@ -7,7 +7,11 @@ const OUTPUT_FILE = path.join(__dirname, '../data/fragments.json');
 const PUBLIC_DIR = path.join(__dirname, '../public/fragments');
 
 function parseFrontMatter(content) {
-    const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+    // Remove BOM if present
+    content = content.replace(/^\uFEFF/, '');
+    
+    // Allow for optional whitespace at the start
+    const match = content.match(/^\s*---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
     if (match) {
         try {
             const frontMatter = yaml.load(match[1]);

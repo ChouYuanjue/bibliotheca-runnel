@@ -1,5 +1,5 @@
 ---
-title: "Prop Presentations for Linear Algebra: The $\mathbf{cb}_k$ Calculus"
+title: 'Prop Presentations for Linear Algebra: The $\mathbf{cb}_k$ Calculus'
 date: "2021-06-21"
 ---
 
