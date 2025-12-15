@@ -1,11 +1,11 @@
 ---
 title: "A First Glimpse of AI and Topos Theory: Aha Moment Brought by a Lecture at PKU"
-date: "2025-12-11"
+date: "2025-12-10"
 ---
 
 ## Overview
 
-This entry summarizes a highly foundational and forward-looking academic seminar I followed, titled **"Topos Theory and the Frontier of Artificial Intelligence,"** held at the Zihua Fourth Yuan Hall, Peking University, on December 11, 2025. The event featured Fields Medalist Laurent Lafforgue and Aurélien Sagnier from the Huawei Paris Lagrange Center.
+This entry summarizes a highly foundational and forward-looking academic seminar I occasionally noticed, titled **"Topos Theory and the Frontier of Artificial Intelligence,"** held at the Zihua Fourth Yuan Hall, Peking University, on December 11, 2025. The event featured Fields Medalist Laurent Lafforgue and Aurélien Sagnier from the Huawei Paris Lagrange Center.
 
 My deep interest in the topic led to an extensive personal analysis, which focused on the revolutionary potential of using Topos Theory—a domain bridging logic and geometry—to solve the fundamental flaws of current AI: the lack of **explainability** and **certifiability**. Specifically, my inquiry focused on understanding the theoretical breakthrough this approach offers compared to traditional statistical learning, particularly the role of the Coproduct ($\sqcup$) in enabling a traceable, modular form of reasoning.
 

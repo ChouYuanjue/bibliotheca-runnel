@@ -9,7 +9,7 @@ During the summer, while scrolling through my QQ space, I stumbled upon a dynami
 
 Three years ago, he gave us a lecture on the **Hopf Fibration**. I still vividly remember spending days preparing for it, scribbling notes, and trying to wrap my head around the topology of spheres. The note is available at [Chaoli Forum](https://chaoli.club/index.php/6596), with a DOI: [10.6084/M9.FIGSHARE.20310042](https://doi.org/10.6084/M9.FIGSHARE.20310042).
 
-Time changes things—Dr. Peng has ascended to a Professor at the University of Rennes 1, and the topics have evolved from classical topology to the cutting-edge realm of **Infinity Categories** and **Higher Algebra**.
+Time changes things—Dr. Peng has ascended to a postdoc at the Université de Bourgogne, and the topics have evolved from classical topology to the cutting-edge realm of **Infinity Categories** and **Higher Algebra**.
 
 Although I deeply regret missing his 2024 lecture, looking at the lecture abstract and the meme he famously shared back in the day (which seems to bridge his past and present research), I feel a strange sense of temporal overlap. The memories of 2021 have superimposed onto the reality of 2024.
 
@@ -22,7 +22,7 @@ Below is the context of his recent talk, followed by my attempt to decode that l
 ![LECTURE](/fragments/hopf-meme/lecture.jpg)
 
 **Title:** Entering the Hall — From Elementary Arithmetic to Higher Algebra
-**Speaker:** Peng Keyao (Université de Rennes 1)
+**Speaker:** Peng Keyao (Université de Bourgogne)
 
 **The Abstract:**
 > *"Higher Algebra" is a brand-new mathematical direction independently developed by Jacob Lurie and others. It is built upon a foundation known as "Infinity Categories" (or $\infty$-categories). Here, mathematical objects are endowed with "Homotopy."*
