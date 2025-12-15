@@ -10,7 +10,7 @@ The specific formalism identified is the theory $\mathbf{cb}_k$ (standing for *c
 
 For those interested in a more pedagogical entry point, the authors maintain an incredible resource at **[graphicallinearalgebra.net](https://graphicallinearalgebra.net/)**, which unfolds this theory as a narrative about the interaction between two fundamental operations: Copying and Adding. Below is a detailed academic note synthesizing the formal definition from the paper with the intuitive insights from the website.
 
-![DEMO](fragments/graph-alg/demo.jpeg)
+![DEMO](/fragments/graph-alg/demo.jpeg)
 
 ***
 
