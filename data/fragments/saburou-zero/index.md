@@ -27,7 +27,7 @@ This paper lays the groundwork for the "Yamada Field" (Y-Field), a structure whe
 
 - **The Core Axiom:** Saitoh asserts that for any complex number $b$, the fraction $b/0 = 0$. This is justified "incidentally" by Tikhonov regularization.
 
-- **The Geometric Consequence (The Collapse):**In standard geometry, parallel lines meet at infinity.
+- **The Geometric Consequence (The Collapse):** In standard geometry, parallel lines meet at infinity.
 
 - In Saitoh’s geometry, the "point at infinity" is represented by $z=0$.
 
@@ -35,7 +35,7 @@ This paper lays the groundwork for the "Yamada Field" (Y-Field), a structure whe
 
 - *Critique:* This implies that if you have two parallel lines anywhere in space, their intersection point is the origin. The logic effectively folds the entire Euclidean plane such that the "horizon" touches the center.
 
-**Cramer's Law "Fix":**Standard Cramer's Law fails when the determinant is zero ($D=0$, singular matrix). Saitoh claims that by defining $z/0=0$, the solution to a system with a singular matrix is simply the zero vector."By the division by zero, we can understand that if $a_1b_2 - a_2b_1 = 0$, then the common point is always given by $(0,0)$ even when the two lines are the same."
+**Cramer's Law "Fix":** Standard Cramer's Law fails when the determinant is zero ($D=0$, singular matrix). Saitoh claims that by defining $z/0=0$, the solution to a system with a singular matrix is simply the zero vector."By the division by zero, we can understand that if $a_1b_2 - a_2b_1 = 0$, then the common point is always given by $(0,0)$ even when the two lines are the same."
 
 **Physical Interpretations:Hooke's Law:** For springs in series $\frac{1}{k} = \frac{1}{k_1} + \frac{1}{k_2}$. If $k_1=0$, normally the system breaks. Saitoh argues $1/0 = 0$, so $1/k = 1/k_2$, meaning $k=k_2$.
 

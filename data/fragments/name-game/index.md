@@ -12,7 +12,7 @@ The character **Run (润)** implies moistening, enriching, or gentle elegance; *
 
 From **Runnel**, a philological chain reaction occurred:
 1.  **Phonetic Evolution:** "Runnel" bears a striking acoustic resemblance to the Chinese transliteration **Rangnuo** (让诺).
-2.  **The Courtesy Name:** Consequently, I adopted "Rangnuo" as my *Zi* (courtesy name), styling myself the **"Layman Rangnuo"** (让诺居士).
+2.  **The Courtesy Name:** Consequently, I adopted "Rangnuo" as my *Hao* (courtesy name), styling myself the **"Layman Rangnuo"** (让诺居士).
 3.  **The French Connection:** Transliterated into French, Rangnuo becomes **Jeanot**. This happy accident fits perfectly, as the diminutive suffix suggests a perennial youthfulness—mirroring my own appearance, which often belies my actual age.
 
 ### The Architecture of the Studio: "Xiangruo"
