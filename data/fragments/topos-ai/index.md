@@ -72,7 +72,7 @@ I was particularly drawn to the potential of the **Coproduct** ($\sqcup$)—the 
 
 ### A. Beyond the Coproduct: The Power of Complete Topos Structure
 
-Following a fruitful discussion with Senior Zeng (曾学长), I realized that while the Coproduct is fundamental, it is only **one necessary part** of the Topos structure's true power. The ultimate breakthrough of Topos AI lies in the **synergy of its complete set of foundational structures**, enabling a fully logical universe for computation:
+Following a fruitful discussion with Senior Zeng, I realized that while the Coproduct is fundamental, it is only **one necessary part** of the Topos structure's true power. The ultimate breakthrough of Topos AI lies in the **synergy of its complete set of foundational structures**, enabling a fully logical universe for computation:
 
 | Critical Topos Structure | Role in AI Breakthrough |
 | :--- | :--- |
