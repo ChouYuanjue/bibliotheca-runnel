@@ -13,7 +13,7 @@ Time changes things — Dr. Peng has ascended to a postdoc at the Université de
 
 Although I deeply regret missing his 2024 lecture, looking at the lecture abstract and the meme he famously shared back in the day (which seems to bridge his past and present research), I feel a strange sense of temporal overlap. The memories of 2021 have superimposed onto the reality of 2024.
 
-Below is the context of his recent talk, followed by my attempt to decode that legendary "Galaxy Brain" meme, tracing the path from a simple sphere mapping to the profound "truth" of $0=1-1$.
+Below is the context of his recent talk, followed by my attempt to decode that legendary "Galaxy Brain" meme, tracing the path from a simple sphere mapping to the profound "truth" of $0=1-1=-1+1=0$.
 
 ---
 
@@ -82,4 +82,4 @@ $$ 0 = 1 - 1 = -1 + 1 = 0 $$
 
 ## Final Thought
 
-Three years ago, I was just learning what a fiber bundle was. Today, seeing Prof. Peng discuss the "Truth of $0=1-1$" via Jacob Lurie’s Higher Algebra, I realize how deep the rabbit hole goes. While I missed the lecture, re-analyzing this meme with my current understanding feels like a small, personal seminar—a quiet nod to the passage of time and the enduring elegance of mathematics.
+Three years ago, I was just learning what a fiber bundle was. Today, seeing Prof. Peng discuss the "Truth of $0=1-1=-1+1=0$" via Jacob Lurie’s Higher Algebra, I realize how deep the rabbit hole goes. While I missed the lecture, re-analyzing this meme with my current understanding feels like a small, personal seminar—a quiet nod to the passage of time and the enduring elegance of mathematics.
