@@ -55,14 +55,14 @@ const WorkCard = ({ item }: { item: WorkItem }) => {
         </div>
       </div>
       
-      <h3 className="text-xl font-semibold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors">
-        <Link href={item.link} target={isExternal ? "_blank" : undefined} className="flex items-center gap-2 hover:underline decoration-blue-500/30">
-          {item.title}
-          {isExternal && <ExternalLink size={16} className="text-gray-400" />}
+      <h3 className="text-xl font-semibold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors flex-grow">
+        <Link href={item.link} target={isExternal ? "_blank" : undefined} className="hover:underline decoration-blue-500/30">
+          <MarkdownRenderer content={item.title} inline />
+          {isExternal && <ExternalLink size={16} className="text-gray-400 inline ml-2 align-baseline" />}
         </Link>
       </h3>
       
-      <div className="text-gray-600 text-sm mb-4 flex-grow line-clamp-3">
+      <div className="text-gray-600 text-sm mb-4 h-[4.5em]">
         {item.description ? (
           <MarkdownRenderer content={item.description} className="prose-sm line-clamp-3" />
         ) : (

@@ -10,6 +10,7 @@ import MermaidDiagram from "@/components/custom/MermaidDiagram";
 interface MarkdownRendererProps {
   content: string;
   className?: string;
+  inline?: boolean;
 }
 
 // Helper to preprocess LaTeX delimiters
@@ -21,11 +22,13 @@ const preprocessMarkdown = (content: string) => {
     .replace(/\\\(([\s\S]*?)\\\)/g, '$$$1$$');    // \( ... \) -> $ ... $
 };
 
-export default function MarkdownRenderer({ content, className }: MarkdownRendererProps) {
+export default function MarkdownRenderer({ content, className, inline = false }: MarkdownRendererProps) {
   const processedContent = preprocessMarkdown(content);
 
+  const Wrapper = inline ? 'span' : 'div';
+
   return (
-    <div className={cn("prose prose-sm max-w-none prose-headings:font-serif prose-a:text-red-800 hover:prose-a:text-red-600", className)}>
+    <Wrapper className={cn(inline ? "" : "prose prose-sm max-w-none prose-headings:font-serif prose-a:text-red-800 hover:prose-a:text-red-600", className)}>
       <ReactMarkdown
         remarkPlugins={[remarkMath, remarkGfm]}
         rehypePlugins={[rehypeKatex]}
@@ -58,10 +61,11 @@ export default function MarkdownRenderer({ content, className }: MarkdownRendere
               </code>
             );
           },
+          img: () => null,
         }}
       >
         {processedContent}
       </ReactMarkdown>
-    </div>
+    </Wrapper>
   );
 }
