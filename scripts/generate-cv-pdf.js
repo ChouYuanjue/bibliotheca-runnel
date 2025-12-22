@@ -6,6 +6,17 @@ const { mdToPdf } = require('md-to-pdf');
   const cvPath = path.join(__dirname, '../data/cv.md');
   const outputPath = path.join(__dirname, '../public/cv.pdf');
 
+  // Check if we need to regenerate
+  if (fs.existsSync(outputPath)) {
+    const cvStats = fs.statSync(cvPath);
+    const pdfStats = fs.statSync(outputPath);
+
+    if (cvStats.mtime <= pdfStats.mtime) {
+      console.log('CV PDF is up to date. Skipping generation.');
+      return;
+    }
+  }
+
   console.log(`Generating PDF from ${cvPath}...`);
 
   try {
