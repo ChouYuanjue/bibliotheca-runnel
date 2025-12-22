@@ -5,6 +5,7 @@ date: "2020-12-25"
 
 
 ## Overview
+
 This entry marks my very first participation in the **Geek College** English Salon on December 25, 2020. What began as casual holiday chatter quickly evolved into a high-density academic exchange spanning Abstract Algebra and Measure Theory.
 
 The log captures my initial struggles with the formal notations in Paul Halmos’s *Measure Theory* and the definition of Coproducts in the category of Groups. Guided by peers **Jacky_Jnirvana** and **Nianyi**, the conversation bridged the gap between rigorous "pathological" definitions and intuitive geometric understandings. Below are the key fragments of that night, supplemented with the mathematical context I have since gathered.

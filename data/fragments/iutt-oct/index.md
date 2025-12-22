@@ -4,6 +4,7 @@ date: "2025-11-15"
 ---
 
 ## Overview
+
 I had a disscusion on digesting Shinichi Mochizuki’s *Report on the Current Situation Surrounding Inter-Universal Teichmüller Theory (IUT)*, released this past October, with some of my net friends. Our opinions were alike. Ostensibly, this 30-page document is a rebuttal to a critical article by J.D. Boyd in *SciSci Research*, but it reads more like a philosophical manifesto than a standard mathematical response.
 
 For those of us tracking this saga for years, the report marks a significant shift. Mochizuki appears to have largely abandoned the hope of convincing the current generation of arithmetic geometers via traditional human dialogue. His argument is that the "social/political dynamics" of the mathematical community have superseded "mathematical truth." His proposed solution? A complete retreat into formal verification (Lean 4).

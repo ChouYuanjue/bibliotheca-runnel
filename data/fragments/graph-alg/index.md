@@ -4,6 +4,7 @@ date: "2021-06-21"
 ---
 
 ## Overview
+
 I have finally traced the definitive origin of this elegant piece of graphical mathematics by Dr. Peng! The fragment I was studying belongs to the seminal work **"Graphical Linear Algebra"** (specifically, see **arXiv:2105.06244**). This paper provides the rigorous categorical "source code" for representing linear algebra not through grids of numbers, but through the topology of string diagrams.
 
 The specific formalism identified is the theory $\mathbf{cb}_k$ (standing for *commutative bialgebra* with *scalars* over a ring $k$). The central result is breathtaking in its simplicity and power: this diagrammatic language is a complete presentation for the prop $\mathbf{Mat}_k$. In other words, **diagrams are matrices**, and topological manipulation is linear algebra.

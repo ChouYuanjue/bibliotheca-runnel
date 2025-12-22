@@ -3,12 +3,29 @@
     {
       "title": "Home",
       "path": "/",
-      "tier": 1
-    },
-    {
-      "title": "CV",
-      "path": "/cv",
-      "tier": 1
+      "tier": 1,
+      "children": [
+        {
+          "title": "CV",
+          "path": "/cv",
+          "tier": 2
+        },
+        {
+          "title": "Organizations",
+          "path": "/organizations",
+          "tier": 2
+        },
+        {
+          "title": "Worklist",
+          "path": "/worklist",
+          "tier": 2
+        },
+        {
+          "title": "Mentorship",
+          "path": "/mentorship",
+          "tier": 2
+        }
+      ]
     },
     {
       "title": "Library",
@@ -40,11 +57,6 @@
     {
       "title": "Projects",
       "path": "/projects",
-      "tier": 1
-    },
-    {
-      "title": "Organizations",
-      "path": "/organizations",
       "tier": 1
     },
     {

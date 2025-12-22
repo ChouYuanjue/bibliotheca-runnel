@@ -44,7 +44,12 @@ export default function MobileNav() {
         <div className="fixed inset-0 top-16 z-30 bg-white overflow-y-auto pb-20 animate-in slide-in-from-top-5 duration-200">
           <nav className="p-4 space-y-2">
             {metadata.navigation.map((item) => {
-              const isActive = pathname === item.path || pathname.startsWith(item.path + "/");
+              const isActive =
+                pathname === item.path ||
+                (item.path !== "/" && pathname.startsWith(item.path + "/")) ||
+                item.children?.some(
+                  (child) => pathname === child.path || pathname.startsWith(child.path + "/")
+                );
               const hasChildren = item.children && item.children.length > 0;
               const isExpanded = expandedItems.includes(item.path);
 

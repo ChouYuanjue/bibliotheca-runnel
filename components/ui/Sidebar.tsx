@@ -16,7 +16,11 @@ export default function Sidebar() {
     const activeParent = metadata.navigation.find(
       (item) =>
         item.children &&
-        (pathname === item.path || pathname.startsWith(item.path + "/"))
+        (pathname === item.path ||
+          (item.path !== "/" && pathname.startsWith(item.path + "/")) ||
+          item.children.some(
+            (child) => pathname === child.path || pathname.startsWith(child.path + "/")
+          ))
     );
     if (activeParent) {
       setExpandedItems((prev) =>
@@ -46,7 +50,12 @@ export default function Sidebar() {
 
       <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200">
         {metadata.navigation.map((item) => {
-          const isActive = pathname === item.path || pathname.startsWith(item.path + "/");
+          const isActive =
+            pathname === item.path ||
+            (item.path !== "/" && pathname.startsWith(item.path + "/")) ||
+            item.children?.some(
+              (child) => pathname === child.path || pathname.startsWith(child.path + "/")
+            );
           const hasChildren = item.children && item.children.length > 0;
           const isExpanded = expandedItems.includes(item.path);
 

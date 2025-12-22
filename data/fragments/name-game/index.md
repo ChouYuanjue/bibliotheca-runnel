@@ -3,6 +3,9 @@ title: "The Naming Game — From RC，Runnel, Rangnuo, Jeanot to Rinelle"
 date: "2025-06-28"
 ---
 
+## Overview
+
+This document explores the multi-layered architecture of my personal identity, tracing a philological journey that bridges my Chinese heritage with Western linguistic traditions. By weaving together the etymology of my primary names—**Runnel (Runcheng)**, the courtesy name **Rangnuo (Jeanot)**, and the studio title **Xiangruo**—with a playful aristocratic alter ego, I demonstrate a philosophy where names serve as both "tally-bonds between Heaven and Earth" and vessels for silent action. Through translated classical prefaces and European nomenclature, this overview reveals a self-conception rooted in the virtues of deference, promise, and the perpetual "renaissance" of the intellect.
 
 ## I. The Etymology of Identity
 

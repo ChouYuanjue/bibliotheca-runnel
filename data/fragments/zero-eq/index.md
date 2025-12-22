@@ -4,6 +4,7 @@ date: "2025-12-17"
 ---
 
 ## Overview
+
 More than a year ago, I encountered a slide from a lecture by Professor Keyao Peng featuring the enigmatic equation $0=1-1=-1+1=0$. At the time, I interpreted it through the lens of classical analysis and infinite summation techniques. It wasn't until I recently discovered the full lecture slides that I realized my initial intuition was not just slightly off, but diametrically opposed to the mathematical reality. This equation is not about arithmetic values or infinite cancellations; it is a description of a non-trivial topological path within the realm of K-theory and Higher Algebra.
 
 ## I. The Realization

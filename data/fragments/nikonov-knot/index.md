@@ -5,7 +5,6 @@ date: "2025-07-05"
 
 ## Overview
 
-
 The summer after the *Gaokao* is a strange time. The pressure valve releases, and suddenly, there is silence. To fill that silence, I found myself in a online seminar room, listening to I. M. Nikonov speak about "Partial Tribrackets."
 
 I will be honest: I was completely lost. Terms like "quasigroups," "biquandloids," and "thickened surfaces" were flying around the room, and I felt like I had walked into a movie halfway through. My high school mathematics education—calculus, geometry, algebra—had built a strong foundation, but this was a skyscraper I couldn't see the top of.
