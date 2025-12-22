@@ -1,0 +1,1073 @@
+[
+  {
+    "type": "Fragment",
+    "title": "From Divergent Series to Stable Homotopy — On the Equation $0=1-1=-1+1=0$",
+    "description": "More than a year ago, I encountered a slide from a lecture by Professor Keyao Peng featuring the enigmatic equation $0=1-1=-1+1=0$. At the time, I interpreted it through the lens of classical analysis and infinite summation techniques. It wasn't until I recently discovered the full lecture slides that I realized my initial intuition was not just slightly off, but diametrically opposed to the mathematical reality. This equation is not about arithmetic values or infinite cancellations; it is a description of a non-trivial topological path within the realm of K-theory and Higher Algebra.",
+    "date": "2025-12-17",
+    "link": "/fragments/zero-eq"
+  },
+  {
+    "type": "Project",
+    "title": "bibliotheca-runnel",
+    "description": "This is the personal academic portal and digital archive of myself. It serves as a curated collection of knowledge, spanning from informal mathematical notes to classical literary works and linguistic research.",
+    "date": "2025-12-14T13:03:00Z",
+    "link": "https://github.com/ChouYuanjue/bibliotheca-runnel"
+  },
+  {
+    "type": "Project",
+    "title": "PDF_Summary_Tool",
+    "description": "一个强大的Python工具，用于将PDF文档转换为结构化文本，并利用先进的AI模型生成高质量的内容总结和关键词提炼。",
+    "date": "2025-12-10T06:40:42Z",
+    "link": "https://github.com/ChouYuanjue/PDF_Summary_Tool"
+  },
+  {
+    "type": "Fragment",
+    "title": "A First Glimpse of AI and Topos Theory: Aha Moment Brought by a Lecture at PKU",
+    "description": "This entry summarizes a highly foundational and forward-looking academic seminar I occasionally noticed, titled **\"Topos Theory and the Frontier of Artificial Intelligence,\"** held at the Zihua Fourth Yuan Hall, Peking University, on December 11, 2025. The event featured Fields Medalist Laurent Lafforgue and Aurélien Sagnier from the Huawei Paris Lagrange Center.\r\n\r\nMy deep interest in the topic led to an extensive personal analysis, which focused on the revolutionary potential of using Topos Theory—a domain bridging logic and geometry—to solve the fundamental flaws of current AI: the lack of **explainability** and **certifiability**. Specifically, my inquiry focused on understanding the theoretical breakthrough this approach offers compared to traditional statistical learning, particularly the role of the Coproduct ($\\sqcup$) in enabling a traceable, modular form of reasoning.",
+    "date": "2025-12-10",
+    "link": "/fragments/topos-ai"
+  },
+  {
+    "type": "Publication",
+    "title": "Navigating the Full-Stack Ecosystem: Implementation Strategies and Knowledge Graphs for Information Aggregation",
+    "description": "As the second module of the \"Nova Technical Onboarding Series\" for freshman engineers, this presentation maps out the comprehensive technology landscape required to build a modern information aggregation system. It serves as a practical roadmap, guiding students from basic data processing scripts to complex, autonomous agent workflows.\n\nThe session bridges the gap between individual coding tasks and full-stack system design through five key domains:\n\n1.Data Ingestion & NLP Pipelines: A walkthrough of the essential toolkit (e.g., Spacy, Unstructured, LangChain) used to transform messy, heterogeneous data (PDFs, Chat Logs) into clean, structured formats suitable for AI processing.\n\n2.The System's \"Brain\": Implementing Retrieval-Augmented Generation (RAG) by combining Vector Databases (Chroma) for semantic search and Graph Databases (Neo4j) for relational reasoning, introducing students to the concept of Hybrid Search.\n\n3.Modern Interaction Patterns: Moving beyond static web pages to dynamic \"Push & Pull\" architectures. The session demonstrates how to deliver content via diverse channels like RSS feeds and Calendar integrations using frameworks like FastAPI and React.\n\n4.Agentic Workflows & Orchestration: An introduction to building autonomous systems using the Model Context Protocol (MCP). It explains how to handle long-running AI tasks asynchronously using Message Queues (Celery/Redis) to ensure the application remains responsive.\n\n5.From \"Solo Coding\" to \"Engineering\": establishing a robust collaborative environment. This section emphasizes the importance of API Contracts (Swagger), Containerization (Docker), and Observability (Grafana) in a professional team setting.",
+    "date": "2025-12-06",
+    "link": "https://zenodo.org/doi/10.5281/zenodo.17852269"
+  },
+  {
+    "type": "Achieved",
+    "title": "REPO: Guidance_for_New_NJUers",
+    "description": "Crawled from Nanwhere Assistant's Yuque guide for 25th cohort new students. This project is an intermediate product of a nova club initiative.",
+    "date": "2025-11-29T06:17:54Z",
+    "link": "/achieved/guidance_for_new_njuers"
+  },
+  {
+    "type": "Publication",
+    "title": "Architectural Paradigms in Collaborative Software Engineering: A Comprehensive Analysis of the Nova Project",
+    "description": "Designed as a technical onboarding seminar for first-year undergraduate students, this presentation dissects the engineering architecture and collaborative methodologies within the Nova Project. The instructional objective is to bridge the gap between theoretical computer science concepts and modern industrial practices, specifically addressing environment consistency and dependency management in distributed development.\n\nThe curriculum encompasses four foundational engineering domains:\n\n1. Containerization & Environment Standardization: Introducing Docker-based workflows to eliminate \"it works on my machine\" issues. The session demonstrates how to orchestrate consistent development environments and manage NVIDIA GPU dependencies through container encapsulation.\n\n2. Database Architecture Trade-offs: A pedagogical analysis of Relational (PostgreSQL) versus Document-oriented (MongoDB) systems. Students are guided through practical schema design choices, illustrating how a \"Content Hash\" strategy allows for efficient handling of heterogeneous and unstructured data.\n\n3. Asynchronous Service patterns: Explaining the shift from standard RESTful CRUD operations to a \"Shared Database + Trigger\" architecture. This segment highlights how to optimize system throughput and minimize API latency in data-intensive applications.\n\n4. Parallel Development Workflows: Demonstrating techniques to decouple frontend and backend engineering tasks. By utilizing \"Seed Data\" and \"Mock Triggers,\" the presentation illustrates how to maintain a non-blocking development lifecycle, allowing teams to execute tasks simultaneously despite inter-service dependencies.",
+    "date": "2025-11-29",
+    "link": "https://zenodo.org/doi/10.5281/zenodo.17765724"
+  },
+  {
+    "type": "Fragment",
+    "title": "Follow-up on Hugo Duminil-Copin's Lecture: Probing SAW Universality and 4D Triviality",
+    "description": "Following the suggestion from Professor Hugo Duminil-Copin, I sent a detailed email to him to follow up on the questions I was unable to ask during the Q&A session. The email, sent on November 27, 2025, covers two major topics: the subtle mathematical reasons behind the solvability of **Self-Avoiding Walks (SAW)** on the honeycomb lattice versus the square lattice (the **Symmetry-Complexity Paradox**), and a more conceptual inquiry into his work on the **Marginal Triviality of the 4D $\\Phi^4$ model** in Quantum Field Theory. Since the email has not been answered, I plan to resolve these questions through self-study, and the formatted email below serves as the structured outline for that research.",
+    "date": "2025-11-27",
+    "link": "/fragments/hdc-email"
+  },
+  {
+    "type": "Fragment",
+    "title": "A Successful Star-Chase: Cutting Class for Hugo Duminil-Copin's Lecture on Self-Avoiding Walks",
+    "description": "I cut class to attend a lecture by Fields Medalist Hugo Duminil-Copin and was the first to rush forward for a photo afterward—a completely successful fan moment! Initially, I thought I would not understand anything and was just going to observe, but Hugo's presentation was surprisingly accessible, which is also closely related to his choice of topic.\r\n\r\n![PHOTO WITH HDC](/fragments/hdc-lecture/default.jpeg)",
+    "date": "2025-11-26",
+    "link": "/fragments/hdc-lecture"
+  },
+  {
+    "type": "Fragment",
+    "title": "The \"Holy War\" Moves to the Server Room — Notes on Mochizuki’s Oct 2025 Report",
+    "description": "I had a disscusion on digesting Shinichi Mochizuki’s *Report on the Current Situation Surrounding Inter-Universal Teichmüller Theory (IUT)*, released this past October, with some of my net friends. Our opinions were alike. Ostensibly, this 30-page document is a rebuttal to a critical article by J.D. Boyd in *SciSci Research*, but it reads more like a philosophical manifesto than a standard mathematical response.\r\n\r\nFor those of us tracking this saga for years, the report marks a significant shift. Mochizuki appears to have largely abandoned the hope of convincing the current generation of arithmetic geometers via traditional human dialogue. His argument is that the \"social/political dynamics\" of the mathematical community have superseded \"mathematical truth.\" His proposed solution? A complete retreat into formal verification (Lean 4).\r\n\r\nWhile the tone is calmer than some of his previous blog posts, the implications are arguably more radical. He isn't just defending a proof; he is proposing a redefinition of how mathematical consensus should be reached, seemingly to bypass the \"human\" element that has rejected his theory.\r\n\r\nBelow is a breakdown of the key points and my thoughts.",
+    "date": "2025-11-15",
+    "link": "/fragments/iutt-oct"
+  },
+  {
+    "type": "Achieved",
+    "title": "REPO: Informal_Notes_on_Mathematics",
+    "description": "This is a project for storing notes and materials recorded during the process of self-studying mathematics. Originally published via FigShare, DOI: 10.6084/m9.figshare.c.6094833.v7",
+    "date": "2025-11-08T13:29:56Z",
+    "link": "/achieved/informal_notes_on_mathematics"
+  },
+  {
+    "type": "Achieved",
+    "title": "REPO: NOVA_Mock_Service",
+    "description": "This project serves as a Mock Service for the Nova 2025 Information Integration Tool Collaboration Project, aligning with the design of the \"Collaboration Integration Plan (Draft)\" to facilitate parallel development and integration testing between frontend, backend, and various teams.",
+    "date": "2025-10-25T03:05:10Z",
+    "link": "/achieved/nova_mock_service"
+  },
+  {
+    "type": "Project",
+    "title": "TeX-QB-Gen",
+    "description": "Generate question banks directly from textbooks.  Leverage OpenRouter's multimodal/text models and local OCR capabilities to extract math problems and solutions from images, web pages, or PDFs, and generate uniformly formatted TeX question banks.",
+    "date": "2025-10-10T12:01:12Z",
+    "link": "https://github.com/ChouYuanjue/TeX-QB-Gen"
+  },
+  {
+    "type": "Project",
+    "title": "AI_Emoji_Kitchen_Lab",
+    "description": "这是一个基于深度学习的表情符号（Emoji）融合项目，旨在于通过大模型实现Google Emoji Kitchen风格的表情符号融合，能够将两个不同的emoji融合成一个全新的、富有创意的emoji图像。",
+    "date": "2025-10-09T04:18:52Z",
+    "link": "https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab"
+  },
+  {
+    "type": "Project",
+    "title": "doge-repo",
+    "description": "QQ机器人豆子 Doge的源码库。包括v2（使用CQP），v3（使用mirai），v4（使用AstrBot，当前版本）。",
+    "date": "2025-09-28T13:26:35Z",
+    "link": "https://github.com/ChouYuanjue/doge-repo"
+  },
+  {
+    "type": "Note",
+    "title": "N-20250926",
+    "description": "This document explores matrix calculus and tensor \"collapse\" in the context of neural network backpropagation. It demonstrates that while the gradient ∂y/∂W for a linear layer z = Wx + b is theoretically a 3D tensor (m×m×n), it collapses into a simple outer product ∂y/∂W = (∂y/∂z)xᵀ due to sparsity from element-wise activation functions and the chain rule. Two rigorous proofs are provided: one using Einstein summation convention with Kronecker delta to handle indices component-wise, and another employing vectorization and Kronecker products for formal matrix-level derivation. Both methods confirm the same efficient gradient computation, avoiding explicit storage of the high-dimensional tensor.",
+    "date": "2025-09-26",
+    "link": "/notes/2025/N-20250926.pdf"
+  },
+  {
+    "type": "Achieved",
+    "title": "REPO: Yuque_LLM_Wiki",
+    "description": "This project focuses on converting Yuque documents into structured formats, enabling seamless integration with LLMs. It was developed as part of the first practice group project by the Nova Club at Nanjing University in 2025.",
+    "date": "2025-09-23T11:39:15Z",
+    "link": "/achieved/yuque_llm_wiki"
+  },
+  {
+    "type": "Project",
+    "title": "Tangut_Chinese_Translator",
+    "description": "一个西夏文-中文双向翻译器",
+    "date": "2025-09-17T11:36:28Z",
+    "link": "https://github.com/ChouYuanjue/Tangut_Chinese_Translator"
+  },
+  {
+    "type": "Criticism",
+    "title": "Iconographic Verification and Serendipitous Fieldwork: A Field Note on Identifying Deities in a Sichuan-Tibet Border Jingtang",
+    "description": "This field note details an unexpected ethnographic encounter and iconographic verification process during a Sichuan-Tibet border journey. What began as a casual visit to Chuansi Temple and Gami Monastery culminated in a crucial, impromptu \"field investigation\" within a local homestay's private shrine room (Jīngtáng). The record traces the journey of identifying two key Buddhist images: the initial misidentification of a Yellow Jambhala (黄财神) relief, corrected through expert group chat verification by analyzing features such as the peaceful aspect and Jewel-Spitting Mongoose; and the subsequent analysis of a vibrant Five-Color Dakinis (五色空行母) thangka.",
+    "date": "2025-08-05",
+    "link": "/library/criticisms/maha-research"
+  },
+  {
+    "type": "Fragment",
+    "title": "The Tian-Cai Confluence: Geometric-Combinatorial Proof of Identity",
+    "description": "This is an **irrefutable proof of identity** establishing that the renowned geometric analyst, Professor Tian Gang, is the same individual as the exceptionally talented Nanjing University undergraduate senior, Yuxi Cai (CYX). This humorous academic deduction, framed as a \"Mathematical Royalist's\" attempt to dismantle a \"Yau Detractor\" (a playful jab at the well-known professional tension between Tian Gang and Shing-Tung Yau), utilizes deep academic and cryptographic congruencies to confirm the existence of a meticulously maintained double life. The evidence is so compelling that it transcends mere coincidence, confirming a fundamental isomorphism between the two personas.",
+    "date": "2025-08-03",
+    "link": "/fragments/tian-cai"
+  },
+  {
+    "type": "Linguistics",
+    "title": "Miscellanea XI. Assessing the Authenticity of Contested Historical and Linguistic Artifacts",
+    "description": "A dialectical critique concerning the authenticity and verification of various contested historical and linguistic artifacts, including the Kunlun Stone Inscriptions (Chinese: 昆仑石刻), Gansang Stone Inscriptions (Chinese: 甘桑石刻), Yao ancient script (Chinese: 瑶族古文字), Zheda bamboo slips (Chinese: 浙大简), the Gelao's Nine Heavens Great Pu History Record (Chinese: 仡佬的九天大濮史录), and the Nüshu mother coin (Chinese: 女书的雕母钱).",
+    "date": "2025-08-02",
+    "link": "/library/linguistics/miscellanea-xi-contested-artifacts"
+  },
+  {
+    "type": "Fragment",
+    "title": "Minecraft: The Riemann Manifold of Fun—A Hypothetical Physics Simulation",
+    "description": "The following is a semi-serious, highly technical, and completely humorous review of the Swedish video game *Minecraft*. This title, often described as a sandbox construction game, is revealed here as an ambitious, albeit incomplete, simulation built upon a set of **radically altered fundamental physical axioms**. Much like Greg Egan’s *Orthogonal* trilogy, which explores a universe where spacetime is a Riemannian rather than a Lorentzian manifold, *Minecraft* offers a world governed by novel, non-standard laws, yielding a highly amusing, yet surprisingly fertile, ground for engineering and logic.\r\n\r\nWe present the core deviations from classical and quantum physics, followed by the advanced (modded) scientific extensions, concluding with an enthusiastic invitation to join the Nanjing University Minecraft Organization (NMO).",
+    "date": "2025-07-30",
+    "link": "/fragments/nmo-physics"
+  },
+  {
+    "type": "Collection",
+    "title": "Jeanot Collection (让诺集)",
+    "description": "A curated collection of classical writings, categorized into: 赋 (7), 说 (6), 论 (6), 讽 (2), 考 (6), 稗 (2), 七 (2), 杂记 (15), 行记 (6), 骚 (3), 哀 (2), 诔 (1), 志 (5), 制艺 (5), 檄 (1), 书序 (4), 书后 (5), 史述赞 (2), 颂 (2), 奏疏 (1), 表 (2), 书 (4), 议谥 (5), 行状 (1), 史表 (5), 史述 (3), 制 (2), 经 (2), 补遗 (3), 诗 (27), 词 (15), 曲 (1).",
+    "date": "2025-07-19",
+    "link": "/library/classics"
+  },
+  {
+    "type": "Fragment",
+    "title": "The Proper Way to Speak Like a Mathematical Maniac: A Self-created Meme",
+    "description": "This document serves as a **Self-Correcting Lexicon of Mathematical Cryptography**, translating sixteen common, everyday conversational phrases into their most technically dense and mathematically absurd equivalents. This meme, originating from a discussion among academic peers, highlights the humorous tendency of mathematicians to formalize the mundane. Each entry includes the translation, the precise mathematical expression, a detailed explanation of the concept, and the author’s subsequent self-critique and correction process, where applicable.",
+    "date": "2025-07-14",
+    "link": "/fragments/maniac-meme"
+  },
+  {
+    "type": "Fragment",
+    "title": "The Space Between the Lines: A Post-Gaokao Journey into Knot Theory via Nikonov's seminar",
+    "description": "The summer after the *Gaokao* is a strange time. The pressure valve releases, and suddenly, there is silence. To fill that silence, I found myself in a online seminar room, listening to I. M. Nikonov speak about \"Partial Tribrackets.\"\r\n\r\nI will be honest: I was completely lost. Terms like \"quasigroups,\" \"biquandloids,\" and \"thickened surfaces\" were flying around the room, and I felt like I had walked into a movie halfway through. My high school mathematics education—calculus, geometry, algebra—had built a strong foundation, but this was a skyscraper I couldn't see the top of.\r\n\r\nRefusing to let the confusion win, I tracked down the speaker's related paper: **“The crossing and the arc from the topological viewpoint” (arXiv:2504.18836v1)**. I decided to treat this paper not just as a reading assignment, but as a map.\r\n\r\nMy study session became \"top-heavy.\" I spent days obsessing over the **Introduction** and **Section 2**, specifically the fundamental philosophical divide in knot theory: the **Topological** view vs. the **Combinatorial** view. This note is the result of that deep dive—a compilation of what I learned from the paper, supplemented by the external research I had to do just to understand the first page.",
+    "date": "2025-07-05",
+    "link": "/fragments/nikonov-knot"
+  },
+  {
+    "type": "Fragment",
+    "title": "The Naming Game — From RC，Runnel, Rangnuo, Jeanot to Rinelle",
+    "description": "This document explores the multi-layered architecture of my personal identity, tracing a philological journey that bridges my Chinese heritage with Western linguistic traditions. By weaving together the etymology of my primary names—**Runnel (Runcheng)**, the courtesy name **Rangnuo (Jeanot)**, and the studio title **Xiangruo**—with a playful aristocratic alter ego, I demonstrate a philosophy where names serve as both \"tally-bonds between Heaven and Earth\" and vessels for silent action. Through translated classical prefaces and European nomenclature, this overview reveals a self-conception rooted in the virtues of deference, promise, and the perpetual \"renaissance\" of the intellect.",
+    "date": "2025-06-28",
+    "link": "/fragments/name-game"
+  },
+  {
+    "type": "Linguistics",
+    "title": "Miscellanea X. The Lacanian L-Schema in Hemingway's The Old Man and the Sea",
+    "description": "A Lacanian linguistic analysis utilizing the \"L-schema\" (or L'Automaton) to examine the structural and architectural characteristics of Ernest Hemingway's literary corpus, with a specific focus on the novel The Old Man and the Sea.",
+    "date": "2025-03-10",
+    "link": "/library/linguistics/miscellanea-x-lacanian-l-schema"
+  },
+  {
+    "type": "Note",
+    "title": "N-20250211",
+    "description": "This document provides a comprehensive overview of geometric transformations—affine, projective, inversion, Euclidean, and similarity—and their applications to conic sections, emphasizing invariants and classification. Affine transformations preserve collinearity and parallelism but not distances; projective geometry introduces points at infinity and cross-ratio invariance; inversion is conformal and maps circles to circles or lines. The discussion highlights connections to the Erlangen Program, illustrating how different geometries unify and classify conics through transformation groups and invariants.",
+    "date": "2025-02-11",
+    "link": "/notes/2025/N-20250211.pdf"
+  },
+  {
+    "type": "Achieved",
+    "title": "PAPER: Chunpinative Geometry: A Synthetic Framework for Complementary Angle Structures",
+    "description": "This paper presents the foundations of Chunpinative Geometry, a novel geometric framework anchored in the Dual-Complementary Principle (D-C-P), which asserts the axiomatic equivalence of angles and their complements. Departing from classical Euclidean axioms, it synthesizes tropical deformation techniques, derived non-Archimedean structures, and a reimagined Erlangen program to construct a self-consistent theory of complementary angle spaces. The framework axiomatizes rigid C-spaces, where angle quantization and metric degeneracies arise naturally from the D-C-P axiom. It resolves anomalies such as the CZL Lemma through quasi-schematic methods and establishes the complementarity group G as a symmetry governing geometric transformations, bridging synthetic geometry with deformation quantization.",
+    "date": "2025-01-31",
+    "link": "/achieved/paper-cpg"
+  },
+  {
+    "type": "Linguistics",
+    "title": "Miscellanea IX. Saussure, Lacan, and the Language of Hemingway",
+    "description": "A philosophical analysis of Ernest Hemingway's literary style, employing the Saussurean and Lacanian concepts of the signifier (French: signifiant) and the signified (French: signifié) to explore the deeper linguistic and philosophical implications of his work.",
+    "date": "2024-11-15",
+    "link": "/library/linguistics/miscellanea-ix-saussure-lacan-hemingway"
+  },
+  {
+    "type": "Criticism",
+    "title": "From Cthulhu to Borges: Cosmic Horror, Sublime Aesthetics, and Mythic Displacement in Modern Literature",
+    "description": "This lecture explores the intellectual and aesthetic intersections between H.P. Lovecraft’s Cthulhu Mythos and Jorge Luis Borges’ literary oeuvre. It examines the 'horror sublime aesthetics' and the contemporary evolution of the Cthulhu Mythos in online literature through the framework of mythic displacement.",
+    "date": "2024-10-13",
+    "link": "/library/criticisms/cthulhu-borges"
+  },
+  {
+    "type": "Linguistics",
+    "title": "Miscellanea VIII. Notes on German Orthography and Morphology",
+    "description": "An introductory overview of the principles governing German orthography (German: Rechtschreibung) and word formation (morphology), while also earnestly expanding upon the classic “Euro-English” jest regarding the \"Germanification\" of English.",
+    "date": "2024-08-01",
+    "link": "/library/linguistics/miscellanea-viii-german-orthography"
+  },
+  {
+    "type": "Fragment",
+    "title": "Echoes of Summer — From Hopf Fibrations to Higher Algebra",
+    "description": "During the summer, while scrolling through my QQ space, I stumbled upon a dynamic update from **Dr. Peng Keyao** (now, rightfully, **Prof. Peng**). It was a poster for his recent lecture titled *\"From Elementary Arithmetic to Higher Algebra.\"* Seeing his name instantly triggered a wave of nostalgia, transporting me back to the summer of 2021.\r\n\r\nThree years ago, he gave us a lecture on the **Hopf Fibration**. I still vividly remember spending days preparing for it, scribbling notes, and trying to wrap my head around the topology of spheres. The note is available at [Chaoli Forum](https://chaoli.club/index.php/6596), with a DOI: [10.6084/M9.FIGSHARE.20310042](https://doi.org/10.6084/M9.FIGSHARE.20310042).\r\n\r\nTime changes things — Dr. Peng has ascended to a postdoc at the Université de Bourgogne and been teaching Algebraic Geometry courses, and the topics have evolved from classical topology to the cutting-edge realm of **Infinity Categories** and **Higher Algebra**.\r\n\r\nAlthough I deeply regret missing his 2024 lecture, looking at the lecture abstract and the meme he famously shared back in the day (which seems to bridge his past and present research), I feel a strange sense of temporal overlap. The memories of 2021 have superimposed onto the reality of 2024.\r\n\r\nBelow is the context of his recent talk, followed by my attempt to decode that legendary \"Galaxy Brain\" meme, tracing the path from a simple sphere mapping to the profound \"truth\" of $0=1-1=-1+1=0$.",
+    "date": "2024-07-27",
+    "link": "/fragments/hopf-meme"
+  },
+  {
+    "type": "Linguistics",
+    "title": "Miscellanea VII. Harp in Tsarskoye Selo (Арфа в Царском Селе)",
+    "description": "An examination of the historical and cultural factors, including the phenomenon of галломания, that led to the significant number of shared lexical items between Russian and French despite their divergent linguistic origins. The essay also specifically highlights the substantial contributions of Pushkin to the development of the Russian language.",
+    "date": "2024-04-20",
+    "link": "/library/linguistics/miscellanea-vii-harp-tsarskoye-selo"
+  },
+  {
+    "type": "Note",
+    "title": "N-20240330",
+    "description": "This document covers three mathematical topics: combinatorial geometry, Euler's formula for polyhedra, and algebraic topology. In combinatorial geometry, it proves that for 207 non-collinear points, no more than 2017 triangles can have maximum area (\"good\" triangles), using convex hull properties and contradiction. Euler's formula (V - E + F = 2) is derived via induction and applied to classify regular polyhedra, showing only five exist. The topology section defines the degree of maps between spheres via homology groups and introduces quotient groups, normal subgroups, and coset multiplication, linking to modular arithmetic like Z/nZ. Key findings include bounds on geometric configurations, polyhedral constraints, and algebraic structures in topology.",
+    "date": "2024-03-30",
+    "link": "/notes/2024/N-20240330.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20240323",
+    "description": "This document presents informal notes on combinatorial mathematics, covering key topics such as combinatorial identities (including binomial theorem proofs), generating functions, Catalan numbers, convex sets, and graph theory. It explores problems involving \"good sets\" with specific size constraints, sequences satisfying binomial sum conditions, and applications of generating functions to counting problems. The text also discusses convexity properties, separation theorems for disjoint convex sets, and graph definitions including adjacency matrices, with a theorem proving that matrix powers count walks in graphs. The content emphasizes combinatorial proofs, recurrence relations, and algebraic methods in discrete mathematics.",
+    "date": "2024-03-23",
+    "link": "/notes/2024/N-20240323.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20240211",
+    "description": "This document provides an informal overview of category theory and Topos theory, focusing on foundational concepts such as categories, limits (including products, pullbacks, and equalizers), and their role in defining a Topos—a category generalizing set theory with finite limits, exponential objects, and a subobject classifier. It explores how Topos theory bridges geometry, algebra, and logic, particularly through its internal intuitionistic logic, and discusses applications in model theory, sheaf theory, and potential connections to higher category theory and physics. The author includes examples, proofs, and speculative insights on unifying these concepts across mathematics.",
+    "date": "2024-02-11",
+    "link": "/notes/2024/N-20240211.pdf"
+  },
+  {
+    "type": "Linguistics",
+    "title": "Miscellanea VI. A Phonetic Study of Suqian Dialects",
+    "description": "An investigative phonetic transcription (IPA) of two distinct dialects within Suqian (Chinese: 宿迁): the local Suqian dialect and the Shuyang County (Chinese: 沭阳县) dialect. The analysis concludes that these dialects correspond to Zhongyuan Mandarin (Chinese: 中原官话) and Huaibei Mandarin (Chinese: 淮北官话), respectively.",
+    "date": "2024-01-10",
+    "link": "/library/linguistics/miscellanea-vi-suqian-dialects"
+  },
+  {
+    "type": "Linguistics",
+    "title": "Miscellanea V. Fit to Be Called Langdang, But Daring Not to Speak Longzhong (堪作郎当语，不敢语龙钟)",
+    "description": "An etymological and phonological analysis demonstrating the cognate relationship between the Chinese words “郎当” and “龙钟”. Drawing on ancient poetry and historical anecdotes, the essay examines the nuanced emotional similarities and differences between the terms, concluding with personal reflections.",
+    "date": "2023-10-25",
+    "link": "/library/linguistics/miscellanea-v-langdang-longzhong"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230801",
+    "description": "This document is a reading note on Hitchin's seminal paper \"The Self-Duality Equations on a Riemann Surface,\" focusing on the reduction of four-dimensional self-dual Yang-Mills equations to two-dimensional Riemann surfaces, resulting in the Hitchin equations: \\( F_A + [\\Phi, \\Phi^*] = 0 \\) and \\( \\partial_A \\Phi = 0 \\). It explores the mathematical foundations of Yang-Mills theory, the role of Higgs bundles, and the construction of moduli spaces with integrable system structures via spectral curves and Hitchin fibration. Key connections to geometric Langlands conjecture and S-duality in physics are discussed, alongside stability conditions, open problems, and potential generalizations to non-compact or higher-dimensional settings.",
+    "date": "2023-08-01",
+    "link": "/notes/2023/N-20230801.pdf"
+  },
+  {
+    "type": "Linguistics",
+    "title": "Miscellanea IV. The Tragedy and Comedy of Xiding Language",
+    "description": "An analysis of the features, variants, and evolution of the constructed language known as Xiding Language (Chinese: 希顶语). The study also includes a description of the current dynamics within the domestic Chinese online linguistics community and the personal history of the language's creator, Huang Quefei (Chinese: 黄雀飞).",
+    "date": "2023-07-15",
+    "link": "/library/linguistics/miscellanea-iv-xiding-language"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230710",
+    "description": "This expository article by Runnel Cheung provides a comparative analysis of three foundational frameworks in mathematics: set theory, category theory, and type theory. Set theory, formalized through ZFC axioms, treats mathematical objects as sets and underpins classical mathematics. Category theory emphasizes morphisms and structural relationships, offering a unifying language across disciplines. Type theory, rooted in constructive and computational principles, connects logic and programming via the Curry-Howard correspondence. The paper examines historical origins, axiomatic structures, applications, and philosophical implications, concluding with modern developments like univalent foundations that aim to synthesize these approaches.",
+    "date": "2023-07-10",
+    "link": "/notes/2023/N-20230710.pdf"
+  },
+  {
+    "type": "Linguistics",
+    "title": "Miscellanea III. The Everlasting Sound of the Partridge (千古鹧鸪声)",
+    "description": "An investigation into the origin of two distinct literary \"phonetic representations\" (Chinese: “音译”) of the partridge (Chinese: 鹧鸪) call in ancient Chinese literature—namely, “行不得也哥哥” (Literally: 'Cannot go, my elder brother') and “懊恼泽家” (Literally: 'Vexed/Regretful, settle down for your family')—by analyzing the actual phonology of Middle Chinese.",
+    "date": "2023-04-05",
+    "link": "/library/linguistics/miscellanea-iii-partridge-sound"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230316",
+    "description": "This document provides a comprehensive overview of fixed point theory and its applications across mathematics and computer science. It introduces the basic concept of fixed points, where a function maps a point to itself, and explains iterative methods for finding them. Key theorems covered include Banach's contraction mapping theorem, which guarantees unique fixed points under contraction conditions, along with extensions like Krasnoselskii, Meir-Keeler, and Geraghty theorems for non-contractive cases. It also discusses Brouwer and Schauder theorems in topology, Tarski's theorem in ordered sets, and applications in numerical methods (Picard iteration, Newton-Raphson), dynamical systems (stability analysis), and computer science (Y combinator, recursion). The document emphasizes the unifying idea that fixed points represent equilibrium or stable states across diverse fields, underpinning both theoretical proofs and practical algorithms.",
+    "date": "2023-03-16",
+    "link": "/notes/2023/N-20230316.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230314",
+    "description": "This document continues a discussion on category theory, focusing on free and forgetful functors, which informally describe mappings that either add structure (free) or remove it (forgetful). Examples include forgetful functors from categories like Vectk and Grp to Set, and free functors from Set to Vectk or Grp. It introduces faithful and full functors, relating them to the definition of concrete categories—those with a faithful functor to Set. Additionally, it explores functors from a group (as a one-object category) to Set, showing these correspond to group actions, and functors between groups correspond to group homomorphisms, emphasizing how functors preserve composition and structure.",
+    "date": "2023-03-14",
+    "link": "/notes/2023/N-20230314.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230313",
+    "description": "This document presents advanced concepts in category theory, illustrating how mathematical structures can be reinterpreted categorically. It demonstrates that partially ordered sets (posets) form categories where objects are set elements and arrows represent order relations, with no distinct objects being isomorphic. Groups are shown to be one-object categories where all morphisms are isomorphisms, capturing symmetries. The text further discusses universal constructions: products as universal cones and coproducts as universal cocones, exemplified in Set by disjoint unions (using tagged elements). Finally, it defines monomorphisms (left-cancellative maps) and epimorphisms (right-cancellative maps) as categorical generalizations of injectivity and surjectivity, noting that in concrete categories, surjective implies epic.",
+    "date": "2023-03-13",
+    "link": "/notes/2023/N-20230313.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230311",
+    "description": "This document compares Riemann and Lebesgue integration, highlighting their definitions, properties, and applications. Riemann integration relies on partitioning intervals and summing function values, but fails for functions with dense discontinuities (e.g., Dirichlet function). Lebesgue integration, based on measure theory, handles such functions by focusing on value distributions and supports powerful convergence theorems (monotone, dominated). It is more flexible for limits, infinite intervals, and applications in probability, Fourier analysis, and functional analysis, though Riemann remains intuitive for basic computations. The summary includes theoretical advantages, numerical considerations, and historical context.",
+    "date": "2023-03-11",
+    "link": "/notes/2023/N-20230311.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230310",
+    "description": "This document provides an informal yet comprehensive overview of derivatives in mathematics, covering foundational concepts, rules, and applications. It defines derivatives geometrically as the slope of a tangent line and formally via limits, detailing differentiation rules including linearity, Leibniz (product), quotient, chain, and inverse function rules. It lists derivatives of elementary functions and discusses extrema, Fermat's lemma, and methods for identifying local maxima/minima using first and second derivatives. The text applies derivatives to prove key inequalities: Young's, Hölder's, Minkowski's, and Jensen's inequality for convex functions, with examples and exercises illustrating these concepts. It concludes with practical problems involving function analysis, optimization, and comparisons, emphasizing the utility of derivatives in theoretical and applied contexts.",
+    "date": "2023-03-10",
+    "link": "/notes/2023/N-20230310.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230225",
+    "description": "This document provides an informal overview of nonstandard analysis (NSA), introduced by Abraham Robinson, which extends standard analysis by incorporating infinitesimals and infinite numbers through the hyperreal number system *R, constructed via ultrafilters and ultraproducts. Key concepts include the transfer principle, which ensures first-order logical statements hold in both standard and nonstandard systems, and definitions of continuity, derivatives, and integrals using infinitesimals for more intuitive proofs. NSA distinguishes internal and external sets and applies to probability via Loeb measures. While NSA offers intuitive and sometimes simpler proofs, it relies on model theory and set theory foundations, maintaining logical equivalence with standard analysis but with trade-offs in accessibility and application scope.",
+    "date": "2023-02-25",
+    "link": "/notes/2023/N-20230225.pdf"
+  },
+  {
+    "type": "Fragment",
+    "title": "The Derivation of Trigonometric Sum and Difference Formulas from Advanced Standpoints",
+    "description": "The origin of this note was during class when I wanted to verify the tangent (tan) sum formula directly using the **Reciprocal Basis** from tensor calculus. I initially tried using the scalar triple product (mixed product), but that didn't work. Later, I attempted orthogonal decomposition, but the reciprocal basis of a unit orthogonal basis is the basis itself, which rendered the specific properties of reciprocal bases useless.\r\n\r\nAlthough simply \"grabbing\" the result using rotation matrices is a very reasonable approach, I had an obsession with finding a **\"direct proof for tan.\"** Therefore, I organized various derivation paths ranging from elementary geometry to tensor operations, and finally to higher-level mathematical viewpoints.\r\n\r\nN-20230220: View via [here](https://www.runnelzhang.com/notes/2023/N-20230220.pdf), or visit DOI:[10.6084/M9.FIGSHARE.22268962](https://doi.org/10.6084/m9.figshare.22268962)\r\n\r\nN-20230223: View via [here](https://www.runnelzhang.com/notes/2023/N-20230223.pdf), or visit DOI:[10.6084/M9.FIGSHARE.22268965](https://doi.org/10.6084/m9.figshare.22268965)",
+    "date": "2023-02-23",
+    "link": "/fragments/sin-tan"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230223",
+    "description": "This document presents informal mathematical notes focusing on trigonometric identities and matrix determinants. It begins by correcting a prior error in a trigonometric expression involving angles α and β, then explores solving a system of equations given sinα+sinβ=1/2 and cosα-cosβ=1/3 to find cosαcosβ, proposing two methods—one algebraic involving rational and irrational components, and another matrix-based approach that was incomplete. The notes also review multiple-angle formulas and recurrence relations for sin(nx), cos(nx), and tan(nx). Finally, it proves that the determinant of a specific tridiagonal n×n matrix with 2cosθ on the diagonal and 1s on the sub- and super-diagonals equals cos(nθ), using a recurrence relation and induction.",
+    "date": "2023-02-23",
+    "link": "/notes/2023/N-20230223.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230220",
+    "description": "This document presents informal mathematical explorations into alternative proofs of trigonometric sum and difference angle formulas, focusing on sine, cosine, and tangent. It begins with a cross product method for proving the sine difference formula, then discusses rotation matrices and Euler's formula for deriving sine and cosine formulas. The author expresses interest in directly proving the tangent sum formula and attempts using reciprocal basis vectors, achieving a derivation for the tangent difference formula through matrix operations and geometric interpretations. A projection vector approach is also attempted but deemed unsuccessful, reverting to basic trigonometric ratios. The key findings include successful derivations using cross products, rotation matrices, Euler's formula, and reciprocal basis methods, while highlighting challenges in directly proving the tangent sum formula with vector-based techniques.",
+    "date": "2023-02-20",
+    "link": "/notes/2023/N-20230220.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230217",
+    "description": "This document provides informal notes on  mathematics, focusing on representations in Cartesian bases, reciprocal bases, and component calculations. Key topics include: expressing s using dyadic bases in 2D and 3D; defining reciprocal basis vectors via matrix inversion and Kronecker delta; distinguishing roof (contravariant) and cellar (covariant) components; solving problems to compute reciprocal vectors and components; and introducing the permutation  Eijk for cross products, with properties based on Jacobian determinants and parity of index permutations. The notes emphasize practical computations and illustrate  operations in general bases.",
+    "date": "2023-02-17",
+    "link": "/notes/2023/N-20230217.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230209",
+    "description": "This document provides an informal introduction to tensors, beginning with vector operations including a proof of the vector triple product identity and an example problem. It defines tensors as linear operators mapping vectors to vectors, introduces concepts such as direct products (dyads), transposes, symmetry properties, and Cartesian component representation using matrices. Examples include projection operators and the cross product tensor, illustrating how tensors can be expressed in matrix form. The notes emphasize foundational tensor properties and their mathematical representations, connecting abstract definitions to practical computations.",
+    "date": "2023-02-09",
+    "link": "/notes/2023/N-20230209.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230205",
+    "description": "This document presents mathematical notes on functions and transformations, focusing on symmetry, periodicity, and graphical properties. Key findings include determining symmetry centers (e.g., (-2,3) for f(x)=x/(x+1)+(x+1)/(x+2)+(x+2)/(x+3)), solving for parameters like a=-4/3 to achieve center symmetry, and identifying maximum values (e.g., f(x) max=16 under x=-2 symmetry). It explores absolute value sets, zero counts (e.g., 6 zeros for h(x)=g(x)-f(x)), and functional equations, concluding with periodicity analysis (e.g., T=352 yielding 177 distinct values) and specific outputs like f(2019)=-1/2. The work emphasizes analytical techniques for function behavior and symmetry.",
+    "date": "2023-02-05",
+    "link": "/notes/2023/N-20230205.pdf"
+  },
+  {
+    "type": "Publication",
+    "title": "Gravitational Fields of Non-Spherical Mass Distributions: Analysis and Orbital Dynamics",
+    "description": "This document investigates gravitational fields, beginning with proofs that a uniform spherical shell exerts no gravitational force on an interior point mass, demonstrated through both geometric and integral methods. The analysis is extended to non-spherical bodies by deriving the gravitational potential and field of a uniform cuboid, which exhibits significant deviations from spherical symmetry, such as a stronger gravitational attraction near its corners.\nNumerical simulations employing the Runge-Kutta method demonstrate the orbital dynamics around a cubic planet, revealing distinct precession and distortion caused by the non-uniform gravitational field. The study concludes that only spherically symmetric masses can be treated as point masses, whereas the gravitational fields of other geometries must be computed through direct integration. For such non-spherical cases, Cartesian coordinates are shown to be more practical than spherical coordinates.",
+    "date": "2023-02-01",
+    "link": "https://figshare.com/articles/online_resource/N-20230201_pdf/22268917"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230201",
+    "description": "This document investigates gravitational fields, beginning with proofs that a uniform spherical shell exerts zero gravitational force on an interior point, using geometric and integral methods. It extends the analysis to non-spherical objects, deriving the gravitational potential and field for a uniform cuboid mass, showing deviations from spherical symmetry, such as stronger attraction at cube corners. Numerical simulations using the Runge-Kutta method demonstrate orbital dynamics around a cubic planet, revealing precession and distortion due to non-uniform gravitational fields. The conclusion emphasizes that only spherical masses can be treated as point masses, while others require integration methods, with Cartesian coordinates being more practical than spherical ones for non-spherical cases.",
+    "date": "2023-02-01",
+    "link": "/notes/2023/N-20230201.pdf"
+  },
+  {
+    "type": "Publication",
+    "title": "On the Factorization of Cyclotomic-Type Polynomials $\\sum_{i=0}^k x^{in}$ and Their Divisibility Properties",
+    "description": "This paper investigates the factorization of polynomials of the form \\( \\sum_{i=0}^k x^{in} \\), with a focus on establishing necessary and sufficient conditions for the existence of nontrivial common factors with the base polynomial \\( \\sum_{i=0}^k x^i \\).\n\nWe first prove that \\( x^{2n} + x^n + 1 \\) is divisible by \\( x^2 + x + 1 \\) if and only if \\( 3 \\nmid n \\), using properties of primitive roots of unity and algebraic factorization. The study then extends to the general case \\( k \\geq 2 \\), disproving the initial conjecture that \\( \\sum_{i=0}^k x^i \\) divides \\( \\sum_{i=0}^k x^{in} \\) whenever \\( k+1 \\nmid n \\).\n\nThrough computational experiments in MATLAB and complex analysis, we demonstrate that when \\( k+1 \\nmid n \\), the two polynomials share a common real-coefficient factor \\( P(x) \\), whose roots exhibit distinct periodic distributions on the complex unit circle. These roots correspond to specific \\( \\frac{k+1}{\\gcd(n, k+1)} \\)-th roots of unity, revealing a structural symmetry governed by modular arithmetic.\n\nOur results underscore the value of integrating classical algebraic methods, computational tools, and complex analysis in addressing intricate problems in polynomial factorization.",
+    "date": "2023-01-27",
+    "link": "https://figshare.com/articles/online_resource/N-20230127_pdf/22268908"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230127",
+    "description": "This research investigates the factorization of polynomials of the form ∑x^(in) from i=0 to k, focusing on conditions under which common factors exist. Initially, it proves that x^(2n)+x^n+1 has factor x^2+x+1 if and only if n is not divisible by 3, using primitive roots and direct factorization. The study then generalizes to polynomials ∑x^(in) for k≥2, disproving the initial conjecture that ∑x^i divides ∑x^(in) when n is not divisible by (k+1). Using MATLAB for visualization and complex analysis, it demonstrates that when n is not divisible by (k+1), these polynomials share common real-coefficient factors P(x), with roots expressed exponentially showing periodic argument distributions. The conclusion highlights the value of employing multiple methods, including computational tools, to address complex mathematical problems.",
+    "date": "2023-01-27",
+    "link": "/notes/2023/N-20230127.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230123",
+    "description": "This document presents informal notes on mathematics, focusing on calculus and vector analysis. Key topics include derivatives of composite functions, integration concepts such as Riemann sums, definite and indefinite integrals, the Fundamental Theorem of Calculus, and the Newton-Leibniz formula. It provides worked examples applying these concepts to problems involving springs, chains, and motion, using techniques like separation of variables. The notes also cover differential equations, vector operations including dot and cross products, and physical applications such as torque, angular velocity, and gravitational forces. Conclusions emphasize practical problem-solving through integration, differentiation, and vector analysis, with examples illustrating mathematical derivations and physical interpretations.",
+    "date": "2023-01-23",
+    "link": "/notes/2023/N-20230123.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230119",
+    "description": "This document presents an overview of key theorems in Euclidean plane geometry, focusing on Ceva's theorem (used to prove concurrency of lines), Menelaus' theorem (for proving collinearity of points), Ptolemy's theorem and its generalization (relating sides and diagonals of cyclic quadrilaterals), Simson's theorem (on collinearity of perpendicular feet from a point on the circumcircle), and Euler's theorem (establishing collinearity of the circumcenter, centroid, and orthocenter, along with Euler's formula R² - d² = 2Rr and the inequality R ≥ 2r). Each theorem includes proofs and discussions of their converses and applications.",
+    "date": "2023-01-19",
+    "link": "/notes/2023/N-20230119.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230118",
+    "description": "This document presents informal mathematical notes covering combinatorics, binomial identities, Helly's theorem, and complex numbers. Key combinatorial problems include determining the maximum group size (n=7) for 14 students in overlapping research groups with constraints, solving equations with integer solutions (90 total solutions), and counting set pairs with equal sizes and union size 10 (5,167 cases). Binomial identities are proven: sums of jC(n,j) equal n2^(n-1), sums of j²C(n,j) equal n(n+1)2^(n-2), and sums of squared binomial coefficients equal C(2n,n). Pairing arrangements for 2n players are derived, accounting for overcounting. Helly's theorem for convex sets is explained with counterexamples for non-closed or unbounded sets. Complex number topics include modulus, an algebraic identity, and geometric interpretations in the complex plane.",
+    "date": "2023-01-18",
+    "link": "/notes/2023/N-20230118.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230117",
+    "description": "This document contains informal mathematical notes dated January 17, 2023, focusing on function exercises and set theory problems. Key findings include proofs for various function properties: non-negativity (f(x) ≥ 0 for all x), boundedness and continuity (|f(x₁) - f(x₂)| < 1/2 under certain conditions), evenness (f(-x) = f(x)), and specific values (e.g., f(1) = 1/3). It also explores integer-valued quadratic functions and solves problems involving logarithmic relationships (e.g., b² = 9a, bc = 81) and set partitions with perfect squares. Conclusions demonstrate rigorous derivations of function behaviors and identities, though some sections note unresolved or challenging aspects.",
+    "date": "2023-01-17",
+    "link": "/notes/2023/N-20230117.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230116",
+    "description": "This document presents supplementary exercises on mathematical functions, focusing on functional equations and combinatorial problems. Key solutions include: Exercise 2.2.9 determines the number of involutions \\( f \\) on \\( \\{1,2,...,10\\} \\) with \\( |f(k)-k| \\leq 2 \\), concluding there are 401 such functions. Exercise 2.2.10 solves \\( f(x + f(x+y)) + f(xy) = x + f(x-y) + yf(x) \\), finding only \\( f(x)=x \\) or \\( f(x)=2-x \\) satisfy the equation. Other exercises cover inequalities, function properties (e.g., monotonicity, symmetry), and conditions for integer outputs, with proofs and derivations provided for each. The document emphasizes analytical techniques and verification of solutions.",
+    "date": "2023-01-16",
+    "link": "/notes/2023/N-20230116.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20230107",
+    "description": "This document presents informal notes on combinatorics, covering fundamental concepts and methods. Key topics include permutations with repetition (n^r), arrangements of non-distinct elements (n!/(n₁!n₂!...nₖ!)), multiset combinations (grouping n distinct elements into k subsets), and combinations with repetition (C(n+r-1, r)), which is linked to non-negative integer solutions of equations like z₁+...+zₙ=r. It also discusses distance combinations (selecting r numbers from {1,...,n} with minimum gap m, resulting in C(n-(r-1)m, r)) and provides exercises involving combinatorial counts, proofs of identities (e.g., ∑jC(n,j)=n2^(n-1)), and practical applications such as coloring polyhedra and organizing sports pairings. The notes emphasize combinatorial principles, algebraic connections, and problem-solving techniques.",
+    "date": "2023-01-07",
+    "link": "/notes/2023/N-20230107.pdf"
+  },
+  {
+    "type": "Fragment",
+    "title": "Correspondence with Professor Tom Leinster: My Translation of \"Rethinking Set Theory\" and a Request for Guidance",
+    "description": "**Overview**\r\n\r\nIn late December 2022, driven by my passion for mathematics, particularly category theory and homotopy type theory, I reached out to Professor Tom Leinster, a mathematician I deeply admire. As a 15-year-old high school student, I proudly shared my Chinese translation of his accessible article, \"Rethinking Set Theory,\" which I had made available online. I sought his feedback on the translation and, more importantly, his guidance on structuring my advanced mathematical studies, having already delved into undergraduate topics like algebraic topology and abstract algebra. Professor Leinster replied in January 2023, expressing his admiration for my effort (though he noted he couldn't verify the Chinese) and recommending two insightful, unconventional books for further study: Saunders Mac Lane's \"Mathematics: Form and Function\" and Michio Kuga's \"Galois's Dream.\" This exchange was an inspiring and unforgettable milestone in my early mathematical journey. From then on, I continued corresponding with Professor Leinster under my real identity, though those emails are private and will not be shared here.\r\n\r\n***\r\n\r\n### Original Correspondence\r\n\r\n#### Yuanjue Chou to Tom Leinster\r\n\r\n> **Admiration for your work and request for guidance**\r\n>\r\n> **Yuanjue Chou** <vsixadafahin5677@gmail.com>\r\n>\r\n> Fri, Dec 30, 2022, 6:30 PM\r\n>\r\n> to Tom.Leinster\r\n>\r\n> Dear Professor Leinster,\r\n>\r\n> I am writing to express my utmost admiration and respect for your contributions to the field of mathematics. As a 15-year-old high school student from China with a deep passion for math, I hope to one day follow in your footsteps and engage in research, particularly in the areas of category theory and homotopy type theory.\r\n>\r\n> I am thrilled to share that I have translated one of your articles, \"Rethinking Set Theory,\" and made it available at the following website: https://chaoli.club/index.php/7082. I would be truly honored if you would consider reviewing my translation and providing feedback.\r\n>\r\n> I am also writing to humbly request your guidance on how to best plan my studies to achieve my aspirations. While I have had the opportunity to study some undergraduate material in abstract algebra, set topology, algebraic topology, and a little bit of category theory, I feel as though I have only just begun to scratch the surface. I would be deeply grateful for any recommendations you have on how I can continue to learn and grow as a mathematician.\r\n>\r\n> Additionally, I would be grateful for any recommendations you have for explanatory articles similar to \"Rethinking Set Theory.\"\r\n>\r\n> Finally, I wanted to express my warmest wishes for the new year!\r\n>\r\n> Sincerely,\r\n> Yuanjue Chou\r\n\r\n#### Tom Leinster to Yuanjue Chou\r\n\r\n> **Tom Leinster** <Tom.Leinster@ed.ac.uk>\r\n>\r\n> Wed, Jan 18, 2023, 5:17 AM\r\n>\r\n> to me, Tom\r\n>\r\n> Dear Yuanjue,\r\n>\r\n> Thank you for your very kind email, and apologies for the delayed reply; I hope you got an automatic email saying I was away.\r\n>\r\n> It's very nice that you've translated \"Rethinking set theory\". I'm impressed! Unfortunately I don't read Chinese, so I'm not able to give any feedback, but congratulations in any case - it's a great achievement.\r\n>\r\n> I've been thinking about the best recommendations to make for materials to study with. I imagine you have already come across a few standard undergraduate textbooks, and there are thousands of those. So let me recommend two books that are not quite normal textbooks.\r\n>\r\n> The first is a book by Saunders Mac Lane (one of the creators of category theory) called \"Mathematics: Form and Function\". Officially, this is an explanation of Mac Lane's philosophy of mathematics. However, what I like most about it is that it's filled with wonderful explanations of many different parts of mathematics. I read it when I was an undergraduate and found it very exciting, as it opened up new worlds to me and gave me tantalizing hints of how they were connected.\r\n>\r\n> The second is \"Galois's Dream\" by Michio Kuga. This one I haven't actually read, but I've heard many good things about it. The subject is group theory and differential equations, but what's joyful about it is the unusual style it's written in. It's based on a lecture course that Kuga gave to first-year undergraduates, even though Galois theory is usually a rather more advanced course.\r\n>\r\n> Those are just two random ideas! You may or may not like them. In any case, I wish you the best of luck in your studies.\r\n>\r\n> Best wishes,\r\n> Tom\r\n>\r\n>\r\n> On 30/12/2022 10:30, Yuanjue Chou wrote:\r\n> This email was sent to you by someone outside the University.\r\n> You should only click on links or attachments if you are certain that the email is genuine and the content is safe.\r\n>\r\n> --\r\n> Professor Tom Leinster\r\n> School of Mathematics, University of Edinburgh\r\n> https://www.maths.ed.ac.uk/~tl\r\n> The University of Edinburgh is a charitable body, registered in Scotland, with registration number SC005336. Is e buidheann carthannais a th’ ann an Oilthigh Dhùn Èideann, clàraichte an Alba, àireamh clàraidh SC005336.",
+    "date": "2022-12-30",
+    "link": "/fragments/leinster-email"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221229",
+    "description": "This document presents informal notes on algebraic topology and algebra, focusing on topological constructions and group theory. Key topics include the disjoint union and wedge sum of topological spaces, with examples like S¹ ∨ S¹ forming a figure eight. It introduces CW complexes, detailing their construction through skeletons and cells, and provides examples such as Sⁿ and D². The torus and Klein bottle are described as CW complexes with specific attaching words (aba⁻¹b⁻¹ and abab⁻¹, respectively). Additionally, group theory concepts are covered, including congruence modulo a subgroup, cosets, and the index of a subgroup, with proofs and properties discussed. The notes blend geometric intuition with formal definitions, emphasizing foundational structures in algebraic topology and algebra.",
+    "date": "2022-12-29",
+    "link": "/notes/2022/N-20221229.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221228",
+    "description": "This document presents informal mathematical notes focusing on quotient spaces and product topology within category theory and algebraic topology. Key concepts include defining quotient spaces through equivalence relations, such as identifying endpoints of an interval to form a circle (D¹/∼ ≈ S¹) or generalizing to Dⁿ/Sⁿ⁻¹ = Sⁿ, and illustrating examples like cylinders and tori from square identifications. It also covers the product topology on Cartesian products (e.g., ℝ×ℝ as ℝ², S¹×S¹ as a torus), with basis elements U×V for open sets U and V, and discusses nuances in notation and interpretations of quotient sets, highlighting potential ambiguities in mathematical conventions.",
+    "date": "2022-12-28",
+    "link": "/notes/2022/N-20221228.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221227",
+    "description": "This document covers advanced topics in category theory and topology, presenting examples of categories such as Abelian groups (Ab), modules over a ring (ModA), rings (Rings), topological spaces (Top), and partially ordered sets (posets), which can be interpreted as categories. It defines subcategories and functors, including forgetful functors (e.g., Veck → Sets) and covariant functors like the fundamental group and homology functors. The text transitions to topology, discussing spheres (Sⁿ), balls (Dⁿ), and homeomorphisms, proving that open intervals are homeomorphic to ℝ and introducing quotient topology (X/~) with examples like Dⁿ/Sⁿ⁻¹ ≅ Sⁿ. Key conclusions include the structural parallels between algebraic and topological categories and the utility of functors in preserving categorical properties.",
+    "date": "2022-12-27",
+    "link": "/notes/2022/N-20221227.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221223",
+    "description": "This document covers two main mathematical topics: homotopy theory in topology and algebraic structures in group theory. In homotopy, it introduces path homotopy as continuous deformation between paths with fixed endpoints, defines simply connected spaces where all paths are homotopic, and uses examples like C and C\\{0} to illustrate these concepts. In algebra, it defines semigroups, monoids, and groups with their properties, provides propositions characterizing groups, and gives examples including integers under addition and symmetric groups. It also covers homomorphisms, defining various types (mono-, epi-, iso-, endo-, auto-morphisms) and their compositions, with examples like canonical epimorphisms from Z to Zm. The document concludes with a theorem on congruence relations forming quotient monoids/groups.",
+    "date": "2022-12-23",
+    "link": "/notes/2022/N-20221223.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221222",
+    "description": "This document presents informal notes on topology, focusing on redefining metric concepts using open sets in topological spaces. Key topics include continuity defined via pre-images of open sets, homeomorphisms as bijections preserving open sets, and closed sets with closures. It highlights limitations: completeness and boundedness are metric-specific and not topological, sequences behave poorly, and non-metrizable spaces exist. Separation axioms are introduced, emphasizing Hausdorff spaces where distinct points have disjoint neighborhoods. Subspace topology is defined via intersections. Connectedness is characterized by absence of nontrivial clopen sets, with examples of disconnected (e.g., discrete spaces, rationals) and connected sets (e.g., intervals). Path-connectedness, a stronger notion, requires continuous paths between points and implies connectedness, with examples like R² and S¹. Conclusions note that while many metric ideas generalize, some properties are inherently metric-dependent.",
+    "date": "2022-12-22",
+    "link": "/notes/2022/N-20221222.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221221",
+    "description": "This document presents informal notes on topology, focusing on metric spaces and homeomorphisms. Key points include: metric spaces may not be complete (e.g., Q), but can be completed (e.g., Q to R); homeomorphisms require bijective continuous functions with continuous inverses, unlike group isomorphisms, and are not preserved under metric properties like completeness or boundedness (e.g., (0,1) homeomorphic to R but differing in these properties). Examples illustrate homeomorphisms (e.g., torus to coffee cup, (-1,1) to R) and non-homeomorphic continuous bijections. The open set condition for continuity is stated and partially proven. Additionally, sets in metric spaces can be both open and closed (clopen), demonstrated with M = [0,1] ∪ (2,3). The notes emphasize transitioning from metric-based concepts to broader topological ideas.",
+    "date": "2022-12-21",
+    "link": "/notes/2022/N-20221221.pdf"
+  },
+  {
+    "type": "Linguistics",
+    "title": "Miscellanea II. Reconstructing Tangut Phonology: An Analysis of Gong Hwang-cherng's Symbols",
+    "description": "A reconstruction of Tangut (Chinese: 西夏文) phonology by correlating selected Tangut textual data and their corresponding Chinese phonetic transcriptions, specifically aiming to establish the actual correspondence between Gong Hwang-cherng (Chinese: 龚煌城)'s proposed reconstruction symbols and the International Phonetic Alphabet (IPA).",
+    "date": "2022-12-20",
+    "link": "/library/linguistics/miscellanea-ii-tangut-phonology"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221218",
+    "description": "This document provides an introduction to metric spaces and basic topology, covering definitions and properties of boundedness, metrics, convergence, continuity, norms, inner products, and open/closed sets. Key topics include equivalent characterizations of boundedness, examples of various metrics (Euclidean, discrete, Manhattan, British railway, p-adic, uniform), proofs of uniqueness of limits and continuity criteria, and the relationships between norms, metrics, and inner products (including the Cauchy-Schwarz inequality). It also defines topological spaces, illustrates examples like discrete and finite complement topologies, and discusses bases and comparisons of topologies. The material connects analysis concepts to general metric and topological settings, emphasizing foundational definitions and properties.",
+    "date": "2022-12-18",
+    "link": "/notes/2022/N-20221218.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221217",
+    "description": "This document is a set of informal mathematics notes focusing on exercises related to functions, covering topics such as determining domains and ranges of various functions, proving properties like a+b=0 given specific conditions, analyzing the Dirichlet function's boundedness and periodicity, solving equations with constraints, evaluating function sums under given relations, and demonstrating that the maximum of two elementary functions is elementary. Key findings include specific domain intervals, range calculations, proofs of identities, and solutions to parameterized problems, concluding with techniques in function analysis and problem-solving strategies.",
+    "date": "2022-12-17",
+    "link": "/notes/2022/N-20221217.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221214",
+    "description": "This document discusses Tarski's circle-squaring problem, which asks whether a disk and square of equal area in the plane are equidecomposable by isometries. It contrasts this with dissection congruence in polygons (resolved by the Wallace-Bolyai-Gerwein theorem) and polyhedra (addressed via Dehn invariants). The Banach-Tarski paradox and measure theory implications are noted, particularly differences between dimensions. Laczkovich's 1990 affirmative solution is highlighted: using the axiom of choice, he proved that bounded sets in R^k with equal positive Lebesgue measure and boundaries of upper Minkowski dimension less than k are equidecomposable. His approach involves translations on the torus, graph theory, and a refined ergodic theorem leveraging Diophantine approximation to ensure nearly uniform distribution of set elements in orbits.",
+    "date": "2022-12-14",
+    "link": "/notes/2022/N-20221214.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221211",
+    "description": "This document provides informal notes on calculus, focusing on derivatives. It introduces key concepts such as difference quotients, limits, and derivative definitions, then systematically derives formulas for derivatives of various functions, including polynomials, exponentials, trigonometric functions, and their inverses. Examples illustrate applications, such as finding tangent lines and proving derivative rules like the product, quotient, and chain rules. The notes conclude with derivatives of inverse trigonometric functions, highlighting mathematical rigor and potential ambiguities in sign conventions.",
+    "date": "2022-12-11",
+    "link": "/notes/2022/N-20221211.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221210",
+    "description": "This document presents informal mathematics notes covering proofs and exercises on combinatorics and set theory. Key topics include: a proof of the binomial theorem using mathematical induction; a proof that the number of subsets of a set A is 2^|A|; and solutions to 13 supplementary exercises involving set properties, inequalities, number theory, and combinatorial problems. Main findings include determining set sizes, sums, and extremal values, as well as proving properties of subsets under specific conditions. Conclusions affirm mathematical identities and establish bounds or existence results in set-related problems.",
+    "date": "2022-12-10",
+    "link": "/notes/2022/N-20221210.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221209",
+    "description": "This document presents informal mathematics lecture notes covering several exercises on number theory, set theory, and combinatorics. Key topics include: counting composite numbers and primes up to 120 using inclusion-exclusion; applying the inclusion-exclusion principle to set combinations; analyzing quadratic equations with real roots; proving the irrationality of √2; demonstrating properties of power sets through induction; solving systems of equations; and proving that among 1999 sets each of size 45, there exists a common element, with conclusions on union sizes. The exercises employ mathematical reasoning, proofs by contradiction, and combinatorial arguments, showcasing fundamental concepts in discrete mathematics.",
+    "date": "2022-12-09",
+    "link": "/notes/2022/N-20221209.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221207",
+    "description": "This document presents informal mathematical notes covering various problems in set theory, algebra, and function analysis. Key findings include: for a non-empty set A ⊆ {x ≤ 2021, x ∈ N}, the maximum number of elements |A| is 1348, achieved when A = {674, 675, ..., 2021}; the condition A ⊆ (C-B) ∪ (B-C) is equivalent to A ∩ B ∩ C = ∅; among six distinct real numbers, at most two algebraic expressions can simultaneously be positive; sets M = {4n+6m} and N = {10a+8b} are equal; for f(x)=ax²+x with value range [4,9], n-m ∈ [4,8√5]; and for T(a) functions, m ≤ 1 is the maximum lower bound. Conclusions involve proofs, set relations, and function properties.",
+    "date": "2022-12-07",
+    "link": "/notes/2022/N-20221207.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221205",
+    "description": "This document is a set of informal mathematics lecture notes focusing on set theory and combinatorial principles. Key topics include summation and product notations, De Morgan's laws, the inclusion-exclusion principle, pigeonhole principle, addition and multiplication principles, permutations, combinations, binomial theorem, and properties of subsets. It provides proofs and examples, such as calculating intersections, set operations, and solving problems involving integer sets and functions. The notes conclude with exercises demonstrating applications of these concepts, including proofs of irrationality and combinatorial identities.",
+    "date": "2022-12-05",
+    "link": "/notes/2022/N-20221205.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221126",
+    "description": "This document provides an informal academic overview of modular arithmetic, focusing on congruence relations, residue classes, and Euler's totient function. It defines congruence modulo m and outlines fundamental properties such as reflexivity, symmetry, transitivity, and operations under addition, multiplication, and exponentiation. Key concepts include residue classes, complete residue systems, reduced residue classes, and Euler's φ function, with formulas for computing φ(n) based on prime factorization. The document includes proofs and examples demonstrating applications, such as determining the last digit of large powers, solving linear congruences, and addressing classic problems like the Chinese Remainder Theorem. Exercises reinforce properties of squares modulo different bases (e.g., squares modulo 4 are 0 or 1) and practical problem-solving techniques. Overall, it serves as a concise educational resource on foundational number theory topics.",
+    "date": "2022-11-26",
+    "link": "/notes/2022/N-20221126.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221120",
+    "description": "This document provides an introduction to elliptic curves (ECs), defined by equations of the form y² = x³ + ax + b, emphasizing that valid ECs must avoid double or triple roots, ensured by the condition 4a³ + 27b² ≠ 0. It outlines proofs for this criterion and introduces elliptic curve arithmetic, defining a group operation via geometric point addition: for distinct points, the sum is found by drawing a line through them, finding its third intersection with the curve, and reflecting across the x-axis, with formulas derived using slopes and Vieta’s theorem. Point doubling (adding a point to itself) uses tangent slopes from implicit differentiation. The summary includes handling the special case of vertical lines by introducing a point at infinity (∞) to ensure closure, making ECs suitable for cryptographic applications like group-based cryptosystems.",
+    "date": "2022-11-20",
+    "link": "/notes/2022/N-20221120.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221119",
+    "description": "This document presents informal notes on number theory, focusing on prime and composite numbers. Key topics include definitions and properties of primes and composites, Euclid's proof of infinite primes, the Sieve of Eratosthenes, the Fundamental Theorem of Arithmetic, divisor functions τ(n) and σ(n), perfect numbers, factorial prime factorization, and conditions for square numbers. It also covers modular arithmetic, Fermat's Little Theorem, and various proofs and examples, such as constructing prime tables, finding primes with specific forms (e.g., 4k-1), and demonstrating that the harmonic series is not an integer. The notes include solved problems on topics like coprime sums, consecutive composites, and divisibility conditions, concluding with exercises reinforcing these concepts.",
+    "date": "2022-11-19",
+    "link": "/notes/2022/N-20221119.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221107",
+    "description": "This document presents informal mathematical notes focusing on trigonometric functions, covering boundedness (e.g., |sin α| ≤ 1), parity and symmetry (odd/even properties), monotonicity (intervals of increase/decrease), and periodicity definitions. It includes solved examples demonstrating applications: determining coefficients from max/min values (e.g., a=1, b=3 for y=a sin x + b), finding ranges of composite functions (e.g., y = sin x + cos x + 2 with range [2-√2, 2+√2]), solving equations using function properties (e.g., f(x)=x³+sin x is odd), deriving explicit functions from inequalities (e.g., f(x)=sin²x−¼), and analyzing geometric constraints (e.g., circle covering extremal points, k≥2). Conclusions emphasize trigonometric identities, transformations, and problem-solving techniques.",
+    "date": "2022-11-07",
+    "link": "/notes/2022/N-20221107.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221105",
+    "description": "This document presents informal mathematical notes focusing on problem-solving examples from an Olympiad tutorial. Key examples include: determining maximum values of periodic functions using transformation properties (Example 1), finding minima of rational functions through algebraic manipulation (Example 2), analyzing logarithmic function transformations to compute maxima (Example 4), and solving cubic function symmetry problems to derive parameters and extremum values (Example 5). The final section proves an inequality for positive real numbers with product 1, demonstrating that the sum of reciprocal terms is at least 3/2 using algebraic inequalities and substitutions. Overall, the document illustrates advanced techniques in function analysis, optimization, and inequality proofs in mathematics.",
+    "date": "2022-11-05",
+    "link": "/notes/2022/N-20221105.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221031",
+    "description": "This document presents informal notes on elementary number theory, focusing on divisibility properties and theorems. Key concepts covered include the definition of divisibility, properties such as reflexivity and transitivity, the division algorithm, greatest common divisors (GCD), least common multiples (LCM), and Bézout's identity, which states that for integers \\(a\\) and \\(b\\), there exist integers \\(s\\) and \\(t\\) such that \\(as + bt = \\gcd(a,b)\\). Advanced properties explore relationships like \\(\\gcd(a,b)=1\\) and \\(a \\mid bc\\) implying \\(a \\mid c\\), and formulas such as \\(\\gcd(a^m - 1, a^n - 1) = a^{\\gcd(m,n)} - 1\\). The document includes proofs using mathematical induction and provides illustrative examples and exercises, such as demonstrating divisibility conditions, computing GCDs of expressions like \\(2^{200}-1\\) and \\(2^{88}-1\\), and solving problems involving integer triples where sums plus one are divisible by the third number. Conclusions affirm foundational results and specific integer solutions, reinforcing the applicability of divisibility theory in problem-solving.",
+    "date": "2022-10-31",
+    "link": "/notes/2022/N-20221031.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221030",
+    "description": "This document outlines fundamental properties of integers, covering well-ordering, divisibility, greatest common divisors (g.c.d.), least common multiples (l.c.m.), and their relationship (dl=ab). It details the Division and Euclidean Algorithms for computing g.c.d., including an example, and notes that g.c.d. can be expressed as a linear combination. Primes and composites are defined, with the key property that primes dividing a product must divide one factor. The Fundamental Theorem of Arithmetic asserts unique prime factorization, and a formula for g.c.d. using prime exponents is provided. Finally, the Euler φ-function is introduced, defined as the count of numbers coprime to n, with formulas for prime powers and multiplicative properties, enabling computation via prime factorization.",
+    "date": "2022-10-30",
+    "link": "/notes/2022/N-20221030.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221013",
+    "description": "This document presents informal mathematical notes covering three main topics: polygon area calculation using the shoelace formula, polynomial remainder theorem and applications, and modular arithmetic including congruence properties and Euler's theorem. Key findings include: the polygon area formula derivation with an example calculation; the polynomial remainder theorem proof and its application to finding remainders when dividing by quadratic factors; and modular arithmetic concepts demonstrating that n² mod values are restricted (0,1 for mod 3/4; 0,1,4 for mod 8), the digit-sum congruence property mod 9, and Euler's theorem applications for computing remainders of large powers. The document concludes with solved problems illustrating these concepts, such as finding maximum values of trigonometric expressions related to circle geometry and computing remainders of large numbers modulo primes.",
+    "date": "2022-10-13",
+    "link": "/notes/2022/N-20221013.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221012",
+    "description": "This document presents informal mathematical notes covering several fundamental inequalities: Bernoulli's inequality (for products of terms with xi > -1), power mean inequality (monotonicity of Mr(a) in r), Cauchy's inequality and its corollaries (including weighted sum and triangle-type forms), Chebyshev's inequality (for ordered sequences), Jensen's inequality (for convex functions, stating function of mean ≤ mean of functions), Hölder's inequality (generalizing Cauchy with exponents p,q > 1, including Young's inequality), and Minkowski's inequality (two forms for p-norms of sums). Each inequality is defined with conditions, mathematical expressions, and equality cases, focusing on real numbers and sequences, primarily serving as a reference for properties and applications in mathematical analysis.",
+    "date": "2022-10-12",
+    "link": "/notes/2022/N-20221012.pdf"
+  },
+  {
+    "type": "Fragment",
+    "title": "The Geometry of Dialogue and the Logic of Narrative: A Taste of Linear Logic",
+    "description": "This fragment serves as a synthesis of my recent immersion into the world of **Linear Logic** and its profound implications for systems beyond mere mathematical tautology. Following the intellectual breadcrumbs left by Dr. Keyao Peng last year, I have moved away from the static view of logic as a classification of truth and towards a dynamic view of logic as *interaction*, *resource*, and *game*.\r\n\r\nWhat began as an inquiry into game design mechanics—specifically the tension between modular pipelines and emergent storytelling—has evolved into a philosophical re-evaluation of how meaning is constructed. As the following notes and visual analyses demonstrate, the bridge between a child’s fable, a philosophical debate, and high-dimensional topology is built upon the rigorous negation-duality of Linear Logic.",
+    "date": "2022-10-05",
+    "link": "/fragments/linear-logic"
+  },
+  {
+    "type": "Fragment",
+    "title": "Synthesis and Properties of a Novel Tungsten-Containing Organic Compound Based on Superchemistry Theory",
+    "description": "It is necessary to first clarify that the so-called \"scholars\" such as Zhao Mingyi mentioned in this record are well-known online pseudo-scientists, whose absurd theories are often ridiculed by the academic community and netizens. The bizarre terms involved in this text, such as \"superchemistry\", are all their \"masterpieces\" that deviate from scientific common sense. In this research record, I propose the existence of two novel substances, \"sildenofil\" and \"L-wzlteine\", based on the theories put forward by these pseudo-scientists including Zhao Mingyi. I then systematically investigate their reaction process and the properties of the resulting product under the action of a \"strong antimony field\". From a professional chemical perspective, the core concepts involved—such as the bonding modes of W⁺ ions and the compound naming logic—do not align with mainstream chemical systems, and \"superchemistry\" is not a recognized academic discipline. As implied later, this work employs exaggerated chemical research expressions to metaphorically depict the interesting interactions between my classmates: male classmate Zhaoli Wang (where the \"W\" in the substances corresponds to his surname \"Wang\") and female classmate Nuo Chen (where the \"No\" in the substances corresponds to her given name \"Nuo\").\r\n\r\n\r\n**HINT**: The figures (pic1 to pic6) correspond to pages 1 to 6 of the attached PDF file.\r\n\r\n[PDF OF FIGURES](/fragments/wang-nuo/pics.pdf)",
+    "date": "2022-10-03",
+    "link": "/fragments/wang-nuo"
+  },
+  {
+    "type": "Note",
+    "title": "N-20221002",
+    "description": "This document presents informal notes on mathematics, focusing on field theory and finite fields. It covers the definition and properties of fields, including examples like ℂ, ℚ, and ℝ, and discusses field extensions, such as ℂ/ℝ. The notes detail finite fields F_p of prime order and their polynomial rings, explaining constructions like F_p[x]/(f(x)) to create fields of order p^n. Factorization of polynomials over finite fields is explored, including irreducibility criteria and algorithms like Berlekamp and Cantor-Zassenhaus. The Frobenius endomorphism and its role in field theory are highlighted, along with methods for determining polynomial roots and factorization in extensions. The document concludes with a brief calculus example, illustrating the derivative definition. Overall, it provides a concise overview of key concepts in algebra related to fields and polynomials.",
+    "date": "2022-10-02",
+    "link": "/notes/2022/N-20221002.pdf"
+  },
+  {
+    "type": "Achieved",
+    "title": "REPO: doge_docs (for v3)",
+    "description": "The document of doge-v3.",
+    "date": "2022-09-18T02:06:43Z",
+    "link": "/achieved/doge_docs"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220918",
+    "description": "This document presents two mathematical proofs: first, it demonstrates that for any natural number n, 512 divides the expression 3^(2n) - 32n² + 24n - 1 by reducing the problem through successive differences and showing divisibility by 8 for a base case. Second, it proves that for the alternating harmonic series up to 1/1319 expressed as p/q in lowest terms, p is divisible by the prime number 1979 by regrouping terms into pairs whose numerators are multiples of 1979 and leveraging coprimality. Both proofs utilize algebraic manipulation, properties of divisibility, and number theory concepts.",
+    "date": "2022-09-18",
+    "link": "/notes/2022/N-20220918.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220913",
+    "description": "This document presents informal mathematical notes focusing on divisibility in integers. It defines divisibility and lists key theorems, such as properties of divisibility relations and the condition |a| ≤ |b| when a divides b. Examples demonstrate solving divisibility problems using techniques like polynomial reduction and inequality analysis. A specific problem proves that the sum of powers 1¹⁹⁸³ + 2¹⁹⁸³ + ... + 1983¹⁹⁸³ is divisible by the sum 1+2+...+1983, utilizing pairing strategies and divisibility properties. The conclusions emphasize applying divisibility conditions and algebraic manipulations to establish results.",
+    "date": "2022-09-13",
+    "link": "/notes/2022/N-20220913.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220911",
+    "description": "This document provides a comprehensive summary of formulas and concepts related to lines and circles in coordinate geometry. Key topics covered include: slope and inclination angle formulas; conditions for parallel and perpendicular lines; five forms of linear equations (point-slope, slope-intercept, two-point, intercept, and general); direction and normal vectors; vector-based equations; angle formulas between lines; distance formulas (between points, point to line, and parallel lines); and four types of line families (fixed-point, concurrent, parallel, and perpendicular). It also introduces circle equations (standard and general forms) and discusses line-circle and circle-circle positional relationships, including geometric and algebraic criteria. Several examples illustrate applications, such as range determination under constraints, maximum distance calculations, and geometric problem-solving involving triangles and curves. The document serves as a condensed reference for fundamental principles in two-dimensional analytic geometry.",
+    "date": "2022-09-11",
+    "link": "/notes/2022/N-20220911.pdf"
+  },
+  {
+    "type": "Linguistics",
+    "title": "Miscellanea I. A Phonological Study of Near-/i/ Vowels Across Languages",
+    "description": "An IPA-based phonological analysis of near-/i/ vowels in various languages, including an examination of the actual realization of vowels in Chinese Pinyin syllables like zi, ci, and si, Japanese su (す), and Russian y (ы).",
+    "date": "2022-09-10",
+    "link": "/library/linguistics/miscellanea-i-near-i-vowels"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220813",
+    "description": "This document presents informal notes on complex analysis, focusing on holomorphic functions and contour integrals. It explains that holomorphic functions are exceptionally well-behaved, with properties including that contour integrals over loops are zero, they are determined by their Taylor series, and minimal data (like boundary values or a sequence of points) can specify the entire function. The text defines contour integrals, illustrates their computation with an example involving the unit circle (showing ∫ z^m dz is 2πi only for m = -1 and zero otherwise), and discusses their geometric interpretation via Riemann sums. It concludes with the Cauchy-Goursat theorem, stating that for a holomorphic function in a simply connected domain, the contour integral over any loop is zero.",
+    "date": "2022-08-13",
+    "link": "/notes/2022/N-20220813.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220811",
+    "description": "This document presents informal mathematical notes containing ten problems (A1-A8, B9-B10) primarily focused on inequalities, optimization, and algebraic proofs, with extensive use of Cauchy-Schwarz inequality and other techniques. Key findings include deriving necessary conditions for inequalities (e.g., A2), solving maximization problems (A3), proving bounds on triangle angles (A5), and establishing product constraints (A7, B9). Conclusions demonstrate equality conditions, such as specific variable relationships (A4, A6), and validate inequalities under given constraints (B10), emphasizing rigorous mathematical reasoning and problem-solving strategies.",
+    "date": "2022-08-11",
+    "link": "/notes/2022/N-20220811.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220810",
+    "description": "This document presents informal mathematical notes focused on inequalities, covering fundamental inequalities such as the basic inequality (a² + b² ≥ 2ab), AM-GM inequality (arithmetic mean-geometric mean), Cauchy-Schwarz inequality in two and three dimensions, and the triangle inequality (including absolute value and vector forms). It includes proofs and applications, demonstrating techniques for establishing inequalities like (a+b+c)/3 ≥ ³√abc and (a+b+c+d)/4 ≥ ⁴√abcd, as well as solving problems involving constraints (e.g., a+b+c=1) and maximizing expressions under given conditions. Examples illustrate the use of inequalities in various contexts, with proofs relying on algebraic manipulation, mean inequalities, and properties like equality conditions. The document concludes with geometric interpretations and cautionary notes on applying the triangle inequality effectively. Key findings confirm the validity of these inequalities under specified conditions, with equality cases identified where applicable.",
+    "date": "2022-08-10",
+    "link": "/notes/2022/N-20220810.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220808",
+    "description": "This document contains informal mathematical notes focusing on combinatorial set theory, geometric sequences, mathematical induction, and inequalities. Key findings include: a combinatorial problem (B17) determining the maximum number of sets (871) with specific intersection properties; a number theory problem (B18) constructing a maximal subset modulo 11; solutions to geometric sequence problems (e.g., finding terms, sums, and common ratios); and examples of mathematical induction proofs, including divisibility and sequence formulas. The notes also cover principles of induction, bounded sequences, and pattern identification in series. Conclusions emphasize problem-solving techniques, formula derivations, and inductive reasoning in various mathematical contexts.",
+    "date": "2022-08-08",
+    "link": "/notes/2022/N-20220808.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220806",
+    "description": "This document is a collection of informal mathematical notes dated August 6, 2022, focusing on set theory, number theory, and algebraic problems. Key topics include defining and manipulating sets (e.g., Example 1: B = {-2, -3} with sum -5), proving closure properties under addition and subtraction (Example 2), and determining maximum subset sizes under divisibility constraints (Example 3: |M| ≤ 21). It explores functional equations (Example 4: A ⊆ B for f(x) = x² + ax + b), combinatorial arguments (Example 6: sums as perfect squares), and constructive proofs (Example 8: existence of subset T). Exercises cover solving systems, set intersections, inequalities, and modular arithmetic, with conclusions like the non-existence of certain parameters (A4) and optimal set constructions (A11: max |S| = 44). The notes emphasize proof techniques, counterexamples, and bounds, often using contradiction and induction.",
+    "date": "2022-08-06",
+    "link": "/notes/2022/N-20220806.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220803",
+    "description": "This document presents a collection of mathematical problems and solutions focused on arithmetic and geometric sequences, as well as trigonometric applications in triangles. Key topics include determining triangle properties using logarithmic and trigonometric identities (e.g., Example 121 concludes the triangle is isosceles), verifying and analyzing arithmetic and geometric sequences (e.g., Examples 122–124, 132), solving for sums, terms, and ratios in sequences (e.g., Examples 123, 126–131), and finding parameter constraints (e.g., Example 128 derives d ∈ (-∞, -1-2√5] ∪ [2√5, +∞)). Conclusions involve specific values, such as k ≤ -10 in Example 125 and x = 18 in Example 132, alongside general insights into sequence behaviors and properties.",
+    "date": "2022-08-03",
+    "link": "/notes/2022/N-20220803.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220802",
+    "description": "This document provides informal notes on trigonometry, covering fundamental concepts such as angles, radian measure, trigonometric functions (sine, cosine, tangent), identities (e.g., Pythagorean and angle sum/difference formulas), reduction formulas, double-angle and half-angle formulas, and product-to-sum/sum-to-product transformations. It also discusses trigonometric function graphs, periodicity, inverse trigonometric functions, and applications in solving triangles using the sine and cosine laws, along with area formulas including Heron's formula. Examples illustrate problem-solving techniques, such as simplifying expressions and determining angle ranges based on trigonometric inequalities. The notes conclude with triangle-specific identities and relationships among trigonometric ratios in geometric contexts.",
+    "date": "2022-08-02",
+    "link": "/notes/2022/N-20220802.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220801",
+    "description": "This document is a collection of informal mathematical notes focusing on high school-level set theory, functions, and related problems. Key topics include: calculation of subset numbers using power sets (|2^A| = 2^|A|), De Morgan's laws, inclusion-exclusion principles, and set representation examples. It explores properties of specific sets (e.g., A = {a | a = x² - y²}), mappings, and functions, including injectivity, surjectivity, and periodic points. Numerous solved problems illustrate concepts such as Venn diagrams, function equations, inequalities, domains, and extremal values. Conclusions often derive from logical deductions or algebraic manipulations, emphasizing foundational techniques in combinatorics, algebra, and real analysis. The notes are practice-oriented, with examples ranging from basic set operations to advanced functional equations.",
+    "date": "2022-08-01",
+    "link": "/notes/2022/N-20220801.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220728",
+    "description": "This document presents informal mathematical notes covering two main topics: spatial vectors and category theory. The first part defines spatial vectors, their properties (length, zero and unit vectors, parallelism), and operations (addition, scalar multiplication, dot product). It introduces key theorems on collinear and coplanar vectors, vector decomposition, and standard orthogonal bases, along with coordinate formulas. The cross product is defined with its properties. The second part transitions to category theory, using the universal property to define products uniquely up to isomorphism. It explains categories, morphisms, composition, identity, and isomorphisms, with examples from sets and vector spaces. Groupoids are discussed as categories where all morphisms are isomorphisms, including examples like Rubik's cube (group) and 15-puzzle (groupoid). The notes emphasize abstract definitions and their applications across mathematical contexts.",
+    "date": "2022-07-28",
+    "link": "/notes/2022/N-20220728.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220725",
+    "description": "This document presents informal mathematics notes on determinants, focusing on calculating inversion numbers and determinant properties. Key topics include inversion number computation for permutations (e.g., τ(426315)=8), determinant sign determination based on inversion parity, and properties such as transpose invariance, sign change with row swaps, scalar factoring, additive splitting, and row operations. Methods for determinant calculation are demonstrated, including the diagonal rule (for 2x2 and 3x3 matrices) and triangulation. Examples illustrate zero-value cases (e.g., proportional rows) and practical computations, with exercises reinforcing concepts like inversion numbers and determinant evaluation. Errors in row operation applications are noted, emphasizing proper elementary transformations.",
+    "date": "2022-07-25",
+    "link": "/notes/2022/N-20220725.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220723",
+    "description": "This document explores the divisibility properties of polynomials related to roots of unity, focusing on conditions under which polynomials of the form \\(x^{kn} + x^{(k-1)n} + \\cdots + x^n + 1\\) share a common factor \\(P(x)\\), such as \\(x^2 + x + 1\\). Key findings indicate that \\(x^{2n} + x^n + 1\\) is divisible by \\(x^2 + x + 1\\) if and only if \\(n \\not\\equiv 0 \\pmod{3}\\), and generalizations show that for \\(Q_{k,n}(x) = \\sum_{i=0}^k x^{in}\\), it shares a factor \\(P_k(x)\\) (the \\(k\\)th cyclotomic polynomial) precisely when \\(\\gcd(n, k+1) = 1\\). The analysis leverages properties of roots of unity, complex exponentials, and factorization techniques, with proofs involving set equalities of roots and modular arithmetic conditions.",
+    "date": "2022-07-23",
+    "link": "/notes/2022/N-20220723.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220721",
+    "description": "This document presents informal mathematical notes covering probability theory and algebraic substitutions. It begins by defining fundamental probability concepts such as random experiments, sample spaces, events, classical probability (with an example calculating the probability of keys not matching locks), geometric probability, conditional probability, and independence. The second part focuses on algebraic substitutions for solving inequalities under constraints like abc=1, introducing transformations such as x=a+1/a and deriving relations like x²+y²+z²−xyz=4. Applications include proving classical inequalities (e.g., Nesbitt's inequality) and solving problems involving acute triangles and polynomials, demonstrating that polynomials vanishing under specific substitutions must be divisible by x²+y²+z²−xyz−4. Key findings emphasize the utility of substitutions in simplifying and solving algebraic and probabilistic problems.",
+    "date": "2022-07-21",
+    "link": "/notes/2022/N-20220721.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220720",
+    "description": "This document presents informal notes on mathematics, focusing on combinatorial principles, calculus, and geometric proofs. Key topics include enumeration, addition and multiplication principles, inclusion-exclusion, permutations, combinations, binomial theorem applications, and derivative calculations. Examples cover counting problems, series expansions, inequalities, and geometric properties in 3D shapes. Findings include solutions to specific problems like counting non-multiples of 6 or 8 up to 2021 (1517 numbers), expansion coefficients, and function comparisons. Conclusions emphasize methodical approaches to combinatorial and calculus problems, with proofs validating geometric relationships and derivative-based inequalities.",
+    "date": "2022-07-20",
+    "link": "/notes/2022/N-20220720.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220719",
+    "description": "This document presents informal notes on solid geometry, covering fundamental axioms, definitions, and theorems related to spatial relationships among points, lines, and planes. Key axioms establish conditions for plane uniqueness and intersections. Definitions classify positional relationships between lines (coplanar intersecting, parallel, or skew) and between lines and planes (contained, intersecting, or parallel). Theorems address parallelism and perpendicularity, including criteria for line-plane and plane-plane parallelism, properties of parallel lines, and angle relationships when sides are parallel. It introduces concepts like line-plane angles, projections, the three-perpendicular theorem, and the three-cosine theorem. Dihedral angles and their measures are defined, along with criteria and properties for perpendicular planes. Examples test understanding of geometric propositions, and distance definitions for points, parallel entities, and skew lines are provided. The notes conclude with a proof involving a regular hexagon in a cube and perpendicularity.",
+    "date": "2022-07-19",
+    "link": "/notes/2022/N-20220719.pdf"
+  },
+  {
+    "type": "Fragment",
+    "title": "The Absolute Zero: Saburou Saitoh’s Crusade to Redefine Mathematics",
+    "description": "**The \"Fun Person\" of the Day:** Prof. Saburou Saitoh (Gunma University).\n\n**The Phenomenon:** A legitimate mathematician with a background in Reproducing Kernels who has seemingly pivoted his entire career toward proving that $z/0 = 0$.\n\nThis isn't your standard crankery. Saitoh isn't an outsider scribbling in green ink; he publishes via SCIRP (a known quantity in the predatory/low-tier world) and viXra, yet somehow managed to slip his \"Division by Zero\" manifesto into a Springer proceeding. This puts him in a league comparable to the late Myron W. Evans—academic credentials used to push a theory that breaks fundamental axioms.\n\n**Speculation on Intent:**\n\nIs this an elaborate academic troll? Unlikely. The tone is far too earnest. It appears to be a classic case of the \"Golden Hammer.\" Saitoh seems to have taken the concept of the Moore-Penrose pseudoinverse (where the \"inverse\" of a zero matrix can be defined as zero) or Tikhonov regularization and elevated it from a computational tool to a fundamental law of the universe. By declaring that singularities are simply \"zero,\" he eliminates all poles, singularities, and infinities. It is a \"brute force\" solution to complex analysis: if a function blows up, just define it as zero. The result is a mathematical system where the point at infinity collapses into the origin—a topological nightmare presented as \"elementary and fundamental mathematics.\"",
+    "date": "2022-07-18",
+    "link": "/fragments/saburou-zero"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220718",
+    "description": "This document presents informal mathematical notes covering two main topics: recurrence sequences and real number construction via Dedekind cuts. For recurrence sequences, it details methods for solving linear and fractional recurrence relations using fixed-point techniques and characteristic equations, including examples and step-by-step derivations. The second part focuses on foundational real analysis, proving properties of Dedekind cuts, defining operations on real numbers, and establishing results such as the density of rationals and irrationals in intervals. It also includes exercises on metric spaces, supremum properties, and the existence of irrational numbers like √2, with proofs leveraging axioms and set-theoretic arguments.",
+    "date": "2022-07-18",
+    "link": "/notes/2022/N-20220718.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220717",
+    "description": "This document presents informal mathematical notes covering two main topics: sequences and group theory. For sequences, it discusses converting recurrence relations to closed-form expressions, solving problems involving arithmetic and geometric sequences, and deriving formulas for sums and specific terms. Examples include verifying recurrence relations, solving step-counting problems, and determining properties of finite sequences. In group theory, it defines groups, provides examples (cyclic, dihedral, symmetric, linear groups) and non-examples, and explores properties like inverses, associativity, and isomorphisms. Key findings include proofs of group properties, demonstrations of non-isomorphism (e.g., D24 and S4), and isomorphisms like Z/(p-1)Z ≅ (Z/pZ)× for primes. Conclusions emphasize foundational techniques in sequences and group axioms, with practical applications in problem-solving.",
+    "date": "2022-07-17",
+    "link": "/notes/2022/N-20220717.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220716",
+    "description": "This document presents informal mathematics notes focusing on conic sections, specifically the positional relationships between lines and ellipses, parabolas, and hyperbolas. Key topics include determining intersection points (0, 1, or 2) through solving quadratic equations derived from line-conic systems, distinguishing between tangency and intersection cases, and solving applied problems involving distances, areas, and parameter ranges. Examples illustrate methods for finding tangent lines, calculating maximum areas (e.g., △PAB area up to 20√5), and determining constraints like k > 1 or k < -1 for line-ellipse intersections. The notes emphasize algebraic techniques, such as discriminant analysis and Shoelace Theorem for area computation, alongside conceptual clarifications (e.g., tangency requires a double root). Conclusions derive specific results, such as p = 2 for a parabola focus-circle distance minimization.",
+    "date": "2022-07-16",
+    "link": "/notes/2022/N-20220716.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220715",
+    "description": "This document presents informal mathematical notes covering two main topics: conic sections and the construction of real numbers via Dedekind cuts. For conic sections, it defines ellipses, hyperbolas, and parabolas, detailing their standard equations, foci, axes, eccentricity, and geometric properties, including derivations and proofs such as maximizing ∠F1PF2 in ellipses. The second part focuses on Dedekind cuts to construct real numbers, defining order relations, addition operations, and verifying algebraic axioms (associativity, commutativity, etc.), with proofs for properties like density of rationals/irrationals and the existence of additive inverses. The notes emphasize rigorous definitions and proofs, linking concepts to foundational real analysis and linear spaces.",
+    "date": "2022-07-15",
+    "link": "/notes/2022/N-20220715.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220713",
+    "description": "This document presents informal notes on mathematical analysis, focusing on real numbers and metric spaces. Key points include: Lemma 3 establishes that for any positive real number, there exists a larger positive number and a smaller positive number, proven via ε-δ language. The text emphasizes a geometric perspective in analysis, visualizing real numbers as points on a line. Theorem 5 (Supremum Principle) states that every non-empty, bounded-above subset of real numbers has a least upper bound (supremum), proven using nested intervals and geometric reasoning, with dual results for infimum. The notes also introduce metric spaces, defining them as sets with a distance function satisfying non-negativity, symmetry, and the triangle inequality. Examples include Euclidean, Manhattan, Chebyshev, and discrete metrics on various sets, along with subspace metrics and the concept of density in metric spaces. The interplay between axiomatic foundations (e.g., Archimedes' axiom and nested interval principle) and geometric intuition is highlighted throughout.",
+    "date": "2022-07-13",
+    "link": "/notes/2022/N-20220713.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220710",
+    "description": "This document presents informal mathematics notes covering vector operations in plane geometry, including coordinate representations, dot products, and angle calculations, followed by an axiomatic construction of real numbers. It defines ℝ as an ordered field satisfying field axioms (F1-F9), order axioms (O1-O5), Archimedes' axiom (A), and the nested interval property (I). Key proofs include the uniqueness of additive/multiplicative inverses, properties of inequalities, and the embedding of rational numbers into ℝ via an injective homomorphism ι:ℚ→ℝ. The notes conclude that ℝ, defined by these axioms, contains all rationals and necessitates the nested interval axiom to ensure existence of irrationals like √2, while excluding infinitesimals. The text emphasizes foundational rigor and highlights limitations in standard secondary education treatments of real numbers.",
+    "date": "2022-07-10",
+    "link": "/notes/2022/N-20220710.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220708",
+    "description": "This document presents informal mathematical notes covering advanced geometry and trigonometry topics. Key geometric lemmas include: Lemma 1.17 proves that reflecting a triangle's orthocenter over a side places it on the circumcircle, and reflecting over the midpoint makes the corresponding line a diameter. Lemma 1.18 establishes properties of incenter/excenter reflections showing concyclic points and exterior angle bisectors. The notes introduce directed angles modulo 180° with nine fundamental properties and applications, including proving Miquel's Theorem for concurrent circles. Vector operations and identities are covered, along with comprehensive trigonometric formulas: basic definitions, Pythagorean identities, reduction formulas, angle addition/subtraction rules, and product-to-sum/sum-to-product transformations. The material blends geometric proofs with algebraic techniques, emphasizing directed angles for handling complex configurations.",
+    "date": "2022-07-08",
+    "link": "/notes/2022/N-20220708.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220628",
+    "description": "This document presents informal notes on integration techniques in mathematics, focusing on methods such as term-by-term integration, partial fractions, integration by parts, and substitution (both first and second types). Key examples include integrating rational functions, trigonometric integrals, and irrational expressions, with detailed step-by-step solutions and occasional reflections on errors or alternative approaches. The notes emphasize practical problem-solving strategies, including handling repeated factors in denominators, choosing substitutions for simplification, and applying standard trigonometric substitutions for expressions involving square roots.",
+    "date": "2022-06-28",
+    "link": "/notes/2022/N-20220628.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220615",
+    "description": "This document presents the 2020 Vserossiyskaya Olimpiada po Elementarnoy Matematike (VOEM) early round, a Russian elementary mathematics competition. It includes instructions for participants, scoring details, and four mathematical problems: optimizing distances from points on a circle to fixed coordinates (Question 1), maximizing squared distances on a parabola over intervals (Question 2), solving circle packing problems for minimal bounding circle diameter and square side length (Question 3), and finding the smallest integer solution to a rational equation (Question 4). The summary covers the test structure, rules, and key problem statements without solutions.",
+    "date": "2022-06-15",
+    "link": "/notes/2022/N-20220615.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220501",
+    "description": "This document presents informal notes on mathematical concepts, focusing primarily on optimization techniques using Lagrange multipliers and Hessian matrices. It introduces the Lagrangian function for constrained optimization, demonstrates its application through examples such as minimizing \\(x^2 + y^2\\) subject to \\(x + y = 1\\), and explains the use of Kuhn-Tucker conditions. The notes detail the Hessian matrix for second-order partial derivatives, its role in determining local minima (e.g., via Sylvester's criterion), and extend to bordered Hessians for constrained problems. Additional topics include Taylor expansions, derivative fundamentals, and a MATLAB example for eigenvalue computation of a Hessian. The content is pedagogical, emphasizing theoretical foundations and practical computations in multivariable calculus and optimization.",
+    "date": "2022-05-01",
+    "link": "/notes/2022/N-20220501.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220417",
+    "description": "This document covers fundamental inequalities in mathematics, focusing on power means (including QM-AM-GM-HM relationships), Hölder's inequality, and inequalities involving functions such as convexity, Jensen's inequality, and Karamata's inequality. It provides proofs, examples (e.g., from Taiwan TST 2014), and techniques like Ravi substitution and Schur's inequality, concluding with applications and exercises linking these concepts to classical results like Cauchy-Schwarz and weighted means.",
+    "date": "2022-04-17",
+    "link": "/notes/2022/N-20220417.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220412",
+    "description": "This document presents informal notes on linear algebra, focusing on definitions and concepts. Key definitions include unit vectors, Kronecker delta (representing identity matrices), Einstein's summation convention, matrix rank, transpose, Hermitian conjugate, symmetric and skew-Hermitian matrices, trace, linear independence, spanning sets, basis vectors (including orthonormal and standard bases), and vector space dimension. It also details Gaussian elimination steps for solving linear systems, with corollaries on solution count (no solution, infinite solutions with arbitrary constants, or unique solution) and structure (general solution as sum of homogeneous solution and particular solution). The notes emphasize foundational linear algebra tools and their applications in solving equations.",
+    "date": "2022-04-12",
+    "link": "/notes/2022/N-20220412.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220411",
+    "description": "This document provides informal notes on matrix inverses and rotation matrices in linear algebra. Key points include: a matrix is invertible if and only if it has n pivots or a non-zero determinant, with uniqueness of the inverse and solutions to Ax=b and Ax=0 highlighted. Specific formulas for 2x2 and diagonal matrix inverses are given, alongside properties like (AB)⁻¹=B⁻¹A⁻¹. Two methods for computing inverses are discussed: the adjugate matrix approach (A⁻¹=1/|A| A*) and Gaussian elimination. The notes also cover rotation matrices, deriving Rθ for planar rotations about the origin using basis vectors and linear combinations, and clarify that rotations about arbitrary points are not linear transformations. Overall, the document summarizes fundamental concepts and computational techniques for matrix inverses and rotations.",
+    "date": "2022-04-11",
+    "link": "/notes/2022/N-20220411.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220409",
+    "description": "This document presents informal mathematical notes covering calculus, differential equations, and linear algebra. Key topics include the Faà di Bruno formula for higher derivatives of composite functions, Leibniz notation manipulations for differentials (e.g., dy, d²y), and matrix algebra concepts such as matrix multiplication properties (non-commutativity, associativity), block matrix operations for efficient computation, and Schur complements for elimination. An example computes a specific inverse matrix element (b₃₃=524800) using block matrix diagonalization. The notes reference advanced texts but focus on practical problem-solving, skipping foundational sections for brevity.",
+    "date": "2022-04-09",
+    "link": "/notes/2022/N-20220409.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220407",
+    "description": "This document presents mathematical exercises and proofs focusing on complex numbers and vector spaces. Key topics include finding multiplicative inverses and roots in complex numbers, verifying algebraic properties like commutativity and associativity in C and Fⁿ, and proving the uniqueness of additive inverses and multiplicative identities. It defines vector spaces, demonstrates that (-1)v equals the additive inverse -v, and explores whether extended real numbers with infinity form a vector space. The text also covers subspaces, providing conditions and examples such as sets of continuous or differentiable functions, and sequences with limit zero, noting that subspaces must contain the zero vector and be closed under addition and scalar multiplication. It concludes by classifying subspaces of R² and R³ as lines and planes through the origin.",
+    "date": "2022-04-07",
+    "link": "/notes/2022/N-20220407.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220405",
+    "description": "This document presents informal mathematical notes covering three main topics: (1) Fréchet differentiability and complex differentiability, demonstrating through directional limits that f(z)=conjugate(z) is not differentiable and linking Fréchet differentiability to Cauchy-Riemann conditions; (2) Hessian matrices and Taylor expansions for constrained optimization, including a theorem on bordered Hessian criteria for local maxima and an applied example proving √ab+√bc+√ca-√abc≥2 under a+b+c=ab+bc+ca using Lagrange multipliers and Hessian analysis at a=b=c=1; (3) polynomial factorization over finite fields and Galois theory, with observations on GF(p) arithmetic and examples of polynomial behavior in different fields. The notes reflect exploratory learning with practical examples and unresolved questions for future study.",
+    "date": "2022-04-05",
+    "link": "/notes/2022/N-20220405.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220323",
+    "description": "This document introduces complex analysis by contrasting pathological real functions (e.g., Cantor, Weierstraß, and smooth non-analytic functions) with holomorphic functions in complex analysis. It defines complex differentiability, emphasizing that the limit must hold from all directions in the complex plane, illustrated by the non-holomorphic conjugation function. Holomorphic functions are defined as those complex-differentiable everywhere in their domain, with entire functions as a special case. Examples include polynomials, exponentials, trigonometric functions, and their combinations via standard rules, highlighting their well-behaved nature compared to real functions.",
+    "date": "2022-03-23",
+    "link": "/notes/2022/N-20220323.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220321",
+    "description": "This document provides an informal introduction to complex analysis, covering fundamental operations like addition and multiplication of complex numbers, their representation in polar form, and Euler's formula derived via Taylor series and geometric interpretation using motion on the unit circle. It discusses Cotes' result on regular n-gons and roots of unity, showing how complex numbers simplify factorization of zⁿ - 1 into real linear and quadratic factors, emphasizing geometric insights and connections to physics.",
+    "date": "2022-03-21",
+    "link": "/notes/2022/N-20220321.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220320",
+    "description": "This document presents informal notes on calculus, focusing on the mean value theorem and its extensions. It covers Rolle's theorem, the standard mean value theorem, and Cauchy's (ratio) mean value theorem, emphasizing conditions for differentiability and continuity. The notes highlight that differentiability implies continuity, but not vice versa, illustrated by the Weierstrass function—a continuous yet nowhere differentiable function defined by an infinite cosine series, demonstrating counterintuitive mathematical concepts.",
+    "date": "2022-03-20",
+    "link": "/notes/2022/N-20220320.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220319",
+    "description": "This document provides an informal review of calculus concepts, focusing on sequences, limits, derivatives, and integration. It defines sequences and their convergence using the ε-N definition, illustrated with an example proving lim n/(n+1)=1. It introduces limits of functions via the ε-δ definition, emphasizing behavior near but not at a point. Derivatives are defined as rates of change, with explanations of O and o notations for asymptotic behavior. Key differentiation rules are covered: chain, product, quotient, and Leibniz's rule for higher derivatives. Integration is presented as a limit of sums, approximating area under curves, and the Fundamental Theorem of Calculus is stated and proved, showing differentiation and integration are inverse operations. The notes conclude with a concise proof of the theorem.",
+    "date": "2022-03-19",
+    "link": "/notes/2022/N-20220319.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220315",
+    "description": "This document seriously solved some wrong problems on textbook. Contains assorted exercises: quadratic function analysis (vertex, axis of symmetry, roots and parameter conditions), geometry problems about parabolas and hyperbolas and their intersections, symbolic solutions with complicated radical expressions, constrained optimization using Lagrange multipliers for x^2 - y^3 = 2, and numeric approximations / plotted sample points. The file records derivations, algebraic manipulations, and numerical roots alongside brief commentary.",
+    "date": "2022-03-15",
+    "link": "/notes/2022/N-20220315.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220212",
+    "description": "This document provides an informal introduction to Riemann surfaces, defined as Hausdorff, second-countable, connected topological spaces with a complex structure, locally modeled on open subsets of ℂ. Key topics include definitions of Riemann surfaces and complex manifolds, examples such as open subsets of ℂ, the Riemann sphere, and complex tori, and mappings between Riemann surfaces emphasizing holomorphicity. Important results covered are the correspondence between meromorphic functions on a Riemann surface and holomorphic maps to the Riemann sphere, the constant degree of nonconstant holomorphic maps between compact Riemann surfaces, the equality of zeros and poles (counting multiplicities) for nonconstant meromorphic functions on compact Riemann surfaces, the Hurwitz formula relating genera and mapping degrees, and the identity theorem asserting that holomorphic maps agreeing on an open subset are identical everywhere. The text highlights the elegance and rigidity of the theory, particularly on compact surfaces.",
+    "date": "2022-02-12",
+    "link": "/notes/2022/N-20220212.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220205",
+    "description": "This document provides a comparative analysis of axiomatic set theory systems, focusing on ZFC, NBG, KM, and NF. It outlines their historical development, motivations (e.g., resolving paradoxes like Russell's), and core axioms. Key findings highlight ZFC's dominance due to its simplicity and broad applicability, though it struggles with proper classes. NBG and KM extend ZFC by introducing classes to handle large collections, with KM offering stronger axioms for richer class descriptions. NF allows limited self-reference via stratification but faces unresolved consistency issues. The document concludes that each system represents a trade-off between intuition and rigor, with ongoing debates on consistency, expressiveness, and potential hybrid approaches for future research.",
+    "date": "2022-02-05",
+    "link": "/notes/2022/N-20220205.pdf"
+  },
+  {
+    "type": "Publication",
+    "title": "Rethinking Set Theory - Chinese Translation",
+    "description": "Translated version of Tom Leinster's Rethinking Set Theory",
+    "date": "2022-01-31",
+    "link": "https://figshare.com/articles/online_resource/N-20220131_pdf/20310039"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220131",
+    "description": "This document presents a summary and translation of Tom Leinster's \"Rethinking Set Theory,\" which introduces the Elementary Theory of the Category of Sets (ETCS) as an alternative to Zermelo-Fraenkel set theory with the Axiom of Choice (ZFC). ETCS uses functions as a primitive concept, defining elements as functions from a terminal set, and includes ten axioms covering composition, terminal and empty sets, Cartesian products, function sets, inverse images, subset classifiers, natural numbers, and the axiom of choice. It argues that ETCS aligns better with mathematicians' intuitive use of sets, avoids ZFC's issues (like requiring all elements to be sets), and is equally expressive when augmented with an eleventh axiom (replacement). The approach is elementary, avoiding advanced category theory, and aims to provide a more natural foundation for most mathematical practice.",
+    "date": "2022-01-31",
+    "link": "/notes/2022/N-20220131.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20220123",
+    "description": "This document provides an introductory overview of algebraic number theory and the Langlands Program, beginning with fundamental concepts such as number fields and algebraic integers, which extend integer properties to broader domains. It explains how unique factorization fails for elements but holds for ideals, introducing class numbers to measure this deviation, with examples from quadratic fields like Q(√-5). Advanced topics include local fields, p-adic numbers, and Hensel's lemma, emphasizing the local-global principle. The discussion then transitions to modular forms and L-functions, highlighting their symmetry and analytic properties, exemplified by Ramanujan's tau function. The Langlands Program is presented as a unifying framework linking Galois representations to automorphic representations, aiming to connect number theory, representation theory, and analysis. The document concludes with cross-disciplinary insights from category theory, algebraic topology, and linear algebra, along with numerical experiments and open questions, underscoring the program's depth and ongoing development.",
+    "date": "2022-01-23",
+    "link": "/notes/2022/N-20220123.pdf"
+  },
+  {
+    "type": "Achieved",
+    "title": "PAPER: MODELS OF PEN-PL GAUSSIAN GAMES IN NON-COOPERATIVE COMMUNICATION",
+    "description": "This paper explores non-cooperative Pen-PL games, modeling the probability distribution of outcomes using multivariate Gaussian processes. It derives optimal 'smooth' signaling rules and proves that computing a socially optimal network placement for these games is NP-hard, linking tactical pen placement to advanced statistical mechanics and game theory concepts.",
+    "date": "2021-10-07",
+    "link": "/achieved/paper-mpgg"
+  },
+  {
+    "type": "Fragment",
+    "title": "Unveiling Arithmetic Deformation Theory: Reflections on Fesenko’s \"Notes on the work of Shinichi Mochizuki\"",
+    "description": "The genesis of this study lies in a perspective shared by my mentor at Geek College, Dr. Keyao Peng. Amidst the polarized academic atmosphere surrounding the *Inter-universal Teichmüller (IUT)* theory, Dr. Peng adopted a stance of pure intellectual curiosity—akin to \"eating to live,\" focusing on the sustenance of knowledge rather than the politics of validity.\r\n\r\nSeveral months ago, during a fortuitous overlap between a lecture by Peter Scholze on *Toposes Online* (regarding condensed mathematics) and a seminar by Shinichi Mochizuki on *tripodal transport*, a conceptual bridge emerged. While the two theories are formally distinct, the intuition of \"gluing\" structures—and the malleability of what we consider fundamental—resonated deeply. As Dr. Peng articulated, there is a profound difficulty in what Mochizuki terms \"descent\": the realization that while the multiplicative structure of a field might be fixed (reconstructible via Galois groups), the additive structure is essentially \"floating.\" In this view, $1$ is a fixed unit, but $1+1$ carries a structural ambiguity that requires stabilization.\r\n\r\nGuided by this open-minded philosophy—treating mathematics not as a battleground but as a landscape of structural beauty—I delved into Ivan Fesenko’s extensive survey, *“Arithmetic deformation theory via arithmetic fundamental groups and nonarchimedean theta-functions.”* The following are my notes on the traditional mathematical narrative, the radical deconstruction of ring structures, and the intuitive analogies presented in the theory.",
+    "date": "2021-10-07",
+    "link": "/fragments/ivan-iutt"
+  },
+  {
+    "type": "Publication",
+    "title": "A Chaotic Preview Note on Hopf Fiberation",
+    "description": "This document provides an informal overview of group actions, homotopy theory, and the Hopf fibration. It begins by defining group actions, illustrating concept, such as stabilizers and orbits, and citing Cayley's theorem. It then introduces homotopy, cofibrations, and fibrations, explaining their roles in algebraic topology for classifying spaces and continuous maps. The discussion covers spheres and homotopy groups, including definitions and structural properties. Finally, it describes the Hopf fibration as a map from S³ to S², constructed via complex ratios or quaternion rotations, and provides references for further exploration. The notes emphasize foundational concepts with examples and intuitive explanations, acknowledging potential inaccuracies and recommending external resources.",
+    "date": "2021-08-06",
+    "link": "https://figshare.com/articles/online_resource/N-20210806_pdf/20310042"
+  },
+  {
+    "type": "Note",
+    "title": "N-20210806",
+    "description": "This document provides an informal overview of group actions, homotopy theory, and the Hopf fibration. It begins by defining group actions, illustrating concepts such as stabilizers and orbits, and citing Cayley's theorem. It then introduces homotopy, cofibrations, and fibrations, explaining their roles in algebraic topology for classifying spaces and continuous maps. The discussion covers spheres and homotopy groups, including definitions and structural properties. Finally, it describes the Hopf fibration as a map from S³ to S², constructed via complex ratios or quaternion rotations, and provides references for further exploration. The notes emphasize foundational concepts with examples and intuitive explanations, acknowledging potential inaccuracies and recommending external resources.",
+    "date": "2021-08-06",
+    "link": "/notes/2021/N-20210806.pdf"
+  },
+  {
+    "type": "Publication",
+    "title": "A Friendly Introduction to Boolean Algebra",
+    "description": "This document provides an informal introduction to Boolean algebra, aimed at students and beginners. It explains that Boolean algebra is a mathematical structure rooted in logic, set theory, and algebra, with applications in computer science, topology, and measure theory. Key points include definitions of Boolean rings (idempotent rings where all elements satisfy p² = p) and Boolean algebras (sets with meet, join, and complement operations), highlighting their equivalence through transformations. Examples illustrate connections to power sets and characteristic functions, emphasizing\nthat Boolean algebras and rings are interchangeable perspectives. The text also briefly covers foundational algebraic concepts like groups, rings, and lattices, and references advanced topics like Stone duality and Heyting algebras for further exploration.",
+    "date": "2021-08-04",
+    "link": "https://figshare.com/articles/online_resource/N-20210804_pdf/20310033"
+  },
+  {
+    "type": "Note",
+    "title": "N-20210804",
+    "description": "This document provides an informal introduction to Boolean algebra, aimed at students and beginners. It explains that Boolean algebra is a mathematical structure rooted in logic, set theory, and algebra, with applications in computer science, topology, and measure theory. Key points include definitions of Boolean rings (idempotent rings where all elements satisfy p² = p) and Boolean algebras (sets with meet, join, and complement operations), highlighting their equivalence through transformations. Examples illustrate connections to power sets and characteristic functions, emphasizing that Boolean algebras and rings are interchangeable perspectives. The text also briefly covers foundational algebraic concepts like groups, rings, and lattices, and references advanced topics like Stone duality and Heyting algebras for further exploration.",
+    "date": "2021-08-04",
+    "link": "/notes/2021/N-20210804.pdf"
+  },
+  {
+    "type": "Fragment",
+    "title": "A Gateway to Dualities: Mirror Symmetry between Space and Structure",
+    "description": "It was July 2021, a sweltering month, when an image quietly dropped into our Geek College chat group. It was Dr. Keyao Peng, our mentor at the time, who shared a simple yet profound screenshot labeled **\"Table 3: Some dualities.\"** At first glance, it appeared to be merely a list of mathematical objects, but upon closer inspection, it revealed a fundamental philosophical structure that governs modern mathematics: the mirror symmetry between *Geometry* (Space) and *Algebra* (Structure).\r\n\r\n![TABLE](/fragments/boolean-stone/table.jpg)\r\n\r\nThat specific image acted as a catalyst. It was the spark that ignited my intense curiosity regarding the relationship between Boolean logic and topological spaces. I spent the subsequent weeks diving into the literature, attempting to decode the first row of that table: **Stone spaces** and **Boolean algebras**. This intellectual journey culminated in August 2021, when I published an explanatory article on the *Chaoli Forum* titled \"An Introduction to Boolean Algebra\" (available at [chaoli.club](https://chaoli.club/index.php/6589), DOI: [10.6084/M9.FIGSHARE.20310033](https://doi.org/10.6084/M9.FIGSHARE.20310033)).\r\n\r\nHowever, looking back at that note, I realize it remained incomplete. I successfully navigated the algebraic structures, but I never fully articulated the geometric side—the *Stone Space*—as I had originally intended. Furthermore, influenced by Dr. Peng’s deeper interests, I began scratching the surface of **Topos Theory** and **Logos**, concepts that reside at the bottom of the table.\r\n\r\nWhat follows is a reconstruction of my learning notes from that period. It is an attempt to finally provide the \"missing half\" of my August 2021 note, to decode the table that Dr. Peng sent, and to rigorously define the concept of **Duality** that binds these disparate worlds together.",
+    "date": "2021-07-21",
+    "link": "/fragments/boolean-stone"
+  },
+  {
+    "type": "Fragment",
+    "title": "Prop Presentations for Linear Algebra: The $\\mathbf{cb}_k$ Calculus",
+    "description": "I have finally traced the definitive origin of this elegant piece of graphical mathematics by Dr. Peng! The fragment I was studying belongs to the seminal work **\"Graphical Linear Algebra\"** (specifically, see **arXiv:2105.06244**). This paper provides the rigorous categorical \"source code\" for representing linear algebra not through grids of numbers, but through the topology of string diagrams.\r\n\r\nThe specific formalism identified is the theory $\\mathbf{cb}_k$ (standing for *commutative bialgebra* with *scalars* over a ring $k$). The central result is breathtaking in its simplicity and power: this diagrammatic language is a complete presentation for the prop $\\mathbf{Mat}_k$. In other words, **diagrams are matrices**, and topological manipulation is linear algebra.\r\n\r\nFor those interested in a more pedagogical entry point, the authors maintain an incredible resource at **[graphicallinearalgebra.net](https://graphicallinearalgebra.net/)**, which unfolds this theory as a narrative about the interaction between two fundamental operations: Copying and Adding. Below is a detailed academic note synthesizing the formal definition from the paper with the intuitive insights from the website.\r\n\r\n![DEMO](/fragments/graph-alg/demo.jpeg)",
+    "date": "2021-06-21",
+    "link": "/fragments/graph-alg"
+  },
+  {
+    "type": "Note",
+    "title": "N-20210207",
+    "description": "This document covers foundational concepts in set theory, including the Axiom of Choice and its equivalence to the existence of choice functions, definitions of partially and totally ordered sets, Zorn's Lemma, and the Well Ordering Principle. It introduces cardinal numbers, equipollence, and finite/infinite sets, proving key results such as Cantor's theorem (|A| < |P(A)|), the Schröder-Bernstein theorem, trichotomy for cardinals, and properties of infinite sets (e.g., every infinite set has a denumerable subset, and for infinite cardinals α and β with β ≤ α, α + β = α and αβ = α). It concludes with corollaries on the cardinality of finite subsets of infinite sets.",
+    "date": "2021-02-07",
+    "link": "/notes/2021/N-20210207.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20210206",
+    "description": "This document covers foundational mathematical concepts including Cartesian products, equivalence relations (defined by reflexivity, symmetry, and transitivity) and their properties such as partitions and quotient classes, generalized Cartesian products as indexed functions with projections, Peano axioms defining natural numbers and the Principle of Mathematical Induction, and integer arithmetic topics like the Division Algorithm, divisibility, greatest common divisor, and congruence modulo m with its equivalence classes and algebraic properties.",
+    "date": "2021-02-06",
+    "link": "/notes/2021/N-20210206.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20210204",
+    "description": "This document presents foundational concepts in set theory and functions, covering definitions of sets, proper classes (illustrated by Russell's Paradox), power sets, indexed families with unions and intersections, and relative complements. It details properties of sets including DeMorgan's Laws, defines functions with images and inverse images, and characterizes injective, surjective, and bijective functions. Key theorems establish relationships between function composition and injectivity/surjectivity, and Theorem 1.0.10 shows that a bijective function has a two-sided inverse, contingent on the Axiom of Choice. The content serves as an introductory framework for mathematical structures and mappings.",
+    "date": "2021-02-04",
+    "link": "/notes/2021/N-20210204.pdf"
+  },
+  {
+    "type": "Fragment",
+    "title": "Christmas Night at Geek College: From Free Products to Asymptotic Envelopes",
+    "description": "This entry marks my very first participation in the **Geek College** English Salon on December 25, 2020. What began as casual holiday chatter quickly evolved into a high-density academic exchange spanning Abstract Algebra and Measure Theory.\r\n\r\nThe log captures my initial struggles with the formal notations in Paul Halmos’s *Measure Theory* and the definition of Coproducts in the category of Groups. Guided by peers **Jacky_Jnirvana** and **Nianyi**, the conversation bridged the gap between rigorous \"pathological\" definitions and intuitive geometric understandings. Below are the key fragments of that night, supplemented with the mathematical context I have since gathered.",
+    "date": "2020-12-25",
+    "link": "/fragments/geek-christmas"
+  },
+  {
+    "type": "Fragment",
+    "title": "Initial Construction and Preliminary Properties of Chunpinative Geometry",
+    "description": "This content takes the form of a systematic constructive record of a geometric theory, formally proposing the core axiom of \"Chunpinative Geometry\" and establishing a set of foundational concepts—including \"Chunpinative Space\" and \"Chunpinatively Measurable Space\"—on the basis of this axiom. Additionally, it deduces preliminary properties of the space and presents a key lemma proposed by a collaborator. From the perspective of mainstream geometric theory (encompassing both Euclidean and non-Euclidean geometries), the core axiom of Chunpinative Geometry—asserting that \"an angle is equivalent to its supplement\"—represents a deliberate departure from the fundamental logical relationships that govern angle arithmetic in conventional geometric systems. Specifically, it abandons the well-established rule that \"the supplement of an angle is equal to \\(180^\\circ\\) minus the measure of the original angle,\" replacing it with a direct equivalence relation. It is important to acknowledge that certain preliminary property descriptions in this initial construction lack the full rigor of formal mathematical derivation, as they serve as tentative deductions to frame the theory’s structure. As indicated by contextual cues embedded in the naming and framing, this work is a playful, commemorative simulation of a mathematical theory: it adopts the rigorous framework of axiom-based geometric system construction to pay lighthearted tribute to the author’s junior high school mathematics teacher, Chunping Ding (with the term \"Chunpinative\" derived from the teacher’s given name \"Chunping\"), and to classmate CZL, who contributed the key lemma to the theory.",
+    "date": "2020-12-07",
+    "link": "/fragments/chunpinative"
+  },
+  {
+    "type": "Achieved",
+    "title": "PAPER: The Mapping of the Main Functions and Different Variations of YH-DIE",
+    "description": "The junk paper focuses on a fictional mathematical object called “YH-DIE.” It explores the continuity of this object, its mappings on algebraic varieties, and how it serves as an intersection point between algebraic geometry and partial differential equations. The paper also asserts that the equations governing minimal surfaces represent a special case of this general framework.",
+    "date": "2020-09-12",
+    "link": "/achieved/paper-yhdie"
+  }
+]

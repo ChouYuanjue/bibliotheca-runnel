@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Navigating the Full-Stack Ecosystem: Implementation Strategies and Knowledge Graphs for Information Aggregation",
+    "date": "2025-12-06",
+    "type": "Lecture",
+    "doi": "10.5281/ZENODO.17852269",
+    "link": "https://zenodo.org/doi/10.5281/zenodo.17852269",
+    "description": "As the second module of the \"Nova Technical Onboarding Series\" for freshman engineers, this presentation maps out the comprehensive technology landscape required to build a modern information aggregation system. It serves as a practical roadmap, guiding students from basic data processing scripts to complex, autonomous agent workflows.\n\nThe session bridges the gap between individual coding tasks and full-stack system design through five key domains:\n\n1.Data Ingestion & NLP Pipelines: A walkthrough of the essential toolkit (e.g., Spacy, Unstructured, LangChain) used to transform messy, heterogeneous data (PDFs, Chat Logs) into clean, structured formats suitable for AI processing.\n\n2.The System's \"Brain\": Implementing Retrieval-Augmented Generation (RAG) by combining Vector Databases (Chroma) for semantic search and Graph Databases (Neo4j) for relational reasoning, introducing students to the concept of Hybrid Search.\n\n3.Modern Interaction Patterns: Moving beyond static web pages to dynamic \"Push & Pull\" architectures. The session demonstrates how to deliver content via diverse channels like RSS feeds and Calendar integrations using frameworks like FastAPI and React.\n\n4.Agentic Workflows & Orchestration: An introduction to building autonomous systems using the Model Context Protocol (MCP). It explains how to handle long-running AI tasks asynchronously using Message Queues (Celery/Redis) to ensure the application remains responsive.\n\n5.From \"Solo Coding\" to \"Engineering\": establishing a robust collaborative environment. This section emphasizes the importance of API Contracts (Swagger), Containerization (Docker), and Observability (Grafana) in a professional team setting."
+  },
+  {
+    "title": "Architectural Paradigms in Collaborative Software Engineering: A Comprehensive Analysis of the Nova Project",
+    "date": "2025-11-29",
+    "type": "Lecture",
+    "doi": "10.5281/ZENODO.17765724",
+    "link": "https://zenodo.org/doi/10.5281/zenodo.17765724",
+    "description": "Designed as a technical onboarding seminar for first-year undergraduate students, this presentation dissects the engineering architecture and collaborative methodologies within the Nova Project. The instructional objective is to bridge the gap between theoretical computer science concepts and modern industrial practices, specifically addressing environment consistency and dependency management in distributed development.\n\nThe curriculum encompasses four foundational engineering domains:\n\n1. Containerization & Environment Standardization: Introducing Docker-based workflows to eliminate \"it works on my machine\" issues. The session demonstrates how to orchestrate consistent development environments and manage NVIDIA GPU dependencies through container encapsulation.\n\n2. Database Architecture Trade-offs: A pedagogical analysis of Relational (PostgreSQL) versus Document-oriented (MongoDB) systems. Students are guided through practical schema design choices, illustrating how a \"Content Hash\" strategy allows for efficient handling of heterogeneous and unstructured data.\n\n3. Asynchronous Service patterns: Explaining the shift from standard RESTful CRUD operations to a \"Shared Database + Trigger\" architecture. This segment highlights how to optimize system throughput and minimize API latency in data-intensive applications.\n\n4. Parallel Development Workflows: Demonstrating techniques to decouple frontend and backend engineering tasks. By utilizing \"Seed Data\" and \"Mock Triggers,\" the presentation illustrates how to maintain a non-blocking development lifecycle, allowing teams to execute tasks simultaneously despite inter-service dependencies."
+  },
+  {
+    "title": "Gravitational Fields of Non-Spherical Mass Distributions: Analysis and Orbital Dynamics",
+    "date": "2023-02-01",
+    "type": "Blog post",
+    "doi": "10.6084/M9.FIGSHARE.22268917",
+    "link": "https://figshare.com/articles/online_resource/N-20230201_pdf/22268917",
+    "description": "This document investigates gravitational fields, beginning with proofs that a uniform spherical shell exerts no gravitational force on an interior point mass, demonstrated through both geometric and integral methods. The analysis is extended to non-spherical bodies by deriving the gravitational potential and field of a uniform cuboid, which exhibits significant deviations from spherical symmetry, such as a stronger gravitational attraction near its corners.\nNumerical simulations employing the Runge-Kutta method demonstrate the orbital dynamics around a cubic planet, revealing distinct precession and distortion caused by the non-uniform gravitational field. The study concludes that only spherically symmetric masses can be treated as point masses, whereas the gravitational fields of other geometries must be computed through direct integration. For such non-spherical cases, Cartesian coordinates are shown to be more practical than spherical coordinates."
+  },
+  {
+    "title": "On the Factorization of Cyclotomic-Type Polynomials $\\sum_{i=0}^k x^{in}$ and Their Divisibility Properties",
+    "date": "2023-01-27",
+    "type": "Preprint",
+    "doi": "10.6084/M9.FIGSHARE.22268908",
+    "link": "https://figshare.com/articles/online_resource/N-20230127_pdf/22268908",
+    "description": "This paper investigates the factorization of polynomials of the form \\( \\sum_{i=0}^k x^{in} \\), with a focus on establishing necessary and sufficient conditions for the existence of nontrivial common factors with the base polynomial \\( \\sum_{i=0}^k x^i \\).\n\nWe first prove that \\( x^{2n} + x^n + 1 \\) is divisible by \\( x^2 + x + 1 \\) if and only if \\( 3 \\nmid n \\), using properties of primitive roots of unity and algebraic factorization. The study then extends to the general case \\( k \\geq 2 \\), disproving the initial conjecture that \\( \\sum_{i=0}^k x^i \\) divides \\( \\sum_{i=0}^k x^{in} \\) whenever \\( k+1 \\nmid n \\).\n\nThrough computational experiments in MATLAB and complex analysis, we demonstrate that when \\( k+1 \\nmid n \\), the two polynomials share a common real-coefficient factor \\( P(x) \\), whose roots exhibit distinct periodic distributions on the complex unit circle. These roots correspond to specific \\( \\frac{k+1}{\\gcd(n, k+1)} \\)-th roots of unity, revealing a structural symmetry governed by modular arithmetic.\n\nOur results underscore the value of integrating classical algebraic methods, computational tools, and complex analysis in addressing intricate problems in polynomial factorization."
+  },
+  {
+    "title": "Rethinking Set Theory - Chinese Translation",
+    "date": "2022-01-31",
+    "type": "Translation",
+    "doi": "10.6084/M9.FIGSHARE.20310039",
+    "link": "https://figshare.com/articles/online_resource/N-20220131_pdf/20310039",
+    "description": "Translated version of Tom Leinster's Rethinking Set Theory"
+  },
+  {
+    "title": "A Chaotic Preview Note on Hopf Fiberation",
+    "date": "2021-08-06",
+    "type": "Blog post",
+    "doi": "10.6084/M9.FIGSHARE.20310042",
+    "link": "https://figshare.com/articles/online_resource/N-20210806_pdf/20310042",
+    "description": "This document provides an informal overview of group actions, homotopy theory, and the Hopf fibration. It begins by defining group actions, illustrating concept, such as stabilizers and orbits, and citing Cayley's theorem. It then introduces homotopy, cofibrations, and fibrations, explaining their roles in algebraic topology for classifying spaces and continuous maps. The discussion covers spheres and homotopy groups, including definitions and structural properties. Finally, it describes the Hopf fibration as a map from S³ to S², constructed via complex ratios or quaternion rotations, and provides references for further exploration. The notes emphasize foundational concepts with examples and intuitive explanations, acknowledging potential inaccuracies and recommending external resources."
+  },
+  {
+    "title": "A Friendly Introduction to Boolean Algebra",
+    "date": "2021-08-04",
+    "type": "Blog post",
+    "doi": "10.6084/M9.FIGSHARE.20310033",
+    "link": "https://figshare.com/articles/online_resource/N-20210804_pdf/20310033",
+    "description": "This document provides an informal introduction to Boolean algebra, aimed at students and beginners. It explains that Boolean algebra is a mathematical structure rooted in logic, set theory, and algebra, with applications in computer science, topology, and measure theory. Key points include definitions of Boolean rings (idempotent rings where all elements satisfy p² = p) and Boolean algebras (sets with meet, join, and complement operations), highlighting their equivalence through transformations. Examples illustrate connections to power sets and characteristic functions, emphasizing\nthat Boolean algebras and rings are interchangeable perspectives. The text also briefly covers foundational algebraic concepts like groups, rings, and lattices, and references advanced topics like Stone duality and Heyting algebras for further exploration."
+  }
+]
