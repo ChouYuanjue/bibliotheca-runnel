@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import worklistData from "@/data/worklist.json";
 import MarkdownRenderer from "@/components/custom/MarkdownRenderer";
@@ -12,7 +14,9 @@ import {
   ExternalLink,
   Calendar,
   Scroll,
-  Library
+  Library,
+  List,
+  LayoutGrid
 } from "lucide-react";
 
 type WorkType = "Project" | "Linguistics" | "Achieved" | "Criticism" | "Fragment" | "Note" | "Collection" | "Publication";
@@ -84,20 +88,80 @@ const WorkCard = ({ item }: { item: WorkItem }) => {
 };
 
 export default function WorklistPage() {
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+
   return (
     <div className="container mx-auto px-4 py-12 max-w-5xl">
-      <div className="mb-10">
-        <h1 className="text-4xl font-bold mb-4 text-gray-900">Worklist</h1>
-        <p className="text-lg text-gray-600">
-          A comprehensive collection of projects, research, writings, and notes.
-        </p>
+      <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <h1 className="text-4xl font-bold mb-4 text-gray-900">Worklist</h1>
+          <p className="text-lg text-gray-600">
+            A comprehensive collection of projects, research, writings, and notes.
+          </p>
+        </div>
+        <button
+          onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}
+          className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 rounded-lg transition-colors shadow-sm whitespace-nowrap"
+        >
+          {viewMode === 'grid' ? <List size={20} /> : <LayoutGrid size={20} />}
+          <span>{viewMode === 'grid' ? 'List View' : 'Grid View'}</span>
+        </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {(worklistData as WorkItem[]).map((item, index) => (
-          <WorkCard key={index} item={item} />
-        ))}
-      </div>
+      {viewMode === 'grid' ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {(worklistData as WorkItem[]).map((item, index) => (
+            <WorkCard key={index} item={item} />
+          ))}
+        </div>
+      ) : (
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+          <div className="divide-y divide-gray-100">
+            {(worklistData as WorkItem[]).map((item, index) => {
+              const config = TypeConfig[item.type] || TypeConfig.Note;
+              const isExternal = item.link.startsWith("http");
+              
+              return (
+                <div key={index} className="p-4 hover:bg-gray-50 transition-colors group">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6">
+                    <div className="flex-shrink-0 w-32 text-sm text-gray-500 font-mono flex items-center gap-2">
+                      <Calendar size={14} className="text-gray-400" />
+                      {new Date(item.date).toLocaleDateString()}
+                    </div>
+                    
+                    <div className="flex-grow min-w-0">
+                      <div className="flex items-baseline gap-3 flex-wrap">
+                        <Link 
+                          href={item.link} 
+                          target={isExternal ? "_blank" : undefined} 
+                          className="text-base font-medium text-gray-900 hover:text-blue-600 hover:underline decoration-blue-500/30 transition-colors"
+                        >
+                          <MarkdownRenderer content={item.title} inline />
+                          {isExternal && <ExternalLink size={14} className="inline ml-1 text-gray-400" />}
+                        </Link>
+                        
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${config.color}`}>
+                          {config.label}
+                        </span>
+                      </div>
+                      
+                      {item.tags && item.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mt-1.5">
+                          {item.tags.map((tag, idx) => (
+                            <span key={idx} className="text-xs text-gray-400">
+                              #{tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
