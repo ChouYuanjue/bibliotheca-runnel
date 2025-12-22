@@ -60,7 +60,7 @@ export default function MentorshipPage() {
               Yanbo Fan
             </a>
           </h2>
-          <p className="text-sm text-gray-600 mb-2">Tenure-track Associate Professor, School of Intelligent Science and Technology, Nanjing University</p>
+          <p className="text-sm text-gray-600 mb-2">Associate Professor, School of Intelligent Science and Technology, Nanjing University</p>
           <p className="text-gray-700 leading-relaxed">
             Was assigned as my formal freshman mentor for the Jianxiong Academy, though I unfortunately had almost no formal academic communication with him.
           </p>
@@ -72,7 +72,7 @@ export default function MentorshipPage() {
               Ronghao Huang
             </a>
           </h2>
-          <p className="text-sm text-gray-600 mb-2">Senior undergraduate student, School of Intelligent Science and Technology, Nanjing University</p>
+          <p className="text-sm text-gray-600 mb-2">Junior undergraduate student, School of Intelligent Science and Technology, Nanjing University</p>
           <p className="text-gray-700 leading-relaxed">
             Was my assigned peer mentor and a very supportive senior who willingly offered detailed help with technical issues and daily learning life.
           </p>
