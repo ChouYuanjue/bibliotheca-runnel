@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function MentorshipPage() {
+export default function MentorsPage() {
   return (
     <div className="max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8">Mentorship</h1>
+      <h1 className="text-3xl font-bold mb-8">Mentors</h1>
       
       <div className="space-y-8">
         <div className="border-l-4 border-gray-200 pl-4">
@@ -62,7 +62,7 @@ export default function MentorshipPage() {
           </h2>
           <p className="text-sm text-gray-600 mb-2">Associate Professor, School of Intelligent Science and Technology, Nanjing University</p>
           <p className="text-gray-700 leading-relaxed">
-            Was assigned as my formal freshman mentor for the Jianxiong Academy, though I unfortunately had almost no formal academic communication with him.
+            Was assigned as my formal freshman mentor for the Jianxiong Academy students.
           </p>
         </div>
 
