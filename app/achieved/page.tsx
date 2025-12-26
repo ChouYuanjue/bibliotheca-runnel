@@ -46,7 +46,7 @@ export default async function AchievedIndex() {
         ) : (
             sortedEntries.map(([slug, item]) => (
             <div key={slug} className="p-6 border border-gray-200 rounded-lg hover:shadow-md transition-shadow bg-white group">
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex flex-wrap items-center justify-between mb-3 gap-2">
                 <h2 className="text-xl font-semibold font-serif group-hover:text-red-800 transition-colors">
                     <Link href={`/achieved/${slug}`}>
                     {item.title}

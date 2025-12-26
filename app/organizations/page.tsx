@@ -49,11 +49,11 @@ export default async function OrganizationsIndex() {
               )}
               
               <div className="flex-grow">
-                <div className="flex justify-between items-start mb-2">
+                <div className="flex flex-wrap justify-between items-start mb-2 gap-x-2 gap-y-1">
                   <h2 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
                     {org.title}
                   </h2>
-                  <span className="text-sm text-gray-500 font-mono whitespace-nowrap ml-4">
+                  <span className="text-sm text-gray-500 font-mono whitespace-nowrap">
                     {org.date} — {org.endDate || 'Present'}
                   </span>
                 </div>

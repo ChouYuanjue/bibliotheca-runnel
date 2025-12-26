@@ -43,7 +43,7 @@ export default async function ProjectsIndex() {
         ) : (
             projects.map((project) => (
             <div key={project.id} className="p-6 border border-gray-200 rounded-lg hover:shadow-md transition-shadow bg-white group">
-                <div className="flex justify-between items-start mb-2">
+                <div className="flex flex-wrap justify-between items-start mb-2 gap-2">
                     <h2 className="text-xl font-semibold font-serif group-hover:text-red-800 transition-colors">
                     <Link href={`/projects/${project.slug}`}>
                         {project.title}

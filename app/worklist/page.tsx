@@ -48,7 +48,7 @@ const WorkCard = ({ item }: { item: WorkItem }) => {
 
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow duration-200 flex flex-col h-full">
-      <div className="flex justify-between items-start mb-4">
+      <div className="flex flex-wrap justify-between items-start mb-4 gap-2">
         <div className={`px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1.5 ${config.color}`}>
           <Icon size={14} />
           {config.label}
