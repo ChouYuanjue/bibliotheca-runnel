@@ -23,7 +23,7 @@ export default function RootLayout({
         <div className="min-h-screen">
           <MobileNav />
           <Sidebar />
-          <main className="md:pl-72 w-full max-w-7xl mx-auto p-6 md:p-12 lg:p-16 pt-24 md:pt-12">
+          <main className="md:pl-72 w-full max-w-7xl mx-auto px-6 pb-6 pt-24 md:pr-12 md:pb-12 md:pt-12 lg:pr-16 lg:pb-16 lg:pt-16">
             {children}
           </main>
         </div>
