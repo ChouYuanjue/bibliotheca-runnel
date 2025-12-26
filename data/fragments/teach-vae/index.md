@@ -11,7 +11,7 @@ This fragment records a discussion focusing on how to explain Variational Autoen
 
 - Runnel: Professor, how do you think we should explain VAE to new students?
 
-- Senior A: There are plenty of excellent explanations on Zhihu, aren't there? The core of explaining VAE well is not to mention any variational methods at all. It's only when you can't explain it clearly that you focus on mathematics. I can explain the four major branches of mathematics to freshmen without using too profound knowledge. The key is understanding.
+- Senior A: There are plenty of excellent explanations on Zhihu, aren't there? The core of explaining VAE well is not to mention any variational methods at all. It's only when you can't explain it clearly that you focus on mathematics. I can explain the papers in the four top mathematics journals to freshmen without using too profound knowledge. The key is understanding.
 
 - Runnel: I think one point is the prior and posterior distributions, and another is how the KL divergence term and the reconstruction loss term work together. If we don't involve too many details of probability theory, how can we explain VAE? I'm really curious.
 
