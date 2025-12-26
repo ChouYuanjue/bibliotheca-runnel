@@ -28,6 +28,13 @@
     "link": "/fragments/topos-ai"
   },
   {
+    "type": "Fragment",
+    "title": "Discussion on Explaining VAE to New Students and Reflections on Its Core Principles",
+    "description": "This fragment records a discussion focusing on how to explain Variational Autoencoders (VAE) to new students. The discussion involves three participants: myself (Runnel), an undergraduate student seeking advice from seniors, a senior associate professor in the field of Deep Learning with a Ph.D. from Tsinghua University (hereinafter referred to as Senior A), and a fellow undergraduate student from The Chinese University of Hong Kong, Shenzhen (hereinafter referred to as Peer B). The core of the discussion revolves around the key entry points, prerequisite knowledge, and core logical framework for explaining VAEs, with in-depth exchanges on the connection between Autoencoders (AE) and VAE, the significance of dimensionality reduction, and the essence of generative models. Subsequently, I will sort out and reflect on the core content of the discussion, focusing on the theoretical connotation and logical derivation of VAE.",
+    "date": "2025-12-08",
+    "link": "/fragments/teach-vae"
+  },
+  {
     "type": "Publication",
     "title": "Navigating the Full-Stack Ecosystem: Implementation Strategies and Knowledge Graphs for Information Aggregation",
     "description": "As the second module of the \"Nova Technical Onboarding Series\" for freshman engineers, this presentation maps out the comprehensive technology landscape required to build a modern information aggregation system. It serves as a practical roadmap, guiding students from basic data processing scripts to complex, autonomous agent workflows.\n\nThe session bridges the gap between individual coding tasks and full-stack system design through five key domains:\n\n1.Data Ingestion & NLP Pipelines: A walkthrough of the essential toolkit (e.g., Spacy, Unstructured, LangChain) used to transform messy, heterogeneous data (PDFs, Chat Logs) into clean, structured formats suitable for AI processing.\n\n2.The System's \"Brain\": Implementing Retrieval-Augmented Generation (RAG) by combining Vector Databases (Chroma) for semantic search and Graph Databases (Neo4j) for relational reasoning, introducing students to the concept of Hybrid Search.\n\n3.Modern Interaction Patterns: Moving beyond static web pages to dynamic \"Push & Pull\" architectures. The session demonstrates how to deliver content via diverse channels like RSS feeds and Calendar integrations using frameworks like FastAPI and React.\n\n4.Agentic Workflows & Orchestration: An introduction to building autonomous systems using the Model Context Protocol (MCP). It explains how to handle long-running AI tasks asynchronously using Message Queues (Celery/Redis) to ensure the application remains responsive.\n\n5.From \"Solo Coding\" to \"Engineering\": establishing a robust collaborative environment. This section emphasizes the importance of API Contracts (Swagger), Containerization (Docker), and Observability (Grafana) in a professional team setting.",
@@ -82,6 +89,13 @@
     "description": "This project serves as a Mock Service for the Nova 2025 Information Integration Tool Collaboration Project, aligning with the design of the \"Collaboration Integration Plan (Draft)\" to facilitate parallel development and integration testing between frontend, backend, and various teams.",
     "date": "2025-10-25T03:05:10Z",
     "link": "/achieved/nova_mock_service"
+  },
+  {
+    "type": "Fragment",
+    "title": "Discussion and Reflection on MLP Teaching Routes: Regression vs. Classification Entry Points",
+    "description": "This fragment records a discussion between me and two senior scholars in the field of Deep Learning (DL) regarding the rationality of teaching routes for Multi-Layer Perceptron (MLP). The core topic revolves around whether it is appropriate to introduce MLP starting from regression or classification. I put forward the confusion encountered in the teaching preparation process: starting directly from regression to introduce activation functions and then jumping to MLP fails to enable students to effectively understand the core logic of neural networks, while starting from perceptrons is difficult to explain the necessity of activation functions in an essential way. The two seniors shared their professional insights, pointing out that the core of neural networks is classification, and it is more reasonable to directly take classification as the entry point for teaching, and also explained the key reasons for introducing activation functions. Through this in-depth discussion, I gained a more systematic and in-depth understanding of the teaching logic of DL foundational knowledge.",
+    "date": "2025-10-12",
+    "link": "/fragments/teach-mlp"
   },
   {
     "type": "Project",
