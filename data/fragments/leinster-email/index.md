@@ -62,12 +62,17 @@ In late December 2022, driven by my passion for mathematics, particularly catego
 > Tom
 >
 >
-> On 30/12/2022 10:30, Yuanjue Chou wrote:
+> On 30/12/2022 10:30, Yuanjue Chou wrote: ...
+> 
 > This email was sent to you by someone outside the University.
+> 
 > You should only click on links or attachments if you are certain that the email is genuine and the content is safe.
 >
 > --
 > Professor Tom Leinster
+> 
 > School of Mathematics, University of Edinburgh
+> 
 > https://www.maths.ed.ac.uk/~tl
+> 
 > The University of Edinburgh is a charitable body, registered in Scotland, with registration number SC005336. Is e buidheann carthannais a th’ ann an Oilthigh Dhùn Èideann, clàraichte an Alba, àireamh clàraidh SC005336.
