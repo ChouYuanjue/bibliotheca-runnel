@@ -3,15 +3,15 @@ title: "Correspondence with Professor Tom Leinster: My Translation of \"Rethinki
 date: "2022-12-30"
 ---
 
-**Overview**
+## Overview
 
 In late December 2022, driven by my passion for mathematics, particularly category theory and homotopy type theory, I reached out to Professor Tom Leinster, a mathematician I deeply admire. As a 15-year-old high school student, I proudly shared my Chinese translation of his accessible article, "Rethinking Set Theory," which I had made available online. I sought his feedback on the translation and, more importantly, his guidance on structuring my advanced mathematical studies, having already delved into undergraduate topics like algebraic topology and abstract algebra. Professor Leinster replied in January 2023, expressing his admiration for my effort (though he noted he couldn't verify the Chinese) and recommending two insightful, unconventional books for further study: Saunders Mac Lane's "Mathematics: Form and Function" and Michio Kuga's "Galois's Dream." This exchange was an inspiring and unforgettable milestone in my early mathematical journey. From then on, I continued corresponding with Professor Leinster under my real identity, though those emails are private and will not be shared here.
 
 ***
 
-### Original Correspondence
+## Original Correspondence
 
-#### Yuanjue Chou to Tom Leinster
+### Yuanjue Chou to Tom Leinster
 
 > **Admiration for your work and request for guidance**
 >
@@ -36,7 +36,7 @@ In late December 2022, driven by my passion for mathematics, particularly catego
 > Sincerely,
 > Yuanjue Chou
 
-#### Tom Leinster to Yuanjue Chou
+### Tom Leinster to Yuanjue Chou
 
 > **Tom Leinster** <Tom.Leinster@ed.ac.uk>
 >
