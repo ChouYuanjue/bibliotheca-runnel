@@ -41,7 +41,7 @@ This fragment records a discussion between me and two senior scholars in the fie
 
 - Scholar A: We shouldn't start from regression at all.
 
-- Runnel (18:33): Starting from regression is conducive to intuitively understanding a "fitting" process. Using linear functions cannot achieve this fitting, so non-linear ones are necessary.
+- Runnel: Starting from regression is conducive to intuitively understanding a "fitting" process. Using linear functions cannot achieve this fitting, so non-linear ones are necessary.
 
 - Runnel: That's the reason why he chose to start from regression.
 
