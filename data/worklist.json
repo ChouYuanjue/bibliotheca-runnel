@@ -105,6 +105,13 @@
     "link": "https://github.com/ChouYuanjue/TeX-QB-Gen"
   },
   {
+    "type": "Fragment",
+    "title": "Implementation and Technical Exploration of U-Net-SE with Positional Offset",
+    "description": "This project aims to realize Google Emoji Kitchen-style emoji fusion through large models, capable of combining two different emojis into a new, creative emoji image. This fragment documents my exploration process of modifying U-Net and adding positional offset capabilities to solve the spatial constraint problem in emoji fusion. Although many seniors regarded this attempt as foolish at that time, I now reflect and believe it was not entirely worthless. My core focus was on how to enable the model to accurately control the positional and size relationships of emoji elements in a small-sample scenario. Eventually, the project shifted to an engineering implementation combining LoRA fine-tuning and Diffusion Model, which will not be the focus of this fragment.\n\nProject Repository: https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab",
+    "date": "2025-10-10",
+    "link": "/fragments/u-net-position"
+  },
+  {
     "type": "Project",
     "title": "AI_Emoji_Kitchen_Lab",
     "description": "这是一个基于深度学习的表情符号（Emoji）融合项目，旨在于通过大模型实现Google Emoji Kitchen风格的表情符号融合，能够将两个不同的emoji融合成一个全新的、富有创意的emoji图像。",
