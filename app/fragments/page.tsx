@@ -17,8 +17,11 @@ export default function FragmentsIndex() {
     <div className="max-w-5xl mx-auto py-12 px-4">
       <div className="mb-12">
         <h1 className="text-4xl font-serif font-bold text-gray-900 mb-4">Fragments</h1>
-        <p className="text-lg text-gray-600 max-w-2xl">
+        <p className="text-lg text-gray-700 max-w-2xl">
           Thoughts, correspondence, and miscellaneous notes. A collection of unfinished ideas and fleeting moments.
+        </p>
+        <p className="text-sm text-gray-500 max-w-2xl mt-2 italic">
+          These are not formal research reports; to save time, they are mostly quick summaries and compilations of relevant materials using LLMs, but some of them can be quite interesting.
         </p>
       </div>
       
