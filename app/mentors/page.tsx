@@ -54,29 +54,6 @@ export default function MentorsPage() {
           </p>
         </div>
 
-        <div className="border-l-4 border-gray-200 pl-4">
-          <h2 className="text-xl font-semibold">
-            <a href="https://sites.google.com/site/yanbofan0124/" target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-blue-600 transition-colors">
-              Yanbo Fan
-            </a>
-          </h2>
-          <p className="text-sm text-gray-600 mb-2">Associate Professor, School of Intelligent Science and Technology, Nanjing University</p>
-          <p className="text-gray-700 leading-relaxed">
-            Was assigned as my formal freshman mentor. I look forward to potential academic exchanges with him in the future.
-          </p>
-        </div>
-
-        <div className="border-l-4 border-gray-200 pl-4">
-          <h2 className="text-xl font-semibold">
-            <a href="https://github.com/HRH0410" target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-blue-600 transition-colors">
-              Ronghao Huang
-            </a>
-          </h2>
-          <p className="text-sm text-gray-600 mb-2">Junior undergraduate student, School of Intelligent Science and Technology, Nanjing University</p>
-          <p className="text-gray-700 leading-relaxed">
-            Was my assigned peer mentor and a very supportive senior who willingly offered detailed help with technical issues and daily learning life.
-          </p>
-        </div>
       </div>
     </div>
   );
