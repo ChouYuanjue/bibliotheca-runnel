@@ -55,9 +55,18 @@ export default function MarkdownRenderer({ content, className, inline = false }:
               return <MermaidDiagram code={code} />;
             }
 
+            // For inline code, remove surrounding backticks if present
+            let processedChildren = children;
+            if (!match && typeof children === 'string') {
+              const text = children.trim();
+              if (text.startsWith('`') && text.endsWith('`') && text.length > 1) {
+                processedChildren = text.slice(1, -1);
+              }
+            }
+
             return (
               <code className={className} {...props}>
-                {children}
+                {processedChildren}
               </code>
             );
           },
