@@ -11,7 +11,7 @@ EMAIL: [Runnel.Zhang@smail.nju.edu.cn](mailto:Runnel.Zhang@smail.nju.edu.cn)
 ### Nanjing University
 Nanjing, Jiangsu, CN  
 2025-09-01 to 2029-06-30  
-Undergraduate Student (Jianxiong Academy)
+Undergraduate Student (School of Intelligent Science and Technology)
 
 
 ## Awards & Honors
@@ -42,7 +42,7 @@ Core Member & Teaching Assistant | 2025-09 - Present
 - Scheduled to host a teaching session on Variational Autoencoder (VAE) for the association in the next semester, designing practical cases to help members understand model principles and application scenarios.  
 
 ### NJU NOVA (Nanjing University Intelligent Data Decision Studio)
-Core Member | 2025-09 - Present  
+Core Member | 2025-09 - 2026.01  
 - Deliver two lectures on full-stack development for studio members, covering front-end and back-end technology integration, project engineering practices, and problem-solving in actual development.  
 - Participate in the studio's multi-source information aggregation projects, responsible for designing technical solutions and developing core modules, collaborating with team members to ensure project progress and integration efficiency.  
 
