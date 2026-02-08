@@ -1,7 +1,7 @@
 [
   {
     "type": "Fragment",
-    "title": "Vite to Next.js \"Violent Migration\" Refactoring Diary",
+    "title": "Project Refactoring Development Diary: The \"Violent Migration\" from Vite to Next.js",
     "description": "These two days, I experienced the first vigorous and intense major project refactoring of my life. The whole process was full of pitfalls, my technical understanding was repeatedly challenged, and I even used a bug in reverse to solve a deployment problem. Looking back now, it’s still absurd and unforgettable. I’m recording all the details here for future review (most likely not) and to help fellow developers who might step into the same pitfalls avoid them.",
     "date": "2026-02-02",
     "link": "/fragments/vite-to-next"

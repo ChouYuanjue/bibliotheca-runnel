@@ -1,5 +1,5 @@
 ---
-title: "Vite to Next.js \"Violent Migration\" Refactoring Diary"
+title: "Project Refactoring Development Diary: The \"Violent Migration\" from Vite to Next.js"
 date: "2026-02-02"
 ---
 
