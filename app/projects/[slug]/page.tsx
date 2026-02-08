@@ -14,6 +14,7 @@ interface Project {
   topics: string[];
   updatedAt: string;
   slug: string;
+  type: "commercial" | "personal";
 }
 
 async function getProject(slug: string): Promise<{ meta: Project | undefined, content: string }> {
@@ -61,15 +62,17 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                 <h1 className="text-4xl font-bold text-gray-900 mb-4 font-serif">{meta.title}</h1>
                 <p className="text-xl text-gray-600 max-w-2xl">{meta.description}</p>
             </div>
-            <a 
-                href={meta.githubUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
-            >
-                <Github size={20} />
-                <span>View on GitHub</span>
-            </a>
+            {meta.type !== "commercial" && meta.githubUrl && (
+                <a 
+                    href={meta.githubUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+                >
+                    <Github size={20} />
+                    <span>View on GitHub</span>
+                </a>
+            )}
         </div>
         
         <div className="flex flex-wrap gap-3 mt-6">

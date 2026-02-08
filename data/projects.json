@@ -6,9 +6,10 @@
     "githubUrl": "https://github.com/ChouYuanjue/doge-repo",
     "stars": 8,
     "language": "Python",
-    "topics": [],
+    "topics": ["Chatbot", "QQ", "Bot"],
     "updatedAt": "2025-09-28T13:26:35Z",
-    "slug": "doge-repo"
+    "slug": "doge-repo",
+    "type": "personal"
   },
   {
     "id": "tangut_chinese_translator",
@@ -17,9 +18,10 @@
     "githubUrl": "https://github.com/ChouYuanjue/Tangut_Chinese_Translator",
     "stars": 1,
     "language": "JavaScript",
-    "topics": [],
+    "topics": ["Translation", "Linguistics","AI", "NLP"],
     "updatedAt": "2025-09-17T11:36:28Z",
-    "slug": "tangut_chinese_translator"
+    "slug": "tangut_chinese_translator",
+    "type": "personal"
   },
   {
     "id": "ai_emoji_kitchen_lab",
@@ -28,9 +30,10 @@
     "githubUrl": "https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab",
     "stars": 1,
     "language": "Python",
-    "topics": [],
+    "topics": ["AI", "Image Generation", "Emoji", "CV"],
     "updatedAt": "2025-10-09T04:18:52Z",
-    "slug": "ai_emoji_kitchen_lab"
+    "slug": "ai_emoji_kitchen_lab",
+    "type": "personal"
   },
   {
     "id": "pdf_summary_tool",
@@ -39,9 +42,10 @@
     "githubUrl": "https://github.com/ChouYuanjue/PDF_Summary_Tool",
     "stars": 9,
     "language": "Python",
-    "topics": [],
+    "topics": ["PDF", "Summarization", "AI", "NLP", "YOLO","VLM"],
     "updatedAt": "2025-12-10T06:40:42Z",
-    "slug": "pdf_summary_tool"
+    "slug": "pdf_summary_tool",
+    "type": "personal"
   },
   {
     "id": "tex-qb-gen",
@@ -50,9 +54,10 @@
     "githubUrl": "https://github.com/ChouYuanjue/TeX-QB-Gen",
     "stars": 3,
     "language": "Python",
-    "topics": [],
+    "topics": ["Education", "OCR","VLM", "TeX", "Question Bank"],
     "updatedAt": "2025-10-10T12:01:12Z",
-    "slug": "tex-qb-gen"
+    "slug": "tex-qb-gen",
+    "type": "personal"
   },
   {
     "id": "bibliotheca-runnel",
@@ -61,8 +66,21 @@
     "githubUrl": "https://github.com/ChouYuanjue/bibliotheca-runnel",
     "stars": 3,
     "language": "TypeScript",
-    "topics": [],
+    "topics": ["Portfolio", "Academic", "Next.js", "Digital Archive"],
     "updatedAt": "2025-12-14T13:03:00Z",
-    "slug": "bibliotheca-runnel"
+    "slug": "bibliotheca-runnel",
+    "type": "personal"
+  },
+  {
+    "id": "cer-system",
+    "title": "CER System",
+    "description": "基于 Qwen2-Audio 7B 多模态大模型的银行客户服务情绪实时分析系统。该系统采用双路径架构（Dual-Path Architecture），结合 Plan A（高灵敏 VAD）与 Plan B（高精度说话人分离），灵活适配不同质量与场景的通话录音。",
+    "githubUrl": null,
+    "stars": 0,
+    "language": "Python",
+    "topics": ["AI", "Emotion Recognition", "Banking", "Multimodal"],
+    "updatedAt": "2026-02-08T00:00:00Z",
+    "slug": "cer-system",
+    "type": "commercial"
   }
 ]

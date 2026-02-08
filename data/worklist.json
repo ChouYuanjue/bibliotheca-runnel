@@ -1,5 +1,12 @@
 [
   {
+    "type": "Project",
+    "title": "CER System",
+    "description": "基于 Qwen2-Audio 7B 多模态大模型的银行客户服务情绪实时分析系统。该系统采用双路径架构（Dual-Path Architecture），结合 Plan A（高灵敏 VAD）与 Plan B（高精度说话人分离），灵活适配不同质量与场景的通话录音。",
+    "date": "2026-02-08T00:00:00Z",
+    "link": null
+  },
+  {
     "type": "Fragment",
     "title": "Project Refactoring Development Diary: The \"Violent Migration\" from Vite to Next.js",
     "description": "These two days, I experienced the first vigorous and intense major project refactoring of my life. The whole process was full of pitfalls, my technical understanding was repeatedly challenged, and I even used a bug in reverse to solve a deployment problem. Looking back now, it’s still absurd and unforgettable. I’m recording all the details here for future review (most likely not) and to help fellow developers who might step into the same pitfalls avoid them.",
