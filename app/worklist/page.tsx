@@ -26,7 +26,7 @@ interface WorkItem {
   title: string;
   description: string;
   date: string;
-  link: string;
+  link?: string;
   tags: string[];
 }
 
@@ -44,7 +44,7 @@ const TypeConfig: Record<WorkType, { icon: React.ElementType; color: string; lab
 const WorkCard = ({ item }: { item: WorkItem }) => {
   const config = TypeConfig[item.type] || TypeConfig.Note;
   const Icon = config.icon;
-  const isExternal = item.link.startsWith("http");
+  const isExternal = item.link && typeof item.link === 'string' && item.link.startsWith("http");
 
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow duration-200 flex flex-col h-full">
@@ -60,10 +60,14 @@ const WorkCard = ({ item }: { item: WorkItem }) => {
       </div>
       
       <h3 className="text-xl font-semibold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors flex-grow">
-        <Link href={item.link} target={isExternal ? "_blank" : undefined} className="hover:underline decoration-blue-500/30">
+        {item.link ? (
+          <Link href={item.link} target={isExternal ? "_blank" : undefined} className="hover:underline decoration-blue-500/30">
+            <MarkdownRenderer content={item.title} inline />
+            {isExternal && <ExternalLink size={16} className="text-gray-400 inline ml-2 align-baseline" />}
+          </Link>
+        ) : (
           <MarkdownRenderer content={item.title} inline />
-          {isExternal && <ExternalLink size={16} className="text-gray-400 inline ml-2 align-baseline" />}
-        </Link>
+        )}
       </h3>
       
       <div className="text-gray-600 text-sm mb-4 h-[4.5em]">
@@ -119,7 +123,7 @@ export default function WorklistPage() {
           <div className="divide-y divide-gray-100">
             {(worklistData as WorkItem[]).map((item, index) => {
               const config = TypeConfig[item.type] || TypeConfig.Note;
-              const isExternal = item.link.startsWith("http");
+              const isExternal = item.link && typeof item.link === 'string' && item.link.startsWith("http");
               
               return (
                 <div key={index} className="p-4 hover:bg-gray-50 transition-colors group">
@@ -131,14 +135,20 @@ export default function WorklistPage() {
                     
                     <div className="flex-grow min-w-0">
                       <div className="flex items-baseline gap-3 flex-wrap">
-                        <Link 
-                          href={item.link} 
-                          target={isExternal ? "_blank" : undefined} 
-                          className="text-base font-medium text-gray-900 hover:text-blue-600 hover:underline decoration-blue-500/30 transition-colors"
-                        >
-                          <MarkdownRenderer content={item.title} inline />
-                          {isExternal && <ExternalLink size={14} className="inline ml-1 text-gray-400" />}
-                        </Link>
+                        {item.link ? (
+                          <Link 
+                            href={item.link} 
+                            target={isExternal ? "_blank" : undefined} 
+                            className="text-base font-medium text-gray-900 hover:text-blue-600 hover:underline decoration-blue-500/30 transition-colors"
+                          >
+                            <MarkdownRenderer content={item.title} inline />
+                            {isExternal && <ExternalLink size={14} className="inline ml-1 text-gray-400" />}
+                          </Link>
+                        ) : (
+                          <span className="text-base font-medium text-gray-900">
+                            <MarkdownRenderer content={item.title} inline />
+                          </span>
+                        )}
                         
                         <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${config.color}`}>
                           {config.label}
