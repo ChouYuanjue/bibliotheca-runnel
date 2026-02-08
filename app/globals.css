@@ -8,6 +8,12 @@
   }
 }
 
+@layer utilities {
+  code {
+    @apply bg-gray-100 px-1 py-0.5 rounded font-mono text-sm;
+  }
+}
+
 .mermaid-diagram svg {
   max-width: 100%;
   height: auto;
