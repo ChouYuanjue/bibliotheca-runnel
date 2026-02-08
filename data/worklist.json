@@ -1,6 +1,13 @@
 [
   {
     "type": "Fragment",
+    "title": "Vite to Next.js \"Violent Migration\" Refactoring Diary",
+    "description": "These two days, I experienced the first vigorous and intense major project refactoring of my life. The whole process was full of pitfalls, my technical understanding was repeatedly challenged, and I even used a bug in reverse to solve a deployment problem. Looking back now, it’s still absurd and unforgettable. I’m recording all the details here for future review (most likely not) and to help fellow developers who might step into the same pitfalls avoid them.",
+    "date": "2026-02-02",
+    "link": "/fragments/vite-to-next"
+  },
+  {
+    "type": "Fragment",
     "title": "From Divergent Series to Stable Homotopy — On the Equation $0=1-1=-1+1=0$",
     "description": "More than a year ago, I encountered a slide from a lecture by Professor Keyao Peng featuring the enigmatic equation $0=1-1=-1+1=0$. At the time, I interpreted it through the lens of classical analysis and infinite summation techniques. It wasn't until I recently discovered the full lecture slides that I realized my initial intuition was not just slightly off, but diametrically opposed to the mathematical reality. This equation is not about arithmetic values or infinite cancellations; it is a description of a non-trivial topological path within the realm of K-theory and Higher Algebra.",
     "date": "2025-12-17",
