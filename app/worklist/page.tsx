@@ -121,54 +121,184 @@ export default function WorklistPage() {
       ) : (
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
           <div className="divide-y divide-gray-100">
-            {(worklistData as WorkItem[]).map((item, index) => {
-              const config = TypeConfig[item.type] || TypeConfig.Note;
-              const isExternal = item.link && typeof item.link === 'string' && item.link.startsWith("http");
-              
-              return (
-                <div key={index} className="p-4 hover:bg-gray-50 transition-colors group">
-                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6">
-                    <div className="flex-shrink-0 w-32 text-sm text-gray-500 font-mono flex items-center gap-2">
-                      <Calendar size={14} className="text-gray-400" />
-                      {new Date(item.date).toLocaleDateString()}
-                    </div>
-                    
-                    <div className="flex-grow min-w-0">
-                      <div className="flex items-baseline gap-3 flex-wrap">
-                        {item.link ? (
-                          <Link 
-                            href={item.link} 
-                            target={isExternal ? "_blank" : undefined} 
-                            className="text-base font-medium text-gray-900 hover:text-blue-600 hover:underline decoration-blue-500/30 transition-colors"
-                          >
-                            <MarkdownRenderer content={item.title} inline />
-                            {isExternal && <ExternalLink size={14} className="inline ml-1 text-gray-400" />}
-                          </Link>
-                        ) : (
-                          <span className="text-base font-medium text-gray-900">
-                            <MarkdownRenderer content={item.title} inline />
-                          </span>
-                        )}
-                        
-                        <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${config.color}`}>
-                          {config.label}
-                        </span>
-                      </div>
-                      
-                      {item.tags && item.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mt-1.5">
-                          {item.tags.map((tag, idx) => (
-                            <span key={idx} className="text-xs text-gray-400">
-                              #{tag}
-                            </span>
-                          ))}
+            {(() => {
+              const items = worklistData as WorkItem[];
+              const renderedItems: JSX.Element[] = [];
+              let i = 0;
+              while (i < items.length) {
+                const item = items[i];
+                if (item.type === 'Note') {
+                  // Check for consecutive Notes
+                  const consecutiveNotes: WorkItem[] = [item];
+                  let j = i + 1;
+                  while (j < items.length && items[j].type === 'Note') {
+                    consecutiveNotes.push(items[j]);
+                    j++;
+                  }
+                  if (consecutiveNotes.length > 1) {
+                    // Merge consecutive Notes
+                    const firstNote = consecutiveNotes[0];
+                    const lastNote = consecutiveNotes[consecutiveNotes.length - 1];
+                    const config = TypeConfig.Note;
+                    renderedItems.push(
+                      <div key={`merged-${i}`} className="p-4 hover:bg-gray-50 transition-colors group">
+                        <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6">
+                          <div className="flex-shrink-0 w-32 text-sm text-gray-500 font-mono flex items-center gap-2">
+                            <Calendar size={14} className="text-gray-400" />
+                            {new Date(firstNote.date).toLocaleDateString()} - {new Date(lastNote.date).toLocaleDateString()}
+                          </div>
+                          
+                          <div className="flex-grow min-w-0">
+                            <div className="flex items-baseline gap-3 flex-wrap mb-2">
+                              <span className="text-base font-medium text-gray-900">
+                                Multiple Notes ({consecutiveNotes.length} entries)
+                              </span>
+                              <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${config.color}`}>
+                                {config.label}
+                              </span>
+                            </div>
+                            
+                            <p className="text-sm text-gray-900">
+                              {consecutiveNotes.map((note, idx) => {
+                                const isExternal = note.link && typeof note.link === 'string' && note.link.startsWith("http");
+                                const separator = idx < consecutiveNotes.length - 1 ? ', ' : '';
+                                return (
+                                  <span key={idx}>
+                                    {note.link ? (
+                                      <Link 
+                                        href={note.link} 
+                                        target={isExternal ? "_blank" : undefined} 
+                                        className="hover:text-blue-600 hover:underline decoration-blue-500/30 transition-colors"
+                                      >
+                                        <MarkdownRenderer content={note.title} inline />
+                                        {isExternal && <ExternalLink size={12} className="inline ml-1 text-gray-400" />}
+                                      </Link>
+                                    ) : (
+                                      <MarkdownRenderer content={note.title} inline />
+                                    )}
+                                    {separator}
+                                  </span>
+                                );
+                              })}
+                            </p>
+                            
+                            {consecutiveNotes.some(note => note.tags && note.tags.length > 0) && (
+                              <div className="flex flex-wrap gap-2 mt-2">
+                                {consecutiveNotes.flatMap(note => note.tags || []).map((tag, idx) => (
+                                  <span key={idx} className="text-xs text-gray-400">
+                                    #{tag}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      )}
+                      </div>
+                    );
+                    i = j;
+                  } else {
+                    // Single Note
+                    const config = TypeConfig[item.type] || TypeConfig.Note;
+                    const isExternal = item.link && typeof item.link === 'string' && item.link.startsWith("http");
+                    
+                    renderedItems.push(
+                      <div key={i} className="p-4 hover:bg-gray-50 transition-colors group">
+                        <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6">
+                          <div className="flex-shrink-0 w-32 text-sm text-gray-500 font-mono flex items-center gap-2">
+                            <Calendar size={14} className="text-gray-400" />
+                            {new Date(item.date).toLocaleDateString()}
+                          </div>
+                          
+                          <div className="flex-grow min-w-0">
+                            <div className="flex items-baseline gap-3 flex-wrap">
+                              {item.link ? (
+                                <Link 
+                                  href={item.link} 
+                                  target={isExternal ? "_blank" : undefined} 
+                                  className="text-base font-medium text-gray-900 hover:text-blue-600 hover:underline decoration-blue-500/30 transition-colors"
+                                >
+                                  <MarkdownRenderer content={item.title} inline />
+                                  {isExternal && <ExternalLink size={14} className="inline ml-1 text-gray-400" />}
+                                </Link>
+                              ) : (
+                                <span className="text-base font-medium text-gray-900">
+                                  <MarkdownRenderer content={item.title} inline />
+                                </span>
+                              )}
+                              
+                              <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${config.color}`}>
+                                {config.label}
+                              </span>
+                            </div>
+                            
+                            {item.tags && item.tags.length > 0 && (
+                              <div className="flex flex-wrap gap-2 mt-1.5">
+                                {item.tags.map((tag, idx) => (
+                                  <span key={idx} className="text-xs text-gray-400">
+                                    #{tag}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                    i++;
+                  }
+                } else {
+                  // Non-Note item
+                  const config = TypeConfig[item.type] || TypeConfig.Note;
+                  const isExternal = item.link && typeof item.link === 'string' && item.link.startsWith("http");
+                  
+                  renderedItems.push(
+                    <div key={i} className="p-4 hover:bg-gray-50 transition-colors group">
+                      <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6">
+                        <div className="flex-shrink-0 w-32 text-sm text-gray-500 font-mono flex items-center gap-2">
+                          <Calendar size={14} className="text-gray-400" />
+                          {new Date(item.date).toLocaleDateString()}
+                        </div>
+                        
+                        <div className="flex-grow min-w-0">
+                          <div className="flex items-baseline gap-3 flex-wrap">
+                            {item.link ? (
+                              <Link 
+                                href={item.link} 
+                                target={isExternal ? "_blank" : undefined} 
+                                className="text-base font-medium text-gray-900 hover:text-blue-600 hover:underline decoration-blue-500/30 transition-colors"
+                              >
+                                <MarkdownRenderer content={item.title} inline />
+                                {isExternal && <ExternalLink size={14} className="inline ml-1 text-gray-400" />}
+                              </Link>
+                            ) : (
+                              <span className="text-base font-medium text-gray-900">
+                                <MarkdownRenderer content={item.title} inline />
+                              </span>
+                            )}
+                            
+                            <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${config.color}`}>
+                              {config.label}
+                            </span>
+                          </div>
+                          
+                          {item.tags && item.tags.length > 0 && (
+                            <div className="flex flex-wrap gap-2 mt-1.5">
+                              {item.tags.map((tag, idx) => (
+                                <span key={idx} className="text-xs text-gray-400">
+                                  #{tag}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              );
-            })}
+                  );
+                  i++;
+                }
+              }
+              return renderedItems;
+            })()}
           </div>
         </div>
       )}

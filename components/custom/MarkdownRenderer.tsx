@@ -33,6 +33,7 @@ export default function MarkdownRenderer({ content, className, inline = false }:
         remarkPlugins={[remarkMath, remarkGfm]}
         rehypePlugins={[rehypeKatex]}
         components={{
+          p: inline ? ({ children }) => <>{children}</> : "p",
           pre({ children, ...props }) {
             const child = Array.isArray(children) ? children[0] : children;
             if (
