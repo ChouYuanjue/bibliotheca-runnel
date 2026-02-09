@@ -1,6 +1,13 @@
 [
   {
     "type": "Fragment",
+    "title": "Multimodal Large Model-Based Bank Customer Emotion Recognition: Bank of Nanjing Project and R&D Insights",
+    "description": "Recently, the first phase of the Bank of Nanjing customer emotion recognition system project that I am in charge of has been successfully completed. During this period, I have been fully engaged in audio signal processing, multimodal large model inference optimization, and the adaptation of the bank's customer service quality inspection vertical scenario. There are no fancy achievement displays; instead, it has been a pragmatic exploration of stepping on pitfalls, making adjustments, and optimizing step by step. Now, the project is about to enter the key link of the second phase — using Bank of Nanjing's real business data for model fine-tuning. However, due to the strict control requirements on sensitive bank data, details related to sensitive data cannot be disclosed. For the subsequent specific technical implementation of fine-tuning, I will not elaborate on every technical detail for the time being. Combining the practice of the first phase, I will sort out the thoughts, adjustments, and insights during this R&D process, which is both a review of past work and a foreshadowing for subsequent R&D.",
+    "date": "2026-02-03",
+    "link": "/fragments/bank-of-nanjing"
+  },
+  {
+    "type": "Fragment",
     "title": "Project Refactoring Development Diary: The \"Violent Migration\" from Vite to Next.js",
     "description": "These two days, I experienced the first vigorous and intense major project refactoring of my life. The whole process was full of pitfalls, my technical understanding was repeatedly challenged, and I even used a bug in reverse to solve a deployment problem. Looking back now, it’s still absurd and unforgettable. I’m recording all the details here for future review (most likely not) and to help fellow developers who might step into the same pitfalls avoid them.",
     "date": "2026-02-02",
