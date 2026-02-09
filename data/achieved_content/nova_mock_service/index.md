@@ -1,5 +1,5 @@
 ---
-title: "REPO: NOVA_Mock_Service"
+title: "REPO: NOVA Mock Service"
 state: "ACHIEVED"
 date: "2025-10-25T03:05:10Z"
 description: "This project serves as a Mock Service for the Nova 2025 Information Integration Tool Collaboration Project, aligning with the design of the \"Collaboration Integration Plan (Draft)\" to facilitate parallel development and integration testing between frontend, backend, and various teams."

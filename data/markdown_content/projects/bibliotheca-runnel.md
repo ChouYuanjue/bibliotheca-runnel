@@ -1,5 +1,3 @@
-# Bibliotheca Runnel
-
 **Bibliotheca Runnel** is the personal academic portal and digital archive of myself. It serves as a curated collection of knowledge, spanning from informal mathematical notes to classical literary works and linguistic research.
 
 ## Overview

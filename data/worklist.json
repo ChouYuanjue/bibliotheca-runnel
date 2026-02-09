@@ -36,7 +36,7 @@
   },
   {
     "type": "Project",
-    "title": "PDF_Summary_Tool",
+    "title": "PDF Summary Tool",
     "description": "一个强大的Python工具，用于将PDF文档转换为结构化文本，并利用先进的AI模型生成高质量的内容总结和关键词提炼。",
     "date": "2025-12-10T06:40:42Z",
     "link": "https://github.com/ChouYuanjue/PDF_Summary_Tool"
@@ -64,7 +64,7 @@
   },
   {
     "type": "Achieved",
-    "title": "REPO: Guidance_for_New_NJUers",
+    "title": "REPO: Guidance for New NJUers",
     "description": "Crawled from Nanwhere Assistant's Yuque guide for 25th cohort new students. This project is an intermediate product of a nova club initiative.",
     "date": "2025-11-29T06:17:54Z",
     "link": "/achieved/guidance_for_new_njuers"
@@ -99,14 +99,14 @@
   },
   {
     "type": "Achieved",
-    "title": "REPO: Informal_Notes_on_Mathematics",
+    "title": "REPO: Informal Notes on Mathematics",
     "description": "This is a project for storing notes and materials recorded during the process of self-studying mathematics. Originally published via FigShare, DOI: 10.6084/m9.figshare.c.6094833.v7",
     "date": "2025-11-08T13:29:56Z",
     "link": "/achieved/informal_notes_on_mathematics"
   },
   {
     "type": "Achieved",
-    "title": "REPO: NOVA_Mock_Service",
+    "title": "REPO: NOVA Mock Service",
     "description": "This project serves as a Mock Service for the Nova 2025 Information Integration Tool Collaboration Project, aligning with the design of the \"Collaboration Integration Plan (Draft)\" to facilitate parallel development and integration testing between frontend, backend, and various teams.",
     "date": "2025-10-25T03:05:10Z",
     "link": "/achieved/nova_mock_service"
@@ -134,7 +134,7 @@
   },
   {
     "type": "Project",
-    "title": "AI_Emoji_Kitchen_Lab",
+    "title": "AI Emoji Kitchen Lab",
     "description": "这是一个基于深度学习的表情符号（Emoji）融合项目，旨在于通过大模型实现Google Emoji Kitchen风格的表情符号融合，能够将两个不同的emoji融合成一个全新的、富有创意的emoji图像。",
     "date": "2025-10-09T04:18:52Z",
     "link": "https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab"
@@ -155,14 +155,14 @@
   },
   {
     "type": "Achieved",
-    "title": "REPO: Yuque_LLM_Wiki",
+    "title": "REPO: Yuque LLM Wiki",
     "description": "This project focuses on converting Yuque documents into structured formats, enabling seamless integration with LLMs. It was developed as part of the first practice group project by the Nova Club at Nanjing University in 2025.",
     "date": "2025-09-23T11:39:15Z",
     "link": "/achieved/yuque_llm_wiki"
   },
   {
     "type": "Project",
-    "title": "Tangut_Chinese_Translator",
+    "title": "Tangut-Chinese Translator",
     "description": "一个西夏文-中文双向翻译器",
     "date": "2025-09-17T11:36:28Z",
     "link": "https://github.com/ChouYuanjue/Tangut_Chinese_Translator"
@@ -694,7 +694,7 @@
   },
   {
     "type": "Achieved",
-    "title": "REPO: doge_docs (for v3)",
+    "title": "REPO: doge docs (for v3)",
     "description": "The document of doge-v3.",
     "date": "2022-09-18T02:06:43Z",
     "link": "/achieved/doge_docs"

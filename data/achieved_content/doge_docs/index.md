@@ -1,5 +1,5 @@
 ---
-title: "REPO: doge_docs (for v3)"
+title: "REPO: doge docs (for v3)"
 state: "ACHIEVED"
 date: "2022-09-18T02:06:43Z"
 description: "The document of doge-v3."

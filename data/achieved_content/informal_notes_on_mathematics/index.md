@@ -1,5 +1,5 @@
 ---
-title: "REPO: Informal_Notes_on_Mathematics"
+title: "REPO: Informal Notes on Mathematics"
 state: "PHASED"
 date: "2025-11-08T13:29:56Z"
 description: "This is a project for storing notes and materials recorded during the process of self-studying mathematics. Originally published via FigShare, DOI: 10.6084/m9.figshare.c.6094833.v7"

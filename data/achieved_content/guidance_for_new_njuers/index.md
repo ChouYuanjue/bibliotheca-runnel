@@ -1,5 +1,5 @@
 ---
-title: "REPO: Guidance_for_New_NJUers"
+title: "REPO: Guidance for New NJUers"
 state: "ACHIEVED"
 date: "2025-11-29T06:17:54Z"
 description: "Crawled from Nanwhere Assistant's Yuque guide for 25th cohort new students. This project is an intermediate product of a nova club initiative."

@@ -1,5 +1,5 @@
 ---
-title: "REPO: Yuque_LLM_Wiki"
+title: "REPO: Yuque LLM Wiki"
 state: "ARCHIVED"
 date: "2025-09-23T11:39:15Z"
 description: "This project focuses on converting Yuque documents into structured formats, enabling seamless integration with LLMs. It was developed as part of the first practice group project by the Nova Club at Nanjing University in 2025."

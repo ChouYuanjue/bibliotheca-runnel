@@ -13,7 +13,7 @@
   },
   {
     "id": "tangut_chinese_translator",
-    "title": "Tangut_Chinese_Translator",
+    "title": "Tangut-Chinese Translator",
     "description": "一个西夏文-中文双向翻译器",
     "githubUrl": "https://github.com/ChouYuanjue/Tangut_Chinese_Translator",
     "stars": 1,
@@ -25,7 +25,7 @@
   },
   {
     "id": "ai_emoji_kitchen_lab",
-    "title": "AI_Emoji_Kitchen_Lab",
+    "title": "AI Emoji Kitchen Lab",
     "description": "这是一个基于深度学习的表情符号（Emoji）融合项目，旨在于通过大模型实现Google Emoji Kitchen风格的表情符号融合，能够将两个不同的emoji融合成一个全新的、富有创意的emoji图像。",
     "githubUrl": "https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab",
     "stars": 1,
@@ -37,7 +37,7 @@
   },
   {
     "id": "pdf_summary_tool",
-    "title": "PDF_Summary_Tool",
+    "title": "PDF Summary Tool",
     "description": "一个强大的Python工具，用于将PDF文档转换为结构化文本，并利用先进的AI模型生成高质量的内容总结和关键词提炼。",
     "githubUrl": "https://github.com/ChouYuanjue/PDF_Summary_Tool",
     "stars": 9,
