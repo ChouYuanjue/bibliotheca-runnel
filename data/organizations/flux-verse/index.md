@@ -5,7 +5,7 @@ date: "2026-01"
 endDate: "Present"
 icon: "icon.jpg"
 website: "https://xhslink.com/m/1J6l9wzqysB/"
-description: "The original \"Nanckathon\". We aim to build Nanjing's most distinctive brand in the innovation and entrepreneurship ecosystem, sharing the most exciting AI maker event information from all over China every week."
+description: "The original \"Nanckathon\". We aim to share the most exciting AI maker event information from all over China every week."
 ---
 # About Us
 
