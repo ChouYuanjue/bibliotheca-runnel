@@ -1,6 +1,13 @@
 [
   {
     "type": "Fragment",
+    "title": "Architecture Evolution and Breakthrough: How to \"Smuggle\" Traffic During ICP Filing Window",
+    "description": "Deploying Web services in mainland China requires ICP filing — an administrative requirement mandated by China’s Ministry of Industry and Information Technology. During the approximately 20-day \"filing window\" period, which follows submission and before official approval, domain names pointing to domestic servers must remain silent — unable to serve any actual content or functionality. This poses a significant challenge for early-stage startups urgently needing to validate product-market fit and capture early adopters. This article documents a complete, real-world technical implementation that enables traffic \"smuggling\" during the ICP filing window while remaining fully compliant with regulations. It covers core strategy design, practical deployment challenges encountered (including microservice-GFW conflicts and third-party callback anomalies), solution implementation, and the construction and upgrade of a security protection system — preserving every technical detail and troubleshooting process for teams facing similar constraints.",
+    "date": "2026-02-08",
+    "link": "/fragments/icp-smuggle"
+  },
+  {
+    "type": "Fragment",
     "title": "Multimodal Large Model-Based Bank Customer Emotion Recognition: Bank of Nanjing Project and R&D Insights",
     "description": "Recently, the first phase of the Bank of Nanjing customer emotion recognition system project that I am in charge of has been successfully completed. During this period, I have been fully engaged in audio signal processing, multimodal large model inference optimization, and the adaptation of the bank's customer service quality inspection vertical scenario. There are no fancy achievement displays; instead, it has been a pragmatic exploration of stepping on pitfalls, making adjustments, and optimizing step by step. Now, the project is about to enter the key link of the second phase — using Bank of Nanjing's real business data for model fine-tuning. However, due to the strict control requirements on sensitive bank data, details related to sensitive data cannot be disclosed. For the subsequent specific technical implementation of fine-tuning, I will not elaborate on every technical detail for the time being. Combining the practice of the first phase, I will sort out the thoughts, adjustments, and insights during this R&D process, which is both a review of past work and a foreshadowing for subsequent R&D.",
     "date": "2026-02-03",
