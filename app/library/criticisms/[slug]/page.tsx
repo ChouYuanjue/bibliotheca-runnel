@@ -54,7 +54,7 @@ export default async function CriticismPage({ params }: { params: { slug: string
                     {new Date(item.date).toLocaleDateString()}
                 </span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 font-serif mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 font-serif mb-6 leading-tight">
                 {item.title}
             </h1>
             
@@ -69,12 +69,12 @@ export default async function CriticismPage({ params }: { params: { slug: string
                 </div>
             )}
 
-            <p className="text-xl text-gray-600 italic leading-relaxed">
+            <p className="text-lg text-gray-600 italic leading-relaxed">
                 {item.description}
             </p>
         </header>
 
-        <MarkdownRenderer content={item.content} className="prose-lg" />
+        <MarkdownRenderer content={item.content} className="prose" />
       </article>
     </div>
   );

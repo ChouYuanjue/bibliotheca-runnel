@@ -59,8 +59,8 @@ export default async function ProjectPage({ params }: { params: { slug: string }
       <header className="mb-12 border-b border-gray-100 pb-8">
         <div className="flex justify-between items-start flex-wrap gap-4">
             <div>
-                <h1 className="text-4xl font-bold text-gray-900 mb-4 font-serif">{meta.title}</h1>
-                <p className="text-xl text-gray-600 max-w-2xl">{meta.description}</p>
+                <h1 className="text-3xl font-bold text-gray-900 mb-4 font-serif">{meta.title}</h1>
+                <p className="text-lg text-gray-600 max-w-2xl">{meta.description}</p>
             </div>
             {meta.type !== "commercial" && meta.githubUrl && (
                 <a 
@@ -91,7 +91,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
 
       <MarkdownRenderer 
         content={content} 
-        className="prose-lg"
+        className="prose"
       />
     </div>
   );

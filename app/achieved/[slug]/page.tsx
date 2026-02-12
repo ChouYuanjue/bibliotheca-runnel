@@ -59,8 +59,8 @@ export default async function AchievedPage({ params }: { params: { slug: string 
                 {new Date(item.date).toLocaleDateString()}
             </span>
         </div>
-        <h1 className="text-4xl font-bold text-gray-900 font-serif mb-4">{item.title}</h1>
-        <p className="text-xl text-gray-600">{item.description}</p>
+        <h1 className="text-3xl font-bold text-gray-900 font-serif mb-4">{item.title}</h1>
+        <p className="text-lg text-gray-600">{item.description}</p>
         
         {item.githubUrl && (
             <a href={item.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-blue-600 hover:underline">
@@ -69,7 +69,7 @@ export default async function AchievedPage({ params }: { params: { slug: string 
         )}
       </div>
 
-      <MarkdownRenderer content={item.content} className="prose-lg" />
+      <MarkdownRenderer content={item.content} className="prose" />
     </div>
   );
 }

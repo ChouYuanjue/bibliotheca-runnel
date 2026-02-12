@@ -59,7 +59,7 @@ export default async function LinguisticsArticlePage({ params }: { params: { slu
       <article className="prose prose-xl prose-slate max-w-none prose-headings:font-serif prose-p:font-serif prose-li:font-serif">
         <div className="mb-8 border-b border-gray-200 pb-8">
             <div className="text-sm text-gray-500 font-mono mb-2">/{meta.slug}/</div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4 font-serif">{meta.title}</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-4 font-serif">{meta.title}</h1>
             <div className="flex items-center gap-4 text-gray-600">
                 {meta.tags && (
                     <div className="flex gap-2">
@@ -74,7 +74,7 @@ export default async function LinguisticsArticlePage({ params }: { params: { slu
         </div>
         
         <div className="leading-relaxed">
-          <MarkdownRenderer content={content} className="prose-xl" />
+          <MarkdownRenderer content={content} className="prose-lg" />
         </div>
       </article>
     </div>
