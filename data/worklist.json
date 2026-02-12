@@ -231,13 +231,6 @@
     "link": "/fragments/name-game"
   },
   {
-    "type": "Linguistics",
-    "title": "Miscellanea X. The Lacanian L-Schema in Hemingway's The Old Man and the Sea",
-    "description": "A Lacanian linguistic analysis utilizing the \"L-schema\" (or L'Automaton) to examine the structural and architectural characteristics of Ernest Hemingway's literary corpus, with a specific focus on the novel The Old Man and the Sea.",
-    "date": "2025-03-10",
-    "link": "/library/linguistics/miscellanea-x-lacanian-l-schema"
-  },
-  {
     "type": "Note",
     "title": "N-20250211",
     "description": "This document provides a comprehensive overview of geometric transformations—affine, projective, inversion, Euclidean, and similarity—and their applications to conic sections, emphasizing invariants and classification. Affine transformations preserve collinearity and parallelism but not distances; projective geometry introduces points at infinity and cross-ratio invariance; inversion is conformal and maps circles to circles or lines. The discussion highlights connections to the Erlangen Program, illustrating how different geometries unify and classify conics through transformation groups and invariants.",
@@ -253,9 +246,16 @@
   },
   {
     "type": "Linguistics",
+    "title": "Miscellanea X. The Lacanian L-Schema in Hemingway's The Old Man and the Sea",
+    "description": "A Lacanian linguistic analysis utilizing the \"L-schema\" (or L'Automaton) to examine the structural and architectural characteristics of Ernest Hemingway's literary corpus, with a specific focus on the novel The Old Man and the Sea.",
+    "date": "2024-10-18",
+    "link": "/library/linguistics/miscellanea-x-lacanian-l-schema"
+  },
+  {
+    "type": "Linguistics",
     "title": "Miscellanea IX. Saussure, Lacan, and the Language of Hemingway",
     "description": "A philosophical analysis of Ernest Hemingway's literary style, employing the Saussurean and Lacanian concepts of the signifier (French: signifiant) and the signified (French: signifié) to explore the deeper linguistic and philosophical implications of his work.",
-    "date": "2024-11-15",
+    "date": "2024-10-17",
     "link": "/library/linguistics/miscellanea-ix-saussure-lacan-hemingway"
   },
   {
@@ -266,25 +266,11 @@
     "link": "/library/criticisms/cthulhu-borges"
   },
   {
-    "type": "Linguistics",
-    "title": "Miscellanea VIII. Notes on German Orthography and Morphology",
-    "description": "An introductory overview of the principles governing German orthography (German: Rechtschreibung) and word formation (morphology), while also earnestly expanding upon the classic “Euro-English” jest regarding the \"Germanification\" of English.",
-    "date": "2024-08-01",
-    "link": "/library/linguistics/miscellanea-viii-german-orthography"
-  },
-  {
     "type": "Fragment",
     "title": "Echoes of Summer — From Hopf Fibrations to Higher Algebra",
     "description": "During the summer, while scrolling through my QQ space, I stumbled upon a dynamic update from **Dr. Peng Keyao** (now, rightfully, **Prof. Peng**). It was a poster for his recent lecture titled *\"From Elementary Arithmetic to Higher Algebra.\"* Seeing his name instantly triggered a wave of nostalgia, transporting me back to the summer of 2021.\r\n\r\nThree years ago, he gave us a lecture on the **Hopf Fibration**. I still vividly remember spending days preparing for it, scribbling notes, and trying to wrap my head around the topology of spheres. The note is available at [Chaoli Forum](https://chaoli.club/index.php/6596), with a DOI: [10.6084/M9.FIGSHARE.20310042](https://doi.org/10.6084/M9.FIGSHARE.20310042).\r\n\r\nTime changes things — Dr. Peng has ascended to a postdoc at the Université de Bourgogne and been teaching Algebraic Geometry courses, and the topics have evolved from classical topology to the cutting-edge realm of **Infinity Categories** and **Higher Algebra**.\r\n\r\nAlthough I deeply regret missing his 2024 lecture, looking at the lecture abstract and the meme he famously shared back in the day (which seems to bridge his past and present research), I feel a strange sense of temporal overlap. The memories of 2021 have superimposed onto the reality of 2024.\r\n\r\nBelow is the context of his recent talk, followed by my attempt to decode that legendary \"Galaxy Brain\" meme, tracing the path from a simple sphere mapping to the profound \"truth\" of $0=1-1=-1+1=0$.",
     "date": "2024-07-27",
     "link": "/fragments/hopf-meme"
-  },
-  {
-    "type": "Linguistics",
-    "title": "Miscellanea VII. Harp in Tsarskoye Selo (Арфа в Царском Селе)",
-    "description": "An examination of the historical and cultural factors, including the phenomenon of галломания, that led to the significant number of shared lexical items between Russian and French despite their divergent linguistic origins. The essay also specifically highlights the substantial contributions of Pushkin to the development of the Russian language.",
-    "date": "2024-04-20",
-    "link": "/library/linguistics/miscellanea-vii-harp-tsarskoye-selo"
   },
   {
     "type": "Note",
@@ -301,18 +287,18 @@
     "link": "/notes/2024/N-20240323.pdf"
   },
   {
+    "type": "Linguistics",
+    "title": "Miscellanea VIII. Notes on German Orthography and Morphology",
+    "description": "An introductory overview of the principles governing German orthography (German: Rechtschreibung) and word formation (morphology), while also earnestly expanding upon the classic “Euro-English” jest regarding the \"Germanification\" of English.",
+    "date": "2024-03-11",
+    "link": "/library/linguistics/miscellanea-viii-german-orthography"
+  },
+  {
     "type": "Note",
     "title": "N-20240211",
     "description": "This document provides an informal overview of category theory and Topos theory, focusing on foundational concepts such as categories, limits (including products, pullbacks, and equalizers), and their role in defining a Topos—a category generalizing set theory with finite limits, exponential objects, and a subobject classifier. It explores how Topos theory bridges geometry, algebra, and logic, particularly through its internal intuitionistic logic, and discusses applications in model theory, sheaf theory, and potential connections to higher category theory and physics. The author includes examples, proofs, and speculative insights on unifying these concepts across mathematics.",
     "date": "2024-02-11",
     "link": "/notes/2024/N-20240211.pdf"
-  },
-  {
-    "type": "Linguistics",
-    "title": "Miscellanea VI. A Phonetic Study of Suqian Dialects",
-    "description": "An investigative phonetic transcription (IPA) of two distinct dialects within Suqian (Chinese: 宿迁): the local Suqian dialect and the Shuyang County (Chinese: 沭阳县) dialect. The analysis concludes that these dialects correspond to Zhongyuan Mandarin (Chinese: 中原官话) and Huaibei Mandarin (Chinese: 淮北官话), respectively.",
-    "date": "2024-01-10",
-    "link": "/library/linguistics/miscellanea-vi-suqian-dialects"
   },
   {
     "type": "Fragment",
@@ -322,13 +308,6 @@
     "link": "/fragments/marching-drill"
   },
   {
-    "type": "Linguistics",
-    "title": "Miscellanea V. Fit to Be Called Langdang, But Daring Not to Speak Longzhong (堪作郎当语，不敢语龙钟)",
-    "description": "An etymological and phonological analysis demonstrating the cognate relationship between the Chinese words “郎当” and “龙钟”. Drawing on ancient poetry and historical anecdotes, the essay examines the nuanced emotional similarities and differences between the terms, concluding with personal reflections.",
-    "date": "2023-10-25",
-    "link": "/library/linguistics/miscellanea-v-langdang-longzhong"
-  },
-  {
     "type": "Fragment",
     "title": "The Zermelo-Hessian-Kan Program and Its Real-World Metaphors",
     "description": "Taking the fictional \"Zermelo-Hessian-Kan (ZHK) Program\" as the carrier, this paper conducts in-depth theoretical reconstruction and academic packaging. Its core purpose is to reflect and ridicule some inappropriate behaviors of our high school psychology teacher in daily teaching and interaction—such as his arbitrary judgment style and expression habits that ignore others' feelings—with a satirical tone. It should be clearly stated that all academic deductions and satirical expressions in this paper are for entertainment purposes, purely a fun creation among classmates, without any tendency of malicious attack or negative slander. This paper will construct a self-consistent unified theory of \"absolute will\" through rigorous mathematical language (especially Kan extensions in category theory, critical point theory in calculus, and axiomatic set theory), completing a gentle mockery and interesting presentation of the relevant inappropriate behaviors in the form of absurd academic expression.",
@@ -336,18 +315,32 @@
     "link": "/fragments/zhk-program"
   },
   {
+    "type": "Linguistics",
+    "title": "Miscellanea VII. Fit to Be Called Langdang, But Daring Not to Speak Longzhong (堪作郎当语，不敢语龙钟)",
+    "description": "An etymological and phonological analysis demonstrating the cognate relationship between the Chinese words “郎当” and “龙钟”. Drawing on ancient poetry and historical anecdotes, the essay examines the nuanced emotional similarities and differences between the terms, concluding with personal reflections.",
+    "date": "2023-09-09",
+    "link": "/library/linguistics/miscellanea-vii-langdang-longzhong"
+  },
+  {
+    "type": "Linguistics",
+    "title": "Miscellanea VI. A Phonetic Study of Suqian Dialects",
+    "description": "An investigative phonetic transcription (IPA) of two distinct dialects within Suqian (Chinese: 宿迁): the local Suqian dialect and the Shuyang County (Chinese: 沭阳县) dialect. The analysis concludes that these dialects correspond to Zhongyuan Mandarin (Chinese: 中原官话) and Jianghuai Mandarin (Chinese: 江淮官话), respectively.",
+    "date": "2023-08-25",
+    "link": "/library/linguistics/miscellanea-vi-suqian-dialects"
+  },
+  {
+    "type": "Linguistics",
+    "title": "Miscellanea V. Harp in Tsarskoye Selo (Бряцанье в Царском Селе)",
+    "description": "An examination of the historical and cultural factors, including the phenomenon of галломания, that led to the significant number of shared lexical items between Russian and French despite their divergent linguistic origins. The essay also specifically highlights the substantial contributions of Pushkin to the development of the Russian language.",
+    "date": "2023-08-08",
+    "link": "/library/linguistics/miscellanea-v-harp-tsarskoye-selo"
+  },
+  {
     "type": "Note",
     "title": "N-20230801",
     "description": "This document is a reading note on Hitchin's seminal paper \"The Self-Duality Equations on a Riemann Surface,\" focusing on the reduction of four-dimensional self-dual Yang-Mills equations to two-dimensional Riemann surfaces, resulting in the Hitchin equations: \\( F_A + [\\Phi, \\Phi^*] = 0 \\) and \\( \\partial_A \\Phi = 0 \\). It explores the mathematical foundations of Yang-Mills theory, the role of Higgs bundles, and the construction of moduli spaces with integrable system structures via spectral curves and Hitchin fibration. Key connections to geometric Langlands conjecture and S-duality in physics are discussed, alongside stability conditions, open problems, and potential generalizations to non-compact or higher-dimensional settings.",
     "date": "2023-08-01",
     "link": "/notes/2023/N-20230801.pdf"
-  },
-  {
-    "type": "Linguistics",
-    "title": "Miscellanea IV. The Tragedy and Comedy of Xiding Language",
-    "description": "An analysis of the features, variants, and evolution of the constructed language known as Xiding Language (Chinese: 希顶语). The study also includes a description of the current dynamics within the domestic Chinese online linguistics community and the personal history of the language's creator, Huang Quefei (Chinese: 黄雀飞).",
-    "date": "2023-07-15",
-    "link": "/library/linguistics/miscellanea-iv-xiding-language"
   },
   {
     "type": "Note",
@@ -358,10 +351,24 @@
   },
   {
     "type": "Linguistics",
+    "title": "Miscellanea IV. The Tragedy and Comedy of Xiding Language",
+    "description": "An analysis of the features, variants, and evolution of the constructed language known as Xiding Language (Chinese: 希顶语). The study also includes a description of the current dynamics within the domestic Chinese online linguistics community and the personal history of the language's creator, Huang Quefei (Chinese: 黄雀飞).",
+    "date": "2023-05-02",
+    "link": "/library/linguistics/miscellanea-iv-xiding-language"
+  },
+  {
+    "type": "Linguistics",
     "title": "Miscellanea III. The Everlasting Sound of the Partridge (千古鹧鸪声)",
     "description": "An investigation into the origin of two distinct literary \"phonetic representations\" (Chinese: “音译”) of the partridge (Chinese: 鹧鸪) call in ancient Chinese literature—namely, “行不得也哥哥” (Literally: 'Cannot go, my elder brother') and “懊恼泽家” (Literally: 'Vexed by the suffering caused by one's husband's family')—by analyzing the actual phonology of Middle Chinese.",
-    "date": "2023-04-05",
+    "date": "2023-04-19",
     "link": "/library/linguistics/miscellanea-iii-partridge-sound"
+  },
+  {
+    "type": "Linguistics",
+    "title": "Miscellanea II. Reconstructing Tangut Phonology: An Analysis of Gong Hwang-cherng's Symbols",
+    "description": "A reconstruction of Tangut (Chinese: 西夏文) phonology by correlating selected Tangut textual data and their corresponding Chinese phonetic transcriptions, specifically aiming to establish the actual correspondence between Gong Hwang-cherng (Chinese: 龚煌城)'s proposed reconstruction symbols and the International Phonetic Alphabet (IPA).",
+    "date": "2023-03-29",
+    "link": "/library/linguistics/miscellanea-ii-tangut-phonology"
   },
   {
     "type": "Note",
@@ -418,6 +425,13 @@
     "description": "This document presents informal mathematical notes focusing on trigonometric identities and matrix determinants. It begins by correcting a prior error in a trigonometric expression involving angles α and β, then explores solving a system of equations given sinα+sinβ=1/2 and cosα-cosβ=1/3 to find cosαcosβ, proposing two methods—one algebraic involving rational and irrational components, and another matrix-based approach that was incomplete. The notes also review multiple-angle formulas and recurrence relations for sin(nx), cos(nx), and tan(nx). Finally, it proves that the determinant of a specific tridiagonal n×n matrix with 2cosθ on the diagonal and 1s on the sub- and super-diagonals equals cos(nθ), using a recurrence relation and induction.",
     "date": "2023-02-23",
     "link": "/notes/2023/N-20230223.pdf"
+  },
+  {
+    "type": "Linguistics",
+    "title": "Miscellanea I. A Phonological Study of Near-/i/ Vowels Across Languages",
+    "description": "An IPA-based phonological analysis of near-/i/ vowels in various languages, including an examination of the actual realization of vowels in Chinese Pinyin syllables like zi, ci, and si, Japanese su (す), and Russian y (ы).",
+    "date": "2023-02-22",
+    "link": "/library/linguistics/miscellanea-i-near-i-vowels"
   },
   {
     "type": "Note",
@@ -565,13 +579,6 @@
     "description": "This document presents informal notes on topology, focusing on metric spaces and homeomorphisms. Key points include: metric spaces may not be complete (e.g., Q), but can be completed (e.g., Q to R); homeomorphisms require bijective continuous functions with continuous inverses, unlike group isomorphisms, and are not preserved under metric properties like completeness or boundedness (e.g., (0,1) homeomorphic to R but differing in these properties). Examples illustrate homeomorphisms (e.g., torus to coffee cup, (-1,1) to R) and non-homeomorphic continuous bijections. The open set condition for continuity is stated and partially proven. Additionally, sets in metric spaces can be both open and closed (clopen), demonstrated with M = [0,1] ∪ (2,3). The notes emphasize transitioning from metric-based concepts to broader topological ideas.",
     "date": "2022-12-21",
     "link": "/notes/2022/N-20221221.pdf"
-  },
-  {
-    "type": "Linguistics",
-    "title": "Miscellanea II. Reconstructing Tangut Phonology: An Analysis of Gong Hwang-cherng's Symbols",
-    "description": "A reconstruction of Tangut (Chinese: 西夏文) phonology by correlating selected Tangut textual data and their corresponding Chinese phonetic transcriptions, specifically aiming to establish the actual correspondence between Gong Hwang-cherng (Chinese: 龚煌城)'s proposed reconstruction symbols and the International Phonetic Alphabet (IPA).",
-    "date": "2022-12-20",
-    "link": "/library/linguistics/miscellanea-ii-tangut-phonology"
   },
   {
     "type": "Note",
@@ -740,13 +747,6 @@
     "description": "This document provides a comprehensive summary of formulas and concepts related to lines and circles in coordinate geometry. Key topics covered include: slope and inclination angle formulas; conditions for parallel and perpendicular lines; five forms of linear equations (point-slope, slope-intercept, two-point, intercept, and general); direction and normal vectors; vector-based equations; angle formulas between lines; distance formulas (between points, point to line, and parallel lines); and four types of line families (fixed-point, concurrent, parallel, and perpendicular). It also introduces circle equations (standard and general forms) and discusses line-circle and circle-circle positional relationships, including geometric and algebraic criteria. Several examples illustrate applications, such as range determination under constraints, maximum distance calculations, and geometric problem-solving involving triangles and curves. The document serves as a condensed reference for fundamental principles in two-dimensional analytic geometry.",
     "date": "2022-09-11",
     "link": "/notes/2022/N-20220911.pdf"
-  },
-  {
-    "type": "Linguistics",
-    "title": "Miscellanea I. A Phonological Study of Near-/i/ Vowels Across Languages",
-    "description": "An IPA-based phonological analysis of near-/i/ vowels in various languages, including an examination of the actual realization of vowels in Chinese Pinyin syllables like zi, ci, and si, Japanese su (す), and Russian y (ы).",
-    "date": "2022-09-10",
-    "link": "/library/linguistics/miscellanea-i-near-i-vowels"
   },
   {
     "type": "Note",

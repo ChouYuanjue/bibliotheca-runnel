@@ -3,7 +3,7 @@ id: "miscellanea-ii"
 title: "Miscellanea II. Reconstructing Tangut Phonology: An Analysis of Gong Hwang-cherng's Symbols"
 description: "A reconstruction of Tangut (Chinese: 西夏文) phonology by correlating selected Tangut textual data and their corresponding Chinese phonetic transcriptions, specifically aiming to establish the actual correspondence between Gong Hwang-cherng (Chinese: 龚煌城)'s proposed reconstruction symbols and the International Phonetic Alphabet (IPA)."
 slug: "miscellanea-ii-tangut-phonology"
-date: "2022-12-20"
+date: "2023-03-29"
 tags: [Tangut, Phonology, Historical Linguistics]
 ---
 Gong Hwang-cherng’s reconstruction of Tangut phonology is widely accepted in the international academic community, but it still shows significant divergence from the International Phonetic Alphabet (IPA), and many of his symbols remain unfamiliar. Today, attempting to read them feels quite difficult. Here, I make some tentative correspondences.

@@ -3,7 +3,7 @@ id: "miscellanea-iii"
 title: "Miscellanea III. The Everlasting Sound of the Partridge (千古鹧鸪声)"
 description: "An investigation into the origin of two distinct literary \"phonetic representations\" (Chinese: “音译”) of the partridge (Chinese: 鹧鸪) call in ancient Chinese literature—namely, “行不得也哥哥” (Literally: 'Cannot go, my elder brother') and “懊恼泽家” (Literally: 'Vexed by the suffering caused by one's husband's family')—by analyzing the actual phonology of Middle Chinese."
 slug: "miscellanea-iii-partridge-sound"
-date: "2023-04-05"
+date: "2023-04-19"
 tags: [Middle Chinese, Literature, Phonology]
 ---
 My previous notes seemed a bit too obscure and baffling, so this time I will attempt to write about something more relatable. The cry of the partridge (*Francolinus pintadeanus*) has always been a favorite topic among the literati. Besides the widely popular interpretation "Xing bu de ye ge ge" (Brother, you must not go), there is another version known as "Ao nao ze jia" (Vexed by the in-laws). Wei Zhuang wrote in a poem: "The people of Qin only understand it as a song title, while the girls of Yue weave it into their robes in vain. 'Vexed by the in-laws' harbors no true hatred; year after year, it longs to return to the Phoenix City." Huang Shan'gu (Huang Tingjian) also wrote: "The True Man dreams of leaving the Great Locust Palace, washing the vast skies of Cangwu clean for ten thousand miles. All day long, worrying that his brother cannot travel, the partridge must surely be the Lord of Biting."

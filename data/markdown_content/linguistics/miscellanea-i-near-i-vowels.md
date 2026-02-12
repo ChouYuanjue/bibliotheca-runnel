@@ -3,7 +3,7 @@ id: "miscellanea-i"
 title: "Miscellanea I. A Phonological Study of Near-/i/ Vowels Across Languages"
 description: "An IPA-based phonological analysis of near-/i/ vowels in various languages, including an examination of the actual realization of vowels in Chinese Pinyin syllables like zi, ci, and si, Japanese su (す), and Russian y (ы)."
 slug: "miscellanea-i-near-i-vowels"
-date: "2022-09-10"
+date: "2023-02-22"
 tags: [Phonology, IPA, Comparative Linguistics]
 ---
 
