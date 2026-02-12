@@ -1,11 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Sidebar from "@/components/ui/Sidebar";
 import MobileNav from "@/components/ui/MobileNav";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
+const notoSerifTangut = localFont({
+  src: "../public/classics/NotoSerifTangut-Regular.ttf",
+  variable: "--font-noto-serif-tangut",
+  display: "swap",
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -24,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} ${notoSerifTangut.variable}`}>
       <body className="font-sans bg-white text-gray-900 antialiased">
         <div className="min-h-screen">
           <MobileNav />

@@ -9,8 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-inter)", "Noto Serif Tangut", "sans-serif"],
-        serif: ["var(--font-playfair)", "Noto Serif Tangut", "serif"],
+        sans: ["var(--font-inter)", "var(--font-noto-serif-tangut)", "sans-serif"],
+        serif: ["var(--font-playfair)", "var(--font-noto-serif-tangut)", "serif"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
