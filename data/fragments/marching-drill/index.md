@@ -68,7 +68,7 @@ In category theory, the core significance of the Right Kan Extension is to appro
 
 ## III. Distance Metricization and Topological Alienation
 
-Mr. Bao Haimo jokingly referred to CS as "Chusheng" (a homophone for "beast" in Chinese), which is not only a linguistic joke, but also a profound insight into the dehumanization phenomenon in marching drill. Behind it lies the metric properties of configuration spaces and the theory of homological stability, which can be used to accurately interpret the topological alienation essence referred to by "Chusheng" through mathematical tools.
+Mr. Bao Haimo jokingly referred to CS as "**Chusheng**" (a homophone for "beast" in Chinese), which is not only a linguistic joke, but also a profound insight into the dehumanization phenomenon in marching drill. Behind it lies the metric properties of configuration spaces and the theory of homological stability, which can be used to accurately interpret the topological alienation essence referred to by "**Chusheng**" through mathematical tools.
 
 ### (1) Potential Energy Function and Distance Constraint
 
@@ -80,7 +80,7 @@ However, a deeper irony lies in **Homological Stability**. The mathematician Arn
 
 ### (2) Homological Stability and Individual Alienation
 
-Here, "humans" as subjects with independent will are completely alienated into pure elements that maintain the stability of the quotient topological structure. What Mr. Bao refers to as "Chusheng" actually refers to such**"dehumanized topological elements"**. This adaptation process is to forcibly transform one’s own originally rich high-dimensional soul into a low-dimensional CW-complex defined by rules through originally homotopy equivalent transformations.
+Here, "humans" as subjects with independent will are completely alienated into pure elements that maintain the stability of the quotient topological structure. What Mr. Bao refers to as "**Chusheng**" actually refers to such**"dehumanized topological elements"**. This adaptation process is to forcibly transform one’s own originally rich high-dimensional soul into a low-dimensional CW-complex defined by rules through originally homotopy equivalent transformations.
 
 ## IV. Geometric Group Theory of the Minuet
 
@@ -109,4 +109,3 @@ Furthermore, the movement of students during marching drill is not the flow of a
 In summary, marching drill, as a collective behavior, is essentially a large-scale topological experiment under power discipline, which can be completely deconstructed through mathematical tools such as algebraic topology, category theory, and geometric group theory. The marching drill system maps students into indistinguishable points in the unordered configuration space $\text{Conf}_k(M)$, erases the order and uniqueness of individuals through permutation group actions, and achieves individual homogenization; through fiber bundle modeling and trivial braid constraints, it achieves continuous discipline of individual dynamic behaviors and deprives individuals of behavioral autonomy; through potential energy functions and homological stability, it alienates individuals into pure elements that maintain system topological stability and achieves individual dehumanization; through discrete group actions and Cayley Graph modeling, it limits individual behaviors within a rigid rule framework and achieves behavioral rigidity.
 
 The "CS" referred to by Mr. Bao Haimo is not only the abbreviation of Configuration Space, but also can be interpreted as Canonic Slave, which accurately summarizes the alienated state of individuals in the marching drill system. The "macro neatness" pursued by marching drill is achieved at the cost of sacrificing individual freedom, erasing individual personality, and depriving individual autonomy. Just like the court minuet, it is an absurd projection of power aesthetics in low-dimensional space. The formalism and dehumanizing discipline hidden behind it are exposed without reservation in the rigorous mathematical deduction.
-> （注：文档部分内容可能由 AI 生成）
