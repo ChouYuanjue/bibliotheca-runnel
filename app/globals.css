@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 @layer base {
+  @font-face {
+    font-family: 'Noto Serif Tangut';
+    src: url('/classics/NotoSerifTangut-Regular.ttf') format('truetype');
+    font-display: swap;
+    unicode-range: U+17000-187FF, U+18800-18AFF, U+18D00-18D7F;
+  }
+
   body {
     @apply bg-white text-gray-900;
   }
