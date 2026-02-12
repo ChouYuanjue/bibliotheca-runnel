@@ -322,6 +322,13 @@
     "link": "/library/linguistics/miscellanea-v-langdang-longzhong"
   },
   {
+    "type": "Fragment",
+    "title": "The Zermelo-Hessian-Kan Program and Its Real-World Metaphors",
+    "description": "Taking the fictional \"Zermelo-Hessian-Kan (ZHK) Program\" as the carrier, this paper conducts in-depth theoretical reconstruction and academic packaging. Its core purpose is to reflect and ridicule some inappropriate behaviors of our high school psychology teacher in daily teaching and interaction—such as his arbitrary judgment style and expression habits that ignore others' feelings—with a satirical tone. It should be clearly stated that all academic deductions and satirical expressions in this paper are for entertainment purposes, purely a fun creation among classmates, without any tendency of malicious attack or negative slander. This paper will construct a self-consistent unified theory of \"absolute will\" through rigorous mathematical language (especially Kan extensions in category theory, critical point theory in calculus, and axiomatic set theory), completing a gentle mockery and interesting presentation of the relevant inappropriate behaviors in the form of absurd academic expression.",
+    "date": "2023-09-21",
+    "link": "/fragments/zhk-program"
+  },
+  {
     "type": "Note",
     "title": "N-20230801",
     "description": "This document is a reading note on Hitchin's seminal paper \"The Self-Duality Equations on a Riemann Surface,\" focusing on the reduction of four-dimensional self-dual Yang-Mills equations to two-dimensional Riemann surfaces, resulting in the Hitchin equations: \\( F_A + [\\Phi, \\Phi^*] = 0 \\) and \\( \\partial_A \\Phi = 0 \\). It explores the mathematical foundations of Yang-Mills theory, the role of Higgs bundles, and the construction of moduli spaces with integrable system structures via spectral curves and Hitchin fibration. Key connections to geometric Langlands conjecture and S-duality in physics are discussed, alongside stability conditions, open problems, and potential generalizations to non-compact or higher-dimensional settings.",
