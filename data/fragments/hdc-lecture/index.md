@@ -19,7 +19,7 @@ The lecture, while initially confusing to me, proved to be an illuminating explo
 
 The beginning of the talk was framed using an accessible analogy, which I initially summarized as:
 
-> "The presentation was structured a bit like teaching sequences to high school students, where you look for a pattern step by step, and then are told the pattern you found is wrong, which served as an introduction to the difficulties of the random walk."
+> The presentation was structured a bit like teaching sequences to high school students, where you look for a pattern step by step, and then are told the pattern you found is wrong, which served as an introduction to the difficulties of the random walk.
 
 This method served to illustrate the inherent challenges and non-obvious nature of finding closed-form solutions in probability theory, especially concerning the intricacies of walks on lattices.
 

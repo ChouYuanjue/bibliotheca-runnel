@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import { cn } from "@/lib/utils";
 import "katex/dist/katex.min.css"; // Import KaTeX CSS
 import MermaidDiagram from "@/components/custom/MermaidDiagram";
+import MarkdownImage from "@/components/custom/MarkdownImage";
 
 interface MarkdownRendererProps {
   content: string;
@@ -71,7 +72,9 @@ export default function MarkdownRenderer({ content, className, inline = false }:
               </code>
             );
           },
-          img: () => null,
+          img: ({ src, alt, ...props }) => (
+            <MarkdownImage src={src ?? ''} alt={alt ?? ''} {...props} />
+          ),
         }}
       >
         {processedContent}
