@@ -12,7 +12,7 @@ tags: [German, Orthography, Morphology]
 German orthography is often erroneously described as purely "phonetic." While it is significantly more transparent than English or French, it is governed by a dual-system interacting between **phonological representation** (Grapheme-Phoneme Correspondence, GPC) and **morphological constancy** (the "Stammprinzip").
 
 #### 1.1 The Phonographic vs. Morphographic Principle
-Linguist Kristian Berg notes that modern analyses of spellings focus on the tension between uniformity (how consistently a morpheme is written) and uniqueness (how distinctly a spelling refers to a morpheme) ####.
+Linguist Kristian Berg notes that modern analyses of spellings focus on the tension between uniformity (how consistently a morpheme is written) and uniqueness (how distinctly a spelling refers to a morpheme).
 
 *   **The Phonographic Principle:** At its base, German maps sounds to letters. For example, the vowel /a/ is consistently represented < a >.
 *   **The Morphological Principle (*Stammprinzip*):** This principle overrides phonetics to preserve the visual identity of the word root (stem).
