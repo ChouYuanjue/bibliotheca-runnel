@@ -3,7 +3,7 @@ title: "Aesthetics in The Temple of the Golden Pavilion"
 date: "2023-09-12"
 type: "ESSAY"
 image: "/library/criticisms/kinkaku-ji/image.png"
-description: "Yukio Mishima is a representative figure of the Japanese traditional literary tradition, and The Temple of the Golden Pavilion (Kinkaku-ji, 金閣寺) constitutes a crucial embodiment of his aesthetic vision, as well as a typical manifestation of the Japanese concept of mono no aware (物の哀れ). Through the continuous development of the characters and their aesthetic perspectives in the novel, we can glimpse what the aesthetics of mono no aware — sometimes regarded in a certain sense as sabi (寂) — fundamentally pursues: the realisation of eternity through destruction and the attainment of the ultimate through the transient moment."
+description: "Yukio Mishima's The Temple of the Golden Pavilion embodies Japanese aesthetics of mono no aware, exploring the realization of eternity through destruction and the attainment of the ultimate in transient moments via character development."
 ---
 
 ## Aesthetics in *The Temple of the Golden Pavilion*

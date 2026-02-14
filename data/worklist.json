@@ -231,6 +231,13 @@
     "link": "/fragments/name-game"
   },
   {
+    "type": "Criticism",
+    "title": "The Transgressive Gaze and Symbolic Tragedy: Actaeon's Myth in a Lacanian Framework",
+    "description": "In Robert Graves’s reconstruction of the myth of Artemis, Actaeon accidentally glimpses the goddess bathing and is transformed into a stag, only to be torn apart by his own hounds. This tragedy not only embodies ancient taboos but also serves as a powerful allegory for Lacanian concepts of the gaze, desire, and the symbolic order. This paper reinterprets the myth of Actaeon through the lens of Lacan’s theory of the gaze, exploring its deep structure and its contemporary resonance in the digital age.",
+    "date": "2025-02-13",
+    "link": "/library/criticisms/actaeon-lacan"
+  },
+  {
     "type": "Note",
     "title": "N-20250211",
     "description": "This document provides a comprehensive overview of geometric transformations—affine, projective, inversion, Euclidean, and similarity—and their applications to conic sections, emphasizing invariants and classification. Affine transformations preserve collinearity and parallelism but not distances; projective geometry introduces points at infinity and cross-ratio invariance; inversion is conformal and maps circles to circles or lines. The discussion highlights connections to the Erlangen Program, illustrating how different geometries unify and classify conics through transformation groups and invariants.",
@@ -266,11 +273,25 @@
     "link": "/library/criticisms/cthulhu-borges"
   },
   {
+    "type": "Criticism",
+    "title": "The Labyrinth in Borges's The Book of Sand",
+    "description": "Jorge Luis Borges's works, whether fiction or poetry, seem to meticulously construct labyrinths. These labyrinths encompass themes such as \"time,\" \"religion,\" \"infinity,\" and \"nightmares,\" often leaving readers feeling disoriented and struggling to grasp a definitive meaning. The Book of Sand is no exception. However, if we carefully analyze the structure of these labyrinths, it is possible to uncover the underlying philosophical intentions and aesthetic pursuits.",
+    "date": "2024-08-12",
+    "link": "/library/criticisms/book-of sand"
+  },
+  {
     "type": "Fragment",
     "title": "Echoes of Summer — From Hopf Fibrations to Higher Algebra",
     "description": "During the summer, while scrolling through my QQ space, I stumbled upon a dynamic update from **Dr. Peng Keyao** (now, rightfully, **Prof. Peng**). It was a poster for his recent lecture titled *\"From Elementary Arithmetic to Higher Algebra.\"* Seeing his name instantly triggered a wave of nostalgia, transporting me back to the summer of 2021.\r\n\r\nThree years ago, he gave us a lecture on the **Hopf Fibration**. I still vividly remember spending days preparing for it, scribbling notes, and trying to wrap my head around the topology of spheres. The note is available at [Chaoli Forum](https://chaoli.club/index.php/6596), with a DOI: [10.6084/M9.FIGSHARE.20310042](https://doi.org/10.6084/M9.FIGSHARE.20310042).\r\n\r\nTime changes things — Dr. Peng has ascended to a postdoc at the Université de Bourgogne and been teaching Algebraic Geometry courses, and the topics have evolved from classical topology to the cutting-edge realm of **Infinity Categories** and **Higher Algebra**.\r\n\r\nAlthough I deeply regret missing his 2024 lecture, looking at the lecture abstract and the meme he famously shared back in the day (which seems to bridge his past and present research), I feel a strange sense of temporal overlap. The memories of 2021 have superimposed onto the reality of 2024.\r\n\r\nBelow is the context of his recent talk, followed by my attempt to decode that legendary \"Galaxy Brain\" meme, tracing the path from a simple sphere mapping to the profound \"truth\" of $0=1-1=-1+1=0$.",
     "date": "2024-07-27",
     "link": "/fragments/hopf-meme"
+  },
+  {
+    "type": "Criticism",
+    "title": "When the Homeland Becomes the Kingdom of the Hunger Angel: The Alienation of Heimat in Herta Müller’s The Hunger Angel",
+    "description": "Herta Müller's The Hunger Angel, a key work for her Nobel Prize, controversially depicts post-WWII Soviet labor camps from the perspective of a 'non-eyewitness.' As a Romanian-German minority member, Müller portrays the trauma of her people, earning praise for depicting the 'landscape of the dispossessed' and exploring a displaced person's confusion, critique, and quest for homeland.",
+    "date": "2024-06-18",
+    "link": "/library/criticisms/hunger-angel"
   },
   {
     "type": "Note",
@@ -322,6 +343,13 @@
     "link": "/library/criticisms/menro-runaway"
   },
   {
+    "type": "Criticism",
+    "title": "The Unconsoled: The Social Landscape Behind the \"Impossibility of Communication\"",
+    "description": "Kazuo Ishiguro's experimental novel The Unconsoled explores the impossibility of communication in modern society, examining the alienation of art through commodification, the tyranny of time, and the homelessness of modern man, all within a dreamlike narrative structure.",
+    "date": "2023-12-20",
+    "link": "/library/criticisms/the-unconsoled"
+  },
+  {
     "type": "Fragment",
     "title": "The Minuet of Marching Drill — Homotopy Analysis Based on Topological Behavioral Science",
     "description": "This article is a satirical piece adapted from an essay of mine. Its creation was inspired by an article criticizing marching drill written by my classmate Bao Haimo — with its incisive perspective on deconstructing the marching drill scene, Bao’s article sparked extensive discussion in the class and served as the inspiration for this work. Centered on using mathematical concepts such as algebraic topology, category theory, and geometric group theory as playful carriers, this article conducts an interesting deconstruction and teasing of the campus marching drill scene. All content is for entertainment purposes only, does not possess any serious academic value, and does not constitute a formal evaluation or interpretation of relevant mathematical theories or educational scenarios. Readers may view it as a fun essay and need not examine it against the standards of academic rigor.",
@@ -338,7 +366,7 @@
   {
     "type": "Criticism",
     "title": "Aesthetics in The Temple of the Golden Pavilion",
-    "description": "Yukio Mishima is a representative figure of the Japanese traditional literary tradition, and The Temple of the Golden Pavilion (Kinkaku-ji, 金閣寺) constitutes a crucial embodiment of his aesthetic vision, as well as a typical manifestation of the Japanese concept of mono no aware (物の哀れ). Through the continuous development of the characters and their aesthetic perspectives in the novel, we can glimpse what the aesthetics of mono no aware — sometimes regarded in a certain sense as sabi (寂) — fundamentally pursues: the realisation of eternity through destruction and the attainment of the ultimate through the transient moment.",
+    "description": "Yukio Mishima's The Temple of the Golden Pavilion embodies Japanese aesthetics of mono no aware, exploring the realization of eternity through destruction and the attainment of the ultimate in transient moments via character development.",
     "date": "2023-09-12",
     "link": "/library/criticisms/kinkaku-ji"
   },
@@ -380,7 +408,7 @@
   {
     "type": "Criticism",
     "title": "A Comparison of Two Artists' Philosophies of Life in The Life and Opinions of the Tomcat Murr",
-    "description": "The Life and Opinions of the Tomcat Murr (full title: The Life and Opinions of the Tomcat Murr, together with a fragmentary Biography of Kapellmeister Johannes Kreisler on randomly recycled sheets of paper) is a late masterpiece by the German Romantic author E.T.A. Hoffmann. The novel employs a unique dual narrative structure, juxtaposing the humorous account of the tomcat Murr's rise as an \"artist\" with the tragic life of the musician Kreisler. These two starkly contrasting philosophies of life represent Hoffmann's profound reflection on the artist's struggle between reality and idealism.",
+    "description": "E.T.A. Hoffmann's late masterpiece, The Life and Opinions of the Tomcat Murr, features a dual narrative contrasting the tomcat Murr's humorous rise as an 'artist' with the tragic life of musician Johannes Kreisler, reflecting the artist's struggle between reality and idealism.",
     "date": "2023-07-12",
     "link": "/library/criticisms/tomcat-murr"
   },

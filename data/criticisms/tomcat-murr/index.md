@@ -3,7 +3,7 @@ title: "A Comparison of Two Artists' Philosophies of Life in The Life and Opinio
 date: "2023-07-12"
 type: "ESSAY"
 image: "/library/criticisms/tomcat-murr/image.png"
-description: "The Life and Opinions of the Tomcat Murr (full title: The Life and Opinions of the Tomcat Murr, together with a fragmentary Biography of Kapellmeister Johannes Kreisler on randomly recycled sheets of paper) is a late masterpiece by the German Romantic author E.T.A. Hoffmann. The novel employs a unique dual narrative structure, juxtaposing the humorous account of the tomcat Murr's rise as an \"artist\" with the tragic life of the musician Kreisler. These two starkly contrasting philosophies of life represent Hoffmann's profound reflection on the artist's struggle between reality and idealism."
+description: "E.T.A. Hoffmann's late masterpiece, The Life and Opinions of the Tomcat Murr, features a dual narrative contrasting the tomcat Murr's humorous rise as an 'artist' with the tragic life of musician Johannes Kreisler, reflecting the artist's struggle between reality and idealism."
 ---
 
 ## A Comparison of Two Artists' Philosophies of Life in *The Life and Opinions of the Tomcat Murr*
