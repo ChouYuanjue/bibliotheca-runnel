@@ -3,7 +3,7 @@ title: "From The Cloven Viscount: An Analysis of the Symbolization of the Body"
 date: "2024-03-08"
 type: "ESSAY"
 image: "/library/criticisms/cloven-viscount/image.png"
-description: "This essay analyzes Italo Calvino's novel *The Cloven Viscount*, exploring the symbolization of the body through the protagonist's division. It examines how power structures discipline the body, the inherent heterogeneity of human nature, and the path to wholeness through embracing contradictions, as embodied by the character Pamela."
+description: "This essay analyzes Italo Calvino's novel The Cloven Viscount, exploring the symbolization of the body through the protagonist's division. It examines how power structures discipline the body, the inherent heterogeneity of human nature, and the path to wholeness through embracing contradictions, as embodied by the character Pamela."
 ---
 
 # From *The Cloven Viscount*: An Analysis of the Symbolization of the Body

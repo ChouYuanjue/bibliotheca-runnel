@@ -1,6 +1,6 @@
 ---
 title: "Pratofungo: The \"Paradiso dei Malati\" Isolated from the World"
-date: "2024-12-20"
+date: "2025-03-30"
 type: "SHORT REVIEW"
 image: "/library/criticisms/pratofungo/image.png"
 description: "In Italo Calvino's The Cloven Viscount, Pratofungo is a secluded village for lepers, depicted as a 'Paradise of the Sick' where isolation fosters a decadent happiness. This short review explores its themes of exclusion, self-deception, and the tragedy of societal rejection, drawing parallels to modern psychoanalytic communities."

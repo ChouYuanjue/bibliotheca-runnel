@@ -232,6 +232,13 @@
   },
   {
     "type": "Criticism",
+    "title": "Pratofungo: The \"Paradiso dei Malati\" Isolated from the World",
+    "description": "In Italo Calvino's The Cloven Viscount, Pratofungo is a secluded village for lepers, depicted as a 'Paradise of the Sick' where isolation fosters a decadent happiness. This short review explores its themes of exclusion, self-deception, and the tragedy of societal rejection, drawing parallels to modern psychoanalytic communities.",
+    "date": "2025-03-30",
+    "link": "/library/criticisms/pratofungo"
+  },
+  {
+    "type": "Criticism",
     "title": "The Transgressive Gaze and Symbolic Tragedy: Actaeon's Myth in a Lacanian Framework",
     "description": "In Robert Graves’s reconstruction of the myth of Artemis, Actaeon accidentally glimpses the goddess bathing and is transformed into a stag, only to be torn apart by his own hounds. This tragedy not only embodies ancient taboos but also serves as a powerful allegory for Lacanian concepts of the gaze, desire, and the symbolic order. This paper reinterprets the myth of Actaeon through the lens of Lacan’s theory of the gaze, exploring its deep structure and its contemporary resonance in the digital age.",
     "date": "2025-02-13",
@@ -250,13 +257,6 @@
     "description": "This paper presents the foundations of Chunpinative Geometry, a novel geometric framework anchored in the Dual-Complementary Principle (D-C-P), which asserts the axiomatic equivalence of angles and their complements. Departing from classical Euclidean axioms, it synthesizes tropical deformation techniques, derived non-Archimedean structures, and a reimagined Erlangen program to construct a self-consistent theory of complementary angle spaces. The framework axiomatizes rigid C-spaces, where angle quantization and metric degeneracies arise naturally from the D-C-P axiom. It resolves anomalies such as the CZL Lemma through quasi-schematic methods and establishes the complementarity group G as a symmetry governing geometric transformations, bridging synthetic geometry with deformation quantization.",
     "date": "2025-01-31",
     "link": "/achieved/paper-cpg"
-  },
-  {
-    "type": "Criticism",
-    "title": "Pratofungo: The \"Paradiso dei Malati\" Isolated from the World",
-    "description": "In Italo Calvino's The Cloven Viscount, Pratofungo is a secluded village for lepers, depicted as a 'Paradise of the Sick' where isolation fosters a decadent happiness. This short review explores its themes of exclusion, self-deception, and the tragedy of societal rejection, drawing parallels to modern psychoanalytic communities.",
-    "date": "2024-12-20",
-    "link": "/library/criticisms/pratofungo"
   },
   {
     "type": "Criticism",
@@ -331,7 +331,7 @@
   {
     "type": "Criticism",
     "title": "From The Cloven Viscount: An Analysis of the Symbolization of the Body",
-    "description": "This essay analyzes Italo Calvino's novel *The Cloven Viscount*, exploring the symbolization of the body through the protagonist's division. It examines how power structures discipline the body, the inherent heterogeneity of human nature, and the path to wholeness through embracing contradictions, as embodied by the character Pamela.",
+    "description": "This essay analyzes Italo Calvino's novel The Cloven Viscount, exploring the symbolization of the body through the protagonist's division. It examines how power structures discipline the body, the inherent heterogeneity of human nature, and the path to wholeness through embracing contradictions, as embodied by the character Pamela.",
     "date": "2024-03-08",
     "link": "/library/criticisms/cloven-viscount"
   },
