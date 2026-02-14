@@ -1,0 +1,51 @@
+---
+title: "Interpreting the Poetry in \"Forging the Swords\""
+date: "2023-10-12"
+type: "ESSAY"
+image: "/library/criticisms/luxun-sword/image.png"
+description: "This essay offers tentative interpretations of the enigmatic songs in Lu Xun's 'Forging the Swords,' exploring themes of love, revenge, blood, and profanation through close readings of key lines, while challenging simplistic translations and emphasizing the poems' role in the novella's artistic depth."
+---
+
+## Interpreting the Poetry in "Forging the Swords"
+
+In my personal library's edition of *Old Tales Retold* (*Gushi Xinbian* 《故事新编》), the annotations for the bizarre and eerie songs in the short story "Forging the Swords" (*Zhujian* 《铸剑》) adopt a cautious, evasive stance: "The meaning of all the songs in this piece is not obvious." To support this, the annotator cites a letter from Lu Xun (鲁迅) to Masuda Wataru (增田涉): "Please note, the meanings of the songs in 'Forging the Swords' are not obvious; because they are sung by a strange man and the tip of a sword, they are difficult for us ordinary people to understand." However, I suspect that Lu Xun’s remark contains a measure of literary playfulness and modesty, and should not be taken as a definitive verdict. To believe it entirely would be to abandon the exploration of a crucial part of the novella. While the poems are difficult to translate fully, I shall select several lines to offer some tentative interpretations.
+
+
+### I. "Haha ai xi ai hu ai hu" (Haha, love, oh love, oh love)
+
+When I first read "Forging the Swords," I was curious about the translatability of these strange songs and sought out various English versions. A translator's treatment often reflects their understanding of the poem’s intent. The 1960 translation of *Old Tales Retold* by Yang Xianyi (杨宪益) and Gladys Yang (戴乃迭) is widely recognized as authoritative. Their handling of the opening line, "Haha ai xi ai hu ai hu" (哈哈爱兮爱乎爱乎), is quite intriguing: it was initially translated as "Sing hey! sing ho!", but when a similar pattern appeared in the second song, it was rendered as "Sing hey for love, for heigh ho!". It seems the translators believed that the same interjection required subtle semantic shifts depending on the context; the first was treated as a meaningless phonetic mimicry, while the second explicitly emphasized the word "love."
+
+However, I believe the situation may not be so simple. Although both songs revolve around the character *ai* (爱, love/attachment), the phrase "Haha ai xi ai hu ai hu" features the word *ai* three times. This repetitive chanting creates a peculiar tension. Rather than a straightforward celebration of love, it conveys a sense of irony or interrogation through exaggerated lamentation. Mr. Chen Mengshao (陈梦韶) translated this line into modern Chinese as "Haha, for the sake of love! Loving one's lover? Loving the motherland?" I find this interpretation somewhat forced, an attempt to "idealize" or add "positive energy" to the text. Such a reading implies two possibilities: either the poem is a paean to love, or it is a righteous interrogation of the "King" and a tragic sigh for Meijianchi (眉间尺).
+
+Yet, this hardly fits the emotional tone of this stage of the story. Examining the logic of Meijianchi and the mysterious "dark man" (黑色人), their core driver is "revenge"—a pure, fierce private vendetta based on blood ethics. At least until the revenge is complete, it hasn't clearly sublimated into a grand theme concerning "the people" or "the nation." Furthermore, looking at subsequent lines like "He loves the blue sword, and the enemy slaughters himself" (爱青剑兮一个仇人自屠) and "He who loves the blue sword, alas, is not alone" (彼夫爱青剑兮呜呼不孤), the object of "love" is clearly the "blue sword" (the instrument and symbol of revenge), and the outcome is "self-slaughter" and "not being alone" (referring to death and following). From this, we can infer that "love" here does not point to a grand, bright ideal, but is closer to a complex emotional projection of obsession, fate, and even death. Therefore, at least within the context of the first chapter, interpreting "love" as a positive and noble emotion, as Mr. Chen does, is debatable.
+
+
+
+### II. "Ai xi xue xi shui hu du wu" & "Ai yi toulu xi xue hu wuhu"
+
+*(Love, oh! Blood, oh! Who is without them? / Love a single head, oh! Blood, alas!)*
+
+I believe there are two possible dimensions to interpreting these lines, which constitute an interesting tension.
+
+One interpretation treats the songs sung by Meijianchi and the dark man as an internally unified whole, viewing the poetry as the "voice" of the dark man. In this sense, "love" might be understood as a bone-deep hatred for the object of revenge (the enemy), while "blood" represents the slaughter and death that inevitably accompany vengeance. In this light, "Love a single head, oh! Blood, alas!" (爱一头颅兮血乎呜呼) can be understood as: because of the obsession with that head (both the head Meijianchi offered and the enemy's head to be severed), blood flows like a river, prompting lamentation. This reading fits the cruel undercurrent of the revenge theme.
+
+Another interpretation adopts part of Chen Mengshao’s logic but requires modification. Although Meijianchi and the dark man are allies, their identities, experiences, and mental states are distinct. It is possible that the significance of the same song shifts subtly when uttered by different mouths. Following this path, "love" could refer to the pure, fiery obsession in the young Meijianchi’s heart to avenge his father. This obsession represents the entirety of his life's value. The "single head" is the most precious thing he offers—his own life. "Blood, alas!" is the tragic conclusion that necessarily accompanies this sacrifice. This resembles a dirge for a boy hero: he loves his obsession, offers his own head, and amidst the pool of blood, cries "alas," thereby completing the metamorphosis from a hesitant youth to a resolute avenger. Given Meijianchi’s initial image as a wavering, kind-hearted boy, this interpretation aligns better with the character's internal emotional logic. However, this creates a contradiction with the ironic nature of "love" in the first song; thus, I leave this open for further scholarly debate.
+
+
+
+### III. "Tang zai huang zai xi ai ai yo" (How grand, how magnificent, oh, ai-ai-yo)
+
+In his letter to Masuda Wataru, Lu Xun explicitly stated: "The third song is indeed grand and magnificent (*tangzai huangzai*), but the '*ai-ai-yo*' in '*Tang zai huang zai xi ai ai yo*' (堂哉皇哉兮嗳嗳唷) is the sound of an obscene ditty." This comment provides the vital key to understanding this line.
+
+Lu Xun’s remark seems confusing at first: why insert the "sound of an obscene ditty" into a song that is "grand and magnificent"? Upon reflection, however, this is exactly the unique aesthetic style of "Forging the Swords"—and Lu Xun’s work as a whole. He juxtaposes the most sublime with the most vulgar, the most tragic with the most playful, finding tension in the rupture and depth in the contrast. The four characters *tang zai huang zai* (堂哉皇哉) are incredibly solemn and majestic, a perfect description of imperial majesty and courtly atmosphere. Yet, the following *ai ai yo* (嗳嗳唷) thoroughly deconstructs it with the tone of an obscene ditty. This is equivalent to a lewd street tune suddenly ringing out in a solemn court, or a frivolous melody from a wine shop surfacing during a grave sacrificial ceremony.
+
+The effect of this goes far beyond satire. Satire still maintains a shred of respect—it acknowledges the authority of the object it satirizes and thus uses a serious attitude to dismantle it. What Lu Xun employs here is a more radical profanation and deconstruction. What is the essence of an obscene ditty? It is the coarse, the carnal, the indulgent—everything diametrically opposed to the order, dignity, and sanctity represented by "grandeur." Singing a funeral dirge for emperors and generals in the voice of a lewd tune is a way of declaring in the coarsest form: "Your seemingly invincible majesty is but a joke in my eyes; your gold-decorated throne is but a pile of rotting wood in the river of history."
+
+This perfectly matches the character traits of the dark man. He is no ordinary avenger but a being who has transcended worldly emotions, nearly a deity. He views worldly power and life-and-death as if watching an absurd shadow puppet play. When he sings "How grand, how magnificent, oh, ai-ai-yo," those three syllables are his final commentary on this human farce—flippant and "low," yet cutting to the bone. This is not only the physical annihilation of the enemy but the ultimate profanation of all the order and authority they represent.
+
+
+### **Conclusion**
+
+Due to limited time and scholarship, this article has not provided a complete or transparent analysis of all the songs in "Forging the Swords"; what has been gained is but a fragmentary understanding. However, I firmly believe that these songs—seemingly "archaic and bizarre" and described by the author himself as "difficult to understand"—are by no means casual works or dispensable ornaments. They are like flickers of phosphorescence in a dark tunnel, illuminating the deep, shadowy core of the novella with their unique light. They are the essential keys to decoding the theme of revenge, character psychology, and Lu Xun’s overall artistic style. The pursuit of their meaning is perhaps the only way for us to approach the profound message conveyed by that "strange man and the tip of the sword."
+
+Furthermore, the presence of these songs greatly enhances the artistic tension and emotional depth of the story. They extract a specific act of revenge from simple narrative plotting, elevating it to a symbolic level imbued with ritual and destiny. The repeated chanting of "love," "blood," "head," and "ai-ai-yo" are no longer simple words but "imgery nuclei" carrying complex life experiences and historical vicissitudes. They coat this "Old Tale Retold" with a mysterious and tragic poetic luster, allowing it to ultimately transcend a simple revenge story and become a poignant symphony of hatred, sacrifice, death, and profanation.

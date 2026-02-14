@@ -302,10 +302,24 @@
   },
   {
     "type": "Criticism",
+    "title": "Rethinking the Imagery of the Crow in Lu Xun's Medicine",
+    "description": "In this critical essay, the author delves into the imagery of the crow in Lu Xun's short story Medicine, critiquing V. I. Semanova's theory of dual symbolism. By examining the crow's passive presence and eventual flight, the piece argues against over-interpretation and natural explanations, instead proposing the crow as a symbol of the indifferent and apathetic spectators in Chinese society. Drawing comparisons to Mori Ōgai's The Tower of Silence and Natsume Sōseki's I Am a Cat, the essay highlights the crow's cold detachment as a reflection of the chilling social landscape Lu Xun depicted.",
+    "date": "2024-07-14",
+    "link": "/library/criticisms/luxun-med"
+  },
+  {
+    "type": "Criticism",
     "title": "When the Homeland Becomes the Kingdom of the Hunger Angel: The Alienation of Heimat in Herta Müller’s The Hunger Angel",
     "description": "Herta Müller's The Hunger Angel, a key work for her Nobel Prize, controversially depicts post-WWII Soviet labor camps from the perspective of a 'non-eyewitness.' As a Romanian-German minority member, Müller portrays the trauma of her people, earning praise for depicting the 'landscape of the dispossessed' and exploring a displaced person's confusion, critique, and quest for homeland.",
     "date": "2024-06-18",
     "link": "/library/criticisms/hunger-angel"
+  },
+  {
+    "type": "Criticism",
+    "title": "The Chess-Bird Will Not Leave Its Queen — Dream Metaphors within the Horizon of Herta Müller",
+    "description": "This short review recounts a surreal experience in dream imbued with the literary style of Herta Müller, where familiar spaces become alien through grey walls and falsified maps, symbolizing systemic oppression. Through metaphors of chess pieces, subservient birds, and magnetic forces, it explores the fragmentation of self, the internalization of authority, and the painful attachment to imposed values in a high-pressure environment.",
+    "date": "2024-03-30",
+    "link": "/library/criticisms/chess-bird"
   },
   {
     "type": "Note",
@@ -362,6 +376,13 @@
     "description": "This article is a satirical piece adapted from an essay of mine. Its creation was inspired by an article criticizing marching drill written by my classmate Bao Haimo — with its incisive perspective on deconstructing the marching drill scene, Bao’s article sparked extensive discussion in the class and served as the inspiration for this work. Centered on using mathematical concepts such as algebraic topology, category theory, and geometric group theory as playful carriers, this article conducts an interesting deconstruction and teasing of the campus marching drill scene. All content is for entertainment purposes only, does not possess any serious academic value, and does not constitute a formal evaluation or interpretation of relevant mathematical theories or educational scenarios. Readers may view it as a fun essay and need not examine it against the standards of academic rigor.",
     "date": "2023-11-27",
     "link": "/fragments/marching-drill"
+  },
+  {
+    "type": "Criticism",
+    "title": "Interpreting the Poetry in \"Forging the Swords\"",
+    "description": "This essay offers tentative interpretations of the enigmatic songs in Lu Xun's 'Forging the Swords,' exploring themes of love, revenge, blood, and profanation through close readings of key lines, while challenging simplistic translations and emphasizing the poems' role in the novella's artistic depth.",
+    "date": "2023-10-12",
+    "link": "/library/criticisms/luxun-sword"
   },
   {
     "type": "Fragment",
@@ -502,6 +523,13 @@
     "description": "This document provides an informal overview of nonstandard analysis (NSA), introduced by Abraham Robinson, which extends standard analysis by incorporating infinitesimals and infinite numbers through the hyperreal number system *R, constructed via ultrafilters and ultraproducts. Key concepts include the transfer principle, which ensures first-order logical statements hold in both standard and nonstandard systems, and definitions of continuity, derivatives, and integrals using infinitesimals for more intuitive proofs. NSA distinguishes internal and external sets and applies to probability via Loeb measures. While NSA offers intuitive and sometimes simpler proofs, it relies on model theory and set theory foundations, maintaining logical equivalence with standard analysis but with trade-offs in accessibility and application scope.",
     "date": "2023-02-25",
     "link": "/notes/2023/N-20230225.pdf"
+  },
+  {
+    "type": "Criticism",
+    "title": "Poetry as the Religion of the Chinese",
+    "description": "This short review explores Lin Yutang's assertion that poetry serves as the religion of the Chinese, examining parallels between poetry and religion in terms of spiritual solace and social control, while drawing comparisons to Zen Buddhism and reflecting on poetry's role in modern life.",
+    "date": "2023-02-24",
+    "link": "/library/criticisms/poetry-religion"
   },
   {
     "type": "Fragment",
