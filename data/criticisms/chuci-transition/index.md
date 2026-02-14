@@ -3,7 +3,7 @@ title: "The Inheritance and Legacy of the Chuci — A Literary Transition that H
 date: "2023-06-22"
 type: "LECTURE"
 image: "/library/criticisms/chuci-transition/image.png"
-description: "This presentation challenges Fu Sinian's view that the *Chuci* (《楚辞》) is isolated from the mainstream literary lineage. It argues that the *Chuci* serves as a transitional bridge: inheriting the *Shijing*'s (《诗经》) phrasing and analogical methods (*bixing*, 比兴), absorbing influences from Qi remonstrance literature (*Qi feng*, 齐讽), and shaping Han dynasty Sao-style *fu* (骚体赋). Ultimately, it restores the *Chuci* as both inheritor of ancient traditions and progenitor of new literary forms."
+description: "This presentation challenges Fu Sinian's view that the Chuci (《楚辞》) is isolated from the mainstream literary lineage. It argues that the Chuci serves as a transitional bridge: inheriting the Shijing's (《诗经》) phrasing and analogical methods (bixing, 比兴), absorbing influences from Qi remonstrance literature (Qi feng, 齐讽), and shaping Han dynasty Sao-style fu (骚体赋). Ultimately, it restores the Chuci as both inheritor of ancient traditions and progenitor of new literary forms."
 ---
 
 [SLIDES FOR LECTURE](/library/criticisms/chuci-transition/slide.pptx)

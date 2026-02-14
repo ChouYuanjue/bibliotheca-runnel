@@ -294,11 +294,32 @@
     "link": "/library/linguistics/miscellanea-viii-german-orthography"
   },
   {
+    "type": "Criticism",
+    "title": "From The Cloven Viscount: An Analysis of the Symbolization of the Body",
+    "description": "This essay analyzes Italo Calvino's novel *The Cloven Viscount*, exploring the symbolization of the body through the protagonist's division. It examines how power structures discipline the body, the inherent heterogeneity of human nature, and the path to wholeness through embracing contradictions, as embodied by the character Pamela.",
+    "date": "2024-03-08",
+    "link": "/library/criticisms/cloven-viscount"
+  },
+  {
+    "type": "Criticism",
+    "title": "The Baron in the Trees: Calvino's Paradox of Human-Nature Relations",
+    "description": "This essay explores Italo Calvino's novel The Baron in the Trees, examining the protagonist Cosimo's arboreal life as a metaphor for the complex interplay between humanity and nature. Through analysis of proximity, distance, and ecological awareness, it reveals Calvino's vision of a balanced coexistence that preserves both human essence and natural vitality.",
+    "date": "2024-03-08",
+    "link": "/library/criticisms/tree-baron"
+  },
+  {
     "type": "Note",
     "title": "N-20240211",
     "description": "This document provides an informal overview of category theory and Topos theory, focusing on foundational concepts such as categories, limits (including products, pullbacks, and equalizers), and their role in defining a Topos—a category generalizing set theory with finite limits, exponential objects, and a subobject classifier. It explores how Topos theory bridges geometry, algebra, and logic, particularly through its internal intuitionistic logic, and discusses applications in model theory, sheaf theory, and potential connections to higher category theory and physics. The author includes examples, proofs, and speculative insights on unifying these concepts across mathematics.",
     "date": "2024-02-11",
     "link": "/notes/2024/N-20240211.pdf"
+  },
+  {
+    "type": "Criticism",
+    "title": "The Unattainable Beyond, the Incomplete Flight: Alice Munro’s Runaway and Lacan’s \"objet petit a\"",
+    "description": "Alice Munro’s *Runaway* is a collection marked by an intense structural consciousness. Unlike many anthologies that simply aggregate a writer's representative works, Munro deliberately tethers eight short stories to a singular, cohesive theme: escape. As Eudora Welty observed: \"[The stories] repeat themselves in all sorts of subtle ways, coming at a certain theme from different variations.\" In these narratives, characters flee from families or marriages, and the protagonists are almost exclusively women. Yet the outcomes of their flights are strikingly similar: they either end in tragedy or lapse into failure. At times, it is difficult to comprehend why some abandon a successful escape at the very last moment, or fall into deeper anguish after the fact. By utilizing Jacques Lacan’s concept of the objet petit a, we may find a more precise analytical path through these predicaments.",
+    "date": "2023-12-25",
+    "link": "/library/criticisms/menro-runaway"
   },
   {
     "type": "Fragment",
@@ -315,6 +336,13 @@
     "link": "/fragments/zhk-program"
   },
   {
+    "type": "Criticism",
+    "title": "Aesthetics in The Temple of the Golden Pavilion",
+    "description": "Yukio Mishima is a representative figure of the Japanese traditional literary tradition, and The Temple of the Golden Pavilion (Kinkaku-ji, 金閣寺) constitutes a crucial embodiment of his aesthetic vision, as well as a typical manifestation of the Japanese concept of mono no aware (物の哀れ). Through the continuous development of the characters and their aesthetic perspectives in the novel, we can glimpse what the aesthetics of mono no aware — sometimes regarded in a certain sense as sabi (寂) — fundamentally pursues: the realisation of eternity through destruction and the attainment of the ultimate through the transient moment.",
+    "date": "2023-09-12",
+    "link": "/library/criticisms/kinkaku-ji"
+  },
+  {
     "type": "Linguistics",
     "title": "Miscellanea VII. Fit to Be Called Langdang, But Daring Not to Speak Longzhong (堪作郎当语，不敢语龙钟)",
     "description": "An etymological and phonological analysis demonstrating the cognate relationship between the Chinese words “郎当” and “龙钟”. Drawing on ancient poetry and historical anecdotes, the essay examines the nuanced emotional similarities and differences between the terms, concluding with personal reflections.",
@@ -327,6 +355,13 @@
     "description": "An investigative phonetic transcription (IPA) of two distinct dialects within Suqian (Chinese: 宿迁): the local Suqian dialect and the Shuyang County (Chinese: 沭阳县) dialect. The analysis concludes that these dialects correspond to Zhongyuan Mandarin (Chinese: 中原官话) and Jianghuai Mandarin (Chinese: 江淮官话), respectively.",
     "date": "2023-08-25",
     "link": "/library/linguistics/miscellanea-vi-suqian-dialects"
+  },
+  {
+    "type": "Criticism",
+    "title": "The Textual Characteristic of Yuewei Caotang Biji: \"Not Knowing\"",
+    "description": "As a representative work of literary sketches from the Qing Dynasty, Yuewei Caotang Biji (《阅微草堂笔记》) presents a narrative style that stands in stark contrast to Liaozhai Zhiyi (《聊斋志异》). While the latter emphasizes elaborate plots and character development, the former is noted for its brevity and succinctness. More uniquely, Ji Yun (纪昀), the author, frequently employs the expression \"not knowing\" (bu zhi, 不知) within the narrative. This technique not only obscures character identities and event causalities but also subtly enhances the text's sense of authenticity and philosophical depth. This seemingly ambiguous narrative approach is, in fact, a deliberately crafted expressive strategy by the author, carrying rich literary and intellectual connotations.",
+    "date": "2023-08-15",
+    "link": "/library/criticisms/yuewei-caotang"
   },
   {
     "type": "Linguistics",
@@ -343,6 +378,13 @@
     "link": "/notes/2023/N-20230801.pdf"
   },
   {
+    "type": "Criticism",
+    "title": "A Comparison of Two Artists' Philosophies of Life in The Life and Opinions of the Tomcat Murr",
+    "description": "The Life and Opinions of the Tomcat Murr (full title: The Life and Opinions of the Tomcat Murr, together with a fragmentary Biography of Kapellmeister Johannes Kreisler on randomly recycled sheets of paper) is a late masterpiece by the German Romantic author E.T.A. Hoffmann. The novel employs a unique dual narrative structure, juxtaposing the humorous account of the tomcat Murr's rise as an \"artist\" with the tragic life of the musician Kreisler. These two starkly contrasting philosophies of life represent Hoffmann's profound reflection on the artist's struggle between reality and idealism.",
+    "date": "2023-07-12",
+    "link": "/library/criticisms/tomcat-murr"
+  },
+  {
     "type": "Note",
     "title": "N-20230710",
     "description": "This expository article by Runnel Cheung provides a comparative analysis of three foundational frameworks in mathematics: set theory, category theory, and type theory. Set theory, formalized through ZFC axioms, treats mathematical objects as sets and underpins classical mathematics. Category theory emphasizes morphisms and structural relationships, offering a unifying language across disciplines. Type theory, rooted in constructive and computational principles, connects logic and programming via the Curry-Howard correspondence. The paper examines historical origins, axiomatic structures, applications, and philosophical implications, concluding with modern developments like univalent foundations that aim to synthesize these approaches.",
@@ -352,7 +394,7 @@
   {
     "type": "Criticism",
     "title": "The Inheritance and Legacy of the Chuci — A Literary Transition that Has Been Overlooked",
-    "description": "This presentation challenges Fu Sinian's view that the *Chuci* (《楚辞》) is isolated from the mainstream literary lineage. It argues that the *Chuci* serves as a transitional bridge: inheriting the *Shijing*'s (《诗经》) phrasing and analogical methods (*bixing*, 比兴), absorbing influences from Qi remonstrance literature (*Qi feng*, 齐讽), and shaping Han dynasty Sao-style *fu* (骚体赋). Ultimately, it restores the *Chuci* as both inheritor of ancient traditions and progenitor of new literary forms.",
+    "description": "This presentation challenges Fu Sinian's view that the Chuci (《楚辞》) is isolated from the mainstream literary lineage. It argues that the Chuci serves as a transitional bridge: inheriting the Shijing's (《诗经》) phrasing and analogical methods (bixing, 比兴), absorbing influences from Qi remonstrance literature (Qi feng, 齐讽), and shaping Han dynasty Sao-style fu (骚体赋). Ultimately, it restores the Chuci as both inheritor of ancient traditions and progenitor of new literary forms.",
     "date": "2023-06-22",
     "link": "/library/criticisms/chuci-transition"
   },
