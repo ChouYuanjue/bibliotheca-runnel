@@ -252,6 +252,20 @@
     "link": "/achieved/paper-cpg"
   },
   {
+    "type": "Criticism",
+    "title": "Pratofungo: The \"Paradiso dei Malati\" Isolated from the World",
+    "description": "In Italo Calvino's The Cloven Viscount, Pratofungo is a secluded village for lepers, depicted as a 'Paradise of the Sick' where isolation fosters a decadent happiness. This short review explores its themes of exclusion, self-deception, and the tragedy of societal rejection, drawing parallels to modern psychoanalytic communities.",
+    "date": "2024-12-20",
+    "link": "/library/criticisms/pratofungo"
+  },
+  {
+    "type": "Criticism",
+    "title": "The Unconsoled: The Social Landscape Behind the \"Impossibility of Communication\"",
+    "description": "Kazuo Ishiguro's experimental novel The Unconsoled explores the impossibility of communication in modern society, examining the alienation of art through commodification, the tyranny of time, and the homelessness of modern man, all within a dreamlike narrative structure.",
+    "date": "2024-12-20",
+    "link": "/library/criticisms/the-unconsoled"
+  },
+  {
     "type": "Linguistics",
     "title": "Miscellanea X. The Lacanian L-Schema in Hemingway's The Old Man and the Sea",
     "description": "A Lacanian linguistic analysis utilizing the \"L-schema\" (or L'Automaton) to examine the structural and architectural characteristics of Ernest Hemingway's literary corpus, with a specific focus on the novel The Old Man and the Sea.",
@@ -341,13 +355,6 @@
     "description": "Alice Munro’s *Runaway* is a collection marked by an intense structural consciousness. Unlike many anthologies that simply aggregate a writer's representative works, Munro deliberately tethers eight short stories to a singular, cohesive theme: escape. As Eudora Welty observed: \"[The stories] repeat themselves in all sorts of subtle ways, coming at a certain theme from different variations.\" In these narratives, characters flee from families or marriages, and the protagonists are almost exclusively women. Yet the outcomes of their flights are strikingly similar: they either end in tragedy or lapse into failure. At times, it is difficult to comprehend why some abandon a successful escape at the very last moment, or fall into deeper anguish after the fact. By utilizing Jacques Lacan’s concept of the objet petit a, we may find a more precise analytical path through these predicaments.",
     "date": "2023-12-25",
     "link": "/library/criticisms/menro-runaway"
-  },
-  {
-    "type": "Criticism",
-    "title": "The Unconsoled: The Social Landscape Behind the \"Impossibility of Communication\"",
-    "description": "Kazuo Ishiguro's experimental novel The Unconsoled explores the impossibility of communication in modern society, examining the alienation of art through commodification, the tyranny of time, and the homelessness of modern man, all within a dreamlike narrative structure.",
-    "date": "2023-12-20",
-    "link": "/library/criticisms/the-unconsoled"
   },
   {
     "type": "Fragment",

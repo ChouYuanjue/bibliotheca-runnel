@@ -1,0 +1,21 @@
+---
+title: "Pratofungo: The \"Paradiso dei Malati\" Isolated from the World"
+date: "2024-12-20"
+type: "SHORT REVIEW"
+image: "/library/criticisms/pratofungo/image.png"
+description: "In Italo Calvino's The Cloven Viscount, Pratofungo is a secluded village for lepers, depicted as a 'Paradise of the Sick' where isolation fosters a decadent happiness. This short review explores its themes of exclusion, self-deception, and the tragedy of societal rejection, drawing parallels to modern psychoanalytic communities."
+---
+
+## Pratofungo: The "Paradiso dei Malati" Isolated from the World
+
+In *The Cloven Viscount* (*Il visconte dimezzato*), all lepers are banished to **Pratofungo**, where they live out the remainder of their lives in total isolation from the outside world. The inhabitants there revel in nightly festivities; the music and songs drifting from the village often fill the narrator, "I," with envy. They adorn their bodies and faces—long since disfigured by disease—with flowers, exposing their nakedness like the Ancient Greeks. Eschewing agriculture and labor, they subsist on an obsession born of despair. Calvino characterizes this as a "decadent happiness."
+
+According to the cosmology of **John Milton**, they undoubtedly belong to **"Chaos"**—for they are lost, hopeless, aimless, and idle. Yet, within this realm of Chaos, they have constructed their own "paradise." It is a singular confluence of hedonism, extremism, aestheticism, and morbidity. The sole ticket for entry into this paradise is "the disease."
+
+**Sebastiana** was not originally afflicted with leprosy, yet she was exiled to Pratofungo by the "Bad" half of **Medardo**. It was only after she used resin to feign the symptoms of the disease that she was accepted by the community. However, she continually consumed herbal remedies to avoid actual infection; knowing she was not truly "ill," she could never truly understand them, nor could she ever fully integrate.
+
+In truth, Pratofungo is omnipresent. For instance, today, as psychoanalytic theory gradually recedes from the mainstream spotlight, the **International Psychoanalytical Association (IPA)** exhibits a similar predicament. Even as psychoanalysts are increasingly perceived as unique entities drifting outside the mainstream, the Association remains—perhaps even more so—noted for its aloofness and self-preservation. Initially, the outside world formed a sense of estrangement toward them; subsequently, the Association itself reinforced its boundaries within this alienation, gradually cocooning itself into a completely exclusive "Paradise of the Sick."
+
+Calvino defines them as "the irresponsible ones" (**gli irresponsabili**), yet at the end of the book, he writes that "I" remained "in this world of ours full of responsibilities and will-o'-the-wisps." The people of Pratofungo also live in this world; how could they be free from responsibility, or the cycle of birth, aging, illness, and death? It is only due to the mutual repulsion and isolation between them and the outside world that their sorrows remain imperceptible to others. Outsiders can only judge them to be joyful based on the faint strains of music. Ordinary people feel a sort of "Lord Ye's love for dragons" (a paradoxical longing) for this gaiety. Just like the narrator who yearned for Pratofungo, upon drawing near to it, his heart was filled with fear and revulsion, desperate to avoid its inhabitants. This longing is nothing more than self-deception—an implicit morbidity that echoes the explicit morbidity of the "Paradise of the Sick." Its essence is not a genuine desire for an alternative life, but a dissatisfaction with one's own current state; Pratofungo merely fills the gap as the **"object petit a"** of desire.
+
+Thus, we say that the "Paradise of the Sick" remains within "Chaos." It cannot even be considered bordering on Eden; rather, it is closer to Hell. What is called "independent of the world" is more accurately "abandoned by the world." Those who are not tolerated by society can only huddle together for warmth through their "disease," using it as a means of self-protection and pride—this is their tragedy. Yet, in a realm of Chaos where everyone wallows in self-pity, to be able to crown oneself with garlands and sing aloud is, perhaps, a faint yet real fortune that belongs to them alone.

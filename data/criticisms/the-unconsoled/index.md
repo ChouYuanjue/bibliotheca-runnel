@@ -1,6 +1,6 @@
 ---
 title: "The Unconsoled: The Social Landscape Behind the \"Impossibility of Communication\""
-date: "2023-12-20"
+date: "2024-12-20"
 type: "ESSAY"
 image: "/library/criticisms/the-unconsoled/image.png"
 description: "Kazuo Ishiguro's experimental novel The Unconsoled explores the impossibility of communication in modern society, examining the alienation of art through commodification, the tyranny of time, and the homelessness of modern man, all within a dreamlike narrative structure."
@@ -15,7 +15,7 @@ description: "Kazuo Ishiguro's experimental novel The Unconsoled explores the im
 
 The novel revolves around a classical music performance known as "Thursday Night." Almost every character in the book has some entanglement with music: some view it as a tool to earn respect, some as a means to secure love, and others use it to chase fame. Yet, behind this "respect" lies a betrayal and violation of the very essence of art.
 
-The citizens do not truly appreciate art; they merely affect a love for it (*fuyong fengya*), and this "affectation," in turn, coerces the artist. To revitalize the town’s cultural atmosphere, municipal officials invite the world-class pianist Ryder (the narrator, "I") to perform. However, "Thursday Night"—the core event of the entire book—occupies less than 30 pages, representing less than a fifth of the total text, a stark contrast to the preceding "grand spectacle" buildup. The performance itself is chaotic: there is no master of ceremonies, the performers are perfunctory, and the audience talks loudly, laughs, and wanders around, completely ignoring the music on stage. This attitude profoundly reveals the "commodification" of art: people treat art as a consumable object, no longer concerned with its aesthetic value but pursuing superficial excitement and symbolic satisfaction.
+The citizens do not truly appreciate art; they merely affect a love for it, and this "affectation," in turn, coerces the artist. To revitalize the town’s cultural atmosphere, municipal officials invite the world-class pianist Ryder (the narrator, "I") to perform. However, "Thursday Night"—the core event of the entire book—occupies less than 30 pages, representing less than a fifth of the total text, a stark contrast to the preceding "grand spectacle" buildup. The performance itself is chaotic: there is no master of ceremonies, the performers are perfunctory, and the audience talks loudly, laughs, and wanders around, completely ignoring the music on stage. This attitude profoundly reveals the "commodification" of art: people treat art as a consumable object, no longer concerned with its aesthetic value but pursuing superficial excitement and symbolic satisfaction.
 
 The three artists in the book—Brodsky, Ryder, and Stephan—represent the predicaments of three generations of musicians. Regardless of their artistic caliber, they have all been reduced to objects of public entertainment, becoming tools manipulated by commercial forces represented by figures like Hoffman.
 
