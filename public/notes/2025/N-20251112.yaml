@@ -1,0 +1,51 @@
+document: N-20251112.md
+processed_at: '2026-02-14 22:45:30'
+model_used: deepseek/deepseek-chat-v3.1
+summary: This document is a comprehensive review of calculus concepts, covering inequalities
+  like Cauchy-Schwarz and Minkowski, definitions of limits (including ε-N and ε-δ
+  languages), properties of infinitesimals and infinities, continuity, differentiation
+  (including rules, derivatives of hyperbolic functions, Leibniz formula, and parametric
+  derivatives), and key theorems such as Fermat's Lemma, Rolle's Theorem, Lagrange
+  Mean Value Theorem, and Cauchy Mean Value Theorem. It also includes trigonometric
+  and hyperbolic identities, discussions on function continuity and discontinuity
+  types, and methods like logarithmic differentiation. The content serves as a foundational
+  recap for advanced calculus, emphasizing definitions, proofs, and practical applications.
+keywords:
+- Cauchy-Schwarz inequality
+- Minkowski inequality
+- neighborhood
+- trigonometric identities
+- hyperbolic functions
+- limit definitions
+- epsilon-N language
+- epsilon-delta language
+- one-sided limits
+- G-N language
+- G-delta language
+- Heine theorem
+- infinite series
+- infinitesimals
+- squeeze theorem
+- monotone convergence theorem
+- Cauchy criterion
+- order of infinitesimals
+- equivalent infinitesimals
+- continuity
+- point continuity
+- one-sided continuity
+- continuous functions
+- boundedness theorem
+- extreme value theorem
+- intermediate value theorem
+- zero theorem
+- discontinuity types
+- derivatives
+- derivative rules
+- logarithmic differentiation
+- parametric derivatives
+- Leibniz formula
+- differentials
+- Fermat's lemma
+- Rolle's theorem
+- Lagrange mean value theorem
+- Cauchy mean value theorem

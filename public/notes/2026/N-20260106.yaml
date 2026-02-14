@@ -1,0 +1,32 @@
+document: N-20260106.md
+processed_at: '2026-02-14 22:49:40'
+model_used: deepseek/deepseek-chat-v3.1
+summary: This document presents informal mathematics notes focused on calculus, specifically
+  integration techniques, proofs, and formulas. Key topics include proofs involving
+  integrals and derivatives, such as demonstrating inequalities like ∫|f''(x)/f(x)|dx
+  > 4/(b-a) under given conditions, and establishing identities using symmetry and
+  Taylor expansions. It covers the midpoint rule error term, integration by substitution
+  examples (e.g., involving arctan and arcsin functions), and standard integral results
+  for expressions like ∫1/(a + b cos x)dx over symmetric intervals, providing closed-form
+  solutions. The Wallis formula derivation is also discussed, using recursive relations
+  for integrals of sin^n x. Overall, the notes emphasize rigorous calculus proofs,
+  integral evaluations, and applications of mean value theorems.
+keywords:
+- calculus
+- integration
+- continuity
+- differentiability
+- Hadamard inequality
+- Taylor expansion
+- mean value theorem
+- integral mean value theorem
+- midpoint rule
+- error term
+- trigonometric integrals
+- substitution method
+- Wallis formula
+- definite integrals
+- symmetric functions
+- second derivative
+- proof techniques
+- mathematical analysis

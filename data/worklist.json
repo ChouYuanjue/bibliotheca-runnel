@@ -28,6 +28,27 @@
     "link": null
   },
   {
+    "type": "Note",
+    "title": "N-20260106",
+    "description": "This document presents informal mathematics notes focused on calculus, specifically integration techniques, proofs, and formulas. Key topics include proofs involving integrals and derivatives, such as demonstrating inequalities like ∫|f''(x)/f(x)|dx > 4/(b-a) under given conditions, and establishing identities using symmetry and Taylor expansions. It covers the midpoint rule error term, integration by substitution examples (e.g., involving arctan and arcsin functions), and standard integral results for expressions like ∫1/(a + b cos x)dx over symmetric intervals, providing closed-form solutions. The Wallis formula derivation is also discussed, using recursive relations for integrals of sin^n x. Overall, the notes emphasize rigorous calculus proofs, integral evaluations, and applications of mean value theorems.",
+    "date": "2026-01-06",
+    "link": "/notes/2026/N-20260106.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20260105",
+    "description": "This document is a set of informal mathematics notes focusing on linear algebra, specifically eigenvalue problems, matrix properties, and quadratic forms. Key topics include: properties of eigenvalues and eigenvectors for functions of matrices, inverses, and adjugates; diagonalization conditions; trace and determinant relationships; symmetric and orthogonal matrices; nilpotent matrices; quadratic form optimization; and basis transitions in linear spaces. Examples demonstrate applications such as computing determinants, ranks, and matrix constructions using eigenvalues, with proofs involving characteristic polynomials, orthogonality, and similarity transformations. Conclusions emphasize techniques for solving matrix equations, verifying definiteness, and handling coordinate changes.",
+    "date": "2026-01-05",
+    "link": "/notes/2026/N-20260105.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20260103",
+    "description": "This document presents informal mathematics notes focusing on linear algebra problem-solving techniques, organized into three main sections: determinants, vectors/matrices, and systems of equations. Key methods include determinant expansion, recurrence relations, block matrix operations, and rank properties. Findings demonstrate proofs for matrix properties (e.g., skew-symmetry when ξᵀAξ=0), determinant calculations (e.g., M41+M42+M43=-6), and solutions to systems (e.g., Ax=0 derivation). Conclusions emphasize practical strategies like decomposition (A=αβᵀ), polynomial identities (E-A invertibility), and equivalence transformations, with proofs leveraging orthogonality, rank-nullity theorems, and vector space properties.",
+    "date": "2026-01-03",
+    "link": "/notes/2026/N-20260103.pdf"
+  },
+  {
     "type": "Fragment",
     "title": "From Divergent Series to Stable Homotopy — On the Equation $0=1-1=-1+1=0$",
     "description": "More than a year ago, I encountered a slide from a lecture by Professor Keyao Peng featuring the enigmatic equation $0=1-1=-1+1=0$. At the time, I interpreted it through the lens of classical analysis and infinite summation techniques. It wasn't until I recently discovered the full lecture slides that I realized my initial intuition was not just slightly off, but diametrically opposed to the mathematical reality. This equation is not about arithmetic values or infinite cancellations; it is a description of a non-trivial topological path within the realm of K-theory and Higher Algebra.",
@@ -56,6 +77,13 @@
     "link": "/fragments/topos-ai"
   },
   {
+    "type": "Note",
+    "title": "N-20251210",
+    "description": "This document provides a comprehensive overview of calculus concepts, covering differentiation and integration techniques. Key topics include theorems on function monotonicity and extrema, inflection point classification, asymptote determination, curve sketching procedures, and integration methods such as substitution, integration by parts, and handling rational and trigonometric functions. It also details definite integrals, the Fundamental Theorem of Calculus, applications in area, volume, and arc length calculations, and concludes with an introduction to improper integrals and their convergence criteria.",
+    "date": "2025-12-10",
+    "link": "/notes/2025/N-20251210.pdf"
+  },
+  {
     "type": "Fragment",
     "title": "Discussion on Explaining VAE to New Students and Reflections on Its Core Principles",
     "description": "This fragment records a discussion focusing on how to explain Variational Autoencoders (VAE) to new students. The discussion involves three participants: myself (Runnel, an undergraduate student from NJU), a senior associate professor in the field of Deep Learning with a Ph.D. from Tsinghua University (hereinafter referred to as Senior A), and a fellow undergraduate student from The Chinese University of Hong Kong, Shenzhen (hereinafter referred to as Peer B). The core of the discussion revolves around the key entry points, prerequisite knowledge, and core logical framework for explaining VAEs, with in-depth exchanges on the connection between Autoencoders (AE) and VAE, the significance of dimensionality reduction, and the essence of generative models. Subsequently, I will sort out and reflect on the core content of the discussion, focusing on the theoretical connotation and logical derivation of VAE.",
@@ -68,6 +96,13 @@
     "description": "As the second module of the \"Nova Technical Onboarding Series\" for freshman engineers, this presentation maps out the comprehensive technology landscape required to build a modern information aggregation system. It serves as a practical roadmap, guiding students from basic data processing scripts to complex, autonomous agent workflows.\n\nThe session bridges the gap between individual coding tasks and full-stack system design through five key domains:\n\n1.Data Ingestion & NLP Pipelines: A walkthrough of the essential toolkit (e.g., Spacy, Unstructured, LangChain) used to transform messy, heterogeneous data (PDFs, Chat Logs) into clean, structured formats suitable for AI processing.\n\n2.The System's \"Brain\": Implementing Retrieval-Augmented Generation (RAG) by combining Vector Databases (Chroma) for semantic search and Graph Databases (Neo4j) for relational reasoning, introducing students to the concept of Hybrid Search.\n\n3.Modern Interaction Patterns: Moving beyond static web pages to dynamic \"Push & Pull\" architectures. The session demonstrates how to deliver content via diverse channels like RSS feeds and Calendar integrations using frameworks like FastAPI and React.\n\n4.Agentic Workflows & Orchestration: An introduction to building autonomous systems using the Model Context Protocol (MCP). It explains how to handle long-running AI tasks asynchronously using Message Queues (Celery/Redis) to ensure the application remains responsive.\n\n5.From \"Solo Coding\" to \"Engineering\": establishing a robust collaborative environment. This section emphasizes the importance of API Contracts (Swagger), Containerization (Docker), and Observability (Grafana) in a professional team setting.",
     "date": "2025-12-06",
     "link": "https://zenodo.org/doi/10.5281/zenodo.17852269"
+  },
+  {
+    "type": "Note",
+    "title": "N-20251202",
+    "description": "This document presents comprehensive linear algebra notes covering matrix diagonalization, inner products, quadratic forms, and linear spaces. Key findings include: diagonalizability requires n linearly independent eigenvectors (independent of rank or eigenvalue multiplicity); real symmetric matrices are always orthogonally diagonalizable; quadratic forms can be transformed to standard/canonical forms via orthogonal transformations, with inertia theorem establishing uniqueness of signature; and linear transformations correspond to matrices under basis changes. Theorems like Schur decomposition and spectral theorem are implicitly addressed through practical methods like Gram-Schmidt orthogonalization and eigenvalue-based classification of quadratic forms (positive definite when all eigenvalues >0). Structural relationships between linear spaces, subspaces (sums, intersections), and linear mappings are systematically developed with coordinate-based computational techniques.",
+    "date": "2025-12-02",
+    "link": "/notes/2025/N-20251202.pdf"
   },
   {
     "type": "Achieved",
@@ -105,11 +140,32 @@
     "link": "/fragments/iutt-oct"
   },
   {
+    "type": "Note",
+    "title": "N-20251112",
+    "description": "This document is a comprehensive review of calculus concepts, covering inequalities like Cauchy-Schwarz and Minkowski, definitions of limits (including ε-N and ε-δ languages), properties of infinitesimals and infinities, continuity, differentiation (including rules, derivatives of hyperbolic functions, Leibniz formula, and parametric derivatives), and key theorems such as Fermat's Lemma, Rolle's Theorem, Lagrange Mean Value Theorem, and Cauchy Mean Value Theorem. It also includes trigonometric and hyperbolic identities, discussions on function continuity and discontinuity types, and methods like logarithmic differentiation. The content serves as a foundational recap for advanced calculus, emphasizing definitions, proofs, and practical applications.",
+    "date": "2025-11-12",
+    "link": "/notes/2025/N-20251112.pdf"
+  },
+  {
+    "type": "Note",
+    "title": "N-20251110",
+    "description": "This document is a comprehensive review of linear algebra concepts focusing on determinants and matrix theory. Key topics include determinant calculation techniques (Vandermonde, block triangular, Laplace expansion), Cramer's rule for solving linear equations, and matrix properties (symmetric, antisymmetric, orthogonal, permutation). It compares Gaussian elimination and Cramer's rule, discusses matrix rank, vector spaces, and special matrices, providing proofs and computational methods. The material serves as a theoretical and practical guide for advanced linear algebra applications.",
+    "date": "2025-11-10",
+    "link": "/notes/2025/N-20251110.pdf"
+  },
+  {
     "type": "Achieved",
     "title": "REPO: Informal Notes on Mathematics",
     "description": "This is a project for storing notes and materials recorded during the process of self-studying mathematics. Originally published via FigShare, DOI: 10.6084/m9.figshare.c.6094833.v7",
     "date": "2025-11-08T13:29:56Z",
     "link": "/achieved/informal_notes_on_mathematics"
+  },
+  {
+    "type": "Note",
+    "title": "N-20251108",
+    "description": "This document presents mathematical notes on linear algebra concepts, focusing on vector spaces and linear mappings. It begins by illustrating diverse vector types, including polynomials and audio signals, then introduces the \"Minus-1 Trick\" for solving homogeneous systems Ax=0 by augmenting matrices to reveal solution bases. Key definitions cover linear mappings, their special cases (isomorphisms, endomorphisms, automorphisms), and matrix representations. The basis change theorem shows transformation matrices adapt via ÃΦ = T⁻¹AΦS when bases change. Finally, it defines kernel (null space) and image (range) of linear maps, noting kernel triviality implies injectivity, with a preview of category theory connections.",
+    "date": "2025-11-08",
+    "link": "/notes/2025/N-20251108.pdf"
   },
   {
     "type": "Achieved",

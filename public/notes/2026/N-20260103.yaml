@@ -1,0 +1,45 @@
+document: N-20260103.md
+processed_at: '2026-02-14 22:49:01'
+model_used: deepseek/deepseek-chat-v3.1
+summary: 'This document presents informal mathematics notes focusing on linear algebra
+  problem-solving techniques, organized into three main sections: determinants, vectors/matrices,
+  and systems of equations. Key methods include determinant expansion, recurrence
+  relations, block matrix operations, and rank properties. Findings demonstrate proofs
+  for matrix properties (e.g., skew-symmetry when ξᵀAξ=0), determinant calculations
+  (e.g., M41+M42+M43=-6), and solutions to systems (e.g., Ax=0 derivation). Conclusions
+  emphasize practical strategies like decomposition (A=αβᵀ), polynomial identities
+  (E-A invertibility), and equivalence transformations, with proofs leveraging orthogonality,
+  rank-nullity theorems, and vector space properties.'
+keywords:
+- determinant
+- expansion
+- recurrence relation
+- splitting method
+- Vandermonde determinant
+- characteristic equation
+- eigenvalues
+- orthogonal matrices
+- elimination
+- product transformation
+- block triangular determinant
+- elementary transformation
+- matrix decomposition
+- standard form
+- matrix relations
+- vector relations
+- special values
+- antisymmetric matrix
+- absorption
+- rank relations
+- linear independence
+- polynomial formula
+- vector groups
+- equivalence
+- matrix powers
+- linear equations
+- homogeneous equations
+- solution space
+- basis solutions
+- common solutions
+- proof by contradiction
+- invertibility

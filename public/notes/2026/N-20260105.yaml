@@ -1,0 +1,52 @@
+document: N-20260105.md
+processed_at: '2026-02-14 22:49:28'
+model_used: deepseek/deepseek-chat-v3.1
+summary: 'This document is a set of informal mathematics notes focusing on linear
+  algebra, specifically eigenvalue problems, matrix properties, and quadratic forms.
+  Key topics include: properties of eigenvalues and eigenvectors for functions of
+  matrices, inverses, and adjugates; diagonalization conditions; trace and determinant
+  relationships; symmetric and orthogonal matrices; nilpotent matrices; quadratic
+  form optimization; and basis transitions in linear spaces. Examples demonstrate
+  applications such as computing determinants, ranks, and matrix constructions using
+  eigenvalues, with proofs involving characteristic polynomials, orthogonality, and
+  similarity transformations. Conclusions emphasize techniques for solving matrix
+  equations, verifying definiteness, and handling coordinate changes.'
+keywords:
+- eigenvalue
+- eigenvector
+- linear algebra
+- matrix
+- diagonalization
+- symmetric matrix
+- orthogonal matrix
+- nilpotent matrix
+- characteristic polynomial
+- trace
+- determinant
+- algebraic multiplicity
+- geometric multiplicity
+- similarity transformation
+- quadratic form
+- positive definite matrix
+- transition matrix
+- linear space
+- basis
+- coordinate transformation
+- rank
+- kernel
+- orthogonal diagonalization
+- spectral theorem
+- matrix function
+- inverse matrix
+- adjugate matrix
+- characteristic equation
+- real symmetric matrix
+- orthogonal transformation
+- standard form
+- principal minor
+- block matrix
+- contract transformation
+- eigenvalue problem
+- linear independence
+- vector space
+- coordinate system
