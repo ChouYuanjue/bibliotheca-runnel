@@ -1,94 +1,61 @@
-# Runnel Zhang
+# Runnel Zhang (Runcheng Zhang)
 
-Also known as: **Runcheng Zhang**, **Runnel Cheung**  
-
-ORCID: [0009-0005-7611-3583](https://orcid.org/0009-0005-7611-3583)  |  GitHub: [@ChouYuanjue](https://github.com/ChouYuanjue)
-
-EMAIL: [Runnel.Zhang@smail.nju.edu.cn](mailto:Runnel.Zhang@smail.nju.edu.cn)
+**Email:** [Runnel.Zhang@smail.nju.edu.cn](mailto:Runnel.Zhang@smail.nju.edu.cn) | **GitHub:** [@ChouYuanjue](https://github.com/ChouYuanjue) | **ORCID:** [0009-0005-7611-3583](https://orcid.org/0009-0005-7611-3583)
 
 ## Education
+**Nanjing University** | Nanjing, Jiangsu, CN
+*B.S. in Intelligent Science and Technology* | Sep 2025 – Jun 2029
 
-### Nanjing University
-Nanjing, Jiangsu, CN  
-2025-09-01 to 2029-06-30  
-Undergraduate Student (School of Intelligent Science and Technology)
+## Research & Professional Experience
 
+**Research Intern** | AI for Science (AI4Sci)
+*Advisor: Prof. Zheni Zeng* | Present
+* Focusing on the intersection of AI and scientific discovery
 
-## Awards & Honors
+**Project Developer** | Bank of Nanjing
+*Multimodal LLM-based Customer Emotion Recognition System* | Present
+* Designed and implemented an AI-powered system for analyzing customer emotions in complex banking environments.
 
-### National High School Mathematics Olympiad (Preliminary Round)
-2024 | National Second Prize
-### National High School Mathematics League
-2024 | Provincial First Prize
-### National High School Biology League
-2024 | Provincial First Prize
-### CCF Certified Software Professional (Senior Level)
-2023 | National Second Prize
+**Full-Stack Engineer** | FluxVerse
+*Core Engineering Team* | Present
+* Developing comprehensive full-stack solutions, ensuring robust architectural design and seamless integration of complex engineering projects.
 
-## Academic Programs
+**Core Member & Teaching Assistant** | NJU Artificial Intelligence Association (AIA)
+*Academic & Technical Committee* | Sep 2025 – Present
+* Organize and lead academic sharing sessions focusing on foundational AI theories and practical implementations. 
+* Scheduled to deliver a core lecture on Variational Autoencoders (VAE), designing hands-on experimental cases to bridge theoretical math with model applications. Provide targeted guidance on Python and ML fundamentals.
 
-### Peking University 2025 Winter School for Outstanding High School Students 
-2025-01 | Selected participant
+**Core Member** | NJU NOVA (Intelligent Data Decision Studio)
+*Engineering Committee* | Sep 2025 – Jan 2026
+* Directed technical solutions for multi-source information aggregation projects, developing core backend modules and ensuring high integration efficiency.
+* Delivered formal lectures on full-stack development, covering front-end/back-end synchronization and enterprise-level engineering practices.
 
-### Peking University 2024 Summer School for Outstanding High School Students, Yuanpei College 
-2024-07 | Selected participant
+## Selected Research Projects
 
-## Academic & Professional Engagement
+**Robust Semantic Reconstruction for Tangut Script Translation**
 
-### NJU AIA (Nanjing University Artificial Intelligence Association)
-Core Member & Teaching Assistant | 2025-09 - Present  
-- Serve as a core member in organizing academic activities and technical sharing sessions for the association, focusing on AI basic theory and practical application popularization.  
-- Provide one-on-one Q&A guidance for undergraduate members on Python programming, machine learning fundamentals, and assist in organizing hands-on experimental courses.  
-- Scheduled to host a teaching session on Variational Autoencoder (VAE) for the association in the next semester, designing practical cases to help members understand model principles and application scenarios.  
-
-### NJU NOVA (Nanjing University Intelligent Data Decision Studio)
-Core Member | 2025-09 - 2026.01  
-- Deliver two lectures on full-stack development for studio members, covering front-end and back-end technology integration, project engineering practices, and problem-solving in actual development.  
-- Participate in the studio's multi-source information aggregation projects, responsible for designing technical solutions and developing core modules, collaborating with team members to ensure project progress and integration efficiency.  
+*GitHub: [ChouYuanjue/Tangut_Chinese_Translator](https://github.com/ChouYuanjue/Tangut_Chinese_Translator) & [ChouYuanjue/tangut-nlp](https://github.com/ChouYuanjue/tangut-nlp)*
+* **Objective:** Combating extreme data sparsity in low-resource dead languages.
+* **Implementation:** Transitioned from rule-based dictionary mapping and basic LLM sequence correction to structural feature extraction. Currently utilizing advanced Transformer Attention mechanisms to construct a robust Character-Level Embedding Space tailored for symbolic domains.
 
 
-## Works
+**Controllable Symbolic Synthesis via Hierarchical Representation Learning**
 
-### Navigating the Full-Stack Ecosystem: Implementation Strategies and Knowledge Graphs for Information Aggregation
-2025-12-06 | lecture-speech | Zenodo  
-DOI: [10.5281/ZENODO.17852269](https://doi.org/10.5281/ZENODO.17852269)
+*GitHub: [ChouYuanjue/AI_Emoji_Kitchen_Lab](https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab)*
+* **Evolution:** Iteratively advanced from basic U-Net feature extraction to incorporating SE Attention, and eventually implementing LoRA-adapted Diffusion Models for fine-grained style control.
+* **Current Focus:** Expanding beyond raster-based generation to Vector Graphics Representation using DeepSVG architectures to capture intrinsic structural topologies.
 
-### Architectural Paradigms in Collaborative Software Engineering: A Comprehensive Analysis of the Nova Project
-2025-11-29 | lecture-speech | Zenodo  
-DOI: [10.5281/ZENODO.17765724](https://doi.org/10.5281/ZENODO.17765724)
+## Publications & Technical Presentations
 
-### Gravitational Fields of Non-Spherical Mass Distributions: Analysis and Orbital Dynamics
-2023-02-01 | blog-post  
-DOI: [10.6084/M9.FIGSHARE.22268917](https://doi.org/10.6084/M9.FIGSHARE.22268917)
+* **Zhang, R.** (2025). *Navigating the Full-Stack Ecosystem: Implementation Strategies and Knowledge Graphs for Information Aggregation*. Zenodo Lecture. DOI: [10.5281/ZENODO.17852269](https://doi.org/10.5281/ZENODO.17852269).
+* **Zhang, R.** (2025). *Architectural Paradigms in Collaborative Software Engineering: A Comprehensive Analysis of the Nova Project*. Zenodo Lecture. DOI: [10.5281/ZENODO.17765724](https://doi.org/10.5281/ZENODO.17765724).
+* **Zhang, R.** (2023). *Gravitational Fields of Non-Spherical Mass Distributions: Analysis and Orbital Dynamics*. DOI: [10.6084/M9.FIGSHARE.22268917](https://doi.org/10.6084/M9.FIGSHARE.22268917).
+* **Zhang, R.** (2023). *On the Factorization of Cyclotomic-Type Polynomials $\sum_{i=0}^k x^{in}$ and Their Divisibility Properties*. Preprint. DOI: [10.6084/M9.FIGSHARE.22268908](https://doi.org/10.6084/M9.FIGSHARE.22268908).
 
-### On the Factorization of Cyclotomic-Type Polynomials $\sum_{i=0}^k x^{in}$ and Their Divisibility Properties
-2023-01-27 | preprint  
-DOI: [10.6084/M9.FIGSHARE.22268908](https://doi.org/10.6084/M9.FIGSHARE.22268908)
+## Awards, Honors & Academic Programs
 
-### Rethinking Set Theory - Chinese Translation
-2022-01-31 | translation  
-DOI: [10.6084/M9.FIGSHARE.20310039](https://doi.org/10.6084/M9.FIGSHARE.20310039)
-
-### A Chaotic Preview Note on Hopf Fiberation
-2021-08-06 | blog-post  
-DOI: [10.6084/M9.FIGSHARE.20310042](https://doi.org/10.6084/M9.FIGSHARE.20310042)
-
-### A Friendly Introduction to Boolean Algebra
-2021-08-04 | blog-post  
-DOI: [10.6084/M9.FIGSHARE.20310033](https://doi.org/10.6084/M9.FIGSHARE.20310033)
-
-## Ongoing Projects
-
-### Robust Semantic Reconstruction for Tangut Script Translation
-
-*   **Evolution:** Initial focus was on **rule-based dictionary mapping** and **hardcoded idiomatic phrase** handling to basic **LLM sequence correction** for translation refinement. This proved limited by data sparsity inherent to the Tangut language.
-*   **Current Focus:** Shifting from purely sequence-based translation to **structural feature extraction**. Utilizing advanced **Transformer Attention Mechanisms** (potentially incorporating pre-trained multilingual models) to build a robust **Character-Level Embedding Space**, specifically combating low-resource data issues.
-
-**PREVIOUS REPOSITORY**: https://github.com/ChouYuanjue/Tangut_Chinese_Translator
-
-### Controllable Symbolic Synthesis via Hierarchical Representation Learning
-
-*   **Evolution:** Iterative self-driven exploration using standard generative models. The path progressed from **U-Net** (basic feature extraction) $\to$ **U-Net with SE Attention** (incorporating channel awareness) $\to$ **LoRA + Diffusion Models** (achieving fine-grained style control).
-*   **Current Focus:** Transitioning beyond raster/pixel-based diffusion to **Vector Graphics Representation**. Implementing **DeepSVG Architectures** to learn the intrinsic structural composition of symbols.
-
-**PREVIOUS REPOSITORY**: https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab
+* **National 2nd Prize**, CCF Certified Software Professional (Senior Level) | 2023 
+* **National 2nd Prize**, National High School Mathematics Olympiad (Preliminary) | 2024
+* **Provincial 1st Prize**, National High School Mathematics League | 2024
+* **Provincial 1st Prize**, National High School Biology League | 2024
+* **Selected Participant**, Peking University Winter School (2025) & Summer School (Yuanpei College, 2024) for Outstanding High School Students
