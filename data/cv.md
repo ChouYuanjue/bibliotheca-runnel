@@ -4,32 +4,40 @@
 
 ## Education
 **Nanjing University** | Nanjing, Jiangsu, CN
-*B.S. in Intelligent Science and Technology* | Sep 2025 – Jun 2029
+
+*B.S. in Intelligent Science and Technology* | Sep 2025 – Present
 
 ## Research & Professional Experience
 
 **Research Intern** | THUNLP (AI4S Research Group)
+
 *Advisor: Prof. Zheni Zeng* | Mar 2026 - Present
 * Focus on the intersection of artificial intelligence and scientific discovery (AI4Sci), specializing in the application of large language models to complex scientific reasoning and active learning domains.
 
-**External Collaborator** | Microsoft Research Asia (MSRA) | *Collaborator: Ziyu Zhou* | Jan 2026 – Present
+**External Collaborator** | Microsoft Research Asia (MSRA)
+
+*Collaborator: Ziyu Zhou* | Jan 2026 – Present
 * Partner on specialized AI for Mathematics (AI4Math) research initiatives, bridging advanced pure mathematical frameworks with modern machine learning paradigms.
 * Architect and develop Mathub, an AI-integrated collaborative platform for mathematical knowledge management and project execution. 
 
 **Core Developer (PoC Phase)** | Bank of Nanjing
+
 *Multimodal LLM-based Customer Emotion Recognition System* | Jan 2026 – Mar 2026
 * Designed and implemented an AI-powered system for analyzing customer emotions in complex banking environments.
 
 **Full-Stack Engineer** | FluxVerse
+
 *Core Engineering Team* | Jan 2026 - Present
 * Developing comprehensive full-stack solutions, ensuring robust architectural design and seamless integration of complex engineering projects.
 
 **Core Member & Teaching Assistant** | NJU Artificial Intelligence Association (AIA)
+
 *Academic & Technical Committee* | Sep 2025 – Present
 * Organize and lead academic sharing sessions focusing on foundational AI theories and practical implementations. 
 * Scheduled to deliver a core lecture on Variational Autoencoders (VAE), designing hands-on experimental cases to bridge theoretical math with model applications. Provide targeted guidance on Python and ML fundamentals.
 
 **Core Member** | NJU NOVA (Intelligent Data Decision Studio)
+
 *Engineering Committee* | Sep 2025 – Jan 2026
 * Directed technical solutions for multi-source information aggregation projects, developing core backend modules and ensuring high integration efficiency.
 * Delivered formal lectures on full-stack development, covering front-end/back-end synchronization and enterprise-level engineering practices.
