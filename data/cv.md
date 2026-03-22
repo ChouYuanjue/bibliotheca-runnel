@@ -32,13 +32,13 @@
 
 **Core Member & Teaching Assistant** | NJU Artificial Intelligence Association (AIA)
 
-*Academic & Technical Committee* | Sep 2025 – Present
+*Academic & Technical Group* | Sep 2025 – Present
 * Organize and lead academic sharing sessions focusing on foundational AI theories and practical implementations. 
 * Scheduled to deliver a core lecture on Variational Autoencoders (VAE), designing hands-on experimental cases to bridge theoretical math with model applications. Provide targeted guidance on Python and ML fundamentals.
 
 **Core Member** | NJU NOVA (Intelligent Data Decision Studio)
 
-*Engineering Committee* | Sep 2025 – Jan 2026
+*Engineering Group* | Sep 2025 – Jan 2026
 * Directed technical solutions for multi-source information aggregation projects, developing core backend modules and ensuring high integration efficiency.
 * Delivered formal lectures on full-stack development, covering front-end/back-end synchronization and enterprise-level engineering practices.
 
