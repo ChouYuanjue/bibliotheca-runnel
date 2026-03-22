@@ -9,7 +9,7 @@
 
 ## Research & Professional Experience
 
-**Research Intern** | THUNLP (AI4S Research Group)
+**Research Intern** | TsinghuaNLP (AI4S Research Group)
 
 *Advisor: Prof. Zheni Zeng* | Mar 2026 - Present
 * Focus on the intersection of artificial intelligence and scientific discovery (AI4Sci), specializing in the application of large language models to complex scientific reasoning and active learning domains.
