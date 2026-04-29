@@ -25,9 +25,10 @@ Original Cthulhu Mythos phrases are not treated as incorrect. They are interpret
 GitHub Repository: https://github.com/ChouYuanjue/Rlyehian-Cthuvian-Translator/
 
 Translator Demo: https://rlyehian-cthuvian-translator.netlify.app/
+
 ---
 
-## 1. Basic Principles
+### 1. Basic Principles
 
 **RC-1 is not designed to turn Cthuvian into English wearing alien spelling. It is designed to let Cthuvian carry English information while still looking and behaving like Cthuvian.**
 
@@ -44,9 +45,9 @@ English words must not be copied directly. One should not translate “English�
 
 ---
 
-## 2. Phonology and Orthography
+### 2. Phonology and Orthography
 
-### 2.1 Letters
+#### 2.1 Letters
 
 Consonants:
 
@@ -66,7 +67,7 @@ The apostrophe `’` has three functions:
 2. It marks morpheme boundaries, as in `ph’nglui`.
 3. It allows otherwise unpronounceable consonant clusters to be written in compressed form.
 
-### 2.2 The Rule of h
+#### 2.2 The Rule of h
 
 When `h` appears alone, it is a throat sound.
 When it follows a consonant, it does not simply represent /h/. Instead, it pharyngealizes, weakens, roughens, or distorts the preceding consonant.
@@ -79,7 +80,7 @@ Thus:
 
 This preserves the source material’s treatment of `h`.
 
-### 2.3 Syllable Structure
+#### 2.3 Syllable Structure
 
 The standard syllable may be written as:
 
@@ -97,7 +98,7 @@ Human speakers may insert an extremely short central vowel between consonants wh
 
 ---
 
-## 3. General Morphological Template
+### 3. General Morphological Template
 
 A complete word is roughly built in the following order:
 
@@ -117,9 +118,9 @@ The existing material contains `c-` as a first-person plural prefix, and it affe
 
 ---
 
-## 4. Pronouns and Possessives
+### 4. Pronouns and Possessives
 
-### 4.1 Independent Pronouns
+#### 4.1 Independent Pronouns
 
 | RC-1   | Meaning                                  |
 | ------ | ---------------------------------------- |
@@ -134,7 +135,7 @@ The existing material contains `c-` as a first-person plural prefix, and it affe
 
 `ya` is compatible with the source interpretation of “I.”
 
-### 4.2 Possessive Prefixes
+#### 4.2 Possessive Prefixes
 
 | Prefix | Meaning       |
 | ------ | ------------- |
@@ -152,7 +153,7 @@ Examples:
 
 ---
 
-## 5. Low-Register Role Suffixes
+### 5. Low-Register Role Suffixes
 
 The high register may omit roles.
 The low register uses role suffixes to guarantee English-to-Cthuvian translatability.
@@ -182,7 +183,7 @@ This remains compatible with the source’s interpretation of `Ya na kadishtu ni
 
 ---
 
-## 6. Tense, Aspect, Mood, and Negation
+### 6. Tense, Aspect, Mood, and Negation
 
 The source material already suggests a system with only “present” and “non-present,” as well as multivalent forms such as `nafl-`, `na`, and `mg-`. RC-1 regularizes these.
 
@@ -218,9 +219,9 @@ Therefore it may indicate:
 
 ---
 
-## 7. Basic Syntax
+### 7. Basic Syntax
 
-### 7.1 Low-Register Standard Word Order
+#### 7.1 Low-Register Standard Word Order
 
 For translatability, the low-register default order is:
 
@@ -238,7 +239,7 @@ High-register compression:
 
 `Ya nafl’athg s’uhn y’orr’e-li.`
 
-### 7.2 Copula
+#### 7.2 Copula
 
 RC-1 does not require a word equivalent to “be.”
 
@@ -252,7 +253,7 @@ When identity, equivalence, or predication must be explicit, use `ai`.
 
 The source material suggests that `ai` links different qualities to one subject. RC-1 fixes this as a grammatical function.
 
-### 7.3 Questions
+#### 7.3 Questions
 
 | RC-1        | Meaning                     |
 | ----------- | --------------------------- |
@@ -274,7 +275,7 @@ who waits at-gate-location?
 you-agent know what-object?
 = What do you know?
 
-### 7.4 Relative Clauses
+#### 7.4 Relative Clauses
 
 Use `ai` to connect a noun with an explanatory clause.
 
@@ -288,9 +289,9 @@ dwelling that he waits
 
 ---
 
-## 8. Nouns, Plurals, and Derivation
+### 8. Nouns, Plurals, and Derivation
 
-### 8.1 Plurality
+#### 8.1 Plurality
 
 The source material contains examples in which plurality is formed by repeating a final syllable, such as `n’gha` → `n’gha-ghaa`, as well as analyses based on final repetition.
 
@@ -307,7 +308,7 @@ RC-1 rules:
 3. Living beings, offspring, and collective groups often take `-nn`.
    `gof’nn` = offspring, children
 
-### 8.2 Common Derivational Suffixes
+#### 8.2 Common Derivational Suffixes
 
 | Suffix         | Function                                     | Example                                |
 | -------------- | -------------------------------------------- | -------------------------------------- |
@@ -324,12 +325,12 @@ The interpretation of `-agl`, `-oth / -nyth`, and `-og` is compatible with the s
 
 ---
 
-## 9. Core Root List
+### 9. Core Root List
 
 The following are the core roots of RC-1.
 Roots marked here as inherited come from, or are compatible with, the existing materials. Expanded roots are added to make ordinary translation possible.
 
-### 9.1 Inherited or Source-Compatible Roots
+#### 9.1 Inherited or Source-Compatible Roots
 
 | Root         | Core Meaning                                              |
 | ------------ | --------------------------------------------------------- |
@@ -387,7 +388,7 @@ Roots marked here as inherited come from, or are compatible with, the existing m
 | `ygnaiih`    | father, my father                                         |
 | `zhro`       | counterspell completion, cancellation, sealing back       |
 
-### 9.2 Expanded Basic Roots
+#### 9.2 Expanded Basic Roots
 
 These roots are newly added in RC-1 to allow translation of ordinary English.
 
@@ -427,9 +428,9 @@ This fits the Cthuvian preference for near-homophony, semantic contamination, an
 
 ---
 
-## 10. Word Formation Rules
+### 10. Word Formation Rules
 
-### 10.1 Default Compound Order: Modifier Before Head
+#### 10.1 Default Compound Order: Modifier Before Head
 
 `r’luh-eeh`
 secret-knowledge-object
@@ -447,7 +448,7 @@ water-totality-place
 knowledge-servant/executor
 = scholar, researcher, scientist
 
-### 10.2 Action Nouns, Tool Nouns, Profession Nouns
+#### 10.2 Action Nouns, Tool Nouns, Profession Nouns
 
 | Structure      | Meaning                                     |
 | -------------- | ------------------------------------------- |
@@ -464,7 +465,7 @@ Examples:
 `athg-fmagl` = pen, carving tool, writing device
 `athg-nyth` = scribe, signer, inscriber
 
-### 10.3 Modern Word Formation
+#### 10.3 Modern Word Formation
 
 Modern concepts must not be transliterated directly from English. Semantic compounds are preferred.
 
@@ -487,7 +488,7 @@ Modern concepts must not be transliterated directly from English. Semantic compo
 
 ---
 
-## 11. Foreign-Source Transcription Rules
+### 11. Foreign-Source Transcription Rules
 
 When a proper name, brand, scientific term, or otherwise necessary borrowed form must be preserved, RC-1 uses “foreign-source transcription.”
 
@@ -498,7 +499,7 @@ Rules:
 3. Convert it into Cthuvian phonotactics.
 4. Add a classifying suffix when useful.
 
-### 11.1 Sound-Change Table
+#### 11.1 Sound-Change Table
 
 | Source Sound | RC-1 Tendency    |
 | ------------ | ---------------- |
@@ -540,7 +541,7 @@ If the letters themselves must be preserved, use the sealed-name method.
 
 ---
 
-## 12. Sealed-Name Method: Encoding Any String
+### 12. Sealed-Name Method: Encoding Any String
 
 To make complete translation theoretically possible, RC-1 permits “sealed names.”
 
@@ -588,7 +589,7 @@ This is not the elegant translation. It is only the fallback encoding mechanism.
 
 ---
 
-## 13. Numbers
+### 13. Numbers
 
 RC-1 uses low-register decimal numbers for ease of translating modern texts.
 
@@ -619,9 +620,9 @@ three-number-ordinal-being
 
 ---
 
-## 14. Compatibility with Original Mythos Sentences
+### 14. Compatibility with Original Mythos Sentences
 
-### 14.1 The Famous Cthulhu Formula
+#### 14.1 The Famous Cthulhu Formula
 
 `ph’nglui mglw’nafh Cthulhu R’lyeh wgah’nagl fhtagn.`
 
@@ -651,7 +652,7 @@ It may mean “dead and dreaming,”
 or “beyond the gate yet not destroyed,”
 or “in a waiting state outside the threshold of life.”
 
-### 14.2 “I Know Nothing”
+#### 14.2 “I Know Nothing”
 
 High register:
 
@@ -674,7 +675,7 @@ Translation:
 
 The source material also interprets this kind of sentence as “I know nothing” or “I do not know everything.”
 
-### 14.3 “The Offspring of the Black Goat”
+#### 14.3 “The Offspring of the Black Goat”
 
 High register:
 
@@ -692,7 +693,7 @@ Translation:
 
 The source material similarly interprets `gof’nn` as offspring or children, and `hupadgh` as from, belonging to, or born of.
 
-### 14.4 Ritual Spell Sentence
+#### 14.4 Ritual Spell Sentence
 
 High register:
 
@@ -717,9 +718,9 @@ The source material likewise interprets the sentence as involving calling, answe
 
 ---
 
-## 15. Translation Procedure
+### 15. Translation Procedure
 
-### 15.1 English → RC-1
+#### 15.1 English → RC-1
 
 Procedure:
 
@@ -833,7 +834,7 @@ Translation:
 
 ---
 
-## 16. Approximate Cthuvian → English Interpretation
+### 16. Approximate Cthuvian → English Interpretation
 
 Because word classes are not fixed, Cthuvian-to-English translation cannot guarantee a single unique result. Interpretation should proceed in the following order:
 
@@ -867,51 +868,51 @@ This is the core of RC-1:
 
 ---
 
-## 17. Short Grammatical Paradigms
+### 17. Short Grammatical Paradigms
 
-### 17.1 Statement
+#### 17.1 Statement
 
 `Ya-yr kadishtu r’luh-eeh-ef.`
 I know the secret knowledge.
 
-### 17.2 Negation
+#### 17.2 Negation
 
 `Ya-yr na kadishtu r’luh-eeh-ef.`
 I do not know the secret knowledge.
 
-### 17.3 Past / Non-Present
+#### 17.3 Past / Non-Present
 
 `Ya-yr nafl’kadishtu r’luh-eeh-ef.`
 I once knew the secret knowledge.
 
-### 17.4 Future / Expectation
+#### 17.4 Future / Expectation
 
 `Ya-yr ilyaa-kadishtu r’luh-eeh-ef.`
 I will know / I expect to know the secret knowledge.
 
-### 17.5 Question
+#### 17.5 Question
 
 `Tha-yr kadishtu kn’a-ef?`
 What do you know?
 
-### 17.6 Condition
+#### 17.6 Condition
 
 `K’th tha-yr ph’nglui, ep hya-yr fhtagn.`
 If you cross the threshold, then it waits.
 
-### 17.7 Command
+#### 17.7 Command
 
 `Ut kadishtu r’luh-eeh-ef uaaah.`
 Know this secret knowledge. The spell is complete.
 
-### 17.8 Counterspell
+#### 17.8 Counterspell
 
 `Zhro nafl’kadishtu r’luh-eeh-ef zhro.`
 Let this knowing be withdrawn; the counterspell is sealed.
 
 ---
 
-## 18. Where the “Cthulhu Flavor” Comes From
+### 18. Where the “Cthulhu Flavor” Comes From
 
 RC-1 does not rely on random gibberish. Its Cthuvian flavor comes from five mechanisms.
 
