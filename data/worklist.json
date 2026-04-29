@@ -1,5 +1,12 @@
 [
   {
+    "type": "Linguistics",
+    "title": "Miscellanea XII. A Formal Reconstruction of Cthuvian as a Translatable Language System",
+    "description": "A rigorous conlanging framework for Cthuvian (R’lyehian), reconstructing its phonology, morphology, and syntax into a dual-register system that preserves Mythos authenticity while enabling consistent English-to-Cthuvian translation and partial reverse interpretation.",
+    "date": "2026-04-29",
+    "link": "/library/linguistics/miscellanea-xii-cthuvian-reconstruction"
+  },
+  {
     "type": "Fragment",
     "title": "A Survey on Unsupervised Discovery and Structuring of Implicit Reasoning in Mathematics",
     "description": "As Retrieval-Augmented Generation (RAG) transitions from naïve applications to deep reasoning, processing highly unstructured, logic-intensive mathematical texts has emerged as a frontier challenge. This paper systematically reviews the technical evolution from \"data segmentation\" to \"logical distillation.\" We focus on the construction of unsupervised discovery and structuring systems for **implicit techniques** in frontier research—characterized by **fuzzy concepts**, **surface heterogeneity**, and a lack of annotated data. By comparing three major paradigms—statistical-based, inference-based, and generative reconstruction—we propose an innovative solution based on **\"Semantic Bleaching and Structural Fingerprinting.\"**",
