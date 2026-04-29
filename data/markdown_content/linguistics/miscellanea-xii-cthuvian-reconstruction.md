@@ -12,6 +12,7 @@ tags: [Conlanging, Linguistics, Cthulhu Mythos, Semiotics]
 The following is a **standardized, translation-capable Cthuvian / R’lyehian system**. It does not claim to recover Lovecraft’s “true grammar.” Instead, it treats the available Cthuvian material as a corpus, then supplies the missing phonology, morphology, syntax, derivation, and decoding rules that a rigorous conlanger would need.
 
 The hard constraints preserved here are as follows: the available materials present Cthuvian / R’lyehian as a fictional alien language of the Cthulhu Mythos. Its phonology permits extremely dense syllable structures. The sources also note that **h** after a consonant modifies that consonant’s pronunciation. Grammatically, word-class boundaries are unclear, affixes fuse with roots, prepositions often become prefixes, plurality may be expressed through repetition of final syllables, and word order is relatively free. The sources also repeatedly emphasize that the written form is only a rough approximation of a mind-projected or nonhuman language, and that much meaning is lost outside context.
+
 Sources: [Conlang Fandom: Cthuvian](https://conlang.fandom.com/wiki/Cthuvian), [Cthulhu Club: Learn Cthuvian](https://www.cthulhuclub.com/articles/learn-cthuvian/)
 
 Therefore, this system adopts a two-layer model:
@@ -21,6 +22,9 @@ Therefore, this system adopts a two-layer model:
 
 Original Cthulhu Mythos phrases are not treated as incorrect. They are interpreted as high-register forms that omit many low-register grammatical markers.
 
+GitHub Repository: https://github.com/ChouYuanjue/Rlyehian-Cthuvian-Translator/
+
+Translator Demo: https://rlyehian-cthuvian-translator.netlify.app/
 ---
 
 ## 1. Basic Principles
