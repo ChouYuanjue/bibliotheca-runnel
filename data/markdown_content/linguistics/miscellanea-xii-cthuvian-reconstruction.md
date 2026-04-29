@@ -75,7 +75,9 @@ When it follows a consonant, it does not simply represent /h/. Instead, it phary
 Thus:
 
 `ph` is not simply English “f,” but a deep-throated sound between /p/ and /f/.
+
 `th` is not ordinary English “th,” but a tense dental-throatal fricative.
+
 `fh` is a breathy, frictional, half-choked f-like sound.
 
 This preserves the source material’s treatment of `h`.
@@ -89,9 +91,13 @@ The standard syllable may be written as:
 Typical legal forms include:
 
 `nglui`
+
 `fhtagn`
+
 `mglw’nafh`
+
 `thflthkh`
+
 `n’grkdl’lh`
 
 Human speakers may insert an extremely short central vowel between consonants when reading aloud, but this vowel is not shown in writing.
@@ -106,12 +112,12 @@ A complete word is roughly built in the following order:
 
 For example:
 
-`ph-nglui`
-= beyond-threshold
+`ph-nglui` 
+= beyond-threshold 
 = death, being outside the gate, trans-threshold state
 
-`c-fhayak` → `cf’ayak`
-= we-offer
+`c-fhayak` → `cf’ayak` 
+= we-offer 
 = we offer
 
 The existing material contains `c-` as a first-person plural prefix, and it affects the interpretation of the following consonant. RC-1 formalizes this as a regular sound-change rule.
@@ -148,7 +154,9 @@ The existing material contains `c-` as a first-person plural prefix, and it affe
 Examples:
 
 `y’orr’e` = my soul
+
 `h’ee` = its answer, his answer, her answer
+
 `c-vulgtm` → `cvulgtm / c’vulgtm` = our prayer
 
 ---
@@ -156,6 +164,7 @@ Examples:
 ### 5. Low-Register Role Suffixes
 
 The high register may omit roles.
+
 The low register uses role suffixes to guarantee English-to-Cthuvian translatability.
 
 | Suffix | Function                  | Approximate English    |
@@ -171,8 +180,8 @@ The low register uses role suffixes to guarantee English-to-Cthuvian translatabi
 
 Example:
 
-`Ya-yr na kadishtu nilgh’ri-ef.`
-I-agent not know all-things-object.
+`Ya-yr na kadishtu nilgh’ri-ef.` 
+= I-agent not know all-things-object. 
 = I do not know everything.
 
 The high-register version may be compressed as:
@@ -201,7 +210,7 @@ The source material already suggests a system with only “present” and “non
 
 Key explanation:
 
-`nafl-` is not a simple past tense.
+`nafl-` is not a simple past tense. 
 Its core meaning is “outside the present.”
 
 Therefore it may indicate:
@@ -231,8 +240,8 @@ However, as long as role suffixes are clear, word order may vary.
 
 Example:
 
-`Nafl’athg ya-yr s’uhn-ef y’orr’e-li.`
-signed I-agent pact-object my-soul-price.
+`Nafl’athg ya-yr s’uhn-ef y’orr’e-li.` 
+= signed I-agent pact-object my-soul-price. 
 = I signed the pact with my soul as payment.
 
 High-register compression:
@@ -243,12 +252,12 @@ High-register compression:
 
 RC-1 does not require a word equivalent to “be.”
 
-`Cthulhu ph’nglui.`
+`Cthulhu ph’nglui.` 
 = Cthulhu is dead / beyond the gate.
 
 When identity, equivalence, or predication must be explicit, use `ai`.
 
-`Yog-Sothoth ai nglui.`
+`Yog-Sothoth ai nglui.` 
 = Yog-Sothoth is the gate / Yog-Sothoth, gate-aspect.
 
 The source material suggests that `ai` links different qualities to one subject. RC-1 fixes this as a grammatical function.
@@ -267,24 +276,24 @@ The source material suggests that `ai` links different qualities to one subject.
 
 Examples:
 
-`Kn’a-yr fhtagn l’nglui-agl?`
-who waits at-gate-location?
+`Kn’a-yr fhtagn l’nglui-agl?` 
+= who waits at-gate-location? 
 = Who waits at the gate?
 
-`Tha-yr kadishtu kn’a-ef?`
-you-agent know what-object?
+`Tha-yr kadishtu kn’a-ef?` 
+= you-agent know what-object? 
 = What do you know?
 
 #### 7.4 Relative Clauses
 
 Use `ai` to connect a noun with an explanatory clause.
 
-`shuggoth ai ya-yr nafl’yll-ef`
-earth-native that I-agent saw-object
+`shuggoth ai ya-yr nafl’yll-ef` 
+= earth-native that I-agent saw-object 
 = the human whom I saw
 
-`wgah’nagl ai hya-yr fhtagn`
-dwelling that he waits
+`wgah’nagl ai hya-yr fhtagn` 
+= dwelling that he waits 
 = the house where he waits
 
 ---
@@ -298,14 +307,19 @@ The source material contains examples in which plurality is formed by repeating 
 RC-1 rules:
 
 1. If the word ends in an open syllable, repeat the final syllable and lengthen the vowel.
+
    `n’gha` → `n’gha-ghaa`
+
    death → deaths
 
 2. If the word ends in a consonant, repeat the final consonant.
+
    `vulgtm` → `vulgtmm`
+
    prayer → prayers
 
 3. Living beings, offspring, and collective groups often take `-nn`.
+
    `gof’nn` = offspring, children
 
 #### 8.2 Common Derivational Suffixes
@@ -328,6 +342,7 @@ The interpretation of `-agl`, `-oth / -nyth`, and `-og` is compatible with the s
 ### 9. Core Root List
 
 The following are the core roots of RC-1.
+
 Roots marked here as inherited come from, or are compatible with, the existing materials. Expanded roots are added to make ordinary translation possible.
 
 #### 9.1 Inherited or Source-Compatible Roots
@@ -422,6 +437,7 @@ These roots are newly added in RC-1 to allow translation of ordinary English.
 Note that `shuggoth` and `shoggoth` are intentionally similar:
 
 `shugg-oth` = earth-native, human
+
 `shogg-oth` = deep-native, shoggothic being
 
 This fits the Cthuvian preference for near-homophony, semantic contamination, and horrifying misreading.
@@ -432,20 +448,20 @@ This fits the Cthuvian preference for near-homophony, semantic contamination, an
 
 #### 10.1 Default Compound Order: Modifier Before Head
 
-`r’luh-eeh`
-secret-knowledge-object
+`r’luh-eeh` 
+= secret-knowledge-object 
 = secret knowledge, forbidden doctrine
 
-`phlegeth-lloig’agl`
-information-domain-mind-place
+`phlegeth-lloig’agl` 
+= information-domain-mind-place 
 = computer, data-thinking device
 
-`ulh-ri’agl`
-water-totality-place
+`ulh-ri’agl` 
+= water-totality-place 
 = ocean
 
-`kadishtu-nyth`
-knowledge-servant/executor
+`kadishtu-nyth` 
+= knowledge-servant/executor 
 = scholar, researcher, scientist
 
 #### 10.2 Action Nouns, Tool Nouns, Profession Nouns
@@ -461,8 +477,11 @@ knowledge-servant/executor
 Examples:
 
 `athg-na` = writing, signing, inscription-act
+
 `athg-hu` = writing surface, inscribed medium
+
 `athg-fmagl` = pen, carving tool, writing device
+
 `athg-nyth` = scribe, signer, inscriber
 
 #### 10.3 Modern Word Formation
@@ -528,15 +547,19 @@ If the transcription leaves a sequence of three or more letters identical to the
 Examples:
 
 London → do not write `London`
+
 Possible RC-1 form: `Lhond’nym’agl`, the place called London
 
 Newton → do not write `Newton`
+
 Possible RC-1 form: `Nyw’thun-yth`, Newton-person
 
 quantum → do not write `quantum`
+
 Possible RC-1 form: `k’wanth’agm-na`, quantum-state
 
 DNA → may be translated semantically as `bthnk-mnahn-zhrn`, body-memory-order.
+
 If the letters themselves must be preserved, use the sealed-name method.
 
 ---
@@ -582,7 +605,7 @@ Letter names:
 
 Example:
 
-DNA
+DNA 
 = `zha’dhu-ngha-a’zhro`
 
 This is not the elegant translation. It is only the fallback encoding mechanism. Normal text should use semantic translation whenever possible.
@@ -609,13 +632,13 @@ RC-1 uses low-register decimal numbers for ease of translating modern texts.
 
 Large numbers may be read digit by digit:
 
-2026
+2026 
 = `zhrn ghal-nyl-ghal-shuth`
 
 “The third one”:
 
-`thog-zhrn’yth`
-three-number-ordinal-being
+`thog-zhrn’yth` 
+= three-number-ordinal-being 
 = third
 
 ---
@@ -649,7 +672,9 @@ Literal translation:
 This preserves the ambiguity of the original:
 
 It may mean “dead and dreaming,”
+
 or “beyond the gate yet not destroyed,”
+
 or “in a waiting state outside the threshold of life.”
 
 #### 14.2 “I Know Nothing”
@@ -665,8 +690,11 @@ RC-1 expansion:
 Analysis:
 
 `ya` = I
+
 `na` = not
+
 `kadishtu` = know, understand
+
 `nilgh’ri` = all, all things
 
 Translation:
@@ -684,7 +712,9 @@ High register:
 RC-1 analysis:
 
 `gof’nn` = children, offspring, descendants
+
 `hupadgh` = from, belonging to, born of
+
 `Shub-Niggurath` = divine name
 
 Translation:
@@ -762,8 +792,11 @@ Older, more prayer-like style:
 Analysis:
 
 `c-` = we
+
 `fhayak` = offer
+
 `vulgtmm` = prayers, plural of prayer
+
 `Hastur-ug` = to Hastur
 
 ---
@@ -780,8 +813,11 @@ RC-1:
 Word by word:
 
 `kadishtu-nyth-yr` = knowledge-executor-agent, scholar
+
 `nafl’athg` = wrote, inscribed, signed in non-present time
+
 `eeh-ftaghu-ef` = knowledge-skin-object, book
+
 `l’r’luh wgah’nagl-ri` = concerning / beside the hidden totality of dwelling-places, the hidden city
 
 Translation:
@@ -802,8 +838,11 @@ RC-1:
 Word by word:
 
 `fmagl-yr` = tool / machine-agent
+
 `wk’hmr` = transforms, attaches, makes take on form
+
 `bthnk-ef` = body-object
+
 `nglui-ep` = as-result gate
 
 Translation:
@@ -824,8 +863,11 @@ RC-1:
 Word by word:
 
 `l’ulh-ri’agl` = in the water-totality-place, in the sea
+
 `ph’nglui` = beyond the threshold, dead
+
 `llogr’yth` = force-being, godlike powerful entity
+
 `mg-fhtagn` = still waits, still dream-sleeps
 
 Translation:
@@ -873,41 +915,49 @@ This is the core of RC-1:
 #### 17.1 Statement
 
 `Ya-yr kadishtu r’luh-eeh-ef.`
+
 I know the secret knowledge.
 
 #### 17.2 Negation
 
 `Ya-yr na kadishtu r’luh-eeh-ef.`
+
 I do not know the secret knowledge.
 
 #### 17.3 Past / Non-Present
 
 `Ya-yr nafl’kadishtu r’luh-eeh-ef.`
+
 I once knew the secret knowledge.
 
 #### 17.4 Future / Expectation
 
 `Ya-yr ilyaa-kadishtu r’luh-eeh-ef.`
+
 I will know / I expect to know the secret knowledge.
 
 #### 17.5 Question
 
 `Tha-yr kadishtu kn’a-ef?`
+
 What do you know?
 
 #### 17.6 Condition
 
 `K’th tha-yr ph’nglui, ep hya-yr fhtagn.`
+
 If you cross the threshold, then it waits.
 
 #### 17.7 Command
 
 `Ut kadishtu r’luh-eeh-ef uaaah.`
+
 Know this secret knowledge. The spell is complete.
 
 #### 17.8 Counterspell
 
 `Zhro nafl’kadishtu r’luh-eeh-ef zhro.`
+
 Let this knowing be withdrawn; the counterspell is sealed.
 
 ---
@@ -917,18 +967,23 @@ Let this knowing be withdrawn; the counterspell is sealed.
 RC-1 does not rely on random gibberish. Its Cthuvian flavor comes from five mechanisms.
 
 First, **the threshold metaphor is generalized**.
+
 Death is not simply “dead,” but `ph’nglui`: having crossed the gate, being beyond the threshold.
 
 Second, **word classes dissolve**.
+
 `kadishtu` is simultaneously “know,” “knowledge,” “understanding,” and “wise.”
 
 Third, **semantic domains are root-based**.
+
 `shogg`, `shagg`, `lloig`, and `phlegeth` refer respectively to the deep domain, dream domain, mind domain, and information domain.
 
 Fourth, **classification suffixes shape meaning**.
+
 `-agl` marks place, `-oth` marks native-being, `-nyth` marks servant or executor, and `-hu` marks skin, boundary, or interface.
 
 Fifth, **high and low registers coexist**.
+
 Original mythic phrases may remain difficult and ambiguous. When a translator needs precision, they add role suffixes such as `-yr`, `-ef`, and `-ug`.
 
 Thus, original Cthulhu Mythos sentences remain valid, while new sentences can be generated consistently.
