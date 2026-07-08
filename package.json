@@ -3,15 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node scripts/dev-next.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "update-data": "node scripts/update-data.js",
     "generate-cv": "node scripts/generate-cv-pdf.js",
     "clean": "node scripts/clean-next.js",
-    "dev:clean": "npm run clean && npm run update-data && next dev",
-    "predev": "node scripts/ensure-next-cache.js"
+    "dev:clean": "npm run clean:dev && npm run update-data && node scripts/dev-next.js",
+    "predev": "node scripts/ensure-next-cache.js",
+    "clean:build": "node scripts/clean-next.js .next",
+    "clean:dev": "node scripts/clean-next.js .next-dev"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",

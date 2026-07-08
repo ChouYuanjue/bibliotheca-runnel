@@ -102,7 +102,7 @@ const generateWorklist = () => {
       type: 'Collection',
       title: notesIndex.project.title,
       description: `${notesIndex.project.noteCount} dated notes across ${notesIndex.project.volumeCount} thematic volumes, with full PDF and per-note TeX sources.`,
-      date: notesIndex.notes[0]?.date || '2026-01-01',
+      date: '2026-07-02',
       link: '/library/notes',
       tags: ['INM', 'Mathematics'],
     });

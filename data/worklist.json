@@ -1,17 +1,6 @@
 [
   {
     "type": "Project",
-    "title": "rzk-ai4math",
-    "description": "This repository studies LLM autoformalization on Rzk/sHoTT body-completion tasks, with an emphasis on shape-heavy held-out definitions, lightweight structural priors, repair, routing, and Lean portability checks.",
-    "date": "2026-07-08T10:30:23Z",
-    "link": "https://github.com/ChouYuanjue/rzk-ai4math",
-    "tags": [
-      "research",
-      "Python"
-    ]
-  },
-  {
-    "type": "Project",
     "title": "INM-TeX",
     "description": "An English TeX reconstruction of Informal Notes on Mathematics, with corrected and expanded notes compiled into a book-length PDF.",
     "date": "2026-07-08T08:49:29Z",
@@ -25,7 +14,7 @@
     "type": "Collection",
     "title": "INM: Informal Notes on Mathematics",
     "description": "158 dated notes across 15 thematic volumes, with full PDF and per-note TeX sources.",
-    "date": "2026-06-21",
+    "date": "2026-07-02",
     "link": "/library/notes",
     "tags": [
       "INM",
@@ -197,6 +186,17 @@
       "Linguistics",
       "Cthulhu Mythos",
       "Semiotics"
+    ]
+  },
+  {
+    "type": "Project",
+    "title": "rzk-ai4math",
+    "description": "This repository studies LLM autoformalization on Rzk/sHoTT body-completion tasks, with an emphasis on shape-heavy held-out definitions, lightweight structural priors, repair, routing, and Lean portability checks.",
+    "date": "2026-04-26T00:00:00.000Z",
+    "link": "https://github.com/ChouYuanjue/rzk-ai4math",
+    "tags": [
+      "research",
+      "Python"
     ]
   },
   {
