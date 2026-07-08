@@ -25,10 +25,10 @@ const sections = [
     accent: "bg-amber-500",
   },
   {
-    title: "Shinar Glosses",
-    description: "A Shinar-side notebook of glosses and language puzzles: phonology, syntax, conlangs, historical scripts, and translation work.",
+    title: "Linguistic Miscellanea",
+    description: "A compact miscellany of language notes: phonology, syntax, conlangs, historical scripts, and translation work.",
     href: "/library/linguistics",
-    eyebrow: "Language glosses",
+    eyebrow: "Language miscellany",
     meta: `${linguisticsData.length} articles`,
     accent: "bg-emerald-500",
   },
@@ -48,7 +48,7 @@ export default function LibraryIndex() {
       <PageHero
         eyebrow="Library"
         title="A curated archive of named collections"
-        description="The library is the most stable part of the site: four named collections spanning mathematical reconstruction, classical writing, Shinar glosses, and Runnelian night-notes."
+        description="The library is the most stable part of the site: four named collections spanning mathematical reconstruction, classical writing, linguistic miscellanea, and Runnelian night-notes."
         meta={(
           <>
             <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{notesData.project.noteCount} INM notes</span>
