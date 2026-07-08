@@ -1,13 +1,14 @@
 ---
 title: "The Zermelo-Hessian-Kan Program and Its Real-World Metaphors"
 date: "2023-09-21"
+description: "A satirical “grand program” using mathematical language to parody classroom authority and psychological rhetoric."
 ---
 
 ## Overview
 
-Taking the fictional "Zermelo-Hessian-Kan (ZHK) Program" as the carrier, this paper conducts in-depth theoretical reconstruction and academic packaging. Its core purpose is to reflect and ridicule some inappropriate behaviors of our high school psychology teacher in daily teaching and interaction—such as his arbitrary judgment style and expression habits that ignore others' feelings—with a satirical tone. It should be clearly stated that all academic deductions and satirical expressions in this paper are for entertainment purposes, purely a fun creation among classmates, without any tendency of malicious attack or negative slander. This paper will construct a self-consistent unified theory of "absolute will" through rigorous mathematical language (especially Kan extensions in category theory, critical point theory in calculus, and axiomatic set theory), completing a gentle mockery and interesting presentation of the relevant inappropriate behaviors in the form of absurd academic expression.
+This fragment uses the fictional “Zermelo-Hessian-Kan Program” as a vehicle for satire. It was originally written in response to classroom experiences with a high-school psychology teacher whose style felt arbitrary, overconfident, and insensitive to students’ perspectives.
 
----
+The mathematical packaging is intentionally excessive: Kan extensions, critical points, and axiomatic language are used to build a mock theory of “absolute will.” The target is not mathematics itself but the rhetorical posture of authority. The piece should therefore be read as a private comic construction among classmates, not as a literal academic or personal accusation.
 
 ## Introduction
 

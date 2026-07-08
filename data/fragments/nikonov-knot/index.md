@@ -1,19 +1,14 @@
 ---
 title: "The Space Between the Lines: A Post-Gaokao Journey into Knot Theory via Nikonov's seminar"
 date: "2025-07-05"
+description: "A post-Gaokao learning record on Nikonov’s seminar, partial tribrackets, and knot-theoretic language."
 ---
 
 ## Overview
 
-The summer after the *Gaokao* is a strange time. The pressure valve releases, and suddenly, there is silence. To fill that silence, I found myself in a online seminar room, listening to I. M. Nikonov speak about "Partial Tribrackets."
+This fragment records a post-Gaokao encounter with I. M. Nikonov’s seminar on partial tribrackets. I entered the lecture with only a high-school-to-early-undergraduate background and quickly found myself surrounded by unfamiliar language: quasigroups, biquandloids, thickened surfaces, and diagrammatic invariants.
 
-I will be honest: I was completely lost. Terms like "quasigroups," "biquandloids," and "thickened surfaces" were flying around the room, and I felt like I had walked into a movie halfway through. My high school mathematics education—calculus, geometry, algebra—had built a strong foundation, but this was a skyscraper I couldn't see the top of.
-
-Refusing to let the confusion win, I tracked down the speaker's related paper: **“The crossing and the arc from the topological viewpoint” (arXiv:2504.18836v1)**. I decided to treat this paper not just as a reading assignment, but as a map.
-
-My study session became "top-heavy." I spent days obsessing over the **Introduction** and **Section 2**, specifically the fundamental philosophical divide in knot theory: the **Topological** view vs. the **Combinatorial** view. This note is the result of that deep dive—a compilation of what I learned from the paper, supplemented by the external research I had to do just to understand the first page.
-
----
+Instead of treating that confusion as failure, I used it as a map. The fragment follows my attempt to read Nikonov’s related paper, identify the topological and combinatorial sides of knot theory, and understand how local diagrammatic data can encode global invariants. It is an honest record of learning from the edge of comprehension.
 
 ## **Part I: The Two Faces of Knot Theory**
 
@@ -78,8 +73,6 @@ This is the problem. In the combinatorial world, we chop the knot into pieces—
 **The Philosophocal Gap:**
 When we calculate something using a diagram, we often lose the geometric intuition. *Why* does coloring an arc with a matrix correspond to 3D topology? Is an "arc" just a line of ink on paper, or is it something real?
 
----
-
 ## **Part II: The Bridge — Nikonov’s "Probes"**
 
 This is where Nikonov’s paper truly shines and where my deep reading paid off. He proposes a way to unify these two worlds. He asks: **What if the combinatorial elements (arcs, crossings) were actually topological objects?**
@@ -117,8 +110,6 @@ The Introduction makes a subtle but vital distinction between *Invariants* and *
 
 By defining these elements topologically, Nikonov validates the combinatorial approach. When we perform a Reidemeister move, we aren't just erasing lines on paper; we are isotoping these "probes" in 3D space.
 
----
-
 ## **Part III: From Topology to Algebra (The Seminar Connection)**
 
 Having grounded myself in the definitions, the second half of the paper (and the actual content of the seminar) finally made sense. The seminar was about "Partial Tribrackets." I realized this was simply the algebraic shadow of the topological probes I had just studied.
@@ -142,8 +133,6 @@ Standard Biquandles are used for virtual knots. Nikonov introduces the **Biquand
 
 ### **4. Crossings $\to$ Crossoids**
 Finally, he defines a structure for the crossings themselves, called a **Crossoid**. This generalizes the theory of Parity (which distinguishes "good" and "bad" crossings in virtual knot theory).
-
----
 
 ## **Conclusion: The Grand Unification**
 

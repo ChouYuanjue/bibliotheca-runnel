@@ -1,14 +1,14 @@
 ---
 title: "Initial Construction and Preliminary Properties of Chunpinative Geometry"
 date: "2020-12-07"
+description: "A deliberately fictional geometric system built around a parody axiom on supplementary angles."
 ---
-
 
 ## Overview
 
-This content takes the form of a systematic constructive record of a geometric theory, formally proposing the core axiom of "Chunpinative Geometry" and establishing a set of foundational concepts—including "Chunpinative Space" and "Chunpinatively Measurable Space"—on the basis of this axiom. Additionally, it deduces preliminary properties of the space and presents a key lemma proposed by a collaborator. From the perspective of mainstream geometric theory (encompassing both Euclidean and non-Euclidean geometries), the core axiom of Chunpinative Geometry—asserting that "an angle is equivalent to its supplement"—represents a deliberate departure from the fundamental logical relationships that govern angle arithmetic in conventional geometric systems. Specifically, it abandons the well-established rule that "the supplement of an angle is equal to \(180^\circ\) minus the measure of the original angle," replacing it with a direct equivalence relation. It is important to acknowledge that certain preliminary property descriptions in this initial construction lack the full rigor of formal mathematical derivation, as they serve as tentative deductions to frame the theory’s structure. As indicated by contextual cues embedded in the naming and framing, this work is a playful, commemorative simulation of a mathematical theory: it adopts the rigorous framework of axiom-based geometric system construction to pay lighthearted tribute to the author’s junior high school mathematics teacher, Chunping Ding (with the term "Chunpinative" derived from the teacher’s given name "Chunping"), and to classmate CZL, who contributed the key lemma to the theory.
+This fragment preserves an early attempt at constructing a self-contained but intentionally nonstandard geometric theory, later named “Chunpinative Geometry.” Its central axiom identifies an angle with its supplement, thereby breaking the usual arithmetic of angle measure and forcing a new vocabulary of spaces, measurability, and elementary lemmas.
 
----
+The text should be read as a playful formal exercise rather than a proposal for a viable geometry. Its value lies in the act of axiomatization itself: starting from a deliberately absurd premise, one can still observe how definitions propagate, how lemmas acquire internal meaning, and how a fictional system begins to imitate the surface form of mathematical theory.
 
 ## 1. Core Axiom and Basic Definitions of Chunpinative Geometry
 

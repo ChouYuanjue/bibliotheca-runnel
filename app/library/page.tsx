@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const librarySections = [
   {
-    title: "INM: Informal Notes on Mathematics",
+    title: "Notes on Mathematics",
     description: "A date-first archive of reconstructed mathematical notes. Each dated note provides both PDF and TeX source; the full book is available as a compiled PDF.",
     path: "/library/notes",
     color: "bg-slate-50 hover:bg-slate-100 border-slate-200",

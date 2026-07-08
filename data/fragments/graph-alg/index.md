@@ -1,19 +1,14 @@
 ---
 title: 'Prop Presentations for Linear Algebra: The $\mathbf{cb}_k$ Calculus'
 date: "2021-06-21"
+description: "Notes on graphical linear algebra and the prop presentation of matrices by string diagrams."
 ---
 
 ## Overview
 
-I have finally traced the definitive origin of this elegant piece of graphical mathematics by Dr. Peng! The fragment I was studying belongs to the seminal work **"Graphical Linear Algebra"** (specifically, see **arXiv:2105.06244**). This paper provides the rigorous categorical "source code" for representing linear algebra not through grids of numbers, but through the topology of string diagrams.
+This fragment identifies the source of a diagrammatic formalism that had circulated in my notes since Dr. Peng’s lectures: the theory of graphical linear algebra, especially the presentation of matrices through the prop $\mathbf{Mat}_k$. The key idea is that linear algebra can be represented not only as arrays of scalars but also as a calculus of string diagrams equipped with generators and relations.
 
-The specific formalism identified is the theory $\mathbf{cb}_k$ (standing for *commutative bialgebra* with *scalars* over a ring $k$). The central result is breathtaking in its simplicity and power: this diagrammatic language is a complete presentation for the prop $\mathbf{Mat}_k$. In other words, **diagrams are matrices**, and topological manipulation is linear algebra.
-
-For those interested in a more pedagogical entry point, the authors maintain an incredible resource at **[graphicallinearalgebra.net](https://graphicallinearalgebra.net/)**, which unfolds this theory as a narrative about the interaction between two fundamental operations: Copying and Adding. Below is a detailed academic note synthesizing the formal definition from the paper with the intuitive insights from the website.
-
-![DEMO](/fragments/graph-alg/demo.jpeg)
-
-***
+The entry functions as both a reading guide and a conceptual translation. It explains how the commutative-bialgebra presentation $\mathbf{cb}_k$ provides a syntax for linear maps, why diagrammatic rewriting can be complete for ordinary matrix reasoning, and why this point of view is useful for categorical and compositional thinking.
 
 ## Academic Note: The Prop $\mathbf{cb}_k$ and Diagrammatic Reasoning
 
@@ -165,8 +160,6 @@ This is a **Soundness and Completeness** theorem.
 There is an isomorphism of categories:
 $$ \mathbf{cb}_k \cong \mathbf{Mat}_k $$
 This transforms linear algebra from a theory of coordinates to a theory of **connectivity**.
-
----
 
 ## Commentary: Methodology and Applications
 

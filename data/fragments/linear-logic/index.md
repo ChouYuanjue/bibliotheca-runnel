@@ -1,15 +1,14 @@
 ---
 title: "The Geometry of Dialogue and the Logic of Narrative: A Taste of Linear Logic"
 date: "2022-10-05"
+description: "A synthetic note on linear logic as resource, game, dialogue, and narrative structure."
 ---
 
 ## Overview
 
-This fragment serves as a synthesis of my recent immersion into the world of **Linear Logic** and its profound implications for systems beyond mere mathematical tautology. Following the intellectual breadcrumbs left by Dr. Keyao Peng last year, I have moved away from the static view of logic as a classification of truth and towards a dynamic view of logic as *interaction*, *resource*, and *game*.
+This fragment collects my first sustained attempt to understand linear logic beyond the slogan that it treats propositions as resources. The route is deliberately broad: from game mechanics and storytelling to Schopenhauer-style debate, ludics, and the geometry of interaction.
 
-What began as an inquiry into game design mechanics—specifically the tension between modular pipelines and emergent storytelling—has evolved into a philosophical re-evaluation of how meaning is constructed. As the following notes and visual analyses demonstrate, the bridge between a child’s fable, a philosophical debate, and high-dimensional topology is built upon the rigorous negation-duality of Linear Logic.
-
----
+The guiding contrast is between static logic and interactive logic. Instead of asking only whether a statement is true, linear logic asks how assumptions are consumed, transformed, duplicated, or withheld. The fragment is therefore both a learning note and a conceptual experiment: it tests whether a technical logical system can illuminate narrative structure and human interaction without reducing them to mere metaphor.
 
 ## Part I: "The Signifier Chain Without the Signifier"
 **Reflections on Dr. Peng’s First Theme**
@@ -21,8 +20,6 @@ In classical logic (and traditional semantics), we are often obsessed with the "
 As seen in the argumentation analysis (Image 1), the specific content of the debate (whether the child has bad habits) is secondary to the *form* of the interaction. The "signifier" is emptied of its ontic weight; what remains is its "valency"—its ability to connect, oppose, and transform. The "chain" is the sequence of focalized actions in a proof. In Ludics, formulas are abandoned in favor of "Loci" (addresses). We do not prove a formula; we interact with a design at a specific address.
 
 This echoes Lacan’s notion of the sliding chain of signifiers, but here it is rigorous mathematics: the meaning of a logical operator is not defined by a truth table, but by its geometric interaction with its dual. The "chain" is the trajectory of the cut-elimination procedure, a pure movement of syntax that generates meaning through friction, without ever needing a pre-existing "signified" to ground it.
-
----
 
 ## Part II: Linear Logic as Game, Narrative, and Interaction
 **Reflections on Dr. Peng’s Second Theme**
@@ -97,8 +94,6 @@ This diagram, likely derived from the work of Paul-André Melliès (a student of
     *   The connections (the "wires") show how input types are routed to output types.
     *   The "clasps" or nodes where ribbons split or join represent logical connectives (Tensor $\otimes$ or Par $\wp$).
 *   **Topological Invariants:** The power of this representation is that logical equivalence becomes topological deformation. If you can stretch or slide one ribbon diagram into another without cutting it, the two logical proofs are effectively "the same" (they have the same normal form). This is the **Geometry of Interaction**: logic is not about symbols on a line, but about the topological linkage of processes in space.
-
----
 
 ## Part III: Comprehensive Learning Notes
 **Subject: Linear Logic, Game Semantics, and the Reconstruction of Meaning**

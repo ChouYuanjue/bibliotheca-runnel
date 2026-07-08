@@ -1,17 +1,14 @@
 ---
 title: "Synthesis and Properties of a Novel Tungsten-Containing Organic Compound Based on Superchemistry Theory"
 date: "2022-10-03"
+description: "A pseudo-chemistry parody built from online “superchemistry” terminology and deliberately impossible compounds."
 ---
-
 
 ## Overview
 
-It is necessary to first clarify that the so-called "scholars" such as Zhao Mingyi mentioned in this record are well-known online pseudo-scientists, whose absurd theories are often ridiculed by the academic community and netizens. The bizarre terms involved in this text, such as "superchemistry", are all their "masterpieces" that deviate from scientific common sense. In this research record, I propose the existence of two novel substances, "sildenofil" and "L-wzlteine", based on the theories put forward by these pseudo-scientists including Zhao Mingyi. I then systematically investigate their reaction process and the properties of the resulting product under the action of a "strong antimony field". From a professional chemical perspective, the core concepts involved—such as the bonding modes of W⁺ ions and the compound naming logic—do not align with mainstream chemical systems, and "superchemistry" is not a recognized academic discipline. As implied later, this work employs exaggerated chemical research expressions to metaphorically depict the interesting interactions between my classmates: male classmate Zhaoli Wang (where the "W" in the substances corresponds to his surname "Wang") and female classmate Nuo Chen (where the "No" in the substances corresponds to her given name "Nuo").
+This fragment is a parody of online pseudo-scientific “superchemistry.” It invents substances such as “sildenofil” and “L-wzlteine,” then develops a mock reaction theory involving tungsten-containing compounds, “strong antimony fields,” and deliberately implausible naming logic.
 
-
-**HINT**: The figures (pic1 to pic6) correspond to pages 1 to 6 of the attached PDF file.
-
-[PDF OF FIGURES](/fragments/wang-nuo/pics.pdf)
+The text should be read as fictional satire, not as a chemical proposal. Its comic mechanism is the imitation of research prose: by writing nonsense in the grammar of synthesis, reaction conditions, and property analysis, it exposes how scientific authority can be counterfeited at the level of style.
 
 ## 1. Proposed Existence of the Original Substances
 

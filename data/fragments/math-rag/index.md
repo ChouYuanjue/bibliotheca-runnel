@@ -1,12 +1,14 @@
 ---
 title: "A Survey on Unsupervised Discovery and Structuring of Implicit Reasoning in Mathematics"
 date: "2026-02-15"
+description: "A conceptual survey on structuring implicit mathematical reasoning for retrieval-augmented systems."
 ---
 
 ## Overview
-As Retrieval-Augmented Generation (RAG) transitions from naïve applications to deep reasoning, processing highly unstructured, logic-intensive mathematical texts has emerged as a frontier challenge. This paper systematically reviews the technical evolution from "data segmentation" to "logical distillation." We focus on the construction of unsupervised discovery and structuring systems for **implicit techniques** in frontier research—characterized by **fuzzy concepts**, **surface heterogeneity**, and a lack of annotated data. By comparing three major paradigms—statistical-based, inference-based, and generative reconstruction—we propose an innovative solution based on **"Semantic Bleaching and Structural Fingerprinting."**
 
----
+This fragment surveys a problem that becomes increasingly visible as RAG systems move from ordinary document retrieval toward mathematical reasoning: mathematical texts do not merely contain facts; they contain implicit techniques, local conventions, and proof strategies that are difficult to segment or label.
+
+The note compares statistical, inference-based, and generative-reconstruction approaches to discovering structure in such texts. Its proposed direction, “semantic bleaching and structural fingerprinting,” is best read as a research sketch: a way to separate surface language from reusable reasoning patterns when annotated mathematical data are scarce.
 
 ## 1. Introduction: Paradigm Shift in RAG
 
@@ -23,8 +25,6 @@ In frontier mathematical papers, traditional text processing often fails due to:
 2.  **Surface Heterogeneity**: The same logical technique (e.g., "constructing an auxiliary object") appears vastly different in algebra, geometry, or analysis, leading to extreme distances in embedding space.
 3.  **Zero-Shot Discovery**: Frontier research is replete with unnamed new techniques; without labeled data, systems must possess unsupervised clustering capabilities.
 
----
-
 ## 2. Problem Definition: Academic Alignment
 
 To identify solutions within the academic literature, we translate business requirements into formal academic propositions:
@@ -35,8 +35,6 @@ To identify solutions within the academic literature, we translate business requ
 | **Identical underlying logic across different fields.** | **Semantic Bleaching** / **Cross-Domain Isomorphism** | Removing domain-specific noise (variables, terminology) to extract the underlying logical **Skeleton**. |
 | **How to discover new techniques without a library?** | **Unsupervised Concept Discovery** / **Constructive Machine Learning** | Discovering frequent substructures in unlabeled data (**Pattern Mining**). |
 | **From natural language to logical code.** | **Autoformalization** / **Neuro-Symbolic Reasoning** | Converting fuzzy Natural Language (NL) descriptions into precise formal logic or code. |
-
----
 
 ## 3. Taxonomy of Segmentation Approaches
 
@@ -79,8 +77,6 @@ We categorize current mainstream paradigms based on their fundamental logic for 
     *   **Mechanism**: Jointly trains segmentation with specific tasks (e.g., "identify this technique"). Splitting is a byproduct of recognition.
     *   **Literature**: *[5] Relevant research in Educational Data Mining & QA Segmentation.*
 
----
-
 ## 4. Proposed Solution: Semantic Bleaching & Fingerprinting
 
 For "fuzzy, unnamed, few-shot" techniques where traditional classifiers fail, we propose an unsupervised discovery pipeline based on the philosophy of **Autoformalization**.
@@ -111,8 +107,6 @@ We propose an **Agentic ETL Pipeline** that transforms natural language proofs i
 *   **Action**: Utilize **HDBSCAN** to process vectors. It automatically determines the number of clusters and identifies noise.
 *   **Naming**: Extract centroid samples for each cluster and use an LLM to summarize the common pattern and assign a name (e.g., "Mapping to Fixed Point Theorem").
 *   **Reference**: *[8] Welleck, S., et al. (2022). [NaturalProver: Grounded Mathematical Proof Generation](https://arxiv.org/abs/2205.12910). NeurIPS.*
-
----
 
 ## 5. Conclusion and Future Work
 

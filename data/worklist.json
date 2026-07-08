@@ -79,33 +79,33 @@
   {
     "type": "Note",
     "title": "N-20260604: Solving Linear Systems: Direct, Iterative, and Optimization Methods",
-    "description": "Matrix Methods · 16 sections · PDF and TeX source available in the INM archive.",
+    "description": "Linear Algebra · 16 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-06-04",
     "link": "/notes/2026/N-20260604.pdf",
     "tags": [
-      "Matrix Methods",
+      "Linear Algebra",
       "INM"
     ]
   },
   {
     "type": "Note",
     "title": "N-20260603: Generalized Inverses, Projections, and Least-Squares Geometry",
-    "description": "Matrix Methods · 15 sections · PDF and TeX source available in the INM archive.",
+    "description": "Linear Algebra · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-06-03",
     "link": "/notes/2026/N-20260603.pdf",
     "tags": [
-      "Matrix Methods",
+      "Linear Algebra",
       "INM"
     ]
   },
   {
     "type": "Note",
     "title": "N-20260602: Matrix Decompositions: LU, Cholesky, Full Rank, and SVD",
-    "description": "Matrix Methods · 15 sections · PDF and TeX source available in the INM archive.",
+    "description": "Linear Algebra · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-06-02",
     "link": "/notes/2026/N-20260602.pdf",
     "tags": [
-      "Matrix Methods",
+      "Linear Algebra",
       "INM"
     ]
   },
@@ -196,11 +196,11 @@
   {
     "type": "Note",
     "title": "N-20260318: Matrix Computation III: Canonical Forms, Localization, and Iteration",
-    "description": "Matrix Methods · 14 sections · PDF and TeX source available in the INM archive.",
+    "description": "Linear Algebra · 14 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-18",
     "link": "/notes/2026/N-20260318.pdf",
     "tags": [
-      "Matrix Methods",
+      "Linear Algebra",
       "INM"
     ]
   },
@@ -229,22 +229,22 @@
   {
     "type": "Note",
     "title": "N-20260312: Matrix Computation II: Spectral Radius, Stability, and Conditioning",
-    "description": "Matrix Methods · 13 sections · PDF and TeX source available in the INM archive.",
+    "description": "Linear Algebra · 13 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-12",
     "link": "/notes/2026/N-20260312.pdf",
     "tags": [
-      "Matrix Methods",
+      "Linear Algebra",
       "INM"
     ]
   },
   {
     "type": "Note",
     "title": "N-20260311: Matrix Computation I: Norms, Operators, and Numerical Size",
-    "description": "Matrix Methods · 12 sections · PDF and TeX source available in the INM archive.",
+    "description": "Linear Algebra · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-11",
     "link": "/notes/2026/N-20260311.pdf",
     "tags": [
-      "Matrix Methods",
+      "Linear Algebra",
       "INM"
     ]
   },
@@ -262,17 +262,17 @@
   {
     "type": "Note",
     "title": "N-20260305: Orthogonal Projection, Least Squares, and the Pseudoinverse",
-    "description": "Matrix Methods · 9 sections · PDF and TeX source available in the INM archive.",
+    "description": "Linear Algebra · 9 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-05",
     "link": "/notes/2026/N-20260305.pdf",
     "tags": [
-      "Matrix Methods",
+      "Linear Algebra",
       "INM"
     ]
   },
   {
     "type": "Note",
-    "title": "N-20260304: Point-Set Language in \\texorpdfstring{$\\mathbb R^n$",
+    "title": "N-20260304: Point-Set Language in $\\mathbb R^n$: Neighborhoods, Boundaries, and Compactness",
     "description": "Multivariable Calculus · 8 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-04",
     "link": "/notes/2026/N-20260304.pdf",
@@ -284,11 +284,11 @@
   {
     "type": "Note",
     "title": "N-20260303: Two-Dimensional Linear Maps, Spectral Geometry, and Singular Value Decomposition",
-    "description": "Matrix Methods · 8 sections · PDF and TeX source available in the INM archive.",
+    "description": "Linear Algebra · 8 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-03",
     "link": "/notes/2026/N-20260303.pdf",
     "tags": [
-      "Matrix Methods",
+      "Linear Algebra",
       "INM"
     ]
   },
@@ -306,28 +306,28 @@
   {
     "type": "Fragment",
     "title": "A Survey on Unsupervised Discovery and Structuring of Implicit Reasoning in Mathematics",
-    "description": "As Retrieval-Augmented Generation (RAG) transitions from naïve applications to deep reasoning, processing highly unstructured, logic-intensive mathematical texts has emerged as a frontier challenge. This paper systematically reviews the technical evolution from \"data segmentation\" to \"logical distillation.\" We focus on the construction of unsupervised discovery and structuring systems for **implicit techniques** in frontier research—characterized by **fuzzy concepts**, **surface heterogeneity**, and a lack of annotated data. By comparing three major paradigms—statistical-based, inference-based, and generative reconstruction—we propose an innovative solution based on **\"Semantic Bleaching and Structural Fingerprinting.\"**",
+    "description": "This fragment surveys a problem that becomes increasingly visible as RAG systems move from ordinary document retrieval toward mathematical reasoning: mathematical texts do not merely contain facts; they contain implicit techniques, local conventions, and proof strategies that are difficult to segment or label.\r\n\r\nThe note compares statistical, inference-based, and generative-reconstruction approaches to discovering structure in such texts. Its proposed direction, “semantic bleaching and structural fingerprinting,” is best read as a research sketch: a way to separate surface language from reusable reasoning patterns when annotated mathematical data are scarce.",
     "date": "2026-02-15",
     "link": "/fragments/math-rag"
   },
   {
     "type": "Fragment",
     "title": "Architecture Evolution and Breakthrough: How to \"Smuggle\" Traffic During ICP Filing Window",
-    "description": "Deploying Web services in mainland China requires ICP filing — an administrative requirement mandated by China’s Ministry of Industry and Information Technology. During the approximately 20-day \"filing window\" period, which follows submission and before official approval, domain names pointing to domestic servers must remain silent — unable to serve any actual content or functionality. This poses a significant challenge for early-stage startups urgently needing to validate product-market fit and capture early adopters. This article documents a complete, real-world technical implementation that enables traffic \"smuggling\" during the ICP filing window while remaining fully compliant with regulations. It covers core strategy design, practical deployment challenges encountered (including microservice-GFW conflicts and third-party callback anomalies), solution implementation, and the construction and upgrade of a security protection system — preserving every technical detail and troubleshooting process for teams facing similar constraints.",
+    "description": "This fragment documents a deployment problem specific to web services in mainland China: during the ICP filing window, a domain pointing to a domestic server cannot serve normal content before approval. For an early-stage project, this creates a practical tension between regulatory compliance, product validation, and the need to keep users from encountering a dead endpoint.\r\n\r\nThe article is written as an engineering diary rather than a recipe for evasion. It records the architecture choices, failed assumptions, callback problems, microservice interactions, and security concerns that appeared while designing a temporary routing strategy. The useful lesson is broader than ICP filing itself: production systems are shaped as much by administrative constraints and third-party behavior as by code.",
     "date": "2026-02-08",
     "link": "/fragments/icp-smuggle"
   },
   {
     "type": "Fragment",
     "title": "Multimodal Large Model-Based Bank Customer Emotion Recognition: Bank of Nanjing Project and R&D Insights",
-    "description": "Recently, the first phase of the Bank of Nanjing customer emotion recognition system project that I am in charge of has been successfully completed. During this period, I have been fully engaged in audio signal processing, multimodal large model inference optimization, and the adaptation of the bank's customer service quality inspection vertical scenario. There are no fancy achievement displays; instead, it has been a pragmatic exploration of stepping on pitfalls, making adjustments, and optimizing step by step. Now, the project is about to enter the key link of the second phase — using Bank of Nanjing's real business data for model fine-tuning. However, due to the strict control requirements on sensitive bank data, details related to sensitive data cannot be disclosed. For the subsequent specific technical implementation of fine-tuning, I will not elaborate on every technical detail for the time being. Combining the practice of the first phase, I will sort out the thoughts, adjustments, and insights during this R&D process, which is both a review of past work and a foreshadowing for subsequent R&D.",
+    "description": "This fragment records the first-stage delivery of a Bank of Nanjing customer-emotion recognition project that I led from the engineering side. The work sits at the intersection of audio signal processing, multimodal large-model inference, and domain adaptation for banking quality inspection. Rather than presenting it as a polished success story, I keep the emphasis on the actual engineering process: constraints imposed by hardware, sensitivity of financial data, scenario-specific evaluation, and the repeated adjustments needed to make a model usable in a production-facing workflow.\r\n\r\nThe second phase will rely on real business data for fine-tuning, so details involving sensitive data are deliberately withheld. What remains useful here is the technical and managerial record: how a vertical multimodal system is decomposed, how fallback plans are designed under resource limits, and how a prototype moves from demonstration toward a more reliable customer-service inspection pipeline.",
     "date": "2026-02-03",
     "link": "/fragments/bank-of-nanjing"
   },
   {
     "type": "Fragment",
     "title": "Project Refactoring Development Diary: The \"Violent Migration\" from Vite to Next.js",
-    "description": "These two days, I experienced the first vigorous and intense major project refactoring of my life. The whole process was full of pitfalls, my technical understanding was repeatedly challenged, and I even used a bug in reverse to solve a deployment problem. Looking back now, it’s still absurd and unforgettable. I’m recording all the details here for future review (most likely not) and to help fellow developers who might step into the same pitfalls avoid them.",
+    "description": "This fragment records the first major project refactoring I experienced: a forceful migration from Vite to Next.js. The process was messy in exactly the way real engineering often is—routing assumptions broke, rendering modes changed, deployment limits appeared unexpectedly, and one workaround even depended on exploiting behavior that initially looked like a bug.\r\n\r\nI keep the diary not as a clean tutorial but as a field record. Its usefulness comes from preserving the traps: how front-end and back-end responsibilities were separated, how Vercel constraints shaped architecture, and how a framework migration changes more than file structure.",
     "date": "2026-02-02",
     "link": "/fragments/vite-to-next"
   },
@@ -340,7 +340,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260106: Calculus Review IV: Convexity, Integral Inequalities, Wallis Formula, and More",
+    "title": "N-20260106: Calculus Review III: Convexity, Integral Inequalities, Wallis Formula, and More",
     "description": "Calculus · 16 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-01-06",
     "link": "/notes/2026/N-20260106.pdf",
@@ -352,29 +352,29 @@
   {
     "type": "Note",
     "title": "N-20260105: Linear Algebra Review IV: Eigenvalue Tricks, Positive Definiteness, and More",
-    "description": "Matrix Methods · 33 sections · PDF and TeX source available in the INM archive.",
+    "description": "Linear Algebra · 33 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-01-05",
     "link": "/notes/2026/N-20260105.pdf",
     "tags": [
-      "Matrix Methods",
+      "Linear Algebra",
       "INM"
     ]
   },
   {
     "type": "Note",
     "title": "N-20260103: Linear Algebra Review III: Determinant Tricks, Rank, Matrix Powers, and More",
-    "description": "Matrix Methods · 34 sections · PDF and TeX source available in the INM archive.",
+    "description": "Linear Algebra · 34 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-01-03",
     "link": "/notes/2026/N-20260103.pdf",
     "tags": [
-      "Matrix Methods",
+      "Linear Algebra",
       "INM"
     ]
   },
   {
     "type": "Fragment",
     "title": "From Divergent Series to Stable Homotopy — On the Equation $0=1-1=-1+1=0$",
-    "description": "More than a year ago, I encountered a slide from a lecture by Professor Keyao Peng featuring the enigmatic equation $0=1-1=-1+1=0$. At the time, I interpreted it through the lens of classical analysis and infinite summation techniques. It wasn't until I recently discovered the full lecture slides that I realized my initial intuition was not just slightly off, but diametrically opposed to the mathematical reality. This equation is not about arithmetic values or infinite cancellations; it is a description of a non-trivial topological path within the realm of K-theory and Higher Algebra.",
+    "description": "This fragment revisits a slide from Keyao Peng’s lecture containing the enigmatic expression $0=1-1=-1+1=0$. My first interpretation treated it as an analytic or summability phenomenon, as if the equation were about divergent series and cancellation.\r\n\r\nAfter finding the full lecture context, I realized that this reading was essentially wrong. The expression belongs instead to a topological and K-theoretic setting, where equality can encode a nontrivial path or higher structure rather than a mere arithmetic identity. The fragment records that correction in understanding.",
     "date": "2025-12-17",
     "link": "/fragments/zero-eq"
   },
@@ -406,7 +406,7 @@
   {
     "type": "Fragment",
     "title": "A First Glimpse of AI and Topos Theory: Aha Moment Brought by a Lecture at PKU",
-    "description": "This entry summarizes a highly foundational and forward-looking academic seminar I occasionally noticed, titled **\"Topos Theory and the Frontier of Artificial Intelligence,\"** held at the Zihua Fourth Yuan Hall, Peking University, on December 11, 2025. The event featured Fields Medalist Laurent Lafforgue and Aurélien Sagnier from the Huawei Paris Lagrange Center.\r\n\r\nMy deep interest in the topic led to an extensive personal analysis, which focused on the revolutionary potential of using Topos Theory—a domain bridging logic and geometry—to solve the fundamental flaws of current AI: the lack of **explainability** and **certifiability**. Specifically, my inquiry focused on understanding the theoretical breakthrough this approach offers compared to traditional statistical learning, particularly the role of the Coproduct ($\\sqcup$) in enabling a traceable, modular form of reasoning.",
+    "description": "This fragment records my reaction to a seminar titled “Topos Theory and the Frontier of Artificial Intelligence,” held at Peking University and featuring Laurent Lafforgue and Aurélien Sagnier. The topic immediately suggested a foundational question: can topos-theoretic structure offer a language for explainable and certifiable AI that ordinary statistical learning lacks?\r\n\r\nThe note is exploratory rather than conclusive. It uses the seminar as a starting point to think about logic, geometry, modular reasoning, coproducts, and traceability. Its value lies in articulating what kind of theoretical breakthrough would be required before “topos AI” becomes more than a slogan.",
     "date": "2025-12-10",
     "link": "/fragments/topos-ai"
   },
@@ -424,7 +424,7 @@
   {
     "type": "Fragment",
     "title": "Discussion on Explaining VAE to New Students and Reflections on Its Core Principles",
-    "description": "This fragment records a discussion focusing on how to explain Variational Autoencoders (VAE) to new students. The discussion involves three participants: myself (Runnel, an undergraduate student from NJU), a senior associate professor in the field of Deep Learning with a Ph.D. from Tsinghua University (hereinafter referred to as Senior A), and a fellow undergraduate student from The Chinese University of Hong Kong, Shenzhen (hereinafter referred to as Peer B). The core of the discussion revolves around the key entry points, prerequisite knowledge, and core logical framework for explaining VAEs, with in-depth exchanges on the connection between Autoencoders (AE) and VAE, the significance of dimensionality reduction, and the essence of generative models. Subsequently, I will sort out and reflect on the core content of the discussion, focusing on the theoretical connotation and logical derivation of VAE.",
+    "description": "This fragment records a discussion on how to explain variational autoencoders to new students. The participants approached the problem from different levels of experience, but the central teaching question was shared: how can one move from ordinary autoencoders to VAEs without making the probabilistic machinery feel like an arbitrary add-on?\r\n\r\nThe route developed here begins with dimensionality reduction, then introduces latent distributions, marginal likelihood, reconstruction loss, and the KL term. The emphasis is not on deriving every formula at maximum rigor, but on finding an explanatory sequence in which the VAE appears as a natural bridge between compression and generation.",
     "date": "2025-12-08",
     "link": "/fragments/teach-vae"
   },
@@ -438,11 +438,11 @@
   {
     "type": "Note",
     "title": "N-20251202: Linear Algebra Review II: Diagonalization, Inner Products, Quadratic Forms, and More",
-    "description": "Matrix Methods · 28 sections · PDF and TeX source available in the INM archive.",
+    "description": "Linear Algebra · 28 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-12-02",
     "link": "/notes/2025/N-20251202.pdf",
     "tags": [
-      "Matrix Methods",
+      "Linear Algebra",
       "INM"
     ]
   },
@@ -474,7 +474,7 @@
   {
     "type": "Fragment",
     "title": "Follow-up on Hugo Duminil-Copin's Lecture: Probing SAW Universality and 4D Triviality",
-    "description": "Following the suggestion from Professor Hugo Duminil-Copin, I sent a detailed email to him to follow up on the questions I was unable to ask during the Q&A session. The email, sent on November 27, 2025, covers two major topics: the subtle mathematical reasons behind the solvability of **Self-Avoiding Walks (SAW)** on the honeycomb lattice versus the square lattice (the **Symmetry-Complexity Paradox**), and a more conceptual inquiry into his work on the **Marginal Triviality of the 4D $\\Phi^4$ model** in Quantum Field Theory. Since the email has not been answered, I plan to resolve these questions through self-study, and the formatted email below serves as the structured outline for that research.",
+    "description": "This fragment preserves the follow-up email I sent to Professor Hugo Duminil-Copin after attending his lecture on self-avoiding walks. The questions I was unable to ask during the Q&A are reorganized here into two clusters: the contrast between honeycomb and square lattices in exact solvability, and the conceptual meaning of marginal triviality in the four-dimensional $\\Phi^4$ model.\r\n\r\nThe email has not yet received a response, so the fragment now serves a second purpose: it is a structured research agenda for self-study. It records what I understood, what remained opaque, and which technical directions might clarify the relation between lattice geometry, universality, and scaling limits.",
     "date": "2025-11-27",
     "link": "/fragments/hdc-email"
   },
@@ -492,7 +492,7 @@
   {
     "type": "Fragment",
     "title": "A Successful Star-Chase: Cutting Class for Hugo Duminil-Copin's Lecture on Self-Avoiding Walks",
-    "description": "I cut class to attend a lecture by Fields Medalist Hugo Duminil-Copin and was the first to rush forward for a photo afterward—a completely successful fan moment! Initially, I thought I would not understand anything and was just going to observe, but Hugo's presentation was surprisingly accessible, which is also closely related to his choice of topic.\r\n\r\n![PHOTO WITH HDC](/fragments/hdc-lecture/default.jpeg)",
+    "description": "This fragment records my attendance at a lecture by Fields Medalist Hugo Duminil-Copin on self-avoiding walks. I originally expected the talk to be far beyond my reach and went mostly out of admiration, but the choice of topic and the speaker’s exposition made the lecture unexpectedly accessible.\r\n\r\nThe entry is partly a personal “star-chasing” anecdote and partly a mathematical listening note. It records the analogy-driven structure of the lecture, the basic role of self-avoiding walks, and the gap between recognizing the narrative of a proof and possessing the technical machinery behind it.",
     "date": "2025-11-26",
     "link": "/fragments/hdc-lecture"
   },
@@ -510,7 +510,7 @@
   {
     "type": "Fragment",
     "title": "The \"Holy War\" Moves to the Server Room — Notes on Mochizuki’s Oct 2025 Report",
-    "description": "I had a disscusion on digesting Shinichi Mochizuki’s *Report on the Current Situation Surrounding Inter-Universal Teichmüller Theory (IUT)*, released this past October, with some of my net friends. Our opinions were alike. Ostensibly, this 30-page document is a rebuttal to a critical article by J.D. Boyd in *SciSci Research*, but it reads more like a philosophical manifesto than a standard mathematical response.\r\n\r\nFor those of us tracking this saga for years, the report marks a significant shift. Mochizuki appears to have largely abandoned the hope of convincing the current generation of arithmetic geometers via traditional human dialogue. His argument is that the \"social/political dynamics\" of the mathematical community have superseded \"mathematical truth.\" His proposed solution? A complete retreat into formal verification (Lean 4).\r\n\r\nWhile the tone is calmer than some of his previous blog posts, the implications are arguably more radical. He isn't just defending a proof; he is proposing a redefinition of how mathematical consensus should be reached, seemingly to bypass the \"human\" element that has rejected his theory.\r\n\r\nBelow is a breakdown of the key points and my thoughts.",
+    "description": "This fragment records an informal discussion with online friends about Shinichi Mochizuki’s October 2025 report on the situation surrounding Inter-Universal Teichmüller Theory. Although the document is framed as a response to criticism, its rhetoric extends beyond ordinary mathematical rebuttal and enters the territory of sociology, legitimacy, and formal verification.\r\n\r\nThe central point of interest is the apparent shift in strategy: from persuading the existing arithmetic-geometry community through conventional exposition, toward seeking refuge in Lean formalization and a critique of “social/political dynamics.” The fragment does not adjudicate IUT itself; it tracks the changing form of the debate.",
     "date": "2025-11-15",
     "link": "/fragments/iutt-oct"
   },
@@ -597,7 +597,7 @@
   {
     "type": "Fragment",
     "title": "Discussion and Reflection on MLP Teaching Routes: Regression vs. Classification Entry Points",
-    "description": "This fragment records a discussion between me and two senior scholars in the field of Deep Learning (DL) regarding the rationality of teaching routes for Multi-Layer Perceptron (MLP). The core topic revolves around whether it is appropriate to introduce MLP starting from regression or classification. I put forward the confusion encountered in the teaching preparation process: starting directly from regression to introduce activation functions and then jumping to MLP fails to enable students to effectively understand the core logic of neural networks, while starting from perceptrons is difficult to explain the necessity of activation functions in an essential way. The two seniors shared their professional insights, pointing out that the core of neural networks is classification, and it is more reasonable to directly take classification as the entry point for teaching, and also explained the key reasons for introducing activation functions. Through this in-depth discussion, I gained a more systematic and in-depth understanding of the teaching logic of DL foundational knowledge.",
+    "description": "This fragment records a discussion with two senior researchers in deep learning about how to teach multi-layer perceptrons to beginners. My initial difficulty was pedagogical: introducing MLPs through regression makes activation functions feel arbitrary, while starting from perceptrons can obscure why nonlinearity is structurally necessary.\r\n\r\nThe discussion pushed the route toward classification and decision boundaries. In that framing, activations are not decorative nonlinearities inserted into a regression pipeline; they are the mechanism by which a network composes separations and builds representational capacity. The fragment combines transcript, reflection, and teaching-design notes.",
     "date": "2025-10-12",
     "link": "/fragments/teach-mlp"
   },
@@ -622,7 +622,7 @@
   {
     "type": "Fragment",
     "title": "Implementation and Technical Exploration of U-Net-SE with Positional Offset",
-    "description": "This project aims to realize Google Emoji Kitchen-style emoji fusion through large models, capable of combining two different emojis into a new, creative emoji image. This fragment documents my exploration process of modifying U-Net and adding positional offset capabilities to solve the spatial constraint problem in emoji fusion. Although many seniors regarded this attempt as foolish at that time, I now reflect and believe it was not entirely worthless. My core focus was on how to enable the model to accurately control the positional and size relationships of emoji elements in a small-sample scenario. Eventually, the project shifted to an engineering implementation combining LoRA fine-tuning and Diffusion Model, which will not be the focus of this fragment.\n\nProject Repository: https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab",
+    "description": "This fragment documents an early attempt to build a Google Emoji Kitchen-style fusion system by modifying U-Net with explicit positional information. The central technical problem was spatial control: in a small-sample setting, how can a model learn not only what two emoji elements are, but also where they should appear and how their relative scale should be constrained?\r\n\r\nSome of the design choices later proved naive, and the project eventually shifted toward LoRA fine-tuning and diffusion-based implementation. Still, the record remains valuable as an engineering exploration of spatial priors, attention, and the gap between architectural intuition and trainable behavior.",
     "date": "2025-10-10",
     "link": "/fragments/u-net-position"
   },
@@ -708,7 +708,7 @@
   {
     "type": "Fragment",
     "title": "The Tian-Cai Confluence: Geometric-Combinatorial Proof of Identity",
-    "description": "This is an **irrefutable proof of identity** establishing that the renowned geometric analyst, Professor Tian Gang, is the same individual as the exceptionally talented Nanjing University undergraduate senior, Yuxi Cai (CYX). This humorous academic deduction, framed as a \"Mathematical Royalist's\" attempt to dismantle a \"Yau Detractor\" (a playful jab at the well-known professional tension between Tian Gang and Shing-Tung Yau), utilizes deep academic and cryptographic congruencies to confirm the existence of a meticulously maintained double life. The evidence is so compelling that it transcends mere coincidence, confirming a fundamental isomorphism between the two personas.",
+    "description": "This fragment is a piece of mathematical satire. It stages an intentionally absurd “proof” that the geometric analyst Tian Gang and the Nanjing University undergraduate Cai Yuxi are the same person, using mock-academic reasoning, cryptographic language, and exaggerated identity arguments.\r\n\r\nThe humor lies in applying the apparatus of proof to a claim that is obviously fictional. The text should not be read as a factual assertion about either person. It is a parody of overconfident mathematical packaging, internet factionalism, and the temptation to turn coincidence into theorem.",
     "date": "2025-08-03",
     "link": "/fragments/tian-cai"
   },
@@ -722,7 +722,7 @@
   {
     "type": "Fragment",
     "title": "Minecraft: The Riemann Manifold of Fun—A Hypothetical Physics Simulation",
-    "description": "The following is a semi-serious, highly technical, and completely humorous review of the Swedish video game *Minecraft*. This title, often described as a sandbox construction game, is revealed here as an ambitious, albeit incomplete, simulation built upon a set of **radically altered fundamental physical axioms**. Much like Greg Egan’s *Orthogonal* trilogy, which explores a universe where spacetime is a Riemannian rather than a Lorentzian manifold, *Minecraft* offers a world governed by novel, non-standard laws, yielding a highly amusing, yet surprisingly fertile, ground for engineering and logic.\r\n\r\nWe present the core deviations from classical and quantum physics, followed by the advanced (modded) scientific extensions, concluding with an enthusiastic invitation to join the Nanjing University Minecraft Organization (NMO).",
+    "description": "This fragment reviews *Minecraft* as if it were a serious physical universe with nonstandard axioms. Gravity is selective, fluids are simplified, structural failure is mostly absent, and redstone behaves like an unusually clean Boolean substrate.\r\n\r\nThe piece is humorous, but the framing is productive: by comparing Minecraft’s rules with classical mechanics, thermodynamics, fluid dynamics, and circuit logic, one can see how a game engine becomes a toy model of alternative physics. The final connection to the Nanjing University Minecraft Organization keeps the tone deliberately enthusiastic rather than academic.",
     "date": "2025-07-30",
     "link": "/fragments/nmo-physics"
   },
@@ -736,7 +736,7 @@
   {
     "type": "Fragment",
     "title": "The Proper Way to Speak Like a Mathematical Maniac: A Self-created Meme",
-    "description": "This document serves as a **Self-Correcting Lexicon of Mathematical Cryptography**, translating sixteen common, everyday conversational phrases into their most technically dense and mathematically absurd equivalents. This meme, originating from a discussion among academic peers, highlights the humorous tendency of mathematicians to formalize the mundane. Each entry includes the translation, the precise mathematical expression, a detailed explanation of the concept, and the author’s subsequent self-critique and correction process, where applicable.",
+    "description": "This fragment is a self-correcting lexicon of mathematical over-formalization. It translates ordinary conversational phrases into deliberately excessive technical expressions, turning everyday speech into complexity classes, set-theoretic independence, categorical conventions, and asymptotic jokes.\r\n\r\nThe purpose is comic rather than didactic, but the humor depends on genuine mathematical associations. Each entry records not only the joke but also the concept behind it and, where needed, a later correction. The result is a small archive of how mathematical language becomes a social style among peers.",
     "date": "2025-07-14",
     "link": "/fragments/maniac-meme"
   },
@@ -754,7 +754,7 @@
   {
     "type": "Fragment",
     "title": "The Space Between the Lines: A Post-Gaokao Journey into Knot Theory via Nikonov's seminar",
-    "description": "The summer after the *Gaokao* is a strange time. The pressure valve releases, and suddenly, there is silence. To fill that silence, I found myself in a online seminar room, listening to I. M. Nikonov speak about \"Partial Tribrackets.\"\r\n\r\nI will be honest: I was completely lost. Terms like \"quasigroups,\" \"biquandloids,\" and \"thickened surfaces\" were flying around the room, and I felt like I had walked into a movie halfway through. My high school mathematics education—calculus, geometry, algebra—had built a strong foundation, but this was a skyscraper I couldn't see the top of.\r\n\r\nRefusing to let the confusion win, I tracked down the speaker's related paper: **“The crossing and the arc from the topological viewpoint” (arXiv:2504.18836v1)**. I decided to treat this paper not just as a reading assignment, but as a map.\r\n\r\nMy study session became \"top-heavy.\" I spent days obsessing over the **Introduction** and **Section 2**, specifically the fundamental philosophical divide in knot theory: the **Topological** view vs. the **Combinatorial** view. This note is the result of that deep dive—a compilation of what I learned from the paper, supplemented by the external research I had to do just to understand the first page.",
+    "description": "This fragment records a post-Gaokao encounter with I. M. Nikonov’s seminar on partial tribrackets. I entered the lecture with only a high-school-to-early-undergraduate background and quickly found myself surrounded by unfamiliar language: quasigroups, biquandloids, thickened surfaces, and diagrammatic invariants.\r\n\r\nInstead of treating that confusion as failure, I used it as a map. The fragment follows my attempt to read Nikonov’s related paper, identify the topological and combinatorial sides of knot theory, and understand how local diagrammatic data can encode global invariants. It is an honest record of learning from the edge of comprehension.",
     "date": "2025-07-05",
     "link": "/fragments/nikonov-knot"
   },
@@ -772,7 +772,7 @@
   {
     "type": "Fragment",
     "title": "The Naming Game — From RC，Runnel, Rangnuo, Jeanot to Rinelle",
-    "description": "This document explores the multi-layered architecture of my personal identity, tracing a philological journey that bridges my Chinese heritage with Western linguistic traditions. By weaving together the etymology of my primary names—**Runnel (Runcheng)**, the courtesy name **Rangnuo (Jeanot)**, and the studio title **Xiangruo**—with a playful aristocratic alter ego, I demonstrate a philosophy where names serve as both \"tally-bonds between Heaven and Earth\" and vessels for silent action. Through translated classical prefaces and European nomenclature, this overview reveals a self-conception rooted in the virtues of deference, promise, and the perpetual \"renaissance\" of the intellect.",
+    "description": "This fragment treats naming as a form of intellectual self-fashioning. It traces several names and aliases—Runnel, Runcheng, Rangnuo, Jeanot, Rinelle, and Xiangruo—not as isolated labels but as attempts to connect Chinese naming practice, European linguistic play, and personal mythology.\r\n\r\nThe text combines translation, etymology, classical-style prose, and a deliberately theatrical alter ego. Its seriousness lies not in the aristocratic playacting but in the underlying question: how does a person build continuity across languages, platforms, and stages of life through names?",
     "date": "2025-06-28",
     "link": "/fragments/name-game"
   },
@@ -890,7 +890,7 @@
   {
     "type": "Fragment",
     "title": "Echoes of Summer — From Hopf Fibrations to Higher Algebra",
-    "description": "During the summer, while scrolling through my QQ space, I stumbled upon a dynamic update from **Dr. Peng Keyao** (now, rightfully, **Prof. Peng**). It was a poster for his recent lecture titled *\"From Elementary Arithmetic to Higher Algebra.\"* Seeing his name instantly triggered a wave of nostalgia, transporting me back to the summer of 2021.\r\n\r\nThree years ago, he gave us a lecture on the **Hopf Fibration**. I still vividly remember spending days preparing for it, scribbling notes, and trying to wrap my head around the topology of spheres. The note is available at [Chaoli Forum](https://chaoli.club/index.php/6596), with a DOI: [10.6084/M9.FIGSHARE.20310042](https://doi.org/10.6084/M9.FIGSHARE.20310042).\r\n\r\nTime changes things — Dr. Peng has ascended to a postdoc at the Université de Bourgogne and been teaching Algebraic Geometry courses, and the topics have evolved from classical topology to the cutting-edge realm of **Infinity Categories** and **Higher Algebra**.\r\n\r\nAlthough I deeply regret missing his 2024 lecture, looking at the lecture abstract and the meme he famously shared back in the day (which seems to bridge his past and present research), I feel a strange sense of temporal overlap. The memories of 2021 have superimposed onto the reality of 2024.\r\n\r\nBelow is the context of his recent talk, followed by my attempt to decode that legendary \"Galaxy Brain\" meme, tracing the path from a simple sphere mapping to the profound \"truth\" of $0=1-1=-1+1=0$.",
+    "description": "This fragment begins with a later lecture poster by Keyao Peng and uses it as a trigger to revisit an earlier summer spent learning the Hopf fibration. The memory is both mathematical and personal: a 2021 lecture, days of preparation, handwritten notes, and the first serious attempt to visualize maps between spheres.\r\n\r\nThe second half translates that memory into a “galaxy brain” style conceptual ladder. The point is not to claim mastery of higher algebra, but to show how one object can be revisited at different levels: definition, visualization, homotopy, geometry, and finally the speculative language of deeper algebraic structures.",
     "date": "2024-07-27",
     "link": "/fragments/hopf-meme"
   },
@@ -1034,7 +1034,7 @@
   {
     "type": "Fragment",
     "title": "The Minuet of Marching Drill — Homotopy Analysis Based on Topological Behavioral Science",
-    "description": "This article is a satirical piece adapted from an essay of mine. Its creation was inspired by an article criticizing marching drill written by my classmate Bao Haimo — with its incisive perspective on deconstructing the marching drill scene, Bao’s article sparked extensive discussion in the class and served as the inspiration for this work. Centered on using mathematical concepts such as algebraic topology, category theory, and geometric group theory as playful carriers, this article conducts an interesting deconstruction and teasing of the campus marching drill scene. All content is for entertainment purposes only, does not possess any serious academic value, and does not constitute a formal evaluation or interpretation of relevant mathematical theories or educational scenarios. Readers may view it as a fun essay and need not examine it against the standards of academic rigor.",
+    "description": "This fragment is a satirical mathematical essay inspired by a classmate’s critique of campus marching drill. It translates a highly regimented school activity into the language of configuration spaces, quotienting, fiber bundles, Kan extensions, and geometric group theory.\r\n\r\nThe mathematical language is intentionally overpowered for the object being analyzed. That mismatch is the joke: by applying sophisticated formalism to an everyday disciplinary scene, the essay exposes both the absurdity of the activity and the performative excess of academic packaging. It should be read as parody, not as a serious mathematical model or a literal sociological claim.",
     "date": "2023-11-27",
     "link": "/fragments/marching-drill"
   },
@@ -1048,7 +1048,7 @@
   {
     "type": "Fragment",
     "title": "The Zermelo-Hessian-Kan Program and Its Real-World Metaphors",
-    "description": "Taking the fictional \"Zermelo-Hessian-Kan (ZHK) Program\" as the carrier, this paper conducts in-depth theoretical reconstruction and academic packaging. Its core purpose is to reflect and ridicule some inappropriate behaviors of our high school psychology teacher in daily teaching and interaction—such as his arbitrary judgment style and expression habits that ignore others' feelings—with a satirical tone. It should be clearly stated that all academic deductions and satirical expressions in this paper are for entertainment purposes, purely a fun creation among classmates, without any tendency of malicious attack or negative slander. This paper will construct a self-consistent unified theory of \"absolute will\" through rigorous mathematical language (especially Kan extensions in category theory, critical point theory in calculus, and axiomatic set theory), completing a gentle mockery and interesting presentation of the relevant inappropriate behaviors in the form of absurd academic expression.",
+    "description": "This fragment uses the fictional “Zermelo-Hessian-Kan Program” as a vehicle for satire. It was originally written in response to classroom experiences with a high-school psychology teacher whose style felt arbitrary, overconfident, and insensitive to students’ perspectives.\r\n\r\nThe mathematical packaging is intentionally excessive: Kan extensions, critical points, and axiomatic language are used to build a mock theory of “absolute will.” The target is not mathematics itself but the rhetorical posture of authority. The piece should therefore be read as a private comic construction among classmates, not as a literal academic or personal accusation.",
     "date": "2023-09-21",
     "link": "/fragments/zhk-program"
   },
@@ -1208,7 +1208,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230225: Nonstandard Analysis and the Meaning of \\texorpdfstring{$0.999\\ldots=1$",
+    "title": "N-20230225: Nonstandard Analysis and the Meaning of $0.999\\ldots=1$",
     "description": "Sets and Foundations · 17 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-02-25",
     "link": "/notes/2023/N-20230225.pdf",
@@ -1227,7 +1227,7 @@
   {
     "type": "Fragment",
     "title": "The Derivation of Trigonometric Sum and Difference Formulas from Advanced Standpoints",
-    "description": "The origin of this note was during class when I wanted to verify the tangent (tan) sum formula directly using the **Reciprocal Basis** from tensor calculus. I initially tried using the scalar triple product (mixed product), but that didn't work. Later, I attempted orthogonal decomposition, but the reciprocal basis of a unit orthogonal basis is the basis itself, which rendered the specific properties of reciprocal bases useless.\r\n\r\nAlthough simply \"grabbing\" the result using rotation matrices is a very reasonable approach, I had an obsession with finding a **\"direct proof for tan.\"** Therefore, I organized various derivation paths ranging from elementary geometry to tensor operations, and finally to higher-level mathematical viewpoints.\r\n\r\nN-20230220: View via [here](https://www.runnelzhang.com/notes/2023/N-20230220.pdf), or visit DOI:[10.6084/M9.FIGSHARE.22268962](https://doi.org/10.6084/m9.figshare.22268962)\r\n\r\nN-20230223: View via [here](https://www.runnelzhang.com/notes/2023/N-20230223.pdf), or visit DOI:[10.6084/M9.FIGSHARE.22268965](https://doi.org/10.6084/m9.figshare.22268965)",
+    "description": "This fragment began with a classroom obsession: I wanted a direct derivation of the tangent sum formula using the reciprocal-basis language from tensor calculus. The attempt did not work as planned, since in an orthonormal setting the reciprocal basis collapses back to the original basis and loses the distinctive feature I hoped to exploit.\r\n\r\nThe failed attempt nevertheless became useful. I reorganized several derivation routes—geometric, vectorial, matrix-based, complex-analytic, and tensor-inspired—to compare what each method actually explains. The fragment is therefore less about finding the shortest proof than about understanding why different formalisms illuminate different parts of a familiar identity.",
     "date": "2023-02-23",
     "link": "/fragments/sin-tan"
   },
@@ -1320,7 +1320,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230127: Factorization of \\texorpdfstring{$\\sum_{i=0",
+    "title": "N-20230127: Factorization of $\\sum_{i=0}^k x^{in}$: Roots of Unity, False Generalization, and Cyclotomic Structure",
     "description": "Number Theory Basics · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-01-27",
     "link": "/notes/2023/N-20230127.pdf",
@@ -1398,7 +1398,7 @@
   {
     "type": "Fragment",
     "title": "Correspondence with Professor Tom Leinster: My Translation of \"Rethinking Set Theory\" and a Request for Guidance",
-    "description": "In late December 2022, driven by my passion for mathematics, particularly category theory and homotopy type theory, I reached out to Professor Tom Leinster, a mathematician I deeply admire. As a 15-year-old high school student, I proudly shared my Chinese translation of his accessible article, \"Rethinking Set Theory,\" which I had made available online. I sought his feedback on the translation and, more importantly, his guidance on structuring my advanced mathematical studies, having already delved into undergraduate topics like algebraic topology and abstract algebra. Professor Leinster replied in January 2023, expressing his admiration for my effort (though he noted he couldn't verify the Chinese) and recommending two insightful, unconventional books for further study: Saunders Mac Lane's \"Mathematics: Form and Function\" and Michio Kuga's \"Galois's Dream.\" This exchange was an inspiring and unforgettable milestone in my early mathematical journey. From then on, I continued corresponding with Professor Leinster under my real identity, though those emails are private and will not be shared here.",
+    "description": "This fragment preserves my correspondence with Professor Tom Leinster in late 2022 and early 2023. I wrote to him as a young student after translating his article “Rethinking Set Theory” into Chinese, hoping both to share the translation and to ask for guidance on how to continue studying category theory, homotopy type theory, and related foundations.\r\n\r\nLeinster’s reply was brief but meaningful: he appreciated the effort, noted the limits of judging a Chinese translation, and recommended two books that approach mathematics in an unconventional spirit—Saunders Mac Lane’s *Mathematics: Form and Function* and Michio Kuga’s *Galois’ Dream*. The exchange remains an important marker in my early mathematical self-education.",
     "date": "2022-12-30",
     "link": "/fragments/leinster-email"
   },
@@ -1658,7 +1658,7 @@
   {
     "type": "Fragment",
     "title": "The Geometry of Dialogue and the Logic of Narrative: A Taste of Linear Logic",
-    "description": "This fragment serves as a synthesis of my recent immersion into the world of **Linear Logic** and its profound implications for systems beyond mere mathematical tautology. Following the intellectual breadcrumbs left by Dr. Keyao Peng last year, I have moved away from the static view of logic as a classification of truth and towards a dynamic view of logic as *interaction*, *resource*, and *game*.\r\n\r\nWhat began as an inquiry into game design mechanics—specifically the tension between modular pipelines and emergent storytelling—has evolved into a philosophical re-evaluation of how meaning is constructed. As the following notes and visual analyses demonstrate, the bridge between a child’s fable, a philosophical debate, and high-dimensional topology is built upon the rigorous negation-duality of Linear Logic.",
+    "description": "This fragment collects my first sustained attempt to understand linear logic beyond the slogan that it treats propositions as resources. The route is deliberately broad: from game mechanics and storytelling to Schopenhauer-style debate, ludics, and the geometry of interaction.\r\n\r\nThe guiding contrast is between static logic and interactive logic. Instead of asking only whether a statement is true, linear logic asks how assumptions are consumed, transformed, duplicated, or withheld. The fragment is therefore both a learning note and a conceptual experiment: it tests whether a technical logical system can illuminate narrative structure and human interaction without reducing them to mere metaphor.",
     "date": "2022-10-05",
     "link": "/fragments/linear-logic"
   },
@@ -1676,7 +1676,7 @@
   {
     "type": "Fragment",
     "title": "Synthesis and Properties of a Novel Tungsten-Containing Organic Compound Based on Superchemistry Theory",
-    "description": "It is necessary to first clarify that the so-called \"scholars\" such as Zhao Mingyi mentioned in this record are well-known online pseudo-scientists, whose absurd theories are often ridiculed by the academic community and netizens. The bizarre terms involved in this text, such as \"superchemistry\", are all their \"masterpieces\" that deviate from scientific common sense. In this research record, I propose the existence of two novel substances, \"sildenofil\" and \"L-wzlteine\", based on the theories put forward by these pseudo-scientists including Zhao Mingyi. I then systematically investigate their reaction process and the properties of the resulting product under the action of a \"strong antimony field\". From a professional chemical perspective, the core concepts involved—such as the bonding modes of W⁺ ions and the compound naming logic—do not align with mainstream chemical systems, and \"superchemistry\" is not a recognized academic discipline. As implied later, this work employs exaggerated chemical research expressions to metaphorically depict the interesting interactions between my classmates: male classmate Zhaoli Wang (where the \"W\" in the substances corresponds to his surname \"Wang\") and female classmate Nuo Chen (where the \"No\" in the substances corresponds to her given name \"Nuo\").\r\n\r\n\r\n**HINT**: The figures (pic1 to pic6) correspond to pages 1 to 6 of the attached PDF file.\r\n\r\n[PDF OF FIGURES](/fragments/wang-nuo/pics.pdf)",
+    "description": "This fragment is a parody of online pseudo-scientific “superchemistry.” It invents substances such as “sildenofil” and “L-wzlteine,” then develops a mock reaction theory involving tungsten-containing compounds, “strong antimony fields,” and deliberately implausible naming logic.\r\n\r\nThe text should be read as fictional satire, not as a chemical proposal. Its comic mechanism is the imitation of research prose: by writing nonsense in the grammar of synthesis, reaction conditions, and property analysis, it exposes how scientific authority can be counterfeited at the level of style.",
     "date": "2022-10-03",
     "link": "/fragments/wang-nuo"
   },
@@ -1888,7 +1888,7 @@
   {
     "type": "Fragment",
     "title": "The Absolute Zero: Saburou Saitoh’s Crusade to Redefine Mathematics",
-    "description": "**The \"Fun Person\" of the Day:** Prof. Saburou Saitoh (Gunma University).\n\n**The Phenomenon:** A legitimate mathematician with a background in Reproducing Kernels who has seemingly pivoted his entire career toward proving that $z/0 = 0$.\n\nThis isn't your standard crankery. Saitoh isn't an outsider scribbling in green ink; he publishes via SCIRP (a known quantity in the predatory/low-tier world) and viXra, yet somehow managed to slip his \"Division by Zero\" manifesto into a Springer proceeding. This puts him in a league comparable to the late Myron W. Evans—academic credentials used to push a theory that breaks fundamental axioms.\n\n**Speculation on Intent:**\n\nIs this an elaborate academic troll? Unlikely. The tone is far too earnest. It appears to be a classic case of the \"Golden Hammer.\" Saitoh seems to have taken the concept of the Moore-Penrose pseudoinverse (where the \"inverse\" of a zero matrix can be defined as zero) or Tikhonov regularization and elevated it from a computational tool to a fundamental law of the universe. By declaring that singularities are simply \"zero,\" he eliminates all poles, singularities, and infinities. It is a \"brute force\" solution to complex analysis: if a function blows up, just define it as zero. The result is a mathematical system where the point at infinity collapses into the origin—a topological nightmare presented as \"elementary and fundamental mathematics.\"",
+    "description": "This fragment examines Saburou Saitoh’s long-running advocacy of “division by zero” formulas such as $z/0=0$. The case is interesting precisely because it does not fit the simplest image of outsider crankery: Saitoh has legitimate mathematical background, yet promotes a program that conflicts sharply with standard algebraic and analytic conventions.\r\n\r\nThe note reads the phenomenon as a cautionary case in mathematical judgment. It asks how a technically trained researcher can overextend one idea, how publication venues and proceedings can blur signals of legitimacy, and why a formal-looking rule must still be tested against the structures it claims to inhabit.",
     "date": "2022-07-18",
     "link": "/fragments/saburou-zero"
   },
@@ -2048,7 +2048,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220407: Exercises on \\(\\mathbb R^n\\), \\(\\mathbb C^n\\), Vector Spaces, and Subspaces",
+    "title": "N-20220407: Exercises on $\\mathbb R^n$, $\\mathbb C^n$, Vector Spaces, and Subspaces",
     "description": "Linear Algebra · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-04-07",
     "link": "/notes/2022/N-20220407.pdf",
@@ -2184,7 +2184,7 @@
   {
     "type": "Fragment",
     "title": "Unveiling Arithmetic Deformation Theory: Reflections on Fesenko’s \"Notes on the work of Shinichi Mochizuki\"",
-    "description": "The genesis of this study lies in a perspective shared by my mentor at Geek College, Dr. Keyao Peng. Amidst the polarized academic atmosphere surrounding the *Inter-universal Teichmüller (IUT)* theory, Dr. Peng adopted a stance of pure intellectual curiosity—akin to \"eating to live,\" focusing on the sustenance of knowledge rather than the politics of validity.\r\n\r\nSeveral months ago, during a fortuitous overlap between a lecture by Peter Scholze on *Toposes Online* (regarding condensed mathematics) and a seminar by Shinichi Mochizuki on *tripodal transport*, a conceptual bridge emerged. While the two theories are formally distinct, the intuition of \"gluing\" structures—and the malleability of what we consider fundamental—resonated deeply. As Dr. Peng articulated, there is a profound difficulty in what Mochizuki terms \"descent\": the realization that while the multiplicative structure of a field might be fixed (reconstructible via Galois groups), the additive structure is essentially \"floating.\" In this view, $1$ is a fixed unit, but $1+1$ carries a structural ambiguity that requires stabilization.\r\n\r\nGuided by this open-minded philosophy—treating mathematics not as a battleground but as a landscape of structural beauty—I delved into Ivan Fesenko’s extensive survey, *“Arithmetic deformation theory via arithmetic fundamental groups and nonarchimedean theta-functions.”* The following are my notes on the traditional mathematical narrative, the radical deconstruction of ring structures, and the intuitive analogies presented in the theory.",
+    "description": "This fragment grows out of a stance that Dr. Keyao Peng once modeled for me: even in a polarized debate, one may still study a theory for the concepts it tries to invent. With Inter-Universal Teichmüller Theory, that means setting aside, temporarily, the question of communal acceptance and asking what kind of mathematical imagination the theory requires.\r\n\r\nThe note follows Ivan Fesenko’s exposition as an accessible entry point into arithmetic deformation, theta-links, log-links, multiradiality, and the difficult notion of descent. It is not a verification of Mochizuki’s claims. It is a record of trying to understand what conceptual pressure would lead someone to redesign the background coordinates of arithmetic geometry.",
     "date": "2021-10-07",
     "link": "/fragments/ivan-iutt"
   },
@@ -2238,7 +2238,7 @@
   {
     "type": "Fragment",
     "title": "A Gateway to Dualities: Mirror Symmetry between Space and Structure",
-    "description": "It was July 2021, a sweltering month, when an image quietly dropped into our Geek College chat group. It was Dr. Keyao Peng, our mentor at the time, who shared a simple yet profound screenshot labeled **\"Table 3: Some dualities.\"** At first glance, it appeared to be merely a list of mathematical objects, but upon closer inspection, it revealed a fundamental philosophical structure that governs modern mathematics: the mirror symmetry between *Geometry* (Space) and *Algebra* (Structure).\r\n\r\n![TABLE](/fragments/boolean-stone/table.jpg)\r\n\r\nThat specific image acted as a catalyst. It was the spark that ignited my intense curiosity regarding the relationship between Boolean logic and topological spaces. I spent the subsequent weeks diving into the literature, attempting to decode the first row of that table: **Stone spaces** and **Boolean algebras**. This intellectual journey culminated in August 2021, when I published an explanatory article on the *Chaoli Forum* titled \"An Introduction to Boolean Algebra\" (available at [chaoli.club](https://chaoli.club/index.php/6589), DOI: [10.6084/M9.FIGSHARE.20310033](https://doi.org/10.6084/M9.FIGSHARE.20310033)).\r\n\r\nHowever, looking back at that note, I realize it remained incomplete. I successfully navigated the algebraic structures, but I never fully articulated the geometric side—the *Stone Space*—as I had originally intended. Furthermore, influenced by Dr. Peng’s deeper interests, I began scratching the surface of **Topos Theory** and **Logos**, concepts that reside at the bottom of the table.\r\n\r\nWhat follows is a reconstruction of my learning notes from that period. It is an attempt to finally provide the \"missing half\" of my August 2021 note, to decode the table that Dr. Peng sent, and to rigorously define the concept of **Duality** that binds these disparate worlds together.",
+    "description": "This fragment reconstructs my first serious encounter with duality in modern mathematics. In July 2021, Dr. Keyao Peng shared a table of classical dualities in the Geek College chat group. What first appeared to be a compact list of correspondences gradually became a doorway into a broader theme: the translation between spaces and algebraic structures.\r\n\r\nThe immediate object of study was Stone duality, the relationship between Boolean algebras and Stone spaces. I treat the original screenshot as an archival starting point and then unfold the mathematical background around it: why Boolean operations can be read topologically, why compactness and clopen sets matter, and how this example foreshadows a recurring pattern in algebra, topology, and logic.",
     "date": "2021-07-21",
     "link": "/fragments/boolean-stone"
   },
@@ -2256,7 +2256,7 @@
   {
     "type": "Fragment",
     "title": "Prop Presentations for Linear Algebra: The $\\mathbf{cb}_k$ Calculus",
-    "description": "I have finally traced the definitive origin of this elegant piece of graphical mathematics by Dr. Peng! The fragment I was studying belongs to the seminal work **\"Graphical Linear Algebra\"** (specifically, see **arXiv:2105.06244**). This paper provides the rigorous categorical \"source code\" for representing linear algebra not through grids of numbers, but through the topology of string diagrams.\r\n\r\nThe specific formalism identified is the theory $\\mathbf{cb}_k$ (standing for *commutative bialgebra* with *scalars* over a ring $k$). The central result is breathtaking in its simplicity and power: this diagrammatic language is a complete presentation for the prop $\\mathbf{Mat}_k$. In other words, **diagrams are matrices**, and topological manipulation is linear algebra.\r\n\r\nFor those interested in a more pedagogical entry point, the authors maintain an incredible resource at **[graphicallinearalgebra.net](https://graphicallinearalgebra.net/)**, which unfolds this theory as a narrative about the interaction between two fundamental operations: Copying and Adding. Below is a detailed academic note synthesizing the formal definition from the paper with the intuitive insights from the website.\r\n\r\n![DEMO](/fragments/graph-alg/demo.jpeg)",
+    "description": "This fragment identifies the source of a diagrammatic formalism that had circulated in my notes since Dr. Peng’s lectures: the theory of graphical linear algebra, especially the presentation of matrices through the prop $\\mathbf{Mat}_k$. The key idea is that linear algebra can be represented not only as arrays of scalars but also as a calculus of string diagrams equipped with generators and relations.\r\n\r\nThe entry functions as both a reading guide and a conceptual translation. It explains how the commutative-bialgebra presentation $\\mathbf{cb}_k$ provides a syntax for linear maps, why diagrammatic rewriting can be complete for ordinary matrix reasoning, and why this point of view is useful for categorical and compositional thinking.",
     "date": "2021-06-21",
     "link": "/fragments/graph-alg"
   },
@@ -2307,14 +2307,14 @@
   {
     "type": "Fragment",
     "title": "Christmas Night at Geek College: From Free Products to Asymptotic Envelopes",
-    "description": "This entry marks my very first participation in the **Geek College** English Salon on December 25, 2020. What began as casual holiday chatter quickly evolved into a high-density academic exchange spanning Abstract Algebra and Measure Theory.\r\n\r\nThe log captures my initial struggles with the formal notations in Paul Halmos’s *Measure Theory* and the definition of Coproducts in the category of Groups. Guided by peers **Jacky_Jnirvana** and **Nianyi**, the conversation bridged the gap between rigorous \"pathological\" definitions and intuitive geometric understandings. Below are the key fragments of that night, supplemented with the mathematical context I have since gathered.",
+    "description": "This entry records my first participation in the Geek College English Salon on December 25, 2020. What began as holiday conversation quickly turned into a dense exchange on abstract algebra, category theory, and measure theory. The discussion moved between coproducts in groups, notational difficulties in Halmos’s *Measure Theory*, and the tension between formal definitions and geometric intuition.\r\n\r\nI keep the fragment as a snapshot of an early learning environment: informal, occasionally chaotic, but unusually effective in turning isolated questions into conceptual bridges. Later comments add the mathematical context that I did not fully possess at the time.",
     "date": "2020-12-25",
     "link": "/fragments/geek-christmas"
   },
   {
     "type": "Fragment",
     "title": "Initial Construction and Preliminary Properties of Chunpinative Geometry",
-    "description": "This content takes the form of a systematic constructive record of a geometric theory, formally proposing the core axiom of \"Chunpinative Geometry\" and establishing a set of foundational concepts—including \"Chunpinative Space\" and \"Chunpinatively Measurable Space\"—on the basis of this axiom. Additionally, it deduces preliminary properties of the space and presents a key lemma proposed by a collaborator. From the perspective of mainstream geometric theory (encompassing both Euclidean and non-Euclidean geometries), the core axiom of Chunpinative Geometry—asserting that \"an angle is equivalent to its supplement\"—represents a deliberate departure from the fundamental logical relationships that govern angle arithmetic in conventional geometric systems. Specifically, it abandons the well-established rule that \"the supplement of an angle is equal to \\(180^\\circ\\) minus the measure of the original angle,\" replacing it with a direct equivalence relation. It is important to acknowledge that certain preliminary property descriptions in this initial construction lack the full rigor of formal mathematical derivation, as they serve as tentative deductions to frame the theory’s structure. As indicated by contextual cues embedded in the naming and framing, this work is a playful, commemorative simulation of a mathematical theory: it adopts the rigorous framework of axiom-based geometric system construction to pay lighthearted tribute to the author’s junior high school mathematics teacher, Chunping Ding (with the term \"Chunpinative\" derived from the teacher’s given name \"Chunping\"), and to classmate CZL, who contributed the key lemma to the theory.",
+    "description": "This fragment preserves an early attempt at constructing a self-contained but intentionally nonstandard geometric theory, later named “Chunpinative Geometry.” Its central axiom identifies an angle with its supplement, thereby breaking the usual arithmetic of angle measure and forcing a new vocabulary of spaces, measurability, and elementary lemmas.\r\n\r\nThe text should be read as a playful formal exercise rather than a proposal for a viable geometry. Its value lies in the act of axiomatization itself: starting from a deliberately absurd premise, one can still observe how definitions propagate, how lemmas acquire internal meaning, and how a fictional system begins to imitate the surface form of mathematical theory.",
     "date": "2020-12-07",
     "link": "/fragments/chunpinative"
   },

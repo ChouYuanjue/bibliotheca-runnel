@@ -1,11 +1,14 @@
 ---
 title: "From Divergent Series to Stable Homotopy — On the Equation $0=1-1=-1+1=0$"
 date: "2025-12-17"
+description: "A correction of an earlier analytic reading of $0=1-1=-1+1=0$ toward K-theoretic and homotopical meaning."
 ---
 
 ## Overview
 
-More than a year ago, I encountered a slide from a lecture by Professor Keyao Peng featuring the enigmatic equation $0=1-1=-1+1=0$. At the time, I interpreted it through the lens of classical analysis and infinite summation techniques. It wasn't until I recently discovered the full lecture slides that I realized my initial intuition was not just slightly off, but diametrically opposed to the mathematical reality. This equation is not about arithmetic values or infinite cancellations; it is a description of a non-trivial topological path within the realm of K-theory and Higher Algebra.
+This fragment revisits a slide from Keyao Peng’s lecture containing the enigmatic expression $0=1-1=-1+1=0$. My first interpretation treated it as an analytic or summability phenomenon, as if the equation were about divergent series and cancellation.
+
+After finding the full lecture context, I realized that this reading was essentially wrong. The expression belongs instead to a topological and K-theoretic setting, where equality can encode a nontrivial path or higher structure rather than a mere arithmetic identity. The fragment records that correction in understanding.
 
 ## I. The Realization
 *The following is a translation of my recent reflection and Prof Peng’s response.*

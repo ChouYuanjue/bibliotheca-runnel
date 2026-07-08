@@ -1,13 +1,14 @@
 ---
 title: "The Proper Way to Speak Like a Mathematical Maniac: A Self-created Meme"
 date: "2025-07-14"
+description: "A humorous lexicon translating ordinary speech into absurdly overformal mathematical expressions."
 ---
 
 ## Overview
 
-This document serves as a **Self-Correcting Lexicon of Mathematical Cryptography**, translating sixteen common, everyday conversational phrases into their most technically dense and mathematically absurd equivalents. This meme, originating from a discussion among academic peers, highlights the humorous tendency of mathematicians to formalize the mundane. Each entry includes the translation, the precise mathematical expression, a detailed explanation of the concept, and the author’s subsequent self-critique and correction process, where applicable.
+This fragment is a self-correcting lexicon of mathematical over-formalization. It translates ordinary conversational phrases into deliberately excessive technical expressions, turning everyday speech into complexity classes, set-theoretic independence, categorical conventions, and asymptotic jokes.
 
-***
+The purpose is comic rather than didactic, but the humor depends on genuine mathematical associations. Each entry records not only the joke but also the concept behind it and, where needed, a later correction. The result is a small archive of how mathematical language becomes a social style among peers.
 
 ## The Lexicon Table: Conversational to Formal Translation
 
@@ -29,8 +30,6 @@ This document serves as a **Self-Correcting Lexicon of Mathematical Cryptography
 | 帮我个忙 | Help me out/Do me a favor | $\Gamma \vdash ? : \text{Req} \to \text{Action}$ |
 | 你陪我 | Keep me company | $\text{Seeking } F \dashv G \text{ in } \mathcal{C}$ |
 | 气死我了 | I'm furious/It drives me mad | $\text{Gal}(E/\mathbb{Q}) \text{ is not solvable}$ |
-
-***
 
 ## Detailed Explanations and Corrections
 

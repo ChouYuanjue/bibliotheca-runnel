@@ -1,16 +1,14 @@
 ---
 title: "Minecraft: The Riemann Manifold of Fun—A Hypothetical Physics Simulation"
 date: "2025-07-30"
+description: "A playful physics review of Minecraft as a universe with altered axioms and engineering-friendly laws."
 ---
-
 
 ## Overview
 
-The following is a semi-serious, highly technical, and completely humorous review of the Swedish video game *Minecraft*. This title, often described as a sandbox construction game, is revealed here as an ambitious, albeit incomplete, simulation built upon a set of **radically altered fundamental physical axioms**. Much like Greg Egan’s *Orthogonal* trilogy, which explores a universe where spacetime is a Riemannian rather than a Lorentzian manifold, *Minecraft* offers a world governed by novel, non-standard laws, yielding a highly amusing, yet surprisingly fertile, ground for engineering and logic.
+This fragment reviews *Minecraft* as if it were a serious physical universe with nonstandard axioms. Gravity is selective, fluids are simplified, structural failure is mostly absent, and redstone behaves like an unusually clean Boolean substrate.
 
-We present the core deviations from classical and quantum physics, followed by the advanced (modded) scientific extensions, concluding with an enthusiastic invitation to join the Nanjing University Minecraft Organization (NMO).
-
-***
+The piece is humorous, but the framing is productive: by comparing Minecraft’s rules with classical mechanics, thermodynamics, fluid dynamics, and circuit logic, one can see how a game engine becomes a toy model of alternative physics. The final connection to the Nanjing University Minecraft Organization keeps the tone deliberately enthusiastic rather than academic.
 
 ## Minecraft: A Universe Governed by Novel Physical Axioms
 
@@ -51,8 +49,6 @@ The game’s construction and behavior fundamentally violate established princip
 *   **Standard Physics:** Electronic circuits rely on **Electromagnetism**, governed by Maxwell's Equations, where signal transmission is due to the movement of electrons and photons.
 *   **Minecraft Axiom 6:** **Signal Transmission is Purely Logical.** The *Redstone* system simulates Boolean logic gates (AND, OR, NOT, XOR, etc.) but its operation is entirely decoupled from the fundamental laws of electricity and magnetism. The signal decay is a *digital delay* over distance, not an ohmic loss.
 *   **Academic Joke:** Redstone is a perfect **Analytic Continuation of Boolean Algebra into Physical Space**, acting as a medium for pure, unadulterated *logic*, rather than messy, analog electromagnetic waves.
-
-***
 
 ## Advanced Academic Extensions (Modded Physics)
 

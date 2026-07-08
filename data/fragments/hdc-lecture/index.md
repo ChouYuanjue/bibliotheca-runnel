@@ -1,15 +1,14 @@
 ---
 title: "A Successful Star-Chase: Cutting Class for Hugo Duminil-Copin's Lecture on Self-Avoiding Walks"
 date: "2025-11-26"
+description: "A personal lecture record from Hugo Duminil-Copin’s talk on self-avoiding walks."
 ---
 
 ## Overview
 
-I cut class to attend a lecture by Fields Medalist Hugo Duminil-Copin and was the first to rush forward for a photo afterward—a completely successful fan moment! Initially, I thought I would not understand anything and was just going to observe, but Hugo's presentation was surprisingly accessible, which is also closely related to his choice of topic.
+This fragment records my attendance at a lecture by Fields Medalist Hugo Duminil-Copin on self-avoiding walks. I originally expected the talk to be far beyond my reach and went mostly out of admiration, but the choice of topic and the speaker’s exposition made the lecture unexpectedly accessible.
 
-![PHOTO WITH HDC](/fragments/hdc-lecture/default.jpeg)
-
-***
+The entry is partly a personal “star-chasing” anecdote and partly a mathematical listening note. It records the analogy-driven structure of the lecture, the basic role of self-avoiding walks, and the gap between recognizing the narrative of a proof and possessing the technical machinery behind it.
 
 ## Detailed Summary of the Lecture Content
 
@@ -75,8 +74,6 @@ I missed the formal Q&A session. I had intended to ask a few questions privately
 1.  **French Mathematical Notation:** HDC uses traditional **French mathematical notation**, employing a **comma (`,`) as the decimal separator**. This initially caused significant confusion.
 2.  **French-English:** During the lecture, HDC spelled *Object* as **"Objet,"** reflecting a typical French-English linguistic crossover.
 3.  **Educational Commentary:** During the subsequent Q&A, a discussion about mathematics education in China and France led HDC to possibly mention the *Jiang Ping incident*. He seemed to have only partial or incomplete knowledge of the event.
-
-***
 
 ## Contextual Discussion (From the Comments Section)
 

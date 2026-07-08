@@ -1,13 +1,14 @@
 ---
 title: "Multimodal Large Model-Based Bank Customer Emotion Recognition: Bank of Nanjing Project and R&D Insights"
 date: "2026-02-03"
+description: "Engineering notes on a multimodal customer-emotion recognition system for banking quality inspection."
 ---
 
-## Overview 
+## Overview
 
-Recently, the first phase of the Bank of Nanjing customer emotion recognition system project that I am in charge of has been successfully completed. During this period, I have been fully engaged in audio signal processing, multimodal large model inference optimization, and the adaptation of the bank's customer service quality inspection vertical scenario. There are no fancy achievement displays; instead, it has been a pragmatic exploration of stepping on pitfalls, making adjustments, and optimizing step by step. Now, the project is about to enter the key link of the second phase — using Bank of Nanjing's real business data for model fine-tuning. However, due to the strict control requirements on sensitive bank data, details related to sensitive data cannot be disclosed. For the subsequent specific technical implementation of fine-tuning, I will not elaborate on every technical detail for the time being. Combining the practice of the first phase, I will sort out the thoughts, adjustments, and insights during this R&D process, which is both a review of past work and a foreshadowing for subsequent R&D.
+This fragment records the first-stage delivery of a Bank of Nanjing customer-emotion recognition project that I led from the engineering side. The work sits at the intersection of audio signal processing, multimodal large-model inference, and domain adaptation for banking quality inspection. Rather than presenting it as a polished success story, I keep the emphasis on the actual engineering process: constraints imposed by hardware, sensitivity of financial data, scenario-specific evaluation, and the repeated adjustments needed to make a model usable in a production-facing workflow.
 
----
+The second phase will rely on real business data for fine-tuning, so details involving sensitive data are deliberately withheld. What remains useful here is the technical and managerial record: how a vertical multimodal system is decomposed, how fallback plans are designed under resource limits, and how a prototype moves from demonstration toward a more reliable customer-service inspection pipeline.
 
 ## Initial Architecture Conception Guided by Business Pain Points
 

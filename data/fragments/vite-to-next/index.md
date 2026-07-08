@@ -1,13 +1,14 @@
 ---
 title: "Project Refactoring Development Diary: The \"Violent Migration\" from Vite to Next.js"
 date: "2026-02-02"
+description: "A development diary on migrating a project from Vite to Next.js under deployment and routing constraints."
 ---
 
 ## Overview
 
-These two days, I experienced the first vigorous and intense major project refactoring of my life. The whole process was full of pitfalls, my technical understanding was repeatedly challenged, and I even used a bug in reverse to solve a deployment problem. Looking back now, it’s still absurd and unforgettable. I’m recording all the details here for future review (most likely not) and to help fellow developers who might step into the same pitfalls avoid them.
+This fragment records the first major project refactoring I experienced: a forceful migration from Vite to Next.js. The process was messy in exactly the way real engineering often is—routing assumptions broke, rendering modes changed, deployment limits appeared unexpectedly, and one workaround even depended on exploiting behavior that initially looked like a bug.
 
----
+I keep the diary not as a clean tutorial but as a field record. Its usefulness comes from preserving the traps: how front-end and back-end responsibilities were separated, how Vercel constraints shaped architecture, and how a framework migration changes more than file structure.
 
 ## Refactoring Trigger: v0.app Incompatibility
 

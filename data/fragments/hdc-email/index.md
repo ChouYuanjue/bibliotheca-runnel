@@ -1,14 +1,14 @@
 ---
 title: "Follow-up on Hugo Duminil-Copin's Lecture: Probing SAW Universality and 4D Triviality"
 date: "2025-11-27"
+description: "A follow-up email outline on self-avoiding walks and four-dimensional triviality after Hugo Duminil-Copin’s lecture."
 ---
-
 
 ## Overview
 
-Following the suggestion from Professor Hugo Duminil-Copin, I sent a detailed email to him to follow up on the questions I was unable to ask during the Q&A session. The email, sent on November 27, 2025, covers two major topics: the subtle mathematical reasons behind the solvability of **Self-Avoiding Walks (SAW)** on the honeycomb lattice versus the square lattice (the **Symmetry-Complexity Paradox**), and a more conceptual inquiry into his work on the **Marginal Triviality of the 4D $\Phi^4$ model** in Quantum Field Theory. Since the email has not been answered, I plan to resolve these questions through self-study, and the formatted email below serves as the structured outline for that research.
+This fragment preserves the follow-up email I sent to Professor Hugo Duminil-Copin after attending his lecture on self-avoiding walks. The questions I was unable to ask during the Q&A are reorganized here into two clusters: the contrast between honeycomb and square lattices in exact solvability, and the conceptual meaning of marginal triviality in the four-dimensional $\Phi^4$ model.
 
-***
+The email has not yet received a response, so the fragment now serves a second purpose: it is a structured research agenda for self-study. It records what I understood, what remained opaque, and which technical directions might clarify the relation between lattice geometry, universality, and scaling limits.
 
 ## Detailed Summary of the Follow-Up Email
 
@@ -45,8 +45,6 @@ The second part transitions to Professor Duminil-Copin's work on fundamental phy
 ### 4. Conclusion
 
 The email concluded with a polite acknowledgment of the volume of questions, stating that a brief comment or pointer to relevant literature would be sufficient, and reiterating my sincere enthusiasm.
-
-***
 
 ## The Follow-up Email: Research Outline
 

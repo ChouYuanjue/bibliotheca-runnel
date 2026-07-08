@@ -1,11 +1,14 @@
 ---
 title: "Discussion and Reflection on MLP Teaching Routes: Regression vs. Classification Entry Points"
 date: "2025-10-12"
+description: "A teaching-design reflection on whether MLPs should be introduced through regression, classification, or perceptrons."
 ---
 
 ## Overview
 
-This fragment records a discussion between me and two senior scholars in the field of Deep Learning (DL) regarding the rationality of teaching routes for Multi-Layer Perceptron (MLP). The core topic revolves around whether it is appropriate to introduce MLP starting from regression or classification. I put forward the confusion encountered in the teaching preparation process: starting directly from regression to introduce activation functions and then jumping to MLP fails to enable students to effectively understand the core logic of neural networks, while starting from perceptrons is difficult to explain the necessity of activation functions in an essential way. The two seniors shared their professional insights, pointing out that the core of neural networks is classification, and it is more reasonable to directly take classification as the entry point for teaching, and also explained the key reasons for introducing activation functions. Through this in-depth discussion, I gained a more systematic and in-depth understanding of the teaching logic of DL foundational knowledge.
+This fragment records a discussion with two senior researchers in deep learning about how to teach multi-layer perceptrons to beginners. My initial difficulty was pedagogical: introducing MLPs through regression makes activation functions feel arbitrary, while starting from perceptrons can obscure why nonlinearity is structurally necessary.
+
+The discussion pushed the route toward classification and decision boundaries. In that framing, activations are not decorative nonlinearities inserted into a regression pipeline; they are the mechanism by which a network composes separations and builds representational capacity. The fragment combines transcript, reflection, and teaching-design notes.
 
 ## Transcript of the Discussion
 

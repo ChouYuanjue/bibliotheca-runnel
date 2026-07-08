@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Archive, BookOpen, CalendarDays, Code2, Download, FileText, Search } from "lucide-react";
+import MarkdownRenderer from "@/components/custom/MarkdownRenderer";
 
 export type InmNote = {
   id: string;
@@ -63,7 +64,7 @@ function NoteRow({ note }: { note: InmNote }) {
           <span className="rounded-full border border-gray-200 px-2.5 py-1 text-gray-500">{note.volume}</span>
           <span className="rounded-full border border-gray-200 px-2.5 py-1 text-gray-500">{note.sectionCount} sections</span>
         </div>
-        <h3 className="text-lg font-semibold leading-snug text-gray-950 md:text-xl">{note.title}</h3>
+        <h3 className="text-lg font-semibold leading-snug text-gray-950 md:text-xl"><MarkdownRenderer content={note.title} inline /></h3>
         {note.sections.length > 0 && (
           <details className="mt-3 text-sm text-gray-600">
             <summary className="cursor-pointer select-none text-gray-500 transition-colors hover:text-gray-900">
@@ -72,7 +73,7 @@ function NoteRow({ note }: { note: InmNote }) {
             <ol className="mt-3 space-y-1.5 border-l border-gray-200 pl-4">
               {note.sections.map((section, index) => (
                 <li key={`${note.id}-${index}`} className="leading-relaxed">
-                  {section}
+                  <MarkdownRenderer content={section} inline />
                 </li>
               ))}
             </ol>

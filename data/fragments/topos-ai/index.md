@@ -1,15 +1,14 @@
 ---
 title: "A First Glimpse of AI and Topos Theory: Aha Moment Brought by a Lecture at PKU"
 date: "2025-12-10"
+description: "A seminar-inspired note on topos theory, explainability, and structural approaches to AI."
 ---
 
 ## Overview
 
-This entry summarizes a highly foundational and forward-looking academic seminar I occasionally noticed, titled **"Topos Theory and the Frontier of Artificial Intelligence,"** held at the Zihua Fourth Yuan Hall, Peking University, on December 11, 2025. The event featured Fields Medalist Laurent Lafforgue and Aurélien Sagnier from the Huawei Paris Lagrange Center.
+This fragment records my reaction to a seminar titled “Topos Theory and the Frontier of Artificial Intelligence,” held at Peking University and featuring Laurent Lafforgue and Aurélien Sagnier. The topic immediately suggested a foundational question: can topos-theoretic structure offer a language for explainable and certifiable AI that ordinary statistical learning lacks?
 
-My deep interest in the topic led to an extensive personal analysis, which focused on the revolutionary potential of using Topos Theory—a domain bridging logic and geometry—to solve the fundamental flaws of current AI: the lack of **explainability** and **certifiability**. Specifically, my inquiry focused on understanding the theoretical breakthrough this approach offers compared to traditional statistical learning, particularly the role of the Coproduct ($\sqcup$) in enabling a traceable, modular form of reasoning.
-
----
+The note is exploratory rather than conclusive. It uses the seminar as a starting point to think about logic, geometry, modular reasoning, coproducts, and traceability. Its value lies in articulating what kind of theoretical breakthrough would be required before “topos AI” becomes more than a slogan.
 
 ## 1. The Foundational Seminar: Topos Theory and AI
 
@@ -65,8 +64,6 @@ I was particularly drawn to the potential of the **Coproduct** ($\sqcup$)—the 
     *   It is a foundational structure that maintains the **separability** of the combined objects (like a Disjoint Union).
 
 *   **Initial Rationale for Coproduct's Importance:** I hypothesized that the Coproduct's ability to create a clear, **non-overlapping decision branch** (either A or B) would be key to explainability. If an AI's output is derived via a Coproduct, the explanation for the output can be definitively traced back to the specific, separate knowledge module it originated from, avoiding the ambiguity of typical neural network contributions.
-
----
 
 ## 3. Post-Seminar Reflection and Future Inquiry
 

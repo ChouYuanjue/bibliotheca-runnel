@@ -1,12 +1,14 @@
 ---
 title: "The Minuet of Marching Drill — Homotopy Analysis Based on Topological Behavioral Science"
 date: "2023-11-27"
+description: "A satirical essay using topology and category theory to parody campus marching drill."
 ---
-
 
 ## Overview
 
-This article is a satirical piece adapted from an essay of mine. Its creation was inspired by an article criticizing marching drill written by my classmate Bao Haimo — with its incisive perspective on deconstructing the marching drill scene, Bao’s article sparked extensive discussion in the class and served as the inspiration for this work. Centered on using mathematical concepts such as algebraic topology, category theory, and geometric group theory as playful carriers, this article conducts an interesting deconstruction and teasing of the campus marching drill scene. All content is for entertainment purposes only, does not possess any serious academic value, and does not constitute a formal evaluation or interpretation of relevant mathematical theories or educational scenarios. Readers may view it as a fun essay and need not examine it against the standards of academic rigor.
+This fragment is a satirical mathematical essay inspired by a classmate’s critique of campus marching drill. It translates a highly regimented school activity into the language of configuration spaces, quotienting, fiber bundles, Kan extensions, and geometric group theory.
+
+The mathematical language is intentionally overpowered for the object being analyzed. That mismatch is the joke: by applying sophisticated formalism to an everyday disciplinary scene, the essay exposes both the absurdity of the activity and the performative excess of academic packaging. It should be read as parody, not as a serious mathematical model or a literal sociological claim.
 
 ## Introduction
 

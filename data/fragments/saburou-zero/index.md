@@ -1,21 +1,14 @@
 ---
 title: "The Absolute Zero: Saburou Saitoh’s Crusade to Redefine Mathematics"
 date: "2022-07-18"
+description: "A critical note on Saburou Saitoh’s “division by zero” program and the boundary between credentials and crank-like claims."
 ---
 
 ## Overview
 
-**The "Fun Person" of the Day:** Prof. Saburou Saitoh (Gunma University).
+This fragment examines Saburou Saitoh’s long-running advocacy of “division by zero” formulas such as $z/0=0$. The case is interesting precisely because it does not fit the simplest image of outsider crankery: Saitoh has legitimate mathematical background, yet promotes a program that conflicts sharply with standard algebraic and analytic conventions.
 
-**The Phenomenon:** A legitimate mathematician with a background in Reproducing Kernels who has seemingly pivoted his entire career toward proving that $z/0 = 0$.
-
-This isn't your standard crankery. Saitoh isn't an outsider scribbling in green ink; he publishes via SCIRP (a known quantity in the predatory/low-tier world) and viXra, yet somehow managed to slip his "Division by Zero" manifesto into a Springer proceeding. This puts him in a league comparable to the late Myron W. Evans—academic credentials used to push a theory that breaks fundamental axioms.
-
-**Speculation on Intent:**
-
-Is this an elaborate academic troll? Unlikely. The tone is far too earnest. It appears to be a classic case of the "Golden Hammer." Saitoh seems to have taken the concept of the Moore-Penrose pseudoinverse (where the "inverse" of a zero matrix can be defined as zero) or Tikhonov regularization and elevated it from a computational tool to a fundamental law of the universe. By declaring that singularities are simply "zero," he eliminates all poles, singularities, and infinities. It is a "brute force" solution to complex analysis: if a function blows up, just define it as zero. The result is a mathematical system where the point at infinity collapses into the origin—a topological nightmare presented as "elementary and fundamental mathematics."
-
----
+The note reads the phenomenon as a cautionary case in mathematical judgment. It asks how a technically trained researcher can overextend one idea, how publication venues and proceedings can blur signals of legitimacy, and why a formal-looking rule must still be tested against the structures it claims to inhabit.
 
 ## Detailed Analysis of the Texts
 

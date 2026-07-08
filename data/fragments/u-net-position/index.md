@@ -1,15 +1,14 @@
 ---
 title: "Implementation and Technical Exploration of U-Net-SE with Positional Offset"
 date: "2025-10-10"
+description: "An engineering reflection on adding spatial priors and positional offsets to U-Net for emoji fusion."
 ---
 
 ## Overview
 
-This project aims to realize Google Emoji Kitchen-style emoji fusion through large models, capable of combining two different emojis into a new, creative emoji image. This fragment documents my exploration process of modifying U-Net and adding positional offset capabilities to solve the spatial constraint problem in emoji fusion. Although many seniors regarded this attempt as foolish at that time, I now reflect and believe it was not entirely worthless. My core focus was on how to enable the model to accurately control the positional and size relationships of emoji elements in a small-sample scenario. Eventually, the project shifted to an engineering implementation combining LoRA fine-tuning and Diffusion Model, which will not be the focus of this fragment.
+This fragment documents an early attempt to build a Google Emoji Kitchen-style fusion system by modifying U-Net with explicit positional information. The central technical problem was spatial control: in a small-sample setting, how can a model learn not only what two emoji elements are, but also where they should appear and how their relative scale should be constrained?
 
-Project Repository: https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab
-
----
+Some of the design choices later proved naive, and the project eventually shifted toward LoRA fine-tuning and diffusion-based implementation. Still, the record remains valuable as an engineering exploration of spatial priors, attention, and the gap between architectural intuition and trainable behavior.
 
 ## I. Core Motivation: Technical Entry Point Anchored on Spatial Priors
 

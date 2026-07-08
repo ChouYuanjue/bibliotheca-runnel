@@ -23,16 +23,146 @@ function copyIfExists(src, dst) {
   return true;
 }
 
+function readBracedArgument(text, openBraceIndex) {
+  if (openBraceIndex < 0 || text[openBraceIndex] !== '{') return null;
+  let depth = 0;
+  for (let i = openBraceIndex; i < text.length; i += 1) {
+    const ch = text[i];
+    const prev = i > 0 ? text[i - 1] : '';
+    if (ch === '{' && prev !== '\\') depth += 1;
+    if (ch === '}' && prev !== '\\') {
+      depth -= 1;
+      if (depth === 0) {
+        return {
+          value: text.slice(openBraceIndex + 1, i),
+          end: i + 1,
+        };
+      }
+    }
+  }
+  return null;
+}
+
+function commandArguments(text, command, count) {
+  const start = text.indexOf(`\\${command}`);
+  if (start < 0) return null;
+  let cursor = start + command.length + 1;
+  const args = [];
+  for (let i = 0; i < count; i += 1) {
+    while (cursor < text.length && /\s/.test(text[cursor])) cursor += 1;
+    const arg = readBracedArgument(text, cursor);
+    if (!arg) return null;
+    args.push(arg.value);
+    cursor = arg.end;
+  }
+  return args;
+}
+
+function allCommandArguments(text, command) {
+  const out = [];
+  let searchFrom = 0;
+  const needle = `\\${command}`;
+  while (searchFrom < text.length) {
+    const start = text.indexOf(needle, searchFrom);
+    if (start < 0) break;
+    let cursor = start + needle.length;
+    while (cursor < text.length && /\s/.test(text[cursor])) cursor += 1;
+    const arg = readBracedArgument(text, cursor);
+    if (arg) {
+      out.push(arg.value);
+      searchFrom = arg.end;
+    } else {
+      searchFrom = start + needle.length;
+    }
+  }
+  return out;
+}
+
+function replaceTwoArgCommand(s, command, choose = 0) {
+  const needle = `\\${command}`;
+  let out = '';
+  let cursor = 0;
+  while (cursor < s.length) {
+    const start = s.indexOf(needle, cursor);
+    if (start < 0) {
+      out += s.slice(cursor);
+      break;
+    }
+    out += s.slice(cursor, start);
+    let pos = start + needle.length;
+    while (pos < s.length && /\s/.test(s[pos])) pos += 1;
+    const first = readBracedArgument(s, pos);
+    if (!first) {
+      out += needle;
+      cursor = pos;
+      continue;
+    }
+    pos = first.end;
+    while (pos < s.length && /\s/.test(s[pos])) pos += 1;
+    const second = readBracedArgument(s, pos);
+    if (!second) {
+      out += first.value;
+      cursor = first.end;
+      continue;
+    }
+    out += choose === 1 ? second.value : first.value;
+    cursor = second.end;
+  }
+  return out;
+}
+
+function unwrapOneArgCommands(s) {
+  const commands = ['textit', 'emph', 'textbf', 'mathrm', 'mathbf', 'mathit', 'operatorname'];
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const command of commands) {
+      const needle = `\\${command}`;
+      let out = '';
+      let cursor = 0;
+      let localChanged = false;
+      while (cursor < s.length) {
+        const start = s.indexOf(needle, cursor);
+        if (start < 0) {
+          out += s.slice(cursor);
+          break;
+        }
+        out += s.slice(cursor, start);
+        let pos = start + needle.length;
+        while (pos < s.length && /\s/.test(s[pos])) pos += 1;
+        const arg = readBracedArgument(s, pos);
+        if (!arg) {
+          out += needle;
+          cursor = pos;
+          continue;
+        }
+        out += arg.value;
+        cursor = arg.end;
+        localChanged = true;
+      }
+      if (localChanged) {
+        s = out;
+        changed = true;
+      }
+    }
+  }
+  return s;
+}
+
 function texDisplayText(input) {
   if (!input) return '';
   let s = input.replace(/\r?\n/g, ' ');
-  s = s.replace(/\\&/g, '&')
+  s = replaceTwoArgCommand(s, 'texorpdfstring', 0);
+  s = replaceTwoArgCommand(s, 'href', 1);
+  s = unwrapOneArgCommands(s);
+  s = s.replace(/\\\((.*?)\\\)/g, '$$$1$$')
+       .replace(/\\\[(.*?)\\\]/g, '$$$$1$$$$')
+       .replace(/\\&/g, '&')
        .replace(/\\%/g, '%')
        .replace(/\\_/g, '_')
        .replace(/\\#/g, '#')
+       .replace(/---/g, '—')
        .replace(/--/g, '–');
-  s = s.replace(/\\(?:textit|emph|textbf)\{([^{}]*)\}/g, '$1');
-  s = s.replace(/\\[a-zA-Z]+\*?(?:\[[^\]]*\])?\{([^{}]*)\}/g, '$1');
   return s.replace(/\s+/g, ' ').trim();
 }
 
@@ -89,10 +219,10 @@ function buildArchive() {
 
       const texPath = path.join(notesDir, filename);
       const text = readText(texPath);
-      const titleMatch = text.match(/\\notechapter\{N-\d+\}\{([\s\S]*?)\}/);
-      const title = titleMatch ? texDisplayText(titleMatch[1]) : id;
-      const sections = [...text.matchAll(/\\section\{([\s\S]*?)\}/g)]
-        .map((match) => texDisplayText(match[1]))
+      const noteArgs = commandArguments(text, 'notechapter', 2);
+      const title = noteArgs ? texDisplayText(noteArgs[1]) : id;
+      const sections = allCommandArguments(text, 'section')
+        .map((section) => texDisplayText(section))
         .filter(Boolean);
 
       const pdfCopied = copyIfExists(path.join(singlePdfDir, `${id}.pdf`), path.join(yearDir, `${id}.pdf`));

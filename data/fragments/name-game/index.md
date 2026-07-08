@@ -1,11 +1,14 @@
 ---
 title: "The Naming Game — From RC，Runnel, Rangnuo, Jeanot to Rinelle"
 date: "2025-06-28"
+description: "A philological and autobiographical note on names, aliases, courtesy names, and self-fashioning."
 ---
 
 ## Overview
 
-This document explores the multi-layered architecture of my personal identity, tracing a philological journey that bridges my Chinese heritage with Western linguistic traditions. By weaving together the etymology of my primary names—**Runnel (Runcheng)**, the courtesy name **Rangnuo (Jeanot)**, and the studio title **Xiangruo**—with a playful aristocratic alter ego, I demonstrate a philosophy where names serve as both "tally-bonds between Heaven and Earth" and vessels for silent action. Through translated classical prefaces and European nomenclature, this overview reveals a self-conception rooted in the virtues of deference, promise, and the perpetual "renaissance" of the intellect.
+This fragment treats naming as a form of intellectual self-fashioning. It traces several names and aliases—Runnel, Runcheng, Rangnuo, Jeanot, Rinelle, and Xiangruo—not as isolated labels but as attempts to connect Chinese naming practice, European linguistic play, and personal mythology.
+
+The text combines translation, etymology, classical-style prose, and a deliberately theatrical alter ego. Its seriousness lies not in the aristocratic playacting but in the underlying question: how does a person build continuity across languages, platforms, and stages of life through names?
 
 ## I. The Etymology of Identity
 
@@ -25,8 +28,6 @@ The construction of my studio's name, **Xiangruo Zhai** (襄若斋), is a play o
 *   By excising the "Speech" radical (言) from **Nuo (諾)**, we are left with **Ruo (若)**.
 
 Thus, **"Rangnuo"** (Yielding and Promising) transforms into **"Xiangruo"** (Assisting and Complying). This subtraction of "speech" symbolizes a shift from spoken virtue to silent action.
-
----
 
 ## II. The Philosophical Justification
 *Below are the annotated translations of the Classical Chinese texts justifying these names. You can read the original version of Jeanot Collection at [Library: Classics](https://www.runnelzhang.com/library/classics)*
@@ -76,8 +77,6 @@ Ascending the spiral stair, one reaches the place where the brush is wielded. In
 Whenever evening mists hung from the eaves and the wisteria sifted the moonlight, my parents, myself, and our cat, **Ma Qiu (麻璆)**, would gather before the desk. My father, holding a celadon tea cup, would ask about my studies. My mother, pausing her pen, would smile and say: "When you learned to walk, you fell and rose by yourself; today's bottleneck is but a stone step." Ma Qiu, curled on the chair, would tap my palm with his tail, as if mocking my hesitation.
 
 Such were the nights from the Awakening of Insects to the Start of Summer. Ma Qiu accompanied my reading like a shadow, and my difficulties vanished like ice melting in a spring creek. Alas! The objects in this studio, whether dust-laden or claw-marked, all possess the zest of life. Exhausted from night reading, hearing only the copper clepsydra rubbing against the vine shadows on the paper window, I feel this body has transcended into the time of the Ancients.
-
----
 
 ## III. L'Alter Ego Aristocratique
 

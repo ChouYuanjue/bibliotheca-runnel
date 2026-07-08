@@ -18,10 +18,10 @@ export default function FragmentsIndex() {
       <div className="mb-12">
         <h1 className="text-4xl font-serif font-bold text-gray-900 mb-4">Fragments</h1>
         <p className="text-lg text-gray-700 max-w-2xl">
-          Thoughts, correspondence, and miscellaneous notes. A collection of unfinished ideas and fleeting moments.
+          Informal records of mathematical study, correspondence, engineering notes, satire, and small intellectual episodes.
         </p>
         <p className="text-sm text-gray-500 max-w-2xl mt-2 italic">
-          These are not formal research reports; to save time, they are mostly quick summaries and compilations of relevant materials using LLMs, but some of them can be quite interesting.
+          These pieces remain fragments rather than formal papers, but their openings and metadata have been edited into a more consistent archival style.
         </p>
       </div>
       

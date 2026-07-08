@@ -1,13 +1,14 @@
 ---
 title: "Architecture Evolution and Breakthrough: How to \"Smuggle\" Traffic During ICP Filing Window"
 date: "2026-02-08"
+description: "A technical diary on service routing, deployment constraints, and compliance-aware workarounds during an ICP filing window."
 ---
 
 ## Overview
 
-Deploying Web services in mainland China requires ICP filing — an administrative requirement mandated by China’s Ministry of Industry and Information Technology. During the approximately 20-day "filing window" period, which follows submission and before official approval, domain names pointing to domestic servers must remain silent — unable to serve any actual content or functionality. This poses a significant challenge for early-stage startups urgently needing to validate product-market fit and capture early adopters. This article documents a complete, real-world technical implementation that enables traffic "smuggling" during the ICP filing window while remaining fully compliant with regulations. It covers core strategy design, practical deployment challenges encountered (including microservice-GFW conflicts and third-party callback anomalies), solution implementation, and the construction and upgrade of a security protection system — preserving every technical detail and troubleshooting process for teams facing similar constraints.
+This fragment documents a deployment problem specific to web services in mainland China: during the ICP filing window, a domain pointing to a domestic server cannot serve normal content before approval. For an early-stage project, this creates a practical tension between regulatory compliance, product validation, and the need to keep users from encountering a dead endpoint.
 
----
+The article is written as an engineering diary rather than a recipe for evasion. It records the architecture choices, failed assumptions, callback problems, microservice interactions, and security concerns that appeared while designing a temporary routing strategy. The useful lesson is broader than ICP filing itself: production systems are shaped as much by administrative constraints and third-party behavior as by code.
 
 ## The Dilemma and Initial Vision During the ICP Filing Window
 

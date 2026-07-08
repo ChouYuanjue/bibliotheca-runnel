@@ -1,18 +1,14 @@
 ---
 title: "Unveiling Arithmetic Deformation Theory: Reflections on Fesenko’s \"Notes on the work of Shinichi Mochizuki\""
 date: "2021-10-07"
+description: "A reading note on Ivan Fesenko’s exposition of IUT and the intuition of arithmetic deformation."
 ---
-
 
 ## Overview
 
-The genesis of this study lies in a perspective shared by my mentor at Geek College, Dr. Keyao Peng. Amidst the polarized academic atmosphere surrounding the *Inter-universal Teichmüller (IUT)* theory, Dr. Peng adopted a stance of pure intellectual curiosity—akin to "eating to live," focusing on the sustenance of knowledge rather than the politics of validity.
+This fragment grows out of a stance that Dr. Keyao Peng once modeled for me: even in a polarized debate, one may still study a theory for the concepts it tries to invent. With Inter-Universal Teichmüller Theory, that means setting aside, temporarily, the question of communal acceptance and asking what kind of mathematical imagination the theory requires.
 
-Several months ago, during a fortuitous overlap between a lecture by Peter Scholze on *Toposes Online* (regarding condensed mathematics) and a seminar by Shinichi Mochizuki on *tripodal transport*, a conceptual bridge emerged. While the two theories are formally distinct, the intuition of "gluing" structures—and the malleability of what we consider fundamental—resonated deeply. As Dr. Peng articulated, there is a profound difficulty in what Mochizuki terms "descent": the realization that while the multiplicative structure of a field might be fixed (reconstructible via Galois groups), the additive structure is essentially "floating." In this view, $1$ is a fixed unit, but $1+1$ carries a structural ambiguity that requires stabilization.
-
-Guided by this open-minded philosophy—treating mathematics not as a battleground but as a landscape of structural beauty—I delved into Ivan Fesenko’s extensive survey, *“Arithmetic deformation theory via arithmetic fundamental groups and nonarchimedean theta-functions.”* The following are my notes on the traditional mathematical narrative, the radical deconstruction of ring structures, and the intuitive analogies presented in the theory.
-
----
+The note follows Ivan Fesenko’s exposition as an accessible entry point into arithmetic deformation, theta-links, log-links, multiradiality, and the difficult notion of descent. It is not a verification of Mochizuki’s claims. It is a record of trying to understand what conceptual pressure would lead someone to redesign the background coordinates of arithmetic geometry.
 
 ## I. The Origins: From Anabelian Geometry to Deformation
 

@@ -1,20 +1,14 @@
 ---
 title: "The Derivation of Trigonometric Sum and Difference Formulas from Advanced Standpoints"
 date: "2023-02-23"
+description: "A note on deriving trigonometric sum formulas through geometry, algebra, and tensor-inspired attempts."
 ---
-
 
 ## Overview
 
-The origin of this note was during class when I wanted to verify the tangent (tan) sum formula directly using the **Reciprocal Basis** from tensor calculus. I initially tried using the scalar triple product (mixed product), but that didn't work. Later, I attempted orthogonal decomposition, but the reciprocal basis of a unit orthogonal basis is the basis itself, which rendered the specific properties of reciprocal bases useless.
+This fragment began with a classroom obsession: I wanted a direct derivation of the tangent sum formula using the reciprocal-basis language from tensor calculus. The attempt did not work as planned, since in an orthonormal setting the reciprocal basis collapses back to the original basis and loses the distinctive feature I hoped to exploit.
 
-Although simply "grabbing" the result using rotation matrices is a very reasonable approach, I had an obsession with finding a **"direct proof for tan."** Therefore, I organized various derivation paths ranging from elementary geometry to tensor operations, and finally to higher-level mathematical viewpoints.
-
-N-20230220: View via [here](https://www.runnelzhang.com/notes/2023/N-20230220.pdf), or visit DOI:[10.6084/M9.FIGSHARE.22268962](https://doi.org/10.6084/m9.figshare.22268962)
-
-N-20230223: View via [here](https://www.runnelzhang.com/notes/2023/N-20230223.pdf), or visit DOI:[10.6084/M9.FIGSHARE.22268965](https://doi.org/10.6084/m9.figshare.22268965)
-
----
+The failed attempt nevertheless became useful. I reorganized several derivation routes—geometric, vectorial, matrix-based, complex-analytic, and tensor-inspired—to compare what each method actually explains. The fragment is therefore less about finding the shortest proof than about understanding why different formalisms illuminate different parts of a familiar identity.
 
 ## I. Approaches via Geometry & Vectors
 
@@ -33,8 +27,6 @@ I attempted to find a shortcut using vector projection.
 Calculating the squared modulus of the projection vector $\vec{NH}$ resulted in $1 - \cos^2(\beta-\alpha) = \sin^2(\beta-\alpha)$.
 This circled back to the $\sin/\cos$ form and did not achieve my goal of "deriving tan directly." This path is a dead end.
 
----
-
 ## II. Perspectives from Algebra & Analysis
 
 ### 3. Rotation Matrices
@@ -50,8 +42,6 @@ $$ e^{i(\alpha+\beta)} = e^{i\alpha} \cdot e^{i\beta} $$
 $$ \cos(\alpha+\beta) + i\sin(\alpha+\beta) = (\cos\alpha + i\sin\alpha)(\cos\beta + i\sin\beta) $$
 Simply expanding the real and imaginary parts suffices. While this proof is extremely elegant, it still targets $\sin$ and $\cos$.
 
----
-
 ## III. The Tensor Challenge: Direct Proof of the Tangent Formula
 
 To satisfy my obsession with "proving tan directly," I attempted to introduce concepts of **non-orthogonal bases** and the **Reciprocal Basis**.
@@ -66,8 +56,6 @@ $$ 1/\tan(\alpha-\beta) = \begin{vmatrix} 1 & 0 & \frac{1}{\tan(\alpha-\beta)} \
 After expansion and simplification, I finally obtained:
 $$ \frac{1}{\tan(\alpha-\beta)} = \frac{1 + \tan\alpha\tan\beta}{\tan\alpha - \tan\beta} $$
 This verifies the tangent difference formula. Although the manual calculation was somewhat tedious, it proves the feasibility of handling trigonometric functions using the properties of covariant and contravariant vectors.
-
----
 
 ## IV. Supplements from Higher Viewpoints
 

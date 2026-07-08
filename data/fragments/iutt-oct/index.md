@@ -1,19 +1,14 @@
 ---
 title: "The \"Holy War\" Moves to the Server Room — Notes on Mochizuki’s Oct 2025 Report"
 date: "2025-11-15"
+description: "Notes on the October 2025 IUT report and the shift from mathematical persuasion to formal verification rhetoric."
 ---
 
 ## Overview
 
-I had a disscusion on digesting Shinichi Mochizuki’s *Report on the Current Situation Surrounding Inter-Universal Teichmüller Theory (IUT)*, released this past October, with some of my net friends. Our opinions were alike. Ostensibly, this 30-page document is a rebuttal to a critical article by J.D. Boyd in *SciSci Research*, but it reads more like a philosophical manifesto than a standard mathematical response.
+This fragment records an informal discussion with online friends about Shinichi Mochizuki’s October 2025 report on the situation surrounding Inter-Universal Teichmüller Theory. Although the document is framed as a response to criticism, its rhetoric extends beyond ordinary mathematical rebuttal and enters the territory of sociology, legitimacy, and formal verification.
 
-For those of us tracking this saga for years, the report marks a significant shift. Mochizuki appears to have largely abandoned the hope of convincing the current generation of arithmetic geometers via traditional human dialogue. His argument is that the "social/political dynamics" of the mathematical community have superseded "mathematical truth." His proposed solution? A complete retreat into formal verification (Lean 4).
-
-While the tone is calmer than some of his previous blog posts, the implications are arguably more radical. He isn't just defending a proof; he is proposing a redefinition of how mathematical consensus should be reached, seemingly to bypass the "human" element that has rejected his theory.
-
-Below is a breakdown of the key points and my thoughts.
-
----
+The central point of interest is the apparent shift in strategy: from persuading the existing arithmetic-geometry community through conventional exposition, toward seeking refuge in Lean formalization and a critique of “social/political dynamics.” The fragment does not adjudicate IUT itself; it tracks the changing form of the debate.
 
 ## 1. The "Label-Removal" Defense
 A significant portion of the report (§2.1–§2.3) is dedicated to dismantling the famous Scholze-Stix counterargument. Mochizuki argues that the contradiction Scholze and Stix found arises because they are impermissibly "removing labels" from distinct copies of universes.

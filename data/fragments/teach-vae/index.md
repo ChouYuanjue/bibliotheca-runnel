@@ -1,11 +1,14 @@
 ---
 title: "Discussion on Explaining VAE to New Students and Reflections on Its Core Principles"
 date: "2025-12-08"
+description: "A teaching reflection on explaining VAEs through dimensionality reduction, latent variables, and generative modeling."
 ---
 
 ## Overview
 
-This fragment records a discussion focusing on how to explain Variational Autoencoders (VAE) to new students. The discussion involves three participants: myself (Runnel, an undergraduate student from NJU), a senior associate professor in the field of Deep Learning with a Ph.D. from Tsinghua University (hereinafter referred to as Senior A), and a fellow undergraduate student from The Chinese University of Hong Kong, Shenzhen (hereinafter referred to as Peer B). The core of the discussion revolves around the key entry points, prerequisite knowledge, and core logical framework for explaining VAEs, with in-depth exchanges on the connection between Autoencoders (AE) and VAE, the significance of dimensionality reduction, and the essence of generative models. Subsequently, I will sort out and reflect on the core content of the discussion, focusing on the theoretical connotation and logical derivation of VAE.
+This fragment records a discussion on how to explain variational autoencoders to new students. The participants approached the problem from different levels of experience, but the central teaching question was shared: how can one move from ordinary autoencoders to VAEs without making the probabilistic machinery feel like an arbitrary add-on?
+
+The route developed here begins with dimensionality reduction, then introduces latent distributions, marginal likelihood, reconstruction loss, and the KL term. The emphasis is not on deriving every formula at maximum rigor, but on finding an explanatory sequence in which the VAE appears as a natural bridge between compression and generation.
 
 ## Transcript of the Discussion
 
