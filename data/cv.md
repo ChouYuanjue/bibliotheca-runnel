@@ -44,23 +44,35 @@
 
 ## Personal Research Projects
 
+**Tangut-NLP: Ultra-Low-Resource Tangut Translation**
+
+*GitHub: [ChouYuanjue/tangut-nlp](https://github.com/ChouYuanjue/tangut-nlp)*
+* Studied short-text Tangut-to-Chinese translation under an extremely small parallel set, focusing on the gap between dictionary-grounded prompting, local training, and hybrid candidate selection.
+* Built evaluation and analysis utilities for reference-aware scoring, contamination checks, uncertainty analysis, and frontier/local workflow comparison.
+
+**Lean Portfolio Attribution**
+
+*GitHub: [ChouYuanjue/lean-portfolio-attribution](https://github.com/ChouYuanjue/lean-portfolio-attribution)*
+* Built an experimental framework for attributing inference-time gains in Lean proving, separating effects from attempt scheduling, retrieval, compute budget, and prover-specific behavior.
+* Implemented fixed-budget portfolio experiments, retrieval-free and matched-compute controls, and portability checks against external prover baselines.
+
+**CORAL Travel Planning**
+
+*GitHub: [ChouYuanjue/coral-travel-planner](https://github.com/ChouYuanjue/coral-travel-planner)*
+* Developed a travel-planning evaluation pipeline centered on raw-query grounding and localized repair, targeting executable plans rather than prompt-only plausibility.
+* Added benchmark adapters, repair audits, ceiling-aware reporting, infeasibility checks, and run manifests for TravelPlanner and ChinaTravel experiments.
+
+**ProCo: Missing-Support Witnesses for Indexed Rule Reasoning**
+
+*GitHub: [ChouYuanjue/proof-countermodel-distill](https://github.com/ChouYuanjue/proof-countermodel-distill)*
+* Investigated proof-style reasoning with three evidence regimes: proving entailed queries, refuting contradicted queries, and abstaining on unsupported queries with missing-support witnesses.
+* Built data processing, training, evaluation, verifier, and analysis scripts around ProofWriter-style open-world reasoning, emphasizing checkable evidence rather than raw-label accuracy alone.
+
 **Rzk/sHoTT Autoformalization Experiments**
 
 *GitHub: [ChouYuanjue/rzk-ai4math](https://github.com/ChouYuanjue/rzk-ai4math)*
-* Built a small experimental codebase for testing LLM autoformalization on Rzk/sHoTT body-completion tasks, especially shape-heavy definitions that are easy to break under surface-level prompting.
-* Explored lightweight repair, routing, and portability checks, with an emphasis on making failed generations easier to inspect rather than treating the model output as a black box.
-
-**Tangut Script Translation and Low-Resource NLP**
-
-*GitHub: [ChouYuanjue/Tangut_Chinese_Translator](https://github.com/ChouYuanjue/Tangut_Chinese_Translator) & [ChouYuanjue/tangut-nlp](https://github.com/ChouYuanjue/tangut-nlp)*
-* Built a Tangut-to-Chinese translation workflow around dictionary extraction, rule-based lookup, and LLM-assisted correction for a language setting with sparse and uneven digital resources.
-* Used the project as a test case for handling symbolic scripts, incomplete lexicons, and the gap between philological data and machine-readable NLP inputs.
-
-**Small Generative and Multimodal Tooling Experiments**
-
-*GitHub: [ChouYuanjue/AI_Emoji_Kitchen_Lab](https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab)*
-* Developed small experiments around emoji/icon generation, dataset preparation, and controllable visual synthesis, mainly as a practical testbed for multimodal tooling.
-* Focused on the engineering side of iteration: preparing assets, testing model components, and turning generation results into reusable scripts or datasets.
+* Used Rzk/sHoTT body-completion tasks as a low-resource autoformalization setting for auditing substrate bias, structural priors, verifier-grounded repair, and shape-heavy definition failures.
+* Added extraction, evaluation, replay, failure-taxonomy, task-complexity, and Lean portability probes to make model failures more inspectable across formal substrates.
 
 ## Publications & Technical Presentations
 
