@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "update-data": "node scripts/update-data.js",
-    "generate-cv": "node scripts/generate-cv-pdf.js"
+    "generate-cv": "node scripts/generate-cv-pdf.js",
+    "clean": "node scripts/clean-next.js",
+    "dev:clean": "npm run clean && npm run update-data && next dev",
+    "predev": "node scripts/ensure-next-cache.js"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",

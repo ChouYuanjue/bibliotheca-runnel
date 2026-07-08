@@ -33,7 +33,7 @@ export type InmArchiveData = {
 };
 
 function formatDate(date: string) {
-  return new Intl.DateTimeFormat("en", {
+  return new Intl.DateTimeFormat("en-US", {
     year: "numeric",
     month: "short",
     day: "2-digit",

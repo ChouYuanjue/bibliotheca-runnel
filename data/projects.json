@@ -2,11 +2,15 @@
   {
     "id": "doge-repo",
     "title": "doge-repo",
-    "description": "QQ机器人豆子 Doge的源码库。包括v2（使用CQP），v3（使用mirai），v4（使用AstrBot，当前版本）。",
+    "description": "A long-running QQ bot codebase evolving from CQP to Mirai and AstrBot, preserving multiple generations of plugin architecture and bot operations.",
     "githubUrl": "https://github.com/ChouYuanjue/doge-repo",
     "stars": 8,
     "language": "Python",
-    "topics": ["Chatbot", "QQ", "Bot"],
+    "topics": [
+      "Chatbot",
+      "QQ",
+      "Bot"
+    ],
     "updatedAt": "2025-09-28T13:26:35Z",
     "slug": "doge-repo",
     "type": "personal"
@@ -14,11 +18,16 @@
   {
     "id": "tangut_chinese_translator",
     "title": "Tangut-Chinese Translator",
-    "description": "一个西夏文-中文双向翻译器",
+    "description": "A Tangut-Chinese translation prototype that combines dictionary scraping, sparse-script processing, and LLM-assisted interpretation for a low-resource historical writing system.",
     "githubUrl": "https://github.com/ChouYuanjue/Tangut_Chinese_Translator",
     "stars": 1,
     "language": "JavaScript",
-    "topics": ["Translation", "Linguistics","AI", "NLP"],
+    "topics": [
+      "Translation",
+      "Linguistics",
+      "AI",
+      "NLP"
+    ],
     "updatedAt": "2025-09-17T11:36:28Z",
     "slug": "tangut_chinese_translator",
     "type": "personal"
@@ -26,11 +35,16 @@
   {
     "id": "ai_emoji_kitchen_lab",
     "title": "AI Emoji Kitchen Lab",
-    "description": "这是一个基于深度学习的表情符号（Emoji）融合项目，旨在于通过大模型实现Google Emoji Kitchen风格的表情符号融合，能够将两个不同的emoji融合成一个全新的、富有创意的emoji图像。",
+    "description": "A deep-learning experiment for Google Emoji Kitchen-style emoji fusion, exploring image generation, spatial priors, and small-sample visual synthesis.",
     "githubUrl": "https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab",
     "stars": 1,
     "language": "Python",
-    "topics": ["AI", "Image Generation", "Emoji", "CV"],
+    "topics": [
+      "AI",
+      "Image Generation",
+      "Emoji",
+      "CV"
+    ],
     "updatedAt": "2025-10-09T04:18:52Z",
     "slug": "ai_emoji_kitchen_lab",
     "type": "personal"
@@ -38,11 +52,18 @@
   {
     "id": "pdf_summary_tool",
     "title": "PDF Summary Tool",
-    "description": "一个强大的Python工具，用于将PDF文档转换为结构化文本，并利用先进的AI模型生成高质量的内容总结和关键词提炼。",
+    "description": "A Python pipeline for converting PDFs into structured text and generating AI-assisted summaries, keywords, and reusable reading notes.",
     "githubUrl": "https://github.com/ChouYuanjue/PDF_Summary_Tool",
     "stars": 9,
     "language": "Python",
-    "topics": ["PDF", "Summarization", "AI", "NLP", "YOLO","VLM"],
+    "topics": [
+      "PDF",
+      "Summarization",
+      "AI",
+      "NLP",
+      "YOLO",
+      "VLM"
+    ],
     "updatedAt": "2025-12-10T06:40:42Z",
     "slug": "pdf_summary_tool",
     "type": "personal"
@@ -50,11 +71,17 @@
   {
     "id": "tex-qb-gen",
     "title": "TeX-QB-Gen",
-    "description": "Generate question banks directly from textbooks.  Leverage OpenRouter's multimodal/text models and local OCR capabilities to extract math problems and solutions from images, web pages, or PDFs, and generate uniformly formatted TeX question banks.",
+    "description": "A question-bank generator that extracts math problems from images, web pages, and PDFs through multimodal models, local OCR, and uniform TeX output.",
     "githubUrl": "https://github.com/ChouYuanjue/TeX-QB-Gen",
     "stars": 3,
     "language": "Python",
-    "topics": ["Education", "OCR","VLM", "TeX", "Question Bank"],
+    "topics": [
+      "Education",
+      "OCR",
+      "VLM",
+      "TeX",
+      "Question Bank"
+    ],
     "updatedAt": "2025-10-10T12:01:12Z",
     "slug": "tex-qb-gen",
     "type": "personal"
@@ -62,11 +89,16 @@
   {
     "id": "bibliotheca-runnel",
     "title": "bibliotheca-runnel",
-    "description": "This is the personal academic portal and digital archive of myself. It serves as a curated collection of knowledge, spanning from informal mathematical notes to classical literary works and linguistic research.",
+    "description": "The personal academic portal and archive behind this site, integrating mathematical notes, projects, fragments, classical writing, and research records.",
     "githubUrl": "https://github.com/ChouYuanjue/bibliotheca-runnel",
     "stars": 3,
     "language": "TypeScript",
-    "topics": ["Portfolio", "Academic", "Next.js", "Digital Archive"],
+    "topics": [
+      "Portfolio",
+      "Academic",
+      "Next.js",
+      "Digital Archive"
+    ],
     "updatedAt": "2025-12-14T13:03:00Z",
     "slug": "bibliotheca-runnel",
     "type": "personal"
@@ -74,13 +106,90 @@
   {
     "id": "cer-system",
     "title": "CER System",
-    "description": "基于 Qwen2-Audio 7B 多模态大模型的银行客户服务情绪实时分析系统。该系统采用双路径架构（Dual-Path Architecture），结合 Plan A（高灵敏 VAD）与 Plan B（高精度说话人分离），灵活适配不同质量与场景的通话录音。",
+    "description": "A banking customer-emotion recognition system based on Qwen2-Audio 7B, using a dual-path audio pipeline to adapt to different call-recording qualities and service scenarios.",
     "githubUrl": null,
     "stars": 0,
     "language": "Python",
-    "topics": ["AI", "Emotion Recognition", "Banking", "Multimodal"],
+    "topics": [
+      "AI",
+      "Emotion Recognition",
+      "Banking",
+      "Multimodal"
+    ],
     "updatedAt": "2026-02-01T00:00:00Z",
     "slug": "cer-system",
     "type": "commercial"
+  },
+  {
+    "id": "tangut-nlp",
+    "title": "tangut-nlp",
+    "description": "This is an ultra-low-resource research codebase that translates short Tangut titles into modern Chinese using only 491 parallel pairs, achieving its strongest results via a hybrid workflow of frontier prompt‑only models and locally trained DPO‑repaired candidates rather than any single approach.",
+    "githubUrl": "https://github.com/ChouYuanjue/tangut-nlp",
+    "stars": 0,
+    "language": "Python",
+    "topics": [],
+    "updatedAt": "2026-05-09T08:22:14Z",
+    "slug": "tangut-nlp",
+    "type": "research"
+  },
+  {
+    "id": "lean-portfolio-attribution",
+    "title": "lean-portfolio-attribution",
+    "description": "Lean Portfolio Attribution is a research codebase that attributes inference-time gains in Lean theorem proving via fixed-budget attempt portfolios, retrieval-free controls, matched-compute baselines, and cross-system portability checks against external provers like ReProver.",
+    "githubUrl": "https://github.com/ChouYuanjue/lean-portfolio-attribution",
+    "stars": 1,
+    "language": "Python",
+    "topics": [],
+    "updatedAt": "2026-05-17T02:47:55Z",
+    "slug": "lean-portfolio-attribution",
+    "type": "research"
+  },
+  {
+    "id": "coral-travel-planner",
+    "title": "coral-travel-planner",
+    "description": "CORAL is a research codebase that enhances trustworthy travel planning by directly parsing natural-language queries and applying localized repair, boosting pass rates on TravelPlanner and ChinaTravel while addressing benchmark infeasibility and constraint consistency.",
+    "githubUrl": "https://github.com/ChouYuanjue/coral-travel-planner",
+    "stars": 0,
+    "language": "Python",
+    "topics": [],
+    "updatedAt": "2026-05-05T15:46:44Z",
+    "slug": "coral-travel-planner",
+    "type": "research"
+  },
+  {
+    "id": "proof-countermodel-distill",
+    "title": "proof-countermodel-distill",
+    "description": "This project studies whether logical-reasoning LLMs should be trained to emit three different evidence regimes: PROVE for entailed queries, REFUTE for contradicted queries, ABSTAIN for unsupported queries with a missing-support witness.",
+    "githubUrl": "https://github.com/ChouYuanjue/proof-countermodel-distill",
+    "stars": 1,
+    "language": "Python",
+    "topics": [],
+    "updatedAt": "2026-05-02T13:32:26Z",
+    "slug": "proof-countermodel-distill",
+    "type": "research"
+  },
+  {
+    "id": "inm-tex",
+    "title": "INM-TeX",
+    "description": "An English TeX reconstruction of Informal Notes on Mathematics, with corrected and expanded notes compiled into a book-length PDF.",
+    "githubUrl": "https://github.com/ChouYuanjue/INM-TeX",
+    "stars": 1,
+    "language": "TeX",
+    "topics": [],
+    "updatedAt": "2026-07-08T08:49:29Z",
+    "slug": "inm-tex",
+    "type": "personal"
+  },
+  {
+    "id": "rzk-ai4math",
+    "title": "rzk-ai4math",
+    "description": "This repository studies LLM autoformalization on Rzk/sHoTT body-completion tasks, with an emphasis on shape-heavy held-out definitions, lightweight structural priors, repair, routing, and Lean portability checks.",
+    "githubUrl": "https://github.com/ChouYuanjue/rzk-ai4math",
+    "stars": 1,
+    "language": "Python",
+    "topics": [],
+    "updatedAt": "2026-07-08T10:30:23Z",
+    "slug": "rzk-ai4math",
+    "type": "research"
   }
 ]

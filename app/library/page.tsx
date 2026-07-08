@@ -1,46 +1,90 @@
-import Link from "next/link";
+import notesData from "@/data/inm_notes_index.json";
+import classicsData from "@/data/classics.json";
+import linguisticsData from "@/data/linguistics.json";
+import criticismsData from "@/data/criticisms.json";
+import PageHero from "@/components/custom/PageHero";
+import ArchiveCard from "@/components/custom/ArchiveCard";
+import MarkdownRenderer from "@/components/custom/MarkdownRenderer";
 
-const librarySections = [
+function firstClassicsTitles() {
+  return classicsData.flatMap((category) => category.items.slice(0, 2).map((item) => item.title)).slice(0, 4);
+}
+
+const sections = [
   {
-    title: "Notes on Mathematics",
-    description: "A date-first archive of reconstructed mathematical notes. Each dated note provides both PDF and TeX source; the full book is available as a compiled PDF.",
-    path: "/library/notes",
-    color: "bg-slate-50 hover:bg-slate-100 border-slate-200",
+    title: "INM: Informal Notes on Mathematics",
+    description: "A date-first archive of reconstructed mathematical notes. Each dated note provides PDF and TeX source; the full book is available as a compiled PDF.",
+    href: "/library/notes",
+    eyebrow: "Mathematics",
+    meta: `${notesData.project.noteCount} notes · ${notesData.project.volumeCount} volumes`,
+    accent: "bg-slate-900",
+    entries: notesData.notes.slice(0, 4).map((note) => `${note.id}: ${note.title}`),
   },
   {
     title: "Classics",
     description: "Self-authored classical texts with switchable typography and layouts.",
-    path: "/library/classics",
-    color: "bg-amber-50 hover:bg-amber-100 border-amber-100",
+    href: "/library/classics",
+    eyebrow: "Classical writing",
+    meta: `${classicsData.length} categories`,
+    accent: "bg-amber-500",
+    entries: firstClassicsTitles(),
   },
   {
     title: "Linguistic Miscellanea",
-    description: "Notes on phonology, syntax, and historical linguistics.",
-    path: "/library/linguistics",
-    color: "bg-emerald-50 hover:bg-emerald-100 border-emerald-100",
+    description: "Notes on phonology, syntax, conlangs, historical artifacts, and linguistic interpretation.",
+    href: "/library/linguistics",
+    eyebrow: "Language",
+    meta: `${linguisticsData.length} articles`,
+    accent: "bg-emerald-500",
+    entries: linguisticsData.slice(0, 4).map((item) => item.title),
   },
   {
     title: "Criticisms",
-    description: "Lectures, essays and field research on literature and philosophy.",
-    path: "/library/criticisms",
-    color: "bg-purple-50 hover:bg-purple-100 border-purple-100",
+    description: "Essays, reviews, lecture records, and field notes on literature, philosophy, and image interpretation.",
+    href: "/library/criticisms",
+    eyebrow: "Criticism",
+    meta: `${criticismsData.length} essays`,
+    accent: "bg-purple-500",
+    entries: criticismsData.slice(0, 4).map((item) => item.title),
   },
 ];
 
 export default function LibraryIndex() {
   return (
-    <div className="max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Library</h1>
-      <p className="text-lg text-gray-600 mb-12">
-        A curated personal archive spanning mathematical notes, linguistic research, literary criticism, and classical writing.
-      </p>
+    <div className="mx-auto max-w-6xl space-y-10">
+      <PageHero
+        eyebrow="Library"
+        title="A curated archive of notes, texts, and criticism"
+        description="The library is the most stable part of the site: a personal archive spanning mathematical reconstruction, classical writing, linguistic miscellanea, and literary-philosophical criticism."
+        meta={(
+          <>
+            <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{notesData.project.noteCount} INM notes</span>
+            <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{notesData.project.volumeCount} math volumes</span>
+            <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{criticismsData.length + linguisticsData.length} essays and miscellanea</span>
+          </>
+        )}
+      />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {librarySections.map((section) => (
-          <Link key={section.path} href={section.path} className={`block p-8 rounded-xl border transition-colors ${section.color}`}>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-3">{section.title}</h2>
-            <p className="text-gray-700 leading-relaxed">{section.description}</p>
-          </Link>
+      <div className="grid gap-6 md:grid-cols-2">
+        {sections.map((section) => (
+          <ArchiveCard
+            key={section.href}
+            href={section.href}
+            title={section.title}
+            description={section.description}
+            eyebrow={section.eyebrow}
+            meta={section.meta}
+            accent={section.accent}
+          >
+            <div className="space-y-2 border-t border-gray-100 pt-4">
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-gray-400">Representative entries</p>
+              <ul className="space-y-1.5 text-sm leading-6 text-gray-600">
+                {section.entries.map((entry) => (
+                  <li key={entry} className="line-clamp-1"><MarkdownRenderer content={entry} inline /></li>
+                ))}
+              </ul>
+            </div>
+          </ArchiveCard>
         ))}
       </div>
     </div>

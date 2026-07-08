@@ -1,0 +1,182 @@
+{
+  "bank-of-nanjing": {
+    "title": "Multimodal Large Model-Based Bank Customer Emotion Recognition: Bank of Nanjing Project and R&D Insights",
+    "date": "2026-02-03",
+    "description": "Engineering notes on a multimodal customer-emotion recognition system for banking quality inspection.",
+    "category": "Engineering Notes"
+  },
+  "boolean-stone": {
+    "title": "A Gateway to Dualities: Mirror Symmetry between Space and Structure",
+    "date": "2021-07-21",
+    "description": "A 2021 reading record on Stone duality and the geometry--algebra correspondence.",
+    "category": "Correspondence"
+  },
+  "chunpinative": {
+    "title": "Initial Construction and Preliminary Properties of Chunpinative Geometry",
+    "date": "2020-12-07",
+    "description": "A deliberately fictional geometric system built around a parody axiom on supplementary angles.",
+    "category": "Personal Archive"
+  },
+  "geek-christmas": {
+    "title": "Christmas Night at Geek College: From Free Products to Asymptotic Envelopes",
+    "date": "2020-12-25",
+    "description": "A Christmas-night record from Geek College, moving from coproducts to measure-theoretic intuition.",
+    "category": "Mathematical Study"
+  },
+  "graph-alg": {
+    "title": "Prop Presentations for Linear Algebra: The $\\mathbf{cb}_k$ Calculus",
+    "date": "2021-06-21",
+    "description": "Notes on graphical linear algebra and the prop presentation of matrices by string diagrams.",
+    "category": "Seminar Notes"
+  },
+  "hdc-email": {
+    "title": "Follow-up on Hugo Duminil-Copin's Lecture: Probing SAW Universality and 4D Triviality",
+    "date": "2025-11-27",
+    "description": "A follow-up email outline on self-avoiding walks and four-dimensional triviality after Hugo Duminil-Copin’s lecture.",
+    "category": "Correspondence"
+  },
+  "hdc-lecture": {
+    "title": "A Successful Star-Chase: Cutting Class for Hugo Duminil-Copin's Lecture on Self-Avoiding Walks",
+    "date": "2025-11-26",
+    "description": "A personal lecture record from Hugo Duminil-Copin’s talk on self-avoiding walks.",
+    "category": "Seminar Notes"
+  },
+  "hopf-meme": {
+    "title": "Echoes of Summer — From Hopf Fibrations to Higher Algebra",
+    "date": "2024-07-27",
+    "description": "A nostalgic reconstruction of a Hopf-fibration learning episode through a later algebraic-geometry lecture poster.",
+    "category": "Seminar Notes"
+  },
+  "icp-smuggle": {
+    "title": "Architecture Evolution and Breakthrough: How to \"Smuggle\" Traffic During ICP Filing Window",
+    "date": "2026-02-08",
+    "description": "A technical diary on service routing, deployment constraints, and compliance-aware workarounds during an ICP filing window.",
+    "category": "Engineering Notes"
+  },
+  "iutt-oct": {
+    "title": "The \"Holy War\" Moves to the Server Room — Notes on Mochizuki’s Oct 2025 Report",
+    "date": "2025-11-15",
+    "description": "Notes on the October 2025 IUT report and the shift from mathematical persuasion to formal verification rhetoric.",
+    "category": "Mathematical Study"
+  },
+  "ivan-iutt": {
+    "title": "Unveiling Arithmetic Deformation Theory: Reflections on Fesenko’s \"Notes on the work of Shinichi Mochizuki\"",
+    "date": "2021-10-07",
+    "description": "A reading note on Ivan Fesenko’s exposition of IUT and the intuition of arithmetic deformation.",
+    "category": "Mathematical Study"
+  },
+  "leinster-email": {
+    "title": "Correspondence with Professor Tom Leinster: My Translation of \"Rethinking Set Theory\" and a Request for Guidance",
+    "date": "2022-12-30",
+    "description": "Correspondence with Tom Leinster about translating “Rethinking Set Theory” and studying modern mathematics.",
+    "category": "Correspondence"
+  },
+  "linear-logic": {
+    "title": "The Geometry of Dialogue and the Logic of Narrative: A Taste of Linear Logic",
+    "date": "2022-10-05",
+    "description": "A synthetic note on linear logic as resource, game, dialogue, and narrative structure.",
+    "category": "Mathematical Study"
+  },
+  "maniac-meme": {
+    "title": "The Proper Way to Speak Like a Mathematical Maniac: A Self-created Meme",
+    "date": "2025-07-14",
+    "description": "A humorous lexicon translating ordinary speech into absurdly overformal mathematical expressions.",
+    "category": "Satire"
+  },
+  "marching-drill": {
+    "title": "The Minuet of Marching Drill — Homotopy Analysis Based on Topological Behavioral Science",
+    "date": "2023-11-27",
+    "description": "A satirical essay using topology and category theory to parody campus marching drill.",
+    "category": "Mathematical Study"
+  },
+  "math-rag": {
+    "title": "A Survey on Unsupervised Discovery and Structuring of Implicit Reasoning in Mathematics",
+    "date": "2026-02-15",
+    "description": "A conceptual survey on structuring implicit mathematical reasoning for retrieval-augmented systems.",
+    "category": "Engineering Notes"
+  },
+  "name-game": {
+    "title": "The Naming Game — From RC，Runnel, Rangnuo, Jeanot to Rinelle",
+    "date": "2025-06-28",
+    "description": "A philological and autobiographical note on names, aliases, courtesy names, and self-fashioning.",
+    "category": "Personal Archive"
+  },
+  "nikonov-knot": {
+    "title": "The Space Between the Lines: A Post-Gaokao Journey into Knot Theory via Nikonov's seminar",
+    "date": "2025-07-05",
+    "description": "A post-Gaokao learning record on Nikonov’s seminar, partial tribrackets, and knot-theoretic language.",
+    "category": "Seminar Notes"
+  },
+  "nmo-physics": {
+    "title": "Minecraft: The Riemann Manifold of Fun—A Hypothetical Physics Simulation",
+    "date": "2025-07-30",
+    "description": "A playful physics review of Minecraft as a universe with altered axioms and engineering-friendly laws.",
+    "category": "Mathematical Study"
+  },
+  "saburou-zero": {
+    "title": "The Absolute Zero: Saburou Saitoh’s Crusade to Redefine Mathematics",
+    "date": "2022-07-18",
+    "description": "A critical note on Saburou Saitoh’s “division by zero” program and the boundary between credentials and crank-like claims.",
+    "category": "Mathematical Study"
+  },
+  "sin-tan": {
+    "title": "The Derivation of Trigonometric Sum and Difference Formulas from Advanced Standpoints",
+    "date": "2023-02-23",
+    "description": "A note on deriving trigonometric sum formulas through geometry, algebra, and tensor-inspired attempts.",
+    "category": "Mathematical Study"
+  },
+  "teach-mlp": {
+    "title": "Discussion and Reflection on MLP Teaching Routes: Regression vs. Classification Entry Points",
+    "date": "2025-10-12",
+    "description": "A teaching-design reflection on whether MLPs should be introduced through regression, classification, or perceptrons.",
+    "category": "Engineering Notes"
+  },
+  "teach-vae": {
+    "title": "Discussion on Explaining VAE to New Students and Reflections on Its Core Principles",
+    "date": "2025-12-08",
+    "description": "A teaching reflection on explaining VAEs through dimensionality reduction, latent variables, and generative modeling.",
+    "category": "Mathematical Study"
+  },
+  "tian-cai": {
+    "title": "The Tian-Cai Confluence: Geometric-Combinatorial Proof of Identity",
+    "date": "2025-08-03",
+    "description": "A deliberately absurd mathematical satire constructing a fictional identity between Tian Gang and Cai Yuxi.",
+    "category": "Satire"
+  },
+  "topos-ai": {
+    "title": "A First Glimpse of AI and Topos Theory: Aha Moment Brought by a Lecture at PKU",
+    "date": "2025-12-10",
+    "description": "A seminar-inspired note on topos theory, explainability, and structural approaches to AI.",
+    "category": "Seminar Notes"
+  },
+  "u-net-position": {
+    "title": "Implementation and Technical Exploration of U-Net-SE with Positional Offset",
+    "date": "2025-10-10",
+    "description": "An engineering reflection on adding spatial priors and positional offsets to U-Net for emoji fusion.",
+    "category": "Engineering Notes"
+  },
+  "vite-to-next": {
+    "title": "Project Refactoring Development Diary: The \"Violent Migration\" from Vite to Next.js",
+    "date": "2026-02-02",
+    "description": "A development diary on migrating a project from Vite to Next.js under deployment and routing constraints.",
+    "category": "Engineering Notes"
+  },
+  "wang-nuo": {
+    "title": "Synthesis and Properties of a Novel Tungsten-Containing Organic Compound Based on Superchemistry Theory",
+    "date": "2022-10-03",
+    "description": "A pseudo-chemistry parody built from online “superchemistry” terminology and deliberately impossible compounds.",
+    "category": "Satire"
+  },
+  "zero-eq": {
+    "title": "From Divergent Series to Stable Homotopy — On the Equation $0=1-1=-1+1=0$",
+    "date": "2025-12-17",
+    "description": "A correction of an earlier analytic reading of $0=1-1=-1+1=0$ toward K-theoretic and homotopical meaning.",
+    "category": "Seminar Notes"
+  },
+  "zhk-program": {
+    "title": "The Zermelo-Hessian-Kan Program and Its Real-World Metaphors",
+    "date": "2023-09-21",
+    "description": "A satirical “grand program” using mathematical language to parody classroom authority and psychological rhetoric.",
+    "category": "Satire"
+  }
+}

@@ -1,6 +1,7 @@
-import Link from "next/link";
 import fs from "fs";
 import path from "path";
+import PageHero from "@/components/custom/PageHero";
+import ArchiveCard from "@/components/custom/ArchiveCard";
 
 interface Project {
   id: string;
@@ -12,106 +13,72 @@ interface Project {
   topics: string[];
   updatedAt: string;
   slug: string;
-  type: "commercial" | "personal";
+  type: "research" | "commercial" | "personal";
+  fetchStatus?: string;
 }
 
 async function getProjects(): Promise<Project[]> {
   const filePath = path.join(process.cwd(), "data", "projects.json");
-  if (!fs.existsSync(filePath)) {
-    return [];
-  }
-  const fileContent = fs.readFileSync(filePath, "utf-8");
-  try {
-    return JSON.parse(fileContent);
-  } catch (e) {
-    console.error("Failed to parse projects.json", e);
-    return [];
-  }
+  if (!fs.existsSync(filePath)) return [];
+  return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+}
+
+function ProjectSection({ title, description, projects, accent }: { title: string; description: string; projects: Project[]; accent: string }) {
+  if (projects.length === 0) return null;
+  return (
+    <section className="space-y-5">
+      <div>
+        <h2 className="font-serif text-2xl font-semibold text-gray-900">{title}</h2>
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-gray-500">{description}</p>
+      </div>
+      <div className="grid gap-6 md:grid-cols-2">
+        {projects.map((project) => (
+          <ArchiveCard
+            key={project.id}
+            href={`/projects/${project.slug}`}
+            title={project.title}
+            description={project.description}
+            eyebrow={project.fetchStatus === "public-fetch-failed" ? "Public fetch failed" : project.language || project.type}
+            meta={project.githubUrl ? "GitHub →" : undefined}
+            accent={accent}
+          >
+            {project.topics && project.topics.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {project.topics.slice(0, 5).map((topic) => (
+                  <span key={topic} className="rounded-full border border-gray-100 bg-gray-50 px-2.5 py-1 text-xs text-gray-500">#{topic}</span>
+                ))}
+              </div>
+            )}
+          </ArchiveCard>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 export default async function ProjectsIndex() {
   const projects = await getProjects();
-  const commercialProjects = projects.filter(p => p.type === "commercial");
-  const personalProjects = projects.filter(p => p.type === "personal");
+  const researchProjects = projects.filter((p) => p.type === "research");
+  const commercialProjects = projects.filter((p) => p.type === "commercial");
+  const personalProjects = projects.filter((p) => p.type === "personal");
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-4">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8 font-serif">Projects</h1>
-      
-      {commercialProjects.length > 0 && (
-        <div className="mb-12">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6 font-serif">Commercial Projects</h2>
-          <div className="grid gap-6">
-            {commercialProjects.map((project) => (
-              <div key={project.id} className="p-6 border border-gray-200 rounded-lg hover:shadow-md transition-shadow bg-white group">
-                <div className="flex flex-wrap justify-between items-start mb-2 gap-2">
-                  <h2 className="text-xl font-semibold font-serif group-hover:text-red-800 transition-colors">
-                    <Link href={`/projects/${project.slug}`}>
-                      {project.title}
-                    </Link>
-                  </h2>
-                  <div className="flex items-center gap-2">
-                    {project.language && (
-                      <span className="text-xs font-medium px-2.5 py-0.5 rounded bg-gray-100 text-gray-800">
-                        {project.language}
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <p className="text-gray-600 mb-4 line-clamp-2">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.topics && project.topics.slice(0, 5).map(topic => (
-                    <span key={topic} className="text-xs text-gray-500 bg-gray-50 px-2 py-1 rounded-full border border-gray-100">
-                      #{topic}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {personalProjects.length > 0 && (
-        <div className="mb-12">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6 font-serif">Personal Projects</h2>
-          <div className="grid gap-6">
-            {personalProjects.map((project) => (
-              <div key={project.id} className="p-6 border border-gray-200 rounded-lg hover:shadow-md transition-shadow bg-white group">
-                <div className="flex flex-wrap justify-between items-start mb-2 gap-2">
-                  <h2 className="text-xl font-semibold font-serif group-hover:text-red-800 transition-colors">
-                    <Link href={`/projects/${project.slug}`}>
-                      {project.title}
-                    </Link>
-                  </h2>
-                  <div className="flex items-center gap-2">
-                    {project.language && (
-                      <span className="text-xs font-medium px-2.5 py-0.5 rounded bg-gray-100 text-gray-800">
-                        {project.language}
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <p className="text-gray-600 mb-4 line-clamp-2">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.topics && project.topics.slice(0, 5).map(topic => (
-                    <span key={topic} className="text-xs text-gray-500 bg-gray-50 px-2 py-1 rounded-full border border-gray-100">
-                      #{topic}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {projects.length === 0 && (
-        <div className="text-center py-12 border-2 border-dashed border-gray-200 rounded-lg">
-          <p className="text-gray-500 italic">No projects added yet.</p>
-          <p className="text-sm text-gray-400 mt-2">Run `node scripts/add-project.js` to add one.</p>
-        </div>
-      )}
+    <div className="mx-auto max-w-6xl space-y-10">
+      <PageHero
+        eyebrow="Projects"
+        title="Engineering projects and experimental systems"
+        description="A selected project archive covering research codebases, applied systems, bot ecosystems, low-resource language tools, and TeX/OCR pipelines."
+        meta={(
+          <>
+            <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{researchProjects.length} research</span>
+            <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{commercialProjects.length} commercial</span>
+            <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{personalProjects.length} personal</span>
+          </>
+        )}
+      />
+      <ProjectSection title="Research Projects" description="Codebases tied to AI4Math, theorem proving, low-resource NLP, and evaluation-oriented research experiments." projects={researchProjects} accent="bg-indigo-600" />
+      <ProjectSection title="Commercial / Applied Systems" description="Applied engineering work connected to product delivery, multimodal systems, and real-world deployment scenarios." projects={commercialProjects} accent="bg-blue-600" />
+      <ProjectSection title="Personal Projects" description="Personal infrastructure, archives, bot frameworks, language tools, and experimental utilities." projects={personalProjects} accent="bg-gray-900" />
     </div>
   );
 }

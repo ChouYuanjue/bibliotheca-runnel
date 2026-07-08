@@ -1,7 +1,40 @@
 [
   {
+    "type": "Project",
+    "title": "rzk-ai4math",
+    "description": "This repository studies LLM autoformalization on Rzk/sHoTT body-completion tasks, with an emphasis on shape-heavy held-out definitions, lightweight structural priors, repair, routing, and Lean portability checks.",
+    "date": "2026-07-08T10:30:23Z",
+    "link": "https://github.com/ChouYuanjue/rzk-ai4math",
+    "tags": [
+      "research",
+      "Python"
+    ]
+  },
+  {
+    "type": "Project",
+    "title": "INM-TeX",
+    "description": "An English TeX reconstruction of Informal Notes on Mathematics, with corrected and expanded notes compiled into a book-length PDF.",
+    "date": "2026-07-08T08:49:29Z",
+    "link": "https://github.com/ChouYuanjue/INM-TeX",
+    "tags": [
+      "personal",
+      "TeX"
+    ]
+  },
+  {
+    "type": "Collection",
+    "title": "INM: Informal Notes on Mathematics",
+    "description": "158 dated notes across 15 thematic volumes, with full PDF and per-note TeX sources.",
+    "date": "2026-06-21",
+    "link": "/library/notes",
+    "tags": [
+      "INM",
+      "Mathematics"
+    ]
+  },
+  {
     "type": "Note",
-    "title": "N-20260621: The Heat Equation, Diffusion, and Similarity Solutions",
+    "title": "N-20260621 · The Heat Equation, Diffusion, and Similarity Solutions",
     "description": "Complex Analysis · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-06-21",
     "link": "/notes/2026/N-20260621.pdf",
@@ -12,7 +45,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260620: The Second-Order Wave Equation and d'Alembert's Formula",
+    "title": "N-20260620 · The Second-Order Wave Equation and d'Alembert's Formula",
     "description": "Complex Analysis · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-06-20",
     "link": "/notes/2026/N-20260620.pdf",
@@ -23,7 +56,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260619: First-Order Partial Differential Equations and Characteristics",
+    "title": "N-20260619 · First-Order Partial Differential Equations and Characteristics",
     "description": "Complex Analysis · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-06-19",
     "link": "/notes/2026/N-20260619.pdf",
@@ -34,7 +67,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260618: First-Order and Higher-Order Differential Equations",
+    "title": "N-20260618 · First-Order and Higher-Order Differential Equations",
     "description": "Complex Analysis · 17 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-06-18",
     "link": "/notes/2026/N-20260618.pdf",
@@ -45,7 +78,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260617: Fourier Series and Orthogonal Expansion of Functions",
+    "title": "N-20260617 · Fourier Series and Orthogonal Expansion of Functions",
     "description": "Complex Analysis · 20 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-06-17",
     "link": "/notes/2026/N-20260617.pdf",
@@ -56,7 +89,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260616: Numerical Series, Power Series, Taylor Series, and Improper Integrals",
+    "title": "N-20260616 · Numerical Series, Power Series, Taylor Series, and Improper Integrals",
     "description": "Complex Analysis · 14 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-06-16",
     "link": "/notes/2026/N-20260616.pdf",
@@ -67,7 +100,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260615: Surface Integrals, Gauss Theorem, and Stokes Theorem",
+    "title": "N-20260615 · Surface Integrals, Gauss Theorem, and Stokes Theorem",
     "description": "Vector Calculus · 20 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-06-15",
     "link": "/notes/2026/N-20260615.pdf",
@@ -78,7 +111,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260604: Solving Linear Systems: Direct, Iterative, and Optimization Methods",
+    "title": "N-20260604 · Solving Linear Systems: Direct, Iterative, and Optimization Methods",
     "description": "Linear Algebra · 16 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-06-04",
     "link": "/notes/2026/N-20260604.pdf",
@@ -89,7 +122,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260603: Generalized Inverses, Projections, and Least-Squares Geometry",
+    "title": "N-20260603 · Generalized Inverses, Projections, and Least-Squares Geometry",
     "description": "Linear Algebra · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-06-03",
     "link": "/notes/2026/N-20260603.pdf",
@@ -100,7 +133,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260602: Matrix Decompositions: LU, Cholesky, Full Rank, and SVD",
+    "title": "N-20260602 · Matrix Decompositions: LU, Cholesky, Full Rank, and SVD",
     "description": "Linear Algebra · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-06-02",
     "link": "/notes/2026/N-20260602.pdf",
@@ -110,15 +143,65 @@
     ]
   },
   {
+    "type": "Project",
+    "title": "lean-portfolio-attribution",
+    "description": "Lean Portfolio Attribution is a research codebase that attributes inference-time gains in Lean theorem proving via fixed-budget attempt portfolios, retrieval-free controls, matched-compute baselines, and cross-system portability checks against external provers like ReProver.",
+    "date": "2026-05-17T02:47:55Z",
+    "link": "https://github.com/ChouYuanjue/lean-portfolio-attribution",
+    "tags": [
+      "research",
+      "Python"
+    ]
+  },
+  {
+    "type": "Project",
+    "title": "tangut-nlp",
+    "description": "This is an ultra-low-resource research codebase that translates short Tangut titles into modern Chinese using only 491 parallel pairs, achieving its strongest results via a hybrid workflow of frontier prompt‑only models and locally trained DPO‑repaired candidates rather than any single approach.",
+    "date": "2026-05-09T08:22:14Z",
+    "link": "https://github.com/ChouYuanjue/tangut-nlp",
+    "tags": [
+      "research",
+      "Python"
+    ]
+  },
+  {
+    "type": "Project",
+    "title": "coral-travel-planner",
+    "description": "CORAL is a research codebase that enhances trustworthy travel planning by directly parsing natural-language queries and applying localized repair, boosting pass rates on TravelPlanner and ChinaTravel while addressing benchmark infeasibility and constraint consistency.",
+    "date": "2026-05-05T15:46:44Z",
+    "link": "https://github.com/ChouYuanjue/coral-travel-planner",
+    "tags": [
+      "research",
+      "Python"
+    ]
+  },
+  {
+    "type": "Project",
+    "title": "proof-countermodel-distill",
+    "description": "This project studies whether logical-reasoning LLMs should be trained to emit three different evidence regimes: PROVE for entailed queries, REFUTE for contradicted queries, ABSTAIN for unsupported queries with a missing-support witness.",
+    "date": "2026-05-02T13:32:26Z",
+    "link": "https://github.com/ChouYuanjue/proof-countermodel-distill",
+    "tags": [
+      "research",
+      "Python"
+    ]
+  },
+  {
     "type": "Linguistics",
     "title": "Miscellanea XII. A Formal Reconstruction of Cthuvian as a Translatable Language System",
     "description": "A rigorous conlanging framework for Cthuvian (R’lyehian), reconstructing its phonology, morphology, and syntax into a dual-register system that preserves Mythos authenticity while enabling consistent English-to-Cthuvian translation and partial reverse interpretation.",
     "date": "2026-04-29",
-    "link": "/library/linguistics/miscellanea-xii-cthuvian-reconstruction"
+    "link": "/library/linguistics/miscellanea-xii-cthuvian-reconstruction",
+    "tags": [
+      "Conlanging",
+      "Linguistics",
+      "Cthulhu Mythos",
+      "Semiotics"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20260417: Green's Theorem, Conservative Fields, and the Planar Stokes Principle",
+    "title": "N-20260417 · Green's Theorem, Conservative Fields, and the Planar Stokes Principle",
     "description": "Vector Calculus · 13 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-04-17",
     "link": "/notes/2026/N-20260417.pdf",
@@ -129,7 +212,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260416: Line Integrals and Surface Integrals of the First and Second Kind",
+    "title": "N-20260416 · Line Integrals and Surface Integrals of the First and Second Kind",
     "description": "Vector Calculus · 14 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-04-16",
     "link": "/notes/2026/N-20260416.pdf",
@@ -140,7 +223,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260408: Volumes, Spatial Regions, and Order of Integration",
+    "title": "N-20260408 · Volumes, Spatial Regions, and Order of Integration",
     "description": "Vector Calculus · 13 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-04-08",
     "link": "/notes/2026/N-20260408.pdf",
@@ -151,7 +234,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260406: Triple Integrals: Solids, Cylindrical Coordinates, and Spherical Coordinates",
+    "title": "N-20260406 · Triple Integrals: Solids, Cylindrical Coordinates, and Spherical Coordinates",
     "description": "Vector Calculus · 14 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-04-06",
     "link": "/notes/2026/N-20260406.pdf",
@@ -162,7 +245,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260405: Computing Double Integrals: Slicing, Polar Coordinates, and Change of Variables",
+    "title": "N-20260405 · Computing Double Integrals: Slicing, Polar Coordinates, and Change of Variables",
     "description": "Vector Calculus · 13 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-04-05",
     "link": "/notes/2026/N-20260405.pdf",
@@ -173,7 +256,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260403: Double Integrals: Riemann Sums, Area, Symmetry, and Average Value",
+    "title": "N-20260403 · Double Integrals: Riemann Sums, Area, Symmetry, and Average Value",
     "description": "Vector Calculus · 13 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-04-03",
     "link": "/notes/2026/N-20260403.pdf",
@@ -184,7 +267,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260325: Extrema of Two-Variable Functions and the Hessian Test",
+    "title": "N-20260325 · Extrema of Two-Variable Functions and the Hessian Test",
     "description": "Multivariable Calculus · 7 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-25",
     "link": "/notes/2026/N-20260325.pdf",
@@ -195,7 +278,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260318: Matrix Computation III: Canonical Forms, Localization, and Iteration",
+    "title": "N-20260318 · Matrix Computation III: Canonical Forms, Localization, and Iteration",
     "description": "Linear Algebra · 14 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-18",
     "link": "/notes/2026/N-20260318.pdf",
@@ -206,7 +289,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260314: A Problem-Solving Guide for Multivariable Limits and Local Geometry",
+    "title": "N-20260314 · A Problem-Solving Guide for Multivariable Limits and Local Geometry",
     "description": "Multivariable Calculus · 8 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-14",
     "link": "/notes/2026/N-20260314.pdf",
@@ -217,7 +300,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260313: Multivariable Chain Rule, Total Differentials, and Implicit Differentiation",
+    "title": "N-20260313 · Multivariable Chain Rule, Total Differentials, and Implicit Differentiation",
     "description": "Multivariable Calculus · 8 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-13",
     "link": "/notes/2026/N-20260313.pdf",
@@ -228,7 +311,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260312: Matrix Computation II: Spectral Radius, Stability, and Conditioning",
+    "title": "N-20260312 · Matrix Computation II: Spectral Radius, Stability, and Conditioning",
     "description": "Linear Algebra · 13 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-12",
     "link": "/notes/2026/N-20260312.pdf",
@@ -239,7 +322,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260311: Matrix Computation I: Norms, Operators, and Numerical Size",
+    "title": "N-20260311 · Matrix Computation I: Norms, Operators, and Numerical Size",
     "description": "Linear Algebra · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-11",
     "link": "/notes/2026/N-20260311.pdf",
@@ -250,7 +333,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260306: Multivariable Limits, Continuity, Differentiability, and the Total Derivative",
+    "title": "N-20260306 · Multivariable Limits, Continuity, Differentiability, and the Total Derivative",
     "description": "Multivariable Calculus · 8 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-06",
     "link": "/notes/2026/N-20260306.pdf",
@@ -261,7 +344,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260305: Orthogonal Projection, Least Squares, and the Pseudoinverse",
+    "title": "N-20260305 · Orthogonal Projection, Least Squares, and the Pseudoinverse",
     "description": "Linear Algebra · 9 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-05",
     "link": "/notes/2026/N-20260305.pdf",
@@ -272,7 +355,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260304: Point-Set Language in $\\mathbb R^n$: Neighborhoods, Boundaries, and Compactness",
+    "title": "N-20260304 · Point-Set Language in $\\mathbb R^n$: Neighborhoods, Boundaries, and Compactness",
     "description": "Multivariable Calculus · 8 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-04",
     "link": "/notes/2026/N-20260304.pdf",
@@ -283,7 +366,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260303: Two-Dimensional Linear Maps, Spectral Geometry, and Singular Value Decomposition",
+    "title": "N-20260303 · Two-Dimensional Linear Maps, Spectral Geometry, and Singular Value Decomposition",
     "description": "Linear Algebra · 8 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-03",
     "link": "/notes/2026/N-20260303.pdf",
@@ -294,7 +377,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260302: Pure Mathematics as a Language for Machine Learning and Data Analysis",
+    "title": "N-20260302 · Pure Mathematics as a Language for Machine Learning and Data Analysis",
     "description": "Machine Learning · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-02",
     "link": "/notes/2026/N-20260302.pdf",
@@ -306,41 +389,61 @@
   {
     "type": "Fragment",
     "title": "A Survey on Unsupervised Discovery and Structuring of Implicit Reasoning in Mathematics",
-    "description": "This fragment surveys a problem that becomes increasingly visible as RAG systems move from ordinary document retrieval toward mathematical reasoning: mathematical texts do not merely contain facts; they contain implicit techniques, local conventions, and proof strategies that are difficult to segment or label.\r\n\r\nThe note compares statistical, inference-based, and generative-reconstruction approaches to discovering structure in such texts. Its proposed direction, “semantic bleaching and structural fingerprinting,” is best read as a research sketch: a way to separate surface language from reusable reasoning patterns when annotated mathematical data are scarce.",
+    "description": "A conceptual survey on structuring implicit mathematical reasoning for retrieval-augmented systems.",
     "date": "2026-02-15",
-    "link": "/fragments/math-rag"
+    "link": "/fragments/math-rag",
+    "tags": [
+      "Engineering Notes"
+    ]
   },
   {
     "type": "Fragment",
     "title": "Architecture Evolution and Breakthrough: How to \"Smuggle\" Traffic During ICP Filing Window",
-    "description": "This fragment documents a deployment problem specific to web services in mainland China: during the ICP filing window, a domain pointing to a domestic server cannot serve normal content before approval. For an early-stage project, this creates a practical tension between regulatory compliance, product validation, and the need to keep users from encountering a dead endpoint.\r\n\r\nThe article is written as an engineering diary rather than a recipe for evasion. It records the architecture choices, failed assumptions, callback problems, microservice interactions, and security concerns that appeared while designing a temporary routing strategy. The useful lesson is broader than ICP filing itself: production systems are shaped as much by administrative constraints and third-party behavior as by code.",
+    "description": "A technical diary on service routing, deployment constraints, and compliance-aware workarounds during an ICP filing window.",
     "date": "2026-02-08",
-    "link": "/fragments/icp-smuggle"
+    "link": "/fragments/icp-smuggle",
+    "tags": [
+      "Engineering Notes"
+    ]
   },
   {
     "type": "Fragment",
     "title": "Multimodal Large Model-Based Bank Customer Emotion Recognition: Bank of Nanjing Project and R&D Insights",
-    "description": "This fragment records the first-stage delivery of a Bank of Nanjing customer-emotion recognition project that I led from the engineering side. The work sits at the intersection of audio signal processing, multimodal large-model inference, and domain adaptation for banking quality inspection. Rather than presenting it as a polished success story, I keep the emphasis on the actual engineering process: constraints imposed by hardware, sensitivity of financial data, scenario-specific evaluation, and the repeated adjustments needed to make a model usable in a production-facing workflow.\r\n\r\nThe second phase will rely on real business data for fine-tuning, so details involving sensitive data are deliberately withheld. What remains useful here is the technical and managerial record: how a vertical multimodal system is decomposed, how fallback plans are designed under resource limits, and how a prototype moves from demonstration toward a more reliable customer-service inspection pipeline.",
+    "description": "Engineering notes on a multimodal customer-emotion recognition system for banking quality inspection.",
     "date": "2026-02-03",
-    "link": "/fragments/bank-of-nanjing"
+    "link": "/fragments/bank-of-nanjing",
+    "tags": [
+      "Engineering Notes"
+    ]
   },
   {
     "type": "Fragment",
     "title": "Project Refactoring Development Diary: The \"Violent Migration\" from Vite to Next.js",
-    "description": "This fragment records the first major project refactoring I experienced: a forceful migration from Vite to Next.js. The process was messy in exactly the way real engineering often is—routing assumptions broke, rendering modes changed, deployment limits appeared unexpectedly, and one workaround even depended on exploiting behavior that initially looked like a bug.\r\n\r\nI keep the diary not as a clean tutorial but as a field record. Its usefulness comes from preserving the traps: how front-end and back-end responsibilities were separated, how Vercel constraints shaped architecture, and how a framework migration changes more than file structure.",
+    "description": "A development diary on migrating a project from Vite to Next.js under deployment and routing constraints.",
     "date": "2026-02-02",
-    "link": "/fragments/vite-to-next"
+    "link": "/fragments/vite-to-next",
+    "tags": [
+      "Engineering Notes"
+    ]
   },
   {
     "type": "Project",
     "title": "CER System",
-    "description": "基于 Qwen2-Audio 7B 多模态大模型的银行客户服务情绪实时分析系统。该系统采用双路径架构（Dual-Path Architecture），结合 Plan A（高灵敏 VAD）与 Plan B（高精度说话人分离），灵活适配不同质量与场景的通话录音。",
+    "description": "A banking customer-emotion recognition system based on Qwen2-Audio 7B, using a dual-path audio pipeline to adapt to different call-recording qualities and service scenarios.",
     "date": "2026-02-01T00:00:00Z",
-    "link": null
+    "link": null,
+    "tags": [
+      "commercial",
+      "Python",
+      "AI",
+      "Emotion Recognition",
+      "Banking",
+      "Multimodal"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20260106: Calculus Review III: Convexity, Integral Inequalities, Wallis Formula, and More",
+    "title": "N-20260106 · Calculus Review III: Convexity, Integral Inequalities, Wallis Formula, and More",
     "description": "Calculus · 16 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-01-06",
     "link": "/notes/2026/N-20260106.pdf",
@@ -351,7 +454,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260105: Linear Algebra Review IV: Eigenvalue Tricks, Positive Definiteness, and More",
+    "title": "N-20260105 · Linear Algebra Review IV: Eigenvalue Tricks, Positive Definiteness, and More",
     "description": "Linear Algebra · 33 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-01-05",
     "link": "/notes/2026/N-20260105.pdf",
@@ -362,7 +465,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260103: Linear Algebra Review III: Determinant Tricks, Rank, Matrix Powers, and More",
+    "title": "N-20260103 · Linear Algebra Review III: Determinant Tricks, Rank, Matrix Powers, and More",
     "description": "Linear Algebra · 34 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-01-03",
     "link": "/notes/2026/N-20260103.pdf",
@@ -374,13 +477,16 @@
   {
     "type": "Fragment",
     "title": "From Divergent Series to Stable Homotopy — On the Equation $0=1-1=-1+1=0$",
-    "description": "This fragment revisits a slide from Keyao Peng’s lecture containing the enigmatic expression $0=1-1=-1+1=0$. My first interpretation treated it as an analytic or summability phenomenon, as if the equation were about divergent series and cancellation.\r\n\r\nAfter finding the full lecture context, I realized that this reading was essentially wrong. The expression belongs instead to a topological and K-theoretic setting, where equality can encode a nontrivial path or higher structure rather than a mere arithmetic identity. The fragment records that correction in understanding.",
+    "description": "A correction of an earlier analytic reading of $0=1-1=-1+1=0$ toward K-theoretic and homotopical meaning.",
     "date": "2025-12-17",
-    "link": "/fragments/zero-eq"
+    "link": "/fragments/zero-eq",
+    "tags": [
+      "Seminar Notes"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20251217: A Nontrivial Loop at Zero: FinSet K-Theory and Stable Homotopy",
+    "title": "N-20251217 · A Nontrivial Loop at Zero: FinSet K-Theory and Stable Homotopy",
     "description": "Topology and Homotopy · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-12-17",
     "link": "/notes/2025/N-20251217.pdf",
@@ -392,27 +498,48 @@
   {
     "type": "Project",
     "title": "bibliotheca-runnel",
-    "description": "This is the personal academic portal and digital archive of myself. It serves as a curated collection of knowledge, spanning from informal mathematical notes to classical literary works and linguistic research.",
+    "description": "The personal academic portal and archive behind this site, integrating mathematical notes, projects, fragments, classical writing, and research records.",
     "date": "2025-12-14T13:03:00Z",
-    "link": "https://github.com/ChouYuanjue/bibliotheca-runnel"
+    "link": "https://github.com/ChouYuanjue/bibliotheca-runnel",
+    "tags": [
+      "personal",
+      "TypeScript",
+      "Portfolio",
+      "Academic",
+      "Next.js",
+      "Digital Archive"
+    ]
   },
   {
     "type": "Project",
     "title": "PDF Summary Tool",
-    "description": "一个强大的Python工具，用于将PDF文档转换为结构化文本，并利用先进的AI模型生成高质量的内容总结和关键词提炼。",
+    "description": "A Python pipeline for converting PDFs into structured text and generating AI-assisted summaries, keywords, and reusable reading notes.",
     "date": "2025-12-10T06:40:42Z",
-    "link": "https://github.com/ChouYuanjue/PDF_Summary_Tool"
+    "link": "https://github.com/ChouYuanjue/PDF_Summary_Tool",
+    "tags": [
+      "personal",
+      "Python",
+      "PDF",
+      "Summarization",
+      "AI",
+      "NLP",
+      "YOLO",
+      "VLM"
+    ]
   },
   {
     "type": "Fragment",
     "title": "A First Glimpse of AI and Topos Theory: Aha Moment Brought by a Lecture at PKU",
-    "description": "This fragment records my reaction to a seminar titled “Topos Theory and the Frontier of Artificial Intelligence,” held at Peking University and featuring Laurent Lafforgue and Aurélien Sagnier. The topic immediately suggested a foundational question: can topos-theoretic structure offer a language for explainable and certifiable AI that ordinary statistical learning lacks?\r\n\r\nThe note is exploratory rather than conclusive. It uses the seminar as a starting point to think about logic, geometry, modular reasoning, coproducts, and traceability. Its value lies in articulating what kind of theoretical breakthrough would be required before “topos AI” becomes more than a slogan.",
+    "description": "A seminar-inspired note on topos theory, explainability, and structural approaches to AI.",
     "date": "2025-12-10",
-    "link": "/fragments/topos-ai"
+    "link": "/fragments/topos-ai",
+    "tags": [
+      "Seminar Notes"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20251210: Calculus Review II: Monotonicity, Integration Methods, Applications, and More",
+    "title": "N-20251210 · Calculus Review II: Monotonicity, Integration Methods, Applications, and More",
     "description": "Calculus · 23 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-12-10",
     "link": "/notes/2025/N-20251210.pdf",
@@ -424,9 +551,12 @@
   {
     "type": "Fragment",
     "title": "Discussion on Explaining VAE to New Students and Reflections on Its Core Principles",
-    "description": "This fragment records a discussion on how to explain variational autoencoders to new students. The participants approached the problem from different levels of experience, but the central teaching question was shared: how can one move from ordinary autoencoders to VAEs without making the probabilistic machinery feel like an arbitrary add-on?\r\n\r\nThe route developed here begins with dimensionality reduction, then introduces latent distributions, marginal likelihood, reconstruction loss, and the KL term. The emphasis is not on deriving every formula at maximum rigor, but on finding an explanatory sequence in which the VAE appears as a natural bridge between compression and generation.",
+    "description": "A teaching reflection on explaining VAEs through dimensionality reduction, latent variables, and generative modeling.",
     "date": "2025-12-08",
-    "link": "/fragments/teach-vae"
+    "link": "/fragments/teach-vae",
+    "tags": [
+      "Mathematical Study"
+    ]
   },
   {
     "type": "Publication",
@@ -437,7 +567,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20251202: Linear Algebra Review II: Diagonalization, Inner Products, Quadratic Forms, and More",
+    "title": "N-20251202 · Linear Algebra Review II: Diagonalization, Inner Products, Quadratic Forms, and More",
     "description": "Linear Algebra · 28 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-12-02",
     "link": "/notes/2025/N-20251202.pdf",
@@ -451,7 +581,10 @@
     "title": "REPO: Guidance for New NJUers",
     "description": "Crawled from Nanwhere Assistant's Yuque guide for 25th cohort new students. This project is an intermediate product of a nova club initiative.",
     "date": "2025-11-29T06:17:54Z",
-    "link": "/achieved/guidance_for_new_njuers"
+    "link": "/artifacts/guidance_for_new_njuers",
+    "tags": [
+      "ACHIEVED"
+    ]
   },
   {
     "type": "Publication",
@@ -462,7 +595,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20251128: Self-Avoiding Walks III: Lace Expansion, Functional Integrals, and the Critical Dimension Four",
+    "title": "N-20251128 · Self-Avoiding Walks III: Lace Expansion, Functional Integrals, and the Critical Dimension Four",
     "description": "Combinatorics and Models · 9 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-11-28",
     "link": "/notes/2025/N-20251128.pdf",
@@ -474,13 +607,16 @@
   {
     "type": "Fragment",
     "title": "Follow-up on Hugo Duminil-Copin's Lecture: Probing SAW Universality and 4D Triviality",
-    "description": "This fragment preserves the follow-up email I sent to Professor Hugo Duminil-Copin after attending his lecture on self-avoiding walks. The questions I was unable to ask during the Q&A are reorganized here into two clusters: the contrast between honeycomb and square lattices in exact solvability, and the conceptual meaning of marginal triviality in the four-dimensional $\\Phi^4$ model.\r\n\r\nThe email has not yet received a response, so the fragment now serves a second purpose: it is a structured research agenda for self-study. It records what I understood, what remained opaque, and which technical directions might clarify the relation between lattice geometry, universality, and scaling limits.",
+    "description": "A follow-up email outline on self-avoiding walks and four-dimensional triviality after Hugo Duminil-Copin’s lecture.",
     "date": "2025-11-27",
-    "link": "/fragments/hdc-email"
+    "link": "/fragments/hdc-email",
+    "tags": [
+      "Correspondence"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20251127: Self-Avoiding Walks II: The Hexagonal Lattice, Holomorphic Observables, and the Exact Connective Constant",
+    "title": "N-20251127 · Self-Avoiding Walks II: The Hexagonal Lattice, Holomorphic Observables, and the Exact Connective Constant",
     "description": "Combinatorics and Models · 9 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-11-27",
     "link": "/notes/2025/N-20251127.pdf",
@@ -492,13 +628,16 @@
   {
     "type": "Fragment",
     "title": "A Successful Star-Chase: Cutting Class for Hugo Duminil-Copin's Lecture on Self-Avoiding Walks",
-    "description": "This fragment records my attendance at a lecture by Fields Medalist Hugo Duminil-Copin on self-avoiding walks. I originally expected the talk to be far beyond my reach and went mostly out of admiration, but the choice of topic and the speaker’s exposition made the lecture unexpectedly accessible.\r\n\r\nThe entry is partly a personal “star-chasing” anecdote and partly a mathematical listening note. It records the analogy-driven structure of the lecture, the basic role of self-avoiding walks, and the gap between recognizing the narrative of a proof and possessing the technical machinery behind it.",
+    "description": "A personal lecture record from Hugo Duminil-Copin’s talk on self-avoiding walks.",
     "date": "2025-11-26",
-    "link": "/fragments/hdc-lecture"
+    "link": "/fragments/hdc-lecture",
+    "tags": [
+      "Seminar Notes"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20251126: Self-Avoiding Walks I: Connective Constants, Bridges, Polygons, and Critical Exponents",
+    "title": "N-20251126 · Self-Avoiding Walks I: Connective Constants, Bridges, Polygons, and Critical Exponents",
     "description": "Combinatorics and Models · 7 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-11-26",
     "link": "/notes/2025/N-20251126.pdf",
@@ -510,13 +649,16 @@
   {
     "type": "Fragment",
     "title": "The \"Holy War\" Moves to the Server Room — Notes on Mochizuki’s Oct 2025 Report",
-    "description": "This fragment records an informal discussion with online friends about Shinichi Mochizuki’s October 2025 report on the situation surrounding Inter-Universal Teichmüller Theory. Although the document is framed as a response to criticism, its rhetoric extends beyond ordinary mathematical rebuttal and enters the territory of sociology, legitimacy, and formal verification.\r\n\r\nThe central point of interest is the apparent shift in strategy: from persuading the existing arithmetic-geometry community through conventional exposition, toward seeking refuge in Lean formalization and a critique of “social/political dynamics.” The fragment does not adjudicate IUT itself; it tracks the changing form of the debate.",
+    "description": "Notes on the October 2025 IUT report and the shift from mathematical persuasion to formal verification rhetoric.",
     "date": "2025-11-15",
-    "link": "/fragments/iutt-oct"
+    "link": "/fragments/iutt-oct",
+    "tags": [
+      "Mathematical Study"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20251114: Teichmueller Theory Without One Universe: Classical Deformation, Hodge Theaters, and Identification",
+    "title": "N-20251114 · Teichmueller Theory Without One Universe: Classical Deformation, Hodge Theaters, and Identification",
     "description": "Arithmetic Geometry · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-11-14",
     "link": "/notes/2025/N-20251114.pdf",
@@ -527,7 +669,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20251113: When Addition Starts Floating: Theta-Links, Log-Links, and Arithmetic Deformation",
+    "title": "N-20251113 · When Addition Starts Floating: Theta-Links, Log-Links, and Arithmetic Deformation",
     "description": "Arithmetic Geometry · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-11-13",
     "link": "/notes/2025/N-20251113.pdf",
@@ -538,7 +680,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20251112: Calculus Review I: Inequalities, Limits, Derivatives, and More",
+    "title": "N-20251112 · Calculus Review I: Inequalities, Limits, Derivatives, and More",
     "description": "Calculus · 18 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-11-12",
     "link": "/notes/2025/N-20251112.pdf",
@@ -549,7 +691,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20251110: Linear Algebra Review I: Determinants, Rank, Linear Systems, and More",
+    "title": "N-20251110 · Linear Algebra Review I: Determinants, Rank, Linear Systems, and More",
     "description": "Linear Algebra · 27 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-11-10",
     "link": "/notes/2025/N-20251110.pdf",
@@ -560,7 +702,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20251109: Kernels, Cokernels, Images, and Coimages in Abelian Categories",
+    "title": "N-20251109 · Kernels, Cokernels, Images, and Coimages in Abelian Categories",
     "description": "Categories and Logic · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-11-09",
     "link": "/notes/2025/N-20251109.pdf",
@@ -574,11 +716,14 @@
     "title": "REPO: Informal Notes on Mathematics",
     "description": "This is a project for storing notes and materials recorded during the process of self-studying mathematics. Originally published via FigShare, DOI: 10.6084/m9.figshare.c.6094833.v7",
     "date": "2025-11-08T13:29:56Z",
-    "link": "/achieved/informal_notes_on_mathematics"
+    "link": "/artifacts/informal_notes_on_mathematics",
+    "tags": [
+      "PHASED"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20251108: Notes on MML: Vectors, the Minus-One Trick, Linear Maps, Basis Change, Kernel, and Image",
+    "title": "N-20251108 · Notes on MML: Vectors, the Minus-One Trick, Linear Maps, Basis Change, Kernel, and Image",
     "description": "Linear Algebra · 21 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-11-08",
     "link": "/notes/2025/N-20251108.pdf",
@@ -592,18 +737,24 @@
     "title": "REPO: NOVA Mock Service",
     "description": "This project serves as a Mock Service for the Nova 2025 Information Integration Tool Collaboration Project, aligning with the design of the \"Collaboration Integration Plan (Draft)\" to facilitate parallel development and integration testing between frontend, backend, and various teams.",
     "date": "2025-10-25T03:05:10Z",
-    "link": "/achieved/nova_mock_service"
+    "link": "/artifacts/nova_mock_service",
+    "tags": [
+      "ACHIEVED"
+    ]
   },
   {
     "type": "Fragment",
     "title": "Discussion and Reflection on MLP Teaching Routes: Regression vs. Classification Entry Points",
-    "description": "This fragment records a discussion with two senior researchers in deep learning about how to teach multi-layer perceptrons to beginners. My initial difficulty was pedagogical: introducing MLPs through regression makes activation functions feel arbitrary, while starting from perceptrons can obscure why nonlinearity is structurally necessary.\r\n\r\nThe discussion pushed the route toward classification and decision boundaries. In that framing, activations are not decorative nonlinearities inserted into a regression pipeline; they are the mechanism by which a network composes separations and builds representational capacity. The fragment combines transcript, reflection, and teaching-design notes.",
+    "description": "A teaching-design reflection on whether MLPs should be introduced through regression, classification, or perceptrons.",
     "date": "2025-10-12",
-    "link": "/fragments/teach-mlp"
+    "link": "/fragments/teach-mlp",
+    "tags": [
+      "Engineering Notes"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20251011: The Reparameterization Trick and Auto-Encoding Variational Bayes",
+    "title": "N-20251011 · The Reparameterization Trick and Auto-Encoding Variational Bayes",
     "description": "Machine Learning · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-10-11",
     "link": "/notes/2025/N-20251011.pdf",
@@ -615,20 +766,32 @@
   {
     "type": "Project",
     "title": "TeX-QB-Gen",
-    "description": "Generate question banks directly from textbooks.  Leverage OpenRouter's multimodal/text models and local OCR capabilities to extract math problems and solutions from images, web pages, or PDFs, and generate uniformly formatted TeX question banks.",
+    "description": "A question-bank generator that extracts math problems from images, web pages, and PDFs through multimodal models, local OCR, and uniform TeX output.",
     "date": "2025-10-10T12:01:12Z",
-    "link": "https://github.com/ChouYuanjue/TeX-QB-Gen"
+    "link": "https://github.com/ChouYuanjue/TeX-QB-Gen",
+    "tags": [
+      "personal",
+      "Python",
+      "Education",
+      "OCR",
+      "VLM",
+      "TeX",
+      "Question Bank"
+    ]
   },
   {
     "type": "Fragment",
     "title": "Implementation and Technical Exploration of U-Net-SE with Positional Offset",
-    "description": "This fragment documents an early attempt to build a Google Emoji Kitchen-style fusion system by modifying U-Net with explicit positional information. The central technical problem was spatial control: in a small-sample setting, how can a model learn not only what two emoji elements are, but also where they should appear and how their relative scale should be constrained?\r\n\r\nSome of the design choices later proved naive, and the project eventually shifted toward LoRA fine-tuning and diffusion-based implementation. Still, the record remains valuable as an engineering exploration of spatial priors, attention, and the gap between architectural intuition and trainable behavior.",
+    "description": "An engineering reflection on adding spatial priors and positional offsets to U-Net for emoji fusion.",
     "date": "2025-10-10",
-    "link": "/fragments/u-net-position"
+    "link": "/fragments/u-net-position",
+    "tags": [
+      "Engineering Notes"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20251010: Variational Inference: KL Divergence, Jensen, and the ELBO",
+    "title": "N-20251010 · Variational Inference: KL Divergence, Jensen, and the ELBO",
     "description": "Machine Learning · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-10-10",
     "link": "/notes/2025/N-20251010.pdf",
@@ -640,13 +803,21 @@
   {
     "type": "Project",
     "title": "AI Emoji Kitchen Lab",
-    "description": "这是一个基于深度学习的表情符号（Emoji）融合项目，旨在于通过大模型实现Google Emoji Kitchen风格的表情符号融合，能够将两个不同的emoji融合成一个全新的、富有创意的emoji图像。",
+    "description": "A deep-learning experiment for Google Emoji Kitchen-style emoji fusion, exploring image generation, spatial priors, and small-sample visual synthesis.",
     "date": "2025-10-09T04:18:52Z",
-    "link": "https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab"
+    "link": "https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab",
+    "tags": [
+      "personal",
+      "Python",
+      "AI",
+      "Image Generation",
+      "Emoji",
+      "CV"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20251009: Latent Variable Models: Priors, Decoders, and Intractable Posteriors",
+    "title": "N-20251009 · Latent Variable Models: Priors, Decoders, and Intractable Posteriors",
     "description": "Machine Learning · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-10-09",
     "link": "/notes/2025/N-20251009.pdf",
@@ -657,7 +828,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20251008: Probability Language for Variational Autoencoders",
+    "title": "N-20251008 · Probability Language for Variational Autoencoders",
     "description": "Machine Learning · 9 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-10-08",
     "link": "/notes/2025/N-20251008.pdf",
@@ -669,13 +840,20 @@
   {
     "type": "Project",
     "title": "doge-repo",
-    "description": "QQ机器人豆子 Doge的源码库。包括v2（使用CQP），v3（使用mirai），v4（使用AstrBot，当前版本）。",
+    "description": "A long-running QQ bot codebase evolving from CQP to Mirai and AstrBot, preserving multiple generations of plugin architecture and bot operations.",
     "date": "2025-09-28T13:26:35Z",
-    "link": "https://github.com/ChouYuanjue/doge-repo"
+    "link": "https://github.com/ChouYuanjue/doge-repo",
+    "tags": [
+      "personal",
+      "Python",
+      "Chatbot",
+      "QQ",
+      "Bot"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20250926: Backpropagation in One MLP Layer: From a Three-Dimensional Tensor to an Outer Product",
+    "title": "N-20250926 · Backpropagation in One MLP Layer: From a Three-Dimensional Tensor to an Outer Product",
     "description": "Machine Learning · 16 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-09-26",
     "link": "/notes/2025/N-20250926.pdf",
@@ -689,60 +867,81 @@
     "title": "REPO: Yuque LLM Wiki",
     "description": "This project focuses on converting Yuque documents into structured formats, enabling seamless integration with LLMs. It was developed as part of the first practice group project by the Nova Club at Nanjing University in 2025.",
     "date": "2025-09-23T11:39:15Z",
-    "link": "/achieved/yuque_llm_wiki"
+    "link": "/artifacts/yuque_llm_wiki",
+    "tags": [
+      "ARCHIVED"
+    ]
   },
   {
     "type": "Project",
     "title": "Tangut-Chinese Translator",
-    "description": "一个西夏文-中文双向翻译器",
+    "description": "A Tangut-Chinese translation prototype that combines dictionary scraping, sparse-script processing, and LLM-assisted interpretation for a low-resource historical writing system.",
     "date": "2025-09-17T11:36:28Z",
-    "link": "https://github.com/ChouYuanjue/Tangut_Chinese_Translator"
+    "link": "https://github.com/ChouYuanjue/Tangut_Chinese_Translator",
+    "tags": [
+      "personal",
+      "JavaScript",
+      "Translation",
+      "Linguistics",
+      "AI",
+      "NLP"
+    ]
   },
   {
     "type": "Criticism",
     "title": "Iconographic Verification and Serendipitous Fieldwork: A Field Note on Identifying Deities in a Sichuan-Tibet Border Jingtang",
     "description": "This field note details an unexpected ethnographic encounter and iconographic verification process during a Sichuan-Tibet border journey. What began as a casual visit to Chuansi Temple and Gami Monastery culminated in a crucial, impromptu \"field investigation\" within a local homestay's private shrine room (Jīngtáng). The record traces the journey of identifying two key Buddhist images: the initial misidentification of a Yellow Jambhala (黄财神) relief, corrected through expert group chat verification by analyzing features such as the peaceful aspect and Jewel-Spitting Mongoose; and the subsequent analysis of a vibrant Five-Color Dakinis (五色空行母) thangka.",
     "date": "2025-08-05",
-    "link": "/library/criticisms/maha-research"
+    "link": "/library/criticisms/maha-research",
+    "tags": [
+      "FIELD RESEARCH"
+    ]
   },
   {
     "type": "Fragment",
     "title": "The Tian-Cai Confluence: Geometric-Combinatorial Proof of Identity",
-    "description": "This fragment is a piece of mathematical satire. It stages an intentionally absurd “proof” that the geometric analyst Tian Gang and the Nanjing University undergraduate Cai Yuxi are the same person, using mock-academic reasoning, cryptographic language, and exaggerated identity arguments.\r\n\r\nThe humor lies in applying the apparatus of proof to a claim that is obviously fictional. The text should not be read as a factual assertion about either person. It is a parody of overconfident mathematical packaging, internet factionalism, and the temptation to turn coincidence into theorem.",
+    "description": "A deliberately absurd mathematical satire constructing a fictional identity between Tian Gang and Cai Yuxi.",
     "date": "2025-08-03",
-    "link": "/fragments/tian-cai"
+    "link": "/fragments/tian-cai",
+    "tags": [
+      "Satire"
+    ]
   },
   {
     "type": "Linguistics",
     "title": "Miscellanea XI. Assessing the Authenticity of Contested Historical and Linguistic Artifacts",
     "description": "A dialectical critique concerning the authenticity and verification of various contested historical and linguistic artifacts, including the Kunlun Stone Inscriptions (Chinese: 昆仑石刻), Gansang Stone Inscriptions (Chinese: 甘桑石刻), Yao ancient script (Chinese: 瑶族古文字), Zheda bamboo slips (Chinese: 浙大简), the Gelao's Nine Heavens Great Pu History Record (Chinese: 仡佬的九天大濮史录), and the Nüshu mother coin (Chinese: 女书的雕母钱).",
     "date": "2025-08-02",
-    "link": "/library/linguistics/miscellanea-xi-contested-artifacts"
+    "link": "/library/linguistics/miscellanea-xi-contested-artifacts",
+    "tags": [
+      "Paleography",
+      "History",
+      "Authenticity"
+    ]
   },
   {
     "type": "Fragment",
     "title": "Minecraft: The Riemann Manifold of Fun—A Hypothetical Physics Simulation",
-    "description": "This fragment reviews *Minecraft* as if it were a serious physical universe with nonstandard axioms. Gravity is selective, fluids are simplified, structural failure is mostly absent, and redstone behaves like an unusually clean Boolean substrate.\r\n\r\nThe piece is humorous, but the framing is productive: by comparing Minecraft’s rules with classical mechanics, thermodynamics, fluid dynamics, and circuit logic, one can see how a game engine becomes a toy model of alternative physics. The final connection to the Nanjing University Minecraft Organization keeps the tone deliberately enthusiastic rather than academic.",
+    "description": "A playful physics review of Minecraft as a universe with altered axioms and engineering-friendly laws.",
     "date": "2025-07-30",
-    "link": "/fragments/nmo-physics"
-  },
-  {
-    "type": "Collection",
-    "title": "Jeanot Collection (让诺集)",
-    "description": "A curated collection of classical writings, categorized into: 赋 (7), 说 (6), 论 (6), 讽 (2), 考 (6), 稗 (2), 七 (2), 杂记 (15), 行记 (6), 骚 (3), 哀 (2), 诔 (1), 志 (5), 制艺 (5), 檄 (1), 书序 (4), 书后 (5), 史述赞 (2), 颂 (2), 奏疏 (1), 表 (2), 书 (4), 议谥 (5), 行状 (1), 史表 (5), 史述 (3), 制 (2), 经 (2), 补遗 (3), 诗 (27), 词 (15), 曲 (1).",
-    "date": "2025-07-19",
-    "link": "/library/classics"
+    "link": "/fragments/nmo-physics",
+    "tags": [
+      "Mathematical Study"
+    ]
   },
   {
     "type": "Fragment",
     "title": "The Proper Way to Speak Like a Mathematical Maniac: A Self-created Meme",
-    "description": "This fragment is a self-correcting lexicon of mathematical over-formalization. It translates ordinary conversational phrases into deliberately excessive technical expressions, turning everyday speech into complexity classes, set-theoretic independence, categorical conventions, and asymptotic jokes.\r\n\r\nThe purpose is comic rather than didactic, but the humor depends on genuine mathematical associations. Each entry records not only the joke but also the concept behind it and, where needed, a later correction. The result is a small archive of how mathematical language becomes a social style among peers.",
+    "description": "A humorous lexicon translating ordinary speech into absurdly overformal mathematical expressions.",
     "date": "2025-07-14",
-    "link": "/fragments/maniac-meme"
+    "link": "/fragments/maniac-meme",
+    "tags": [
+      "Satire"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20250707: Nikonov's Paper at One Crossing: Region Probes, Partial Tribrackets, and What the Seminar Was About",
+    "title": "N-20250707 · Nikonov's Paper at One Crossing: Region Probes, Partial Tribrackets, and What the Seminar Was About",
     "description": "Curves and Structures · 8 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-07-07",
     "link": "/notes/2025/N-20250707.pdf",
@@ -754,13 +953,16 @@
   {
     "type": "Fragment",
     "title": "The Space Between the Lines: A Post-Gaokao Journey into Knot Theory via Nikonov's seminar",
-    "description": "This fragment records a post-Gaokao encounter with I. M. Nikonov’s seminar on partial tribrackets. I entered the lecture with only a high-school-to-early-undergraduate background and quickly found myself surrounded by unfamiliar language: quasigroups, biquandloids, thickened surfaces, and diagrammatic invariants.\r\n\r\nInstead of treating that confusion as failure, I used it as a map. The fragment follows my attempt to read Nikonov’s related paper, identify the topological and combinatorial sides of knot theory, and understand how local diagrammatic data can encode global invariants. It is an honest record of learning from the edge of comprehension.",
+    "description": "A post-Gaokao learning record on Nikonov’s seminar, partial tribrackets, and knot-theoretic language.",
     "date": "2025-07-05",
-    "link": "/fragments/nikonov-knot"
+    "link": "/fragments/nikonov-knot",
+    "tags": [
+      "Seminar Notes"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20250705: Nikonov's Seminar Prelude: Knots, Diagrams, Probes, and the Space Between the Lines",
+    "title": "N-20250705 · Nikonov's Seminar Prelude: Knots, Diagrams, Probes, and the Space Between the Lines",
     "description": "Curves and Structures · 7 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-07-05",
     "link": "/notes/2025/N-20250705.pdf",
@@ -772,20 +974,26 @@
   {
     "type": "Fragment",
     "title": "The Naming Game — From RC，Runnel, Rangnuo, Jeanot to Rinelle",
-    "description": "This fragment treats naming as a form of intellectual self-fashioning. It traces several names and aliases—Runnel, Runcheng, Rangnuo, Jeanot, Rinelle, and Xiangruo—not as isolated labels but as attempts to connect Chinese naming practice, European linguistic play, and personal mythology.\r\n\r\nThe text combines translation, etymology, classical-style prose, and a deliberately theatrical alter ego. Its seriousness lies not in the aristocratic playacting but in the underlying question: how does a person build continuity across languages, platforms, and stages of life through names?",
+    "description": "A philological and autobiographical note on names, aliases, courtesy names, and self-fashioning.",
     "date": "2025-06-28",
-    "link": "/fragments/name-game"
+    "link": "/fragments/name-game",
+    "tags": [
+      "Personal Archive"
+    ]
   },
   {
     "type": "Criticism",
     "title": "Pratofungo: The \"Paradiso dei Malati\" Isolated from the World",
     "description": "In Italo Calvino's The Cloven Viscount, Pratofungo is a secluded village for lepers, depicted as a 'Paradise of the Sick' where isolation fosters a decadent happiness. This short review explores its themes of exclusion, self-deception, and the tragedy of societal rejection, drawing parallels to modern psychoanalytic communities.",
     "date": "2025-03-30",
-    "link": "/library/criticisms/pratofungo"
+    "link": "/library/criticisms/pratofungo",
+    "tags": [
+      "SHORT REVIEW"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20250301: Projective Schemes and Gluing: Building Projective Space from Affine Windows",
+    "title": "N-20250301 · Projective Schemes and Gluing: Building Projective Space from Affine Windows",
     "description": "Curves and Structures · 13 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-03-01",
     "link": "/notes/2025/N-20250301.pdf",
@@ -799,11 +1007,14 @@
     "title": "The Transgressive Gaze and Symbolic Tragedy: Actaeon's Myth in a Lacanian Framework",
     "description": "In Robert Graves’s reconstruction of the myth of Artemis, Actaeon accidentally glimpses the goddess bathing and is transformed into a stag, only to be torn apart by his own hounds. This tragedy not only embodies ancient taboos but also serves as a powerful allegory for Lacanian concepts of the gaze, desire, and the symbolic order. This paper reinterprets the myth of Actaeon through the lens of Lacan’s theory of the gaze, exploring its deep structure and its contemporary resonance in the digital age.",
     "date": "2025-02-13",
-    "link": "/library/criticisms/actaeon-lacan"
+    "link": "/library/criticisms/actaeon-lacan",
+    "tags": [
+      "ESSAY"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20250211: Transformations of Conics and the Erlangen View of Geometry",
+    "title": "N-20250211 · Transformations of Conics and the Erlangen View of Geometry",
     "description": "Classical Geometry · 17 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-02-11",
     "link": "/notes/2025/N-20250211.pdf",
@@ -817,11 +1028,14 @@
     "title": "PAPER: Chunpinative Geometry: A Synthetic Framework for Complementary Angle Structures",
     "description": "This paper presents the foundations of Chunpinative Geometry, a novel geometric framework anchored in the Dual-Complementary Principle (D-C-P), which asserts the axiomatic equivalence of angles and their complements. Departing from classical Euclidean axioms, it synthesizes tropical deformation techniques, derived non-Archimedean structures, and a reimagined Erlangen program to construct a self-consistent theory of complementary angle spaces. The framework axiomatizes rigid C-spaces, where angle quantization and metric degeneracies arise naturally from the D-C-P axiom. It resolves anomalies such as the CZL Lemma through quasi-schematic methods and establishes the complementarity group G as a symmetry governing geometric transformations, bridging synthetic geometry with deformation quantization.",
     "date": "2025-01-31",
-    "link": "/achieved/paper-cpg"
+    "link": "/artifacts/paper-cpg",
+    "tags": [
+      "FICTIONAL"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20250118: Schemes Gently: A Guided Tour of Spectrum, Nilpotents, and Local Rings",
+    "title": "N-20250118 · Schemes Gently: A Guided Tour of Spectrum, Nilpotents, and Local Rings",
     "description": "Curves and Structures · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-01-18",
     "link": "/notes/2025/N-20250118.pdf",
@@ -831,15 +1045,28 @@
     ]
   },
   {
+    "type": "Collection",
+    "title": "Jeanot Collection (让诺集)",
+    "description": "A classical-writing collection with 153 entries across 32 categories.",
+    "date": "2025-01-01",
+    "link": "/library/classics",
+    "tags": [
+      "Classics"
+    ]
+  },
+  {
     "type": "Criticism",
     "title": "The Unconsoled: The Social Landscape Behind the \"Impossibility of Communication\"",
     "description": "Kazuo Ishiguro's experimental novel The Unconsoled explores the impossibility of communication in modern society, examining the alienation of art through commodification, the tyranny of time, and the homelessness of modern man, all within a dreamlike narrative structure.",
     "date": "2024-12-20",
-    "link": "/library/criticisms/the-unconsoled"
+    "link": "/library/criticisms/the-unconsoled",
+    "tags": [
+      "ESSAY"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20241026: Zariski Geometry: When Functions Become the Space",
+    "title": "N-20241026 · Zariski Geometry: When Functions Become the Space",
     "description": "Curves and Structures · 14 sections · PDF and TeX source available in the INM archive.",
     "date": "2024-10-26",
     "link": "/notes/2024/N-20241026.pdf",
@@ -853,25 +1080,38 @@
     "title": "Miscellanea X. The Lacanian L-Schema in Hemingway's The Old Man and the Sea",
     "description": "A Lacanian linguistic analysis utilizing the \"L-schema\" (or L'Automaton) to examine the structural and architectural characteristics of Ernest Hemingway's literary corpus, with a specific focus on the novel The Old Man and the Sea.",
     "date": "2024-10-18",
-    "link": "/library/linguistics/miscellanea-x-lacanian-l-schema"
+    "link": "/library/linguistics/miscellanea-x-lacanian-l-schema",
+    "tags": [
+      "Lacan",
+      "Psychoanalysis",
+      "Literature"
+    ]
   },
   {
     "type": "Linguistics",
     "title": "Miscellanea IX. Saussure, Lacan, and the Language of Hemingway",
     "description": "A philosophical analysis of Ernest Hemingway's literary style, employing the Saussurean and Lacanian concepts of the signifier (French: signifiant) and the signified (French: signifié) to explore the deeper linguistic and philosophical implications of his work.",
     "date": "2024-10-17",
-    "link": "/library/linguistics/miscellanea-ix-saussure-lacan-hemingway"
+    "link": "/library/linguistics/miscellanea-ix-saussure-lacan-hemingway",
+    "tags": [
+      "Philosophy of Language",
+      "Semiotics",
+      "Literature"
+    ]
   },
   {
     "type": "Criticism",
     "title": "From Cthulhu to Borges: Cosmic Horror, Sublime Aesthetics, and Mythic Displacement in Modern Literature",
     "description": "This lecture explores the intellectual and aesthetic intersections between H.P. Lovecraft’s Cthulhu Mythos and Jorge Luis Borges’ literary oeuvre. It examines the 'horror sublime aesthetics' and the contemporary evolution of the Cthulhu Mythos in online literature through the framework of mythic displacement.",
     "date": "2024-10-13",
-    "link": "/library/criticisms/cthulhu-borges"
+    "link": "/library/criticisms/cthulhu-borges",
+    "tags": [
+      "LECTURE"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20240914: Divisors on Curves: The Bookkeeping of Zeros, Poles, and Functions",
+    "title": "N-20240914 · Divisors on Curves: The Bookkeeping of Zeros, Poles, and Functions",
     "description": "Curves and Structures · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2024-09-14",
     "link": "/notes/2024/N-20240914.pdf",
@@ -885,18 +1125,24 @@
     "title": "The Labyrinth in Borges's The Book of Sand",
     "description": "Jorge Luis Borges's works, whether fiction or poetry, seem to meticulously construct labyrinths. These labyrinths encompass themes such as \"time,\" \"religion,\" \"infinity,\" and \"nightmares,\" often leaving readers feeling disoriented and struggling to grasp a definitive meaning. The Book of Sand is no exception. However, if we carefully analyze the structure of these labyrinths, it is possible to uncover the underlying philosophical intentions and aesthetic pursuits.",
     "date": "2024-08-12",
-    "link": "/library/criticisms/book-of-sand"
+    "link": "/library/criticisms/book-of-sand",
+    "tags": [
+      "ESSAY"
+    ]
   },
   {
     "type": "Fragment",
     "title": "Echoes of Summer — From Hopf Fibrations to Higher Algebra",
-    "description": "This fragment begins with a later lecture poster by Keyao Peng and uses it as a trigger to revisit an earlier summer spent learning the Hopf fibration. The memory is both mathematical and personal: a 2021 lecture, days of preparation, handwritten notes, and the first serious attempt to visualize maps between spheres.\r\n\r\nThe second half translates that memory into a “galaxy brain” style conceptual ladder. The point is not to claim mastery of higher algebra, but to show how one object can be revisited at different levels: definition, visualization, homotopy, geometry, and finally the speculative language of deeper algebraic structures.",
+    "description": "A nostalgic reconstruction of a Hopf-fibration learning episode through a later algebraic-geometry lecture poster.",
     "date": "2024-07-27",
-    "link": "/fragments/hopf-meme"
+    "link": "/fragments/hopf-meme",
+    "tags": [
+      "Seminar Notes"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20240727: Hopf Fibration, Homotopy, and the Infinite-Stability Reading",
+    "title": "N-20240727 · Hopf Fibration, Homotopy, and the Infinite-Stability Reading",
     "description": "Topology and Homotopy · 9 sections · PDF and TeX source available in the INM archive.",
     "date": "2024-07-27",
     "link": "/notes/2024/N-20240727.pdf",
@@ -910,18 +1156,24 @@
     "title": "Rethinking the Imagery of the Crow in Lu Xun's Medicine",
     "description": "In this critical review, the author delves into the imagery of the crow in Lu Xun's short story Medicine, critiquing V. I. Semanova's theory of dual symbolism. By examining the crow's passive presence and eventual flight, the piece argues against over-interpretation and natural explanations, instead proposing the crow as a symbol of the indifferent and apathetic spectators in Chinese society. Drawing comparisons to Mori Ōgai's The Tower of Silence and Natsume Sōseki's I Am a Cat, the review highlights the crow's cold detachment as a reflection of the chilling social landscape Lu Xun depicted.",
     "date": "2024-07-14",
-    "link": "/library/criticisms/luxun-med"
+    "link": "/library/criticisms/luxun-med",
+    "tags": [
+      "SHORT REVIEW"
+    ]
   },
   {
     "type": "Criticism",
     "title": "When the Homeland Becomes the Kingdom of the Hunger Angel: The Alienation of Heimat in Herta Müller’s The Hunger Angel",
     "description": "Herta Müller's The Hunger Angel, a key work for her Nobel Prize, controversially depicts post-WWII Soviet labor camps from the perspective of a 'non-eyewitness.' As a Romanian-German minority member, Müller portrays the trauma of her people, earning praise for depicting the 'landscape of the dispossessed' and exploring a displaced person's confusion, critique, and quest for homeland.",
     "date": "2024-06-18",
-    "link": "/library/criticisms/hunger-angel"
+    "link": "/library/criticisms/hunger-angel",
+    "tags": [
+      "ESSAY"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20240608: Plane Curves as Algebraic Creatures: Equations, Rings, and Singularities",
+    "title": "N-20240608 · Plane Curves as Algebraic Creatures: Equations, Rings, and Singularities",
     "description": "Curves and Structures · 14 sections · PDF and TeX source available in the INM archive.",
     "date": "2024-06-08",
     "link": "/notes/2024/N-20240608.pdf",
@@ -932,7 +1184,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20240518: Projective Geometry as the Art of Removing Exceptions",
+    "title": "N-20240518 · Projective Geometry as the Art of Removing Exceptions",
     "description": "Classical Geometry · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2024-05-18",
     "link": "/notes/2024/N-20240518.pdf",
@@ -943,7 +1195,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20240427: Differential Forms and Stokes: The Geometry of Boundary Measurements",
+    "title": "N-20240427 · Differential Forms and Stokes: The Geometry of Boundary Measurements",
     "description": "Vector Calculus · 13 sections · PDF and TeX source available in the INM archive.",
     "date": "2024-04-27",
     "link": "/notes/2024/N-20240427.pdf",
@@ -954,7 +1206,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20240413: Local Linear Geometry: A Mapmaker's View of Derivatives and Tangent Spaces",
+    "title": "N-20240413 · Local Linear Geometry: A Mapmaker's View of Derivatives and Tangent Spaces",
     "description": "Multivariable Calculus · 13 sections · PDF and TeX source available in the INM archive.",
     "date": "2024-04-13",
     "link": "/notes/2024/N-20240413.pdf",
@@ -968,11 +1220,14 @@
     "title": "The Chess-Bird Will Not Leave Its Queen — Dream Metaphors within the Horizon of Herta Müller",
     "description": "This short review recounts a surreal experience in dream imbued with the literary style of Herta Müller, where familiar spaces become alien through grey walls and falsified maps, symbolizing systemic oppression. Through metaphors of chess pieces, subservient birds, and magnetic forces, it explores the fragmentation of self, the internalization of authority, and the painful attachment to imposed values in a high-pressure environment.",
     "date": "2024-03-30",
-    "link": "/library/criticisms/chess-bird"
+    "link": "/library/criticisms/chess-bird",
+    "tags": [
+      "SHORT REVIEW"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20240330: Combinatorial Geometry, Euler Formula, Platonic Solids, Degree, and Quotients",
+    "title": "N-20240330 · Combinatorial Geometry, Euler Formula, Platonic Solids, Degree, and Quotients",
     "description": "Combinatorics and Models · 20 sections · PDF and TeX source available in the INM archive.",
     "date": "2024-03-30",
     "link": "/notes/2024/N-20240330.pdf",
@@ -983,7 +1238,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20240323: Combinatorics: Identities, Generating Functions, Catalan Numbers, and More",
+    "title": "N-20240323 · Combinatorics: Identities, Generating Functions, Catalan Numbers, and More",
     "description": "Combinatorics and Models · 20 sections · PDF and TeX source available in the INM archive.",
     "date": "2024-03-23",
     "link": "/notes/2024/N-20240323.pdf",
@@ -997,25 +1252,36 @@
     "title": "Miscellanea VIII. Notes on German Orthography and Morphology",
     "description": "An introductory overview of the principles governing German orthography (German: Rechtschreibung) and word formation (morphology), while also earnestly expanding upon the classic “Euro-English” jest regarding the \"Germanification\" of English.",
     "date": "2024-03-11",
-    "link": "/library/linguistics/miscellanea-viii-german-orthography"
+    "link": "/library/linguistics/miscellanea-viii-german-orthography",
+    "tags": [
+      "German",
+      "Orthography",
+      "Morphology"
+    ]
   },
   {
     "type": "Criticism",
     "title": "From The Cloven Viscount: An Analysis of the Symbolization of the Body",
     "description": "This essay analyzes Italo Calvino's novel The Cloven Viscount, exploring the symbolization of the body through the protagonist's division. It examines how power structures discipline the body, the inherent heterogeneity of human nature, and the path to wholeness through embracing contradictions, as embodied by the character Pamela.",
     "date": "2024-03-08",
-    "link": "/library/criticisms/cloven-viscount"
+    "link": "/library/criticisms/cloven-viscount",
+    "tags": [
+      "ESSAY"
+    ]
   },
   {
     "type": "Criticism",
     "title": "The Baron in the Trees: Calvino's Paradox of Human-Nature Relations",
     "description": "This essay explores Italo Calvino's novel The Baron in the Trees, examining the protagonist Cosimo's arboreal life as a metaphor for the complex interplay between humanity and nature. Through analysis of proximity, distance, and ecological awareness, it reveals Calvino's vision of a balanced coexistence that preserves both human essence and natural vitality.",
     "date": "2024-03-08",
-    "link": "/library/criticisms/tree-baron"
+    "link": "/library/criticisms/tree-baron",
+    "tags": [
+      "ESSAY"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20240211: Topos Theory: Categorical Preliminaries, Internal Logic, and the Geometry of Sets",
+    "title": "N-20240211 · Topos Theory: Categorical Preliminaries, Internal Logic, and the Geometry of Sets",
     "description": "Categories and Logic · 16 sections · PDF and TeX source available in the INM archive.",
     "date": "2024-02-11",
     "link": "/notes/2024/N-20240211.pdf",
@@ -1029,67 +1295,101 @@
     "title": "The Unattainable Beyond, the Incomplete Flight: Alice Munro’s Runaway and Lacan’s \"objet petit a\"",
     "description": "Alice Munro’s Runaway is a collection marked by an intense structural consciousness. Unlike many anthologies that simply aggregate a writer's representative works, Munro deliberately tethers eight short stories to a singular, cohesive theme: escape. As Eudora Welty observed: \"[The stories] repeat themselves in all sorts of subtle ways, coming at a certain theme from different variations.\" In these narratives, characters flee from families or marriages, and the protagonists are almost exclusively women. Yet the outcomes of their flights are strikingly similar: they either end in tragedy or lapse into failure. At times, it is difficult to comprehend why some abandon a successful escape at the very last moment, or fall into deeper anguish after the fact. By utilizing Jacques Lacan’s concept of the objet petit a, we may find a more precise analytical path through these predicaments.",
     "date": "2023-12-25",
-    "link": "/library/criticisms/menro-runaway"
+    "link": "/library/criticisms/menro-runaway",
+    "tags": [
+      "ESSAY"
+    ]
   },
   {
     "type": "Fragment",
     "title": "The Minuet of Marching Drill — Homotopy Analysis Based on Topological Behavioral Science",
-    "description": "This fragment is a satirical mathematical essay inspired by a classmate’s critique of campus marching drill. It translates a highly regimented school activity into the language of configuration spaces, quotienting, fiber bundles, Kan extensions, and geometric group theory.\r\n\r\nThe mathematical language is intentionally overpowered for the object being analyzed. That mismatch is the joke: by applying sophisticated formalism to an everyday disciplinary scene, the essay exposes both the absurdity of the activity and the performative excess of academic packaging. It should be read as parody, not as a serious mathematical model or a literal sociological claim.",
+    "description": "A satirical essay using topology and category theory to parody campus marching drill.",
     "date": "2023-11-27",
-    "link": "/fragments/marching-drill"
+    "link": "/fragments/marching-drill",
+    "tags": [
+      "Mathematical Study"
+    ]
   },
   {
     "type": "Criticism",
     "title": "Interpreting the Poetry in \"Forging the Swords\"",
     "description": "This essay offers tentative interpretations of the enigmatic songs in Lu Xun's 'Forging the Swords,' exploring themes of love, revenge, blood, and profanation through close readings of key lines, while challenging simplistic translations and emphasizing the poems' role in the novella's artistic depth.",
     "date": "2023-10-12",
-    "link": "/library/criticisms/luxun-sword"
+    "link": "/library/criticisms/luxun-sword",
+    "tags": [
+      "ESSAY"
+    ]
   },
   {
     "type": "Fragment",
     "title": "The Zermelo-Hessian-Kan Program and Its Real-World Metaphors",
-    "description": "This fragment uses the fictional “Zermelo-Hessian-Kan Program” as a vehicle for satire. It was originally written in response to classroom experiences with a high-school psychology teacher whose style felt arbitrary, overconfident, and insensitive to students’ perspectives.\r\n\r\nThe mathematical packaging is intentionally excessive: Kan extensions, critical points, and axiomatic language are used to build a mock theory of “absolute will.” The target is not mathematics itself but the rhetorical posture of authority. The piece should therefore be read as a private comic construction among classmates, not as a literal academic or personal accusation.",
+    "description": "A satirical “grand program” using mathematical language to parody classroom authority and psychological rhetoric.",
     "date": "2023-09-21",
-    "link": "/fragments/zhk-program"
+    "link": "/fragments/zhk-program",
+    "tags": [
+      "Satire"
+    ]
   },
   {
     "type": "Criticism",
     "title": "Aesthetics in The Temple of the Golden Pavilion",
     "description": "Yukio Mishima's The Temple of the Golden Pavilion embodies Japanese aesthetics of mono no aware, exploring the realization of eternity through destruction and the attainment of the ultimate in transient moments via character development.",
     "date": "2023-09-12",
-    "link": "/library/criticisms/kinkaku-ji"
+    "link": "/library/criticisms/kinkaku-ji",
+    "tags": [
+      "ESSAY"
+    ]
   },
   {
     "type": "Linguistics",
     "title": "Miscellanea VII. Fit to Be Called Langdang, But Daring Not to Speak Longzhong (堪作郎当语，不敢语龙钟)",
     "description": "An etymological and phonological analysis demonstrating the cognate relationship between the Chinese words “郎当” and “龙钟”. Drawing on ancient poetry and historical anecdotes, the essay examines the nuanced emotional similarities and differences between the terms, concluding with personal reflections.",
     "date": "2023-09-09",
-    "link": "/library/linguistics/miscellanea-vii-langdang-longzhong"
+    "link": "/library/linguistics/miscellanea-vii-langdang-longzhong",
+    "tags": [
+      "Etymology",
+      "Chinese Philology",
+      "Poetry"
+    ]
   },
   {
     "type": "Linguistics",
     "title": "Miscellanea VI. A Phonetic Study of Suqian Dialects",
     "description": "An investigative phonetic transcription (IPA) of two distinct dialects within Suqian (Chinese: 宿迁): the local Suqian dialect and the Shuyang County (Chinese: 沭阳县) dialect. The analysis concludes that these dialects correspond to Zhongyuan Mandarin (Chinese: 中原官话) and Jianghuai Mandarin (Chinese: 江淮官话), respectively.",
     "date": "2023-08-25",
-    "link": "/library/linguistics/miscellanea-vi-suqian-dialects"
+    "link": "/library/linguistics/miscellanea-vi-suqian-dialects",
+    "tags": [
+      "Dialectology",
+      "Mandarin",
+      "Fieldwork"
+    ]
   },
   {
     "type": "Criticism",
     "title": "The Textual Characteristic of Yuewei Caotang Biji: \"Not Knowing\"",
     "description": "As a representative work of literary sketches from the Qing Dynasty, Yuewei Caotang Biji (《阅微草堂笔记》) presents a narrative style that stands in stark contrast to Liaozhai Zhiyi (《聊斋志异》). While the latter emphasizes elaborate plots and character development, the former is noted for its brevity and succinctness. More uniquely, Ji Yun (纪昀), the author, frequently employs the expression \"not knowing\" (bu zhi, 不知) within the narrative. This technique not only obscures character identities and event causalities but also subtly enhances the text's sense of authenticity and philosophical depth. This seemingly ambiguous narrative approach is, in fact, a deliberately crafted expressive strategy by the author, carrying rich literary and intellectual connotations.",
     "date": "2023-08-15",
-    "link": "/library/criticisms/yuewei-caotang"
+    "link": "/library/criticisms/yuewei-caotang",
+    "tags": [
+      "ESSAY"
+    ]
   },
   {
     "type": "Linguistics",
     "title": "Miscellanea V. Harp in Tsarskoye Selo (Бряцанье в Царском Селе)",
     "description": "An examination of the historical and cultural factors, including the phenomenon of галломания, that led to the significant number of shared lexical items between Russian and French despite their divergent linguistic origins. The essay also specifically highlights the substantial contributions of Pushkin to the development of the Russian language.",
     "date": "2023-08-08",
-    "link": "/library/linguistics/miscellanea-v-harp-tsarskoye-selo"
+    "link": "/library/linguistics/miscellanea-v-harp-tsarskoye-selo",
+    "tags": [
+      "Russian",
+      "French",
+      "Historical Linguistics",
+      "Culture"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20230801: Reading Hitchin: Self-Duality Equations, Higgs Bundles, and Geometric Structures",
+    "title": "N-20230801 · Reading Hitchin: Self-Duality Equations, Higgs Bundles, and Geometric Structures",
     "description": "Curves and Structures · 18 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-08-01",
     "link": "/notes/2023/N-20230801.pdf",
@@ -1103,11 +1403,14 @@
     "title": "A Comparison of Two Artists' Philosophies of Life in The Life and Opinions of the Tomcat Murr",
     "description": "E.T.A. Hoffmann's late masterpiece, The Life and Opinions of the Tomcat Murr, features a dual narrative contrasting the tomcat Murr's humorous rise as an 'artist' with the tragic life of musician Johannes Kreisler, reflecting the artist's struggle between reality and idealism.",
     "date": "2023-07-12",
-    "link": "/library/criticisms/tomcat-murr"
+    "link": "/library/criticisms/tomcat-murr",
+    "tags": [
+      "ESSAY"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20230710: Foundations of Mathematics: Set Theory, Category Theory, and Type Theory",
+    "title": "N-20230710 · Foundations of Mathematics: Set Theory, Category Theory, and Type Theory",
     "description": "Sets and Foundations · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-07-10",
     "link": "/notes/2023/N-20230710.pdf",
@@ -1121,39 +1424,60 @@
     "title": "The Inheritance and Legacy of the Chuci — A Literary Transition that Has Been Overlooked",
     "description": "This presentation challenges Fu Sinian's view that the Chuci (《楚辞》) is isolated from the mainstream literary lineage. It argues that the Chuci serves as a transitional bridge: inheriting the Shijing's (《诗经》) phrasing and analogical methods (bixing, 比兴), absorbing influences from Qi remonstrance literature (Qi feng, 齐讽), and shaping Han dynasty Sao-style fu (骚体赋). Ultimately, it restores the Chuci as both inheritor of ancient traditions and progenitor of new literary forms.",
     "date": "2023-06-22",
-    "link": "/library/criticisms/chuci-transition"
+    "link": "/library/criticisms/chuci-transition",
+    "tags": [
+      "LECTURE"
+    ]
   },
   {
     "type": "Linguistics",
     "title": "Miscellanea IV. The Tragedy and Comedy of Xiding Language",
     "description": "An analysis of the features, variants, and evolution of the constructed language known as Xiding Language (Chinese: 希顶语). The study also includes a description of the current dynamics within the domestic Chinese online linguistics community and the personal history of the language's creator, Huang Quefei (Chinese: 黄雀飞).",
     "date": "2023-05-02",
-    "link": "/library/linguistics/miscellanea-iv-xiding-language"
+    "link": "/library/linguistics/miscellanea-iv-xiding-language",
+    "tags": [
+      "Conlang",
+      "Sociolinguistics",
+      "Xiding"
+    ]
   },
   {
     "type": "Linguistics",
     "title": "Miscellanea III. The Everlasting Sound of the Partridge (千古鹧鸪声)",
     "description": "An investigation into the origin of two distinct literary \"phonetic representations\" (Chinese: “音译”) of the partridge (Chinese: 鹧鸪) call in ancient Chinese literature—namely, “行不得也哥哥” (Literally: 'Cannot go, my elder brother') and “懊恼泽家” (Literally: 'Vexed by the suffering caused by one's husband's family')—by analyzing the actual phonology of Middle Chinese.",
     "date": "2023-04-19",
-    "link": "/library/linguistics/miscellanea-iii-partridge-sound"
+    "link": "/library/linguistics/miscellanea-iii-partridge-sound",
+    "tags": [
+      "Middle Chinese",
+      "Literature",
+      "Phonology"
+    ]
   },
   {
     "type": "Linguistics",
     "title": "Miscellanea II. Reconstructing Tangut Phonology: An Analysis of Gong Hwang-cherng's Symbols",
     "description": "A reconstruction of Tangut (Chinese: 西夏文) phonology by correlating selected Tangut textual data and their corresponding Chinese phonetic transcriptions, specifically aiming to establish the actual correspondence between Gong Hwang-cherng (Chinese: 龚煌城)'s proposed reconstruction symbols and the International Phonetic Alphabet (IPA).",
     "date": "2023-03-29",
-    "link": "/library/linguistics/miscellanea-ii-tangut-phonology"
+    "link": "/library/linguistics/miscellanea-ii-tangut-phonology",
+    "tags": [
+      "Tangut",
+      "Phonology",
+      "Historical Linguistics"
+    ]
   },
   {
     "type": "Criticism",
     "title": "From Euclid to Yoneda, from Plato to Lacan — Signs, Structures, and the Unsayable",
     "description": "This lecture maps an intellectual journey from Euclid to Yoneda, where mathematical objects are defined by relational networks—captured in the Yoneda Lemma—and into Lacan, where the subject is trapped in a signifying chain unable to fully capture reality. It examines the paradox of symbolization: tools meant to simplify instead create new complexities, building bridges that are also walls—ultimately reflecting on the boundary between the articulated and the eternally unsayable.",
     "date": "2023-03-23",
-    "link": "/library/criticisms/yoneda-lacan"
+    "link": "/library/criticisms/yoneda-lacan",
+    "tags": [
+      "LECTURE"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20230316: Fixed Points, Iteration, and the Banach Contraction Principle",
+    "title": "N-20230316 · Fixed Points, Iteration, and the Banach Contraction Principle",
     "description": "Functions and Inequalities · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-03-16",
     "link": "/notes/2023/N-20230316.pdf",
@@ -1164,7 +1488,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230314: Category Theory Continued: Free and Forgetful Functors, Concrete Categories, and Group Actions",
+    "title": "N-20230314 · Category Theory Continued: Free and Forgetful Functors, Concrete Categories, and Group Actions",
     "description": "Categories and Logic · 7 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-03-14",
     "link": "/notes/2023/N-20230314.pdf",
@@ -1175,7 +1499,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230313: Category Theory Continued: Posets, Groups as One-Object Categories, Products, and Monomorphisms",
+    "title": "N-20230313 · Category Theory Continued: Posets, Groups as One-Object Categories, Products, and Monomorphisms",
     "description": "Categories and Logic · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-03-13",
     "link": "/notes/2023/N-20230313.pdf",
@@ -1186,7 +1510,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230311: Riemann Integration and Lebesgue Integration: From Partitions of the Domain to Partitions of Values",
+    "title": "N-20230311 · Riemann Integration and Lebesgue Integration: From Partitions of the Domain to Partitions of Values",
     "description": "Vector Calculus · 23 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-03-11",
     "link": "/notes/2023/N-20230311.pdf",
@@ -1197,7 +1521,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230310: Derivatives, Tangents, Extremal Problems, Young–Holder–Minkowski, and Jensen",
+    "title": "N-20230310 · Derivatives, Tangents, Extremal Problems, Young–Holder–Minkowski, and Jensen",
     "description": "Calculus · 16 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-03-10",
     "link": "/notes/2023/N-20230310.pdf",
@@ -1208,7 +1532,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230225: Nonstandard Analysis and the Meaning of $0.999\\ldots=1$",
+    "title": "N-20230225 · Nonstandard Analysis and the Meaning of $0.999\\ldots=1$",
     "description": "Sets and Foundations · 17 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-02-25",
     "link": "/notes/2023/N-20230225.pdf",
@@ -1222,18 +1546,24 @@
     "title": "Poetry as the Religion of the Chinese",
     "description": "This short review explores Lin Yutang's assertion that poetry serves as the religion of the Chinese, examining parallels between poetry and religion in terms of spiritual solace and social control, while drawing comparisons to Zen Buddhism and reflecting on poetry's role in modern life.",
     "date": "2023-02-24",
-    "link": "/library/criticisms/poetry-religion"
+    "link": "/library/criticisms/poetry-religion",
+    "tags": [
+      "SHORT REVIEW"
+    ]
   },
   {
     "type": "Fragment",
     "title": "The Derivation of Trigonometric Sum and Difference Formulas from Advanced Standpoints",
-    "description": "This fragment began with a classroom obsession: I wanted a direct derivation of the tangent sum formula using the reciprocal-basis language from tensor calculus. The attempt did not work as planned, since in an orthonormal setting the reciprocal basis collapses back to the original basis and loses the distinctive feature I hoped to exploit.\r\n\r\nThe failed attempt nevertheless became useful. I reorganized several derivation routes—geometric, vectorial, matrix-based, complex-analytic, and tensor-inspired—to compare what each method actually explains. The fragment is therefore less about finding the shortest proof than about understanding why different formalisms illuminate different parts of a familiar identity.",
+    "description": "A note on deriving trigonometric sum formulas through geometry, algebra, and tensor-inspired attempts.",
     "date": "2023-02-23",
-    "link": "/fragments/sin-tan"
+    "link": "/fragments/sin-tan",
+    "tags": [
+      "Mathematical Study"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20230223: Trigonometric Systems, Multiple-Angle Formulas, and a Determinant Recurrence",
+    "title": "N-20230223 · Trigonometric Systems, Multiple-Angle Formulas, and a Determinant Recurrence",
     "description": "Classical Geometry · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-02-23",
     "link": "/notes/2023/N-20230223.pdf",
@@ -1247,11 +1577,16 @@
     "title": "Miscellanea I. A Phonological Study of Near-/i/ Vowels Across Languages",
     "description": "An IPA-based phonological analysis of near-/i/ vowels in various languages, including an examination of the actual realization of vowels in Chinese Pinyin syllables like zi, ci, and si, Japanese su (す), and Russian y (ы).",
     "date": "2023-02-22",
-    "link": "/library/linguistics/miscellanea-i-near-i-vowels"
+    "link": "/library/linguistics/miscellanea-i-near-i-vowels",
+    "tags": [
+      "Phonology",
+      "IPA",
+      "Comparative Linguistics"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20230220: Special Proofs of Trigonometric Addition Formulas",
+    "title": "N-20230220 · Special Proofs of Trigonometric Addition Formulas",
     "description": "Classical Geometry · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-02-20",
     "link": "/notes/2023/N-20230220.pdf",
@@ -1262,7 +1597,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230217: A Brief Note on Tensors II: Tensor Products, Components, and More",
+    "title": "N-20230217 · A Brief Note on Tensors II: Tensor Products, Components, and More",
     "description": "Linear Algebra · 19 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-02-17",
     "link": "/notes/2023/N-20230217.pdf",
@@ -1273,7 +1608,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230209: Linear Maps, Matrix Representations, and Tensor Invariance",
+    "title": "N-20230209 · Linear Maps, Matrix Representations, and Tensor Invariance",
     "description": "Linear Algebra · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-02-09",
     "link": "/notes/2023/N-20230209.pdf",
@@ -1284,7 +1619,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230205: Vector Triple Product, Exterior Algebra, and the Hodge Star",
+    "title": "N-20230205 · Vector Triple Product, Exterior Algebra, and the Hodge Star",
     "description": "Multivariable Calculus · 14 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-02-05",
     "link": "/notes/2023/N-20230205.pdf",
@@ -1302,7 +1637,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230201: Newton's Shell Theorem: Solid Angle, Potential, and Gauss Law",
+    "title": "N-20230201 · Newton's Shell Theorem: Solid Angle, Potential, and Gauss Law",
     "description": "Vector Calculus · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-02-01",
     "link": "/notes/2023/N-20230201.pdf",
@@ -1320,7 +1655,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230127: Factorization of $\\sum_{i=0}^k x^{in}$: Roots of Unity, False Generalization, and Cyclotomic Structure",
+    "title": "N-20230127 · Factorization of $\\sum_{i=0}^k x^{in}$: Roots of Unity, False Generalization, and Cyclotomic Structure",
     "description": "Number Theory Basics · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-01-27",
     "link": "/notes/2023/N-20230127.pdf",
@@ -1331,7 +1666,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230123: Definite Integrals, Line Integrals, Work, Green-Type Thinking, and Vector Operations",
+    "title": "N-20230123 · Definite Integrals, Line Integrals, Work, Green-Type Thinking, and Vector Operations",
     "description": "Vector Calculus · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-01-23",
     "link": "/notes/2023/N-20230123.pdf",
@@ -1342,7 +1677,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230119: Plane Geometry I: Ceva, Menelaus, Ptolemy, Simson Line, and Euler Line",
+    "title": "N-20230119 · Plane Geometry I: Ceva, Menelaus, Ptolemy, Simson Line, and Euler Line",
     "description": "Classical Geometry · 17 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-01-19",
     "link": "/notes/2023/N-20230119.pdf",
@@ -1353,7 +1688,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230118: Combinatorics: Pigeonhole Principle, Subsets, Binomial Sums, and Helly-Type Ideas",
+    "title": "N-20230118 · Combinatorics: Pigeonhole Principle, Subsets, Binomial Sums, and Helly-Type Ideas",
     "description": "Combinatorics and Models · 17 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-01-18",
     "link": "/notes/2023/N-20230118.pdf",
@@ -1364,7 +1699,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230117: More Function Exercises: Periodicity, Piecewise Definitions, Images, and Functional Equations",
+    "title": "N-20230117 · More Function Exercises: Periodicity, Piecewise Definitions, Images, and Functional Equations",
     "description": "Functions and Inequalities · 18 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-01-17",
     "link": "/notes/2023/N-20230117.pdf",
@@ -1375,7 +1710,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230116: Functions, Mappings, Injections, Surjections, and Functional Equations",
+    "title": "N-20230116 · Functions, Mappings, Injections, Surjections, and Functional Equations",
     "description": "Functions and Inequalities · 17 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-01-16",
     "link": "/notes/2023/N-20230116.pdf",
@@ -1386,7 +1721,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20230107: Function Graphs, Symmetry Centers, and Transformations",
+    "title": "N-20230107 · Function Graphs, Symmetry Centers, and Transformations",
     "description": "Functions and Inequalities · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-01-07",
     "link": "/notes/2023/N-20230107.pdf",
@@ -1398,13 +1733,16 @@
   {
     "type": "Fragment",
     "title": "Correspondence with Professor Tom Leinster: My Translation of \"Rethinking Set Theory\" and a Request for Guidance",
-    "description": "This fragment preserves my correspondence with Professor Tom Leinster in late 2022 and early 2023. I wrote to him as a young student after translating his article “Rethinking Set Theory” into Chinese, hoping both to share the translation and to ask for guidance on how to continue studying category theory, homotopy type theory, and related foundations.\r\n\r\nLeinster’s reply was brief but meaningful: he appreciated the effort, noted the limits of judging a Chinese translation, and recommended two books that approach mathematics in an unconventional spirit—Saunders Mac Lane’s *Mathematics: Form and Function* and Michio Kuga’s *Galois’ Dream*. The exchange remains an important marker in my early mathematical self-education.",
+    "description": "Correspondence with Tom Leinster about translating “Rethinking Set Theory” and studying modern mathematics.",
     "date": "2022-12-30",
-    "link": "/fragments/leinster-email"
+    "link": "/fragments/leinster-email",
+    "tags": [
+      "Correspondence"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20221229: Algebraic Topology and Algebra: Products, Wedge Sums, CW Complexes, Cosets, and Surface Gluings",
+    "title": "N-20221229 · Algebraic Topology and Algebra: Products, Wedge Sums, CW Complexes, Cosets, and Surface Gluings",
     "description": "Topology and Homotopy · 19 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-29",
     "link": "/notes/2022/N-20221229.pdf",
@@ -1415,7 +1753,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221228: Quotient Topology and Product Topology",
+    "title": "N-20221228 · Quotient Topology and Product Topology",
     "description": "Topology and Homotopy · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-28",
     "link": "/notes/2022/N-20221228.pdf",
@@ -1426,7 +1764,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221227: Category Theory Continued and the Question Topology",
+    "title": "N-20221227 · Category Theory Continued and the Question Topology",
     "description": "Categories and Logic · 16 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-27",
     "link": "/notes/2022/N-20221227.pdf",
@@ -1437,7 +1775,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221223: Homotopy, Simply Connected Spaces, Semigroups, Groups, and Homomorphisms",
+    "title": "N-20221223 · Homotopy, Simply Connected Spaces, Semigroups, Groups, and Homomorphisms",
     "description": "Topology and Homotopy · 17 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-23",
     "link": "/notes/2022/N-20221223.pdf",
@@ -1448,7 +1786,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221222: Topological Re-definitions, Subspaces, Connectedness, and Path-Connectedness",
+    "title": "N-20221222 · Topological Re-definitions, Subspaces, Connectedness, and Path-Connectedness",
     "description": "Topology and Homotopy · 17 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-22",
     "link": "/notes/2022/N-20221222.pdf",
@@ -1459,7 +1797,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221221: Basic Topology II: Completion, Homeomorphism Warnings, and Quotient Intuition",
+    "title": "N-20221221 · Basic Topology II: Completion, Homeomorphism Warnings, and Quotient Intuition",
     "description": "Topology and Homotopy · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-21",
     "link": "/notes/2022/N-20221221.pdf",
@@ -1470,7 +1808,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221218: Basic Topology I: Metric Spaces, Boundedness, Norms, Open Sets, and Completeness",
+    "title": "N-20221218 · Basic Topology I: Metric Spaces, Boundedness, Norms, Open Sets, and Completeness",
     "description": "Topology and Homotopy · 17 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-18",
     "link": "/notes/2022/N-20221218.pdf",
@@ -1481,7 +1819,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221217: Function Exercises: Domains, Ranges, Dirichlet Function, Parameters, and Functional Equations",
+    "title": "N-20221217 · Function Exercises: Domains, Ranges, Dirichlet Function, Parameters, and Functional Equations",
     "description": "Functions and Inequalities · 22 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-17",
     "link": "/notes/2022/N-20221217.pdf",
@@ -1492,7 +1830,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221214: Tarski's Circle-Squaring Problem: From Polygon Dissection to Borel Equidecomposition",
+    "title": "N-20221214 · Tarski's Circle-Squaring Problem: From Polygon Dissection to Borel Equidecomposition",
     "description": "Curves and Structures · 18 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-14",
     "link": "/notes/2022/N-20221214.pdf",
@@ -1503,7 +1841,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221211: Derivatives: Definition, Rules, Elementary Functions, and Inverse Trigonometric Derivatives",
+    "title": "N-20221211 · Derivatives: Definition, Rules, Elementary Functions, and Inverse Trigonometric Derivatives",
     "description": "Calculus · 16 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-11",
     "link": "/notes/2022/N-20221211.pdf",
@@ -1514,7 +1852,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221210: Binomial Theorem, Absolute-Value Estimates, and Set Exercises",
+    "title": "N-20221210 · Binomial Theorem, Absolute-Value Estimates, and Set Exercises",
     "description": "Combinatorics and Models · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-10",
     "link": "/notes/2022/N-20221210.pdf",
@@ -1525,7 +1863,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221209: Set-Theoretic and Combinatorial Exercises after the First Lecture",
+    "title": "N-20221209 · Set-Theoretic and Combinatorial Exercises after the First Lecture",
     "description": "Combinatorics and Models · 18 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-09",
     "link": "/notes/2022/N-20221209.pdf",
@@ -1536,7 +1874,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221207: Set Problems, Extremal Counting, and Venn-Diagram Reasoning",
+    "title": "N-20221207 · Set Problems, Extremal Counting, and Venn-Diagram Reasoning",
     "description": "Combinatorics and Models · 17 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-07",
     "link": "/notes/2022/N-20221207.pdf",
@@ -1547,7 +1885,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221205: Lecture Notes on Sets, Counting, and Binomial Coefficients",
+    "title": "N-20221205 · Lecture Notes on Sets, Counting, and Binomial Coefficients",
     "description": "Combinatorics and Models · 22 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-05",
     "link": "/notes/2022/N-20221205.pdf",
@@ -1558,7 +1896,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221126: Congruence Classes, Complete Residue Systems, and Euler's Function",
+    "title": "N-20221126 · Congruence Classes, Complete Residue Systems, and Euler's Function",
     "description": "Number Theory Basics · 18 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-11-26",
     "link": "/notes/2022/N-20221126.pdf",
@@ -1569,7 +1907,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221120: Elliptic Curves: Nonsingularity, Group Law, and Cryptographic Motivation",
+    "title": "N-20221120 · Elliptic Curves: Nonsingularity, Group Law, and Cryptographic Motivation",
     "description": "Arithmetic Geometry · 17 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-11-20",
     "link": "/notes/2022/N-20221120.pdf",
@@ -1580,7 +1918,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221119: Prime Numbers, Composite Numbers, Divisor Functions, Congruences, and Number-Theoretic Exercises",
+    "title": "N-20221119 · Prime Numbers, Composite Numbers, Divisor Functions, Congruences, and Number-Theoretic Exercises",
     "description": "Number Theory Basics · 17 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-11-19",
     "link": "/notes/2022/N-20221119.pdf",
@@ -1591,7 +1929,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221107: Trigonometric Limits, Derivatives, and Inverse Trigonometric Examples",
+    "title": "N-20221107 · Trigonometric Limits, Derivatives, and Inverse Trigonometric Examples",
     "description": "Calculus · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-11-07",
     "link": "/notes/2022/N-20221107.pdf",
@@ -1602,7 +1940,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221105: Function Exercises and Inequality Estimates",
+    "title": "N-20221105 · Function Exercises and Inequality Estimates",
     "description": "Functions and Inequalities · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-11-05",
     "link": "/notes/2022/N-20221105.pdf",
@@ -1613,7 +1951,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221031: Divisibility, Euclidean Algorithm, Greatest Common Divisor, Bezout, and Congruences",
+    "title": "N-20221031 · Divisibility, Euclidean Algorithm, Greatest Common Divisor, Bezout, and Congruences",
     "description": "Number Theory Basics · 20 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-10-31",
     "link": "/notes/2022/N-20221031.pdf",
@@ -1624,7 +1962,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221030: Integer Arithmetic: Well-Ordering, Euclidean Algorithm, and the Euler Function",
+    "title": "N-20221030 · Integer Arithmetic: Well-Ordering, Euclidean Algorithm, and the Euler Function",
     "description": "Number Theory Basics · 18 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-10-30",
     "link": "/notes/2022/N-20221030.pdf",
@@ -1635,7 +1973,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221013: Shoelace Formula, Remainder Theorem, and Modular Arithmetic",
+    "title": "N-20221013 · Shoelace Formula, Remainder Theorem, and Modular Arithmetic",
     "description": "Number Theory Basics · 14 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-10-13",
     "link": "/notes/2022/N-20221013.pdf",
@@ -1646,7 +1984,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20221012: A Map of Classical Inequalities",
+    "title": "N-20221012 · A Map of Classical Inequalities",
     "description": "Functions and Inequalities · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-10-12",
     "link": "/notes/2022/N-20221012.pdf",
@@ -1658,13 +1996,16 @@
   {
     "type": "Fragment",
     "title": "The Geometry of Dialogue and the Logic of Narrative: A Taste of Linear Logic",
-    "description": "This fragment collects my first sustained attempt to understand linear logic beyond the slogan that it treats propositions as resources. The route is deliberately broad: from game mechanics and storytelling to Schopenhauer-style debate, ludics, and the geometry of interaction.\r\n\r\nThe guiding contrast is between static logic and interactive logic. Instead of asking only whether a statement is true, linear logic asks how assumptions are consumed, transformed, duplicated, or withheld. The fragment is therefore both a learning note and a conceptual experiment: it tests whether a technical logical system can illuminate narrative structure and human interaction without reducing them to mere metaphor.",
+    "description": "A synthetic note on linear logic as resource, game, dialogue, and narrative structure.",
     "date": "2022-10-05",
-    "link": "/fragments/linear-logic"
+    "link": "/fragments/linear-logic",
+    "tags": [
+      "Mathematical Study"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20221005: Linear Logic: Resources, Dialogue, Narrative, and Geometry",
+    "title": "N-20221005 · Linear Logic: Resources, Dialogue, Narrative, and Geometry",
     "description": "Categories and Logic · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-10-05",
     "link": "/notes/2022/N-20221005.pdf",
@@ -1676,13 +2017,16 @@
   {
     "type": "Fragment",
     "title": "Synthesis and Properties of a Novel Tungsten-Containing Organic Compound Based on Superchemistry Theory",
-    "description": "This fragment is a parody of online pseudo-scientific “superchemistry.” It invents substances such as “sildenofil” and “L-wzlteine,” then develops a mock reaction theory involving tungsten-containing compounds, “strong antimony fields,” and deliberately implausible naming logic.\r\n\r\nThe text should be read as fictional satire, not as a chemical proposal. Its comic mechanism is the imitation of research prose: by writing nonsense in the grammar of synthesis, reaction conditions, and property analysis, it exposes how scientific authority can be counterfeited at the level of style.",
+    "description": "A pseudo-chemistry parody built from online “superchemistry” terminology and deliberately impossible compounds.",
     "date": "2022-10-03",
-    "link": "/fragments/wang-nuo"
+    "link": "/fragments/wang-nuo",
+    "tags": [
+      "Satire"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20221002: Finite Fields and Polynomial Factorization",
+    "title": "N-20221002 · Finite Fields and Polynomial Factorization",
     "description": "Arithmetic Geometry · 21 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-10-02",
     "link": "/notes/2022/N-20221002.pdf",
@@ -1696,11 +2040,14 @@
     "title": "REPO: doge docs (for v3)",
     "description": "The document of doge-v3.",
     "date": "2022-09-18T02:06:43Z",
-    "link": "/achieved/doge_docs"
+    "link": "/artifacts/doge_docs",
+    "tags": [
+      "ACHIEVED"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20220918: Divisibility by Finite Differences and Pairing",
+    "title": "N-20220918 · Divisibility by Finite Differences and Pairing",
     "description": "Number Theory Basics · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-09-18",
     "link": "/notes/2022/N-20220918.pdf",
@@ -1711,7 +2058,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220913: Divisibility, Congruences, and the Habit of Proving Necessity",
+    "title": "N-20220913 · Divisibility, Congruences, and the Habit of Proving Necessity",
     "description": "Number Theory Basics · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-09-13",
     "link": "/notes/2022/N-20220913.pdf",
@@ -1722,7 +2069,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220911: Analytic Geometry: Lines, Circles, and Coordinate Tricks",
+    "title": "N-20220911 · Analytic Geometry: Lines, Circles, and Coordinate Tricks",
     "description": "Classical Geometry · 23 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-09-11",
     "link": "/notes/2022/N-20220911.pdf",
@@ -1733,7 +2080,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220813: Complex Contour Integrals and the Geometry of Integration",
+    "title": "N-20220813 · Complex Contour Integrals and the Geometry of Integration",
     "description": "Complex Analysis · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-08-13",
     "link": "/notes/2022/N-20220813.pdf",
@@ -1744,7 +2091,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220811: Inequality Exercises: Cauchy, AM–GM, Vectors, and Optimization",
+    "title": "N-20220811 · Inequality Exercises: Cauchy, AM–GM, Vectors, and Optimization",
     "description": "Functions and Inequalities · 18 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-08-11",
     "link": "/notes/2022/N-20220811.pdf",
@@ -1755,7 +2102,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220810: Basic Inequalities, Cauchy, Triangle Inequality, and Coordinate Geometry",
+    "title": "N-20220810 · Basic Inequalities, Cauchy, Triangle Inequality, and Coordinate Geometry",
     "description": "Functions and Inequalities · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-08-10",
     "link": "/notes/2022/N-20220810.pdf",
@@ -1766,7 +2113,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220808: Set Counting, Modular Patterns, and Mathematical Induction",
+    "title": "N-20220808 · Set Counting, Modular Patterns, and Mathematical Induction",
     "description": "Functions and Inequalities · 16 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-08-08",
     "link": "/notes/2022/N-20220808.pdf",
@@ -1777,7 +2124,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220806: Set Theory Exercises, Closures, Functions, and Algebraic Side Notes",
+    "title": "N-20220806 · Set Theory Exercises, Closures, Functions, and Algebraic Side Notes",
     "description": "Functions and Inequalities · 23 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-08-06",
     "link": "/notes/2022/N-20220806.pdf",
@@ -1788,7 +2135,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220803: Arithmetic and Geometric Sequence Exercises",
+    "title": "N-20220803 · Arithmetic and Geometric Sequence Exercises",
     "description": "Number Theory Basics · 13 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-08-03",
     "link": "/notes/2022/N-20220803.pdf",
@@ -1799,7 +2146,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220802: Trigonometric Functions, Radians, Identities, and Triangle Formulas",
+    "title": "N-20220802 · Trigonometric Functions, Radians, Identities, and Triangle Formulas",
     "description": "Classical Geometry · 20 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-08-02",
     "link": "/notes/2022/N-20220802.pdf",
@@ -1810,7 +2157,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220801: Set Exercises, Functions, and Elementary Problem-Solving",
+    "title": "N-20220801 · Set Exercises, Functions, and Elementary Problem-Solving",
     "description": "Functions and Inequalities · 24 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-08-01",
     "link": "/notes/2022/N-20220801.pdf",
@@ -1821,7 +2168,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220728: Spatial Vectors, Cross Products, and Categorical Products",
+    "title": "N-20220728 · Spatial Vectors, Cross Products, and Categorical Products",
     "description": "Multivariable Calculus · 19 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-07-28",
     "link": "/notes/2022/N-20220728.pdf",
@@ -1832,7 +2179,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220725: Permutations, Inversions, and Determinants",
+    "title": "N-20220725 · Permutations, Inversions, and Determinants",
     "description": "Linear Algebra · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-07-25",
     "link": "/notes/2022/N-20220725.pdf",
@@ -1843,7 +2190,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220723: Roots of Unity, Decagons, and Cyclotomic Divisibility",
+    "title": "N-20220723 · Roots of Unity, Decagons, and Cyclotomic Divisibility",
     "description": "Number Theory Basics · 7 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-07-23",
     "link": "/notes/2022/N-20220723.pdf",
@@ -1854,7 +2201,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220721: Probability, Conditional Probability, and Substitution Tricks in Inequalities",
+    "title": "N-20220721 · Probability, Conditional Probability, and Substitution Tricks in Inequalities",
     "description": "Functions and Inequalities · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-07-21",
     "link": "/notes/2022/N-20220721.pdf",
@@ -1865,7 +2212,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220720: Counting Principles, Binomial Identities, and Mixed Problem Solving",
+    "title": "N-20220720 · Counting Principles, Binomial Identities, and Mixed Problem Solving",
     "description": "Combinatorics and Models · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-07-20",
     "link": "/notes/2022/N-20220720.pdf",
@@ -1876,7 +2223,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220719: Solid Geometry: Points, Lines, Planes, Parallelism, and Perpendicularity",
+    "title": "N-20220719 · Solid Geometry: Points, Lines, Planes, Parallelism, and Perpendicularity",
     "description": "Classical Geometry · 22 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-07-19",
     "link": "/notes/2022/N-20220719.pdf",
@@ -1888,13 +2235,16 @@
   {
     "type": "Fragment",
     "title": "The Absolute Zero: Saburou Saitoh’s Crusade to Redefine Mathematics",
-    "description": "This fragment examines Saburou Saitoh’s long-running advocacy of “division by zero” formulas such as $z/0=0$. The case is interesting precisely because it does not fit the simplest image of outsider crankery: Saitoh has legitimate mathematical background, yet promotes a program that conflicts sharply with standard algebraic and analytic conventions.\r\n\r\nThe note reads the phenomenon as a cautionary case in mathematical judgment. It asks how a technically trained researcher can overextend one idea, how publication venues and proceedings can blur signals of legitimacy, and why a formal-looking rule must still be tested against the structures it claims to inhabit.",
+    "description": "A critical note on Saburou Saitoh’s “division by zero” program and the boundary between credentials and crank-like claims.",
     "date": "2022-07-18",
-    "link": "/fragments/saburou-zero"
+    "link": "/fragments/saburou-zero",
+    "tags": [
+      "Mathematical Study"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20220718: Nonlinear Recurrences, Fixed Points, and Metric-Space Exercises",
+    "title": "N-20220718 · Nonlinear Recurrences, Fixed Points, and Metric-Space Exercises",
     "description": "Functions and Inequalities · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-07-18",
     "link": "/notes/2022/N-20220718.pdf",
@@ -1905,7 +2255,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220717: Recurrences, Arithmetic and Geometric Progressions, and the First Examples of Groups",
+    "title": "N-20220717 · Recurrences, Arithmetic and Geometric Progressions, and the First Examples of Groups",
     "description": "Number Theory Basics · 16 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-07-17",
     "link": "/notes/2022/N-20220717.pdf",
@@ -1916,7 +2266,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220716: Conic Exercises: Lines, Ellipses, Parabolas, and Tangents",
+    "title": "N-20220716 · Conic Exercises: Lines, Ellipses, Parabolas, and Tangents",
     "description": "Classical Geometry · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-07-16",
     "link": "/notes/2022/N-20220716.pdf",
@@ -1927,7 +2277,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220715: Conics and the Dedekind Construction of Addition",
+    "title": "N-20220715 · Conics and the Dedekind Construction of Addition",
     "description": "Classical Geometry · 14 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-07-15",
     "link": "/notes/2022/N-20220715.pdf",
@@ -1938,7 +2288,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220713: Completeness, Supremum, Dedekind Cuts, and Metric Spaces",
+    "title": "N-20220713 · Completeness, Supremum, Dedekind Cuts, and Metric Spaces",
     "description": "Sets and Foundations · 14 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-07-13",
     "link": "/notes/2022/N-20220713.pdf",
@@ -1949,7 +2299,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220710: Vectors, Ordered Fields, and the First Axioms of Real Numbers",
+    "title": "N-20220710 · Vectors, Ordered Fields, and the First Axioms of Real Numbers",
     "description": "Sets and Foundations · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-07-10",
     "link": "/notes/2022/N-20220710.pdf",
@@ -1960,7 +2310,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220708: Directed Angles, Reflections, and the Miquel Point",
+    "title": "N-20220708 · Directed Angles, Reflections, and the Miquel Point",
     "description": "Classical Geometry · 17 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-07-08",
     "link": "/notes/2022/N-20220708.pdf",
@@ -1971,7 +2321,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220628: Techniques of Integration: Partial Fractions, Parts, and Substitution",
+    "title": "N-20220628 · Techniques of Integration: Partial Fractions, Parts, and Substitution",
     "description": "Calculus · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-06-28",
     "link": "/notes/2022/N-20220628.pdf",
@@ -1982,7 +2332,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220615: A Russian-Style Early Olympiad Game: Coordinates, Packing, and Symmetry",
+    "title": "N-20220615 · A Russian-Style Early Olympiad Game: Coordinates, Packing, and Symmetry",
     "description": "Classical Geometry · 19 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-06-15",
     "link": "/notes/2022/N-20220615.pdf",
@@ -1993,7 +2343,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220501: Lagrange Multipliers, Hessians, Bordered Hessians, and Degenerate Extrema",
+    "title": "N-20220501 · Lagrange Multipliers, Hessians, Bordered Hessians, and Degenerate Extrema",
     "description": "Multivariable Calculus · 19 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-05-01",
     "link": "/notes/2022/N-20220501.pdf",
@@ -2004,7 +2354,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220417: Proof Strategies, Cyclic Sums, and Inequality Methods",
+    "title": "N-20220417 · Proof Strategies, Cyclic Sums, and Inequality Methods",
     "description": "Functions and Inequalities · 18 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-04-17",
     "link": "/notes/2022/N-20220417.pdf",
@@ -2015,7 +2365,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220412: Linear Algebra Continued: Indices, Rank, Transpose, Hermitian Conjugate, and Trace",
+    "title": "N-20220412 · Linear Algebra Continued: Indices, Rank, Transpose, Hermitian Conjugate, and Trace",
     "description": "Linear Algebra · 15 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-04-12",
     "link": "/notes/2022/N-20220412.pdf",
@@ -2026,7 +2376,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220411: Invertible Matrices, Adjoints, Row Reduction, and Rotations",
+    "title": "N-20220411 · Invertible Matrices, Adjoints, Row Reduction, and Rotations",
     "description": "Linear Algebra · 18 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-04-11",
     "link": "/notes/2022/N-20220411.pdf",
@@ -2037,7 +2387,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220409: Faà di Bruno, Leibniz Rules, and Matrix Multiplication",
+    "title": "N-20220409 · Faà di Bruno, Leibniz Rules, and Matrix Multiplication",
     "description": "Calculus · 13 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-04-09",
     "link": "/notes/2022/N-20220409.pdf",
@@ -2048,7 +2398,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220407: Exercises on $\\mathbb R^n$, $\\mathbb C^n$, Vector Spaces, and Subspaces",
+    "title": "N-20220407 · Exercises on $\\mathbb R^n$, $\\mathbb C^n$, Vector Spaces, and Subspaces",
     "description": "Linear Algebra · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-04-07",
     "link": "/notes/2022/N-20220407.pdf",
@@ -2059,7 +2409,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220405: Fréchet Differentiability, Hessians, and Constrained Tests",
+    "title": "N-20220405 · Fréchet Differentiability, Hessians, and Constrained Tests",
     "description": "Multivariable Calculus · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-04-05",
     "link": "/notes/2022/N-20220405.pdf",
@@ -2070,7 +2420,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220323: Complex Differentiability and the Rigidity of Holomorphic Functions",
+    "title": "N-20220323 · Complex Differentiability and the Rigidity of Holomorphic Functions",
     "description": "Complex Analysis · 7 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-03-23",
     "link": "/notes/2022/N-20220323.pdf",
@@ -2081,7 +2431,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220321: Some Pre-Complex Analysis: Motion on the Unit Circle and Roots of Unity",
+    "title": "N-20220321 · Some Pre-Complex Analysis: Motion on the Unit Circle and Roots of Unity",
     "description": "Complex Analysis · 16 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-03-21",
     "link": "/notes/2022/N-20220321.pdf",
@@ -2092,7 +2442,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220320: A Review of Calculus: Mean Value Theorems and Continuity",
+    "title": "N-20220320 · A Review of Calculus: Mean Value Theorems and Continuity",
     "description": "Calculus · 14 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-03-20",
     "link": "/notes/2022/N-20220320.pdf",
@@ -2103,7 +2453,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220319: A Review of Calculus: Sequences, Limits, Derivatives, and Integrals",
+    "title": "N-20220319 · A Review of Calculus: Sequences, Limits, Derivatives, and Integrals",
     "description": "Calculus · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-03-19",
     "link": "/notes/2022/N-20220319.pdf",
@@ -2114,7 +2464,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220315: Quadratic Parameters, Tangency, and Constrained Extrema",
+    "title": "N-20220315 · Quadratic Parameters, Tangency, and Constrained Extrema",
     "description": "Calculus · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-03-15",
     "link": "/notes/2022/N-20220315.pdf",
@@ -2125,7 +2475,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220212: Riemann Surfaces as One-Dimensional Complex Manifolds",
+    "title": "N-20220212 · Riemann Surfaces as One-Dimensional Complex Manifolds",
     "description": "Curves and Structures · 16 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-02-12",
     "link": "/notes/2022/N-20220212.pdf",
@@ -2136,7 +2486,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220205: A First Comparison of ZFC, NBG, KM, and New Foundations",
+    "title": "N-20220205 · A First Comparison of ZFC, NBG, KM, and New Foundations",
     "description": "Sets and Foundations · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-02-05",
     "link": "/notes/2022/N-20220205.pdf",
@@ -2154,7 +2504,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220131: Rethinking Set Theory Through Functions Rather Than Membership",
+    "title": "N-20220131 · Rethinking Set Theory Through Functions Rather Than Membership",
     "description": "Sets and Foundations · 13 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-01-31",
     "link": "/notes/2022/N-20220131.pdf",
@@ -2165,7 +2515,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220123: From Algebraic Number Theory to the First Shadow of Langlands",
+    "title": "N-20220123 · From Algebraic Number Theory to the First Shadow of Langlands",
     "description": "Arithmetic Geometry · 17 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-01-23",
     "link": "/notes/2022/N-20220123.pdf",
@@ -2179,18 +2529,24 @@
     "title": "PAPER: MODELS OF PEN-PL GAUSSIAN GAMES IN NON-COOPERATIVE COMMUNICATION",
     "description": "This paper explores non-cooperative Pen-PL games, modeling the probability distribution of outcomes using multivariate Gaussian processes. It derives optimal 'smooth' signaling rules and proves that computing a socially optimal network placement for these games is NP-hard, linking tactical pen placement to advanced statistical mechanics and game theory concepts.",
     "date": "2021-10-07",
-    "link": "/achieved/paper-mpgg"
+    "link": "/artifacts/paper-mpgg",
+    "tags": [
+      "FICTIONAL"
+    ]
   },
   {
     "type": "Fragment",
     "title": "Unveiling Arithmetic Deformation Theory: Reflections on Fesenko’s \"Notes on the work of Shinichi Mochizuki\"",
-    "description": "This fragment grows out of a stance that Dr. Keyao Peng once modeled for me: even in a polarized debate, one may still study a theory for the concepts it tries to invent. With Inter-Universal Teichmüller Theory, that means setting aside, temporarily, the question of communal acceptance and asking what kind of mathematical imagination the theory requires.\r\n\r\nThe note follows Ivan Fesenko’s exposition as an accessible entry point into arithmetic deformation, theta-links, log-links, multiradiality, and the difficult notion of descent. It is not a verification of Mochizuki’s claims. It is a record of trying to understand what conceptual pressure would lead someone to redesign the background coordinates of arithmetic geometry.",
+    "description": "A reading note on Ivan Fesenko’s exposition of IUT and the intuition of arithmetic deformation.",
     "date": "2021-10-07",
-    "link": "/fragments/ivan-iutt"
+    "link": "/fragments/ivan-iutt",
+    "tags": [
+      "Mathematical Study"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20211007: From Diophantine Inequalities to Arithmetic Deformation",
+    "title": "N-20211007 · From Diophantine Inequalities to Arithmetic Deformation",
     "description": "Arithmetic Geometry · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2021-10-07",
     "link": "/notes/2021/N-20211007.pdf",
@@ -2208,7 +2564,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20210806: Group Actions, Homotopy, and a Rough Road to the Hopf Fibration",
+    "title": "N-20210806 · Group Actions, Homotopy, and a Rough Road to the Hopf Fibration",
     "description": "Topology and Homotopy · 9 sections · PDF and TeX source available in the INM archive.",
     "date": "2021-08-06",
     "link": "/notes/2021/N-20210806.pdf",
@@ -2226,7 +2582,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20210804: Boolean Algebras, Boolean Rings, and the First Hint of Stone Duality",
+    "title": "N-20210804 · Boolean Algebras, Boolean Rings, and the First Hint of Stone Duality",
     "description": "Categories and Logic · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2021-08-04",
     "link": "/notes/2021/N-20210804.pdf",
@@ -2238,13 +2594,16 @@
   {
     "type": "Fragment",
     "title": "A Gateway to Dualities: Mirror Symmetry between Space and Structure",
-    "description": "This fragment reconstructs my first serious encounter with duality in modern mathematics. In July 2021, Dr. Keyao Peng shared a table of classical dualities in the Geek College chat group. What first appeared to be a compact list of correspondences gradually became a doorway into a broader theme: the translation between spaces and algebraic structures.\r\n\r\nThe immediate object of study was Stone duality, the relationship between Boolean algebras and Stone spaces. I treat the original screenshot as an archival starting point and then unfold the mathematical background around it: why Boolean operations can be read topologically, why compactness and clopen sets matter, and how this example foreshadows a recurring pattern in algebra, topology, and logic.",
+    "description": "A 2021 reading record on Stone duality and the geometry--algebra correspondence.",
     "date": "2021-07-21",
-    "link": "/fragments/boolean-stone"
+    "link": "/fragments/boolean-stone",
+    "tags": [
+      "Correspondence"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20210721: A Gateway to Dualities: Space, Algebra, and the Dualizing Object",
+    "title": "N-20210721 · A Gateway to Dualities: Space, Algebra, and the Dualizing Object",
     "description": "Categories and Logic · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2021-07-21",
     "link": "/notes/2021/N-20210721.pdf",
@@ -2256,13 +2615,16 @@
   {
     "type": "Fragment",
     "title": "Prop Presentations for Linear Algebra: The $\\mathbf{cb}_k$ Calculus",
-    "description": "This fragment identifies the source of a diagrammatic formalism that had circulated in my notes since Dr. Peng’s lectures: the theory of graphical linear algebra, especially the presentation of matrices through the prop $\\mathbf{Mat}_k$. The key idea is that linear algebra can be represented not only as arrays of scalars but also as a calculus of string diagrams equipped with generators and relations.\r\n\r\nThe entry functions as both a reading guide and a conceptual translation. It explains how the commutative-bialgebra presentation $\\mathbf{cb}_k$ provides a syntax for linear maps, why diagrammatic rewriting can be complete for ordinary matrix reasoning, and why this point of view is useful for categorical and compositional thinking.",
+    "description": "Notes on graphical linear algebra and the prop presentation of matrices by string diagrams.",
     "date": "2021-06-21",
-    "link": "/fragments/graph-alg"
+    "link": "/fragments/graph-alg",
+    "tags": [
+      "Seminar Notes"
+    ]
   },
   {
     "type": "Note",
-    "title": "N-20210621: Prop Presentations for Linear Algebra: Diagrams, Matrices, and Relations",
+    "title": "N-20210621 · Prop Presentations for Linear Algebra: Diagrams, Matrices, and Relations",
     "description": "Linear Algebra · 14 sections · PDF and TeX source available in the INM archive.",
     "date": "2021-06-21",
     "link": "/notes/2021/N-20210621.pdf",
@@ -2273,7 +2635,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20210207: Choice, Well-Ordering, and the Arithmetic of Cardinal Size",
+    "title": "N-20210207 · Choice, Well-Ordering, and the Arithmetic of Cardinal Size",
     "description": "Sets and Foundations · 8 sections · PDF and TeX source available in the INM archive.",
     "date": "2021-02-07",
     "link": "/notes/2021/N-20210207.pdf",
@@ -2284,7 +2646,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20210206: Relations, Products, and the First Appearance of Universal Properties",
+    "title": "N-20210206 · Relations, Products, and the First Appearance of Universal Properties",
     "description": "Sets and Foundations · 6 sections · PDF and TeX source available in the INM archive.",
     "date": "2021-02-06",
     "link": "/notes/2021/N-20210206.pdf",
@@ -2295,7 +2657,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20210204: Sets, Classes, and the First Warnings About Size",
+    "title": "N-20210204 · Sets, Classes, and the First Warnings About Size",
     "description": "Sets and Foundations · 7 sections · PDF and TeX source available in the INM archive.",
     "date": "2021-02-04",
     "link": "/notes/2021/N-20210204.pdf",
@@ -2307,22 +2669,31 @@
   {
     "type": "Fragment",
     "title": "Christmas Night at Geek College: From Free Products to Asymptotic Envelopes",
-    "description": "This entry records my first participation in the Geek College English Salon on December 25, 2020. What began as holiday conversation quickly turned into a dense exchange on abstract algebra, category theory, and measure theory. The discussion moved between coproducts in groups, notational difficulties in Halmos’s *Measure Theory*, and the tension between formal definitions and geometric intuition.\r\n\r\nI keep the fragment as a snapshot of an early learning environment: informal, occasionally chaotic, but unusually effective in turning isolated questions into conceptual bridges. Later comments add the mathematical context that I did not fully possess at the time.",
+    "description": "A Christmas-night record from Geek College, moving from coproducts to measure-theoretic intuition.",
     "date": "2020-12-25",
-    "link": "/fragments/geek-christmas"
+    "link": "/fragments/geek-christmas",
+    "tags": [
+      "Mathematical Study"
+    ]
   },
   {
     "type": "Fragment",
     "title": "Initial Construction and Preliminary Properties of Chunpinative Geometry",
-    "description": "This fragment preserves an early attempt at constructing a self-contained but intentionally nonstandard geometric theory, later named “Chunpinative Geometry.” Its central axiom identifies an angle with its supplement, thereby breaking the usual arithmetic of angle measure and forcing a new vocabulary of spaces, measurability, and elementary lemmas.\r\n\r\nThe text should be read as a playful formal exercise rather than a proposal for a viable geometry. Its value lies in the act of axiomatization itself: starting from a deliberately absurd premise, one can still observe how definitions propagate, how lemmas acquire internal meaning, and how a fictional system begins to imitate the surface form of mathematical theory.",
+    "description": "A deliberately fictional geometric system built around a parody axiom on supplementary angles.",
     "date": "2020-12-07",
-    "link": "/fragments/chunpinative"
+    "link": "/fragments/chunpinative",
+    "tags": [
+      "Personal Archive"
+    ]
   },
   {
     "type": "Achieved",
     "title": "PAPER: The Mapping of the Main Functions and Different Variations of YH-DIE",
     "description": "The junk paper focuses on a fictional mathematical object called “YH-DIE.” It explores the continuity of this object, its mappings on algebraic varieties, and how it serves as an intersection point between algebraic geometry and partial differential equations. The paper also asserts that the equations governing minimal surfaces represent a special case of this general framework.",
     "date": "2020-09-12",
-    "link": "/achieved/paper-yhdie"
+    "link": "/artifacts/paper-yhdie",
+    "tags": [
+      "FICTIONAL"
+    ]
   }
 ]

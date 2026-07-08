@@ -16,7 +16,7 @@
           "tier": 2
         },
         {
-          "title": "Worklist",
+          "title": "Index",
           "path": "/worklist",
           "tier": 2
         },
@@ -60,8 +60,8 @@
       "tier": 1
     },
     {
-      "title": "Achieved",
-      "path": "/achieved",
+      "title": "Artifacts",
+      "path": "/artifacts",
       "tier": 1
     },
     {

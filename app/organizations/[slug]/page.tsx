@@ -32,6 +32,18 @@ async function getOrganization(slug: string): Promise<Organization | undefined> 
   }
 }
 
+
+export async function generateStaticParams() {
+  const filePath = path.join(process.cwd(), "data", "organizations.json");
+  if (!fs.existsSync(filePath)) return [];
+  try {
+    const organizations = JSON.parse(fs.readFileSync(filePath, "utf-8")) as Organization[];
+    return organizations.map((organization) => ({ slug: organization.slug }));
+  } catch {
+    return [];
+  }
+}
+
 export default async function OrganizationPage({ params }: { params: { slug: string } }) {
   const item = await getOrganization(params.slug);
 

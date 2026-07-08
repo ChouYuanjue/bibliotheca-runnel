@@ -5,7 +5,7 @@ date: "2026-01"
 endDate: "Present"
 icon: "icon.jpg"
 website: "https://xhslink.com/m/1J6l9wzqysB/"
-description: "The original \"Nanckathon\". We aim to share the most exciting AI maker event information from all over China every week."
+description: "An AI maker and event-information platform where I contribute full-stack product engineering and workflow implementation."
 ---
 # About Us
 

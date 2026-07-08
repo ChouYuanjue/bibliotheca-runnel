@@ -1,90 +1,114 @@
-import React from "react";
+import PageHero from "@/components/custom/PageHero";
+
+type Mentor = {
+  name: string;
+  role: string;
+  relation: string;
+  link?: string;
+  note: string;
+};
+
+const groups: { title: string; description: string; people: Mentor[] }[] = [
+  {
+    title: "Formal and Current Research Guidance",
+    description: "Current or near-current supervision, collaboration, and research guidance in AI-oriented work.",
+    people: [
+      {
+        name: "Zheni Zeng",
+        role: "Assistant Professor, School of Intelligent Science and Technology, Nanjing University",
+        relation: "Academic advisor / research guidance",
+        note: "Provides formal academic guidance for my transition into AI for Science, scientific reasoning, and RAG-related research directions.",
+      },
+      {
+        name: "Ziyu Zhou",
+        role: "Research collaborator; MSRA intern; M.S., Czech Technical University",
+        relation: "Research collaborator and technical mentor",
+        note: "Collaborates with me on AI for Mathematics work and provides technical guidance at the interface of theorem-oriented reasoning, machine learning, and mathematical background knowledge.",
+      },
+    ],
+  },
+  {
+    title: "Mathematical and Intellectual Guidance",
+    description: "Longer-term influences on mathematical taste, foundational interests, and research reading habits.",
+    people: [
+      {
+        name: "Keyao Peng",
+        role: "Ph.D. in Algebraic Geometry, Université Grenoble Alpes; postdoctoral researcher at University of Burgundy",
+        relation: "Long-term mathematical mentor",
+        link: "https://iamcxds.github.io/",
+        note: "Introduced me to a broad range of modern mathematical ideas, including category theory, topos theory, HoTT, linear logic, and related foundational viewpoints.",
+      },
+      {
+        name: "Tom Leinster",
+        role: "Professor, University of Edinburgh",
+        relation: "Correspondence and reading guidance",
+        link: "https://webhomes.maths.ed.ac.uk/~tl/",
+        note: "Offered intermittent guidance through correspondence, including reading suggestions and clarifications around foundational mathematical concepts. I have also translated several of his writings with permission.",
+      },
+    ],
+  },
+  {
+    title: "Earlier Academic and Technical Support",
+    description: "Earlier guides who helped shape my mathematical study habits and technical entry points.",
+    people: [
+      {
+        name: "Zhenyu Lu",
+        role: "M.S. in Algebraic Geometry, East China Normal University; mathematics coach",
+        relation: "Earlier mathematics guidance",
+        note: "Answered many mathematical questions and helped me consolidate early undergraduate-level mathematics study.",
+      },
+      {
+        name: "Yiran Fang",
+        role: "M.S. in Computer Science, University of Science and Technology of China",
+        relation: "Technical entry guidance",
+        link: "https://github.com/fyr233",
+        note: "Helped initiate my technical learning path and influenced my early approach to programming and information technology.",
+      },
+    ],
+  },
+];
+
+function MentorCard({ person }: { person: Mentor }) {
+  const name = person.link ? (
+    <a href={person.link} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 hover:underline">
+      {person.name}
+    </a>
+  ) : person.name;
+
+  return (
+    <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h3 className="font-serif text-xl font-semibold text-gray-950">{name}</h3>
+          <p className="mt-1 text-sm leading-6 text-gray-500">{person.role}</p>
+        </div>
+        <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">{person.relation}</span>
+      </div>
+      <p className="mt-4 text-sm leading-6 text-gray-700">{person.note}</p>
+    </div>
+  );
+}
 
 export default function MentorsPage() {
   return (
-    <div className="max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8">Mentors</h1>
+    <div className="mx-auto max-w-5xl space-y-10">
+      <PageHero
+        eyebrow="Mentors"
+        title="People who shaped my research path"
+        description="A concise acknowledgement of formal advisors, research collaborators, mathematical mentors, and earlier guides. The wording is intentionally conservative: it records influence and guidance without overstating institutional relationships."
+      />
 
-      <h2 className="text-2xl font-semibold mb-4">Research Advisors</h2>
-      <p className="text-gray-600 italic mb-6">
-        Current formal supervision and guidance in the field of Artificial Intelligence.
-      </p>
-
-      <div className="space-y-8 mb-12">
-        <div className="border-l-4 border-gray-200 pl-4">
-          <h3 className="text-xl font-semibold">Zheni Zeng</h3>
-          <p className="text-sm text-gray-600 mb-2">Assistant Professor, School of Intelligent Science and Technology, Nanjing University</p>
-          <p className="text-gray-700 leading-relaxed">
-            Prof. Zeng serves as my academic advisor. I am joining her research group at Nanjing University, where I will be conducting research on AI for Science (AI4Sci) and Retrieval-Augmented Generation (RAG). Her expertise provides the essential guidance and institutional framework for my transition into advanced AI research.
-          </p>
-        </div>
-
-        <div className="border-l-4 border-gray-200 pl-4">
-          <h3 className="text-xl font-semibold">Ziyu Zhou</h3>
-          <p className="text-sm text-gray-600 mb-2">Research Collaborator; MSRA Intern; M.S., Czech Technical University</p>
-          <p className="text-gray-700 leading-relaxed">
-            Ziyu is a primary mentor and a close collaborator in my current research. We are actively working on AI for Mathematics (AI4Math), where he provides critical technical guidance and strategic insights. His mentorship has been instrumental in bridging my background in formal mathematics with the frontiers of deep learning.
-          </p>
-        </div>
-      </div>
-
-      <h2 className="text-2xl font-semibold mb-4">Intellectual Mentors</h2>
-      <p className="text-gray-600 italic mb-6">
-        Scholars who have shaped my mathematical intuition, philosophical outlook, and academic rigor.
-      </p>
-
-      <div className="space-y-8 mb-12">
-        <div className="border-l-4 border-gray-200 pl-4">
-          <h3 className="text-xl font-semibold">
-            <a href="https://iamcxds.github.io/" target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-blue-600 transition-colors">
-              Keyao Peng
-            </a>
-          </h3>
-          <p className="text-sm text-gray-600 mb-2">Ph.D. in Algebraic Geometry, Université Grenoble Alpes; Postdoctoral Researcher at University of Burgundy</p>
-          <p className="text-gray-700 leading-relaxed">
-            Served as my academic mentor for three years during my experience at Geek College, with sustained communication spanning the subsequent six years. His guidance has exerted a formative influence on my research trajectory, covering a broad spectrum of fields including Boolean algebra, category theory, Topos theory, homotopy type theory (HoTT), linear logic, and the controversial inter-universal Teichmüller theory (IUTT). My academic interests in mathematical logic, research focus on Voevodsky’s theories, intellectual curiosity about Lacan and Saussure, as well as academic inclination toward French scholarship, all originate from his inspiration. He has been a guiding light in my academic journey, and his metaphor that “Geek College is a bonfire that warms lost children” has become a touchstone for my academic pursuits.
-          </p>
-        </div>
-
-        <div className="border-l-4 border-gray-200 pl-4">
-          <h3 className="text-xl font-semibold">
-            <a href="https://webhomes.maths.ed.ac.uk/~tl/" target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-blue-600 transition-colors">
-              Tom Leinster
-            </a>
-          </h3>
-          <p className="text-sm text-gray-600 mb-2">Professor at the University of Edinburgh</p>
-          <p className="text-gray-700 leading-relaxed">
-            Provided intermittent academic guidance for three years following the conclusion of my mentorship with Dr. Peng. His support included recommending key textbooks, clarifying foundational conceptual questions (e.g., those pertaining to groupoids), and engaging in discussions on academic and personal reflections. With official authorization, I have translated several of his papers. I once submitted a request for a letter of recommendation, which was not finalized due to deadline constraints. While I do not hold the status of his formal mentee, this request was made out of sincere reverence for his academic achievements and contributions, with full awareness of its presumptuous nature. His willingness to share knowledge with an aspiring researcher and his gentle guidance throughout this period constitute invaluable academic assets, for which I remain deeply grateful.
-          </p>
-        </div>
-      </div>
-
-      <h2 className="text-2xl font-semibold mb-4">Early Guides</h2>
-      <p className="text-gray-600 italic mb-6">
-        Predecessors who provided pivotal support during the initial stages of my academic journey.
-      </p>
-
-      <div className="space-y-8">
-        <div className="border-l-4 border-gray-200 pl-4">
-          <h3 className="text-xl font-semibold">Zhenyu Lu</h3>
-          <p className="text-sm text-gray-600 mb-2">M.S. in Algebraic Geometry, East China Normal University; Mathematics Coach, High School Affiliated to Nanjing Normal University</p>
-          <p className="text-gray-700 leading-relaxed">
-            He patiently answered my numerous questions and offered detailed clarifications throughout my undergraduate mathematics studies.
-          </p>
-        </div>
-
-        <div className="border-l-4 border-gray-200 pl-4">
-          <h3 className="text-xl font-semibold">
-            <a href="https://github.com/fyr233" target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-blue-600 transition-colors">
-              Yiran Fang
-            </a>
-          </h3>
-          <p className="text-sm text-gray-600 mb-2">M.S. in Computer Science, University of Science and Technology of China</p>
-          <p className="text-gray-700 leading-relaxed">
-            His guidance has exerted a profound influence on my learning of information technology, as he was the one who initially set me on my technical journey.
-          </p>
-        </div>
-      </div>
+      {groups.map((group) => (
+        <section key={group.title} className="space-y-5">
+          <div>
+            <h2 className="font-serif text-2xl font-semibold text-gray-900">{group.title}</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-gray-500">{group.description}</p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            {group.people.map((person) => <MentorCard key={person.name} person={person} />)}
+          </div>
+        </section>
+      ))}
     </div>
   );
 }

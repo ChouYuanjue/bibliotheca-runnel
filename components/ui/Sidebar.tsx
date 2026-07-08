@@ -9,6 +9,7 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const currentYear = new Date().getFullYear();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
 
   // Auto-expand based on current path
@@ -39,9 +40,9 @@ export default function Sidebar() {
     <aside className="hidden md:flex flex-col w-72 h-screen fixed left-0 top-0 border-r border-gray-200 bg-zinc-50/90 backdrop-blur-md z-30">
       <div className="p-8 pb-6 border-b border-gray-100/50">
         <Link href="/" className="block">
-          <h1 className="font-serif text-2xl font-bold text-gray-900 tracking-tight hover:text-gray-700 transition-colors">
+          <div className="font-serif text-2xl font-bold text-gray-900 tracking-tight hover:text-gray-700 transition-colors">
             Runnel Zhang
-          </h1>
+          </div>
           <p className="text-[10px] uppercase tracking-[0.2em] text-gray-500 mt-2 font-medium">
             Bibliotheca Runnel
           </p>
@@ -128,7 +129,7 @@ export default function Sidebar() {
       <div className="p-6 border-t border-gray-200 bg-white/50">
         <div className="text-[10px] text-gray-400 font-mono leading-relaxed">
           <p>ARCHIVE STATUS: ONLINE</p>
-          <p>© 2025 BIBLIOTHECA RUNNEL</p>
+          <p>© {currentYear} BIBLIOTHECA RUNNEL</p>
         </div>
       </div>
     </aside>
