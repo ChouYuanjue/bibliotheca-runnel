@@ -176,6 +176,17 @@
     ]
   },
   {
+    "type": "Project",
+    "title": "Rlyehian/Cthuvian Translator",
+    "description": "A deterministic translator toolkit for RC-1, a standardized R'lyehian/Cthuvian conlang layer. Turns English into Lovecraftian grammar with gloss support, sealed fallbacks, and an optional LLM-assisted registry.",
+    "date": "2026-04-29T11:55:15Z",
+    "link": "https://github.com/ChouYuanjue/Rlyehian-Cthuvian-Translator",
+    "tags": [
+      "personal",
+      "JavaScript"
+    ]
+  },
+  {
     "type": "Linguistics",
     "title": "Miscellanea XII. A Formal Reconstruction of Cthuvian as a Translatable Language System",
     "description": "A rigorous conlanging framework for Cthuvian (R’lyehian), reconstructing its phonology, morphology, and syntax into a dual-register system that preserves Mythos authenticity while enabling consistent English-to-Cthuvian translation and partial reverse interpretation.",

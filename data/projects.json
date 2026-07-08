@@ -1,5 +1,106 @@
 [
   {
+    "id": "tangut-nlp",
+    "title": "tangut-nlp",
+    "description": "This is an ultra-low-resource research codebase that translates short Tangut titles into modern Chinese using only 491 parallel pairs, achieving its strongest results via a hybrid workflow of frontier prompt‑only models and locally trained DPO‑repaired candidates rather than any single approach.",
+    "githubUrl": "https://github.com/ChouYuanjue/tangut-nlp",
+    "stars": 0,
+    "language": "Python",
+    "topics": [],
+    "updatedAt": "2026-05-09T08:22:14Z",
+    "slug": "tangut-nlp",
+    "type": "research"
+  },
+  {
+    "id": "lean-portfolio-attribution",
+    "title": "lean-portfolio-attribution",
+    "description": "Lean Portfolio Attribution is a research codebase that attributes inference-time gains in Lean theorem proving via fixed-budget attempt portfolios, retrieval-free controls, matched-compute baselines, and cross-system portability checks against external provers like ReProver.",
+    "githubUrl": "https://github.com/ChouYuanjue/lean-portfolio-attribution",
+    "stars": 1,
+    "language": "Python",
+    "topics": [],
+    "updatedAt": "2026-05-17T02:47:55Z",
+    "slug": "lean-portfolio-attribution",
+    "type": "research"
+  },
+  {
+    "id": "coral-travel-planner",
+    "title": "coral-travel-planner",
+    "description": "CORAL is a research codebase that enhances trustworthy travel planning by directly parsing natural-language queries and applying localized repair, boosting pass rates on TravelPlanner and ChinaTravel while addressing benchmark infeasibility and constraint consistency.",
+    "githubUrl": "https://github.com/ChouYuanjue/coral-travel-planner",
+    "stars": 0,
+    "language": "Python",
+    "topics": [],
+    "updatedAt": "2026-05-05T15:46:44Z",
+    "slug": "coral-travel-planner",
+    "type": "research"
+  },
+  {
+    "id": "proof-countermodel-distill",
+    "title": "proof-countermodel-distill",
+    "description": "This project studies whether logical-reasoning LLMs should be trained to emit three different evidence regimes: PROVE for entailed queries, REFUTE for contradicted queries, ABSTAIN for unsupported queries with a missing-support witness.",
+    "githubUrl": "https://github.com/ChouYuanjue/proof-countermodel-distill",
+    "stars": 1,
+    "language": "Python",
+    "topics": [],
+    "updatedAt": "2026-05-02T13:32:26Z",
+    "slug": "proof-countermodel-distill",
+    "type": "research"
+  },
+  {
+    "id": "rzk-ai4math",
+    "title": "rzk-ai4math",
+    "description": "This repository studies LLM autoformalization on Rzk/sHoTT body-completion tasks, with an emphasis on shape-heavy held-out definitions, lightweight structural priors, repair, routing, and Lean portability checks.",
+    "githubUrl": "https://github.com/ChouYuanjue/rzk-ai4math",
+    "stars": 1,
+    "language": "Python",
+    "topics": [],
+    "updatedAt": "2026-04-26T00:00:00.000Z",
+    "slug": "rzk-ai4math",
+    "type": "research"
+  },
+  {
+    "id": "cer-system",
+    "title": "CER System",
+    "description": "A banking customer-emotion recognition system based on Qwen2-Audio 7B, using a dual-path audio pipeline to adapt to different call-recording qualities and service scenarios.",
+    "githubUrl": null,
+    "stars": 0,
+    "language": "Python",
+    "topics": [
+      "AI",
+      "Emotion Recognition",
+      "Banking",
+      "Multimodal"
+    ],
+    "updatedAt": "2026-02-01T00:00:00Z",
+    "slug": "cer-system",
+    "type": "commercial"
+  },
+  {
+    "id": "rlyehian-cthuvian-translator",
+    "title": "Rlyehian/Cthuvian Translator",
+    "description": "A deterministic translator toolkit for RC-1, a standardized R'lyehian/Cthuvian conlang layer. Turns English into Lovecraftian grammar with gloss support, sealed fallbacks, and an optional LLM-assisted registry.",
+    "githubUrl": "https://github.com/ChouYuanjue/Rlyehian-Cthuvian-Translator",
+    "stars": 0,
+    "language": "JavaScript",
+    "topics": [],
+    "updatedAt": "2026-04-29T11:55:15Z",
+    "slug": "rlyehian-cthuvian-translator",
+    "type": "personal"
+  },
+  {
+    "id": "inm-tex",
+    "title": "INM-TeX",
+    "description": "An English TeX reconstruction of Informal Notes on Mathematics, with corrected and expanded notes compiled into a book-length PDF.",
+    "githubUrl": "https://github.com/ChouYuanjue/INM-TeX",
+    "stars": 1,
+    "language": "TeX",
+    "topics": [],
+    "updatedAt": "2026-07-08T08:49:29Z",
+    "slug": "inm-tex",
+    "type": "personal"
+  },
+  {
     "id": "doge-repo",
     "title": "doge-repo",
     "description": "A long-running QQ bot codebase evolving from CQP to Mirai and AstrBot, preserving multiple generations of plugin architecture and bot operations.",
@@ -102,94 +203,5 @@
     "updatedAt": "2025-12-14T13:03:00Z",
     "slug": "bibliotheca-runnel",
     "type": "personal"
-  },
-  {
-    "id": "cer-system",
-    "title": "CER System",
-    "description": "A banking customer-emotion recognition system based on Qwen2-Audio 7B, using a dual-path audio pipeline to adapt to different call-recording qualities and service scenarios.",
-    "githubUrl": null,
-    "stars": 0,
-    "language": "Python",
-    "topics": [
-      "AI",
-      "Emotion Recognition",
-      "Banking",
-      "Multimodal"
-    ],
-    "updatedAt": "2026-02-01T00:00:00Z",
-    "slug": "cer-system",
-    "type": "commercial"
-  },
-  {
-    "id": "tangut-nlp",
-    "title": "tangut-nlp",
-    "description": "This is an ultra-low-resource research codebase that translates short Tangut titles into modern Chinese using only 491 parallel pairs, achieving its strongest results via a hybrid workflow of frontier prompt‑only models and locally trained DPO‑repaired candidates rather than any single approach.",
-    "githubUrl": "https://github.com/ChouYuanjue/tangut-nlp",
-    "stars": 0,
-    "language": "Python",
-    "topics": [],
-    "updatedAt": "2026-05-09T08:22:14Z",
-    "slug": "tangut-nlp",
-    "type": "research"
-  },
-  {
-    "id": "lean-portfolio-attribution",
-    "title": "lean-portfolio-attribution",
-    "description": "Lean Portfolio Attribution is a research codebase that attributes inference-time gains in Lean theorem proving via fixed-budget attempt portfolios, retrieval-free controls, matched-compute baselines, and cross-system portability checks against external provers like ReProver.",
-    "githubUrl": "https://github.com/ChouYuanjue/lean-portfolio-attribution",
-    "stars": 1,
-    "language": "Python",
-    "topics": [],
-    "updatedAt": "2026-05-17T02:47:55Z",
-    "slug": "lean-portfolio-attribution",
-    "type": "research"
-  },
-  {
-    "id": "coral-travel-planner",
-    "title": "coral-travel-planner",
-    "description": "CORAL is a research codebase that enhances trustworthy travel planning by directly parsing natural-language queries and applying localized repair, boosting pass rates on TravelPlanner and ChinaTravel while addressing benchmark infeasibility and constraint consistency.",
-    "githubUrl": "https://github.com/ChouYuanjue/coral-travel-planner",
-    "stars": 0,
-    "language": "Python",
-    "topics": [],
-    "updatedAt": "2026-05-05T15:46:44Z",
-    "slug": "coral-travel-planner",
-    "type": "research"
-  },
-  {
-    "id": "proof-countermodel-distill",
-    "title": "proof-countermodel-distill",
-    "description": "This project studies whether logical-reasoning LLMs should be trained to emit three different evidence regimes: PROVE for entailed queries, REFUTE for contradicted queries, ABSTAIN for unsupported queries with a missing-support witness.",
-    "githubUrl": "https://github.com/ChouYuanjue/proof-countermodel-distill",
-    "stars": 1,
-    "language": "Python",
-    "topics": [],
-    "updatedAt": "2026-05-02T13:32:26Z",
-    "slug": "proof-countermodel-distill",
-    "type": "research"
-  },
-  {
-    "id": "inm-tex",
-    "title": "INM-TeX",
-    "description": "An English TeX reconstruction of Informal Notes on Mathematics, with corrected and expanded notes compiled into a book-length PDF.",
-    "githubUrl": "https://github.com/ChouYuanjue/INM-TeX",
-    "stars": 1,
-    "language": "TeX",
-    "topics": [],
-    "updatedAt": "2026-07-08T08:49:29Z",
-    "slug": "inm-tex",
-    "type": "personal"
-  },
-  {
-    "id": "rzk-ai4math",
-    "title": "rzk-ai4math",
-    "description": "This repository studies LLM autoformalization on Rzk/sHoTT body-completion tasks, with an emphasis on shape-heavy held-out definitions, lightweight structural priors, repair, routing, and Lean portability checks.",
-    "githubUrl": "https://github.com/ChouYuanjue/rzk-ai4math",
-    "stars": 1,
-    "language": "Python",
-    "topics": [],
-    "updatedAt": "2026-04-26T00:00:00.000Z",
-    "slug": "rzk-ai4math",
-    "type": "research"
   }
 ]
