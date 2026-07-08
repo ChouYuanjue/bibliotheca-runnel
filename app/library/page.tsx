@@ -47,8 +47,8 @@ export default function LibraryIndex() {
     <div className="mx-auto max-w-6xl space-y-10">
       <PageHero
         eyebrow="Library"
-        title="Notes, writings, and criticism"
-        description="INM math notes, Jeanot Collection, Linguistic Miscellanea, and Noctes Runnelianae are grouped here for browsing."
+        title="Long-form archive"
+        description="This page is for materials that need their own browsing context rather than a single chronological list: note volumes, text collections, and essay archives keep separate layouts and indices."
         meta={(
           <>
             <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{notesData.project.noteCount} INM notes</span>
