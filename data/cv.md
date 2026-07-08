@@ -42,20 +42,25 @@
 * Directed technical solutions for multi-source information aggregation projects, developing core backend modules and ensuring high integration efficiency.
 * Delivered formal lectures on full-stack development, covering front-end/back-end synchronization and enterprise-level engineering practices.
 
-## Selected Research Projects
+## Personal Research Projects
 
-**Robust Semantic Reconstruction for Tangut Script Translation**
+**Rzk/sHoTT Autoformalization Experiments**
+
+*GitHub: [ChouYuanjue/rzk-ai4math](https://github.com/ChouYuanjue/rzk-ai4math)*
+* Built a small experimental codebase for testing LLM autoformalization on Rzk/sHoTT body-completion tasks, especially shape-heavy definitions that are easy to break under surface-level prompting.
+* Explored lightweight repair, routing, and portability checks, with an emphasis on making failed generations easier to inspect rather than treating the model output as a black box.
+
+**Tangut Script Translation and Low-Resource NLP**
 
 *GitHub: [ChouYuanjue/Tangut_Chinese_Translator](https://github.com/ChouYuanjue/Tangut_Chinese_Translator) & [ChouYuanjue/tangut-nlp](https://github.com/ChouYuanjue/tangut-nlp)*
-* **Objective:** Combating extreme data sparsity in low-resource dead languages.
-* **Implementation:** Transitioned from rule-based dictionary mapping and basic LLM sequence correction to structural feature extraction. Currently utilizing advanced Transformer Attention mechanisms to construct a robust Character-Level Embedding Space tailored for symbolic domains.
+* Built a Tangut-to-Chinese translation workflow around dictionary extraction, rule-based lookup, and LLM-assisted correction for a language setting with sparse and uneven digital resources.
+* Used the project as a test case for handling symbolic scripts, incomplete lexicons, and the gap between philological data and machine-readable NLP inputs.
 
-
-**Controllable Symbolic Synthesis via Hierarchical Representation Learning**
+**Small Generative and Multimodal Tooling Experiments**
 
 *GitHub: [ChouYuanjue/AI_Emoji_Kitchen_Lab](https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab)*
-* **Evolution:** Iteratively advanced from basic U-Net feature extraction to incorporating SE Attention, and eventually implementing LoRA-adapted Diffusion Models for fine-grained style control.
-* **Current Focus:** Expanding beyond raster-based generation to Vector Graphics Representation using DeepSVG architectures to capture intrinsic structural topologies.
+* Developed small experiments around emoji/icon generation, dataset preparation, and controllable visual synthesis, mainly as a practical testbed for multimodal tooling.
+* Focused on the engineering side of iteration: preparing assets, testing model components, and turning generation results into reusable scripts or datasets.
 
 ## Publications & Technical Presentations
 
