@@ -47,8 +47,8 @@ export default function LibraryIndex() {
     <div className="mx-auto max-w-6xl space-y-10">
       <PageHero
         eyebrow="Library"
-        title="Library"
-        description="Notes, classical writing, linguistic miscellanea, and criticism. Each section links to its own archive page."
+        title="Notes, writings, and criticism"
+        description="INM math notes, Jeanot Collection, Linguistic Miscellanea, and Noctes Runnelianae are grouped here for browsing."
         meta={(
           <>
             <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{notesData.project.noteCount} INM notes</span>
