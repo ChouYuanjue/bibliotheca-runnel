@@ -23,18 +23,18 @@ const sections = [
     accent: "bg-amber-500",
   },
   {
-    title: "Linguistic Miscellanea",
-    description: "A compact collection of linguistic notes on phonology, syntax, conlangs, historical scripts, and language interpretation.",
+    title: "Babelica Runneliana",
+    description: "A Runnelian cabinet of language notes, from phonology and syntax to conlangs, historical scripts, and small Babelic puzzles.",
     href: "/library/linguistics",
-    eyebrow: "Language notes",
+    eyebrow: "Philological cabinet",
     meta: `${linguisticsData.length} articles`,
     accent: "bg-emerald-500",
   },
   {
-    title: "Adversaria Literaria",
-    description: "A literary and philosophical adversaria: essays, reviews, lecture records, and field notes on texts, images, and ideas.",
+    title: "Noctes Runnelianae",
+    description: "A personal night-book of essays, reviews, lecture records, and marginal notes on texts, images, and ideas.",
     href: "/library/criticisms",
-    eyebrow: "Critical miscellany",
+    eyebrow: "Runnelian adversaria",
     meta: `${criticismsData.length} essays`,
     accent: "bg-purple-500",
   },
@@ -46,7 +46,7 @@ export default function LibraryIndex() {
       <PageHero
         eyebrow="Library"
         title="A curated archive of named collections"
-        description="The library is the most stable part of the site: four named collections spanning mathematical reconstruction, classical writing, linguistic miscellanea, and literary-philosophical adversaria."
+        description="The library is the most stable part of the site: four named collections spanning mathematical reconstruction, classical writing, Babelic philology, and Runnelian night-notes."
         meta={(
           <>
             <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{notesData.project.noteCount} INM notes</span>
