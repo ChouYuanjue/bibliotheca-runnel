@@ -130,16 +130,17 @@ const generateWorklist = () => {
         });
     }
 
-    // 8. Notes
-    const notes = readJson('library_notes_index.json');
-    if (notes) {
-        notes.forEach(item => {
+    // 8. INM dated notes
+    const inmArchive = readJson('inm_notes_index.json');
+    if (inmArchive && Array.isArray(inmArchive.notes)) {
+        inmArchive.notes.forEach(note => {
             worklist.push({
                 type: 'Note',
-                title: item.title,
-                description: item.description,
-                date: item.date,
-                link: `/notes/${item.filename}` // Correct path based on public/notes/
+                title: `${note.id}: ${note.title}`,
+                description: `${note.volume} · ${note.sectionCount} sections · PDF and TeX source available in the INM archive.`,
+                date: note.date,
+                link: note.pdf || '/library/notes',
+                tags: [note.volume, 'INM']
             });
         });
     }
