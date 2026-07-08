@@ -52,7 +52,7 @@ export default async function OrganizationsIndex() {
       <PageHero
         eyebrow="Organizations"
         title="Communities, labs, and working groups"
-        description="A compact map of organizations where I have built projects, taught, moderated, collaborated, or participated in research and technical communities."
+        description="Organizations where I have built projects, taught, moderated, collaborated, or joined research and technical work."
         meta={<span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{organizations.length} organizations</span>}
       />
 

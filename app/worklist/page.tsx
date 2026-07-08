@@ -155,8 +155,8 @@ export default function WorklistPage() {
     <div className="mx-auto max-w-6xl space-y-8">
       <PageHero
         eyebrow="Index"
-        title="Selected work and full archive index"
-        description="A cross-site index of projects, writings, fragments, publications, collections, and the complete INM note list. The page renders entries incrementally so the All view can remain complete without becoming unwieldy."
+        title="Index"
+        description="A site-wide list of projects, writings, fragments, publications, collections, and INM notes. Entries load in batches for easier browsing."
         meta={<span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{items.length} indexed entries</span>}
       />
 

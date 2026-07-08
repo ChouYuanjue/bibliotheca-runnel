@@ -66,8 +66,8 @@ export default async function ProjectsIndex() {
     <div className="mx-auto max-w-6xl space-y-10">
       <PageHero
         eyebrow="Projects"
-        title="Engineering projects and experimental systems"
-        description="A selected project archive covering research codebases, applied systems, bot ecosystems, low-resource language tools, and TeX/OCR pipelines."
+        title="Projects"
+        description="Research code, applied systems, bot frameworks, language tools, and TeX/OCR pipelines."
         meta={(
           <>
             <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{researchProjects.length} research</span>
@@ -76,9 +76,9 @@ export default async function ProjectsIndex() {
           </>
         )}
       />
-      <ProjectSection title="Research Projects" description="Codebases tied to AI4Math, theorem proving, low-resource NLP, and evaluation-oriented research experiments." projects={researchProjects} accent="bg-indigo-600" />
-      <ProjectSection title="Commercial / Applied Systems" description="Applied engineering work connected to product delivery, multimodal systems, and real-world deployment scenarios." projects={commercialProjects} accent="bg-blue-600" />
-      <ProjectSection title="Personal Projects" description="Personal infrastructure, archives, bot frameworks, language tools, and experimental utilities." projects={personalProjects} accent="bg-gray-900" />
+      <ProjectSection title="Research Projects" description="AI4Math, theorem proving, low-resource NLP, and evaluation codebases." projects={researchProjects} accent="bg-indigo-600" />
+      <ProjectSection title="Commercial / Applied Systems" description="Applied work for product delivery, multimodal systems, and deployment." projects={commercialProjects} accent="bg-blue-600" />
+      <ProjectSection title="Personal Projects" description="Personal infrastructure, bot frameworks, language tools, archives, and utilities." projects={personalProjects} accent="bg-gray-900" />
     </div>
   );
 }

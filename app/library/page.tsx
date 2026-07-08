@@ -10,7 +10,7 @@ const classicsEntryCount = classicsData.reduce((sum, category) => sum + category
 const sections = [
   {
     title: "Informal Notes on Mathematics",
-    description: "A reconstructed mathematical note collection organized by dates, volumes, PDFs, and TeX sources.",
+    description: "Mathematical notes with PDFs and TeX sources, grouped by volume.",
     href: "/library/notes",
     eyebrow: "Mathematical notes",
     meta: `${notesData.project.noteCount} notes · ${notesData.project.volumeCount} volumes`,
@@ -18,7 +18,7 @@ const sections = [
   },
   {
     title: "Jeanot Collection (让诺集)",
-    description: "A self-authored classical-writing collection with switchable typography and traditional reading layouts.",
+    description: "Classical-style Chinese writings with multiple reading layouts.",
     href: "/library/classics",
     eyebrow: "Classical writing",
     meta: `${classicsEntryCount} entries · ${classicsData.length} categories`,
@@ -26,7 +26,7 @@ const sections = [
   },
   {
     title: "Linguistic Miscellanea",
-    description: "A compact miscellany of language notes: phonology, syntax, conlangs, historical scripts, and translation work.",
+    description: "Language notes on phonology, syntax, conlangs, historical scripts, and translation.",
     href: "/library/linguistics",
     eyebrow: "Language miscellany",
     meta: `${linguisticsData.length} articles`,
@@ -34,9 +34,9 @@ const sections = [
   },
   {
     title: "Noctes Runnelianae",
-    description: "A personal night-book of essays, reviews, lecture records, and marginal notes on texts, images, and ideas.",
+    description: "Essays, reviews, lecture records, and notes on texts, images, and ideas.",
     href: "/library/criticisms",
-    eyebrow: "Runnelian adversaria",
+    eyebrow: "Essays and criticism",
     meta: `${criticismsData.length} essays`,
     accent: "bg-purple-500",
   },
@@ -47,8 +47,8 @@ export default function LibraryIndex() {
     <div className="mx-auto max-w-6xl space-y-10">
       <PageHero
         eyebrow="Library"
-        title="A curated archive of named collections"
-        description="The library is the most stable part of the site: four named collections spanning mathematical reconstruction, classical writing, linguistic miscellanea, and Runnelian night-notes."
+        title="Library"
+        description="Notes, classical writing, linguistic miscellanea, and criticism. Each section links to its own archive page."
         meta={(
           <>
             <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{notesData.project.noteCount} INM notes</span>

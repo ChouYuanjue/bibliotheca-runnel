@@ -11,7 +11,7 @@ type Mentor = {
 const groups: { title: string; description: string; people: Mentor[] }[] = [
   {
     title: "Formal and Current Research Guidance",
-    description: "Current or near-current supervision, collaboration, and research guidance in AI-oriented work.",
+    description: "Supervision, collaboration, and research guidance in AI-oriented work.",
     people: [
       {
         name: "Zheni Zeng",
@@ -29,7 +29,7 @@ const groups: { title: string; description: string; people: Mentor[] }[] = [
   },
   {
     title: "Mathematical and Intellectual Guidance",
-    description: "Longer-term influences on mathematical taste, foundational interests, and research reading habits.",
+    description: "Guidance in mathematical study, foundations, and research reading.",
     people: [
       {
         name: "Keyao Peng",
@@ -49,7 +49,7 @@ const groups: { title: string; description: string; people: Mentor[] }[] = [
   },
   {
     title: "Earlier Academic and Technical Support",
-    description: "Earlier guides who helped shape my mathematical study habits and technical entry points.",
+    description: "Earlier support in mathematics and programming.",
     people: [
       {
         name: "Zhenyu Lu",
@@ -95,7 +95,7 @@ export default function MentorsPage() {
       <PageHero
         eyebrow="Mentors"
         title="People who shaped my research path"
-        description="A concise acknowledgement of formal advisors, research collaborators, mathematical mentors, and earlier guides. The wording is intentionally conservative: it records influence and guidance without overstating institutional relationships."
+        description="Advisors, collaborators, mathematical mentors, and earlier guides. This page records the kind of guidance without implying a formal role where there is none."
       />
 
       {groups.map((group) => (

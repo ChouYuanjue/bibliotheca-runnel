@@ -14,8 +14,8 @@ export default function FragmentsIndex() {
     <div className="mx-auto max-w-6xl space-y-10">
       <PageHero
         eyebrow="Fragments"
-        title="Working notes, small records, and intellectual debris"
-        description="Informal records of mathematical study, correspondence, engineering notes, satire, and small intellectual episodes. They remain fragments rather than formal papers, but their metadata is kept tidy for browsing."
+        title="Fragments"
+        description="Study records, correspondence, engineering notes, satire, and short pieces that do not fit the main library sections."
         meta={(
           <>
             <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{sortedFragments.length} fragments</span>
