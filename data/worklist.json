@@ -100,8 +100,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20260604 · Solving Linear Systems: Direct, Iterative, and Optimization Methods",
-    "description": "Linear Algebra · 16 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20260604 · Solving Linear Systems: Elimination, Iteration, and Energy",
+    "description": "Linear Algebra · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-06-04",
     "link": "/notes/2026/N-20260604.pdf",
     "tags": [
@@ -112,7 +112,7 @@
   {
     "type": "Note",
     "title": "N-20260603 · Generalized Inverses, Projections, and Least-Squares Geometry",
-    "description": "Linear Algebra · 15 sections · PDF and TeX source available in the INM archive.",
+    "description": "Linear Algebra · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-06-03",
     "link": "/notes/2026/N-20260603.pdf",
     "tags": [
@@ -122,8 +122,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20260602 · Matrix Decompositions: LU, Cholesky, Full Rank, and SVD",
-    "description": "Linear Algebra · 15 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20260602 · Matrix Decompositions: LU, Cholesky, Rank Factorization, and SVD",
+    "description": "Linear Algebra · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-06-02",
     "link": "/notes/2026/N-20260602.pdf",
     "tags": [
@@ -289,7 +289,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20260318 · Matrix Computation III: Canonical Forms, Localization, and Iteration",
+    "title": "N-20260318 · Matrix Computation III: Canonical Forms, Spectral Localization, and Eigenvalue Iteration",
     "description": "Linear Algebra · 14 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-18",
     "link": "/notes/2026/N-20260318.pdf",
@@ -323,7 +323,7 @@
   {
     "type": "Note",
     "title": "N-20260312 · Matrix Computation II: Spectral Radius, Stability, and Conditioning",
-    "description": "Linear Algebra · 13 sections · PDF and TeX source available in the INM archive.",
+    "description": "Linear Algebra · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-12",
     "link": "/notes/2026/N-20260312.pdf",
     "tags": [
@@ -333,8 +333,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20260311 · Matrix Computation I: Norms, Operators, and Numerical Size",
-    "description": "Linear Algebra · 12 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20260311 · Matrix Computation I: Norms, Amplification, and Numerical Size",
+    "description": "Linear Algebra · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-11",
     "link": "/notes/2026/N-20260311.pdf",
     "tags": [
@@ -355,8 +355,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20260305 · Orthogonal Projection, Least Squares, and the Pseudoinverse",
-    "description": "Linear Algebra · 9 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20260305 · Orthogonal Projection, Least Squares, and the Geometry of Approximation",
+    "description": "Linear Algebra · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-03-05",
     "link": "/notes/2026/N-20260305.pdf",
     "tags": [
@@ -465,8 +465,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20260105 · Linear Algebra Review IV: Eigenvalue Tricks, Positive Definiteness, and More",
-    "description": "Linear Algebra · 33 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20260105 · Spectral Calculus and Positive Matrix Geometry: From Basis Changes to Lyapunov Equations",
+    "description": "Linear Algebra · 14 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-01-05",
     "link": "/notes/2026/N-20260105.pdf",
     "tags": [
@@ -476,8 +476,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20260103 · Linear Algebra Review III: Determinant Tricks, Rank, Matrix Powers, and More",
-    "description": "Linear Algebra · 34 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20260103 · Rank, Projections, and Long-Term Matrix Dynamics",
+    "description": "Linear Algebra · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-01-03",
     "link": "/notes/2026/N-20260103.pdf",
     "tags": [
@@ -578,8 +578,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20251202 · Linear Algebra Review II: Diagonalization, Inner Products, Quadratic Forms, and More",
-    "description": "Linear Algebra · 28 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20251202 · Inner-Product Geometry and Spectral Decomposition: From QR to Quadratic Forms",
+    "description": "Linear Algebra · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-12-02",
     "link": "/notes/2025/N-20251202.pdf",
     "tags": [
@@ -691,8 +691,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20251112 · Calculus Review I: Inequalities, Limits, Derivatives, and More",
-    "description": "Calculus · 18 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20251112 · Calculus Review I: Limits, Completeness, Asymptotic Scales, and Local Approximation",
+    "description": "Calculus · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-11-12",
     "link": "/notes/2025/N-20251112.pdf",
     "tags": [
@@ -702,8 +702,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20251110 · Linear Algebra Review I: Determinants, Rank, Linear Systems, and More",
-    "description": "Linear Algebra · 27 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20251110 · Determinants and Rank: From Alternating Volume to Elimination and Rank Strata",
+    "description": "Linear Algebra · 9 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-11-10",
     "link": "/notes/2025/N-20251110.pdf",
     "tags": [
@@ -1005,7 +1005,7 @@
   {
     "type": "Note",
     "title": "N-20250301 · Projective Schemes and Gluing: Building Projective Space from Affine Windows",
-    "description": "Curves and Structures · 13 sections · PDF and TeX source available in the INM archive.",
+    "description": "Curves and Structures · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-03-01",
     "link": "/notes/2025/N-20250301.pdf",
     "tags": [
@@ -1123,7 +1123,7 @@
   {
     "type": "Note",
     "title": "N-20240914 · Divisors on Curves: The Bookkeeping of Zeros, Poles, and Functions",
-    "description": "Curves and Structures · 12 sections · PDF and TeX source available in the INM archive.",
+    "description": "Curves and Structures · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2024-09-14",
     "link": "/notes/2024/N-20240914.pdf",
     "tags": [
@@ -1196,7 +1196,7 @@
   {
     "type": "Note",
     "title": "N-20240518 · Projective Geometry as the Art of Removing Exceptions",
-    "description": "Classical Geometry · 12 sections · PDF and TeX source available in the INM archive.",
+    "description": "Classical Geometry · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2024-05-18",
     "link": "/notes/2024/N-20240518.pdf",
     "tags": [
@@ -1207,7 +1207,7 @@
   {
     "type": "Note",
     "title": "N-20240427 · Differential Forms and Stokes: The Geometry of Boundary Measurements",
-    "description": "Vector Calculus · 13 sections · PDF and TeX source available in the INM archive.",
+    "description": "Vector Calculus · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2024-04-27",
     "link": "/notes/2024/N-20240427.pdf",
     "tags": [
@@ -1218,7 +1218,7 @@
   {
     "type": "Note",
     "title": "N-20240413 · Local Linear Geometry: A Mapmaker's View of Derivatives and Tangent Spaces",
-    "description": "Multivariable Calculus · 13 sections · PDF and TeX source available in the INM archive.",
+    "description": "Multivariable Calculus · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2024-04-13",
     "link": "/notes/2024/N-20240413.pdf",
     "tags": [
@@ -1238,8 +1238,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20240330 · Combinatorial Geometry, Euler Formula, Platonic Solids, Degree, and Quotients",
-    "description": "Combinatorics and Models · 20 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20240330 · From Extremal Triangles to Euler Characteristic and Degree",
+    "description": "Combinatorics and Models · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2024-03-30",
     "link": "/notes/2024/N-20240330.pdf",
     "tags": [
@@ -1400,8 +1400,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20230801 · Reading Hitchin: Self-Duality Equations, Higgs Bundles, and Geometric Structures",
-    "description": "Curves and Structures · 18 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20230801 · From Self-Duality to Spectral Curves: A Computable Route through Hitchin's Equations",
+    "description": "Curves and Structures · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-08-01",
     "link": "/notes/2023/N-20230801.pdf",
     "tags": [
@@ -1488,8 +1488,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20230316 · Fixed Points, Iteration, and the Banach Contraction Principle",
-    "description": "Functions and Inequalities · 12 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20230316 · Fixed Points, Convergent Iteration, and Compactness Methods",
+    "description": "Functions and Inequalities · 9 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-03-16",
     "link": "/notes/2023/N-20230316.pdf",
     "tags": [
@@ -1499,8 +1499,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20230314 · Category Theory Continued: Free and Forgetful Functors, Concrete Categories, and Group Actions",
-    "description": "Categories and Logic · 7 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20230314 · Free Constructions, Adjunctions, Concrete Categories, and Group Actions",
+    "description": "Categories and Logic · 8 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-03-14",
     "link": "/notes/2023/N-20230314.pdf",
     "tags": [
@@ -1521,8 +1521,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20230311 · Riemann Integration and Lebesgue Integration: From Partitions of the Domain to Partitions of Values",
-    "description": "Vector Calculus · 23 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20230311 · From Oscillation to Stable Limits: Riemann and Lebesgue Integration",
+    "description": "Vector Calculus · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-03-11",
     "link": "/notes/2023/N-20230311.pdf",
     "tags": [
@@ -1543,8 +1543,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20230225 · Nonstandard Analysis and the Meaning of $0.999\\ldots=1$",
-    "description": "Sets and Foundations · 17 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20230225 · Completed Decimals, Hyperfinite Truncations, and Nonstandard Analysis",
+    "description": "Sets and Foundations · 9 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-02-25",
     "link": "/notes/2023/N-20230225.pdf",
     "tags": [
@@ -1608,8 +1608,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20230217 · A Brief Note on Tensors II: Tensor Products, Components, and More",
-    "description": "Linear Algebra · 19 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20230217 · Tensors in Nonorthogonal Coordinates: Dual Bases, Metrics, and Contraction",
+    "description": "Linear Algebra · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-02-17",
     "link": "/notes/2023/N-20230217.pdf",
     "tags": [
@@ -1630,8 +1630,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20230205 · Vector Triple Product, Exterior Algebra, and the Hodge Star",
-    "description": "Multivariable Calculus · 14 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20230205 · Vector Identities from Exterior Algebra: Wedge, Contraction, and the Hodge Star",
+    "description": "Multivariable Calculus · 9 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-02-05",
     "link": "/notes/2023/N-20230205.pdf",
     "tags": [
@@ -1666,8 +1666,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20230127 · Factorization of $\\sum_{i=0}^k x^{in}$: Roots of Unity, False Generalization, and Cyclotomic Structure",
-    "description": "Number Theory Basics · 15 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20230127 · Cyclotomic Pullbacks: Exact Orders, Galois Conjugacy, and Polynomial Divisibility",
+    "description": "Number Theory Basics · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-01-27",
     "link": "/notes/2023/N-20230127.pdf",
     "tags": [
@@ -1699,8 +1699,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20230118 · Combinatorics: Pigeonhole Principle, Subsets, Binomial Sums, and Helly-Type Ideas",
-    "description": "Combinatorics and Models · 17 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20230118 · Local Information, Global Structure: Pigeonhole, Ramsey, Radon, and Helly",
+    "description": "Combinatorics and Models · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-01-18",
     "link": "/notes/2023/N-20230118.pdf",
     "tags": [
@@ -1721,8 +1721,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20230116 · Functions, Mappings, Injections, Surjections, and Functional Equations",
-    "description": "Functions and Inequalities · 17 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20230116 · Functions through Fibers, Iteration, and Functional Equations",
+    "description": "Functions and Inequalities · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2023-01-16",
     "link": "/notes/2023/N-20230116.pdf",
     "tags": [
@@ -1786,8 +1786,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20221223 · Homotopy, Simply Connected Spaces, Semigroups, Groups, and Homomorphisms",
-    "description": "Topology and Homotopy · 17 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20221223 · Paths to Groups: Homotopy, Coverings, Fundamental Groups, and Presentations",
+    "description": "Topology and Homotopy · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-23",
     "link": "/notes/2022/N-20221223.pdf",
     "tags": [
@@ -1797,8 +1797,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20221222 · Topological Re-definitions, Subspaces, Connectedness, and Path-Connectedness",
-    "description": "Topology and Homotopy · 17 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20221222 · Open-Set Calculus: Continuity, Closure, Nets, and Connected Components",
+    "description": "Topology and Homotopy · 8 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-22",
     "link": "/notes/2022/N-20221222.pdf",
     "tags": [
@@ -1808,8 +1808,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20221221 · Basic Topology II: Completion, Homeomorphism Warnings, and Quotient Intuition",
-    "description": "Topology and Homotopy · 11 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20221221 · Completion, Uniform Structure, and Quotient Topology",
+    "description": "Topology and Homotopy · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-21",
     "link": "/notes/2022/N-20221221.pdf",
     "tags": [
@@ -1852,8 +1852,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20221211 · Derivatives: Definition, Rules, Elementary Functions, and Inverse Trigonometric Derivatives",
-    "description": "Calculus · 16 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20221211 · Derivatives: Local Linearization, Computation Graphs, and Higher-Order Data",
+    "description": "Calculus · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-11",
     "link": "/notes/2022/N-20221211.pdf",
     "tags": [
@@ -1896,8 +1896,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20221205 · Lecture Notes on Sets, Counting, and Binomial Coefficients",
-    "description": "Combinatorics and Models · 22 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20221205 · Counting by Logic, Projection, Inversion, and Generating Series",
+    "description": "Combinatorics and Models · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-12-05",
     "link": "/notes/2022/N-20221205.pdf",
     "tags": [
@@ -1918,8 +1918,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20221120 · Elliptic Curves: Nonsingularity, Group Law, and Cryptographic Motivation",
-    "description": "Arithmetic Geometry · 17 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20221120 · Elliptic Curves from Smooth Cubics to Finite Groups",
+    "description": "Arithmetic Geometry · 9 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-11-20",
     "link": "/notes/2022/N-20221120.pdf",
     "tags": [
@@ -1941,7 +1941,7 @@
   {
     "type": "Note",
     "title": "N-20221107 · Trigonometric Limits, Derivatives, and Inverse Trigonometric Examples",
-    "description": "Calculus · 10 sections · PDF and TeX source available in the INM archive.",
+    "description": "Calculus · 9 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-11-07",
     "link": "/notes/2022/N-20221107.pdf",
     "tags": [
@@ -1962,8 +1962,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20221031 · Divisibility, Euclidean Algorithm, Greatest Common Divisor, Bezout, and Congruences",
-    "description": "Number Theory Basics · 20 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20221031 · Congruences and Integer Linear Algebra: From Residue Classes to Smith Normal Form",
+    "description": "Number Theory Basics · 13 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-10-31",
     "link": "/notes/2022/N-20221031.pdf",
     "tags": [
@@ -1973,8 +1973,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20221030 · Integer Arithmetic: Well-Ordering, Euclidean Algorithm, and the Euler Function",
-    "description": "Number Theory Basics · 18 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20221030 · Integer Arithmetic: Euclidean Descent, Bézout Identities, and the Euler Function",
+    "description": "Number Theory Basics · 9 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-10-30",
     "link": "/notes/2022/N-20221030.pdf",
     "tags": [
@@ -1984,8 +1984,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20221013 · Shoelace Formula, Remainder Theorem, and Modular Arithmetic",
-    "description": "Number Theory Basics · 14 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20221013 · Oriented Boundary Sums, Polynomial Remainders, and Congruence Classes",
+    "description": "Number Theory Basics · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-10-13",
     "link": "/notes/2022/N-20221013.pdf",
     "tags": [
@@ -1995,8 +1995,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20221012 · A Map of Classical Inequalities",
-    "description": "Functions and Inequalities · 15 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20221012 · Classical Inequalities from Convexity, Duality, and Norm Geometry",
+    "description": "Functions and Inequalities · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-10-12",
     "link": "/notes/2022/N-20221012.pdf",
     "tags": [
@@ -2080,8 +2080,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20220911 · Analytic Geometry: Lines, Circles, and Coordinate Tricks",
-    "description": "Classical Geometry · 23 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20220911 · Analytic Geometry through Normals, Line Pencils, and Quadratic Forms",
+    "description": "Classical Geometry · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-09-11",
     "link": "/notes/2022/N-20220911.pdf",
     "tags": [
@@ -2091,8 +2091,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20220813 · Complex Contour Integrals and the Geometry of Integration",
-    "description": "Complex Analysis · 15 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20220813 · Contour Integrals: Parametrization, Exactness, Winding, and Residues",
+    "description": "Complex Analysis · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-08-13",
     "link": "/notes/2022/N-20220813.pdf",
     "tags": [
@@ -2158,7 +2158,7 @@
   {
     "type": "Note",
     "title": "N-20220802 · Trigonometric Functions, Radians, Identities, and Triangle Formulas",
-    "description": "Classical Geometry · 20 sections · PDF and TeX source available in the INM archive.",
+    "description": "Classical Geometry · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-08-02",
     "link": "/notes/2022/N-20220802.pdf",
     "tags": [
@@ -2179,8 +2179,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20220728 · Spatial Vectors, Cross Products, and Categorical Products",
-    "description": "Multivariable Calculus · 19 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20220728 · What Does ``Product'' Mean? Spatial Vectors, Cross Products, and Universal Products",
+    "description": "Multivariable Calculus · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-07-28",
     "link": "/notes/2022/N-20220728.pdf",
     "tags": [
@@ -2201,8 +2201,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20220723 · Roots of Unity, Decagons, and Cyclotomic Divisibility",
-    "description": "Number Theory Basics · 7 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20220723 · Polygon Motions and Roots of Unity: Modular Hops, Chords, and Vanishing Sums",
+    "description": "Number Theory Basics · 9 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-07-23",
     "link": "/notes/2022/N-20220723.pdf",
     "tags": [
@@ -2266,8 +2266,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20220717 · Recurrences, Arithmetic and Geometric Progressions, and the First Examples of Groups",
-    "description": "Number Theory Basics · 16 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20220717 · Recurrences as Orbits: Linear Dynamics, Normalization, and Reversible Transformations",
+    "description": "Number Theory Basics · 13 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-07-17",
     "link": "/notes/2022/N-20220717.pdf",
     "tags": [
@@ -2365,8 +2365,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20220417 · Proof Strategies, Cyclic Sums, and Inequality Methods",
-    "description": "Functions and Inequalities · 18 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20220417 · Designing Inequality Proofs: Equality Cases, Homogeneity, and Cyclic Structure",
+    "description": "Functions and Inequalities · 9 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-04-17",
     "link": "/notes/2022/N-20220417.pdf",
     "tags": [
@@ -2376,8 +2376,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20220412 · Linear Algebra Continued: Indices, Rank, Transpose, Hermitian Conjugate, and Trace",
-    "description": "Linear Algebra · 15 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20220412 · Indices, Dual Maps, Adjoints, Trace, and Singular Values",
+    "description": "Linear Algebra · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-04-12",
     "link": "/notes/2022/N-20220412.pdf",
     "tags": [
@@ -2398,8 +2398,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20220409 · Faà di Bruno, Leibniz Rules, and Matrix Multiplication",
-    "description": "Calculus · 13 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20220409 · Composition and Elimination: Higher Derivatives, Determinants, and Schur Complements",
+    "description": "Calculus · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-04-09",
     "link": "/notes/2022/N-20220409.pdf",
     "tags": [
@@ -2431,7 +2431,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20220323 · Complex Differentiability and the Rigidity of Holomorphic Functions",
+    "title": "N-20220323 · Complex Differentiability, Cauchy–Riemann Equations, and Holomorphic Rigidity",
     "description": "Complex Analysis · 7 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-03-23",
     "link": "/notes/2022/N-20220323.pdf",
@@ -2442,8 +2442,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20220321 · Some Pre-Complex Analysis: Motion on the Unit Circle and Roots of Unity",
-    "description": "Complex Analysis · 16 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20220321 · Motion on the Unit Circle, Roots of Unity, and Finite Fourier Analysis",
+    "description": "Complex Analysis · 10 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-03-21",
     "link": "/notes/2022/N-20220321.pdf",
     "tags": [
