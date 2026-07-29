@@ -952,7 +952,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20250707 · Nikonov's Paper at One Crossing: Region Probes, Partial Tribrackets, and What the Seminar Was About",
+    "title": "N-20250707 · Nikonov's Paper at One Crossing: Region Probes and Partial Tribrackets",
     "description": "Curves and Structures · 8 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-07-07",
     "link": "/notes/2025/N-20250707.pdf",
@@ -973,7 +973,7 @@
   },
   {
     "type": "Note",
-    "title": "N-20250705 · Nikonov's Seminar Prelude: Knots, Diagrams, Probes, and the Space Between the Lines",
+    "title": "N-20250705 · Knots, Diagrams, Probes, and the Space Between the Lines",
     "description": "Curves and Structures · 7 sections · PDF and TeX source available in the INM archive.",
     "date": "2025-07-05",
     "link": "/notes/2025/N-20250705.pdf",
@@ -1153,8 +1153,8 @@
   },
   {
     "type": "Note",
-    "title": "N-20240727 · Hopf Fibration, Homotopy, and the Infinite-Stability Reading",
-    "description": "Topology and Homotopy · 9 sections · PDF and TeX source available in the INM archive.",
+    "title": "N-20240727 · Hopf Fibration, Homotopy, and a Tempting Infinite-Stability Reading",
+    "description": "Topology and Homotopy · 7 sections · PDF and TeX source available in the INM archive.",
     "date": "2024-07-27",
     "link": "/notes/2024/N-20240727.pdf",
     "tags": [
@@ -2516,7 +2516,7 @@
   {
     "type": "Note",
     "title": "N-20220131 · Rethinking Set Theory Through Functions Rather Than Membership",
-    "description": "Sets and Foundations · 13 sections · PDF and TeX source available in the INM archive.",
+    "description": "Sets and Foundations · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2022-01-31",
     "link": "/notes/2022/N-20220131.pdf",
     "tags": [

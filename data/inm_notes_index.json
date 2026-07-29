@@ -703,13 +703,13 @@
       "volume": "Topology and Homotopy",
       "sectionCount": 15,
       "sections": [
-        "Why this second note exists",
+        "Why ordinary cancellation misses the point",
         "The lecture starts from ordinary equations",
         "The Hopf fibration as the first nontrivial map",
         "Homotopy groups and the first stable class",
         "From natural numbers to finite sets",
         "The space of finite sets",
-        "Why the first guess was close but reversed",
+        "Why the infinite-stability analogy points in the wrong direction",
         "Finite sets and stable spheres"
       ],
       "pdf": "/notes/2025/N-20251217.pdf",
@@ -1072,7 +1072,7 @@
       "year": "2025",
       "month": "Jul",
       "day": "07",
-      "title": "Nikonov's Paper at One Crossing: Region Probes, Partial Tribrackets, and What the Seminar Was About",
+      "title": "Nikonov's Paper at One Crossing: Region Probes and Partial Tribrackets",
       "volume": "Curves and Structures",
       "sectionCount": 8,
       "sections": [
@@ -1094,7 +1094,7 @@
       "year": "2025",
       "month": "Jul",
       "day": "05",
-      "title": "Nikonov's Seminar Prelude: Knots, Diagrams, Probes, and the Space Between the Lines",
+      "title": "Knots, Diagrams, Probes, and the Space Between the Lines",
       "volume": "Curves and Structures",
       "sectionCount": 7,
       "sections": [
@@ -1104,7 +1104,7 @@
         "The pieces of a diagram",
         "Nikonov's bridge: diagram elements as probes",
         "Invariants, coinvariants, and labels",
-        "What this note is not trying to do"
+        "Scope and the next algebraic layer"
       ],
       "pdf": "/notes/2025/N-20250705.pdf",
       "tex": "/notes/2025/N-20250705.tex"
@@ -1225,18 +1225,17 @@
       "year": "2024",
       "month": "Jul",
       "day": "27",
-      "title": "Hopf Fibration, Homotopy, and the Infinite-Stability Reading",
+      "title": "Hopf Fibration, Homotopy, and a Tempting Infinite-Stability Reading",
       "volume": "Topology and Homotopy",
-      "sectionCount": 9,
+      "sectionCount": 7,
       "sections": [
-        "What this chapter is for",
-        "The first analytic reflex",
-        "Why the Hopf and K-theory hints changed the search",
-        "The Eilenberg swindle as the central guess",
-        "How this looked like a K-theory statement",
-        "The role I imagined for the Hopf fibration",
-        "The meme as a learning ladder",
-        "What the original interpretation claimed"
+        "The infinite-stability interpretation",
+        "The analytic reflex",
+        "The Eilenberg swindle as the central candidate",
+        "The role assigned to the Hopf fibration",
+        "The meme as an association ladder",
+        "The infinite-stability thesis",
+        "Where the interpretation fails"
       ],
       "pdf": "/notes/2024/N-20240727.pdf",
       "tex": "/notes/2024/N-20240727.tex"
@@ -1867,7 +1866,7 @@
       "volume": "Topology and Homotopy",
       "sectionCount": 19,
       "sections": [
-        "What this note is really doing",
+        "From quotient pictures to algebraic invariants",
         "Disjoint union",
         "Wedge sum",
         "CW complexes: building spaces by cells",
@@ -1999,7 +1998,7 @@
       "volume": "Topology and Homotopy",
       "sectionCount": 17,
       "sections": [
-        "Why the note starts with metrics",
+        "Why metrics come first",
         "Boundedness: diameter and radius",
         "Metric spaces",
         "Sequences and continuity",
@@ -2967,7 +2966,7 @@
       "volume": "Classical Geometry",
       "sectionCount": 19,
       "sections": [
-        "What the note contains",
+        "The main problem types",
         "Problem 1: two distances under a linear constraint",
         "Problem 2: parabola and distance",
         "Problem 3: packing unit circles",
@@ -2989,7 +2988,7 @@
       "volume": "Multivariable Calculus",
       "sectionCount": 19,
       "sections": [
-        "Why this note was too compressed before",
+        "The full problem of constrained extrema",
         "Lagrange multipliers: the basic idea",
         "Example: minimizing distance to a line",
         "Why the method is valid",
@@ -3294,7 +3293,7 @@
       "day": "31",
       "title": "Rethinking Set Theory Through Functions Rather Than Membership",
       "volume": "Sets and Foundations",
-      "sectionCount": 13,
+      "sectionCount": 12,
       "sections": [
         "Why this translation/note matters",
         "The discomfort with ZFC",
@@ -3318,7 +3317,7 @@
       "volume": "Arithmetic Geometry",
       "sectionCount": 17,
       "sections": [
-        "Why this note starts with algebraic number theory",
+        "Why algebraic number theory comes first",
         "Number fields and algebraic integers",
         "Ideals and factorization",
         "Quadratic fields and class number",
@@ -3368,7 +3367,7 @@
         "Cofibrations, fibrations, and deformation retracts",
         "Spheres and homotopy groups",
         "The Hopf fibration",
-        "References to return to",
+        "Further reading and visual models",
         "Group actions as symmetry bookkeeping"
       ],
       "pdf": "/notes/2021/N-20210806.pdf",
