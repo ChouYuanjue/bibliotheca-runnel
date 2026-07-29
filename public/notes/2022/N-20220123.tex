@@ -1,14 +1,408 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220123}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220123}
-\end{document}
+\notechapter{N-20220123}{From Algebraic Number Theory to the First Shadow of Langlands}
+
+\section{Why algebraic number theory comes first}
+
+A first route toward the Langlands program begins with the vocabulary of algebraic number theory: number fields, algebraic integers, ideals, local fields, modular forms, \(L\)-functions, and the first shadow of a correspondence between Galois and automorphic data.
+
+\begin{remark}
+This is not a proof of the Langlands program.  It is an explanation of why number fields, ideals, local completions, modular forms, Galois representations, and automorphic representations naturally belong to one story.
+\end{remark}
+
+\section{Number fields and algebraic integers}
+
+\begin{definition}
+A number field is a finite extension \(K/\mathbb Q\).  Equivalently, \(K\) is a field that is a finite-dimensional vector space over \(\mathbb Q\).  A basic example is a quadratic field
+\[
+  K=\mathbb Q(\sqrt d),
+\]
+where \(d\) is a nonsquare integer.
+\end{definition}
+
+\begin{definition}
+Let \(K\) be a number field.  An element \(\alpha\in K\) is an algebraic integer if it satisfies a monic polynomial with integer coefficients:
+\[
+  x^n+a_{n-1}x^{n-1}+\cdots+a_0=0,
+  \qquad a_i\in\mathbb Z.
+\]
+The algebraic integers in \(K\) form a ring, denoted \(\mathcal O_K\).
+\end{definition}
+
+The reason for introducing algebraic integers is that they play in \(K\) the role played by ordinary integers in \(\mathbb Q\).  Unique factorization of elements may fail, but that failure leads to a deeper replacement: factorization of ideals.
+
+\section{Ideals and factorization}
+
+\begin{definition}
+An ideal \(\mathfrak a\subseteq\mathcal O_K\) is an additive subgroup such that for every \(\alpha\in\mathfrak a\) and every \(\gamma\in\mathcal O_K\),
+\[
+  \gamma\alpha\in\mathfrak a.
+\]
+\end{definition}
+
+Every nonzero ideal of \(\mathcal O_K\) factors uniquely into prime ideals.  Thus even when element factorization fails, ideal factorization remains well behaved.
+
+\begin{remark}
+This is the first conceptual jump: instead of forcing unique factorization of elements, one changes the objects being factored.  Ideals see the arithmetic more cleanly.
+\end{remark}
+
+\section{Quadratic fields and class number}
+
+For \(K=\mathbb Q(\sqrt d)\), the ring of integers is
+\[
+  \mathcal O_K=
+  \begin{cases}
+    \mathbb Z[\sqrt d],& d\equiv2,3\pmod4,\\
+    \mathbb Z\left[\dfrac{1+\sqrt d}{2}\right],& d\equiv1\pmod4.
+  \end{cases}
+\]
+
+\begin{definition}
+The class group of \(K\) is the group of nonzero fractional ideals modulo principal fractional ideals.  Its order is the class number \(h_K\).
+\end{definition}
+
+If \(h_K=1\), then every ideal class is principal.  If \(h_K>1\), nonprincipal ideal classes exist, and element factorization can fail.
+
+\begin{example}
+For
+\[
+  K=\mathbb Q(\sqrt{-5}),\qquad \mathcal O_K=\mathbb Z[\sqrt{-5}],
+\]
+one has \(h_K=2\).  The familiar failure of unique factorization is
+\[
+  6=2\cdot3=(1+\sqrt{-5})(1-\sqrt{-5}).
+\]
+\end{example}
+
+\begin{caution}
+The complete ideal factorization of \((6)\) is
+\[
+  (2)=\mathfrak p_2^2,
+  \qquad
+  (3)=\mathfrak p_3\mathfrak p_3',
+\]
+where
+\[
+  \mathfrak p_2=(2,1+\sqrt{-5}),
+  \quad
+  \mathfrak p_3=(3,1+\sqrt{-5}),
+  \quad
+  \mathfrak p_3'=(3,1-\sqrt{-5}).
+\]
+Thus
+\[
+  (6)=\mathfrak p_2^2\mathfrak p_3\mathfrak p_3'.
+\]
+\end{caution}
+
+
+\section[Localization, completion, and p-adic numbers]{Localization, completion, and \(p\)-adic numbers}
+
+A recurring idea in number theory is the comparison between local and global information.  Fix a prime \(p\).  Completing \(\mathbb Q\) under the \(p\)-adic metric gives
+\[
+  \mathbb Q_p.
+\]
+For a number field \(K\), one can complete at a prime ideal \(\mathfrak p\), producing a local field \(K_\mathfrak p\).
+
+\begin{remark}
+The local--global theme is one of the first hints of Langlands.  Global arithmetic objects often decompose into local pieces, and the Langlands program repeatedly asks how local and global data determine each other.
+\end{remark}
+
+\begin{definition}[Hensel's lemma, informal version]
+Hensel's lemma says that, under suitable nondegeneracy hypotheses, a root of a polynomial equation modulo \(p\) can be lifted to a root over the \(p\)-adic integers or \(p\)-adic field.
+\end{definition}
+
+This resembles Newton iteration: an approximate solution is improved step by step in a complete space.
+
+\begin{example}[A small Hensel lifting computation]
+Consider
+\[
+  f(x)=x^2-2
+\]
+over the \(7\)-adic integers.  Modulo \(7\), one has
+\[
+  3^2-2=7\equiv0\pmod 7,
+\]
+so \(x_0=3\) is a root mod \(7\).  Also
+\[
+  f'(x)=2x,
+  \qquad
+  f'(3)=6\not\equiv0\pmod7.
+\]
+Hensel's lemma therefore says that this root lifts uniquely to a \(7\)-adic root.
+
+To lift from mod \(7\) to mod \(49\), write
+\[
+  x=3+7t.
+\]
+Then
+\[
+  f(3+7t)=(3+7t)^2-2=7+42t+49t^2
+  \equiv 7(1+6t)\pmod{49}.
+\]
+We need \(1+6t\equiv0\pmod7\).  Since \(6^{-1}\equiv6\pmod7\), this gives
+\[
+  t\equiv -6\equiv1\pmod7.
+\]
+Thus the lifted root modulo \(49\) is
+\[
+  x_1=3+7=10,
+  \qquad
+  10^2-2=98\equiv0\pmod{49}.
+\]
+The computation shows the Newton-like nature of Hensel lifting: a root modulo \(p\) is corrected by one \(p\)-adic digit at a time.
+
+In Python, the first lifting step can be written as:
+\begin{verbatim}
+p = 7
+x = 3
+# lift x from mod p to mod p^2 for f(x)=x^2-2
+t = (-(x*x - 2)//p * pow(2*x, -1, p)) % p
+x = x + p*t
+print(x, (x*x - 2) % (p*p))   # 10, 0
+\end{verbatim}
+\end{example}
+
+\section[Modular forms and L-functions]{Modular forms and \(L\)-functions}
+
+Modular forms are analytic functions with strong symmetry.  A typical transformation law is
+\[
+  f\left(\frac{az+b}{cz+d}\right)=(cz+d)^k f(z),
+\]
+for matrices
+\[
+  \begin{pmatrix}a&b\\c&d\end{pmatrix}
+\]
+in a suitable discrete subgroup such as \(\mathrm{SL}_2(\mathbb Z)\).  The integer \(k\) is the weight.
+
+If a modular form has Fourier expansion
+\[
+  f(z)=\sum_{n\ge0}a(n)e^{2\pi i n z},
+\]
+then one can attach an \(L\)-function
+\[
+  L(f,s)=\sum_{n\ge1}\frac{a(n)}{n^s}.
+\]
+Analytic continuation and functional equations of such functions encode arithmetic information.
+
+\begin{example}[Ramanujan's Delta function]
+The modular discriminant is
+\[
+  \Delta(z)=q\prod_{n=1}^{\infty}(1-q^n)^{24}
+  =\sum_{n\ge1}\tau(n)q^n,
+  \qquad q=e^{2\pi iz}.
+\]
+It is a modular form of weight \(12\).  The coefficients \(\tau(n)\) form the Ramanujan tau function, whose growth properties were predicted by Ramanujan and later proved by Deligne.
+\end{example}
+
+\section{First understanding of Langlands}
+
+The Langlands program is often described as a unifying theory linking number theory, representation theory, geometry, and analysis.  A safer first slogan is
+\[
+  \text{Galois-side symmetry}\quad\leftrightarrow\quad
+  \text{automorphic-side symmetry},
+\]
+with \(L\)-functions as a major bridge.
+
+On one side are Galois representations, which encode actions of Galois groups on vector spaces.  On the other side are automorphic representations, which organize modular forms and their higher-dimensional analogues.
+
+\begin{caution}
+It is too imprecise to say simply that an automorphic representation is a homomorphism from a group to a general linear group.  That phrase is a useful beginner's memory of representation theory, but automorphic representations are representations of adelic groups on spaces of functions.  For this note, the essential idea is that representation theory becomes a language for arithmetic.
+\end{caution}
+
+\section{Local and global correspondences}
+
+Local Langlands studies local fields such as \(\mathbb Q_p\) and finite extensions.  Global Langlands studies number fields and their adele rings.  The local theory is more complete in many settings, while the global theory contains many deep conjectures.
+
+\begin{caution}
+A naive statement such as
+\[
+  \{\rho:G_F\to\mathrm{GL}_n(\mathbb C)\}
+  \longleftrightarrow
+  \{\text{automorphic representations}\}
+\]
+is only a shadow of the real statement.  For \(\mathrm{GL}_n\), local Langlands relates suitable Langlands parameters to irreducible admissible representations of \(\mathrm{GL}_n(F)\).
+\end{caution}
+
+\section{Cross-field intuitions}
+
+The same vocabulary branches into several speculative but useful directions.
+
+\subsection{Category theory}
+
+Category theory offers a language for comparing structures through functors and natural transformations.  It is tempting to imagine Langlands correspondences as functorial relationships or equivalences between categories.
+
+\begin{gap}
+This is currently only a guiding intuition.  A rigorous categorical formulation must specify the categories, functors, and compatibility conditions.  Without those, it remains a helpful but informal picture.
+\end{gap}
+
+\subsection{Algebraic topology}
+
+The idea of turning arithmetic into topology is not absurd: cohomology, sheaves, stacks, and derived geometry are everywhere in modern number theory.  But the naive idea of treating ideals as cells of a CW complex needs an actual construction before it becomes mathematics rather than metaphor.
+
+\subsection{Linear algebra and representation theory}
+
+Representation theory can be seen as the extension of linear algebra into group theory and symmetry.  Eigenvalues, traces, matrices, and vector spaces occur constantly in Galois representations and automorphic forms.
+
+\section{Numerical experiments}
+
+Computational experiments cannot prove Langlands statements, but they can build intuition.  Natural experiments include:
+\begin{enumerate}[(i)]
+  \item computing initial values of the Ramanujan tau function;
+  \item plotting the oscillation of modular-form coefficients;
+  \item implementing a Hensel-lifting example;
+  \item testing simple finite-dimensional representations in toy cases.
+\end{enumerate}
+
+The first object to compute is Ramanujan's discriminant modular form
+\[
+  \Delta(z)=q\prod_{n=1}^{\infty}(1-q^n)^{24}
+  =\sum_{n=1}^{\infty}\tau(n)q^n,
+  \qquad q=e^{2\pi iz}.
+\]
+Its first coefficients are
+\[
+  \tau(1)=1,
+  \quad
+  \tau(2)=-24,
+  \quad
+  \tau(3)=252,
+  \quad
+  \tau(4)=-1472,
+  \quad
+  \tau(5)=4830,
+  \quad
+  \tau(6)=-6048.
+\]
+These numbers are already arithmetic, but one should not match them with an arbitrary elliptic curve.
+
+Now take the elliptic curve
+\[
+  E:\quad y^2+y=x^3-x^2,
+\]
+Cremona label \(11a3\), of conductor \(11\).  For a prime \(p\ne11\), define
+\[
+  a_p=p+1-\#E(\mathbb F_p).
+\]
+A direct enumeration gives
+\[
+\begin{array}{c|c|c}
+p&\#E(\mathbb F_p)&a_p\\ \hline
+2&5&-2\\
+3&5&-1\\
+5&5&1\\
+7&10&-2
+\end{array}
+\]
+For example, over \(\mathbb F_5\) the affine solutions are only
+\[
+  (0,0),(0,4),(1,0),(1,4),
+\]
+together with the point at infinity, so \(\#E(\mathbb F_5)=5\) and \(a_5=1\).
+
+The important correction is that
+\[
+  \tau(2),\tau(3),\tau(5),\tau(7)
+  =
+  -24,252,4830,-16744
+\]
+do \emph{not} equal
+\[
+  a_2,a_3,a_5,a_7=-2,-1,1,-2.
+\]
+This mismatch is not a failure of modularity; it is a failure to choose the matching modular form.  \(\Delta\) is a weight-\(12\), level-\(1\) modular form.  The elliptic curve of conductor \(11\) corresponds instead to a weight-\(2\), level-\(11\) newform whose \(p\)-th coefficient is \(a_p\).  The concrete Langlands-style lesson is therefore sharper than a slogan: once the level, weight, and normalization are correct, Fourier coefficients on the automorphic side match Frobenius traces or point counts on the Galois side.
+
+A short SageMath check is enough to reproduce the finite-field side:
+\begin{verbatim}
+E = EllipticCurve([0,-1,1,0,0])   # y^2 + y = x^3 - x^2
+for p in [2,3,5,7,13,17,19]:
+    Np = E.change_ring(GF(p)).cardinality()
+    print(p, Np, p + 1 - Np, E.ap(p))
+\end{verbatim}
+For the \(\Delta\)-function coefficients one can use a truncated product:
+\begin{verbatim}
+R.<q> = PowerSeriesRing(ZZ, default_prec=12)
+Delta = q * prod((1 - q^n)^24 for n in range(1,12))
+print(Delta)
+\end{verbatim}
+
+\section{Topics to learn next}
+
+Several missing foundations are clear: complex analysis for analytic continuation and functional equations of \(L\)-functions; measure theory and integration for automorphic forms and harmonic analysis; Galois theory as the classical source of arithmetic symmetry; Sato--Tate phenomena and equidistribution; and random matrix heuristics for zeros of \(L\)-functions.
+
+\begin{question}
+Why should modular forms and Galois representations, which look completely different at first, speak a common language?  This question is not answered here, but it is the right surprise to keep.
+\end{question}
+
+\section{Synthesis}
+
+The route of the note is
+\[
+  \text{number fields}\to \text{ideals}\to \text{local fields}\to
+  \text{modular forms and }L\text{-functions}\to \text{Langlands}.
+\]
+Langlands is not one isolated theorem, but a web of correspondences linking arithmetic, analysis, geometry, and representation theory.
+
+
+\section{Local-global intuition}
+
+A recurring theme in algebraic number theory is to understand a global object by all of its local shadows.  For a number field \(K\), the local fields \(K_v\) arise by completing \(K\) at its archimedean and nonarchimedean places.  The rational field gives familiar examples:
+\[
+  \mathbb Q\hookrightarrow\mathbb R,\qquad
+  \mathbb Q\hookrightarrow\mathbb Q_p.
+\]
+The real completion measures ordinary size; the \(p\)-adic completion measures divisibility by \(p\).  The collection of all completions records many different ways a number can be close to zero.
+
+This local-global idea is one reason adeles and ideles appear.  They package all completions at once, allowing arithmetic problems to be studied through harmonic analysis on locally compact groups.
+
+\section[Why L-functions enter]{Why \(L\)-functions enter}
+
+An \(L\)-function is a generating function that encodes arithmetic data.  For example, the Riemann zeta function
+\[
+  \zeta(s)=\sum_{n=1}^{\infty}\frac1{n^s}
+\]
+has the Euler product
+\[
+  \zeta(s)=\prod_p\frac1{1-p^{-s}}.
+\]
+The sum sees positive integers; the product sees primes.  This equality is the prototype for the idea that analytic behavior of a function can reveal arithmetic structure.
+
+In Langlands-style thinking, Galois representations and automorphic forms have associated \(L\)-functions.  A correspondence is often tested by matching these \(L\)-functions.
+
+\section{A first Langlands slogan}
+
+A very rough slogan is:
+\[
+  \text{Galois representations}\quad\leftrightarrow\quad\text{automorphic representations}.
+\]
+The left side is arithmetic and studies symmetries of field extensions.  The right side is analytic and representation-theoretic, involving functions on groups over adeles.  The Langlands program predicts a deep dictionary between them.
+
+The modularity theorem for elliptic curves over \(\mathbb Q\) is a famous instance: arithmetic information from an elliptic curve matches a modular form.  This is why modular forms enter a note that begins with number fields and ideals.
+
+\section{Structural viewpoint}
+
+The note is a map, not a proof.  Number fields generalize \(\mathbb Q\); algebraic integers generalize \(\mathbb Z\); ideals repair failure of unique factorization; local fields isolate one prime at a time; adeles recombine all primes; modular forms and automorphic representations provide analytic symmetry; \(L\)-functions act as fingerprints.  Langlands is the claim that these fingerprints match across arithmetic and analysis.
+
+\section{Ideals as repaired unique factorization}
+
+The central obstruction in algebraic number theory is that elements may fail to factor uniquely.  Ideals repair this: in the ring of integers \(\mathcal O_K\) of a number field, nonzero ideals factor uniquely into prime ideals,
+\[
+  \mathfrak a=\prod_i \mathfrak p_i^{e_i}.
+\]
+The class group measures the gap between principal ideals and all ideals.  Class number one means ideal factorization descends all the way back to element factorization.
+
+\section{Local fields and arithmetic microscopes}
+
+Completion at a prime ideal gives a local field \(K_{\mathfrak p}\).  This is an arithmetic microscope: it sees divisibility and congruence near one prime at a time.  Global statements are often proved by comparing all local completions.
+
+The product formula and local-global principles explain why \(p\)-adic numbers naturally appear next to number fields.
+
+\section{Modular forms and Galois representations}
+
+A modular form has Fourier expansion
+\[
+  f(q)=\sum_{n\ge0}a_nq^n.
+\]
+The coefficients \(a_p\) often encode arithmetic information.  In the Langlands viewpoint, modular forms correspond to Galois representations, so analytic objects and symmetry actions on algebraic numbers describe the same data.
+
+\section{Arithmetic symmetry as the bridge to Langlands}
+
+The path from algebraic number theory to Langlands is a passage from factorization to symmetry.  Ideals repair arithmetic, local fields isolate primes, \(L\)-functions package global data, and Langlands predicts that arithmetic Galois symmetries are mirrored by automorphic analytic objects.

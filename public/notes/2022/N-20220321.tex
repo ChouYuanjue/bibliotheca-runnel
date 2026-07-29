@@ -1,14 +1,483 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220321}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220321}
-\end{document}
+\notechapter{N-20220321}{Motion on the Unit Circle, Roots of Unity, and Finite Fourier Analysis}
+
+\section{The differential equation \texorpdfstring{$Z'=iZ$}{Z'=iZ} produces uniform circular motion}
+
+Consider the complex-valued initial-value problem
+\[
+  Z'(t)=iZ(t),
+  \qquad
+  Z(0)=1.
+\]
+Its solution is
+\[
+  Z(t)=e^{it}.
+\]
+Multiplication by \(i\) sends
+\[
+  x+iy\longmapsto-y+ix,
+\]
+which is a counterclockwise quarter-turn.  Thus the velocity \(Z'(t)=iZ(t)\) is always perpendicular to the radius vector.
+
+The equation also proves that the radius is constant.  Since
+\[
+  |Z|^2=Z\overline Z,
+\]
+one has
+\[
+\begin{aligned}
+  \frac d{dt}|Z(t)|^2
+  &=Z'(t)\overline{Z(t)}
+    +Z(t)\overline{Z'(t)}\\
+  &=iZ(t)\overline{Z(t)}
+    -iZ(t)\overline{Z(t)}=0.
+\end{aligned}
+\]
+Because \(|Z(0)|=1\),
+\[
+  |Z(t)|=1
+\]
+for every \(t\).  Moreover,
+\[
+  |Z'(t)|=|iZ(t)|=1,
+\]
+so the particle moves around the unit circle with unit speed.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2.15,>=Stealth,every node/.style={fill=white,inner sep=1pt}]
+  \draw[->] (-1.25,0)--(1.35,0) node[right] {$\operatorname{Re}$};
+  \draw[->] (0,-1.25)--(0,1.35) node[above] {$\operatorname{Im}$};
+  \draw (0,0) circle (1);
+  \coordinate (P) at (35:1);
+  \draw[->,thick] (0,0)--(P) node[midway,below right] {$Z(t)$};
+  \draw[->,thick] (P)--++(125:0.65) node[above left] {$iZ(t)$};
+  \fill (P) circle (0.035);
+  \draw[dashed] (0:0.33) arc[start angle=0,end angle=35,radius=0.33];
+  \node at (18:0.48) {$t$};
+\end{tikzpicture}
+\caption{The equation \(Z'=iZ\) rotates the radius vector by \(90^\circ\), producing tangent velocity of constant length.}
+\end{figure}
+
+\section{The exponential map wraps a line onto a circle}
+
+The map
+\[
+  \exp_i:\mathbb R\longrightarrow S^1,
+  \qquad
+  t\longmapsto e^{it}
+\]
+is a homomorphism from addition to multiplication:
+\[
+  e^{i(s+t)}=e^{is}e^{it}.
+\]
+It is surjective because every unit complex number has the form
+\[
+  \cos t+i\sin t.
+\]
+Its kernel is
+\[
+  \ker\exp_i=2\pi\mathbb Z.
+\]
+Therefore the first isomorphism theorem gives an isomorphism of groups
+\[
+  \boxed{
+  \mathbb R/2\pi\mathbb Z\cong S^1.}
+\]
+Angles differing by a full number of turns are not merely numerically similar; they represent the same coset in the quotient.
+
+Locally, \(t\mapsto e^{it}\) is one-to-one, but globally it wraps the real line around the circle infinitely many times.  For a continuous loop
+\[
+  \gamma:[0,1]\to S^1,
+  \qquad
+  \gamma(0)=\gamma(1),
+\]
+one can choose a continuous lift \(\theta:[0,1]\to\mathbb R\) with
+\[
+  \gamma(t)=e^{i\theta(t)}.
+\]
+The endpoint difference satisfies
+\[
+  \theta(1)-\theta(0)=2\pi k
+\]
+for an integer \(k\), the winding number of the loop.  The kernel of the exponential map is what makes this integer possible.
+
+\section{Taking an \texorpdfstring{$n$}{n}-th root means dividing angles and choosing a branch}
+
+Let
+\[
+  w=\rho e^{i\theta},
+  \qquad \rho>0.
+\]
+The equation
+\[
+  z^n=w
+\]
+has the \(n\) solutions
+\[
+  z_k=ho^{1/n}
+  e^{i(\theta+2\pi k)/n},
+  \qquad
+  k=0,1,\ldots,n-1.
+\]
+The radii are fixed by
+\[
+  |z|^n=\rho,
+\]
+while the arguments solve
+\[
+  n\arg z\equiv\theta\pmod{2\pi}.
+\]
+The solutions form a regular \(n\)-gon on the circle of radius \(\rho^{1/n}\).
+
+For example, the fourth roots of \(-4\) are
+\[
+  \sqrt2\,
+  e^{i(\pi+2\pi k)/4},
+  \qquad k=0,1,2,3.
+\]
+They occur at angles
+\[
+  \frac\pi4,
+  \quad
+  \frac{3\pi}4,
+  \quad
+  \frac{5\pi}4,
+  \quad
+  \frac{7\pi}4.
+\]
+The multivalued appearance of complex roots is therefore the geometry of lifting one point through the covering map \(z\mapsto z^n\).
+
+\section{The roots of unity form a finite cyclic group}
+
+Let
+\[
+  \zeta_n=e^{2\pi i/n}.
+\]
+The \(n\)-th roots of unity are
+\[
+  \mu_n=\{1,\zeta_n,\ldots,\zeta_n^{n-1}\}.
+\]
+Multiplication adds exponents modulo \(n\):
+\[
+  \zeta_n^a\zeta_n^b
+  =\zeta_n^{a+b}.
+\]
+Hence
+\[
+  \boxed{
+  \mathbb Z/n\mathbb Z\longrightarrow\mu_n,
+  \qquad
+  [k]\longmapsto\zeta_n^k}
+\]
+is a group isomorphism.
+
+The order of \(\zeta_n^k\) is
+\[
+  \frac n{\gcd(n,k)}.
+\]
+Indeed, \((\zeta_n^k)^m=1\) exactly when
+\[
+  n\mid km.
+\]
+The smallest positive such \(m\) is \(n/\gcd(n,k)\).
+
+For \(n=12\), the powers \(\zeta_{12}^k\) with
+\[
+  \gcd(k,12)=1
+\]
+are the primitive roots:
+\[
+  \zeta_{12},
+  \quad
+  \zeta_{12}^5,
+  \quad
+  \zeta_{12}^7,
+  \quad
+  \zeta_{12}^{11}.
+\]
+Exact rotational period has become an elementary gcd calculation.
+
+\section{Polynomial divisibility becomes evaluation on a finite subgroup}
+
+Let
+\[
+  \omega=e^{2\pi i/3}.
+\]
+The roots of
+\[
+  x^2+x+1
+\]
+are \(\omega\) and \(\omega^2\).  Therefore
+\[
+  x^2+x+1
+  \mid
+  x^{2n}+x^n+1
+\]
+exactly when the latter polynomial vanishes at \(\omega\).
+
+If \(n\equiv0\pmod3\), then \(\omega^n=1\) and
+\[
+  \omega^{2n}+\omega^n+1=3.
+\]
+If \(n\equiv1\pmod3\), then
+\[
+  \omega^{2n}+\omega^n+1
+  =\omega^2+\omega+1=0.
+\]
+If \(n\equiv2\pmod3\), then
+\[
+  \omega^{2n}+\omega^n+1
+  =\omega+\omega^2+1=0.
+\]
+Thus
+\[
+  \boxed{
+  x^2+x+1\mid x^{2n}+x^n+1
+  \iff 3\nmid n.}
+\]
+
+This is the first prototype of a character test.  Powers of \(\omega\) remember only the exponent modulo three, so evaluation converts a polynomial identity into arithmetic on a finite cyclic group.
+
+\section{Character orthogonality filters one congruence class}
+
+For \(m\in\mathbb Z\), the geometric series gives
+\[
+  \sum_{j=0}^{n-1}\zeta_n^{jm}
+  =
+  \begin{cases}
+    n,&n\mid m,\\
+    0,&n\nmid m.
+  \end{cases}
+\]
+Equivalently,
+\[
+  \frac1n
+  \sum_{j=0}^{n-1}
+  \zeta_n^{j(k-r)}
+  =
+  \begin{cases}
+    1,&k\equiv r\pmod n,\\
+    0,&k\not\equiv r\pmod n.
+  \end{cases}
+\]
+This is the roots-of-unity filter.
+
+Let
+\[
+  P(x)=\sum_{k\ge0}a_kx^k.
+\]
+The sum of the coefficients with indices congruent to \(r\pmod n\) is
+\[
+\begin{aligned}
+  \sum_{k\equiv r\, (n)}a_k
+  &=\frac1n
+    \sum_{j=0}^{n-1}
+    \zeta_n^{-jr}P(\zeta_n^j).
+\end{aligned}
+\]
+
+For example, let
+\[
+  P(x)=(1+x)^8
+\]
+and ask for the sum of coefficients whose exponent is divisible by four.  With \(\zeta_4=i\),
+\[
+\begin{aligned}
+  a_0+a_4+a_8
+  &=\frac14\bigl(P(1)+P(i)+P(-1)+P(-i)\bigr)\\
+  &=\frac14\bigl(256+(1+i)^8+0+(1-i)^8\bigr).
+\end{aligned}
+\]
+Since
+\[
+  1\pm i=\sqrt2e^{\pm i\pi/4},
+\]
+one has
+\[
+  (1+i)^8=(1-i)^8=16.
+\]
+Therefore
+\[
+  a_0+a_4+a_8=72,
+\]
+matching
+\[
+  \binom80+\binom84+\binom88
+  =1+70+1.
+\]
+The filter replaces a restricted coefficient sum by a short list of evaluations.
+
+\section{The discrete Fourier transform is the full set of character coordinates}
+
+For a function
+\[
+  f:\mathbb Z/n\mathbb Z\to\mathbb C,
+\]
+define
+\[
+  \widehat f(m)
+  =\sum_{k=0}^{n-1}
+  f(k)\zeta_n^{-mk}.
+\]
+The inverse formula is
+\[
+  \boxed{
+  f(k)=\frac1n
+  \sum_{m=0}^{n-1}
+  \widehat f(m)\zeta_n^{mk}.}
+\]
+To verify it, substitute the definition:
+\[
+\begin{aligned}
+  \frac1n\sum_m\widehat f(m)\zeta_n^{mk}
+  &=\frac1n
+    \sum_m\sum_{j=0}^{n-1}
+    f(j)\zeta_n^{m(k-j)}\\
+  &=\sum_{j=0}^{n-1}f(j)
+    \left(
+    \frac1n\sum_m\zeta_n^{m(k-j)}
+    \right)\\
+  &=f(k).
+\end{aligned}
+\]
+The roots-of-unity filter is exactly the orthogonality step in this proof.
+
+For \(n=4\), take
+\[
+  f=(1,2,0,-1).
+\]
+Using \(\zeta_4=i\),
+\[
+\begin{aligned}
+  \widehat f(0)&=1+2+0-1=2,\\
+  \widehat f(1)&=1+2(-i)+(-1)i=1-3i,\\
+  \widehat f(2)&=1-2+0+1=0,\\
+  \widehat f(3)&=1+2i-i=1+3i.
+\end{aligned}
+\]
+Thus
+\[
+  \widehat f=(2,1-3i,0,1+3i).
+\]
+Applying the inverse formula recovers all four original entries.  The transform is not merely evaluation at roots of unity; orthogonality makes those evaluations a complete coordinate system.
+
+\section{Fourier characters diagonalize every circulant operator}
+
+Let \(S\) be the cyclic shift on \(\mathbb C^n\):
+\[
+  S(x_0,x_1,\ldots,x_{n-1})
+  =(x_{n-1},x_0,\ldots,x_{n-2}).
+\]
+For each \(m\), define the Fourier vector
+\[
+  v_m=
+  (1,\zeta_n^{-m},\zeta_n^{-2m},\ldots,
+  \zeta_n^{-(n-1)m})^T.
+\]
+Then
+\[
+  Sv_m=\zeta_n^m v_m.
+\]
+Hence the Fourier basis diagonalizes the shift.
+
+Every circulant matrix is a polynomial in \(S\):
+\[
+  C=c_0I+c_1S+\cdots+c_{n-1}S^{n-1}.
+\]
+Therefore
+\[
+  Cv_m=\lambda_m v_m,
+\]
+where
+\[
+  \lambda_m
+  =c_0+c_1\zeta_n^m+\cdots+c_{n-1}\zeta_n^{m(n-1)}.
+\]
+The eigenvalues are the DFT of the first row, up to the chosen sign convention.
+
+For the four-cycle adjacency matrix
+\[
+  C=S+S^{-1},
+\]
+the eigenvalues are
+\[
+  \lambda_m
+  =\zeta_4^m+\zeta_4^{-m}
+  =2\cos\frac{2\pi m}{4},
+\]
+so
+\[
+  \sigma(C)=\{2,0,-2,0\}.
+\]
+A graph operator with coupled coordinates becomes four independent scalar multipliers in the Fourier basis.
+
+Circular convolution is diagonalized for the same reason.  If
+\[
+  (f*g)(r)=
+  \sum_{k\in\mathbb Z/n\mathbb Z}
+  f(k)g(r-k),
+\]
+then
+\[
+  \widehat{f*g}(m)
+  =\widehat f(m)\widehat g(m).
+\]
+Convolution in physical coordinates is multiplication in character coordinates.
+
+\section{Cyclotomic factors separate roots by exact period}
+
+The factorization
+\[
+  x^n-1=\prod_{d\mid n}\Phi_d(x)
+\]
+groups roots of unity according to exact order.  For \(n=12\),
+\[
+\begin{aligned}
+  x^{12}-1
+  ={}&\Phi_1(x)\Phi_2(x)\Phi_3(x)
+      \Phi_4(x)\Phi_6(x)\Phi_{12}(x)\\
+  ={}&(x-1)(x+1)(x^2+x+1)(x^2+1)\\
+     &\cdot(x^2-x+1)(x^4-x^2+1).
+\end{aligned}
+\]
+The last factor contains exactly the primitive twelfth roots.  This is enough for the present chapter: finite Fourier analysis uses all characters of the cyclic group, while cyclotomic factorization separates those characters by exact order.  The arithmetic of the factors themselves belongs to the dedicated cyclotomic chapter.
+
+\section{A primitive fifth root already explains the constructible pentagon}
+
+Let
+\[
+  \zeta=e^{2\pi i/5}
+\]
+and set
+\[
+  u=\zeta+\zeta^{-1}
+  =2\cos\frac{2\pi}{5}.
+\]
+Because
+\[
+  1+\zeta+\zeta^2+\zeta^3+\zeta^4=0,
+\]
+dividing by \(\zeta^2\) gives
+\[
+  \zeta^2+\zeta+1+\zeta^{-1}+\zeta^{-2}=0.
+\]
+Now
+\[
+  \zeta^2+\zeta^{-2}=u^2-2,
+\]
+so
+\[
+  u^2+u-1=0.
+\]
+The positive root is
+\[
+  u=\frac{\sqrt5-1}{2}.
+\]
+Therefore
+\[
+  \cos\frac{2\pi}{5}
+  =\frac{\sqrt5-1}{4}.
+\]
+The central angle of a regular pentagon is obtained using only a square root, which is why the pentagon is constructible by straightedge and compass.
+
+This small calculation is the appropriate arithmetic endpoint here.  The finite cyclic group supplies the roots, Fourier characters use all their powers as coordinates, and the real combination \(\zeta+\zeta^{-1}\) collapses a complex symmetry orbit to the quadratic number controlling the pentagon.

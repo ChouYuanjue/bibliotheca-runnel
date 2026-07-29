@@ -1,14 +1,404 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20240330}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20240330}
-\end{document}
+\notechapter{N-20240330}{From Extremal Triangles to Euler Characteristic and Degree}
+
+\section{Maximum-area triangles live on the convex hull}
+
+Let \(S\) be a set of \(n\) points in the plane, not all collinear.  A triangle determined by \(S\) is maximal when its area is the largest area attained by any triangle with vertices in \(S\).
+
+Fix two vertices \(a,b\).  The area of \(abp\) is
+\[
+  \operatorname{area}(abp)
+  =\frac12|a-b|\,\operatorname{dist}(p,\overleftrightarrow{ab}).
+\]
+As a function of \(p\), the signed height above the line \(ab\) is affine.  Its maximum and minimum over the convex hull of \(S\) occur at hull vertices.  Therefore, if \(p\) lies strictly inside the convex hull, replacing it by a suitable hull vertex does not decrease the area and, unless the height was already extremal along an entire hull edge, increases it.
+
+Under the standing assumption that no three points are collinear, every vertex of a maximum-area triangle is therefore a vertex of the convex hull.  Interior points may be deleted without changing the family of maximal triangles.  The counting problem reduces to the vertices
+\[
+  v_0,v_1,\ldots,v_{m-1}
+\]
+of a strictly convex \(m\)-gon, where \(m\le n\).  The proof below establishes the upper bound required by the original problem in this general-position setting.
+
+\section{Two maximal triangles must alternate around the boundary}
+
+The key fact is an alternation lemma.
+
+\begin{proposition}[Alternation of maximal triangles]
+Let \(\Delta\) and \(\Delta'\) be two maximum-area triangles whose vertices lie on a convex polygon.  Every side of \(\Delta'\) meets some side of \(\Delta\).
+\end{proposition}
+
+\begin{proof}
+Write
+\[
+  \Delta=a_1a_2a_3.
+\]
+Through each \(a_i\), draw the line parallel to the opposite side \(a_{i+1}a_{i+2}\), with indices modulo three.  These three lines bound a larger triangle \(T\).
+
+Every point of the original set lies in \(T\).  If a point lay beyond, say, the line through \(a_1\) parallel to \(a_2a_3\), then its distance from the line \(a_2a_3\) would exceed the height of \(a_1\).  Replacing \(a_1\) by that point would produce a triangle of larger area.
+
+The central triangle \(\Delta\) divides \(T\setminus\Delta\) into three corner triangles \(T_1,T_2,T_3\), each a translate of \(-\Delta\) and therefore of the same area as \(\Delta\).  Let the vertices of \(\Delta'\) lie in these four regions.
+
+If all three lie in one \(T_i\), equality of areas forces \(\Delta'=T_i\); its sides are parallel to and meet the corresponding boundary sides of \(\Delta\).  If one vertex lies in each \(T_i\), the three connecting sides cross the three sides of \(\Delta\).
+
+The remaining possibility places two vertices, say \(p,q\), in one corner triangle and the third vertex \(r\) in another.  A line through \(p\) parallel to \(qr\) separates one vertex of \(\Delta\) farther from the line \(qr\) than \(p\).  Replacing \(p\) by that vertex produces a triangle with base \(qr\) and strictly greater height, contradicting maximality of \(pqr\).
+
+Thus the nonalternating configuration is impossible, proving the claim.
+\end{proof}
+
+The proposition is stronger than “all vertices lie on the hull.”  It says that two extremal triples cannot occupy unrelated arcs of the cyclic order; their vertices must interlace strongly enough that their sides encounter one another.
+
+\section{Cyclic lifts turn alternation into the bound \texorpdfstring{$n$}{n}}
+
+Index the vertices of the convex \(m\)-gon periodically by all integers:
+\[
+  v_{i+m}=v_i.
+\]
+Call \((i,j,k)\in\mathbb Z^3\) a proper triple when
+\[
+  i<j<k<i+m
+\]
+and \(v_iv_jv_k\) is a maximal triangle.  Order triples coordinatewise:
+\[
+  (i,j,k)\le(i',j',k')
+  \quad\Longleftrightarrow\quad
+  i\le i',\ j\le j',\ k\le k'.
+\]
+
+The alternation proposition implies that any two proper triples are comparable.  To see the cyclic-order step, place the six lifted indices on the real line.  If neither
+\[
+  (i,j,k)\le(i',j',k')
+\]
+nor the reverse inequality holds, their coordinate order changes sign at least twice: one lifted vertex of the second triangle lies after the corresponding vertex of the first, while another lies before it.  After a cyclic relabelling, two consecutive vertices of one triangle then lie strictly in the same open boundary arc between two consecutive vertices of the other.  The side joining those two vertices is contained in the corresponding sector of the convex polygon and cannot meet any side of the other triangle.  This contradicts the alternation proposition.  Therefore all proper triples form a chain \(C\subset\mathbb Z^3\).
+
+Fix one proper triple \((a,b,c)\), and consider the half-open subchain
+\[
+\begin{aligned}
+  C_0=\{(i,j,k)\in C:\ &(a,b,c)\le(i,j,k),\\
+  &(i,j,k)<(a+m,b+m,c+m)\}.
+\end{aligned}
+\]
+Here the final strict inequality means coordinatewise \(\le\), but not equality of all three coordinates.
+
+Every geometric maximal triangle has exactly three proper representatives in \(C_0\), corresponding to choosing each of its three vertices in turn as the first cyclic vertex.  On the other hand, distinct integer points in a coordinatewise chain have strictly increasing coordinate sum.  Inside the displayed half-open interval, that sum ranges over fewer than \(3m\) integer increments.  Hence
+\[
+  |C_0|\le3m.
+\]
+If \(N\) is the number of maximal triangles, then
+\[
+  3N=|C_0|\le3m,
+\]
+so
+\[
+  \boxed{N\le m\le n.}
+\]
+
+The bound is sharp.  For a regular \(m\)-gon with \(m\) not divisible by three, the \(m\) cyclically shifted triangles whose vertices are as evenly spaced as possible all have maximum area.
+
+\section{Euler's formula follows by adding non-tree edges one at a time}
+
+Let a connected graph be embedded in the sphere without edge crossings.  Choose a spanning tree \(T\).  The tree has
+\[
+  E_T=V-1
+\]
+edges and only one face on the sphere, so
+\[
+  V-E_T+F
+  =V-(V-1)+1=2.
+\]
+
+Now add the remaining edges of the graph one at a time.  Each new edge joins two vertices already connected by the tree-and-previous-edges subgraph.  Drawn without crossings, it lies inside one existing face and splits that face into two.  Thus
+\[
+  E\longmapsto E+1,
+  \qquad
+  F\longmapsto F+1,
+\]
+while \(V\) is unchanged.  The quantity \(V-E+F\) remains constant.
+
+Therefore every connected planar embedding satisfies
+\[
+  \boxed{V-E+F=2.}
+\]
+For a graph with \(c\) connected components in the sphere,
+\[
+  V-E+F=1+c.
+\]
+The proof identifies the invariant move: a non-tree edge creates exactly one independent cycle and exactly one new face.
+
+Subdivision also preserves the alternating count.  Inserting a new vertex into an edge changes
+\[
+  (V,E,F)\longmapsto(V+1,E+1,F),
+\]
+while drawing a diagonal across a face changes
+\[
+  (V,E,F)\longmapsto(V,E+1,F+1).
+\]
+Both leave \(V-E+F\) unchanged.  Euler characteristic therefore belongs to the underlying cell decomposition, not to the accidental fineness of the drawing.
+
+\section{Incidence counting leaves only five regular polyhedra}
+
+Suppose every face of a regular convex polyhedron is a \(p\)-gon and exactly \(q\) faces meet at every vertex.  Counting edge--face incidences and vertex--edge incidences gives
+\[
+  pF=2E,
+  \qquad
+  qV=2E.
+\]
+Substitute
+\[
+  F=\frac{2E}{p},
+  \qquad
+  V=\frac{2E}{q}
+\]
+into Euler's formula:
+\[
+  \frac{2E}{q}-E+\frac{2E}{p}=2.
+\]
+Since \(E>0\),
+\[
+  \frac1p+\frac1q>\frac12.
+\]
+With \(p,q\ge3\), the only possibilities are
+\[
+  (p,q)=(3,3),(3,4),(4,3),(3,5),(5,3).
+\]
+They correspond to
+\[
+\begin{array}{c|c|c|c}
+(p,q)&V&E&F\\ \hline
+(3,3)&4&6&4\\
+(3,4)&6&12&8\\
+(4,3)&8&12&6\\
+(3,5)&12&30&20\\
+(5,3)&20&30&12.
+\end{array}
+\]
+
+Duality interchanges vertices and faces while preserving edges, so it swaps \((p,q)\) with \((q,p)\).  The cube and octahedron are dual, as are the dodecahedron and icosahedron; the tetrahedron is self-dual.  The classification is therefore an interaction between Euler characteristic, local incidence, and duality.
+
+\section{Polygon gluings compute Euler characteristics of quotient surfaces}
+
+A topological quotient identifies points rather than cosets.  Begin with a polygon as one two-cell and glue its boundary edges according to labels.
+
+For the torus, use a square with boundary word
+\[
+  aba^{-1}b^{-1}.
+\]
+All four vertices are identified, the four sides become two one-cells, and the interior is one two-cell.  Hence
+\[
+  (V,E,F)=(1,2,1),
+  \qquad
+  \chi(T^2)=0.
+\]
+
+For the real projective plane, glue a two-gon with boundary word
+\[
+  aa.
+\]
+There is one vertex, one edge, and one face:
+\[
+  \chi(\mathbb RP^2)=1-1+1=1.
+\]
+
+For the Klein bottle, use the square word
+\[
+  aba^{-1}b.
+\]
+Again there is one vertex, two edges, and one face, so
+\[
+  \chi(K)=0.
+\]
+The torus and Klein bottle have the same Euler characteristic but are not homeomorphic; Euler characteristic is powerful but not complete.
+
+Three quotient constructions should not be conflated:
+\[
+  G/N
+\]
+is a quotient group whose well-defined multiplication requires \(N\trianglelefteq G\);
+\[
+  X/{\sim}
+\]
+is a quotient topological space with the quotient topology; and
+\[
+  H_k(X)=Z_k(X)/B_k(X)
+\]
+is an algebraic quotient of cycles by boundaries.  They share the act of identifying equivalent elements, but the structures being preserved are different.
+
+\section{A chain-complex cancellation proves the homological Euler formula}
+
+For a finite cell complex, let \(C_k\) be the vector space spanned by its \(k\)-cells, with boundary maps
+\[
+  \cdots\longrightarrow C_{k+1}
+  \xrightarrow{\partial_{k+1}}C_k
+  \xrightarrow{\partial_k}C_{k-1}\longrightarrow\cdots
+\]
+satisfying
+\[
+  \partial_k\partial_{k+1}=0.
+\]
+Set
+\[
+  Z_k=\ker\partial_k,
+  \qquad
+  B_k=\operatorname{im}\partial_{k+1},
+  \qquad
+  H_k=Z_k/B_k.
+\]
+Then
+\[
+  \dim C_k
+  =\dim Z_k+\operatorname{rank}\partial_k,
+\]
+and
+\[
+  \dim Z_k
+  =\dim H_k+\operatorname{rank}\partial_{k+1}.
+\]
+Therefore
+\[
+  \dim C_k
+  =\dim H_k
+   +\operatorname{rank}\partial_k
+   +\operatorname{rank}\partial_{k+1}.
+\]
+Taking the alternating sum over \(k\), the two boundary-rank sums cancel after shifting the index:
+\[
+  \boxed{
+  \sum_k(-1)^k\dim C_k
+  =\sum_k(-1)^k\dim H_k.}
+\]
+
+The left side is the alternating cell count; the right side is the alternating sum of Betti numbers
+\[
+  b_k=\dim H_k.
+\]
+For the sphere,
+\[
+  (b_0,b_1,b_2)=(1,0,1),
+  \qquad
+  \chi(S^2)=2.
+\]
+For the torus,
+\[
+  (b_0,b_1,b_2)=(1,2,1),
+  \qquad
+  \chi(T^2)=0.
+\]
+Over \(\mathbb Q\), the projective plane has Betti numbers
+\[
+  (1,0,0),
+\]
+so \(\chi(\mathbb RP^2)=1\).  Its integral homology contains torsion, but torsion does not affect the alternating ranks.
+
+\section{Degree on the circle is winding made algebraic}
+
+For
+\[
+  f_n:S^1\to S^1,
+  \qquad
+  f_n(e^{it})=e^{int},
+\]
+the point travels around the target \(n\) times as \(t\) runs from \(0\) to \(2\pi\).  Its degree is
+\[
+  \deg f_n=n.
+\]
+For a smooth map and a regular value \(y\), degree can be computed by oriented preimages:
+\[
+  \deg f
+  =\sum_{x\in f^{-1}(y)}\operatorname{sign}(df_x).
+\]
+For \(f_n\), a regular target point has \(|n|\) preimages, each with the sign of \(n\).
+
+The homological definition generalizes to every sphere.  Since
+\[
+  H_d(S^d;\mathbb Z)\cong\mathbb Z,
+\]
+a continuous map \(f:S^d\to S^d\) induces multiplication by one integer:
+\[
+  f_*([S^d])=(\deg f)[S^d].
+\]
+Functoriality gives
+\[
+  \deg(g\circ f)=\deg g\,\deg f.
+\]
+The multiplicativity is simply the multiplication of the two induced endomorphisms of \(\mathbb Z\).
+
+\section{Nonzero degree forces a map to hit every target point}
+
+Suppose \(f:S^d\to S^d\) omits a point \(p\).  Then it factors through
+\[
+  S^d\setminus\{p\}\cong\mathbb R^d,
+\]
+whose top homology vanishes:
+\[
+  H_d(\mathbb R^d)=0.
+\]
+Consequently the induced map on \(H_d(S^d)\) is zero, so
+\[
+  \deg f=0.
+\]
+Taking the contrapositive,
+\[
+  \boxed{
+  \deg f\ne0
+  \quad\Longrightarrow\quad
+  f\text{ is surjective}.}
+\]
+Degree is therefore an existence invariant.  It does not locate a preimage, but it prevents all preimages from disappearing under continuous deformation.
+
+As a simple application, every map homotopic to the identity has degree one and is surjective.  No such map can be continuously deformed into a constant map, whose degree is zero.
+
+\section{The no-retraction argument yields Brouwer's fixed-point theorem}
+
+There is no continuous retraction
+\[
+  r:B^{d+1}\to S^d
+\]
+from the closed ball to its boundary.  If \(i:S^d\hookrightarrow B^{d+1}\) is the inclusion and \(r\circ i=\operatorname{id}_{S^d}\), then on top homology
+\[
+  r_*\circ i_*
+  =\operatorname{id}_{H_d(S^d)}.
+\]
+But
+\[
+  H_d(B^{d+1})=0,
+\]
+so \(i_*\) is the zero map, making the composition zero.  This contradiction proves the no-retraction theorem.
+
+Now let
+\[
+  F:B^{d+1}\to B^{d+1}
+\]
+be continuous and suppose it has no fixed point.  Put
+\[
+  y=F(x),
+  \qquad
+  d=x-y\ne0.
+\]
+The ray starting at \(y\) and passing through \(x\) is
+\[
+  y+t d,
+  \qquad t\ge0.
+\]
+Its intersection with the boundary satisfies
+\[
+  \|y+td\|^2=1,
+\]
+or
+\[
+  \|d\|^2t^2+2(y\cdot d)t+\|y\|^2-1=0.
+\]
+The forward intersection is obtained from the positive root
+\[
+  t(x)=
+  \frac{-y\cdot d+
+  \sqrt{(y\cdot d)^2+\|d\|^2(1-\|y\|^2)}}
+  {\|d\|^2}.
+\]
+Define
+\[
+  r(x)=y+t(x)d.
+\]
+Because \(d\ne0\), the formula is continuous and satisfies \(\|r(x)\|=1\).  If \(x\in S^d\), then \(t=1\) is the forward root, so
+\[
+  r(x)=x.
+\]
+Thus a fixed-point-free \(F\) would construct a forbidden retraction.  Therefore every continuous self-map of the closed ball has a fixed point.
+
+The passage from cell counts to this existence theorem is now explicit.  Euler characteristic survives subdivision because boundary ranks cancel in a chain complex.  Degree records the action on the surviving top homology class.  A nonzero class obstructs both omission of a target point and retraction of a ball onto its boundary.

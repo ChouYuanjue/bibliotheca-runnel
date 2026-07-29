@@ -1,14 +1,745 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220717}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220717}
-\end{document}
+\notechapter{N-20220717}{Recurrences as Orbits: Linear Dynamics, Normalization, and Reversible Transformations}
+
+\section{A recurrence generates an orbit}
+
+A first-order recurrence
+\[
+  a_{n+1}=F(a_n)
+\]
+is the iteration of a map \(F:X\to X\).  Once an initial value \(a_0\) is chosen, the sequence is the forward orbit
+\[
+  a_0,
+  \quad F(a_0),
+  \quad F^2(a_0),
+  \quad \ldots.
+\]
+This point of view separates two questions.  The recurrence rule determines the dynamics, while the initial value selects one orbit.  A closed formula is an explicit description of the iterate \(F^n\).
+
+Not every recurrence is reversible.  If \(F\) is not injective, different states can merge and no inverse iteration is possible.  This distinction will later separate semigroup actions, which describe forward iteration, from group actions, which describe reversible transformations.
+
+Higher-order recurrences can also be written as first-order systems by enlarging the state.  For example,
+\[
+  a_{n+2}=5a_{n+1}-6a_n
+\]
+becomes
+\[
+  \begin{pmatrix}a_{n+2}\\a_{n+1}\end{pmatrix}
+  =
+  \begin{pmatrix}5&-6\\1&0\end{pmatrix}
+  \begin{pmatrix}a_{n+1}\\a_n\end{pmatrix}.
+\]
+Thus recurrence theory is already a form of discrete dynamical systems and linear algebra.
+
+\section{Arithmetic progressions are translation orbits}
+
+An arithmetic progression satisfies
+\[
+  a_{n+1}=a_n+d.
+\]
+The update map is the translation
+\[
+  T_d(x)=x+d.
+\]
+Since
+\[
+  T_d^n(x)=x+nd,
+\]
+we obtain
+\[
+  \boxed{a_n=a_0+nd.}
+\]
+With indexing beginning at \(1\), this becomes
+\[
+  a_n=a_1+(n-1)d.
+\]
+
+The sum of the first \(n\) terms follows by pairing terms from opposite ends:
+\[
+\begin{aligned}
+S_n
+&=a_1+a_2+\cdots+a_n,\\
+S_n
+&=a_n+a_{n-1}+\cdots+a_1.
+\end{aligned}
+\]
+Every column sums to \(a_1+a_n\), so
+\[
+  \boxed{S_n=\frac n2(a_1+a_n)
+  =na_1+\frac{n(n-1)}2d.}
+\]
+
+Arithmetic progressions convert additive relations among indices into additive relations among terms.  If
+\[
+  i_1+\cdots+i_k=j_1+\cdots+j_k,
+\]
+then
+\[
+\begin{aligned}
+a_{i_1}+\cdots+a_{i_k}
+&=ka_1+\bigl(i_1+\cdots+i_k-k\bigr)d\\
+&=ka_1+\bigl(j_1+\cdots+j_k-k\bigr)d\\
+&=a_{j_1}+\cdots+a_{j_k}.
+\end{aligned}
+\]
+The equal-index-sum rule is therefore a direct consequence of translation dynamics, not an isolated trick.
+
+\section{Geometric progressions are scaling orbits}
+
+A geometric progression satisfies
+\[
+  a_{n+1}=qa_n.
+\]
+The update map is the scaling
+\[
+  S_q(x)=qx,
+\]
+whose iterates are
+\[
+  S_q^n(x)=q^n x.
+\]
+Hence
+\[
+  \boxed{a_n=a_0q^n}
+\]
+or, with indexing beginning at \(1\),
+\[
+  a_n=a_1q^{n-1}.
+\]
+
+For \(q\neq1\), write
+\[
+  S_n=a_1+a_1q+\cdots+a_1q^{n-1}.
+\]
+Then
+\[
+  qS_n=a_1q+a_1q^2+\cdots+a_1q^n.
+\]
+Subtracting gives
+\[
+  (q-1)S_n=a_1(q^n-1),
+\]
+so
+\[
+  \boxed{S_n=a_1\frac{q^n-1}{q-1}.}
+\]
+The exceptional case \(q=1\) must be handled separately and gives \(S_n=na_1\).
+
+If \(q\neq0\), scaling is reversible, with inverse \(S_{1/q}\).  If \(q=0\), all states collapse to zero after one step.  The same-looking recurrence can therefore represent either a group action or a genuinely irreversible map depending on the parameter.
+
+\section{Affine recurrences become geometric after shifting a fixed point}
+
+Consider
+\[
+  a_{n+1}=ra_n+b.
+\]
+The update map
+\[
+  T(x)=rx+b
+\]
+is affine.  If \(r\neq1\), it has a unique fixed point \(L\) satisfying
+\[
+  L=rL+b,
+\]
+namely
+\[
+  L=\frac{b}{1-r}.
+\]
+Subtracting the fixed point gives
+\[
+  a_{n+1}-L=r(a_n-L).
+\]
+The shifted sequence is geometric, so
+\[
+  \boxed{a_n=L+r^n(a_0-L).}
+\]
+Equivalently,
+\[
+  a_n=r^n a_0+b\frac{1-r^n}{1-r}.
+\]
+If \(r=1\), the recurrence is arithmetic:
+\[
+  a_n=a_0+nb.
+\]
+
+For example,
+\[
+  a_{n+1}=2a_n+1,
+  \qquad
+  a_0=0.
+\]
+The fixed point is \(L=-1\), so
+\[
+  a_n+1=2^n(a_0+1)=2^n,
+\]
+and therefore
+\[
+  \boxed{a_n=2^n-1.}
+\]
+The first values
+\[
+  0,1,3,7,15,\ldots
+\]
+confirm the formula.
+
+The fixed-point form also gives the stability classification.  When \(|r|<1\), every orbit converges to \(L\).  When \(|r|>1\), every orbit except the fixed point moves away exponentially.  When \(r=-1\), nonfixed orbits oscillate with period two.  Thus a closed formula also reveals the qualitative dynamics.
+
+\section{Variable forcing gives a discrete variation-of-constants formula}
+
+For the nonautonomous recurrence
+\[
+  a_{n+1}=ra_n+b_n,
+\]
+repeated substitution gives
+\[
+\begin{aligned}
+a_1&=ra_0+b_0,\\
+a_2&=r^2a_0+rb_0+b_1,\\
+a_3&=r^3a_0+r^2b_0+rb_1+b_2.
+\end{aligned}
+\]
+The pattern is
+\[
+  \boxed{
+  a_n=r^n a_0+
+  \sum_{k=0}^{n-1}r^{n-1-k}b_k.}
+\]
+This is the discrete variation-of-constants formula.  A forcing term introduced at time \(k\) is propagated through the remaining \(n-1-k\) iterations by the factor \(r^{n-1-k}\).
+
+If \(b_k=b\) is constant, the sum becomes geometric and recovers the affine fixed-point formula.  If the forcing has a special shape, such as \(b_k=c\lambda^k\), the sum reveals resonance when \(\lambda=r\).
+
+\section{Normalization should match the coefficient growth}
+
+The recurrence
+\[
+  a_n=na_{n-1}+1,
+  \qquad
+  a_1=1,
+\]
+does not become simpler after subtracting a constant.  The coefficient \(n\) suggests dividing by \(n!\).  Define
+\[
+  b_n=\frac{a_n}{n!}.
+\]
+Then
+\[
+  b_n
+  =\frac{na_{n-1}+1}{n!}
+  =\frac{a_{n-1}}{(n-1)!}+\frac1{n!}
+  =b_{n-1}+\frac1{n!}.
+\]
+The normalized recurrence telescopes:
+\[
+  b_n
+  =1+\frac1{2!}+\frac1{3!}+\cdots+\frac1{n!}.
+\]
+Hence
+\[
+  \boxed{
+  a_n=n!\left(
+  1+\frac1{2!}+\cdots+\frac1{n!}
+  \right).}
+\]
+For example,
+\[
+  a_1=1,
+  \quad
+  a_2=3,
+  \quad
+  a_3=10,
+  \quad
+  a_4=41,
+\]
+and the formula gives
+\[
+  4!\left(1+\frac12+\frac16+\frac1{24}\right)=41.
+\]
+The method is structural: multiplication by \(n\) points toward factorial normalization, just as multiplication by a constant points toward geometric normalization.
+
+\section{Second-order recurrences are matrix powers}
+
+Consider
+\[
+  a_{n+2}=5a_{n+1}-6a_n.
+\]
+Set
+\[
+  v_n=
+  \begin{pmatrix}a_{n+1}\\a_n\end{pmatrix}.
+\]
+Then
+\[
+  v_{n+1}=Cv_n,
+  \qquad
+  C=
+  \begin{pmatrix}5&-6\\1&0\end{pmatrix},
+\]
+so
+\[
+  v_n=C^n v_0.
+\]
+The characteristic polynomial is
+\[
+  \det(\lambda I-C)
+  =\lambda^2-5\lambda+6
+  =(\lambda-2)(\lambda-3).
+\]
+The eigenvalues \(2\) and \(3\) explain the two exponential solutions.  Thus
+\[
+  a_n=A2^n+B3^n.
+\]
+
+Take
+\[
+  a_0=0,
+  \qquad
+  a_1=1.
+\]
+The initial conditions give
+\[
+  A+B=0,
+  \qquad
+  2A+3B=1,
+\]
+so \(A=-1\) and \(B=1\).  Therefore
+\[
+  \boxed{a_n=3^n-2^n.}
+\]
+Indeed,
+\[
+  0,1,5,19,65,\ldots
+\]
+satisfies the recurrence.
+
+The trial solution \(a_n=\lambda^n\) is therefore not a guess without justification.  It searches for eigenvectors of the shift operator, or equivalently eigenvectors of the companion matrix.
+
+If the characteristic polynomial has a repeated root \(\lambda\), the matrix may have a Jordan block and the second independent solution becomes
+\[
+  n\lambda^n.
+\]
+For example,
+\[
+  a_{n+2}=2a_{n+1}-a_n
+\]
+has characteristic polynomial \((t-1)^2\), so
+\[
+  a_n=A+Bn.
+\]
+Arithmetic progressions are exactly this repeated-root case.
+
+\section{Generating functions turn shifts into multiplication}
+
+The same recurrence can be solved by a generating function.  Let
+\[
+  A(z)=\sum_{n\geq0}a_nz^n
+\]
+for the initial data \(a_0=0\), \(a_1=1\).  Multiply
+\[
+  a_{n+2}-5a_{n+1}+6a_n=0
+\]
+by \(z^{n+2}\) and sum over \(n\geq0\).  The shifted sums are
+\[
+  \sum_{n\geq0}a_{n+2}z^{n+2}=A(z)-z,
+\]
+\[
+  \sum_{n\geq0}a_{n+1}z^{n+2}=zA(z),
+\]
+and
+\[
+  \sum_{n\geq0}a_nz^{n+2}=z^2A(z).
+\]
+Hence
+\[
+  A(z)-z-5zA(z)+6z^2A(z)=0,
+\]
+so
+\[
+  A(z)=\frac{z}{1-5z+6z^2}
+      =\frac{z}{(1-2z)(1-3z)}.
+\]
+Partial fractions give
+\[
+  A(z)=\frac1{1-3z}-\frac1{1-2z}.
+\]
+Since
+\[
+  \frac1{1-cz}=\sum_{n\geq0}c^nz^n,
+\]
+we recover
+\[
+  a_n=3^n-2^n.
+\]
+The characteristic roots appear as poles of the generating function.  Matrix powers, exponential trial solutions, and rational generating functions are three views of the same linear recurrence.
+
+\section{Forward iteration is a semigroup action}
+
+The nonnegative integers form a monoid under addition: they have an associative operation and an identity element \(0\), but they do not contain additive inverses.  The iterates of any map \(F:X\to X\) satisfy
+\[
+  F^{m+n}=F^m\circ F^n,
+  \qquad
+  F^0=\operatorname{id}_X.
+\]
+Therefore every recurrence
+\[
+  a_{n+1}=F(a_n)
+\]
+defines an action of \((\mathbb N,+)\) on \(X\):
+\[
+  n\cdot x=F^n(x).
+\]
+This language says exactly that advancing by \(n\) steps and then by \(m\) steps is the same as advancing by \(m+n\) steps.
+
+No inverse is required.  For example,
+\[
+  F(x)=x^2
+\]
+on \(\mathbb R\) identifies \(x\) and \(-x\) after one step.  Once their orbits merge, the previous state cannot be recovered from the current one.  The recurrence still has perfectly good forward iterates, but there is no globally defined \(F^{-1}\).
+
+If \(F\) is bijective, negative iterates are available and the action extends from \(\mathbb N\) to \(\mathbb Z\):
+\[
+  (-n)\cdot x=F^{-n}(x).
+\]
+This is the precise boundary at which groups enter.  A group action describes transformations that can be composed and undone; a monoid action describes forward evolution whether or not it is reversible.
+
+\begin{definition}[Group]
+A group is a set \(G\) with an associative binary operation, an identity element \(e\), and an inverse \(g^{-1}\) for every \(g\in G\).  If the operation is commutative, the group is abelian.
+\end{definition}
+
+The phrase ``binary operation on \(G\)'' already includes closure:
+\[
+  *:G\times G\to G.
+\]
+The axioms say that compositions are unambiguous, doing nothing is allowed, and every permitted transformation can be reversed.
+
+\section{First-order linear recurrences live inside the affine group}
+
+For \(r\neq0\) and \(b\in\mathbb R\), define the affine transformation
+\[
+  T_{r,b}(x)=rx+b.
+\]
+Composing two such maps gives
+\[
+\begin{aligned}
+T_{r,b}(T_{s,c}(x))
+&=r(sx+c)+b\\
+&=rsx+(rc+b),
+\end{aligned}
+\]
+so
+\[
+  T_{r,b}\circ T_{s,c}=T_{rs,rc+b}.
+\]
+The inverse is obtained by solving \(y=rx+b\):
+\[
+  T_{r,b}^{-1}(y)=\frac{y-b}{r}
+  =T_{1/r,-b/r}(y).
+\]
+Thus all affine transformations with nonzero slope form a group.
+
+Translations and scalings sit inside this group:
+\[
+  \tau_b=T_{1,b},
+  \qquad
+  \sigma_r=T_{r,0}.
+\]
+They satisfy
+\[
+  \tau_b\tau_c=\tau_{b+c},
+  \qquad
+  \sigma_r\sigma_s=\sigma_{rs}.
+\]
+However, they do not commute in general.  Conjugating a translation by a scaling gives
+\[
+\begin{aligned}
+  \sigma_r\tau_c\sigma_r^{-1}(x)
+  &=\sigma_r\tau_c(x/r)\\
+  &=\sigma_r(x/r+c)\\
+  &=x+rc\\
+  &=\tau_{rc}(x).
+\end{aligned}
+\]
+Scaling changes the size of a translation.  This interaction is the reason the affine group is a semidirect product rather than a direct product:
+\[
+  \operatorname{Aff}(1,\mathbb R)
+  \cong \mathbb R\rtimes\mathbb R^{\times}.
+\]
+The multiplication law
+\[
+  (b,r)(c,s)=(b+rc,rs)
+\]
+records exactly how the scaling component \(r\) acts on the translation component \(c\).
+
+Now return to the recurrence
+\[
+  a_{n+1}=ra_n+b.
+\]
+Its sequence is the orbit of \(a_0\) under the cyclic subgroup generated by \(T_{r,b}\).  The fixed-point trick from the first half of the note has a group-theoretic meaning.  If \(r\neq1\), let
+\[
+  L=\frac{b}{1-r},
+\]
+so \(T_{r,b}(L)=L\).  Translate the fixed point to the origin using
+\[
+  \tau_{-L}(x)=x-L.
+\]
+Then
+\[
+\begin{aligned}
+  \tau_{-L}\circ T_{r,b}\circ\tau_L(x)
+  &=\tau_{-L}(r(x+L)+b)\\
+  &=rx+rL+b-L\\
+  &=rx,
+\end{aligned}
+\]
+because \((1-r)L=b\).  Hence
+\[
+  \tau_{-L}T_{r,b}\tau_L=\sigma_r.
+\]
+The affine recurrence is not merely similar to a geometric progression after a clever substitution; its update map is conjugate to a pure scaling.  Taking powers gives
+\[
+  T_{r,b}^n
+  =\tau_L\sigma_r^n\tau_{-L},
+\]
+and therefore
+\[
+  T_{r,b}^n(x)=L+r^n(x-L).
+\]
+This is exactly the closed formula derived earlier.
+
+\section{Homogeneous coordinates turn affine iteration into matrix algebra}
+
+Affine maps are not linear on the one-dimensional vector space because they do not necessarily preserve the origin.  They become linear after adding one extra coordinate.  Represent \(x\in\mathbb R\) by the homogeneous vector
+\[
+  \begin{pmatrix}x\\1\end{pmatrix}
+\]
+and define
+\[
+  M_{r,b}=
+  \begin{pmatrix}r&b\\0&1\end{pmatrix}.
+\]
+Then
+\[
+  M_{r,b}
+  \begin{pmatrix}x\\1\end{pmatrix}
+  =
+  \begin{pmatrix}rx+b\\1\end{pmatrix}.
+\]
+Matrix multiplication reproduces affine composition:
+\[
+  M_{r,b}M_{s,c}
+  =M_{rs,rc+b}.
+\]
+Thus the affine group is realized as a subgroup of \(GL_2(\mathbb R)\).
+
+The fixed-point conjugacy becomes an ordinary matrix factorization.  Let
+\[
+  P_L=
+  \begin{pmatrix}1&L\\0&1\end{pmatrix},
+  \qquad
+  D_r=
+  \begin{pmatrix}r&0\\0&1\end{pmatrix}.
+\]
+Since \((1-r)L=b\),
+\[
+  M_{r,b}=P_LD_rP_L^{-1}.
+\]
+Therefore
+\[
+  M_{r,b}^n
+  =P_LD_r^nP_L^{-1}
+  =
+  \begin{pmatrix}
+  r^n&(1-r^n)L\\
+  0&1
+  \end{pmatrix}.
+\]
+Substituting \(L=b/(1-r)\) gives
+\[
+  \boxed{
+  M_{r,b}^n
+  =
+  \begin{pmatrix}
+  r^n&b\dfrac{1-r^n}{1-r}\\
+  0&1
+  \end{pmatrix}}
+  \qquad(r\neq1).
+\]
+Applying this matrix to \((a_0,1)^T\) recovers the affine recurrence formula.
+
+The case \(r=1\) is different because there is no finite fixed point to translate to the origin.  Now
+\[
+  M_{1,b}
+  =I+N,
+  \qquad
+  N=
+  \begin{pmatrix}0&b\\0&0\end{pmatrix},
+  \qquad
+  N^2=0.
+\]
+The binomial theorem truncates:
+\[
+  (I+N)^n=I+nN.
+\]
+Hence
+\[
+  M_{1,b}^n
+  =
+  \begin{pmatrix}1&nb\\0&1\end{pmatrix},
+\]
+which gives
+\[
+  a_n=a_0+nb.
+\]
+Arithmetic progressions are therefore governed by a unipotent Jordan block, while affine recurrences with \(r\neq1\) are governed by the two eigenvalues \(r\) and \(1\).  The matrix model explains why the formulas split exactly at \(r=1\).
+
+For the concrete recurrence
+\[
+  a_{n+1}=2a_n+1,
+  \qquad
+  a_0=0,
+\]
+we have \(L=-1\) and
+\[
+  M=
+  \begin{pmatrix}2&1\\0&1\end{pmatrix}
+  =
+  \begin{pmatrix}1&-1\\0&1\end{pmatrix}
+  \begin{pmatrix}2&0\\0&1\end{pmatrix}
+  \begin{pmatrix}1&1\\0&1\end{pmatrix}.
+\]
+Thus
+\[
+  M^n=
+  \begin{pmatrix}2^n&2^n-1\\0&1\end{pmatrix},
+\]
+and the upper-right entry is precisely the orbit value \(a_n=2^n-1\).
+
+\section{Dihedral symmetry is affine geometry modulo \texorpdfstring{$n$}{n}}
+
+Label the vertices of a regular \(n\)-gon by \(\mathbb Z/n\mathbb Z\).  A rotation by \(b\) vertices is
+\[
+  i\longmapsto i+b,
+\]
+while a reflection followed by a rotation has the form
+\[
+  i\longmapsto -i+b.
+\]
+Thus every symmetry can be written uniformly as
+\[
+  i\longmapsto \varepsilon i+b,
+  \qquad
+  \varepsilon\in\{1,-1\},
+  \quad b\in\mathbb Z/n\mathbb Z.
+\]
+This is an affine transformation over the cyclic ring \(\mathbb Z/n\mathbb Z\).
+
+Compose two such maps:
+\[
+  (b,\varepsilon)(c,\delta)(i)
+  =\varepsilon(\delta i+c)+b
+  =(\varepsilon\delta)i+(b+\varepsilon c).
+\]
+Hence
+\[
+  (b,\varepsilon)(c,\delta)
+  =(b+\varepsilon c,\varepsilon\delta).
+\]
+The sign acts on translations by either preserving or reversing them.  Therefore
+\[
+  D_{2n}\cong C_n\rtimes C_2,
+\]
+where the nontrivial element of \(C_2\) acts on \(C_n\) by inversion.
+
+Let
+\[
+  r(i)=i+1,
+  \qquad
+  s(i)=-i.
+\]
+Then
+\[
+  r^n=1,
+  \qquad
+  s^2=1,
+\]
+and
+\[
+\begin{aligned}
+  srs(i)
+  &=sr(-i)\\
+  &=s(-i+1)\\
+  &=i-1\\
+  &=r^{-1}(i).
+\end{aligned}
+\]
+Thus
+\[
+  D_{2n}
+  =\langle r,s\mid r^n=s^2=1,\ srs=r^{-1}\rangle.
+\]
+Every element is uniquely either \(r^k\) or \(sr^k\), so the group has \(2n\) elements.
+
+For a regular pentagon, the ten maps are
+\[
+  i\mapsto i+b
+  \quad\text{and}\quad
+  i\mapsto -i+b,
+  \qquad b\in\mathbb Z/5\mathbb Z.
+\]
+The formula makes the geometry easy to compute.  For example,
+\[
+  (2,-1)(3,1)
+  =(2-3,-1)
+  =(4,-1)
+  \pmod5.
+\]
+A reflection centered differently is obtained because the preceding rotation changes the translation parameter with a sign.
+
+The dihedral group is therefore not an unrelated second example of a group.  It is another affine semidirect product, now over a finite cyclic space rather than the real line.
+
+\section{Direct products and semidirect products encode different kinds of coupling}
+
+If transformations on two coordinates are genuinely independent, the correct construction is a direct product.  Suppose
+\[
+  x_{n+1}=F(x_n),
+  \qquad
+  y_{n+1}=G(y_n).
+\]
+The combined update is
+\[
+  (x,y)\longmapsto(F(x),G(y)),
+\]
+and the two components can be iterated separately.  If \(F\) and \(G\) are invertible, their transformation groups act through
+\[
+  (g,h)\cdot(x,y)=(g\cdot x,h\cdot y).
+\]
+The multiplication law
+\[
+  (g_1,h_1)(g_2,h_2)
+  =(g_1g_2,h_1h_2)
+\]
+contains no cross-term because neither component modifies the other.
+
+The affine and dihedral groups are different.  In
+\[
+  (b,r)(c,s)=(b+rc,rs),
+\]
+the scaling \(r\) changes the later translation \(c\).  In
+\[
+  (b,\varepsilon)(c,\delta)
+  =(b+\varepsilon c,\varepsilon\delta),
+\]
+the reflection sign changes the direction of the later rotation.  These cross-terms are the signature of a semidirect product: one subgroup acts on the other.
+
+An isomorphism is a bijective homomorphism
+\[
+  \varphi:G\to H
+\]
+that preserves multiplication.  The maps
+\[
+  b\longmapsto\tau_b
+\]
+and
+\[
+  (b,\varepsilon)\longmapsto(i\mapsto\varepsilon i+b)
+\]
+are useful because they replace abstract group elements by transformations whose composition can be seen directly.
+
+This completes the bridge from recurrences to groups without identifying the two subjects.  Every recurrence gives a forward \(\mathbb N\)-action.  Bijective update rules extend to \(\mathbb Z\)-actions.  First-order linear recurrences sit inside the affine group, where shifting a fixed point is conjugacy and closed forms are power formulas.  Polygon symmetries form a finite affine semidirect product.  The common structure is not repetition in the vague sense, but the algebra of composing transformations and deciding whether their effects are independent, interacting, or reversible.

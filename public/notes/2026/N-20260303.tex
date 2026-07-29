@@ -1,14 +1,151 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260303}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260303}
-\end{document}
+
+\notechapter{N-20260303}{Two-Dimensional Linear Maps, Spectral Geometry, and Singular Value Decomposition}
+
+\section{Concept map of the chapter}
+
+The main linear-algebra concepts form a dependency map.  Determinants test invertibility and prepare the spectral problem; eigenvalues determine eigenspaces; orthonormal eigenvectors produce orthogonal diagonalization in favorable cases; diagonalization and singular value decomposition then become computational languages for dimensionality reduction.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth,height=0.78\textheight,keepaspectratio]{figures/notes-md/N-20260303/N-20260303-fig-01-concept-map-determinant-eigen-svd.png}
+\caption{A concept map linking determinant, invertibility, eigenvalues, eigenvectors, orthogonal matrices, diagonalization, Cholesky factorization, SVD, and dimensionality reduction.}
+\end{figure}
+
+
+The diagram should not be read as a strict dependency graph.  It is a guide to how these objects are reused: determinant and eigenvalues are algebraic invariants; eigenvectors and orthogonal matrices give coordinate systems; SVD is the robust replacement when diagonalization is unavailable or when the matrix is rectangular.
+
+\section{Five model transformations}
+
+A \(2\times2\) matrix is not only an array of four numbers; it is a rule that moves every point of the plane.  The determinant records signed area scaling, while eigenvectors record directions that survive the transformation without turning:
+\[
+  |A(e_1),A(e_2)|=\det A,\qquad Av=\lambda v.
+\]
+The source figure compares five concrete linear maps by applying each to a grid of colored points.  The left column is the input, the right column is the transformed output, and the middle column marks eigenvector directions and eigenvalue data where they are real.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth,height=0.78\textheight,keepaspectratio]{figures/notes-md/N-20260303/N-20260303-fig-02-five-linear-mappings-and-eigenspaces.png}
+\caption{Five planar linear mappings and their eigenspace behavior.  Each row shows colored input points, eigenvalue/eigenvector information, and the transformed output points.}
+\end{figure}
+
+
+The five rows illustrate the standard possibilities: axis-aligned stretching, shear, rotation with complex eigenvalues, collapse onto a line, and symmetric stretching.  The determinant and the eigenvalues answer different questions.  The determinant says how area changes; eigenvectors say which directions are preserved.
+
+\section{A spectral example: a biological neural network}
+
+The note then moves from geometry to data.  For the \emph{C. elegans} neural network, one may form a connectivity matrix.  Since the directed connection matrix is generally not symmetric, one often studies a symmetrized matrix, for example
+\[
+  A_{\mathrm{sym}}=A+A^T.
+\]
+The eigenvalues of this matrix describe dominant modes of connectivity.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth,height=0.78\textheight,keepaspectratio]{figures/notes-md/N-20260303/N-20260303-fig-03-celegans-connectivity-and-eigenspectrum.png}
+\caption{The symmetrized connectivity matrix of the C. elegans neural network and its sorted eigenspectrum.}
+\end{figure}
+
+
+This example is a useful warning: eigenvectors are not only arrows in the plane.  In a network or a dataset, an eigenvector can indicate a coherent global mode, and the corresponding eigenvalue measures its strength.
+
+\section{SVD as a sequence of geometric operations}
+
+Eigenvalue decomposition is powerful but fragile: it is best behaved for square matrices with enough eigenvectors, and especially for symmetric matrices.  Singular value decomposition is more stable.  Every real matrix \(A\in\mathbb R^{m\times n}\) admits
+\[
+  A=U\Sigma V^T,
+\]
+where \(U\) and \(V\) are orthogonal and \(\Sigma\) has nonnegative diagonal entries \(\sigma_1\ge\sigma_2\ge\cdots\ge0\).  Geometrically, \(V^T\) changes the input coordinates, \(\Sigma\) stretches by the singular values, and \(U\) changes the output coordinates.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth,height=0.78\textheight,keepaspectratio]{figures/notes-md/N-20260303/N-20260303-fig-04-svd-geometric-decomposition.png}
+\caption{Geometric interpretation of SVD: the unit disk is first expressed in the right-singular-vector coordinates, then stretched by the singular values, and finally rotated into the output coordinates.}
+\end{figure}
+
+
+Thus SVD does not ask for directions that remain invariant under \(A\).  Instead, it asks for orthogonal input directions that are sent to orthogonal output axes.  The unit circle becomes an ellipse, and the semi-axis lengths are the singular values.
+
+\section{SVD and latent structure in data}
+
+A rating table can be viewed as a matrix.  Rows may represent movies and columns may represent users.  The raw entries are ratings, but the singular vectors can reveal latent directions such as genre preference or taste profile.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth,height=0.78\textheight,keepaspectratio]{figures/notes-md/N-20260303/N-20260303-fig-05-movie-ratings-svd-decomposition.png}
+\caption{A movie-rating matrix and its SVD decomposition.  Dominant singular directions highlight latent structure in user and movie preferences.}
+\end{figure}
+
+
+The labels placed on singular directions are interpretations, not part of the theorem.  The theorem says that the first singular directions give the most efficient orthogonal explanation of the matrix energy.
+
+\section{Rank-one blocks and image compression}
+
+SVD decomposes a matrix into rank-one pieces:
+\[
+  A=\sum_{i=1}^r \sigma_i u_i v_i^T.
+\]
+For an image matrix, each term \(\sigma_i u_i v_i^T\) is a weighted rank-one visual pattern.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth,height=0.78\textheight,keepaspectratio]{figures/notes-md/N-20260303/N-20260303-fig-06-stonehenge-rank-one-components.png}
+\caption{The first rank-one SVD components of an image.  Each component captures one weighted visual pattern rather than a recognizable full image.}
+\end{figure}
+
+
+Truncated SVD keeps only the first \(k\) terms:
+\[
+  \widehat A(k)=\sum_{i=1}^k \sigma_i u_i v_i^T.
+\]
+The Eckart--Young theorem says that this is the best rank-\(k\) approximation in the spectral norm and the Frobenius norm.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth,height=0.78\textheight,keepaspectratio]{figures/notes-md/N-20260303/N-20260303-fig-07-stonehenge-low-rank-approximations.png}
+\caption{Low-rank image reconstruction from the first few singular components.  As the rank increases, the approximation recovers more recognizable structure.}
+\end{figure}
+
+
+This example explains why SVD is useful beyond pure linear algebra: it gives a principled compression method by separating large-scale structure from smaller-scale details.
+
+\section{A taxonomy of matrix properties}
+
+The final source figure is a taxonomy of real matrices.  It distinguishes square from nonsquare matrices, singular from regular matrices, defective from nondefective matrices, normal from non-normal matrices, and the special positions of symmetric, positive definite, orthogonal, diagonal, and identity matrices.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth,height=0.78\textheight,keepaspectratio]{figures/notes-md/N-20260303/N-20260303-fig-08-functional-phylogeny-of-matrices.png}
+\caption{A functional phylogeny of real matrices encountered in machine learning, indicating which tools apply to which matrix classes.}
+\end{figure}
+
+
+The diagram prevents a common error: applying the wrong theorem to the wrong class.  Determinants and eigenvalues belong naturally to square matrices; orthogonal diagonalization belongs to symmetric real matrices; pseudoinverses and SVD work for arbitrary real matrices.
+
+\section{Choose the invariant appropriate to the matrix question}
+
+The unifying theme is that a matrix should be read through the invariant appropriate to the question.  The determinant measures signed volume scaling; the trace and eigenvalues measure intrinsic square-matrix behavior; rank measures the dimension of the image; singular values measure metric distortion; and the pseudoinverse measures least-squares inverse behavior when an exact inverse is unavailable.
+
+Similarity
+\[
+  A'=P^{-1}AP
+\]
+preserves the linear operator but changes coordinates on the same space.  A general matrix representation
+\[
+  \widetilde A=T^{-1}AS
+\]
+may change both input and output coordinates.  SVD chooses these input and output coordinates orthogonally, which is why it is numerically stable.
+
+For the examples in this note, the practical reading rule is:
+\[
+\begin{array}{c|c}
+\text{question} & \text{tool}\\
+\hline
+\text{area/orientation} & \det A\\
+\text{invariant directions} & \text{eigenvectors}\\
+\text{collapse or information loss} & \operatorname{rank}A\\
+\text{principal stretching} & \text{singular values}\\
+\text{best low-rank compression} & \text{truncated SVD}
+\end{array}
+\]
+
+This is why the images are not decorative.  They show the same matrix simultaneously as an algebraic object, a geometric transformation, and a data-processing device.

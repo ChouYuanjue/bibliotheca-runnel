@@ -1,14 +1,245 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20250707}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20250707}
-\end{document}
+\notechapter{N-20250707}{Nikonov's Paper at One Crossing: Region Probes, Partial Tribrackets, and What the Seminar Was About}
+
+\section{Following the region probes}
+
+Returning to Nikonov's paper after the seminar, the sequence that finally made the terminology cohere was the passage from regions of diagrams to topological probes and then to an operation at one crossing:
+\[
+\begin{array}{c}
+  \text{regions of a diagram}\\
+  \Downarrow\\
+  \text{region probes}\\
+  \Downarrow\\
+  \text{partial ternary operation at one crossing}
+\end{array}
+\]
+The word ``partial'' and the appearance of a ternary operation both become visible along this path.
+
+
+\section{The local dictionary}
+
+The paper has two large movements.  The first movement is topological: arcs, regions, semiarcs, and crossings of diagrams are reinterpreted as isotopy classes of probes.  The second movement is algebraic: homotopy classes of these probes naturally carry coloring structures.
+
+The local dictionary is:
+\[
+\begin{array}{c|c}
+\text{diagram element} & \text{algebraic shadow}\\
+\hline
+\text{arc} & \text{quandle}\\
+\text{region} & \text{partial ternary quasigroup / partial tribracket}\\
+\text{semiarc} & \text{biquandloid}\\
+\text{crossing} & \text{crossoid}
+\end{array}
+\]
+The second row is where the title of the seminar enters the picture: region probes should carry a partial ternary operation.
+
+\Needspace{11\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.32\textwidth]{figures/N-20250707/quandle_coloring.pdf}
+  \qquad
+  \includegraphics[width=0.34\textwidth]{figures/N-20250707/biquandle_operations.pdf}
+  \caption{From Nikonov's paper: arc and semiarc colorings are the neighbouring examples around the region story.}
+\end{figure}
+
+The figures above place the region construction beside the more familiar arc and semiarc colorings.  Quandles and biquandles are standard algebraic gadgets for diagram colorings; Nikonov's point is that the less familiar partial tribracket and crossoid fit into the same topological pattern.
+
+\section{A region is not just a blank patch}
+
+In an ordinary knot diagram, a region is a connected component of the plane or surface after removing the diagram.  Informally, it is a blank patch between strands.  But this definition depends on the drawing.
+
+Nikonov replaces the patch by a topological path.  In a thickened surface \(F\times I\), a region probe is a path from the bottom \(F\times\{0\}\) to the top \(F\times\{1\}\) that does not intersect the knot.  In other words, it is a way to pass through the empty space around the knot.
+
+\Needspace{15\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.48\textwidth]{figures/N-20250707/region_probe.pdf}
+  \caption{From Nikonov's paper: a region probe passes through the complement of the knot.}
+\end{figure}
+
+This is the most important mental shift.  In the diagram, a region looks passive.  In the thickened surface, a region is represented by an actual route through space.  If the knot moves by isotopy, the route can move too.  Thus a region can be followed through Reidemeister moves without pretending that it is only a two-dimensional patch of paper.
+
+For a quick analogy, imagine the knot as a collection of wires suspended in a slab of transparent jelly.  A region probe is a thin needle pushed from the bottom of the jelly to the top without touching any wire.  Moving the knot deforms the possible needle paths.  The algebra of regions is really an algebra of these possible needle paths.
+
+\section{At a crossing, four regions want to talk to each other}
+
+A tribracket is a ternary operation.  Instead of combining two inputs, it combines three:
+\[
+  [a,b,c]=d.
+\]
+In knot diagrams, the reason for a ternary operation is visual.  Around one crossing there are four adjacent regions.  If three of their colors are known, the coloring rule determines the fourth.
+
+\Needspace{13\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.34\textwidth]{figures/N-20250707/tribracket_coloring.pdf}
+  \caption{From Nikonov's paper: the tribracket coloring rule near a crossing.}
+\end{figure}
+
+This is the cleanest way to remember the algebra.  A quandle is suited to arc colorings because arcs meet at a crossing in a binary-looking way.  A tribracket is suited to region colorings because four regions meet around a crossing, so knowing three should determine the fourth.
+
+The operation is designed so that the coloring survives Reidemeister moves.  That is the usual diagrammatic requirement: if two diagrams represent the same knot, their coloring data should correspond.
+
+
+\begin{definition}[Horizontal tribracket, informal version]
+A tribracket is a set \(X\) with a ternary operation
+\[
+  [\ ,\ ,\ ]:X^3\to X
+\]
+such that in an equation
+\[
+  [a,b,c]=d
+\]
+any three of \(a,b,c,d\) determine the fourth, and such that the operation satisfies the compatibility identity forced by the third Reidemeister move.
+\end{definition}
+
+The first condition is the analogue of invertibility.  If a crossing tells us the fourth region from three known regions, then we must also be able to solve backwards when the diagram is read in another local direction.
+
+The second condition is the real knot-theoretic condition.  Around a third Reidemeister move, there are two ways of propagating region colors across three nearby crossings.  These two ways must give the same final color.  In Nikonov's source, this is expressed by the identity
+\[
+[b, [a,b,c], [a,b,d]]
+=
+[c, [a,b,c], [a,c,d]]
+=
+[d, [a,b,d], [a,c,d]].
+\]
+
+\Needspace{15\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.78\textwidth]{figures/N-20250707/tribracket_R3.pdf}
+  \caption{From Nikonov's paper: the third Reidemeister move is the source of the tribracket identity.}
+\end{figure}
+
+\begin{theorem}[Coloring invariance for tribrackets]
+If \(X\) is a tribracket, then tribracket colorings of a diagram correspond bijectively under Reidemeister moves.
+\end{theorem}
+
+This theorem is the usual coloring-invariant mechanism.  The algebraic axioms are not arbitrary: they are exactly the local rules needed so that the diagram move does not change the set of colorings.
+
+\begin{example}[Two useful models]
+An Alexander-type tribracket has the form
+\[
+  [a,b,c]=tb+sc-tsa
+\]
+on a module over \(\mathbb Z[t^{\pm1},s^{\pm1}]\).  A group-based Dehn-type model, in the convention used later for the partial construction, has the form
+\[
+  [a,b,c]=ba^{-1}c.
+\]
+The first example is linear and computational; the second example is closer to the topology of paths in a complement.
+\end{example}
+
+\section{Why the operation is partial}
+
+In the plane, it is tempting to think that any three region colors can be inserted into the operation.  Nikonov's point is that, on a fixed surface and from the topological viewpoint, not every formal triple of regions is genuinely realizable around a crossing.
+
+A region is represented by a probe.  Three regions can be composed at a crossing only when the corresponding probes can be arranged in the correct local configuration.  If topology prevents that configuration, then the operation should simply not be defined.  This is why the algebra is partial.
+
+The paper includes a useful warning example: a formal composition may look legal if one only stares at symbols, but may fail to be realizable on the actual diagram.
+
+\Needspace{13\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.34\textwidth]{figures/N-20250707/trefoil_region_marked.pdf}
+  \caption{From Nikonov's paper: an indicated composition of regions that is not realizable on a classical diagram.}
+\end{figure}
+
+This figure is the whole story in miniature.  A purely algebraic operation would like to accept any triple.  The topology says: no, only triples that can actually occur as neighbouring regions around a crossing should be allowed.  The adjective ``partial'' is not a technical nuisance; it records genuine geometric obstruction.
+
+
+\begin{definition}[Partial ternary quasigroup, notebook version]
+A partial ternary quasigroup is a set \(X\), a compatibility relation \(\uparrow\), and a ternary operation
+\[
+  [a,b,c]
+\]
+defined only when \(b\uparrow a\) and \(c\uparrow a\).  The axioms say that the output is compatible with the neighbouring inputs, that the operation can be solved uniquely for any missing entry whenever the compatibility conditions make sense, and that the third-Reidemeister identity still holds for compatible quadruples.
+\end{definition}
+
+The compatibility relation is the essential new ingredient.  One should read
+\[
+  b\uparrow a
+\]
+as ``the region \(b\) is allowed to sit next to the region \(a\) in the required local way.''  In a flat beginner picture this sounds unnecessary, but in a fixed thickened surface it records real topology.
+
+\begin{example}[Alexander numbering]
+The paper gives a very small partial example:
+\[
+  X=\mathbb Z,\qquad
+  a\uparrow b \Longleftrightarrow b=a-1,\qquad
+  [a,b,c]=a+2.
+\]
+This is not meant to be the most exciting invariant.  It is a memory aid: partiality can be as simple as allowing only neighbouring integer levels to interact.
+\end{example}
+
+\section{Probe clearing and color rules}
+
+The paper also explains how a region probe can be cleared through the diagrammatic situation.  The figure below should be read as a topological mechanism behind the coloring rule.  We are not just writing \([a,b,c]=d\); we are moving a probe through the thickened surface and watching how its class changes.
+
+\Needspace{15\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.78\textwidth]{figures/N-20250707/partial_tribracket_homomorphism.pdf}
+  \caption{From Nikonov's paper: clearing a region probe in the construction of the partial tribracket.}
+\end{figure}
+
+This is the connection with the first note.  Diagrammatic elements become probes; homotopy classes of probes become the raw material for algebra; algebraic coloring rules become shadows of probe motion.
+
+
+The theorem proved in this part of the paper can be read as follows.
+
+\begin{theorem}[Nikonov's fundamental partial tribracket, informal form]
+For a tangle \(T\subset F\times I\) with diagram \(D\), colorings of \(D\) by a partial ternary quasigroup correspond to homomorphisms out of the topological partial tribracket built from homotopy classes of region probes, with the natural \(\pi_1(F)\)-invariance condition.
+\end{theorem}
+
+The exact statement has more notation, but the meaning is very clean.  A diagram coloring is not merely a coloring of a planar picture.  It is the same thing as a compatible algebraic map from the topological object made of region probes.
+
+In the proof, ``clearing a probe'' is the operational step.  One pulls the diagram away from the probe so that the probe's value can be read as the color of a region after the transformation.  Reidemeister invariance then says that this value does not depend on the particular clearing process.
+
+A small local rule can also be expressed as propagation of colors between neighbouring regions.
+
+\Needspace{10\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.20\textwidth]{figures/N-20250707/propagation_rule_region_neighbour.pdf}
+  \caption{From Nikonov's paper: a local propagation rule for neighbouring regions.}
+\end{figure}
+
+This is the sentence I had been trying to extract from the seminar:
+\[
+  \text{a partial tribracket is the algebra of how region probes interact near crossings.}
+\]
+
+
+\section{What about crossings themselves?}
+
+The paper does not stop at regions.  Crossings also become topological objects: a crossing probe is a bottom-to-top path intersecting the tangle twice, with extra framing data on the segment between the two intersection points.
+
+\Needspace{14\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.64\textwidth]{figures/N-20250707/crossing_probe.pdf}
+  \caption{From Nikonov's paper: a crossing probe.  Crossings are treated as probe classes rather than merely as vertices of a drawing.}
+\end{figure}
+
+This leads toward crossoids, which generalize parity-type structures on knots.  Without developing their full definition, the common pattern is already visible:
+\[
+\begin{array}{c}
+\text{choose a diagram element}\\
+\Downarrow\\
+\text{replace it by a probe}\\
+\Downarrow\\
+\text{take homotopy classes}\\
+\Downarrow\\
+\text{read off an algebraic coloring structure.}
+\end{array}
+\]
+The partial tribracket is simply the region case of this general machine.
+
+\section{The paper in one playful sentence}
+
+A knot diagram looks like a flat picture, but Nikonov treats its arcs, regions, and crossings as little test paths sent through a three-dimensional slab.  Once those test paths are allowed to move, their homotopy classes begin to carry algebra.  Arc probes lead toward quandles; region probes lead toward partial tribrackets; semiarc probes lead toward biquandloids; crossing probes lead toward crossoids.
+
+So the paper is not merely saying ``here is another coloring invariant.''  It is saying something more structural:
+\[
+  \text{the algebraic coloring gadgets are shadows of topological probe spaces.}
+\]
+At this point the seminar's main mechanism becomes concrete.  The rest of the paper builds a much larger machine, but this one crossing already explains why the machine is interesting.

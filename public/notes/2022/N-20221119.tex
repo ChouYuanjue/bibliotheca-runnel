@@ -1,14 +1,266 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221119}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221119}
-\end{document}
+\notechapter{N-20221119}{Prime Numbers, Composite Numbers, Divisor Functions, Congruences, and Number-Theoretic Exercises}
+
+\section{Prime and composite numbers}
+
+An integer $a>1$ is prime if its only positive divisors are $1$ and $a$; otherwise it is composite.
+
+A basic observation is that if $a$ is composite, then it has a prime divisor not exceeding $\sqrt a$.  Indeed, if
+\[
+  a=pq,\qquad 1<p\le q,
+\]
+then
+\[
+  p^2\le pq=a,
+\]
+so $p\le\sqrt a$.  This justifies trial division up to $\sqrt a$.
+
+The note then mentions the sieve method.  To find primes up to $50$, begin with $2,3,5,7$ as sieving primes because
+\[
+  \sqrt{50}<8.
+\]
+Cross out multiples of these primes.  The remaining numbers are prime.
+
+\section{Euclid's theorem}
+
+\begin{theorem}[Euclid's theorem]
+There are infinitely many prime numbers.
+\end{theorem}
+
+
+Euclid's theorem says that there are infinitely many primes.  Suppose the primes were
+\[
+  p_1,p_2,\ldots,p_k.
+\]
+Let
+\[
+  N=p_1p_2\cdots p_k+1.
+\]
+No $p_i$ divides $N$, since division by $p_i$ leaves remainder $1$.  But every integer $N>1$ has a prime divisor.  This prime divisor is not among the listed primes, contradiction.
+
+The key remainder idea is that the product of all known primes plus one creates a new prime factor.
+
+\section{Prime divisibility}
+
+Several prime-divisibility facts follow.  If $p$ is prime and
+\[
+  p\mid ab,
+\]
+then
+\[
+  p\mid a\quad\text{or}\quad p\mid b.
+\]
+More generally, if
+\[
+  p\mid a_1a_2\cdots a_n,
+\]
+then $p$ divides at least one factor.  This is proved by induction from the two-factor statement.
+
+The note also records the contrapositive: if $p$ divides none of the factors, then it does not divide their product.
+
+\section{Fundamental theorem of arithmetic}
+
+\begin{theorem}[Fundamental theorem of arithmetic]
+Every integer greater than \(1\) has a unique prime factorization, up to the order of the prime factors.
+\end{theorem}
+
+
+Every integer $n>1$ can be written uniquely as
+\[
+  n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k},
+\]
+where the $p_i$ are distinct primes and $\alpha_i>0$.  The order of factors is the only ambiguity.
+
+This factorization computes divisor functions.  If
+\[
+  d\mid n,
+\]
+then
+\[
+  d=p_1^{\beta_1}p_2^{\beta_2}\cdots p_k^{\beta_k},
+  \qquad 0\le\beta_i\le\alpha_i.
+\]
+Therefore the number of positive divisors is
+\[
+  \tau(n)=\prod_{i=1}^k(\alpha_i+1).
+\]
+The sum of positive divisors is
+\[
+  \sigma(n)=\prod_{i=1}^k
+  (1+p_i+p_i^2+\cdots+p_i^{\alpha_i})
+  =\prod_{i=1}^k \frac{p_i^{\alpha_i+1}-1}{p_i-1}.
+\]
+
+\section{Perfect numbers and square numbers}
+
+A number $n$ is perfect if the sum of its positive divisors is $2n$:
+\[
+  \sigma(n)=2n.
+\]
+The first examples are:
+\[
+  6,\quad 28,\quad 496,\quad 8128,\ldots
+\]
+
+Another important fact is:
+\[
+  n\text{ is a square}\quad\Longleftrightarrow\quad \tau(n)\text{ is odd}.
+\]
+If $n=p_1^{\alpha_1}\cdots p_k^{\alpha_k}$, then $n$ is a square iff every $\alpha_i$ is even.  This is equivalent to every $\alpha_i+1$ being odd, so their product $\tau(n)$ is odd.
+
+\section[Exponent of a prime in n factorial]{Exponent of a prime in $n!$}
+
+Legendre's formula gives the exponent of a prime $p$ in $n!$:
+\[
+  \sum_{j\ge1} \left\lfloor \frac n{p^j}\right\rfloor.
+\]
+This counts multiples of $p$, then multiples of $p^2$, then multiples of $p^3$, and so on.  For example, numbers divisible by $p^2$ contribute an extra factor of $p$ beyond the first count.
+
+\section{Congruence exercises}
+
+The printed pages contain exercises on congruences.  The basic definition is
+\[
+  a\equiv b\pmod m
+  \quad\Longleftrightarrow\quad
+  m\mid(a-b).
+\]
+The operations of addition and multiplication are compatible with congruence:
+\[
+  a\equiv b,\ c\equiv d\pmod m
+  \quad\Longrightarrow\quad
+  a+c\equiv b+d,\quad ac\equiv bd\pmod m.
+\]
+
+A typical problem asks for a digit or a remainder of a large power.  The method is to find the period of powers modulo $m$.  For example, powers of $2$ modulo $10$ cycle through
+\[
+  2,4,8,6.
+\]
+Once the period is known, the exponent can be reduced modulo the period.
+
+\section{Broader perspective}
+
+Divisibility becomes arithmetic structure through three transformations: prime factorization turns integers into exponent data, divisor functions become products over primes, and congruences replace equality by equality of residue classes.  Together, these tools make large integer problems finite and computable.
+
+\section{Prime exponents and valuations}
+For a prime \(p\), the exponent \(v_p(n)\) turns divisibility into arithmetic:
+\[
+a\mid b \quad\Longleftrightarrow\quad v_p(a)\le v_p(b)\text{ for all }p.
+\]
+Legendre's formula gives
+\[
+v_p(n!)=\sum_{k\ge1}\left\lfloor \frac n{p^k}\right\rfloor.
+\]
+It counts multiples of \(p\), then multiples of \(p^2\), and so on.
+\section{Divisor functions as multiplicative functions}
+If \(n=\prod p_i^{e_i}\), then
+\[
+d(n)=\prod_i(e_i+1),\qquad \sigma(n)=\prod_i\frac{p_i^{e_i+1}-1}{p_i-1}.
+\]
+These formulas hold because choosing a divisor is choosing each prime exponent independently.  This is multiplicativity coming from unique factorization.
+\section{Congruences and finite groups}
+Reduced residue classes modulo \(n\) form the unit group \((\mathbb Z/n\mathbb Z)^\times\).  Euler's theorem is the statement that every element of this finite group has order dividing the group size.
+\section{Prime coordinates and finite unit groups}
+Prime factorization supplies coordinates, divisor functions multiply across primes, factorial valuations count prime powers, and congruence problems become group theory in finite unit groups.
+
+\section{Arithmetic functions and convolution}
+
+Divisor-counting functions are examples of arithmetic functions, namely functions
+\[
+  f:\mathbb N\to\mathbb C.
+\]
+They form an algebra under Dirichlet convolution:
+\[
+  (f*g)(n)=\sum_{d\mid n}f(d)g(n/d).
+\]
+The identity element is
+\[
+  \varepsilon(n)=
+  \begin{cases}
+  1,&n=1,\\
+  0,&n>1.
+  \end{cases}
+\]
+
+For example, if $1(n)=1$ for all $n$, then the divisor-counting function is
+\[
+  \tau=1*1.
+\]
+The sum-of-divisors function is
+\[
+  \sigma=\operatorname{id}*1,\qquad \operatorname{id}(n)=n.
+\]
+
+\section{Möbius inversion in number theory}
+
+The number-theoretic Möbius function is
+\[
+  \mu(n)=
+  \begin{cases}
+  1,&n=1,\\
+  (-1)^k,&n\text{ is a product of }k\text{ distinct primes},\\
+  0,&p^2\mid n\text{ for some }p.
+  \end{cases}
+\]
+It is the inverse of the constant function $1$ under Dirichlet convolution:
+\[
+  \mu*1=\varepsilon.
+\]
+Therefore if
+\[
+  F(n)=\sum_{d\mid n}f(d),
+\]
+then
+\[
+  f(n)=\sum_{d\mid n}\mu(d)F(n/d).
+\]
+This is Möbius inversion on the divisibility poset.
+
+\section{Dirichlet series and Euler products}
+
+To an arithmetic function $f$ one may attach a Dirichlet series
+\[
+  D_f(s)=\sum_{n=1}^{\infty}\frac{f(n)}{n^s}.
+\]
+Dirichlet convolution corresponds to multiplication of Dirichlet series when convergence is justified:
+\[
+  D_{f*g}(s)=D_f(s)D_g(s).
+\]
+For the constant function $1$,
+\[
+  \zeta(s)=\sum_{n=1}^{\infty}\frac1{n^s}=\prod_p \frac1{1-p^{-s}}.
+\]
+The Euler product is unique factorization written analytically.
+
+The elementary prime and divisor computations in the note therefore open the door to analytic number theory: primes are encoded in the analytic behavior of $\zeta(s)$ and related series.
+
+\section{P-adic valuations and multiplicativity}
+
+If
+\[
+  n=\prod_p p^{v_p(n)},
+\]
+then multiplicative functions are determined by their values on prime powers.  For example,
+\[
+  \tau(n)=\prod_p (v_p(n)+1),\qquad
+  \sigma(n)=\prod_p \frac{p^{v_p(n)+1}-1}{p-1}.
+\]
+This is why divisor-function formulas are products over primes.  Elementary prime factorization is already a coordinate system for arithmetic functions.
+
+\section{Euler products and prime independence}
+
+The Euler product
+\[
+  \zeta(s)=\prod_p(1-p^{-s})^{-1}
+\]
+comes from multiplying the geometric series
+\[
+  1+p^{-s}+p^{-2s}+\cdots
+\]
+for every prime $p$.  Expanding the product chooses an exponent for each prime, hence chooses a positive integer.
+
+This is unique factorization written as analysis.  Elementary divisor formulas are multiplicative because the exponent choices at different primes are independent.
+
+\section{Möbius inversion over primes}
+
+The Möbius function $\mu(n)$ performs inclusion--exclusion over the set of primes dividing $n$.  If $n$ is squarefree with $k$ prime factors, then $\mu(n)=(-1)^k$.  If a square divides $n$, it contributes zero because repeated prime factors break the simple subset structure.
+
+Thus number-theoretic Möbius inversion and set-theoretic inclusion--exclusion are the same operation on different posets: divisors ordered by divisibility versus subsets ordered by inclusion.

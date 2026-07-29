@@ -1,14 +1,503 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20251202}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20251202}
-\end{document}
+\notechapter{N-20251202}{Inner-Product Geometry and Spectral Decomposition: From QR to Quadratic Forms}
+
+\section{Diagonalization asks whether the space splits into invariant lines}
+
+A matrix \(A\in k^{n\times n}\) is diagonalizable when there is an invertible matrix \(P\) such that
+\[
+  P^{-1}AP=D
+\]
+is diagonal.  If the columns of \(P\) are \(v_1,\ldots,v_n\), then
+\[
+  Av_i=\lambda_i v_i.
+\]
+Thus diagonalization is the decomposition
+\[
+  k^n=E_{\lambda_1}\oplus\cdots\oplus E_{\lambda_s}
+\]
+into eigenspaces.  The question is not merely whether eigenvalues exist, but whether their eigenspaces supply enough independent directions.
+
+Several properties that are often confused are logically independent.  The zero matrix is diagonalizable but not invertible.  The Jordan block
+\[
+  J=
+  \begin{pmatrix}
+    1&1\\
+    0&1
+  \end{pmatrix}
+\]
+is invertible but not diagonalizable.  Repeated eigenvalues cause no difficulty for the identity matrix, whereas the same repeated eigenvalue leaves \(J\) with only one eigendirection.  Rank, invertibility, eigenvalue multiplicity, and diagonalizability answer different questions.
+
+\section{The minimal polynomial detects the missing eigendirections}
+
+The minimal polynomial \(m_A(t)\) is the monic polynomial of least degree satisfying
+\[
+  m_A(A)=0.
+\]
+If \(A=PDP^{-1}\), then \(m_A\) must vanish on every diagonal entry of \(D\), so it is a product of distinct linear factors:
+\[
+  m_A(t)=\prod_{i=1}^s(t-\lambda_i).
+\]
+Conversely, suppose
+\[
+  m_A(t)=\prod_{i=1}^s(t-\lambda_i)
+\]
+with distinct roots.  Define the Lagrange polynomials
+\[
+  \ell_i(t)
+  =\prod_{j\ne i}
+  \frac{t-\lambda_j}{\lambda_i-\lambda_j}.
+\]
+They satisfy
+\[
+  \sum_i\ell_i(t)=1
+  \pmod{m_A(t)}.
+\]
+Hence
+\[
+  I=\sum_i\ell_i(A).
+\]
+Moreover,
+\[
+  (A-\lambda_iI)\ell_i(A)=0,
+\]
+so \(\ell_i(A)V\subseteq E_{\lambda_i}\).  Every vector is therefore a sum of eigenvectors, and \(A\) is diagonalizable.
+
+Thus
+\[
+  \boxed{
+  A\text{ is diagonalizable}
+  \iff
+  m_A\text{ splits with no repeated root}.}
+\]
+For the Jordan block above,
+\[
+  m_J(t)=(t-1)^2.
+\]
+The repeated factor records the nilpotent motion along the generalized eigendirection.
+
+\section{An inner product turns decomposition into best approximation}
+
+An inner product adds lengths and angles to a vector space.  For a subspace \(W\subset\mathbb R^n\), the orthogonal projection of \(x\) onto \(W\) is the unique vector \(p\in W\) for which
+\[
+  x-p\perp W.
+\]
+If \(Q\in\mathbb R^{n\times r}\) has orthonormal columns spanning \(W\), then
+\[
+  p=QQ^Tx.
+\]
+Indeed, \(QQ^Tx\in W\), while
+\[
+  Q^T(x-QQ^Tx)=Q^Tx-Q^Tx=0.
+\]
+The matrix
+\[
+  P_W=QQ^T
+\]
+is symmetric and idempotent:
+\[
+  P_W^T=P_W,
+  \qquad
+  P_W^2=P_W.
+\]
+
+Orthogonality also proves optimality.  For any \(w\in W\),
+\[
+  x-w=(x-p)+(p-w)
+\]
+is an orthogonal decomposition, so
+\[
+  \|x-w\|^2
+  =\|x-p\|^2+\|p-w\|^2
+  \ge\|x-p\|^2.
+\]
+Projection is therefore the closest point in the subspace.  Least squares, Fourier approximation, and Gram--Schmidt all begin with this Pythagorean identity.
+
+\section{Gram--Schmidt factors a basis into orthogonal directions and coefficients}
+
+Given independent vectors \(a_1,\ldots,a_r\), define
+\[
+  u_1=a_1,
+\]
+\[
+  u_j=a_j-
+  \sum_{i<j}
+  \frac{\langle a_j,u_i\rangle}
+       {\langle u_i,u_i\rangle}u_i.
+\]
+Each \(u_j\) is orthogonal to the previous vectors, and independence guarantees \(u_j\ne0\).  Normalizing gives orthonormal vectors
+\[
+  q_j=\frac{u_j}{\|u_j\|}.
+\]
+
+For the columns
+\[
+  a_1=(1,0,0,1)^T,
+  \quad
+  a_2=(1,1,0,1)^T,
+  \quad
+  a_3=(1,1,1,0)^T,
+\]
+one obtains
+\[
+  q_1=\frac1{\sqrt2}(1,0,0,1)^T,
+  \qquad
+  q_2=(0,1,0,0)^T,
+\]
+\[
+  q_3=\frac1{\sqrt6}(1,0,2,-1)^T.
+\]
+Writing \(A=(a_1,a_2,a_3)\) and \(Q=(q_1,q_2,q_3)\), the coefficients
+\[
+  r_{ij}=\langle q_i,a_j\rangle
+\]
+form the upper-triangular matrix
+\[
+  R=
+  \begin{pmatrix}
+    \sqrt2&\sqrt2&1/\sqrt2\\
+    0&1&1\\
+    0&0&\sqrt6/2
+  \end{pmatrix},
+\]
+and
+\[
+  \boxed{A=QR,\qquad Q^TQ=I.}
+\]
+QR factorization is Gram--Schmidt written as a matrix identity: \(Q\) stores the orthonormal geometry, while \(R\) stores how the original columns were assembled from it.
+
+\section{Householder reflections reveal why stable QR avoids repeated subtraction}
+
+Classical Gram--Schmidt can lose accuracy when columns are nearly dependent, because it subtracts nearly equal vectors.  Modified Gram--Schmidt reduces the damage by updating the residual after each projection.  Householder QR takes a different route: it reflects an entire column onto a coordinate axis.
+
+For a nonzero vector \(x\), choose
+\[
+  v=x-\alpha e_1,
+  \qquad
+  \alpha=\operatorname{sign}(x_1)\|x\|,
+\]
+and define
+\[
+  H=I-2\frac{vv^T}{v^Tv}.
+\]
+Then
+\[
+  H^T=H,
+  \qquad
+  H^2=I,
+\]
+so \(H\) is an orthogonal reflection, and \(Hx=\alpha e_1\).
+
+Consider
+\[
+  A=
+  \begin{pmatrix}
+    3&0\\
+    4&5
+  \end{pmatrix}.
+\]
+For the first column \(x=(3,4)^T\), take \(\alpha=5\) and \(v=(-2,4)^T\).  Then
+\[
+  H=
+  \begin{pmatrix}
+    3/5&4/5\\
+    4/5&-3/5
+  \end{pmatrix},
+\]
+and
+\[
+  HA=
+  \begin{pmatrix}
+    5&4\\
+    0&-3
+  \end{pmatrix}=R.
+\]
+Since \(H^T=H\),
+\[
+  A=QR,
+  \qquad Q=H.
+\]
+The reflection zeros an entire subcolumn at once and preserves norms exactly in exact arithmetic.  This geometric operation is the basis of stable QR algorithms.
+
+\section{Orthogonal maps preserve geometry, and reflections generate them}
+
+A real matrix \(U\) is orthogonal when
+\[
+  U^TU=I.
+\]
+It preserves inner products:
+\[
+  \langle Ux,Uy\rangle
+  =x^TU^TUy
+  =\langle x,y\rangle.
+\]
+Hence it preserves lengths, angles, and orthogonality.  Its determinant satisfies
+\[
+  (\det U)^2=1,
+\]
+so
+\[
+  \det U=\pm1.
+\]
+The sign records orientation: rotations have determinant \(+1\), while a single reflection has determinant \(-1\).
+
+Householder matrices show that reflections are not merely examples.  Every orthogonal matrix is a product of reflections.  QR factorization repeatedly uses this fact to rotate or reflect successive column spaces into coordinate position without changing their metric geometry.
+
+Over \(\mathbb C\), the corresponding maps are unitary:
+\[
+  U^*U=I.
+\]
+Complex conjugation in the Hermitian inner product is essential; without it, \(\langle x,x\rangle\) need not be positive.
+
+\section{The spectral theorem follows from one Rayleigh extremum and induction}
+
+Let \(A=A^T\) be real symmetric.  On the unit sphere, the Rayleigh quotient
+\[
+  R_A(x)=x^TAx
+\]
+attains a maximum because the sphere is compact.  At a maximizing unit vector \(v\), Lagrange multipliers give
+\[
+  2Av=2\lambda v,
+\]
+so \(v\) is an eigenvector.
+
+Its orthogonal complement is invariant.  If \(w\perp v\), then
+\[
+  \langle Aw,v\rangle
+  =\langle w,Av\rangle
+  =\lambda\langle w,v\rangle=0.
+\]
+Thus \(A\) restricts to a symmetric operator on \(v^\perp\).  Repeating the argument inductively produces an orthonormal eigenbasis.
+
+Therefore
+\[
+  \boxed{
+  A=A^T
+  \quad\Longrightarrow\quad
+  A=Q\operatorname{diag}(\lambda_1,\ldots,\lambda_n)Q^T}
+\]
+for an orthogonal matrix \(Q\).  The proof explains both parts of the theorem: symmetry makes the orthogonal complement invariant, while compactness supplies the first eigenvector.
+
+The extreme Rayleigh values are the extreme eigenvalues:
+\[
+  \lambda_{\min}(A)
+  =\min_{\|x\|=1}x^TAx,
+  \qquad
+  \lambda_{\max}(A)
+  =\max_{\|x\|=1}x^TAx.
+\]
+The spectral theorem is therefore also an optimization theorem.
+
+\section{Spectral projectors turn diagonalization into functional calculus}
+
+Suppose a diagonalizable matrix has distinct eigenvalues \(\lambda_1,\ldots,\lambda_s\).  The Lagrange polynomials from the minimal-polynomial argument give projectors
+\[
+  P_i=
+  \prod_{j\ne i}
+  \frac{A-\lambda_jI}{\lambda_i-\lambda_j}.
+\]
+They satisfy
+\[
+  P_i^2=P_i,
+  \qquad
+  P_iP_j=0\ (i\ne j),
+  \qquad
+  \sum_iP_i=I,
+\]
+and \(P_iV=E_{\lambda_i}\).  Hence
+\[
+  A=\sum_i\lambda_iP_i.
+\]
+For any function \(f\) defined on the spectrum, set
+\[
+  f(A)=\sum_i f(\lambda_i)P_i.
+\]
+This is finite-dimensional functional calculus.
+
+If \(A^2=I\), the eigenvalues are \(\pm1\), and
+\[
+  P_+=\frac{I+A}{2},
+  \qquad
+  P_-=\frac{I-A}{2}.
+\]
+Therefore
+\[
+\begin{aligned}
+  e^{tA}
+  &=e^tP_++e^{-t}P_-\\
+  &=\cosh t\,I+\sinh t\,A.
+\end{aligned}
+\]
+A matrix exponential has been computed without multiplying matrices repeatedly.  The projectors separate the invariant modes first, and the scalar function is then applied to each mode.
+
+\section{Similarity and congruence answer different classification questions}
+
+Similarity
+\[
+  A\longmapsto P^{-1}AP
+\]
+changes the basis of a linear operator and preserves eigenvalues.  Congruence
+\[
+  A\longmapsto P^TAP
+\]
+changes variables in a quadratic form
+\[
+  q(x)=x^TAx,
+  \qquad x=Py.
+\]
+It need not preserve eigenvalues.
+
+Consider
+\[
+  q(x,y)=2x^2+4xy-y^2.
+\]
+Completing the square gives
+\[
+  q(x,y)=2(x+y)^2-3y^2.
+\]
+With
+\[
+  u=x+y,
+  \qquad v=y,
+\]
+the form becomes
+\[
+  q=2u^2-3v^2.
+\]
+Thus it has one positive and one negative square.  Sylvester's law of inertia says that the triple
+\[
+  (n_+,n_-,n_0)
+\]
+of positive, negative, and zero squares is invariant under every invertible congruence.  Here the inertia is
+\[
+  (1,1,0).
+\]
+
+Orthogonal diagonalization is a special congruence that also happens to be a similarity for symmetric matrices.  It preserves Euclidean geometry as well as the quadratic form's spectral data; a general completing-square substitution preserves only the inertia classification.
+
+\section{Positive definiteness has spectral, minor, and factorization tests}
+
+For a symmetric matrix \(A\), the following are equivalent:
+\[
+  x^TAx>0\quad(x\ne0),
+\]
+\[
+  \lambda_i(A)>0\quad\text{for every }i,
+\]
+\[
+  \Delta_1>0,\ldots,\Delta_n>0,
+\]
+where \(\Delta_k\) are the leading principal minors, and
+\[
+  A=LL^T
+\]
+for an invertible lower-triangular matrix \(L\) with positive diagonal.  These are the quadratic-form, spectral, Sylvester, and Cholesky criteria.
+
+For
+\[
+  A=
+  \begin{pmatrix}
+    2&-1&0\\
+    -1&2&-1\\
+    0&-1&2
+  \end{pmatrix},
+\]
+the leading principal minors are
+\[
+  \Delta_1=2,
+  \qquad
+  \Delta_2=3,
+  \qquad
+  \Delta_3=4.
+\]
+Hence \(A\succ0\).  Cholesky elimination gives
+\[
+  L=
+  \begin{pmatrix}
+    \sqrt2&0&0\\
+    -1/\sqrt2&\sqrt{3/2}&0\\
+    0&-\sqrt{2/3}&2/\sqrt3
+  \end{pmatrix},
+\]
+and a direct multiplication verifies
+\[
+  A=LL^T.
+\]
+The factorization makes positivity immediate:
+\[
+  x^TAx=\|L^Tx\|^2>0
+\]
+for \(x\ne0\).
+
+\section{Principal axes organize conics, Hessians, and PCA}
+
+A quadratic polynomial in two variables can be written
+\[
+  F(x)=x^TAx+b^Tx+c,
+  \qquad A=A^T.
+\]
+An orthogonal change aligns the coordinates with eigenvectors of \(A\), removing cross terms.  A translation then completes squares and moves the center when one exists.  Rotation and translation perform different jobs: the first changes directions, the second changes the origin.
+
+The same matrix appears as a Hessian in optimization.  Near a critical point \(p\),
+\[
+  f(p+h)
+  =f(p)+\frac12h^T\nabla^2f(p)h+o(\|h\|^2).
+\]
+The inertia of the Hessian distinguishes a local minimum, maximum, or saddle when the Hessian is nonsingular.
+
+PCA applies the same spectral geometry to data.  Consider the centered points
+\[
+  (2,1),\ (1,1),\ (-1,-1),\ (-2,-1).
+\]
+Their covariance matrix is
+\[
+  C=\frac14
+  \sum_{i=1}^4x_ix_i^T
+  =
+  \begin{pmatrix}
+    5/2&3/2\\
+    3/2&1
+  \end{pmatrix}.
+\]
+Its eigenvalues are
+\[
+  \lambda_{\pm}
+  =\frac{7\pm3\sqrt5}{4}.
+\]
+For \(\lambda_+\), an eigenvector can be chosen proportional to
+\[
+  \begin{pmatrix}
+    1\\(\sqrt5-1)/2
+  \end{pmatrix}.
+\]
+Projection onto this direction preserves the largest possible average squared variation.  PCA is therefore the Rayleigh-quotient extremum of the covariance quadratic form, not a separate algorithmic miracle.
+
+\section{The Hilbert-space extension keeps projection but may lose eigenbases}
+
+In a Hilbert space \(H\), every closed subspace \(M\) still has an orthogonal projection.  To see why closedness matters, take a minimizing sequence \(m_n\in M\) for the distance from \(x\) to \(M\).  The parallelogram identity shows that \((m_n)\) is Cauchy; completeness of \(M\) gives a limit \(m\in M\), and the usual first-variation argument gives
+\[
+  x-m\perp M.
+\]
+Thus
+\[
+  H=M\oplus M^\perp.
+\]
+Finite-dimensional least squares is the first instance of this projection theorem.
+
+The spectral theorem also survives, but not always as an eigenbasis.  On
+\[
+  H=L^2([0,1]),
+\]
+consider the self-adjoint multiplication operator
+\[
+  (Mf)(t)=t f(t).
+\]
+If \(Mf=\lambda f\), then
+\[
+  (t-\lambda)f(t)=0
+\]
+almost everywhere.  The set \(\{t=\lambda\}\) has measure zero, so \(f=0\) in \(L^2\).  The operator has no nonzero eigenvectors, even though its spectrum is the whole interval \([0,1]\).
+
+The correct infinite-dimensional statement uses a projection-valued measure:
+\[
+  M=\int_{[0,1]}\lambda\,dE(\lambda).
+\]
+Finite diagonal matrices are the discrete case of this integral.  Orthogonal projection, self-adjointness, and functional calculus remain; what can disappear is a basis made from individual eigenvectors.

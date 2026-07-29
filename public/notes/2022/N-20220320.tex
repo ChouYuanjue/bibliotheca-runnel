@@ -1,14 +1,202 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220320}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220320}
-\end{document}
+\notechapter{N-20220320}{A Review of Calculus: Mean Value Theorems and Continuity}
+
+\section{From the mean value theorem to Cauchy's form}
+
+This note continues the calculus review.  The main topic is the mean value theorem and its Cauchy form.
+
+\begin{theorem}[Mean value theorem]
+Let \(f:[a,b]\to\mathbb R\) be continuous on \([a,b]\) and differentiable on \((a,b)\).  Then there exists \(c\in(a,b)\) such that
+\[
+  f'(c)=\frac{f(b)-f(a)}{b-a}.
+\]
+\end{theorem}
+
+Geometrically, there is a point at which the tangent slope equals the slope of the secant line through the endpoints.
+
+\begin{theorem}[Cauchy's mean value theorem]
+Let \(f,g:[a,b]\to\mathbb R\) be continuous on \([a,b]\) and differentiable on \((a,b)\).  If \(g'(x)\neq0\) on \((a,b)\), then there exists \(c\in(a,b)\) such that
+\[
+  \frac{f'(c)}{g'(c)}=\frac{f(b)-f(a)}{g(b)-g(a)}.
+\]
+Equivalently,
+\[
+  (f(b)-f(a))g'(c)=(g(b)-g(a))f'(c).
+\]
+\end{theorem}
+
+\begin{remark}
+This is the version sometimes called Cauchy's mean value theorem.  It is the natural two-function generalization of the ordinary mean value theorem and is often the cleanest route to l'Hospital-type arguments.
+\end{remark}
+
+\section{Continuity at a point}
+
+The note then returns to continuity.
+
+\begin{definition}
+Let \(f\) be a real-valued function defined in a neighborhood of \(a\in\mathbb R\).  The function \(f\) is continuous at \(a\) if
+\[
+  \lim_{x\to a}f(x)=f(a).
+\]
+Equivalently, for every \(\varepsilon>0\) there is \(\delta>0\) such that
+\[
+  |x-a|<\delta\Rightarrow |f(x)-f(a)|<\varepsilon.
+\]
+\end{definition}
+
+\begin{remark}
+The intuitive statement is that when \(x\) is close to \(a\), the value \(f(x)\) is close to \(f(a)\).  The epsilon-delta form is the precise version of that intuition.
+\end{remark}
+
+\section{How this note fits the previous one}
+
+The previous review note introduced limits, derivatives, big-O/small-o notation, and integration.  This continuation adds the mean value theorem and continuity, which are the bridge between local derivative information and global information about a function on an interval.
+
+Both the ordinary mean value theorem and Cauchy's mean value theorem are consequences of Rolle's theorem.  The first subtracts a secant line; the second constructs a suitable linear combination of two functions.
+
+
+\section{Rolle's theorem as the engine}
+
+\begin{theorem}[Rolle's theorem]
+Let \(f\) be continuous on \([a,b]\), differentiable on \((a,b)\), and suppose \(f(a)=f(b)\).  Then there exists \(c\in(a,b)\) such that
+\[
+  f'(c)=0.
+\]
+\end{theorem}
+
+
+The mean value theorem is usually proved from Rolle's theorem.  Rolle says that if \(f(a)=f(b)\), and \(f\) is continuous on \([a,b]\) and differentiable on \((a,b)\), then there is \(c\in(a,b)\) such that
+\[
+  f'(c)=0.
+\]
+Geometrically, a curve beginning and ending at the same height must have a horizontal tangent somewhere.
+
+To prove the mean value theorem, subtract the secant line.  Define
+\[
+  h(x)=f(x)-\frac{f(b)-f(a)}{b-a}(x-a).
+\]
+Then \(h(a)=h(b)\).  Rolle's theorem gives \(h'(c)=0\), which is exactly
+\[
+  f'(c)=\frac{f(b)-f(a)}{b-a}.
+\]
+This proof explains the theorem better than the formula alone: the secant line is removed so that the endpoints line up.
+
+\section{Cauchy's theorem and L'Hopital's rule}
+
+\begin{theorem}[Cauchy's mean value theorem]
+Let \(f,g\) be continuous on \([a,b]\) and differentiable on \((a,b)\).  If \(g'(x)\ne0\) on \((a,b)\), then there exists \(c\in(a,b)\) such that
+\[
+  \frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f'(c)}{g'(c)}.
+\]
+\end{theorem}
+
+
+Cauchy's mean value theorem applies Rolle's theorem to a linear combination of two functions.  It is the natural source of L'Hopital's rule.  Suppose
+\[
+  \lim_{x\to a}f(x)=\lim_{x\to a}g(x)=0
+\]
+and \(g'(x)\ne0\).  Applying Cauchy's theorem to \(f\) and \(g\) on \([a,x]\) gives a point \(c\) between \(a\) and \(x\) such that
+\[
+  \frac{f(x)-f(a)}{g(x)-g(a)}=\frac{f'(c)}{g'(c)}.
+\]
+If \(f'(c)/g'(c)\) tends to a limit as \(x\to a\), then so does \(f(x)/g(x)\).  This derivation shows why L'Hopital's rule has hypotheses; it is not a symbolic cancellation rule.
+
+\section{Uniform continuity}
+
+Continuity at each point allows \(\delta\) to depend on both \(\varepsilon\) and the point.  Uniform continuity allows \(\delta\) to depend only on \(\varepsilon\).  On a compact interval, every continuous function is uniformly continuous.
+
+This fact is often proved by contradiction using sequences, or by compactness using finite subcovers.  It is the hidden reason many limiting arguments on closed intervals work smoothly.
+
+\section{Further direction}
+
+Rolle, the mean value theorem, and Cauchy's mean value theorem are not isolated formulas.  They are mechanisms for turning global information on an interval into local derivative information at some point.  This is the central bridge of one-variable calculus: endpoint data forces a tangent slope somewhere in between.
+
+\section{Mean value theorems as compactness plus local linearity}
+
+\begin{theorem}[Mean value theorem]
+If \(f\) is continuous on \([a,b]\) and differentiable on \((a,b)\), then there exists \(c\in(a,b)\) such that
+\[
+  f(b)-f(a)=f'(c)(b-a).
+\]
+\end{theorem}
+
+
+Rolle's theorem and the mean value theorem combine two ingredients: continuity on a compact interval and differentiability inside.  Compactness gives a maximum and minimum.  Differentiability says that an interior extremum has derivative zero.
+
+The result
+\[
+  f(b)-f(a)=f'(c)(b-a)
+\]
+means that some instantaneous slope equals the average slope.  It is not a numerical accident; it is forced by the existence of extrema on a closed interval.
+
+\section{Cauchy's theorem and ratios of differentials}
+
+\begin{theorem}[Cauchy's theorem, ratio form]
+Under the hypotheses of Cauchy's mean value theorem, some \(c\in(a,b)\) satisfies
+\[
+  (f(b)-f(a))g'(c)=(g(b)-g(a))f'(c).
+\]
+\end{theorem}
+
+
+Cauchy's mean value theorem says that for suitable \(f,g\), there is \(c\) with
+\[
+  \frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f'(c)}{g'(c)}.
+\]
+This is the rigorous ancestor of many quotient-limit rules.  L'Hopital's rule is a limiting version in which the interval endpoint moves toward a singular point.
+
+Thus quotient estimates should be read as comparing two functions through their first-order changes.
+
+\section{Uniform continuity and why closed intervals matter}
+
+Continuity at each point gives a local \(\delta\).  Uniform continuity asks for one \(\delta\) that works everywhere.  Heine--Cantor says that a continuous function on a compact set is uniformly continuous.
+
+The theorem explains why many epsilon proofs on closed intervals feel easier: compactness lets finitely many local controls become one global control.
+
+\section{From local slopes to global control}
+
+The mean value theorem is the bridge from local derivative information to global estimates.  Rolle gives the zero-slope engine, Cauchy compares two functions, L'Hopital studies singular ratios, and uniform continuity records when local control can be made global.
+
+\section{Mean value theorem via compactness}
+
+\begin{remark}
+The compact interval hypothesis is not decorative: continuity on \([a,b]\) gives maxima and minima, and differentiability inside the interval turns an extremum into a zero derivative through Rolle's theorem.
+\end{remark}
+
+
+Rolle's theorem and the mean value theorem are often memorized as calculus facts, but their proof rests on two deeper one-dimensional principles.  First, a continuous function on a closed interval attains a maximum and a minimum; this is compactness.  Second, differentiability turns information at an extremum into the equation $f'(\xi)=0$.
+
+For the usual mean value theorem, define
+\[
+  g(x)=f(x)-\frac{f(b)-f(a)}{b-a}(x-a).
+\]
+Then $g(a)=g(b)$, so Rolle's theorem gives $g'(\xi)=0$, hence
+\[
+  f(b)-f(a)=f'(\xi)(b-a).
+\]
+The theorem is therefore a statement that a function and its secant line must have a parallel tangent somewhere.
+
+\section{Lipschitz estimates and uniqueness}
+
+A powerful corollary is the Lipschitz estimate.  If $|f'(x)|\le M$ on an interval, then
+\[
+  |f(x)-f(y)|\le M|x-y|.
+\]
+This turns derivative bounds into metric bounds.
+
+This idea reappears in differential equations.  Suppose $y'=F(t,y)$ and $F$ is Lipschitz in $y$:
+\[
+  |F(t,u)-F(t,v)|\le L|u-v|.
+\]
+If $y_1,y_2$ are two solutions with the same initial value, then
+\[
+  |y_1(t)-y_2(t)|\le \int_{t_0}^t L|y_1(s)-y_2(s)|\,ds.
+\]
+Gronwall's inequality forces $y_1=y_2$.  Thus a tangent-slope theorem becomes the analytic mechanism behind uniqueness of solutions.
+
+\section{Taylor formula with remainder}
+
+The mean value theorem also generates Taylor's theorem.  For example,
+\[
+  f(x)=f(a)+f'(a)(x-a)+\frac{f''(\xi)}2(x-a)^2
+\]
+for some $\xi$ between $a$ and $x$.  The remainder measures the error of replacing a function by its local polynomial model.  In numerical analysis this error term controls approximation; in geometry it is the beginning of the language of jets.

@@ -1,14 +1,420 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20230205}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20230205}
-\end{document}
+\notechapter{N-20230205}{Vector Identities from Exterior Algebra: Wedge, Contraction, and the Hodge Star}
+
+\section{Why the vector triple product is easy to misremember}
+
+The identity
+\[
+  u\times(v\times w)
+  =(u\cdot w)v-(u\cdot v)w
+\]
+is often compressed into the mnemonic ``BAC minus CAB.''  The mnemonic remembers the order of the letters, but it does not explain why the result lies in the \(v,w\)-plane or why the two coefficients have those signs.
+
+The geometry already determines most of the answer.  Since
+\[
+  v\times w
+\]
+is perpendicular to the plane spanned by \(v,w\), the vector
+\[
+  u\times(v\times w)
+\]
+is perpendicular to \(v\times w\) and therefore lies in that plane.  Hence
+\[
+  u\times(v\times w)=Av+Bw
+\]
+for some scalars \(A,B\).
+
+A quick test fixes the coefficients.  If \(u=v\) and \(v\perp w\), then
+\[
+  v\times(v\times w)=-\|v\|^2w.
+\]
+Thus the coefficient of \(w\) must involve \(-u\cdot v\).  If \(u=w\) with \(v\perp w\), then
+\[
+  w\times(v\times w)=\|w\|^2v,
+\]
+so the coefficient of \(v\) must involve \(u\cdot w\).
+
+This reasoning reveals the projection structure, but it still relies on familiar cross-product behavior.  The rest of the chapter builds a framework in which the identity follows from two systematic operations: contraction and Hodge duality.
+
+\section{The scalar triple product is a volume form}
+
+The scalar triple product is
+\[
+  [u,v,w]=u\cdot(v\times w).
+\]
+It equals the oriented volume of the parallelepiped spanned by the ordered triple.  In a positively oriented orthonormal basis,
+\[
+  [u,v,w]
+  =
+  \det
+  \begin{pmatrix}
+    u^1&u^2&u^3\\
+    v^1&v^2&v^3\\
+    w^1&w^2&w^3
+  \end{pmatrix}.
+\]
+The expression is multilinear and alternating.  If two inputs are exchanged, the sign changes; if the vectors are linearly dependent, the value is zero.
+
+These properties are better packaged by the Euclidean volume form
+\[
+  \operatorname{vol}=e^1\wedge e^2\wedge e^3,
+\]
+where \(e^1,e^2,e^3\) is the dual coframe.  Then
+\[
+  \operatorname{vol}(u,v,w)
+  =u\cdot(v\times w).
+\]
+The cross product can therefore be characterized without coordinates: \(v\times w\) is the unique vector whose inner product with every \(u\) equals the oriented volume of \(u,v,w\).
+
+For example, let
+\[
+  u=(1,0,1),
+  \quad
+  v=(0,2,0),
+  \quad
+  w=(1,1,3).
+\]
+Then
+\[
+  v\times w=(6,0,-2),
+\]
+and
+\[
+  u\cdot(v\times w)=4.
+\]
+The sign is positive because the ordered triple agrees with the chosen orientation, and the absolute value is the geometric volume.
+
+\section{The wedge product records an oriented plane before choosing a normal}
+
+Given vectors \(u,v\) in a vector space \(V\), their wedge product
+\[
+  u\wedge v\in\Lambda^2V
+\]
+is a bivector.  It represents the oriented parallelogram spanned by the pair.  The defining properties are bilinearity and alternation:
+\[
+  (au+bv)\wedge w
+  =a(u\wedge w)+b(v\wedge w),
+\]
+\[
+  u\wedge v=-v\wedge u,
+  \qquad
+  u\wedge u=0.
+\]
+The vanishing condition
+\[
+  u\wedge v=0
+\]
+holds exactly when \(u,v\) are linearly dependent.
+
+In a three-dimensional basis \(e_1,e_2,e_3\), the bivectors
+\[
+  e_1\wedge e_2,
+  \qquad
+  e_2\wedge e_3,
+  \qquad
+  e_3\wedge e_1
+\]
+form a basis of \(\Lambda^2V\).  If
+\[
+  u=u^ie_i,
+  \qquad
+  v=v^je_j,
+\]
+then
+\[
+\begin{aligned}
+  u\wedge v={}&
+  (u^1v^2-u^2v^1)e_1\wedge e_2\\
+  &+(u^2v^3-u^3v^2)e_2\wedge e_3\\
+  &+(u^3v^1-u^1v^3)e_3\wedge e_1.
+\end{aligned}
+\]
+The three coefficients are the familiar \(2\times2\) minors appearing in the cross product.  At this stage, however, the result is an oriented area element, not yet a perpendicular vector.
+
+That distinction matters in other dimensions.  In four dimensions,
+\[
+  \dim\Lambda^2V=\binom42=6,
+\]
+so an oriented plane carries six independent components and cannot be encoded by an ordinary four-vector.  The wedge product is the dimension-independent object; the cross product is a special identification available in three-dimensional metric geometry.
+
+\section{The metric turns vectors into covectors}
+
+The Hodge star is most naturally defined on differential forms, so first use the Euclidean metric to convert vectors into covectors.  For \(u\in V\), define
+\[
+  u^{\flat}(v)=u\cdot v.
+\]
+This is a one-form.  The inverse operation is denoted by \(\sharp\):
+\[
+  (u^{\flat})^{\sharp}=u.
+\]
+In an orthonormal basis the coordinate lists happen to agree, but the types do not.  A vector is an input to a one-form; a one-form is a linear measurement of vectors.
+
+The metric also induces an inner product on \(k\)-forms.  On decomposable two-forms,
+\[
+  \left\langle
+  u^{\flat}\wedge v^{\flat},
+  w^{\flat}\wedge z^{\flat}
+  \right\rangle
+  =
+  \det
+  \begin{pmatrix}
+    u\cdot w&u\cdot z\\
+    v\cdot w&v\cdot z
+  \end{pmatrix}.
+\]
+In particular,
+\[
+  \|u^{\flat}\wedge v^{\flat}\|^2
+  =\|u\|^2\|v\|^2-(u\cdot v)^2.
+\]
+The right-hand side is the Gram determinant of \(u,v\), so the norm of the wedge product is exactly the area of their parallelogram.
+
+Thus the metric does two jobs: it lets us compare forms by an inner product, and it identifies vectors with one-forms.  Orientation will supply the remaining step that turns a two-form into a one-form.
+
+\section{The Hodge star converts complementary dimensions}
+
+Let \(V\) be an oriented Euclidean \(n\)-space with volume form \(\operatorname{vol}\).  The Hodge star is the linear map
+\[
+  *:\Lambda^kV^*\to\Lambda^{n-k}V^*
+\]
+defined by
+\[
+  \alpha\wedge *\beta
+  =\langle\alpha,\beta\rangle\operatorname{vol}
+\]
+for all \(k\)-forms \(\alpha,\beta\).
+
+In an oriented orthonormal coframe of three-space,
+\[
+  *(e^1\wedge e^2)=e^3,
+  \qquad
+  *(e^2\wedge e^3)=e^1,
+  \qquad
+  *(e^3\wedge e^1)=e^2.
+\]
+The cross product is precisely
+\[
+  \boxed{
+  (u\times v)^{\flat}
+  =*(u^{\flat}\wedge v^{\flat}).}
+\]
+The wedge product forms the oriented area, the Hodge star selects the complementary one-form using metric and orientation, and \(\sharp\) converts that one-form back into a vector.
+
+This formula immediately gives perpendicularity.  Pairing with \(u\),
+\[
+\begin{aligned}
+  u\cdot(u\times v)\operatorname{vol}
+  &=u^{\flat}\wedge*(u\times v)^{\flat}\\
+  &=u^{\flat}\wedge u^{\flat}\wedge v^{\flat}=0.
+\end{aligned}
+\]
+The same argument works with \(v\).  Since the Hodge star preserves norms,
+\[
+  \|u\times v\|
+  =\|u^{\flat}\wedge v^{\flat}\|,
+\]
+so the cross-product norm equals the parallelogram area.
+
+The ordinary right-hand rule is therefore not an extra mnemonic attached to a coordinate determinant.  It is the visible consequence of the chosen orientation in the definition of the Hodge star.
+
+\section{Lagrange's identity is an inner product of bivectors}
+
+Because the Hodge star is an isometry,
+\[
+\begin{aligned}
+  (u\times v)\cdot(w\times z)
+  &=\left\langle
+  *(u^{\flat}\wedge v^{\flat}),
+  *(w^{\flat}\wedge z^{\flat})
+  \right\rangle\\
+  &=\left\langle
+  u^{\flat}\wedge v^{\flat},
+  w^{\flat}\wedge z^{\flat}
+  \right\rangle.
+\end{aligned}
+\]
+Using the induced inner product on two-forms yields
+\[
+  \boxed{
+  (u\times v)\cdot(w\times z)
+  =(u\cdot w)(v\cdot z)
+  -(u\cdot z)(v\cdot w).}
+\]
+This is Lagrange's identity.
+
+Setting \(w=u\), \(z=v\) gives
+\[
+  \|u\times v\|^2
+  =\|u\|^2\|v\|^2-(u\cdot v)^2.
+\]
+The nonnegativity of the left-hand side gives the Cauchy--Schwarz inequality
+\[
+  |u\cdot v|\le\|u\|\|v\|.
+\]
+Equality holds exactly when the wedge product vanishes, that is, when \(u,v\) are linearly dependent.
+
+What looks like a special identity about a three-dimensional operation is therefore the determinant formula for the inner product of two oriented area elements.
+
+\section{Contraction removes one vector from an alternating form}
+
+For a vector \(u\), the interior product or contraction
+\[
+  \iota_u:\Lambda^kV^*\to\Lambda^{k-1}V^*
+\]
+is defined by inserting \(u\) into the first slot:
+\[
+  (\iota_u\alpha)(v_2,\ldots,v_k)
+  =\alpha(u,v_2,\ldots,v_k).
+\]
+For one-forms \(\alpha,\beta\),
+\[
+  \iota_u(\alpha\wedge\beta)
+  =\alpha(u)\beta-\beta(u)\alpha.
+\]
+Taking \(\alpha=v^{\flat}\), \(\beta=w^{\flat}\) gives
+\[
+  \iota_u(v^{\flat}\wedge w^{\flat})
+  =(u\cdot v)w^{\flat}-(u\cdot w)v^{\flat}.
+\]
+
+In an oriented Euclidean three-space, the identity
+\[
+  *(u^{\flat}\wedge *\eta)
+  =-\iota_u\eta
+\]
+holds for every two-form \(\eta\).  Apply it to
+\[
+  \eta=v^{\flat}\wedge w^{\flat}.
+\]
+Then
+\[
+\begin{aligned}
+  (u\times(v\times w))^{\flat}
+  &=*\left(u^{\flat}\wedge(v\times w)^{\flat}\right)\\
+  &=*\left(u^{\flat}\wedge*(v^{\flat}\wedge w^{\flat})\right)\\
+  &=-\iota_u(v^{\flat}\wedge w^{\flat})\\
+  &=(u\cdot w)v^{\flat}-(u\cdot v)w^{\flat}.
+\end{aligned}
+\]
+Applying \(\sharp\) gives
+\[
+  \boxed{
+  u\times(v\times w)
+  =(u\cdot w)v-(u\cdot v)w.}
+\]
+The BAC--CAB identity is no longer a mnemonic.  It is the contraction rule for an oriented area form, translated back into vectors by the Hodge star.
+
+\section{The Levi--Civita symbol is the coordinate form of volume}
+
+In a positively oriented orthonormal basis, define
+\[
+  \varepsilon_{ijk}
+  =
+  \begin{cases}
+    1,&(i,j,k)\text{ is an even permutation of }(1,2,3),\\
+    -1,&(i,j,k)\text{ is an odd permutation},\\
+    0,&\text{two indices coincide}.
+  \end{cases}
+\]
+These are the components of the volume form in that basis.  The cross product becomes
+\[
+  (u\times v)_i
+  =\varepsilon_{ijk}u_jv_k.
+\]
+The repeated indices are summed, while \(i\) remains free and labels the output component.
+
+The key contraction is
+\[
+  \varepsilon_{ijk}\varepsilon_{klm}
+  =\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl}.
+\]
+Therefore
+\[
+\begin{aligned}
+  (u\times(v\times w))_i
+  &=\varepsilon_{ijk}u_j
+    \varepsilon_{klm}v_lw_m\\
+  &=(\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl})
+    u_jv_lw_m\\
+  &=v_i(u_jw_j)-w_i(u_jv_j).
+\end{aligned}
+\]
+This is the component proof of the same contraction identity.
+
+The notation must be interpreted carefully.  The array with entries \(0,\pm1\) is tied to an oriented orthonormal basis.  In arbitrary curvilinear coordinates, the components of the geometric volume form include the metric factor
+\[
+  \sqrt{\det g}.
+\]
+Treating the permutation symbol as though it were an unchanged tensor array in every coordinate system leads to missing Jacobian factors.
+
+\section{The same operators produce curl and divergence}
+
+The Hodge star is not limited to static vector identities.  On oriented Euclidean three-space, a vector field \(X\) becomes a one-form \(X^{\flat}\).  Its exterior derivative
+\[
+  d(X^{\flat})
+\]
+is a two-form measuring infinitesimal circulation.  Applying the Hodge star and converting back to a vector gives curl:
+\[
+  \boxed{
+  (\operatorname{curl}X)^{\flat}
+  =*d(X^{\flat}).}
+\]
+
+Consider the rotation field
+\[
+  X(x,y,z)=(-y,x,0).
+\]
+Then
+\[
+  X^{\flat}=-y\,dx+x\,dy.
+\]
+Taking the exterior derivative,
+\[
+\begin{aligned}
+  d(X^{\flat})
+  &=-dy\wedge dx+dx\wedge dy\\
+  &=2\,dx\wedge dy.
+\end{aligned}
+\]
+Since
+\[
+  *(dx\wedge dy)=dz,
+\]
+we obtain
+\[
+  (\operatorname{curl}X)^{\flat}=2\,dz,
+\]
+so
+\[
+  \operatorname{curl}X=(0,0,2).
+\]
+The field rotates around the \(z\)-axis with constant vorticity.
+
+Divergence uses the complementary construction:
+\[
+  d(*X^{\flat})
+  =(\operatorname{div}X)\operatorname{vol}.
+\]
+For the radial field
+\[
+  Y=(x,y,z),
+\]
+we have
+\[
+  Y^{\flat}=x\,dx+y\,dy+z\,dz
+\]
+and
+\[
+  *Y^{\flat}
+  =x\,dy\wedge dz-y\,dx\wedge dz+z\,dx\wedge dy.
+\]
+Differentiating gives
+\[
+  d(*Y^{\flat})
+  =3\,dx\wedge dy\wedge dz,
+\]
+so
+\[
+  \operatorname{div}Y=3.
+\]
+
+The progression is now continuous.  Wedge product records oriented area, the metric and Hodge star translate complementary dimensions, contraction produces vector identities, and the exterior derivative turns the same algebra into differential operators on fields.  The familiar cross product is one three-dimensional expression of a calculus that continues beyond coordinates and beyond constant vectors.

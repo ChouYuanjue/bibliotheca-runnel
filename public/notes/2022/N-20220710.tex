@@ -1,14 +1,170 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220710}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220710}
-\end{document}
+\notechapter{N-20220710}{Vectors, Ordered Fields, and the First Axioms of Real Numbers}
+
+\section{Plane vectors}
+
+A vector in the plane may be written
+\[
+  \vec a=(x,y)=x\mathbf i+y\mathbf j.
+\]
+Addition and scalar multiplication are coordinatewise:
+\[
+  (x,y)+(z,w)=(x+z,y+w),\qquad
+  \lambda(x,y)=(\lambda x,\lambda y).
+\]
+The length and dot product are
+\[
+  |(x,y)|=\sqrt{x^2+y^2},\qquad
+  (x,y)\cdot(z,w)=xz+yw.
+\]
+Thus the angle between two nonzero vectors satisfies
+\[
+  \cos\theta=\frac{\vec a\cdot\vec b}{|\vec a|\,|\vec b|}
+  =\frac{xz+yw}{\sqrt{x^2+y^2}\sqrt{z^2+w^2}}.
+\]
+If
+\[
+  \vec x=(\cos\alpha,\sin\alpha),\qquad
+  \vec y=(\cos\beta,\sin\beta),
+\]
+then
+\[
+  \cos\theta=\cos\alpha\cos\beta+\sin\alpha\sin\beta
+  =\cos(\alpha-\beta).
+\]
+This gives a vector proof of the cosine subtraction formula.
+
+\section{Field axioms}
+
+\begin{axiom}[Field axioms]
+A field is a set \(F\) with operations \(+\) and \(\cdot\) such that \((F,+)\) is an abelian group, \((F\setminus\{0\},\cdot)\) is an abelian group, and multiplication distributes over addition.
+\end{axiom}
+
+
+The real numbers form a field.  Its axioms are:
+\begin{enumerate}[(F1)]
+  \item \(x+(y+z)=(x+y)+z\);
+  \item \(x+y=y+x\);
+  \item there exists \(0\) such that \(0+x=x\);
+  \item for each \(x\), there is \(-x\) such that \(x+(-x)=0\);
+  \item \(x(yz)=(xy)z\);
+  \item \(xy=yx\);
+  \item there exists \(1\neq0\) such that \(1x=x\);
+  \item for \(x\neq0\), there is \(x^{-1}\) such that \(xx^{-1}=1\);
+  \item \(x(y+z)=xy+xz\).
+\end{enumerate}
+
+The note emphasizes that a ``space'' in mathematics is usually a set equipped with extra structure.  A field is not merely a set; it is a set equipped with addition, multiplication, identities, inverses, and compatibility laws.
+
+\section{Ordered fields}
+
+The order axioms include:
+\begin{enumerate}[(O1)]
+  \item Transitivity: if \(x\le y\) and \(y\le z\), then \(x\le z\).
+  \item Antisymmetry: if \(x\le y\) and \(y\le x\), then \(x=y\).
+  \item Totality: for all \(x,y\), either \(x\le y\) or \(y\le x\).
+  \item Compatibility with addition: \(x\le y\Rightarrow x+z\le y+z\).
+  \item Compatibility with multiplication: \(0\le x\) and \(0\le y\Rightarrow0\le xy\).
+\end{enumerate}
+
+The Archimedean axiom says that for every \(x>0\) and every \(y\), there exists a positive integer \(n\) such that
+\[
+  nx\ge y.
+\]
+A typical consequence is that every interval \((0,a)\) with \(a>0\) is nonempty: choose \(n\) so large that \(n>a^{-1}\), then \(1/n<a\).
+
+\section{Elementary consequences of the order axioms}
+
+\begin{proposition}[Consequences of an ordered field]
+In an ordered field, addition preserves order and multiplication by a positive element preserves order.  In particular, squares are nonnegative:
+\[
+  x^2\ge0.
+\]
+\end{proposition}
+
+
+Representative exercises include:
+\begin{enumerate}[(i)]
+  \item \(x\ge0\) iff \(-x\le0\), and \(y>1\) implies \(0<1/y<1\).
+  \item \(1>0\) and \(-1\neq1\).
+  \item If \(x\le y\) and \(a\le0\), then \(ax\ge ay\).
+  \item If \(a\le b\) and \(x\le y\), then \(a+x\le b+y\), with equality iff \(a=b\) and \(x=y\).
+  \item If \(a<x\) for every \(a<x\), then \(x\le y\); this is a typical contradiction argument using an interval between two distinct real numbers.
+  \item \(x^2\ge0\) for every real \(x\).
+  \item If \(a^2<a\), then \(0<a<1\).
+  \item If nonzero \(x,y\) have the same sign, then
+  \[
+    (x+y)^2>(x-y)^2.
+  \]
+\end{enumerate}
+
+\section[Embedding Q into R]{Embedding \(\mathbb Q\) into \(\mathbb R\)}
+
+The note then proves that \(\mathbb R\) contains a copy of \(\mathbb Q\).  Define for integers \(n\)
+\[
+  \iota(n)=\underbrace{1+\cdots+1}_{n\text{ times}}
+\]
+for \(n>0\), \(\iota(0)=0\), and \(\iota(n)=-\iota(-n)\) for \(n<0\).  Then define
+\[
+  \iota\left(\frac pq\right)=\frac{\iota(p)}{\iota(q)}.
+\]
+One must check that this is well-defined: if \(p/q=s/t\), then \(pt=qs\), so
+\[
+  \iota(p)\iota(t)=\iota(q)\iota(s),
+\]
+and therefore
+\[
+  \frac{\iota(p)}{\iota(q)}=\frac{\iota(s)}{\iota(t)}.
+\]
+This embedding preserves addition, multiplication, and order.
+
+\section{Nested intervals}
+
+The final part introduces the nested interval axiom.  If
+\[
+  I_n=[a_n,b_n]
+\]
+is a descending sequence of closed intervals with real endpoints, then
+\[
+  I_1\supseteq I_2\supseteq I_3\supseteq\cdots
+\]
+implies
+\[
+  \bigcap_{n\ge1}I_n\neq\varnothing.
+\]
+Together with the field, order, and Archimedean axioms, this is one way to characterize the real numbers.
+
+
+\section{Ordered fields and the real line}
+
+An ordered field is a field equipped with an order compatible with addition and multiplication.  Compatibility means
+\[
+  a<b\Rightarrow a+c<b+c,\qquad
+  0<a,\ 0<b\Rightarrow0<ab.
+\]
+The rational numbers form an ordered field, but they are not complete.  The real numbers are obtained by adding the missing limits, for example through Dedekind cuts or Cauchy sequences.
+
+This is why early vector and coordinate exercises naturally lead to axioms of the real numbers.  Geometry needs coordinates, coordinates need arithmetic, and analysis needs completeness.
+
+\section{Vectors as algebraicized geometry}
+
+A plane vector \((x,y)\) packages a displacement into two real numbers.  Vector addition corresponds to composing displacements; scalar multiplication corresponds to stretching.  The algebraic laws of vectors are therefore not arbitrary axioms.  They express basic geometric operations in coordinate form.
+
+\section{The conceptual payoff}
+
+The note moves from computational vector exercises to the axiomatic construction of the real line.  The important conceptual shift is that familiar formulas are only the visible part of an axiomatic structure.  A rigorous real-number theory must explain why rational numbers embed, why intervals contain points, and why irrational numbers such as \(\sqrt2\) can exist.
+
+\section{Ordered fields and what they cannot prove}
+
+An ordered field supports algebra and order, but not necessarily completeness.  The rationals satisfy the ordered-field axioms but have gaps.  Thus many analytic theorems need more than order and algebra.
+
+\section{Archimedean property and density}
+
+In the real numbers, the Archimedean property says no positive infinitesimal exists inside \(\mathbb R\): for every \(x\), some integer \(n\) satisfies \(n>x\).  This leads to density of rationals and helps connect arithmetic approximations with the geometry of the line.
+
+\section{Completeness as the real-number axiom}
+
+The supremum property, nested intervals, Cauchy completeness, and Dedekind completeness are equivalent ways of saying that the real line has no gaps.  This is the feature that turns ordered algebra into analysis.
+
+\section{From ordered algebra to the real line}
+
+Vectors need linear structure; ordered fields need compatibility between addition, multiplication, and order; the real numbers need completeness.  The early axioms are not formal decoration: each one supports a different layer of geometry and analysis.

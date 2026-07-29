@@ -1,14 +1,136 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20230313}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20230313}
-\end{document}
+\notechapter{N-20230313}{Category Theory Continued: Posets, Groups as One-Object Categories, Products, and Monomorphisms}
+
+\section{What this note continues}
+
+Elementary category theory changes the intuition of what an arrow may be.  A morphism is often introduced as a structure-preserving function, but arrows may instead be order relations, group elements, inclusions, or other constructions determined by the category.
+
+The main examples are:
+\[
+\begin{gathered}
+  \text{posets as categories},\quad
+  \text{groups as one-object categories},\\
+  \text{products of categories},\quad
+  \text{monomorphisms and epimorphisms}.
+\end{gathered}
+\]
+
+\section{Posets are categories}
+
+Let $(P,\le)$ be a partially ordered set.  We can build a category, still denoted $P$, as follows.  The objects are the elements of $P$.  For two objects $p,q\in P$, define
+\[
+  \operatorname{Hom}(p,q)=
+  \begin{cases}
+  \{*\},&p\le q,\\
+  \varnothing,&p\not\le q.
+  \end{cases}
+\]
+Thus there is at most one arrow from $p$ to $q$.  The identity arrow exists because $p\le p$.  Composition exists because order is transitive: if $p\le q$ and $q\le r$, then $p\le r$.
+
+This example is surprisingly important.  It shows that arrows in a category need not be functions.  In the poset category, the arrow $p\to q$ is the fact that $p\le q$.
+
+\section{A small poset example}
+
+Suppose $P$ has four objects $a,b,c,d$ with relations
+\[
+  a\le b,\qquad a\le c\le d,\qquad a\le d,
+\]
+and identities at every object.  The corresponding category has arrows exactly for these order relations.  In a Hasse diagram, upward paths encode arrows, but the category contains the composite arrow as well.  For example, from $a\le c$ and $c\le d$, the composite gives the arrow $a\to d$.
+
+The same symbol $\le$ can be treated as an arrow.  This is not a metaphor; it satisfies the category axioms.
+
+\section{Isomorphisms in a poset category}
+
+An isomorphism in a category is an arrow
+\[
+  f:A\to B
+\]
+for which there exists
+\[
+  g:B\to A
+\]
+such that
+\[
+  g\circ f=\operatorname{id}_A,\qquad
+  f\circ g=\operatorname{id}_B.
+\]
+In a poset category, an arrow $p\to q$ means $p\le q$.  An isomorphism between $p$ and $q$ would require arrows both ways:
+\[
+  p\le q,\qquad q\le p.
+\]
+By antisymmetry of a partial order, this forces $p=q$.  Therefore no two distinct objects of a poset category are isomorphic.
+
+The result becomes obvious only after translating categorical isomorphism back into the order axioms.
+
+\section{Groups as one-object categories}
+
+A group $G$ can be regarded as a category $\mathcal G$ with one object $*$.  The arrows from $*$ to itself are the elements of $G$:
+\[
+  \operatorname{Hom}_{\mathcal G}(*,*)=G.
+\]
+Composition of arrows is group multiplication.  The identity arrow is the identity element $e\in G$.  Inverses of arrows are group inverses.
+
+Thus a group is exactly a category with one object in which every arrow is an isomorphism.  This is not a trick.  It says that a group can be understood as the collection of all symmetries of one object, with composition as the operation.
+
+\section{Why this example matters}
+
+If one first learns category theory, a group may look like a special category: one object, only reversible arrows.  This reverses the usual learning order.  The note quotes the idea that a group is what one gets by collecting all symmetries of an object.  From the categorical viewpoint, a group is the extreme case where there is only one object and every transformation is invertible.
+
+The slogan is:
+\[
+  \text{monoid} = \text{one-object category},\qquad
+  \text{group} = \text{one-object groupoid}.
+\]
+A groupoid is a category in which every arrow is invertible.
+
+\section{Products of categories}
+
+Given categories $\mathcal C$ and $\mathcal D$, their product category $\mathcal C\times\mathcal D$ has objects
+\[
+  (C,D),\qquad C\in\mathcal C,\ D\in\mathcal D,
+\]
+and morphisms
+\[
+  (f,g):(C,D)\to(C',D')
+\]
+where $f:C\to C'$ is a morphism in $\mathcal C$ and $g:D\to D'$ is a morphism in $\mathcal D$.  Composition is componentwise:
+\[
+  (f',g')\circ(f,g)=(f'\circ f,\ g'\circ g).
+\]
+The identity on $(C,D)$ is $(\operatorname{id}_C,\operatorname{id}_D)$.
+
+This is the categorical version of taking a product structure coordinate by coordinate.
+
+\section{The opposite category}
+
+For any category $\mathcal C$, the opposite category $\mathcal C^{op}$ has the same objects as $\mathcal C$, but every arrow is reversed:
+\[
+  f:A\to B\text{ in }\mathcal C
+  \quad\longleftrightarrow\quad
+  f^{op}:B\to A\text{ in }\mathcal C^{op}.
+\]
+Composition is reversed accordingly.  The opposite category is a formal way to turn statements about maps out of an object into statements about maps into an object.
+
+For posets, passing to the opposite category corresponds to reversing the order.  If $P$ is viewed as a category, then $P^{op}$ is the poset with
+\[
+  p\le_{op}q\quad\Longleftrightarrow\quad q\le p.
+\]
+
+\section{Monomorphisms and epimorphisms}
+
+In ordinary set theory, an injective function is one that does not identify distinct elements.  Category theory cannot always talk about elements, so it defines a left-cancellation property instead.
+
+A morphism $f:X\to Y$ is a monomorphism if for every pair of arrows $g,h:Z\to X$,
+\[
+  f\circ g=f\circ h\quad\Longrightarrow\quad g=h.
+\]
+It is an epimorphism if for every pair of arrows $g,h:Y\to Z$,
+\[
+  g\circ f=h\circ f\quad\Longrightarrow\quad g=h.
+\]
+In $\mathbf{Set}$, monomorphisms are exactly injective functions, and epimorphisms are exactly surjective functions.  In other categories, this may fail, which is why the categorical definitions are more fundamental.
+
+\section{The lesson of the note}
+
+The guiding idea is to stop identifying arrows with functions.  In a poset they are inequalities, in a group-as-category they are group elements, in a product category they are pairs, and in an opposite category they are formally reversed.  Monomorphism and epimorphism then express injective-like and surjective-like behavior without mentioning elements.
+
+The transition is from element-based thinking to arrow-based thinking.  This is the first real shift in category theory.

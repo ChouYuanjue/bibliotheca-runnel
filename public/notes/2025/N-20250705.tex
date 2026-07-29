@@ -1,14 +1,229 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20250705}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20250705}
-\end{document}
+\notechapter{N-20250705}{Nikonov's Seminar Prelude: Knots, Diagrams, Probes, and the Space Between the Lines}
+
+\section{First orientation}
+
+Shortly after the Gaokao, I listened to an online seminar by I. M. Nikonov on partial tribrackets.  Quasigroups, biquandloids, thickened surfaces, crossings, arcs, regions, and probes arrived almost at once.  The first point that began to hold together was an old tension in knot theory:
+\[
+  \text{a knot is a topological object, but calculations use diagrams.}
+\]
+Nikonov's paper does more than introduce another coloring invariant.  It asks whether the pieces of a diagram---arcs, semiarcs, regions, and crossings---can themselves be described topologically.  Once that question is asked, the move from diagrammatic pieces to probes in a thickened surface becomes the natural place to begin.
+
+\section{The topological object and its planar shadow}
+
+Topologically, a knot is not first of all a picture on paper.  It is an embedded circle in three-dimensional space:
+\[
+  K:S^1\hookrightarrow \mathbb R^3,
+\]
+or, more generally, a tangle in the thickening \(F\times I\) of a surface \(F\).  The equivalence relation is ambient isotopy: the whole surrounding space is allowed to deform, carrying one knot to the other.
+
+The story begins with the familiar planar shadow of a knot.  A diagram is what we can draw, but the actual knot lives one dimension higher.
+
+\Needspace{12\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.22\textwidth]{figures/N-20250705/6_2.pdf}
+  \caption{From Nikonov's paper: a knot diagram.  It is a planar record of a three-dimensional object.}
+\end{figure}
+
+This distinction matters.  The diagram has crossings, but the knot in space has no literal self-intersection.  At a crossing, one strand passes over the other.  The diagram remembers this by marking over/under information.
+
+
+\section{Some basic knot-theory language}
+
+A few standard definitions make the paper much less mysterious.
+
+\begin{definition}[Knot and ambient isotopy]
+A knot is a tame embedding \(K:S^1\hookrightarrow S^3\), usually drawn in \(\mathbb R^3\subset S^3\).  Two knots \(K_0,K_1\) are equivalent if there is an ambient isotopy \(H_t:S^3\to S^3\) with \(H_0=\id\) and \(H_1(K_0)=K_1\).
+\end{definition}
+
+The word ``ambient'' is important.  We do not merely slide points of the curve along the curve.  We deform the whole surrounding three-dimensional space.  This is why a knot is a topological object and not just a parametrized curve.
+
+\begin{definition}[Tangle in a thickened surface]
+Let \(F\) be an oriented compact surface and \(I=[0,1]\).  A tangle in \(F\times I\) is a properly embedded compact one-dimensional manifold, possibly with boundary on \(\partial F\times I\).  A knot is the closed one-component special case.
+\end{definition}
+
+The thickened-surface language is the natural setting of Nikonov's paper.  Instead of drawing everything in the plane, one works over a surface \(F\), and the knot or tangle floats in the slab \(F\times I\).
+
+\Needspace{12\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.48\textwidth]{figures/N-20250705/tangle.pdf}
+  \caption{From Nikonov's paper: a tangle diagram on a surface.}
+\end{figure}
+
+\begin{definition}[Diagram]
+A diagram of a tangle is the projection of the tangle to \(F\), with crossing data recording which strand passes over the other.  Thus a diagram is a two-dimensional shadow plus over/under information.
+\end{definition}
+
+The basic theorem justifying all diagrammatic knot theory is Reidemeister's theorem.
+
+\begin{theorem}[Reidemeister theorem]
+Two tame knot diagrams represent ambient isotopic knots if and only if they are related by a finite sequence of planar isotopies and Reidemeister moves.
+\end{theorem}
+
+This theorem is the bridge between topology and combinatorics.  It says that if a construction on diagrams is unchanged under the three Reidemeister moves, then it really defines a knot invariant.
+
+The combinatorial definition says that a knot can be represented by a diagram modulo Reidemeister moves.  These are the local moves that change the drawing without changing the underlying knot.
+
+\Needspace{16\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.58\textwidth]{figures/N-20250705/reidmove11_1.pdf}\\[0.8em]
+  \includegraphics[width=0.38\textwidth]{figures/N-20250705/reidmove21_1.pdf}
+  \caption{From Nikonov's paper: Reidemeister moves.  These are the local equivalences that make diagrams represent knots.}
+\end{figure}
+So the first dictionary is:
+\[
+  \text{knot in space}
+  \quad\longleftrightarrow\quad
+  \text{diagram modulo Reidemeister moves}.
+\]
+This is powerful because diagrams are finite and computable.  But it also creates the problem that motivates the paper: if a calculation assigns labels to arcs or regions of a diagram, what exactly are those arcs and regions as topological objects?
+
+
+A few famous theorems live on the topological side of this dictionary.  They are not the main subject of the note, but they explain the background against which the diagrammatic approach became so attractive.
+
+\begin{definition}[Knot complement and knot group]
+The complement of a knot \(K\subset S^3\) is \(S^3\setminus N(K)\), where \(N(K)\) is a small tubular neighbourhood of the knot.  The knot group is
+\[
+  \pi_1(S^3\setminus K),
+\]
+or equivalently the fundamental group of the complement after removing a tubular neighbourhood.
+\end{definition}
+
+The complement is often more informative than the curve itself.  A loop in the complement asks: can this loop be contracted to a point without crossing the knot?  The knot group packages the obstruction algebraically.
+
+\begin{theorem}[Schubert prime decomposition, informal form]
+Every nontrivial knot decomposes as a connected sum of prime knots, and this decomposition is unique up to order.
+\end{theorem}
+
+Here the connected sum operation is the knot-theoretic analogue of multiplication: cut out a small arc from each knot and splice the loose ends together.  Prime knots are the knots that cannot be decomposed further.
+
+Another landmark is the geometric decomposition picture.  Very roughly, many knot complements split into pieces that are torus-like, satellite-like, or hyperbolic.  The figure-eight knot is the standard first example of a hyperbolic knot.  This is the global topological world behind knot diagrams: elegant, deep, and often difficult to compute with directly.
+
+\section{The pieces of a diagram}
+
+A diagram is not just a curve with crossings.  It has several kinds of local pieces.  Four basic types are especially important here:
+\[
+  \text{arcs},\qquad
+  \text{semiarcs},\qquad
+  \text{crossings},\qquad
+  \text{regions}.
+\]
+These are the pieces that appear in coloring rules, parity theories, skein relations, and many diagrammatic constructions.
+
+\Needspace{14\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.54\textwidth]{figures/N-20250705/diagram_parts.pdf}
+  \caption{From Nikonov's paper: the elementary pieces of a knot diagram.}
+\end{figure}
+
+The naive view is that these are pieces of ink on the page.  An arc is a piece of curve between undercrossings.  A semiarc is a smaller piece between consecutive crossings.  A region is a component of the complement of the diagram.  A crossing is a vertex with over/under data.
+
+This is good enough for drawing, but it is not yet good enough for topology.  A Reidemeister move can create or destroy a crossing, split an arc, merge two regions, or change how pieces correspond.  If one wants to build invariants by labeling these pieces, one needs a way to say when a piece before the move is the same as a piece after the move.
+
+
+This is exactly where many elementary knot invariants already give hints.  For example, the linking number of a two-component link is computed from signs of mixed crossings.  A quandle coloring assigns algebraic labels to arcs.  A shadow or region coloring assigns labels to complementary regions.  These methods work only because the labels transform correctly under Reidemeister moves.
+
+So there are two levels:
+\[
+\begin{array}{c}
+  \text{first choose pieces of a diagram} \\
+  \Downarrow\\
+  \text{then assign algebraic labels to those pieces} \\
+  \Downarrow\\
+  \text{prove the labels survive Reidemeister moves.}
+\end{array}
+\]
+Nikonov's paper attacks the first level.  Before asking which labels to assign, ask what the pieces are.
+
+This is the hidden question behind the paper:
+\[
+  \text{Can a diagram element be defined without choosing a particular diagram?}
+\]
+
+\section{Nikonov's bridge: diagram elements as probes}
+
+Nikonov's answer is to replace a two-dimensional piece of a diagram by a three-dimensional path in a thickened surface.  Work in
+\[
+  F\times I,\qquad I=[0,1],
+\]
+where the knot or tangle lies between the bottom surface \(F\times\{0\}\) and the top surface \(F\times\{1\}\).  A diagram is obtained by projecting down to \(F\).
+
+The key idea is that a diagram element can be detected by a probe: a path travelling through the thickened surface and interacting with the knot in a controlled way.
+
+\Needspace{17\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.56\textwidth]{figures/N-20250705/diagram_parts_top.pdf}
+  \caption{From Nikonov's paper: topological interpretation of diagram elements by probes in \(F\times I\).}
+\end{figure}
+
+The slogan is:
+\[
+\begin{array}{c|c}
+\text{diagram element} & \text{topological probe}\\
+\hline
+\text{arc} & \text{a path from the knot to the top surface}\\
+\text{semiarc} & \text{a bottom-to-top path meeting the knot once}\\
+\text{crossing} & \text{a bottom-to-top path meeting the knot twice}\\
+\text{region} & \text{a bottom-to-top path avoiding the knot}
+\end{array}
+\]
+
+This was the point at which the terminology from the seminar became geometric.  The word ``arc'' is no longer merely a segment in a planar picture: it is represented by a way of reaching the knot from the ambient three-dimensional space.  A ``region'' is no longer just an empty component on paper, but a path through the complement of the knot.
+
+\Needspace{13\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.60\textwidth]{figures/N-20250705/diagram_probes.pdf}
+  \caption{From Nikonov's paper: probe diagrams for arc, semiarc, region, and crossing elements.}
+\end{figure}
+
+The great advantage of this formulation is that isotopy becomes natural.  If the tangle moves in \(F\times I\), the probes can move with it.  Thus the correspondence of diagram elements under Reidemeister moves is no longer a purely combinatorial bookkeeping rule; it is the shadow of a topological motion.
+
+\section{Invariants, coinvariants, and labels}
+
+The seminar also made the distinction between invariants and coinvariants feel less formal: it clarifies what kind of object survives a change of diagram.
+
+An invariant is something that gives the same value for every diagram of the same knot.  For example, a polynomial invariant or a numerical invariant should not depend on which diagram we draw.
+
+A coinvariant is subtler.  It may give different-looking objects for different diagrams, but these objects are canonically isomorphic once we account for the moves between diagrams.  A vector space is a good mental model: its dimension is an invariant, while the vector space itself, together with the way it changes under coordinate changes, is closer to a coinvariant.
+
+For diagram elements, the relevant object is often not one number but a whole set of possible classes.  The set of arc probes, region probes, or crossing probes should be thought of as a universal object from which more concrete labels can be obtained.
+
+In this language, Nikonov's first main conceptual claim is:
+\[
+  \text{isotopy classes of probes give universal homotopical coinvariants of diagram elements.}
+\]
+This sentence is dense, but the intuition is simple.  Instead of assigning a label to an arc immediately, first ask what the arc is intrinsically.  The answer is a class of probes.  Any later coloring rule is a way of reading algebraic information from these probe classes.
+
+
+\begin{remark}
+The word ``universal'' should be read in the usual algebraic way.  A universal object is not one more label among many labels.  It is the object from which all compatible labels should factor.  Thus the universal arc object is like the raw space of possible arc labels before choosing a particular quandle, polynomial, or coefficient set.
+\end{remark}
+
+This is also why the paper talks about coinvariants rather than only invariants.  A set of probes may change its concrete presentation when the diagram changes, but the induced object is naturally identified through the isotopy or through the homotopy class of Reidemeister moves.  The object is stable, even when its drawing is not literally identical.
+
+\section{From probes to colorings}
+
+Once diagram pieces have become probes, the later algebraic structures---quandles, partial ternary quasigroups, biquandloids, crossoids, and the multicrossing complex---no longer look like independent tricks.  They are different algebraic shadows of the same topological idea:
+\[
+  \text{diagram pieces become probes, and probes have isotopy or homotopy classes.}
+\]
+
+The resulting chain is
+\[
+\begin{array}{c}
+\text{topological knot or tangle in }F\times I\\
+\Downarrow\\
+\text{planar diagram with arcs, regions, crossings}\\
+\Downarrow\\
+\text{topological reinterpretation of those pieces as probes}\\
+\Downarrow\\
+\text{algebraic colorings extracted from homotopy classes of probes.}
+\end{array}
+\]
+
+A ternary operation on regions can only be understood after the underlying notion of a region has been made topological.  Nikonov's paper answers: a region is not merely a blank patch in a diagram; it is a topological probe through the complement of the knot.

@@ -1,14 +1,264 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260621}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260621}
-\end{document}
+\notechapter{N-20260621}{The Heat Equation, Diffusion, and Similarity Solutions}
+
+\section{Diffusion versus wave motion}
+
+The one-dimensional heat equation is
+\[
+  T_t=\kappa T_{xx},\qquad \kappa>0.
+\]
+Here \(T(x,t)\) is temperature and \(\kappa\) is the thermal diffusivity.  The equation says that the rate of change of temperature is proportional to curvature in the temperature profile.  Peaks have negative curvature and decay; troughs have positive curvature and rise.  Unlike the wave equation, diffusion is dissipative rather than oscillatory.
+
+The heat equation is parabolic.  One practical consequence is infinite propagation speed in the ideal model: a localized heat distribution immediately becomes nonzero everywhere, although it may be extremely small far away.
+
+\section{Heat kernel on the whole line}
+
+The fundamental solution on the real line is the heat kernel
+\[
+  G(x,t)=\frac{1}{\sqrt{4\pi\kappa t}}\exp\left(-\frac{x^2}{4\kappa t}\right),\qquad t>0.
+\]
+If \(T(x,0)=f(x)\), then the solution is the convolution
+\[
+  T(x,t)=(G(\cdot,t)*f)(x)
+  =\int_{-\infty}^{\infty}G(x-s,t)f(s)\,ds.
+\]
+The kernel has total mass one:
+\[
+  \int_{-\infty}^{\infty}G(x,t)\,dx=1,
+\]
+so heat is redistributed rather than created.  The width of the Gaussian is of order \(\sqrt{\kappa t}\), which is the natural diffusion length scale.
+
+\section{Similarity solution on a semi-infinite rod}
+
+Consider a semi-infinite rod \(x>0\) initially at temperature zero, with the end held at temperature one after \(t=0\):
+\[
+  T(x,0)=0,\qquad T(0,t)=1,\qquad T(x,t)\to0\quad(x\to\infty).
+\]
+The heat equation is invariant under the scaling
+\[
+  x\mapsto \lambda x,\qquad t\mapsto \lambda^2t.
+\]
+This suggests the similarity variable
+\[
+  \eta=\frac{x}{2\sqrt{\kappa t}},\qquad T(x,t)=\theta(\eta).
+\]
+The derivatives are
+\[
+  T_x=\frac{1}{2\sqrt{\kappa t}}\theta'(\eta),\qquad
+  T_{xx}=\frac{1}{4\kappa t}\theta''(\eta),\qquad
+  T_t=-\frac{\eta}{2t}\theta'(\eta).
+\]
+Substitution into \(T_t=\kappa T_{xx}\) gives
+\[
+  \theta''+2\eta\theta'=0.
+\]
+Let \(v=\theta'\).  Then
+\[
+  v'+2\eta v=0,\qquad (e^{\eta^2}v)'=0,
+\]
+so
+\[
+  \theta'=Ae^{-\eta^2},\qquad
+  \theta=A\int_0^\eta e^{-s^2}\,ds+B.
+\]
+Using
+\[
+  \operatorname{erf}(\eta)=\frac{2}{\sqrt\pi}\int_0^\eta e^{-s^2}\,ds,\qquad
+  \operatorname{erfc}(\eta)=1-\operatorname{erf}(\eta),
+\]
+the boundary conditions give
+\[
+  T(x,t)=\operatorname{erfc}\left(\frac{x}{2\sqrt{\kappa t}}\right).
+\]
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[xscale=2.25,yscale=1.1,>=Stealth,every node/.style={fill=white,inner sep=1pt}]
+  \draw[->] (0,0) -- (2.35,0) node[right] {$x$};
+  \draw[->] (0,0) -- (0,1.35) node[above] {$T$};
+  \foreach \a/\lab/\shade in {0.65/{$t_1$}/45,0.95/{$t_2$}/65,1.30/{$t_3$}/85} {
+    \draw[blue!\shade!black,thick,domain=0:2.15,samples=100] plot (\x,{1/(1+(\x/\a)^4)});
+    \node[blue!\shade!black] at (1.85,{1/(1+(1.85/\a)^4)+0.08}) {\lab};
+  }
+  \node[anchor=west] at (0.55,1.12) {diffusion length $O(\sqrt{\kappa t})$};
+\end{tikzpicture}
+\caption{A qualitative picture of the semi-infinite rod solution.  As time grows, the transition layer spreads over length scale \(\sqrt{\kappa t}\).}
+\end{figure}
+
+\section{Fourier series for a finite rod}
+
+For a finite rod \(0<x<L\) with fixed zero temperature at the endpoints,
+\[
+  T(0,t)=T(L,t)=0,
+\]
+separation of variables gives
+\[
+  T(x,t)=X(x)A(t).
+\]
+Substitution yields
+\[
+  \frac{A'}{\kappa A}=\frac{X''}{X}=-\lambda.
+\]
+The boundary value problem
+\[
+  X''+\lambda X=0,\qquad X(0)=X(L)=0
+\]
+has eigenfunctions
+\[
+  X_n(x)=\sin\frac{n\pi x}{L},\qquad \lambda_n=\left(\frac{n\pi}{L}\right)^2.
+\]
+Thus each Fourier mode decays exponentially:
+\[
+  T(x,t)=\sum_{n=1}^\infty b_n e^{-\kappa(n\pi/L)^2t}\sin\frac{n\pi x}{L}.
+\]
+High-frequency modes have larger \(n^2\) and therefore decay faster.  This is the analytic meaning of smoothing by the heat equation.
+
+\section{Maximum principle}
+
+A basic qualitative theorem for the heat equation is the maximum principle.
+
+\begin{theorem}[Maximum principle, informal form]
+For a smooth solution of \(T_t=\kappa T_{xx}\) on a closed space-time rectangle, the maximum and minimum occur either at the initial time or on the spatial boundary, unless the solution is constant.
+\end{theorem}
+
+This theorem matches the physical intuition that heat does not create a new interior temperature peak.  It also explains why the heat equation behaves differently from the wave equation: diffusion forgets fine details, while waves transport and superpose them.
+
+% Expanded PDE supplement: N-20260621
+\section{Energy decay on an interval}
+
+For the heat equation on \(0<x<L\) with zero boundary values, define the thermal energy norm
+\[
+  \|T(\cdot,t)\|_{L^2}^2=\int_0^L T(x,t)^2\,dx.
+\]
+Then
+\[
+  \frac{d}{dt}\frac12\int_0^L T^2\,dx
+  =\int_0^L T T_t\,dx
+  =\kappa\int_0^L T T_{xx}\,dx.
+\]
+Integrating by parts and using \(T(0,t)=T(L,t)=0\),
+\[
+  \frac{d}{dt}\frac12\int_0^L T^2\,dx
+  =-\kappa\int_0^L T_x^2\,dx\le0.
+\]
+Thus the \(L^2\)-size of the temperature distribution decreases in time.  This is the heat-equation analogue of the energy identity for the wave equation, but with a crucial difference: wave energy is conserved, while heat energy decays.
+
+\section{The maximum principle with proof idea}
+
+The maximum principle says that heat cannot create a new interior maximum.  Here is the local calculation behind it.  Suppose \(T\) has a strict interior maximum at \((x_0,t_0)\) with \(t_0>0\).  At that point,
+\[
+  T_x(x_0,t_0)=0,\qquad T_{xx}(x_0,t_0)\le0.
+\]
+The heat equation gives
+\[
+  T_t(x_0,t_0)=\kappa T_{xx}(x_0,t_0)\le0.
+\]
+Thus the value cannot be increasing at an interior spatial maximum.  A rigorous proof perturbs the function by a small term such as \(-\varepsilon t\) to rule out equality cases.
+
+\begin{theorem}[Uniqueness for the heat equation]
+For the heat equation on a bounded interval with fixed boundary and initial data, there is at most one smooth solution.
+\end{theorem}
+
+\begin{proof}
+Let \(T_1\) and \(T_2\) be two solutions and set \(w=T_1-T_2\).  Then \(w_t=\kappa w_{xx}\) with zero initial data and zero boundary data.  By the maximum principle, \(w\le0\).  Applying the same argument to \(-w\) gives \(w\ge0\).  Hence \(w=0\).
+\end{proof}
+
+\section{Smoothing and the heat semigroup}
+
+On the whole line, the solution operator is convolution with the heat kernel:
+\[
+  T(\cdot,t)=G_t*f.
+\]
+The family \(G_t\) satisfies the semigroup identity
+\[
+  G_t*G_s=G_{t+s}.
+\]
+Therefore the solution operators satisfy
+\[
+  S(t)S(s)=S(t+s),\qquad S(t)f=G_t*f.
+\]
+This is the infinite-dimensional analogue of the exponential law \(e^{tA}e^{sA}=e^{(t+s)A}\).  Formally,
+\[
+  S(t)=e^{t\kappa\partial_x^2}.
+\]
+The heat equation is the basic example of a smoothing semigroup: even if \(f\) is rough, convolution with a Gaussian produces a smooth function for every \(t>0\).
+
+\section{Fourier transform solution on the real line}
+
+Let
+\[
+  \widehat{T}(\xi,t)=\int_{-\infty}^{\infty}T(x,t)e^{-ix\xi}\,dx.
+\]
+Taking the Fourier transform of \(T_t=\kappa T_{xx}\) gives
+\[
+  \partial_t \widehat{T}(\xi,t)=-\kappa \xi^2 \widehat{T}(\xi,t).
+\]
+For each fixed frequency \(\xi\), this is an ordinary differential equation:
+\[
+  \widehat{T}(\xi,t)=e^{-\kappa \xi^2t}\widehat{f}(\xi).
+\]
+High frequencies are multiplied by a rapidly decaying factor.  This is the frequency-space explanation of smoothing.
+
+Inverting the Fourier transform gives the heat-kernel formula.  Thus the Gaussian kernel, the semigroup law, and the Fourier multiplier \(e^{-\kappa\xi^2t}\) are three descriptions of the same solution operator.
+
+\section{Boundary conditions and conservation}
+
+Boundary conditions change what is conserved.
+
+For insulated endpoints, one uses Neumann conditions:
+\[
+  T_x(0,t)=T_x(L,t)=0.
+\]
+Then the total heat is conserved:
+\[
+  \frac{d}{dt}\int_0^L T(x,t)\,dx
+  =\kappa\int_0^L T_{xx}\,dx
+  =\kappa[T_x]_0^L=0.
+\]
+For fixed-temperature endpoints, total heat may enter or leave through the boundary.  The PDE describes local diffusion; the boundary condition describes the external thermal reservoir.
+
+\section{Steady states and long-time behavior}
+
+A steady state satisfies \(T_t=0\), so
+\[
+  T_{xx}=0.
+\]
+On an interval, the steady states are linear functions
+\[
+  T_\infty(x)=Ax+B.
+\]
+If the endpoints are held at temperatures \(T(0,t)=A_0\) and \(T(L,t)=A_L\), then the steady state is
+\[
+  T_\infty(x)=A_0+\frac{A_L-A_0}{L}x.
+\]
+The transient part \(T-T_\infty\) satisfies zero boundary conditions and decays by the Fourier sine expansion.  This separates the problem into two pieces: first solve the static boundary problem, then solve a homogeneous heat equation for the decaying error.
+
+\begin{example}[Nonzero boundary temperatures]
+Let \(T(0,t)=0\), \(T(L,t)=1\), and \(T(x,0)=f(x)\).  The steady state is \(x/L\).  Set
+\[
+  v(x,t)=T(x,t)-\frac{x}{L}.
+\]
+Then \(v\) satisfies
+\[
+  v_t=\kappa v_{xx},\qquad v(0,t)=v(L,t)=0,
+\]
+with initial data \(v(x,0)=f(x)-x/L\).  Hence
+\[
+  v(x,t)=\sum_{n=1}^{\infty}b_n e^{-\kappa(n\pi/L)^2t}\sin\frac{n\pi x}{L},
+\]
+where
+\[
+  b_n=\frac{2}{L}\int_0^L \left(f(x)-\frac{x}{L}\right)\sin\frac{n\pi x}{L}\,dx.
+\]
+\end{example}
+
+\section{Comparison with the wave equation}
+
+The heat and wave equations both use the second spatial derivative, but they use it in different ways:
+\[
+  T_t=\kappa T_{xx},\qquad u_{tt}=c^2u_{xx}.
+\]
+For heat, curvature determines velocity; for waves, curvature determines acceleration.  This is why heat smooths and decays, while waves oscillate and propagate.  Fourier modes make the difference transparent:
+\[
+  e^{-\kappa n^2t}\quad \text{versus} \quad \cos(nct),\ \sin(nct).
+\]
+The same spatial eigenfunctions occur, but their time factors encode the qualitative nature of the PDE.

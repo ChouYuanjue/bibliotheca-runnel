@@ -1,14 +1,341 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220801}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220801}
-\end{document}
+\notechapter{N-20220801}{Set Exercises, Functions, and Elementary Problem-Solving}
+
+\section{Subsets and characteristic functions}
+
+If a set \(A\) has \(n\) elements, then it has
+\[
+  2^n
+\]
+subsets.  One way to see this is to use the characteristic function
+\[
+  \chi_S(x)=
+  \begin{cases}
+  1,&x\in S,\\
+  0,&x\notin S.
+  \end{cases}
+\]
+Choosing a subset \(S\subseteq A\) is the same as choosing a function
+\[
+  \chi_S:A\to\{0,1\}.
+\]
+There are \(2\) choices for each element of \(A\), hence \(2^n\) choices in total.
+
+This is a useful conceptual improvement over simply memorizing \(2^n\).  A subset is a yes/no decision for every element.
+
+\section{Set laws}
+
+De Morgan's laws are:
+\[
+  C_U(A\cap B)=C_UA\cup C_UB,
+\]
+\[
+  C_U(A\cup B)=C_UA\cap C_UB.
+\]
+It also recalls inclusion--exclusion:
+\[
+  |A\cup B|=|A|+|B|-|A\cap B|.
+\]
+
+The exercises ask for set descriptions such as:
+\[
+  \{2n:1\le n\le5\},
+\]
+\[
+  \{x:x\le5\},
+\]
+and graphs such as
+\[
+  \{(x,y):y=x^2-x-1\}.
+\]
+This is a good reminder that sets can be finite lists, solution sets of inequalities, or geometric loci.
+
+\section{Venn diagram exercises}
+
+One exercise gives
+\[
+  U=A\cup B=\{1,2,3,4\},\qquad A\cap C_UB=\{1,2\},
+\]
+and asks for \(B\).  Since \(A\setminus B=\{1,2\}\), the remaining elements \(3,4\) must lie in \(B\), so
+\[
+  B=\{3,4\}.
+\]
+
+Another exercise has
+\[
+  A=\{x:1<x<7\},\qquad B=\{x:x^2-4x-5\le0\}.
+\]
+Since
+\[
+  x^2-4x-5=(x-5)(x+1),
+\]
+we get
+\[
+  B=[-1,5].
+\]
+Therefore
+\[
+  A\cap C_{\mathbb R}B=(5,7).
+\]
+
+Venn diagrams force the essential distinction between ``inside \(A\), inside \(B\), inside both, inside neither.''
+
+\section{Inclusion--exclusion with literature examples}
+
+One problem describes a survey of 100 students reading classical novels.  If 80 read either \(X\) or \(Y\), 60 read \(X\), and 40 read both, then the number reading \(Y\) is found by
+\[
+  |X\cup Y|=|X|+|Y|-|X\cap Y|.
+\]
+Thus
+\[
+  80=60+|Y|-40,
+\]
+so
+\[
+  |Y|=60.
+\]
+
+Again, the important point is not the story, but the relation among union, intersection, and individual counts.
+
+\section{Set constructions with squares}
+
+The note includes exercises with sets such as
+\[
+  A=\{a:a=x^2-y^2,\ x,y\in\mathbb Z\},
+\]
+and
+\[
+  B=\{a:a=x^2-y^2,\ x,y\in\mathbb Q\}.
+\]
+Since
+\[
+  x^2-y^2=(x+y)(x-y),
+\]
+every difference of squares is a product of two numbers of the same parity in the integer case.  This explains why expressions such as
+\[
+  2k-1
+\]
+are easy to represent, while some even numbers require more care.
+
+For rationals, the factorization is more flexible, and quotients of such expressions can often remain in \(B\).  The page is training the habit of factoring before trying random examples.
+
+\section{Floor functions}
+
+A floor-function example studies values of
+\[
+  y=\lfloor x\rfloor+\lfloor 2x\rfloor+\lfloor 3x\rfloor,\qquad 1\le y\le100.
+\]
+The natural move is to write
+\[
+  x=k+t,\qquad k\in\mathbb Z,\quad 0\le t<1.
+\]
+Then the three floor terms change only when \(t\) crosses multiples of \(1/2\) or \(1/3\).  Hence the possible values in one period come from the intervals determined by
+\[
+  0,\quad \frac13,\quad \frac12,\quad \frac23,\quad 1.
+\]
+This is much cleaner than trying to graph the whole function at once.
+
+\section{Functions and monotonicity}
+
+For domains, ranges, monotonicity, and extrema of functions, typical tools include:
+\begin{enumerate}[(i)]
+  \item rewriting a square root or logarithm condition as a domain restriction;
+  \item using monotonicity to locate maxima and minima;
+  \item drawing a rough graph to understand intervals;
+  \item using substitution when a composite expression repeats.
+
+\end{enumerate}
+
+One example studies a piecewise or iterated function and asks how many cycles appear.  The drawing in the note shows the value bouncing among intervals, which is an early form of dynamical thinking.
+
+
+\section{Characteristic functions and subsets}
+
+A subset \(S\subseteq A\) is the same data as a function
+\[
+  \chi_S:A\to\{0,1\}.
+\]
+Each element chooses either \(0\) or \(1\), so a set with \(n\) elements has \(2^n\) subsets.  This is more than a counting trick: it turns subsets into functions, which is the beginning of a very useful viewpoint.
+
+\section{Functions as rules with domains}
+
+A function is not merely a formula.  It consists of a domain, codomain, and assignment rule.  The same formula can define different functions if the domain or codomain changes.  This is why image, preimage, injectivity, and surjectivity must always be stated relative to a specified domain and codomain.
+
+\section{The method behind the trick}
+
+Elementary set and function exercises train representational flexibility.  A set can be represented by a list, predicate, Venn diagram, or characteristic function; a function can be represented by a formula, graph, domain/range description, or iteration rule.  Much of mathematics consists of switching to the representation in which the problem becomes visible.
+
+\section{Set operations as Boolean algebra}
+
+For a fixed universe \(U\), the power set \(\mathcal P(U)\) is a Boolean algebra:
+\[
+  A\vee B=A\cup B,\qquad
+  A\wedge B=A\cap B,\qquad
+  \neg A=U\setminus A.
+\]
+De Morgan's laws become algebraic identities:
+\[
+  \neg(A\vee B)=\neg A\wedge\neg B,\qquad
+  \neg(A\wedge B)=\neg A\vee\neg B.
+\]
+Thus Venn-diagram manipulation is the visual form of Boolean algebra.
+
+\section{Characteristic functions and algebra of predicates}
+
+A subset \(A\subseteq U\) is equivalently a predicate or a characteristic function
+\[
+  \mathbf 1_A:U\to\{0,1\}.
+\]
+Set operations become operations on \(0\)-\(1\) functions:
+\[
+  \mathbf 1_{A\cap B}=\mathbf 1_A\mathbf 1_B,\qquad
+  \mathbf 1_{A^c}=1-\mathbf 1_A,
+\]
+and
+\[
+  \mathbf 1_{A\cup B}=\mathbf 1_A+\mathbf 1_B-\mathbf 1_A\mathbf 1_B.
+\]
+For finite \(U\), cardinality is summation:
+\[
+  |A|=\sum_{x\in U}\mathbf 1_A(x).
+\]
+This converts set identities into ordinary algebraic identities.
+
+\section{Preimages as Boolean homomorphisms}
+
+For a function \(f:X\to Y\), the preimage operation
+\[
+  f^{-1}:\mathcal P(Y)\to\mathcal P(X)
+\]
+preserves Boolean operations:
+\[
+  f^{-1}(B\cup C)=f^{-1}(B)\cup f^{-1}(C),
+\]
+\[
+  f^{-1}(B\cap C)=f^{-1}(B)\cap f^{-1}(C),\qquad
+  f^{-1}(Y\setminus B)=X\setminus f^{-1}(B).
+\]
+Images do not preserve intersections or complements in this exact way.  This asymmetry explains why topology defines continuity using preimages of open sets.
+
+\section{Sigma-algebras and measurable events}
+
+Probability does not always use the full power set.  A sigma-algebra \(\mathcal A\) is a family of subsets closed under complement and countable union.  Its elements are measurable events.  A probability measure assigns numbers to these events so that disjoint unions add:
+\[
+  P\left(\bigcup_{n=1}^{\infty}A_n\right)=\sum_{n=1}^{\infty}P(A_n).
+\]
+Thus the elementary set operations \(\cup,\cap,{}^c\) become the grammar of probability and measure theory.
+
+\section{Stone duality intuition}
+
+Stone duality says that Boolean algebras can be represented as algebras of clopen subsets of topological spaces.  Given a Boolean algebra \(B\), its Stone space consists of ultrafilters on \(B\).  Each element \(b\in B\) determines a clopen set
+\[
+  \widehat b=\{\mathfrak u: b\in\mathfrak u\}.
+\]
+This shows that elementary set algebra, propositional logic, and certain zero-dimensional topological spaces are different faces of one structure.
+
+\section{Difference of squares as algebraic structure}
+
+The exercise involving
+\[
+  x^2-y^2=(x+y)(x-y)
+\]
+is a reminder that set-builder notation often hides algebraic structure.  Over the integers, the two factors \(x+y\) and \(x-y\) have the same parity.  Over the rationals, the parity obstruction disappears.  The same formula therefore defines different sets depending on the ambient number system.
+
+So even elementary set-builder problems force a structural question: what universe are the variables living in?
+
+\section{Sets as algebra, logic, and measurement}
+
+The unifying theme is representation.  A subset may be a list, predicate, characteristic function, measurable event, or Boolean-algebra element.  A function is not just a formula but a map with domain and codomain, and its preimage operation is structurally stable.  Most mistakes come from forgetting which representation is being used.
+
+\section{Boolean algebra beyond Venn diagrams}
+
+The original exercises with unions, intersections, complements, and Venn diagrams are the concrete beginning of Boolean algebra.  A Boolean algebra is a structure with operations
+\[
+  a\vee b,\qquad a\wedge b,\qquad \neg a,\qquad 0,\qquad 1
+\]
+satisfying the familiar laws of union, intersection, complement, empty set, and universal set.  For a fixed universe $U$, the power set $\mathcal P(U)$ is the model example:
+\[
+  A\vee B=A\cup B,\qquad A\wedge B=A\cap B,\qquad \neg A=U\setminus A.
+\]
+
+The elementary identities
+\[
+  A\cap(B\cup C)=(A\cap B)\cup(A\cap C),\qquad
+  (A\cup B)^c=A^c\cap B^c
+\]
+are therefore not isolated set tricks.  They are algebraic laws in a Boolean algebra.
+
+\section{Characteristic functions}
+
+Every subset $A\subseteq U$ has a characteristic function
+\[
+  \mathbf 1_A:U\to\{0,1\},\qquad
+  \mathbf 1_A(x)=
+  \begin{cases}
+  1,&x\in A,\\
+  0,&x\notin A.
+  \end{cases}
+\]
+Set operations become arithmetic or logical operations:
+\[
+  \mathbf 1_{A\cap B}=\mathbf 1_A\mathbf 1_B,\qquad
+  \mathbf 1_{A\cup B}=\max(\mathbf 1_A,\mathbf 1_B),\qquad
+  \mathbf 1_{A^c}=1-\mathbf 1_A.
+\]
+For finite sets,
+\[
+  |A|=\sum_{x\in U}\mathbf 1_A(x).
+\]
+This converts Venn-diagram counting into algebra.  Inclusion--exclusion is just the expansion of a product of factors $1-\mathbf 1_{A_i}$.
+
+\section{Sigma-algebras as observable event systems}
+
+In probability and measure theory, one does not always allow every subset of a universe.  A sigma-algebra $\mathcal A$ on $U$ is a collection of subsets satisfying
+\[
+  U\in\mathcal A,\qquad A\in\mathcal A\Rightarrow A^c\in\mathcal A,\qquad
+  A_1,A_2,\ldots\in\mathcal A\Rightarrow \bigcup_{n=1}^{\infty}A_n\in\mathcal A.
+\]
+This is a Boolean algebra closed under countable unions.  The elements of $\mathcal A$ are the measurable sets or events.
+
+The elementary set laws still hold, but the important new question is: which subsets are allowed to be measured?  Probability begins by assigning a number $P(A)$ to each $A\in\mathcal A$ such that
+\[
+  P\left(\bigcup_{n=1}^{\infty}A_n\right)=\sum_{n=1}^{\infty}P(A_n)
+\]
+for disjoint events.  Thus basic set operations become the grammar of probability.
+
+\section{Stone duality as topology of logic}
+
+Stone duality says, roughly, that every Boolean algebra can be represented as an algebra of clopen subsets of a topological space.  For a Boolean algebra $B$, its Stone space consists of ultrafilters on $B$.  Each element $b\in B$ determines a set
+\[
+  \widehat b=\{\mathfrak u:\ b\in\mathfrak u\}.
+\]
+These sets behave like the subsets of a space.
+
+This tells us that elementary set algebra is not merely a notation for collections.  It can encode topology.  Logical operations, set operations, and certain topological spaces are three faces of the same structure.
+
+\section{Set identities persist as Boolean and measurable algebra}
+
+The original exercises train manipulation of $\cup,\cap,{}^c,\setminus$.  At the advanced level, the same manipulations become Boolean algebra, characteristic-function algebra, measurable-event algebra, and even topological representation theory through Stone duality.  Nothing in the elementary calculations is wasted: every identity is a structural law that survives into probability, logic, and topology.
+
+\section{From Venn diagrams to algebra of information}
+
+A Venn diagram is a visual partition of a universe into atoms determined by a finite family of sets.  For two sets, the atoms are
+\[
+  A\cap B,\quad A\cap B^c,\quad A^c\cap B,\quad A^c\cap B^c.
+\]
+For $n$ sets, there are at most $2^n$ atoms.  Every Boolean expression in the sets is a union of some of these atoms.
+
+This gives a systematic method for elementary set identities: reduce both sides to the same atoms.  In logic, the same method is truth tables.  In probability, the atoms are elementary events.  In database theory, they are the records satisfying combinations of predicates.
+
+Thus the elementary operation of shading regions is already the algebra of information partitions.  A set is a yes/no question about elements; a finite family of sets is a finite collection of yes/no questions; the atoms are the complete answer patterns.
+
+\section{Why sigma-algebras restrict what can be asked}
+
+In finite examples one usually allows every subset.  In analysis, allowing every subset of $\mathbb R$ is incompatible with countably additive length if one accepts the usual choice principles.  Sigma-algebras solve this by specifying which questions are measurable.
+
+The elementary complement and union laws are retained, but countability enters:
+\[
+  A_1,A_2,\ldots\in\mathcal A
+  \quad\Longrightarrow\quad
+  \bigcup_{n=1}^{\infty}A_n\in\mathcal A.
+\]
+This is exactly what is needed to discuss limiting events such as ``infinitely many of these events occur.''  The original finite set exercises therefore become the finite visible model of measurable-event logic.

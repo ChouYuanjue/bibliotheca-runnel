@@ -1,14 +1,241 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260406}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260406}
-\end{document}
+\notechapter{N-20260406}{Triple Integrals: Solids, Cylindrical Coordinates, and Spherical Coordinates}
+
+\section{Triple integrals as weighted volume}
+
+A triple integral accumulates a scalar field over a spatial region \(\Omega\subseteq\mathbb R^3\):
+\[
+  \iiint_{\Omega} f(x,y,z)\,dV.
+\]
+If \(f=1\), the integral is volume.  If \(f=\rho\) is a mass density, the integral is mass.  If \(f\) is source density, the integral is total source.
+
+\begin{definition}
+An \(xy\)-simple solid has the form
+\[
+  \Omega=\{(x,y,z):(x,y)\in D,\ z_1(x,y)\le z\le z_2(x,y)\}.
+\]
+Then
+\[
+  \iiint_{\Omega} f\,dV
+  =\iint_D\int_{z_1(x,y)}^{z_2(x,y)} f(x,y,z)\,dz\,dA.
+\]
+\end{definition}
+
+There are analogous \(yz\)-simple and \(zx\)-simple descriptions.  If no single description works, split the solid.
+
+\section{Rectangular-coordinate example}
+
+\begin{example}
+Let \(\Omega\) be the tetrahedron
+\[
+  x\ge0,\quad y\ge0,\quad z\ge0,\quad x+y+z\le1.
+\]
+One description is
+\[
+  0\le x\le1,\qquad 0\le y\le1-x,\qquad 0\le z\le1-x-y.
+\]
+Thus
+\[
+  \operatorname{vol}(\Omega)
+  =\int_0^1\int_0^{1-x}\int_0^{1-x-y}1\,dz\,dy\,dx
+  =\frac{1}{6}.
+\]
+\end{example}
+
+\section{Cylindrical coordinates}
+
+Cylindrical coordinates keep the vertical coordinate and use polar coordinates in the horizontal plane:
+\[
+  x=r\cos\theta,\qquad y=r\sin\theta,\qquad z=z.
+\]
+The volume element is
+\[
+  dV=r\,dr\,d\theta\,dz.
+\]
+They are natural for cylinders, cones around the \(z\)-axis, and solids where \(x^2+y^2\) appears.
+
+\begin{example}
+For the cylinder \(x^2+y^2\le R^2\), \(0\le z\le h\),
+\[
+  V=\int_0^{2\pi}\int_0^R\int_0^h r\,dz\,dr\,d\theta
+  =\pi R^2h.
+\]
+\end{example}
+
+\section{Spherical coordinates}
+
+Spherical coordinates are
+\[
+  x=\rho\sin\varphi\cos\theta,\qquad
+  y=\rho\sin\varphi\sin\theta,\qquad
+  z=\rho\cos\varphi,
+\]
+where usually \(\rho\ge0\), \(0\le\varphi\le\pi\), and \(0\le\theta<2\pi\).  The volume element is
+\[
+  dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta.
+\]
+
+The factor has a geometric interpretation: small coordinate lengths are approximately
+\[
+  d\rho,\qquad \rho\,d\varphi,\qquad \rho\sin\varphi\,d\theta.
+\]
+Multiplying them gives \(\rho^2\sin\varphi\).
+
+\begin{example}
+The ball \(x^2+y^2+z^2\le R^2\) has volume
+\[
+  \int_0^{2\pi}\int_0^{\pi}\int_0^R
+  \rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta
+  =\frac{4}{3}\pi R^3.
+\]
+\end{example}
+
+\section{Coordinate-choice table}
+
+\[
+\begin{array}{c|c|c}
+\text{geometry} & \text{coordinates} & \text{typical bounds}\\
+\hline
+\text{box or graph over a plane} & \text{rectangular} & z_1(x,y)\le z\le z_2(x,y)\\
+\text{cylinder, cone around }z\text{-axis} & \text{cylindrical} & r,\theta,z\\
+\text{ball, spherical shell, cone from origin} & \text{spherical} & \rho,\varphi,\theta
+\end{array}
+\]
+
+Coordinates should be chosen because they simplify the solid, not because they are fashionable.
+
+\section{Mass, center of mass, and moments}
+
+If \(\rho(x,y,z)\) is density, then
+\[
+  M=\iiint_{\Omega} \rho\,dV.
+\]
+The center of mass is
+\[
+  \bar x=\frac{1}{M}\iiint_{\Omega}x\rho\,dV,\qquad
+  \bar y=\frac{1}{M}\iiint_{\Omega}y\rho\,dV,\qquad
+  \bar z=\frac{1}{M}\iiint_{\Omega}z\rho\,dV.
+\]
+Moments of inertia are obtained by integrating squared distance to an axis.  For example, about the \(z\)-axis,
+\[
+  I_z=\iiint_{\Omega}(x^2+y^2)\rho\,dV.
+\]
+
+\section{Symmetry}
+
+Before computing a triple integral, check symmetry.  If \(\Omega\) is symmetric under \(x\mapsto -x\) and \(f\) is odd in \(x\), then
+\[
+  \iiint_{\Omega} f(x,y,z)\,dV=0.
+\]
+If \(f\) is even, integrate over half the solid and double.  In three dimensions, symmetry can remove a whole family of terms.
+
+\begin{example}
+On the ball centered at the origin,
+\[
+  \iiint_{x^2+y^2+z^2\le1} xz^2\,dV=0,
+\]
+because the region is symmetric under \(x\mapsto -x\), while the integrand changes sign.
+\end{example}
+
+\section{Three ways to understand volume factors}
+
+The Jacobian factors in cylindrical and spherical coordinates can be read in three compatible ways.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lY@{}}
+\toprule
+Viewpoint & What it explains\\
+\midrule
+linear approximation & \(DT\) sends a small box to a parallelepiped\\
+volume form & \(dx\wedge dy\wedge dz\) pulls back by \(\det DT\)\\
+metric tensor & volume density is \(\sqrt{\det g}\) in curvilinear coordinates\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+For scalar volume, orientation is forgotten and one uses \(|\det DT|\).  For oriented integration, the sign is kept.  Cylindrical and spherical volume elements are special cases of these principles.
+
+\section{Toward divergence theorem}
+
+Triple integrals of divergence appear in Gauss' theorem:
+\[
+  \iiint_{\Omega} \nabla\cdot F\,dV
+  =\iint_{\partial\Omega}F\cdot n\,dS.
+\]
+Before learning the theorem, \(\iiint_{\Omega} \nabla\cdot F\,dV\) can be read as total source in the volume.  After the theorem, the same total source is measured by boundary flux.
+
+\section{Metric tensor derivation of spherical volume}
+
+The spherical factor \(\rho^2\sin\varphi\) can be derived from the metric.  In spherical coordinates,
+\[
+  ds^2=d\rho^2+\rho^2\,d\varphi^2+\rho^2\sin^2\varphi\,d\theta^2.
+\]
+Thus the metric matrix is diagonal:
+\[
+  g=
+  \begin{pmatrix}
+  1&0&0\\
+  0&\rho^2&0\\
+  0&0&\rho^2\sin^2\varphi
+  \end{pmatrix}.
+\]
+The Riemannian volume density is \(\sqrt{\det g}\), hence
+\[
+  \sqrt{\det g}=\rho^2\sin\varphi.
+\]
+So
+\[
+  dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta.
+\]
+This is the same factor as the Jacobian determinant, but the metric viewpoint generalizes directly to curved surfaces and Riemannian manifolds.
+
+\section{Divergence as infinitesimal volume expansion}
+
+Divergence is not just a formal sum of partial derivatives.  If a vector field \(F\) generates a flow \(\Phi_t\), then
+\[
+  \mathcal L_F(dV)=(\nabla\cdot F)dV,
+\]
+where \(\mathcal L_F\) is the Lie derivative.  In words: divergence is the infinitesimal rate at which the flow expands volume.
+
+For \(F(x,y,z)=(x,y,z)\), the flow is \(\Phi_t(p)=e^t p\).  A region is scaled by \(e^t\) in each of three directions, so its volume is scaled by \(e^{3t}\).  The infinitesimal expansion rate is \(3\), and indeed
+\[
+  \nabla\cdot F=1+1+1=3.
+\]
+This makes the divergence theorem conceptually natural: total infinitesimal volume production inside \(\Omega\) should equal flux through \(\partial\Omega\).
+
+\section{Pushforward of densities and probability}
+
+The triple-integral change-of-variables formula is also the density transformation formula in probability.  If \(X\) has density \(f_X\) and \(Y=T(X)\), then for an invertible smooth \(T\),
+\[
+  f_Y(y)=f_X(T^{-1}y)\left|\det DT^{-1}(y)\right|.
+\]
+For example, in \(\mathbb R^3\), a radially symmetric density can be pushed forward by the radius map \(R=|X|\).  The shell of radius \(r\) has area \(4\pi r^2\), so the radial density contains the same factor that appears in spherical coordinates:
+\[
+  f_R(r)=4\pi r^2 f_X(r)\quad\text{for a radial density }f_X.
+\]
+Thus the spherical Jacobian is not just a calculus artifact; it is the volume growth of shells.
+
+\section{Volume forms and orientation}
+
+The standard oriented volume form is
+\[
+  dx\wedge dy\wedge dz.
+\]
+Under a coordinate map \(T(u,v,w)\), it pulls back as
+\[
+  T^*(dx\wedge dy\wedge dz)
+  =\det DT\,du\wedge dv\wedge dw.
+\]
+Scalar volume uses \(|\det DT|\), but oriented integration keeps \(\det DT\).  This distinction becomes essential in Stokes' theorem, where signs encode boundary orientation.
+
+Triple integrals are therefore the scalar shadow of a more structured object: integration of top-degree forms.
+
+\section{How the solid determines the coordinates}
+
+A triple integral is weighted volume, but the coordinate system decides how that volume is sliced.  Rectangular coordinates are best when the solid is bounded by graphs over coordinate planes.  Cylindrical coordinates are best when the projection to the \(xy\)-plane is circular or when the integrand depends on \(x^2+y^2\).  Spherical coordinates are best when the boundary is organized by distance from the origin or by cones through the origin.
+
+The volume factors are not separate formulas to memorize.  They are Jacobians:
+\[
+  dV=dx\,dy\,dz,\qquad dV=r\,dr\,d\theta\,dz,\qquad dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta.
+\]
+The metric-tensor and volume-form derivations explain why these factors appear and why orientation matters once one passes from scalar volume to Stokes-type formulas.  In a computation the safe order is therefore: describe the solid geometrically, choose coordinates whose coordinate surfaces match that description, compute or recall the Jacobian, and only then write the iterated bounds.

@@ -1,14 +1,487 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260106}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260106}
-\end{document}
+\notechapter{N-20260106}{Calculus Review III: Convexity, Integral Inequalities, Wallis Formula, and More}
+
+A blackboard review of integral inequalities kept returning to the same few moves: compare a convex graph with its chord, pair \(x\) with \(a+b-x\), turn an oscillatory integral into a comparison of weights, and choose a substitution that exposes an involution.  The problems looked unrelated until these repetitions became visible.
+
+\section{Convexity and the Hermite--Hadamard inequality}
+
+Let $f$ be continuous on $[a,b]$ and twice differentiable on $(a,b)$, with
+\[
+  f''(x)>0.
+\]
+This means the graph is convex.  The visible statement is the Hermite--Hadamard inequality:
+\[
+  f\left(
+\frac{a+b}{2}
+\right)
+  \le
+\frac1{b-a}\int_a^b f(x)\,dx
+  \le
+\frac{f(a)+f(b)}2.
+\]
+
+The left inequality says that the value at the midpoint is no larger than the average value of a convex function.  The right inequality says that the average value is no larger than the average of the endpoint values.
+
+The geometric proof shown on the board uses two facts.  First, a convex curve lies below the chord joining its endpoints:
+\[
+  f(x)\le
+\frac{b-x}{b-a}f(a)+
+\frac{x-a}{b-a}f(b).
+\]
+Integrating this gives the upper bound.  Second, symmetry around the midpoint and convexity imply
+\[
+  f(x)+f(a+b-x)\ge 2f\left(
+\frac{a+b}{2}
+\right).
+\]
+Integrating from $a$ to $b$ gives the lower bound.
+
+Geometrically, the tangent line lies below a convex graph, while the chord lies above it.
+
+\section{Kantorovich-type integral inequality}
+
+Another framed problem assumes that $f$ is continuous and bounded between two positive constants:
+\[
+  0<\lambda_1\le f(x)\le \lambda_2,\qquad x\in[a,b].
+\]
+The goal is the estimate
+\[
+  \left(\int_a^b f(x)\,dx
+\right)
+  \left(\int_a^b 
+\frac{dx}{f(x)}
+\right)
+  \le
+\frac{(\lambda_1+\lambda_2)^2}{4\lambda_1\lambda_2}(b-a)^2.
+\]
+
+The board proof starts from
+\[
+  (f(x)-\lambda_1)(f(x)-\lambda_2)\le0.
+\]
+After expanding and dividing by $f(x)>0$, one obtains
+\[
+  f(x)+
+\frac{\lambda_1\lambda_2}{f(x)}
+  \le \lambda_1+\lambda_2.
+\]
+Integrating gives
+\[
+  A+\lambda_1\lambda_2 B
+  \le
+  (\lambda_1+\lambda_2)(b-a),
+\]
+where
+\[
+  A=\int_a^b f(x)\,dx,\qquad
+  B=\int_a^b
+\frac{dx}{f(x)}.
+\]
+Since for positive numbers $u,v$ one has $uv\le ((u+v)/2)^2$, we get
+\[
+  \lambda_1\lambda_2 AB
+  \le
+\frac{(\lambda_1+\lambda_2)^2}{4}(b-a)^2.
+\]
+This is the desired inequality.
+
+The usual Cauchy inequality gives the lower bound
+\[
+  \left(\int_a^b f
+\right)\left(\int_a^b
+\frac1f
+\right)\ge (b-a)^2,
+\]
+whereas this problem asks for an upper bound under a two-sided bound on $f$.
+
+\section{Integral mean value with odd symmetry}
+
+For a function on a symmetric interval, combine the two oriented integrals as
+\[
+  \int_0^x f(t)\,dt+\int_0^{-x}f(t)\,dt
+  =
+  \int_0^x [f(t)-f(-t)]\,dt.
+\]
+If $f$ is differentiable near $0$, then the integral mean value theorem gives a number $	heta\in(0,1)$ such that
+\[
+  \int_0^x [f(t)-f(-t)]\,dt
+  =
+  x\,[f(	heta x)-f(-	heta x)].
+\]
+
+When $x	o0$, the quotient comparison uses
+\[
+  f(	heta x)-f(-	heta x)\approx 2	heta x f'(0),
+\]
+while
+\[
+  \int_0^x [f(t)-f(-t)]\,dt
+  \approx
+  \int_0^x 2t f'(0)\,dt
+  =
+  x^2 f'(0).
+\]
+Thus the natural limiting value is
+\[
+  	heta	o
+\frac12.
+\]
+This is a typical use of the integral mean value theorem together with local linearization.
+
+\section[A lower bound involving f double-prime over f]{A lower bound involving $f''/f$}
+
+Another problem assumes
+\[
+  f\in C^2[a,b],\qquad f(x)>0	ext{ on }(a,b),\qquad f(a)=f(b)=0.
+\]
+The following estimate holds:
+\[
+  \int_a^b \left|
+\frac{f''(x)}{f(x)}
+\right|\,dx
+  >
+\frac4{b-a}.
+\]
+The idea is to let $x_0$ be a point where $f$ attains its positive maximum.  By the mean value theorem, there exist
+\[
+  \xi_1\in(a,x_0),\qquad \xi_2\in(x_0,b)
+\]
+such that
+\[
+  f'(\xi_1)=
+\frac{f(x_0)}{x_0-a},\qquad
+  f'(\xi_2)=-
+\frac{f(x_0)}{b-x_0}.
+\]
+Since $f(x)\le f(x_0)$, one has
+\[
+  \int_a^b \left|
+\frac{f''(x)}{f(x)}
+\right|\,dx
+  \ge
+\frac1{f(x_0)}\int_a^b |f''(x)|\,dx.
+\]
+The total variation of $f'$ is at least the drop from $f'(\xi_1)$ to $f'(\xi_2)$, so
+\[
+\frac1{f(x_0)}\int_a^b |f''(x)|\,dx
+  \ge
+\frac1{x_0-a}+
+\frac1{b-x_0}.
+\]
+Finally,
+\[
+\frac1{x_0-a}+
+\frac1{b-x_0}
+  \ge
+\frac4{b-a}.
+\]
+The proof is a good example of turning a global integral estimate into a maximum-point argument.
+
+\section{Symmetry of integrals about the midpoint}
+
+A common symmetry fact is the following.  If
+\[
+  f(x)=f(a+b-x),
+\]
+then
+\[
+  \int_a^b f(x)\,dx
+  =
+  2\int_a^{(a+b)/2}f(x)\,dx.
+\]
+Indeed, substitute
+\[
+  u=a+b-x
+\]
+in the right half of the integral.  This midpoint symmetry is used repeatedly in the board calculations.
+
+More generally, for any integrable $f$,
+\[
+  \int_a^b f(x)\,dx
+  =
+  \int_a^b f(a+b-x)\,dx,
+\]
+and therefore
+\[
+  \int_a^b f(x)\,dx
+  =
+\frac12\int_a^b [f(x)+f(a+b-x)]\,dx.
+\]
+This averaging trick is useful whenever $f(x)+f(a+b-x)$ simplifies.
+
+\section{Midpoint and trapezoidal error terms}
+
+Taylor expansion also gives the midpoint-rule error term.  Let
+\[
+  m=
+\frac{a+b}{2}.
+\]
+Taylor's formula around $m$ gives
+\[
+  f(x)=f(m)+f'(m)(x-m)+
+\frac12f''(\xi_x)(x-m)^2.
+\]
+After integrating, the odd term vanishes, and the second derivative can be pulled out by the integral mean value theorem.  Thus there exists $\xi\in(a,b)$ such that
+\[
+  \int_a^b f(x)\,dx
+  =
+  (b-a)f(m)+
+\frac{(b-a)^3}{24}f''(\xi).
+\]
+
+Similarly, the trapezoidal rule error has the form
+\[
+  \int_a^b f(x)\,dx
+  =
+\frac{b-a}{2}[f(a)+f(b)]
+  -
+\frac{(b-a)^3}{12}f''(\xi)
+\]
+for some $\xi\in(a,b)$.  The constants should not be confused: the midpoint coefficient is $1/24$, while the trapezoidal coefficient is $1/12$ with the opposite sign.
+
+\section{First special integral}
+
+Consider the integral
+\[
+  I=\int_0^1
+\frac{\ln(1+x)}{1+x^2}\,dx.
+\]
+Set
+\[
+  x=	an t,\qquad 0\le t\le
+\frac\pi4.
+\]
+Then $dx/(1+x^2)=dt$, and
+\[
+  I=\int_0^{\pi/4}\ln(1+	an t)\,dt.
+\]
+Use the substitution
+\[
+  t\mapsto 
+\frac\pi4-t.
+\]
+Since
+\[
+  1+	an\left(
+\frac\pi4-t
+\right)
+  =
+\frac2{1+	an t},
+\]
+one obtains
+\[
+  I=\int_0^{\pi/4}\left[\ln2-\ln(1+	an t)
+\right]\,dt.
+\]
+Adding the two expressions for $I$ gives
+\[
+  2I=
+\frac\pi4\ln2,
+\]
+hence
+\[
+  I=
+\frac\pi8\ln2.
+\]
+The trick is not the tangent substitution alone; it is pairing the interval by the involution $t\leftrightarrow \pi/4-t$.
+
+\section{Positivity of a Fresnel-type integral}
+
+Another example proves
+\[
+  \int_0^{\sqrt{2\pi}}\sin x^2\,dx>0.
+\]
+Let
+\[
+  t=x^2,\qquad dx=
+\frac{dt}{2\sqrt t}.
+\]
+Then
+\[
+  \int_0^{\sqrt{2\pi}}\sin x^2\,dx
+  =
+\frac12\int_0^{2\pi}
+\frac{\sin t}{\sqrt t}\,dt.
+\]
+Split the interval into $[0,\pi]$ and $[\pi,2\pi]$.  In the second part use $t=u+\pi$; since $\sin(u+\pi)=-\sin u$, the sum becomes
+\[
+\frac12\int_0^\pi \sin u
+  \left(
+\frac1{\sqrt u}-
+\frac1{\sqrt{u+\pi}}
+\right)\,du.
+\]
+For $u\in(0,\pi)$, both factors are positive, so the integral is positive.
+
+The oscillation alone is not enough; the positive half has larger weight because $1/\sqrt t$ decreases.
+
+\section{A symmetry integral with arcsine}
+
+Consider also
+\[
+  I=\int_0^1
+\frac{\arcsin\sqrt x}{\sqrt{x(1-x)}}\,dx.
+\]
+There are two neat ways.  First,
+\[
+  d(\arcsin\sqrt x)
+  =
+\frac{dx}{2\sqrt{x(1-x)}}.
+\]
+Hence
+\[
+  I=2\int_0^1 \arcsin\sqrt x\,d(\arcsin\sqrt x)
+  =
+  \left[\arcsin\sqrt x\right]^2\Big|_0^1
+  =
+\frac{\pi^2}{4}.
+\]
+
+Symmetry gives the alternative identity
+\[
+  \arcsin\sqrt x+\arcsin\sqrt{1-x}=
+\frac\pi2.
+\]
+Averaging $x$ and $1-x$ gives
+\[
+  I=
+\frac12\int_0^1
+\frac{\arcsin\sqrt x+\arcsin\sqrt{1-x}}{\sqrt{x(1-x)}}\,dx
+  =
+\frac\pi4\int_0^1
+\frac{dx}{\sqrt{x(1-x)}}.
+\]
+The last integral equals $\pi$, so again $I=\pi^2/4$.
+
+\section{A logarithmic sine integral}
+
+A logarithmic sine example is
+\[
+  I=\int_0^{\pi/2}\sin x\ln(\sin x)\,dx.
+\]
+Let $u=\cos x$.  Then $du=-\sin x\,dx$ and
+\[
+  I=\int_0^1 \ln\sqrt{1-u^2}\,du
+  =
+\frac12\int_0^1\ln(1-u^2)\,du.
+\]
+Since
+\[
+  \ln(1-u^2)=\ln(1-u)+\ln(1+u),
+\]
+we use
+\[
+  \int_0^1\ln(1-u)\,du=-1,
+\]
+and
+\[
+  \int_0^1\ln(1+u)\,du=2\ln2-1.
+\]
+Therefore
+\[
+  I=\ln2-1.
+\]
+This example trains the habit of choosing $u=\cos x$ when the factor $\sin x\,dx$ appears.
+
+\section[Integrals of 1/(a + b cos x)]{Integrals of \(1/(a+b\cos x)\)}
+
+Two standard formulas complete this family.  If $a>0$ and $|b|<a$, then on the interval $[-\pi/2,\pi/2]$,
+\[
+  \int_{-\pi/2}^{\pi/2}
+\frac{dx}{a+b\cos x}
+  =
+\frac{2}{\sqrt{a^2-b^2}}\arccos
+\frac ba.
+\]
+Using
+\[
+  \arccos
+\frac ba
+  =
+  2\arctan\sqrt{
+\frac{a-b}{a+b}},
+\]
+this can also be written as
+\[
+\frac{4}{\sqrt{a^2-b^2}}
+  \arctan\sqrt{
+\frac{a-b}{a+b}}.
+\]
+
+On the interval $[0,\pi]$, the standard formula is
+\[
+  \int_0^\pi 
+\frac{dx}{a+b\cos x}
+  =
+\frac{\pi}{\sqrt{a^2-b^2}},
+  \qquad a>0,\ |b|<a.
+\]
+This follows from the universal tangent half-angle substitution, while symmetry over the full half-period simplifies the result.
+
+\section{Wallis integral and Wallis product}
+
+The Wallis integral is
+\[
+  I_n=\int_0^{\pi/2}\sin^n x\,dx.
+\]
+Integration by parts gives the recurrence
+\[
+  I_n=
+\frac{n-1}{n}I_{n-2}\qquad(n\ge2).
+\]
+Indeed,
+\[
+  I_n=\int_0^{\pi/2}\sin^{n-1}x\sin x\,dx,
+\]
+choose
+\[
+  u=\sin^{n-1}x,\qquad dv=\sin x\,dx.
+\]
+The boundary term vanishes and the remaining integral becomes
+\[
+\frac{n-1}{n}I_{n-2}.
+\]
+Comparing even and odd subsequences $I_{2n}$ and $I_{2n+1}$ and letting $n	o\infty$ gives the Wallis product.
+
+\section{A wider frame}
+
+Integral problem-solving is pattern recognition.  Convexity gives chord and midpoint inequalities; bounded positive functions give product estimates; symmetry pairs an integral with its reflected version; Taylor's formula controls quadrature error; substitutions such as \(x=\tan t\) and \(t=x^2\) expose symmetry or sign; and Wallis' recurrence turns integration by parts into a product formula.
+
+\section{Convexity as second-order positivity}
+
+For twice differentiable functions, convexity on an interval follows from
+\[
+  f''(x)\ge0.
+\]
+The Hermite--Hadamard inequality
+\[
+  f\left(\frac{a+b}{2}\right)\le \frac1{b-a}\int_a^b f(x)\,dx\le \frac{f(a)+f(b)}2
+\]
+compares midpoint value, average value, and endpoint average for convex functions.
+
+\section{Integral inequalities as weighted averages}
+
+Many integral inequalities are Jensen-type statements with a probability measure.  If \(w\ge0\) and \(\int w=1\), then
+\[
+  f\left(\int xw(x)\,dx\right)\le \int f(x)w(x)\,dx
+\]
+for convex \(f\).  This is Jensen's inequality in measure form.
+
+\section{Symmetry and cancellation}
+
+Integrals over symmetric intervals often vanish because an odd part cancels:
+\[
+  \int_{-a}^{a} f_{\mathrm{odd}}(x)\,dx=0.
+\]
+More generally, symmetry lets one project a function onto invariant and anti-invariant parts.  This is the same idea behind Fourier even/odd decompositions.
+
+\section{Wallis formula and asymptotic products}
+
+Wallis-type integrals encode asymptotic behavior of products and beta functions.  The recurrence for
+\[
+  I_n=\int_0^{\pi/2}\sin^n x\,dx
+\]
+leads to ratios of products and ultimately to approximations involving \(\pi\).  This is an early bridge from calculus to asymptotic analysis.
+
+\section{Integral inequalities through convexity and asymptotics}
+
+The integral inequalities in this review are not isolated estimates.  They are consequences of convexity, weighted averages, symmetry, error analysis, and asymptotic product behavior.  The advanced habit is to identify which structural feature of the integrand controls the inequality.

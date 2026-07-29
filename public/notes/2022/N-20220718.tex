@@ -1,14 +1,165 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220718}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220718}
-\end{document}
+\notechapter{N-20220718}{Nonlinear Recurrences, Fixed Points, and Metric-Space Exercises}
+
+\section{Fixed-point iteration}
+
+An iterative sequence is organized around fixed points.  If a function \(f\) has a fixed point \(x_0\), meaning
+\[
+  f(x_0)=x_0,
+\]
+then the recurrence
+\[
+  a_{n+1}=f(a_n)
+\]
+may converge to \(x_0\), depending on the behavior of \(f\).  The graphical picture is the intersection of \(y=f(x)\) and \(y=x\).
+
+The elementary idea is this: if \(a_n\to L\) and \(f\) is continuous, then
+\[
+  L=\lim a_{n+1}=\lim f(a_n)=f(L),
+\]
+so any limit must be a fixed point.  But finding a fixed point is not the same as proving convergence.  A recurrence can have fixed points and still oscillate or diverge.
+
+\section{Möbius recurrences}
+
+The page considers recurrences of the form
+\[
+  a_{n+1}=\frac{pa_n+q}{ra_n+t}.
+\]
+These are fractional linear or Möbius transformations.  Their fixed points solve
+\[
+  x=\frac{px+q}{rx+t},
+\]
+so
+\[
+  rx^2+(t-p)x-q=0.
+\]
+Suppose \(x_1,x_2\) are two distinct fixed points.  Then a standard calculation gives
+\[
+  \frac{a_{n+1}-x_1}{a_{n+1}-x_2}
+  =
+  \lambda\frac{a_n-x_1}{a_n-x_2}
+\]
+for a constant \(\lambda\).  Thus the new sequence
+\[
+  b_n=\frac{a_n-x_1}{a_n-x_2}
+\]
+is geometric.
+
+This is the key idea in the note: convert a nonlinear recurrence into a geometric progression by using the fixed points as coordinates.  This is not accidental.  Möbius transformations act naturally on the projective line, and the cross-ratio-like expression above is the coordinate that linearizes the action.
+
+\section{Example}
+
+For
+\[
+  a_1=\frac12,\qquad a_{n+1}=\frac{5a_n-1}{a_n+3},
+\]
+the fixed-point equation is
+\[
+  x=\frac{5x-1}{x+3},
+\]
+so
+\[
+  x^2-2x+1=0,\qquad x=1.
+\]
+Here the two fixed points coincide, so the previous method degenerates.  One then studies
+\[
+  a_{n+1}-1=\frac{4a_n-4}{a_n+3}=\frac{4(a_n-1)}{a_n+3}.
+\]
+Taking reciprocals gives
+\[
+  \frac1{a_{n+1}-1}=\frac{a_n+3}{4(a_n-1)}
+  =\frac14+\frac1{a_n-1}.
+\]
+Thus
+\[
+  b_n=\frac1{a_n-1}
+\]
+is arithmetic, not geometric.  This is the repeated-root analogue of the fixed-point method.
+
+\section{Second-order linear recurrences}
+
+The next topic is
+\[
+  a_{n+2}=pa_{n+1}+qa_n.
+\]
+Try \(a_n=\lambda^n\).  The characteristic equation is
+\[
+  \lambda^2-p\lambda-q=0.
+\]
+If it has two distinct roots \(\lambda_1,\lambda_2\), then
+\[
+  a_n=A\lambda_1^n+B\lambda_2^n.
+\]
+If the root is repeated, then the second independent solution is \(n\lambda^n\), so
+\[
+  a_n=(A+Bn)\lambda^n.
+\]
+This is the recurrence analogue of solving a linear differential equation with constant coefficients.
+
+\section{Dedekind cuts and metric exercises}
+
+The uploaded pages also continue exercises on Dedekind cuts and metric spaces.  For Dedekind cuts \(X,Y\), the sum is
+\[
+  X+Y=\{x+y:x\in X,\ y\in Y\}.
+\]
+The notes check that this is again a cut: it is nonempty, not all of \(\mathbb Q\), downward closed, and has no largest rational.
+
+For a metric space \((X,d)\), if \(Y\subseteq X\), the subspace metric is
+\[
+  d_Y(y_1,y_2)=d(y_1,y_2).
+\]
+The note also checks that Euclidean distance on \(\mathbb R^n\)
+\[
+  d(x,y)=\sqrt{(x_1-y_1)^2+\cdots+(x_n-y_n)^2}
+\]
+is a metric.  The only nontrivial axiom is the triangle inequality, which ultimately follows from Cauchy--Schwarz.
+
+
+\section{Fixed points of recurrence maps}
+
+A recurrence \(x_{n+1}=f(x_n)\) is an iteration problem.  A possible limit \(L\) must satisfy
+\[
+  L=f(L).
+\]
+Thus the first step is to solve the fixed-point equation.  The second step is to decide whether the iteration actually converges to that fixed point.
+
+A common local test is \(|f'(L)|<1\).  Then nearby points are pulled toward \(L\).  If \(|f'(L)|>1\), nearby points are pushed away.  This explains why fixed points are not automatically limits.
+
+\section{Monotone bounded sequences}
+
+Many elementary recurrence proofs use the theorem: a monotone bounded real sequence converges.  The method is to prove by induction that the sequence stays in an interval, then prove monotonicity.  Completeness of \(\mathbb R\) is the hidden reason the limit exists.
+
+\section{After the examples}
+
+The important common thread is change of coordinates.  A Möbius recurrence becomes geometric after measuring position relative to fixed points.  A repeated fixed point becomes arithmetic after taking a reciprocal.  A Dedekind cut becomes a real number after using order-theoretic structure.  A subset becomes a metric space after inheriting distance.  The mathematical move is the same: choose the representation in which the structure becomes visible.
+
+\section{Fixed points and stability}
+
+For an iteration \(x_{n+1}=F(x_n)\), a fixed point satisfies \(F(x_*)=x_*\).  The behavior near \(x_*\) is controlled by \(F'(x_*)\) in one dimension: if \(|F'(x_*)|<1\), the fixed point is locally attracting.
+
+\section{Möbius recurrences and matrices}
+
+A recurrence of the form
+\[
+  x_{n+1}=\frac{ax_n+b}{cx_n+d}
+\]
+is a fractional-linear transformation.  It corresponds to the matrix
+\[
+  \begin{pmatrix}a&b\\c&d\end{pmatrix}
+\]
+acting on the projective line.  Iterating the recurrence corresponds to taking powers of this matrix.
+
+\section{Second-order recurrences}
+
+A linear recurrence
+\[
+  a_{n+2}=pa_{n+1}+qa_n
+\]
+is governed by the characteristic equation
+\[
+  \lambda^2=p\lambda+q.
+\]
+Distinct roots give combinations of geometric sequences.  This is diagonalization of the shift dynamics.
+
+\section{Recurrences as one-dimensional dynamics}
+
+Nonlinear and linear recurrences are dynamical systems.  Fixed points organize stability, Möbius recurrences are projective matrix dynamics, and second-order linear recurrences are solved by eigenvalue methods.

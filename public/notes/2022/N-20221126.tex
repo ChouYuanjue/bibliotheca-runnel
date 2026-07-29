@@ -1,14 +1,240 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221126}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221126}
-\end{document}
+\notechapter{N-20221126}{Congruence Classes, Complete Residue Systems, and Euler's Function}
+
+\section{Congruence}
+
+Let \(m\) be a positive integer and \(a,b\in\mathbb Z\).  We say that \(a\) and \(b\) are congruent modulo \(m\), written
+\[
+  a\equiv b\pmod m,
+\]
+if
+\[
+  m\mid(a-b).
+\]
+This definition is just divisibility language with a new notation.  It allows us to work with remainders rather than whole integers.
+
+\section{Basic properties}
+
+The standard properties are:
+\begin{enumerate}[(i)]
+  \item Reflexivity: \(a\equiv a\pmod m\).
+  \item Symmetry: if \(a\equiv b\pmod m\), then \(b\equiv a\pmod m\).
+  \item Transitivity: if \(a\equiv b\pmod m\) and \(b\equiv c\pmod m\), then \(a\equiv c\pmod m\).
+  \item Compatibility with addition and multiplication:
+  \[
+    a\equiv b,\ c\equiv d\pmod m
+    \quad\Rightarrow\quad
+    a+c\equiv b+d,\quad ac\equiv bd\pmod m.
+  \]
+  \item If \(a\equiv b\pmod m\), then
+  \[
+    a^n\equiv b^n\pmod m
+  \]
+  for every positive integer \(n\).
+\end{enumerate}
+
+The last two rules are what make congruence useful: one can replace a large number by a small remainder and keep computing.
+
+\section{Residue classes}
+
+A residue class modulo \(n\) is a set
+\[
+  M_i=\{x\in\mathbb Z:x\equiv i\pmod n\}.
+\]
+The integers split into \(n\) disjoint classes:
+\[
+  M_0,M_1,\ldots,M_{n-1}.
+\]
+This is a partition of \(\mathbb Z\), with two important consequences:
+\begin{enumerate}[(i)]
+  \item among any \(n+1\) integers, two are congruent modulo \(n\);
+  \item if \((i,n)=1\), then every integer in \(M_i\) is coprime to \(n\).
+
+\end{enumerate}
+The first is the pigeonhole principle; the second follows because congruent numbers have the same gcd with \(n\).
+
+\section{Complete and reduced residue systems}
+
+A complete residue system modulo \(n\) is any set of \(n\) representatives, one from each residue class.  The standard example is
+\[
+  0,1,2,\ldots,n-1.
+\]
+A reduced residue system modulo \(n\) consists of one representative from each residue class coprime to \(n\).  The number of such classes is Euler's function
+\[
+  \varphi(n).
+\]
+If
+\[
+  n=p_1^{\alpha_1}\cdots p_k^{\alpha_k},
+\]
+then
+\[
+  \varphi(n)=n\left(1-\frac1{p_1}\right)\cdots\left(1-\frac1{p_k}\right).
+\]
+In particular,
+\[
+  \varphi(p)=p-1,\qquad \varphi(p^a)=p^a-p^{a-1}.
+\]
+
+\section{Example: last digit}
+
+To compute the last digit of \(15^{200}\), work modulo \(10\).  Since
+\[
+  15\equiv5\pmod{10},
+\]
+we get
+\[
+  15^{200}\equiv5^{200}\equiv5\pmod{10}.
+\]
+Thus the last digit is \(5\).
+
+Reduce early: do not expand powers when the base can first be replaced by its residue.
+
+\section[Example: modulo 17]{Example: modulo \(17\)}
+
+To compute
+\[
+  15^{100}\pmod{17},
+\]
+notice
+\[
+  15\equiv-2\pmod{17}.
+\]
+Then
+\[
+  15^{100}\equiv (-2)^{100}=2^{100}\pmod{17}.
+\]
+Since
+\[
+  2^4=16\equiv-1\pmod{17},
+\]
+we have
+\[
+  2^8\equiv1\pmod{17}.
+\]
+Therefore
+\[
+  2^{100}=2^{96}2^4\equiv1^{12}(-1)\equiv16\pmod{17}.
+\]
+
+\section{Example: reducing a long expression}
+
+For an expression such as
+\[
+  2001\cdot2002+2003\cdot2004+2005\cdot2006
+\]
+modulo \(45\), reduce every factor modulo \(45\) first.  The arithmetic becomes small.  The main habit is:
+\[
+  \text{large expression}\quad\longrightarrow\quad\text{small residues}.
+\]
+This is the same principle behind all modular computation.
+
+\section{A polynomial congruence by induction}
+
+The note also includes a divisibility proof for an expression depending on \(k\), of the form
+\[
+  12^{2k+1}+36^k+5^k+3.
+\]
+The standard method is induction or modular periodicity.  One chooses the modulus, checks the base case, and then shows the expression changes by a multiple of the modulus when \(k\) increases.  Equivalently, reduce each base modulo the modulus and use periodicity of powers.
+
+\section[Quadratic residues modulo 8]{Quadratic residues modulo \(8\)}
+
+A consolidation exercise proves that a perfect square modulo \(8\) is congruent to
+\[
+  0,\ 1,\quad\text{or}\quad4.
+\]
+Indeed, every integer is congruent modulo \(8\) to one of
+\[
+  0,1,2,3,4,5,6,7.
+\]
+Squaring gives residues
+\[
+  0,1,4,1,0,1,4,1.
+\]
+Thus only \(0,1,4\) occur.  This is a powerful small filter in number theory problems.
+
+\section{Where the idea leads}
+
+Congruence classes are quotient thinking.  Instead of remembering the whole integer, we remember only its class in
+\[
+  \mathbb Z/n\mathbb Z.
+\]
+Complete residue systems represent all classes, reduced residue systems represent the units, and Euler's function counts those units.  These ideas form the elementary entrance to the ring \(\mathbb Z/n\mathbb Z\) and its multiplicative group.
+
+\section{Residue systems as representatives}
+A complete residue system modulo \(n\) is a choice of one representative from each class in \(\mathbb Z/n\mathbb Z\).  A reduced residue system is a choice of representatives from the unit group
+\[
+(\mathbb Z/n\mathbb Z)^\times.
+\]
+Thus the difference between complete and reduced systems is the difference between the whole quotient ring and its invertible elements.
+\section{Euler function through prime powers}
+For a prime power,
+\[
+\varphi(p^k)=p^k-p^{k-1}=p^k\left(1-\frac1p\right).
+\]
+Using the Chinese remainder theorem gives
+\[
+\varphi(n)=n\prod_{p\mid n}\left(1-\frac1p\right).
+\]
+\section{Orders and exponent reduction}
+If \(a\) is a unit modulo \(n\), its order is the smallest \(d\) with \(a^d\equiv1\pmod n\).  Exponent reduction is really reduction modulo the order of \(a\), not blindly modulo \(\varphi(n)\).
+\section{Residues, units, and exponent cycles}
+Residue classes form quotient rings, reduced residue systems form unit groups, Euler's function counts units, and exponent tricks are statements about orders in finite groups.
+
+\section{Residue systems as groups of units}
+
+A reduced residue system modulo $n$ is the unit group
+\[
+  (\mathbb Z/n\mathbb Z)^\times.
+\]
+Its order is Euler's function $\varphi(n)$.  Euler's theorem says that if $\gcd(a,n)=1$, then
+\[
+  a^{\varphi(n)}\equiv1\pmod n.
+\]
+This is simply Lagrange's theorem applied to the finite group of units.
+
+Thus the elementary reduced-residue computations are group theory in disguise.
+
+\section{CRT decomposition of unit groups}
+
+If $m,n$ are coprime, then
+\[
+  \mathbb Z/mn\mathbb Z\cong \mathbb Z/m\mathbb Z\times \mathbb Z/n\mathbb Z.
+\]
+Taking units gives
+\[
+  (\mathbb Z/mn\mathbb Z)^\times\cong
+  (\mathbb Z/m\mathbb Z)^\times\times(\mathbb Z/n\mathbb Z)^\times.
+\]
+This explains the multiplicativity of $\varphi$.
+
+For prime powers, the structure of the unit group is more subtle.  For odd primes $p$, the group $(\mathbb Z/p^k\mathbb Z)^\times$ is cyclic of order $p^{k-1}(p-1)$.  Powers of $2$ require separate treatment.
+
+\section{Primitive roots and characters}
+
+A primitive root modulo $n$ is a generator of the unit group.  When the unit group is cyclic, every unit is a power of one element.  This converts multiplicative congruence problems into exponent arithmetic.
+
+Dirichlet characters are homomorphisms
+\[
+  \chi:(\mathbb Z/n\mathbb Z)^\times\to\mathbb C^\times
+\]
+extended to all integers by setting $\chi(a)=0$ when $\gcd(a,n)>1$.  They are Fourier characters on the finite abelian group of units and are central in Dirichlet's theorem on primes in arithmetic progressions.
+
+\section{Residue systems are calculations inside finite groups}
+
+Residue tables, reduced systems, and Euler-function formulas are computations inside finite groups, not merely modular bookkeeping.  Group decomposition, primitive roots, and characters develop this structure further.
+
+\section{Primitive roots as logarithms in finite groups}
+
+When $(\mathbb Z/n\mathbb Z)^\times$ is cyclic with generator $g$, every unit has the form $g^k$.  This turns multiplication into addition of exponents modulo the group order.  In other words, a primitive root supplies a discrete logarithm coordinate.
+
+This is powerful but also limited: not every modulus has primitive roots.  The classification says primitive roots exist for
+\[
+  n=1,2,4,p^k,2p^k
+\]
+where $p$ is an odd prime.  This explains why some modular arithmetic problems become simple after choosing a primitive root, while others require decomposing the unit group into several cyclic factors.
+
+\section{Characters as Fourier analysis on unit groups}
+
+Dirichlet characters are not arbitrary functions; they are group homomorphisms from the unit group to complex roots of unity.  Orthogonality of characters gives filters for congruence classes.  This is the multiplicative analogue of using roots of unity to filter residues modulo $n$.
+
+The elementary reduced-residue system is therefore the domain on which finite harmonic analysis is performed.

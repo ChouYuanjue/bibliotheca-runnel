@@ -191,7 +191,6 @@ function volumeMapFromTeX() {
 function buildArchive() {
   const notesDir = path.join(INM_ROOT, 'tex', 'notes');
   const singlePdfDir = path.join(INM_ROOT, 'single-pdfs');
-  const singleTexRoot = path.join(INM_ROOT, 'build-log', 'single-note-build');
 
   if (!fs.existsSync(notesDir)) {
     throw new Error(`INM notes directory not found: ${notesDir}`);
@@ -226,8 +225,7 @@ function buildArchive() {
         .filter(Boolean);
 
       const pdfCopied = copyIfExists(path.join(singlePdfDir, `${id}.pdf`), path.join(yearDir, `${id}.pdf`));
-      const singleTexPath = path.join(singleTexRoot, id, `${id}-single.tex`);
-      const texCopied = copyIfExists(fs.existsSync(singleTexPath) ? singleTexPath : texPath, path.join(yearDir, `${id}.tex`));
+      const texCopied = copyIfExists(texPath, path.join(yearDir, `${id}.tex`));
 
       return {
         id,
@@ -265,7 +263,7 @@ function buildArchive() {
 
   const pdfCount = notes.filter((note) => note.pdf).length;
   const texCount = notes.filter((note) => note.tex).length;
-  console.log(`Generated INM index: ${notes.length} notes, ${pdfCount} PDFs, ${texCount} single-note TeX sources, full PDF: ${fullPdfCopied ? 'yes' : 'no'}.`);
+  console.log(`Generated INM index: ${notes.length} notes, ${pdfCount} PDFs, ${texCount} note TeX sources, full PDF: ${fullPdfCopied ? 'yes' : 'no'}.`);
 }
 
 buildArchive();

@@ -1,14 +1,322 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20230310}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20230310}
-\end{document}
+\notechapter{N-20230310}{Derivatives, Tangents, Extremal Problems, Young--Holder--Minkowski, and Jensen}
+
+\section{The derivative from secants to tangents}
+
+The derivative begins with the geometry of two nearby points on a curve.
+\[
+  (x_0,f(x_0)),\qquad (x_0+\Delta x,f(x_0+\Delta x)),
+\]
+the secant slope is
+\[
+  \frac{\Delta y}{\Delta x}
+  =\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}.
+\]
+If, as $\Delta x\to0$, this quotient tends to a finite limit, then the curve has a definite tangent line at $x_0$.  The derivative is
+\[
+  f'(x_0)=\lim_{\Delta x\to0}
+  \frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}.
+\]
+Equivalently,
+\[
+  f'(x_0)=\lim_{x\to x_0}\frac{f(x)-f(x_0)}{x-x_0}.
+\]
+
+The tangent line at $x_0$ is therefore
+\[
+  y-f(x_0)=f'(x_0)(x-x_0).
+\]
+Geometrically, the secant line approaches a unique limiting line.  If that line is not vertical and its slope is finite, the limiting slope is the derivative.
+
+\begin{center}
+\begin{tikzpicture}[scale=.78,>=Stealth,every node/.style={fill=white,inner sep=1pt}]
+  \draw[->] (-1,0)--(7,0) node[right] {$x$};
+  \draw[->] (0,-1)--(0,6) node[above] {$y$};
+  \draw[domain=-.4:4.2,smooth,variable=\x] plot ({\x},{0.4*(\x-0.5)^2+1});
+  \coordinate (A) at (1,1.1);
+  \coordinate (B) at (3,3.5);
+  \fill (A) circle (2pt);
+  \node[below left=2pt] at (A) {$(x_0,f(x_0))$};
+  \fill (B) circle (2pt);
+  \node[above right=2pt] at (B) {$(x_0+\Delta x,f(x_0+\Delta x))$};
+  \draw[dashed] (1,0)--(A);
+  \draw[dashed] (3,0)--(B);
+  \draw[dashed] (A)--(1,3.5)--(B);
+  \draw[thick] (-.2,-.34)--(4.2,4.94);
+  \node[right=2pt] at (4.2,4.94) {secant};
+  \draw[thick] (-.1,.66)--(3,3.7);
+  \node[above left=2pt] at (2.45,3.15) {tangent limit};
+  \draw[<->] (1,-.35)--(3,-.35) node[midway,below] {$\Delta x$};
+  \draw[<->] (3.25,1.1)--(3.25,3.5) node[midway,right] {$\Delta y$};
+\end{tikzpicture}
+\end{center}
+
+\section{Derivative notation and local definition}
+
+The definition requires $f$ to be defined on a punctured neighborhood of $x_0$, and usually on a small open interval around it.  The derivative at $x_0$ may be denoted by any of
+\[
+  f'(x_0),\qquad
+  \left.\frac{df}{dx}\right|_{x=x_0},\qquad
+  y'(x_0),\qquad
+  \left.\frac{dy}{dx}\right|_{x=x_0}.
+\]
+If $f$ is differentiable at every point of an open interval $(a,b)$, then $x\mapsto f'(x)$ is the derivative function on that interval.
+
+Before asking whether $f$ is differentiable at a point, one must know that it is defined on a neighborhood of that point.  Differentiability is a local property.
+
+\section{Rules of differentiation}
+
+If $f$ and $g$ are differentiable at $x_0$, then sums, scalar multiples, products, and quotients obey:
+\[
+  (af+bg)'=af'+bg',\qquad
+  (fg)'=f'g+fg',\qquad
+  \left(\frac fg\right)'=\frac{f'g-fg'}{g^2},\quad g(x_0)\ne0.
+\]
+The chain rule says
+\[
+  (f\circ g)'(x_0)=f'(g(x_0))g'(x_0).
+\]
+The inverse-function rule says that if $f$ and $f^{-1}$ are inverse functions, $f'(x_0)\ne0$, and $y_0=f(x_0)$, then
+\[
+  (f^{-1})'(y_0)=\frac1{f'(x_0)}.
+\]
+
+These rules are not simply a table to memorize.  Each rule is a disguised statement about first-order linear approximation.  For example,
+\[
+  f(x_0+h)=f(x_0)+f'(x_0)h+o(h),\qquad
+  g(x_0+h)=g(x_0)+g'(x_0)h+o(h),
+\]
+and multiplying these expansions gives the product rule.
+
+\section{Elementary derivative formulas}
+
+The table in the note includes the standard formulas:
+\[
+  C'=0,\qquad (x^a)'=ax^{a-1},\qquad (a^x)'=a^x\ln a,\qquad
+  (\log_a x)'=\frac1{x\ln a}.
+\]
+For trigonometric functions,
+\[
+  (\sin x)'=\cos x,\qquad
+  (\cos x)'=-\sin x,\qquad
+  (\tan x)'=\sec^2x,\qquad
+  (\cot x)'=-\csc^2x,
+\]
+\[
+  (\sec x)'=\sec x\tan x,\qquad
+  (\csc x)'=-\csc x\cot x.
+\]
+For inverse trigonometric functions,
+\[
+  (\arcsin x)'=\frac1{\sqrt{1-x^2}},\qquad
+  (\arccos x)'=-\frac1{\sqrt{1-x^2}},\qquad
+  (\arctan x)'=\frac1{1+x^2}.
+\]
+
+\section{Extrema, Fermat's lemma, and critical points}
+
+A point $x_0$ is a local maximum if $f(x)\le f(x_0)$ near $x_0$, and a local minimum if $f(x)\ge f(x_0)$ near $x_0$.  If $f'(x_0)=0$, then $x_0$ is called a stationary or critical point.
+
+Fermat's lemma says: if $f$ is differentiable at $x_0$ and has a local extremum there, then
+\[
+  f'(x_0)=0.
+\]
+The note writes a warning beside this theorem: the converse is false.  For example,
+\[
+  f(x)=x^3
+\]
+has $f'(0)=0$, but $0$ is not an extremum.  Fermat's lemma only provides candidates for extrema.  One must then check sign changes, second derivatives, endpoints, or non-differentiable points.
+
+If $f''(x_0)>0$ and $f'(x_0)=0$, then $x_0$ is a local minimum.  If $f''(x_0)<0$, it is a local maximum.  The reason is that $f''$ describes whether $f'$ is increasing or decreasing near the critical point.
+
+\section{A derivative proof of a basic inequality}
+
+For $x>0$, one has
+\[
+  x^\alpha-\alpha x+\alpha-1\le0,\qquad 0<\alpha<1,
+\]
+and
+\[
+  x^\alpha-\alpha x+\alpha-1\ge0,\qquad \alpha<0\text{ or }\alpha>1.
+\]
+Let
+\[
+  F(x)=x^\alpha-\alpha x+\alpha-1.
+\]
+Then
+\[
+  F'(x)=\alpha(x^{\alpha-1}-1),\qquad F(1)=0.
+\]
+For $0<\alpha<1$, $F$ increases on $(0,1)$ and decreases on $(1,\infty)$, so $x=1$ is a maximum and $F(x)\le0$.  For $\alpha<0$ or $\alpha>1$, the monotonicity is reversed, and $x=1$ is a minimum, so $F(x)\ge0$.
+
+This small inequality is the engine behind Young's inequality.
+
+\section{Young's inequality}
+
+Let $a,b>0$ and let $p,q$ satisfy
+\[
+  \frac1p+\frac1q=1.
+\]
+For $p>1$, Young's inequality says
+\[
+  a^{1/p}b^{1/q}\le \frac ap+\frac bq,
+\]
+with equality iff $a=b$.  The proof substitutes
+\[
+  x=\frac ab,\qquad \alpha=\frac1p
+\]
+into the previous derivative inequality, then multiplies by $b$.
+
+The source also records the reversed version for $p<1$, where the inequality sign changes.  The important conceptual point is that an inequality between weighted geometric and arithmetic means is reduced to the shape of one single-variable function.
+
+\section{Holder's inequality}
+
+For $x_i,y_i\ge0$ and $1/p+1/q=1$, Holder's inequality is
+\[
+  \sum_{i=1}^n x_i y_i
+  \le
+  \left(\sum_{i=1}^n x_i^p\right)^{1/p}
+  \left(\sum_{i=1}^n y_i^q\right)^{1/q},\qquad p>1.
+\]
+The proof in the source normalizes
+\[
+  a_i=\frac{x_i^p}{\sum_j x_j^p},\qquad
+  b_i=\frac{y_i^q}{\sum_j y_j^q}
+\]
+and applies Young's inequality termwise.  After adding the inequalities, the normalized sum becomes $1$, giving Holder.
+
+The integral form follows the same idea:
+\[
+  \int_a^b f(x)g(x)\,dx
+  \le
+  \left(\int_a^b |f(x)|^p\,dx\right)^{1/p}
+  \left(\int_a^b |g(x)|^q\,dx\right)^{1/q}.
+\]
+The comment says this feels almost trivial once the finite-sum proof is understood: one replaces sums by integrals and uses the same normalization logic.
+
+For $p=q=2$, Holder becomes the Cauchy--Bunyakovsky--Schwarz inequality.
+
+\section{Minkowski's inequality}
+
+For $p>1$, Minkowski's inequality says
+\[
+  \left(\sum_{i=1}^n (x_i+y_i)^p\right)^{1/p}
+  \le
+  \left(\sum_{i=1}^n x_i^p\right)^{1/p}
+  +
+  \left(\sum_{i=1}^n y_i^p\right)^{1/p}.
+\]
+The proof applies Holder to the two sums
+\[
+  \sum_i x_i(x_i+y_i)^{p-1},\qquad
+  \sum_i y_i(x_i+y_i)^{p-1}.
+\]
+Because $q=p/(p-1)$, we have
+\[
+  ((x_i+y_i)^{p-1})^q=(x_i+y_i)^p.
+\]
+After factoring the common term and dividing by it, one obtains Minkowski.
+
+For $p=2$, this is exactly the triangle inequality for Euclidean length:
+\[
+  \sqrt{(x_1+y_1)^2+\cdots+(x_n+y_n)^2}
+  \le
+  \sqrt{x_1^2+\cdots+x_n^2}+
+  \sqrt{y_1^2+\cdots+y_n^2}.
+\]
+
+\section{Convex functions and Jensen's inequality}
+
+The note defines a convex function by the inequality
+\[
+  f(\alpha_1x_1+\alpha_2x_2)
+  \le
+  \alpha_1f(x_1)+\alpha_2f(x_2),\qquad
+  \alpha_1+\alpha_2=1,\quad \alpha_i\ge0.
+\]
+Geometrically, the point on the chord between $(x_1,f(x_1))$ and $(x_2,f(x_2))$ lies above the graph.
+
+Equivalently, for $x_1<x<x_2$,
+\[
+  \frac{f(x)-f(x_1)}{x-x_1}
+  \le
+  \frac{f(x_2)-f(x)}{x_2-x}.
+\]
+This slope inequality implies that if $f$ is differentiable, then $f'$ is increasing; if $f$ is twice differentiable, then convexity corresponds to $f''\ge0$.
+
+Jensen's inequality generalizes the two-point definition:
+\[
+  f\left(\sum_{i=1}^n \alpha_i x_i\right)
+  \le
+  \sum_{i=1}^n \alpha_i f(x_i),\qquad
+  \alpha_i\ge0,\quad \sum_i\alpha_i=1.
+\]
+The source proves this by induction.  Let $\beta=\alpha_2+\cdots+\alpha_n=1-\alpha_1$ and normalize the remaining weights by $\alpha_i/\beta$.  Then use the two-point convexity inequality followed by the induction hypothesis.
+
+\section{Typical exercise themes}
+
+The last pages list exercises.  They are not random; they are organized around the derivative as a tool for inequality and extrema.
+
+Examples include:
+\begin{enumerate}[(i)]
+  \item determining when a line and cubic have three distinct intersections;
+  \item finding monotonicity intervals of $f(x)=\sqrt x-\ln(x+a)$;
+  \item maximizing $\sin^2x\cos x$ on $(0,\pi/2)$;
+  \item comparing numbers such as $0.1e^{0.1}$, $1/9$, and $-\ln0.9$ using auxiliary functions;
+  \item proving $e^x\ge1+x$ and $\ln x\le x-1$;
+  \item using Jensen or logarithms to prove entropy-like inequalities such as
+  \[
+    \sum_{i=1}^{2^n}p_i\log_2p_i\ge -n,\qquad \sum_i p_i=1;
+  \]
+  \item proving product inequalities of the form
+  \[
+    \prod_{i=1}^n a_i^{b_i}\le1
+  \]
+  under weighted-sum hypotheses;
+  \item minimizing expressions such as
+  \[
+    \frac9{\sin^2x}+\frac1{\cos x\cos y\sin^2y}.
+  \]
+\end{enumerate}
+
+The common method is to build an auxiliary function, compute derivatives, locate monotonicity or convexity, and then read off the desired inequality.
+
+\section{The reusable pattern}
+
+This note shows how the derivative becomes more than a tangent slope.  It gives a language for extrema, monotonicity, convexity, and inequalities.  Young, Holder, Minkowski, and Jensen all look like different inequalities, but the note reveals a chain:
+\[
+\begin{gathered}
+  \text{single-variable derivative inequality}\to \text{Young}\to \text{Holder}\\
+  \to \text{Minkowski},\qquad \text{convexity}\to \text{Jensen}.
+\end{gathered}
+\]
+Thus calculus becomes a proof technology for analysis and inequalities.
+
+\section{Derivative as local linear approximation}
+
+The derivative is the coefficient of the best first-order model:
+\[
+  f(a+h)=f(a)+f'(a)h+o(h).
+\]
+This viewpoint explains the product, quotient, and chain rules: they are rules for composing and multiplying first-order approximations.
+
+In several variables the same idea becomes the Fréchet derivative, a linear map rather than a single number.
+
+\section{Extrema and first variation}
+
+Fermat's lemma says that if \(f\) has a local extremum at an interior point and is differentiable there, then \(f'(a)=0\).  The derivative is the first variation; if a small positive and negative move are both allowed, the linear term must vanish.
+
+Second derivative tests then study the next nonzero term in the local expansion.
+
+\section{Young, Holder, and convex duality}
+
+Young's inequality
+\[
+  ab\le \frac{a^p}{p}+\frac{b^q}{q},\qquad \frac1p+\frac1q=1,
+\]
+is a convex-duality statement.  It is the pointwise engine behind Holder's inequality.  Minkowski then gives the triangle inequality for \(L^p\) norms.
+
+Thus the inequality part of the note connects differential calculus to convex analysis and normed spaces.
+
+\section{Local linearity and convex control}
+
+The chapter links two central ideas: derivatives provide local linear models, and inequalities describe convex or norm geometry.  Tangents, extrema, Young--Holder--Minkowski, and Jensen all express how local or averaged information controls global behavior.

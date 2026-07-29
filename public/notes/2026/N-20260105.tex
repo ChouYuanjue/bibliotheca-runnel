@@ -1,14 +1,567 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260105}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260105}
-\end{document}
+\notechapter{N-20260105}{Spectral Calculus and Positive Matrix Geometry: From Basis Changes to Lyapunov Equations}
+
+\section{Coordinates change, but the operator does not}
+
+Let \(V\) be a finite-dimensional vector space.  A basis turns a linear map \(T:V\to V\) into a matrix, but a different basis gives a different matrix for the same operator.  Suppose the ordered bases \(\alpha\) and \(\beta\) are related by
+\[
+  (\beta_1,\ldots,\beta_n)
+  =(\alpha_1,\ldots,\alpha_n)P.
+\]
+For every vector \(v\),
+\[
+  [v]_\alpha=P[v]_\beta.
+\]
+If \(A=[T]_\alpha\) and \(B=[T]_\beta\), then
+\[
+  B=P^{-1}AP.
+\]
+Thus similarity is not an arbitrary matrix manipulation.  It is the coordinate shadow of keeping the operator fixed while changing the basis.
+
+Quantities preserved by similarity belong to the operator rather than to its coordinates.  The characteristic polynomial, eigenvalues, trace, determinant, rank, and minimal polynomial are all similarity invariants.  This is why spectral methods can replace long coordinate computations: they work with data that survive every basis change.
+
+\section{A complete transition-matrix calculation}
+
+Let \(\varepsilon=(\varepsilon_1,\varepsilon_2,\varepsilon_3)\) be a reference basis and define
+\[
+  \alpha_1=\varepsilon_1,
+  \qquad
+  \alpha_2=\varepsilon_1+\varepsilon_2,
+  \qquad
+  \alpha_3=\varepsilon_1+\varepsilon_2+\varepsilon_3,
+\]
+while
+\[
+  \beta_1=\varepsilon_1+\varepsilon_2,
+  \qquad
+  \beta_2=2\varepsilon_2+\varepsilon_3,
+  \qquad
+  \beta_3=\varepsilon_1+3\varepsilon_3.
+\]
+The basis matrices relative to \(\varepsilon\) are
+\[
+  P_\alpha=
+  \begin{pmatrix}
+    1&1&1\\
+    0&1&1\\
+    0&0&1
+  \end{pmatrix},
+  \qquad
+  P_\beta=
+  \begin{pmatrix}
+    1&0&1\\
+    1&2&0\\
+    0&1&3
+  \end{pmatrix}.
+\]
+Since
+\[
+  (\beta_1,\beta_2,\beta_3)
+  =(\alpha_1,\alpha_2,\alpha_3)P,
+\]
+one has
+\[
+  P=P_\alpha^{-1}P_\beta
+  =
+  \begin{pmatrix}
+    0&-2&1\\
+    1&1&-3\\
+    0&1&3
+  \end{pmatrix}.
+\]
+A coordinate column transforms by
+\[
+  [v]_\alpha=P[v]_\beta.
+\]
+
+The question “which vectors have the same coordinate column in the \(\varepsilon\)- and \(\alpha\)-bases?” is also structural.  Such a column \(t\) must satisfy
+\[
+  t=P_\alpha t.
+\]
+Thus it lies in the fixed subspace of the transition matrix.  Here
+\[
+  (P_\alpha-I)t=0
+\]
+forces
+\[
+  t_2=t_3=0,
+\]
+so the common-coordinate vectors are exactly the multiples of \(\varepsilon_1\).  A basis exercise has become an eigenspace calculation for eigenvalue \(1\).
+
+\section{Polynomial relations turn matrix questions into scalar questions}
+
+Suppose
+\[
+  Av=\lambda v.
+\]
+For every polynomial \(p\),
+\[
+  p(A)v=p(\lambda)v.
+\]
+Consequently, if a matrix satisfies
+\[
+  p(A)=0,
+\]
+then every eigenvalue of \(A\) is a root of \(p\).
+
+This simple observation explains several common shortcuts.  If
+\[
+  A^k=0,
+\]
+then every eigenvalue is zero, so for an \(n\times n\) matrix
+\[
+  \det(I+3A)
+  =\prod_{i=1}^n(1+3\lambda_i)=1.
+\]
+The matrix need not be diagonalizable; the determinant conclusion uses only the eigenvalues counted with algebraic multiplicity.
+
+If a real matrix satisfies
+\[
+  A^2+aA+bI=0
+\]
+and
+\[
+  a^2-4b<0,
+\]
+then it has no real eigenvector.  Indeed, a real eigenvalue \(\lambda\) would satisfy
+\[
+  \lambda^2+a\lambda+b=0,
+\]
+contradicting the negative discriminant.  The matrix may still have complex eigenvalues and become diagonalizable over \(\mathbb C\); the obstruction is specifically to real eigendirections.
+
+\section{The minimal polynomial decides diagonalizability}
+
+The characteristic polynomial lists eigenvalues with algebraic multiplicity, but the minimal polynomial records the largest Jordan blocks.  A matrix is diagonalizable over a field precisely when its minimal polynomial splits into distinct linear factors.
+
+For example, if
+\[
+  A^3=A,
+\]
+then
+\[
+  A(A-I)(A+I)=0.
+\]
+Over a field of characteristic different from \(2\), the polynomial
+\[
+  x(x-1)(x+1)
+\]
+has three distinct roots.  The minimal polynomial divides this square-free polynomial, so \(A\) is diagonalizable and
+\[
+  V=\ker A\oplus\ker(A-I)\oplus\ker(A+I).
+\]
+This conclusion is stronger than merely saying that the possible eigenvalues are \(-1,0,1\).
+
+Repeated eigenvalues require more care.  If an \(n\times n\) matrix is known to be diagonalizable and \(\lambda\) has algebraic multiplicity \(m\), then
+\[
+  \dim\ker(A-\lambda I)=m.
+\]
+Thus a parameter problem with a repeated eigenvalue can often be solved by imposing a rank condition on \(A-\lambda I\).  The rank is not an unrelated trick; it measures the missing eigenspace dimension.
+
+\section{Spectral mapping also controls inverses and adjugates}
+
+If \(A\) is invertible and \(Av=\lambda v\), then
+\[
+  A^{-1}v=\lambda^{-1}v.
+\]
+Since
+\[
+  \operatorname{adj}(A)=\det(A)A^{-1},
+\]
+the same eigenvector satisfies
+\[
+  \operatorname{adj}(A)v
+  =\frac{\det A}{\lambda}v.
+\]
+Thus the eigenvalues of the adjugate are the products of all eigenvalues except one:
+\[
+  \frac{\lambda_1\cdots\lambda_n}{\lambda_i}
+  =\prod_{j\ne i}\lambda_j.
+\]
+
+Trace and determinant are the first two symmetric spectral statistics:
+\[
+  \operatorname{tr}A=\sum_i\lambda_i,
+  \qquad
+  \det A=\prod_i\lambda_i.
+\]
+They can be read from diagonal entries, from a triangular form, or from the eigenvalues because these are different coordinate descriptions of the same invariants.
+
+A row-sum shortcut fits the same pattern.  If every row sum of \(A\) equals \(c\), then
+\[
+  A\mathbf1=c\mathbf1,
+  \qquad
+  \mathbf1=(1,\ldots,1)^T.
+\]
+The aggregate direction \(\mathbf1\) is an invariant one-dimensional subspace.  The shortcut works because the matrix preserves a visible symmetry direction.
+
+\section{The symmetric spectral theorem turns spectrum into geometry}
+
+For a real symmetric matrix \(A\), there is an orthogonal matrix \(Q\) such that
+\[
+  A=Q\operatorname{diag}(\lambda_1,\ldots,\lambda_n)Q^T.
+\]
+The eigenspaces are mutually orthogonal, and every geometric statement can be checked along independent principal directions.
+
+Suppose a symmetric \(3\times3\) matrix has eigenvalues
+\[
+  -1,1,1
+\]
+and a \(-1\)-eigenvector
+\[
+  u=\frac1{\sqrt2}(0,1,1)^T.
+\]
+The orthogonal complement \(u^\perp\) is the \(+1\)-eigenspace.  Therefore \(A\) is reflection across \(u^\perp\):
+\[
+  A=I-2uu^T.
+\]
+Computing the rank-one term gives
+\[
+  A=
+  \begin{pmatrix}
+    1&0&0\\
+    0&0&-1\\
+    0&-1&0
+  \end{pmatrix}.
+\]
+This reconstructs the matrix without guessing two additional eigenvectors.  The spectral decomposition is the geometry of a reflection.
+
+\section{Functional calculus applies scalar functions along eigendirections}
+
+For a symmetric matrix
+\[
+  A=Q\operatorname{diag}(\lambda_i)Q^T
+\]
+and a function \(f\) defined on its spectrum, set
+\[
+  f(A)=Q\operatorname{diag}(f(\lambda_i))Q^T.
+\]
+This defines powers, exponentials, logarithms, and roots without choosing coordinates beyond the orthonormal eigenbasis.
+
+Every real number has a unique real odd root.  Hence, for any positive integer \(k\), define
+\[
+  B=Q\operatorname{diag}
+  \bigl(\sqrt[2k+1]{\lambda_1},\ldots,
+        \sqrt[2k+1]{\lambda_n}\bigr)Q^T.
+\]
+Then \(B\) is real symmetric and
+\[
+  B^{2k+1}=A.
+\]
+Even roots behave differently.  A real symmetric matrix has a real symmetric square root exactly when
+\[
+  A\succeq0.
+\]
+In that case it has a unique positive semidefinite square root, although other symmetric square roots may choose signs independently on eigenspaces.
+For a positive definite matrix, one may similarly define
+\[
+  A^t,
+  \qquad
+  \log A,
+  \qquad
+  e^A
+\]
+by applying the scalar functions to positive eigenvalues.
+
+\section{Rayleigh quotients define the Loewner order}
+
+For symmetric \(A\), the Rayleigh quotient is
+\[
+  R_A(x)=\frac{x^TAx}{x^Tx}.
+\]
+Writing \(x=Qy\) gives
+\[
+  R_A(x)
+  =\frac{\sum_i\lambda_i y_i^2}{\sum_i y_i^2}.
+\]
+It is a weighted average of the eigenvalues, so
+\[
+  \lambda_{\min}(A)
+  \le R_A(x)
+  \le\lambda_{\max}(A).
+\]
+The extreme values occur exactly on the corresponding eigenspaces.
+
+For symmetric matrices, define the Loewner order by
+\[
+  A\succeq B
+  \quad\Longleftrightarrow\quad
+  x^T(A-B)x\ge0
+  \quad\text{for every }x.
+\]
+Thus
+\[
+  A\succeq B
+  \quad\Longleftrightarrow\quad
+  \lambda_{\min}(A-B)\ge0.
+\]
+If
+\[
+  \lambda_{\min}(A)>\lambda_{\max}(B),
+\]
+then for every unit vector \(x\),
+\[
+  x^T(A-B)x
+  \ge\lambda_{\min}(A)-\lambda_{\max}(B)>0,
+\]
+so
+\[
+  A-B\succ0.
+\]
+The eigenvalue comparison is exactly an order statement about quadratic forms.
+
+\section{Positive definite matrices are ellipsoids and a convex cone}
+
+A symmetric matrix \(A\) is positive definite when
+\[
+  x^TAx>0
+  \qquad(x\ne0).
+\]
+Spectrally, this means
+\[
+  \lambda_i(A)>0
+\]
+for all \(i\).  Geometrically,
+\[
+  E_A=\{x:x^TAx\le1\}
+\]
+is an ellipsoid whose semi-axis lengths are
+\[
+  \lambda_i(A)^{-1/2}.
+\]
+If \(A\succeq B\succ0\), then
+\[
+  E_A\subseteq E_B.
+\]
+Larger quadratic forms produce smaller ellipsoids.
+
+The positive semidefinite matrices form the convex cone
+\[
+  S_+^n=\{A=A^T:A\succeq0\}.
+\]
+Indeed, if \(A,B\succeq0\) and \(s,t\ge0\), then
+\[
+  x^T(sA+tB)x
+  =s\,x^TAx+t\,x^TBx\ge0.
+\]
+Sylvester's criterion, which tests positivity through leading principal minors, is a coordinate certificate for membership in the interior of this cone.
+
+\section{A block matrix reveals its spectrum after one orthogonal change}
+
+Let \(B=B^T\) and consider
+\[
+  M=
+  \begin{pmatrix}
+    I&B\\
+    B&I
+  \end{pmatrix}.
+\]
+Use the orthogonal matrix
+\[
+  U=\frac1{\sqrt2}
+  \begin{pmatrix}
+    I&I\\
+    I&-I
+  \end{pmatrix}.
+\]
+A direct multiplication gives
+\[
+  U^TMU
+  =
+  \begin{pmatrix}
+    I+B&0\\
+    0&I-B
+  \end{pmatrix}.
+\]
+Therefore
+\[
+  M\succ0
+  \quad\Longleftrightarrow\quad
+  I+B\succ0
+  \text{ and }
+  I-B\succ0.
+\]
+Since the eigenvalues of \(I\pm B\) are \(1\pm\lambda_i(B)\),
+\[
+  \boxed{
+  M\succ0
+  \quad\Longleftrightarrow\quad
+  |\lambda_i(B)|<1
+  \text{ for every }i.}
+\]
+The block congruence trick is really a decomposition into symmetric and antisymmetric subspaces
+\[
+  (x,x),
+  \qquad
+  (x,-x).
+\]
+
+\section{Noncommutativity is where scalar order intuition fails}
+
+For positive numbers,
+\[
+  0<a\le b
+  \quad\Longrightarrow\quad
+  a^2\le b^2.
+\]
+The analogous matrix statement is false without commutativity.  Take
+\[
+  A=
+  \begin{pmatrix}
+    2&0\\
+    0&1
+  \end{pmatrix},
+  \qquad
+  B=
+  \begin{pmatrix}
+    3&1\\
+    1&2
+  \end{pmatrix}.
+\]
+Both are positive definite, and
+\[
+  B-A=
+  \begin{pmatrix}
+    1&1\\
+    1&1
+  \end{pmatrix}
+  \succeq0.
+\]
+However,
+\[
+  B^2-A^2
+  =
+  \begin{pmatrix}
+    6&5\\
+    5&4
+  \end{pmatrix}
+\]
+has determinant
+\[
+  24-25=-1,
+\]
+so it is indefinite.  Thus \(A\preceq B\) does not imply \(A^2\preceq B^2\).
+
+Functions that preserve Loewner order on every matrix size are called operator monotone.  The inverse function is order reversing:
+\[
+  0\prec A\preceq B
+  \quad\Longrightarrow\quad
+  B^{-1}\preceq A^{-1}.
+\]
+To see this, conjugate by \(B^{-1/2}\):
+\[
+  0\prec B^{-1/2}AB^{-1/2}\preceq I.
+\]
+Taking reciprocal eigenvalues reverses the inequality, and conjugating back gives the result.  The proof works because inversion can be reduced to an ordinary spectral inequality after a congruence.
+
+\section{A noncommuting positive-matrix inequality still reduces to one spectrum}
+
+For positive definite \(A,B\), consider
+\[
+  (A+B)(A^{-1}+B^{-1}).
+\]
+It need not be symmetric.  Nevertheless, it is similar to a symmetric positive definite matrix.  Set
+\[
+  X=A^{-1/2}BA^{-1/2}\succ0.
+\]
+Conjugation by \(A^{1/2}\) gives
+\[
+\begin{aligned}
+  A^{-1/2}(A+B)(A^{-1}+B^{-1})A^{1/2}
+  &=2I+X+X^{-1}.
+\end{aligned}
+\]
+If \(\lambda>0\) is an eigenvalue of \(X\), the corresponding eigenvalue of the right-hand side is
+\[
+  2+\lambda+\lambda^{-1}\ge4.
+\]
+Hence every eigenvalue of the original product is real and at least \(4\).
+
+The successful reduction does not require \(A\) and \(B\) to commute.  It uses a carefully chosen similarity that packages their relative position into the single positive matrix \(X\).
+
+\section{Sylvester equations are entrywise only in the right basis}
+
+Consider
+\[
+  AX+XB=C.
+\]
+If \(A\) and \(B\) are diagonalizable with eigenvalues \(\alpha_i\) and \(\beta_j\), the equation becomes entrywise in their eigenbases:
+\[
+  (\alpha_i+\beta_j)Y_{ij}=K_{ij}.
+\]
+Thus the solution is unique when
+\[
+  \alpha_i+\beta_j\ne0
+\]
+for every pair, equivalently when
+\[
+  \sigma(A)\cap\sigma(-B)=\varnothing.
+\]
+This is the spectral separation condition for the Sylvester operator
+\[
+  \mathcal S(X)=AX+XB.
+\]
+
+For the symmetric equation
+\[
+  AX+XA=C
+\]
+with \(A\succ0\), uniqueness follows because all sums \(\lambda_i(A)+\lambda_j(A)\) are positive.  If also \(C\succ0\), the solution has the integral representation
+\[
+  \boxed{
+  X=\int_0^\infty e^{-tA}Ce^{-tA}\,dt.}
+\]
+Indeed,
+\[
+  \frac d{dt}
+  \bigl(e^{-tA}Ce^{-tA}\bigr)
+  =-Ae^{-tA}Ce^{-tA}
+   -e^{-tA}Ce^{-tA}A.
+\]
+Integrating from \(0\) to \(\infty\) gives
+\[
+  AX+XA=C,
+\]
+because \(e^{-tA}\to0\).  Moreover, for \(v\ne0\),
+\[
+  v^TXv
+  =\int_0^\infty
+  (e^{-tA}v)^TC(e^{-tA}v)\,dt>0.
+\]
+Thus the unique solution is positive definite.  The integral proves positivity without requiring \(A\) and \(C\) to commute.
+
+\section{Lyapunov equations turn spectral decay into an energy function}
+
+Let a linear system satisfy
+\[
+  x'(t)=Mx(t).
+\]
+Assume every eigenvalue of \(M\) has negative real part.  For any \(Q\succ0\), define
+\[
+  P=\int_0^\infty e^{tM^T}Qe^{tM}\,dt.
+\]
+The exponential decay makes the integral converge, and the same differentiation argument yields
+\[
+  M^TP+PM=-Q.
+\]
+The matrix \(P\) is positive definite because
+\[
+  x^TPx
+  =\int_0^\infty
+  (e^{tM}x)^TQ(e^{tM}x)\,dt>0
+\]
+for \(x\ne0\).
+
+Now set
+\[
+  V(x)=x^TPx.
+\]
+Along a trajectory,
+\[
+\begin{aligned}
+  \frac d{dt}V(x(t))
+  &=x(t)^T(M^TP+PM)x(t)\\
+  &=-x(t)^TQx(t)<0
+\end{aligned}
+\]
+away from the origin.  The solution of a matrix equation has become a decreasing energy that proves asymptotic stability.
+
+This is where the chapter's themes meet.  Similarity isolates coordinate-independent spectral data; symmetric functional calculus turns that data into matrix functions and quadratic geometry; Loewner order records positivity; and the Lyapunov integral converts spectral decay into a concrete positive quadratic form.

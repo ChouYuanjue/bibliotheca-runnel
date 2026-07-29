@@ -1,14 +1,302 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20251108}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20251108}
-\end{document}
+\notechapter{N-20251108}{Notes on MML: Vectors, the Minus-One Trick, Linear Maps, Basis Change, Kernel, and Image}
+
+While reading the linear-algebra chapters of MML, the same objects kept moving between geometric, computational, and structural descriptions.  The first example is the word ``vector'' itself.
+
+\section{Vectors beyond arrows}
+
+Vectors are not only geometric arrows.  Polynomials form a vector space because they can be added and scaled.  Audio signals can likewise be represented by lists of numbers whose addition and scalar multiplication remain valid signals.
+
+Machine-learning embeddings provide another example.  Word and sentence vectors are not literal geometric arrows, but they live in vector spaces and obey vector operations; their meaning comes from the learned representation.
+
+The lesson is that a vector is an element of a vector space.  Geometry is only one model.
+
+\section{The minus-one trick}
+
+The MML notes use a practical trick for reading solutions of a homogeneous system
+\[
+  Ax=0,\qquad A\in\mathbb R^{k\times n}.
+\]
+Assume $A$ is in reduced row echelon form and has no zero rows.  Pivot columns correspond to leading ones; free columns correspond to variables that can be chosen freely.
+
+The minus-one trick augments the row-reduced matrix into an $n\times n$ matrix by inserting rows with a single $-1$ in the diagonal positions corresponding to free variables.  Then the columns containing $-1$ on the diagonal directly give basis vectors for the null space.
+
+The point is not magic.  It is a compact way of doing the usual free-variable substitution.  Setting one free variable to $1$ and the others to $0$ gives one kernel basis vector; the inserted $-1$ row records that choice.
+
+\section{Example of the trick}
+
+Consider
+\[
+  A=
+  \begin{bmatrix}
+  1&3&0&0&3\\
+  0&0&1&0&9\\
+  0&0&0&1&-4
+  \end{bmatrix}.
+\]
+The free variables are in columns $2$ and $5$.  Augmenting gives
+\[
+  \widetilde A=
+  \begin{bmatrix}
+  1&3&0&0&3\\
+  0&-1&0&0&0\\
+  0&0&1&0&9\\
+  0&0&0&1&-4\\
+  0&0&0&0&-1
+  \end{bmatrix}.
+\]
+The columns with diagonal $-1$ give
+\[
+  x=\lambda_1
+  \begin{bmatrix}3\\-1\\0\\0\\0\end{bmatrix}
+  +\lambda_2
+  \begin{bmatrix}3\\0\\9\\-4\\-1\end{bmatrix}.
+\]
+This is the same solution one obtains by solving by free variables, but the trick makes the basis easy to read.
+
+\section{Linear mappings}
+
+A mapping $\Phi:V\to W$ between vector spaces is linear if
+\[
+  \Phi(\lambda x+\psi y)=\lambda \Phi(x)+\psi \Phi(y)
+\]
+for all $x,y\in V$ and scalars $\lambda,\psi$.
+
+Important special cases are:
+\begin{itemize}
+  \item an isomorphism is linear and bijective;
+  \item an endomorphism is a linear map $V\to V$;
+  \item an automorphism is a bijective endomorphism;
+  \item the identity map $\operatorname{id}_V:V\to V$ is the identity automorphism.
+\end{itemize}
+
+These notions may be summarized as “same structure,” “same domain and codomain,” and “self-isomorphism.”
+
+\section{Complex numbers as a real vector space}
+
+The example
+\[
+  \Phi:\mathbb R^2\to\mathbb C,\qquad
+  \Phi(x_1,x_2)=x_1+ix_2
+\]
+is linear over $\mathbb R$:
+\[
+  \Phi(x+y)=\Phi(x)+\Phi(y),\qquad
+  \Phi(\lambda x)=\lambda \Phi(x).
+\]
+It is also bijective, so it is an isomorphism of real vector spaces.
+
+The note marks this as a homomorphism.  The important distinction is that it preserves the vector-space addition and scalar multiplication.  It is not claiming that every additional structure is automatically preserved.
+
+\section{Finite-dimensional isomorphism theorem}
+
+The theorem quoted from Axler says that finite-dimensional vector spaces $V$ and $W$ are isomorphic iff
+\[
+  \dim V=\dim W.
+\]
+This is one of the most important simplifications in finite-dimensional linear algebra: after choosing bases, all $n$-dimensional vector spaces over the same field look like $\mathbb F^n$.
+
+But this isomorphism is not canonical unless a basis is chosen.  The abstract vector space and its coordinate representation are related but not identical.
+
+\section{Basis change}
+
+Let $\Phi:V\to W$ be linear.  Suppose $V$ has old basis
+\[
+  B=(b_1,\ldots,b_n)
+\]
+and new basis
+\[
+  \widetilde B=(\widetilde b_1,\ldots,\widetilde b_n).
+\]
+Similarly, let $W$ have old basis
+\[
+  C=(c_1,\ldots,c_m)
+\]
+and new basis
+\[
+  \widetilde C=(\widetilde c_1,\ldots,\widetilde c_m).
+\]
+If $A_\Phi$ is the matrix of $\Phi$ with respect to $B,C$, and $\widetilde A_\Phi$ is the matrix with respect to $\widetilde B,\widetilde C$, then
+\[
+  \widetilde A_\Phi=T^{-1}A_\Phi S.
+\]
+Here $S$ converts coordinates from the new basis of $V$ to the old basis of $V$, and $T$ converts coordinates from the new basis of $W$ to the old basis of $W$.
+
+The coordinate-change diagram expresses exactly this procedure: translate the input coordinates into the original basis, apply $A_\Phi$, and then translate the output coordinates into the new output basis.
+
+\section{Equivalence and similarity}
+
+Two rectangular matrices $A,\widetilde A\in\mathbb R^{m\times n}$ are equivalent if there exist invertible matrices $S\in\mathbb R^{n\times n}$ and $T\in\mathbb R^{m\times m}$ such that
+\[
+  \widetilde A=T^{-1}AS.
+\]
+This corresponds to changing the basis in both domain and codomain.
+
+Two square matrices $A,\widetilde A\in\mathbb R^{n\times n}$ are similar if
+\[
+  \widetilde A=S^{-1}AS.
+\]
+This corresponds to changing basis for a linear map $V\to V$ using the same coordinate change in domain and codomain.
+
+The distinction is:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Concept & Situation & Invariant meaning \\
+\midrule
+Equivalence & linear map $V\to W$ & change bases in domain and codomain \\
+Similarity & linear map $V\to V$ & same operator in a new basis \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Kernel and image}
+
+For a linear map $\Phi:V\to W$, the kernel is
+\[
+  \ker \Phi=\{v\in V:\Phi(v)=0_W\},
+\]
+and the image is
+\[
+  \operatorname{Im}\Phi=\{w\in W:\exists v\in V,\ \Phi(v)=w\}.
+\]
+The kernel records what is collapsed to zero.  The image records what outputs are reachable.
+
+The source diagram shows the domain on the left, codomain on the right, a yellow region for the kernel, and a blue/yellow region for the image.  The note also records the injectivity criterion:
+\[
+  \Phi\text{ is injective}\quad\Longleftrightarrow\quad\ker \Phi=\{0_V\}.
+\]
+
+\section{Categorical side remarks}
+
+The margin notes compare kernel, image, and cokernel with categorical language.  In ordinary linear algebra,
+\[
+  \ker f\to A\to B
+\]
+means the kernel is a subobject of the domain.  The image is a subobject of the codomain.  The cokernel, when defined, is a quotient-like object on the codomain side.
+
+This is a useful preview: linear algebra already contains many category-theoretic patterns, even before they are named abstractly.
+
+\section{The general pattern}
+
+This note links computational linear algebra with structural thinking.  Row reduction gives the null space; the minus-one trick packages free-variable substitution.  Linear maps become matrices only after choosing bases.  Basis change explains why the same map can have different matrices.  Kernel and image describe what a map destroys and what it reaches.  These ideas are also the language behind machine-learning embeddings, where vectors need not be arrows but still live in vector spaces with meaningful linear structure.
+
+\section{Vectors as elements of a linear structure}
+A vector is not essentially an arrow; it is an element of a vector space.  Coordinates appear only after choosing a basis.  The same vector has different coordinate columns in different bases.
+\section{The minus-one trick as a kernel graph}
+
+The phrase ``minus-one trick'' should be understood carefully.  In this note it is not primarily a homogeneous-coordinate trick and it is not an affine shift.  It is a compact way of reading the kernel of a row-reduced homogeneous system.
+
+\begin{proposition}[Kernel graph form of an RREF system]
+After possibly reordering variables, suppose a homogeneous system has row-reduced matrix
+\[
+  \begin{bmatrix} I_r&A\end{bmatrix}.
+\]
+Write the unknown vector as
+\[
+  x=(x_p,x_f),
+\]
+where \(x_p\in k^r\) are pivot variables and \(x_f\in k^{n-r}\) are free variables.  Then the solution space is
+\[
+  \ker\begin{bmatrix} I_r&A\end{bmatrix}
+  =
+  \left\{
+  \begin{pmatrix}-Au\\ u\end{pmatrix}
+  :u\in k^{n-r}
+  \right\}.
+\]
+Thus the kernel is the graph of the linear map
+\[
+  u\longmapsto -Au.
+\]
+\end{proposition}
+
+\begin{proof}
+The equation is
+\[
+  x_p+A x_f=0.
+\]
+Hence \(x_p=-A x_f\).  If we write \(u=x_f\), every solution has the displayed form, and every displayed vector clearly satisfies the equation.
+\end{proof}
+
+The inserted \(-1\) rows in the practical trick are a bookkeeping device for the free variables.  Choosing \(u=e_j\), the \(j\)-th standard basis vector of the free-variable space, gives one kernel basis vector:
+\[
+  \begin{pmatrix}-Ae_j\\ e_j\end{pmatrix}.
+\]
+So the trick is best read as a way of writing the graph basis of a kernel.
+
+\begin{remark}[Do not confuse two uses of extra coordinates]
+Homogeneous coordinates do turn affine transformations into linear transformations one dimension higher.  That is a real and useful idea.  But the minus-one trick in this row-reduction context is different: it does not linearize an affine map; it packages the free-variable choices in a homogeneous linear system.
+\end{remark}
+\section{Kernel-image factorization}
+For a linear map \(T:V\to W\), the kernel records lost directions and the image records reachable directions.  Rank-nullity says
+\[
+\dim V=\dim\ker T+\dim\operatorname{im}T.
+\]
+\section{Coordinates, kernels, and affine linearization}
+The review should distinguish vectors from coordinates, affine maps from linear maps, and a matrix from the linear transformation it represents.  Kernel, image, and basis change are the structural core.
+
+\section{Exact sequences behind rank-nullity}
+
+For a linear map $T:V\to W$, the kernel and image fit into the exact sequence
+\[
+  0\to \ker T \to V \xrightarrow{T} \operatorname{im}T \to 0.
+\]
+Exactness means that the image of each arrow equals the kernel of the next.  Taking dimensions gives
+\[
+  \dim V=\dim \ker T+\dim \operatorname{im}T.
+\]
+This is rank-nullity.
+
+The elementary theorem is therefore the dimension shadow of an exact sequence.  Exact sequences become one of the central languages of algebra, topology, and geometry.
+
+\section{Quotient description of the image}
+
+The first isomorphism theorem says
+\[
+  V/\ker T\cong \operatorname{im}T.
+\]
+The quotient collapses all vectors that differ by a null vector.  What remains is precisely the information visible after applying $T$.
+
+This gives a clean meaning to free variables and solution spaces.  The kernel is what the map forgets; the image is what survives.
+
+\section{Cokernel and obstructions}
+
+The cokernel of $T:V\to W$ is
+\[
+  \operatorname{coker}T=W/\operatorname{im}T.
+\]
+It measures the failure of $T$ to be onto.  A system
+\[
+  Tx=b
+\]
+is solvable exactly when $b$ maps to zero in the cokernel.
+
+Thus kernel measures non-uniqueness, while cokernel measures obstruction to existence.  This is the conceptual form of the elementary distinction between infinitely many solutions and no solution.
+
+\section{Kernel, image, and quotient survive basis changes}
+
+The minus-one trick, basis conversion, and kernel/image computations in the note are all examples of one structure: a linear map forgets some directions, preserves some information, and may fail to reach some outputs.  Exact sequences and quotients express this without depending on a chosen matrix.
+
+\section{Row reduction as choosing a splitting}
+
+When a matrix is row-reduced, the pivot variables are expressed in terms of free variables.  Abstractly, this chooses a splitting of the domain into a complement of the kernel plus the kernel:
+\[
+  V\cong U\oplus \ker T.
+\]
+The map $T$ is injective on the chosen complement $U$ and maps $U$ isomorphically onto $\operatorname{im}T$.
+
+This splitting is not canonical: different row-reduction choices or different bases may choose different complements.  The exact sequence
+\[
+  0\to\ker T\to V\to\operatorname{im}T\to0
+\]
+is canonical; a particular parametric solution is a coordinate choice.
+
+\section{Cokernel as the missing equation space}
+
+For $T:V\to W$, the cokernel $W/\operatorname{im}T$ measures which right-hand sides are not reachable.  In matrix terms, left null vectors produce compatibility conditions.  If $y\in\ker T^T$, then any solvable equation $Tx=b$ must satisfy
+\[
+  y^Tb=0.
+\]
+Thus the left null space is the dual of the obstruction space.
+
+This gives a precise interpretation of consistency conditions in linear systems: they are not extra tricks, but equations defining whether $b$ vanishes in the cokernel.

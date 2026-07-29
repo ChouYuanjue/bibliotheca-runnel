@@ -1,14 +1,259 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260620}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260620}
-\end{document}
+\notechapter{N-20260620}{The Second-Order Wave Equation and d'Alembert's Formula}
+
+\section{The equation and its physical meaning}
+
+The one-dimensional wave equation is
+\[
+  u_{tt}=c^2u_{xx},
+\]
+where \(u(x,t)\) is the vertical displacement of a string and \(c>0\) is the wave speed.  The equation says that acceleration is proportional to curvature.  This is physically reasonable: translating the whole string upward produces no restoring force, and a straight slanted string has no net restoring force; only bending produces acceleration.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.95,>=Stealth,every node/.style={fill=white,inner sep=1pt}]
+  \draw[gray,dashed] (0,0)--(6.2,0) node[right] {equilibrium};
+  \draw[thick,domain=0:6.2,samples=120] plot(\x,{0.55*sin(90*\x)});
+  \draw[->,red!75!black,thick] (1.55,0) -- (1.55,0.55) node[midway,right=2pt] {$u(x,t)$};
+  \node[below] at (3.1,-0.45) {$x$};
+\end{tikzpicture}
+\caption{A vibrating string.  The vertical displacement \(u(x,t)\) is measured from the equilibrium line.}
+\end{figure}
+
+The equation is called hyperbolic because its highest-order part has the sign pattern of \(\partial_t^2-c^2\partial_x^2\).  This name is about the algebraic type of the differential operator, not about hyperbolas as curves.
+
+\section{Factorization into transport operators}
+
+The wave operator factors as
+\[
+  \partial_t^2-c^2\partial_x^2
+  = (\partial_t+c\partial_x)(\partial_t-c\partial_x).
+\]
+Since the two constant-coefficient operators commute, the wave equation can be read as a pair of first-order transport equations.  Any function of \(x+ct\) solves the equation, and any function of \(x-ct\) also solves it.
+
+\begin{theorem}[d'Alembert form]
+Every twice differentiable solution of
+\[
+  u_{tt}=c^2u_{xx}
+\]
+on a simply connected region in the \((x,t)\)-plane can locally be written as
+\[
+  u(x,t)=F(x+ct)+G(x-ct).
+\]
+The term \(F(x+ct)\) travels left, and \(G(x-ct)\) travels right.
+\end{theorem}
+
+\begin{proof}
+Set
+\[
+  \xi=x+ct,\qquad \eta=x-ct.
+\]
+By the chain rule,
+\[
+  \partial_x=\partial_\xi+\partial_\eta,\qquad
+  \partial_t=c\partial_\xi-c\partial_\eta.
+\]
+A direct calculation gives
+\[
+  u_{tt}-c^2u_{xx}=-4c^2u_{\xi\eta}.
+\]
+Thus the wave equation is \(u_{\xi\eta}=0\).  Integrating once in \(\eta\) gives \(u_\xi=A(\xi)\), and integrating in \(\xi\) gives \(u=F(\xi)+G(\eta)\).
+\end{proof}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.95,>=Stealth,every node/.style={fill=white,inner sep=1pt}]
+  \draw[->] (-3.2,0)--(3.2,0) node[right] {$x$};
+  \draw[->] (0,-0.2)--(0,3.6) node[above] {$t$};
+  \draw[red!70!black,thick] (-2.4,0)--(0.0,3.0) node[above left] {$x+ct=\text{const.}$};
+  \draw[blue!70!black,thick] (2.4,0)--(0.0,3.0) node[above right] {$x-ct=\text{const.}$};
+  \fill (0,1.6) circle (1.5pt) node[right=2pt] {influence cone};
+\end{tikzpicture}
+\caption{The two characteristic families of the wave equation.  A point receives information from both left-moving and right-moving characteristic directions.}
+\end{figure}
+
+\section{Initial-value problem on the whole line}
+
+Suppose
+\[
+  u(x,0)=\phi(x),\qquad u_t(x,0)=\psi(x).
+\]
+From \(u=F(x+ct)+G(x-ct)\), the first condition gives
+\[
+  F(x)+G(x)=\phi(x).
+\]
+The second condition gives
+\[
+  cF'(x)-cG'(x)=\psi(x).
+\]
+Solving these two equations yields the d'Alembert formula
+\[
+  u(x,t)=\frac{1}{2}\bigl[\phi(x+ct)+\phi(x-ct)\bigr]
+  +\frac{1}{2c}\int_{x-ct}^{x+ct}\psi(s)\,ds.
+\]
+This formula shows finite propagation speed: the value at \((x,t)\) depends only on the initial data in the interval \([x-ct,x+ct]\).
+
+\begin{example}[Zero initial velocity]
+Let
+\[
+  \phi(x)=\frac{1}{1+x^2},\qquad \psi(x)=0.
+\]
+Then
+\[
+  u(x,t)=\frac12\left[\frac{1}{1+(x+ct)^2}+\frac{1}{1+(x-ct)^2}\right].
+\]
+The initial bump splits into two half-sized bumps travelling in opposite directions.
+\end{example}
+
+\section{Finite strings and Fourier series}
+
+For a string fixed at \(x=0\) and \(x=L\), the boundary conditions are
+\[
+  u(0,t)=u(L,t)=0.
+\]
+The spatial eigenfunctions satisfying these boundary conditions are
+\[
+  \sin\frac{n\pi x}{L},\qquad n=1,2,3,\ldots.
+\]
+Separation of variables gives normal modes
+\[
+  u_n(x,t)=\sin\frac{n\pi x}{L}
+  \left(A_n\cos\frac{n\pi ct}{L}+B_n\sin\frac{n\pi ct}{L}\right).
+\]
+A general solution is a Fourier sine series built from these modes:
+\[
+  u(x,t)=\sum_{n=1}^{\infty}\sin\frac{n\pi x}{L}
+  \left(A_n\cos\frac{n\pi ct}{L}+B_n\sin\frac{n\pi ct}{L}\right).
+\]
+This is the first bridge from the Fourier-series note to PDEs: boundary conditions choose the spatial basis, while the PDE determines the time oscillation of each coefficient.
+
+% Expanded PDE supplement: N-20260620
+\section{Energy conservation}
+
+The wave equation has a conserved energy.  On the whole line, assume \(u\) and its derivatives decay sufficiently fast as \(|x|\to\infty\).  Define
+\[
+  E(t)=\frac12\int_{-\infty}^{\infty}
+  \left(u_t(x,t)^2+c^2u_x(x,t)^2\right)\,dx.
+\]
+Then
+\[
+  \frac{dE}{dt}=\int_{-\infty}^{\infty}(u_tu_{tt}+c^2u_xu_{xt})\,dx.
+\]
+Using \(u_{tt}=c^2u_{xx}\),
+\[
+  \frac{dE}{dt}=c^2\int_{-\infty}^{\infty}(u_tu_{xx}+u_xu_{xt})\,dx.
+\]
+Integrating the first term by parts gives
+\[
+  \int u_tu_{xx}\,dx=-\int u_{tx}u_x\,dx,
+\]
+so the two terms cancel and \(E'(t)=0\).
+
+\begin{theorem}[Uniqueness by energy]
+For the wave equation on the whole line with sufficiently decaying smooth solutions, the initial data \(u(x,0)\) and \(u_t(x,0)\) determine at most one solution.
+\end{theorem}
+
+\begin{proof}
+If \(u\) and \(v\) are two solutions with the same initial data, set \(w=u-v\).  Then \(w\) solves the homogeneous wave equation with zero initial displacement and zero initial velocity.  Its energy at \(t=0\) is zero.  Since energy is conserved, \(E_w(t)=0\) for all \(t\).  Hence \(w_t=0\) and \(w_x=0\), so \(w\) is constant in space and time.  The initial data give \(w=0\).
+\end{proof}
+
+Energy is often more robust than an explicit formula.  On domains where d'Alembert's formula is unavailable, energy still gives uniqueness and stability.
+
+\section{Inhomogeneous wave equation and Duhamel's principle}
+
+Consider
+\[
+  u_{tt}-c^2u_{xx}=F(x,t),\qquad u(x,0)=0,\qquad u_t(x,0)=0.
+\]
+The forcing \(F\) can be viewed as continuously injecting infinitesimal initial velocities.  Duhamel's principle gives
+\[
+  u(x,t)=\frac{1}{2c}\int_0^t \int_{x-c(t-s)}^{x+c(t-s)}F(\xi,s)\,d\xi\,ds.
+\]
+This formula is the forced analogue of d'Alembert's formula.  The triangular integration region is the past light cone of \((x,t)\).
+
+\begin{example}[Localized forcing]
+If \(F\) is supported near a point \((x_*,s_*)\), then it can influence \((x,t)\) only if
+\[
+  |x-x_*|\le c(t-s_*),\qquad s_*\le t.
+\]
+This is finite propagation speed in another form.  Information does not instantly appear everywhere; it travels along the characteristic cone.
+\end{example}
+
+\section{Boundary conditions on a finite interval}
+
+For a finite string \(0<x<L\), the physical boundary condition depends on how the endpoint is constrained.
+
+\begin{itemize}
+  \item Fixed endpoints give Dirichlet conditions:
+  \[
+    u(0,t)=u(L,t)=0.
+  \]
+  \item Free endpoints give Neumann conditions:
+  \[
+    u_x(0,t)=u_x(L,t)=0.
+  \]
+  \item A damped or elastic endpoint can lead to mixed conditions such as
+  \[
+    \alpha u+\beta u_x=0
+  \]
+  at an endpoint.
+\end{itemize}
+
+The boundary condition selects the spatial eigenfunctions.  Dirichlet conditions produce sine modes, while Neumann conditions produce cosine modes.  This explains why half-range Fourier expansions are not only computational tricks: they encode boundary behavior.
+
+\section{Deriving the Fourier coefficients}
+
+For the fixed string, write
+\[
+  u(x,t)=\sum_{n=1}^{\infty} q_n(t)\sin\frac{n\pi x}{L}.
+\]
+Substituting into \(u_{tt}=c^2u_{xx}\) gives
+\[
+  q_n''(t)+\left(\frac{n\pi c}{L}\right)^2q_n(t)=0.
+\]
+Hence
+\[
+  q_n(t)=A_n\cos\frac{n\pi ct}{L}+B_n\sin\frac{n\pi ct}{L}.
+\]
+If
+\[
+  u(x,0)=\phi(x),\qquad u_t(x,0)=\psi(x),
+\]
+then
+\[
+  A_n=\frac{2}{L}\int_0^L \phi(x)\sin\frac{n\pi x}{L}\,dx,
+\]
+and
+\[
+  \frac{n\pi c}{L}B_n=\frac{2}{L}\int_0^L \psi(x)\sin\frac{n\pi x}{L}\,dx.
+\]
+Thus
+\[
+  B_n=\frac{2}{n\pi c}\int_0^L \psi(x)\sin\frac{n\pi x}{L}\,dx.
+\]
+The role of orthogonality is explicit: it decouples one PDE into infinitely many harmonic oscillators.
+
+\section{Standing waves and travelling waves}
+
+The functions
+\[
+  \sin\frac{n\pi x}{L}\cos\frac{n\pi ct}{L}
+\]
+are standing waves.  Their nodes are fixed in space.  By contrast, d'Alembert's formula writes the solution as travelling waves.  These are not contradictory descriptions.  A standing wave is the superposition of a left-moving and a right-moving travelling wave of the same frequency.
+
+For example,
+\[
+  \sin(kx)\cos(kct)=\frac12\left[\sin(k(x+ct))+\sin(k(x-ct))\right].
+\]
+The Fourier description is best adapted to bounded intervals and boundary conditions; the travelling-wave description is best adapted to the whole line and propagation.
+
+\section{The wave equation with damping}
+
+A simple damped string model is
+\[
+  u_{tt}+\gamma u_t=c^2u_{xx},\qquad \gamma>0.
+\]
+The energy is no longer conserved.  Multiplying by \(u_t\) and integrating gives
+\[
+  \frac{dE}{dt}=-\gamma\int u_t^2\,dx\le0.
+\]
+Thus damping removes kinetic energy.  This example shows how a small change in the PDE changes the qualitative behavior: the undamped wave equation transports energy, while the damped wave equation dissipates it.

@@ -1,14 +1,411 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20230220}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20230220}
-\end{document}
+\notechapter{N-20230220}{Special Proofs of Trigonometric Addition Formulas}
+
+\section{Why prove the same identity more than once?}
+
+The addition formulas are familiar:
+\[
+  \cos(\alpha+\beta)
+  =\cos\alpha\cos\beta-\sin\alpha\sin\beta,
+\]
+\[
+  \sin(\alpha+\beta)
+  =\sin\alpha\cos\beta+\cos\alpha\sin\beta.
+\]
+A second proof is worthwhile only when it reveals something the first proof hides.  A Euclidean proof shows how angle and signed area enter.  A rotation-matrix proof identifies the formulas with a group law.  A complex-exponential proof packages both identities into one multiplicative equation.  A projective calculation explains why the tangent formula has a denominator and what happens when it vanishes.
+
+These proofs also differ in logical cost.  Some begin from synthetic Euclidean geometry.  Some assume a classification of plane rotations.  Some require power series or differential equations.  The aim of this chapter is therefore not to accumulate tricks, but to compare proof architectures:
+\[
+  \text{assumptions}
+  \longrightarrow
+  \text{mechanism}
+  \longrightarrow
+  \text{conclusion}
+  \longrightarrow
+  \text{possible generalization}.
+\]
+
+Throughout, put
+\[
+  u(\theta)=(\cos\theta,\sin\theta).
+\]
+Sine and cosine are initially the coordinates of the unit-circle point at directed angle \(\theta\).
+
+\section{A chord-length proof of the cosine difference formula}
+
+Take two points
+\[
+  P=u(\alpha),
+  \qquad
+  Q=u(\beta)
+\]
+on the unit circle.  The angle at the center between the two radii is \(\alpha-\beta\), up to orientation.  The law of cosines in the isosceles triangle \(OPQ\) gives
+\[
+  |P-Q|^2
+  =1^2+1^2-2\cos(\alpha-\beta).
+\]
+Thus
+\[
+  |P-Q|^2=2-2\cos(\alpha-\beta).
+\]
+
+The same squared distance can be computed from coordinates:
+\[
+  |P-Q|^2
+  =(\cos\alpha-\cos\beta)^2
+   +(\sin\alpha-\sin\beta)^2.
+\]
+Expanding and using
+\[
+  \cos^2\theta+\sin^2\theta=1
+\]
+gives
+\[
+  |P-Q|^2
+  =2-2(\cos\alpha\cos\beta+\sin\alpha\sin\beta).
+\]
+Comparing the two expressions yields
+\[
+  \boxed{
+  \cos(\alpha-\beta)
+  =\cos\alpha\cos\beta+\sin\alpha\sin\beta.}
+\]
+Replacing \(\beta\) by \(-\beta\) and using the parity of sine and cosine gives the cosine addition formula.
+
+This proof does not use rotation matrices or complex numbers.  It does use the Euclidean distance formula, the Pythagorean identity, and the law of cosines.  If the law of cosines was itself proved from the dot-product identity
+\[
+  u\cdot v=|u||v|\cos\angle(u,v),
+\]
+then the proof is really an inner-product proof in geometric clothing.  That is not a defect, but it should be stated honestly.
+
+\section{Signed area proves the sine difference formula}
+
+The determinant of two plane vectors is their signed parallelogram area:
+\[
+  \det(P,Q)
+  =
+  \det
+  \begin{pmatrix}
+    \cos\alpha&\cos\beta\\
+    \sin\alpha&\sin\beta
+  \end{pmatrix}.
+\]
+Computing the determinant gives
+\[
+  \det(P,Q)
+  =\cos\alpha\sin\beta-\sin\alpha\cos\beta.
+\]
+
+Geometrically, \(P\) and \(Q\) are unit vectors whose directed angle from \(P\) to \(Q\) is \(\beta-\alpha\).  The signed parallelogram area is therefore
+\[
+  \det(P,Q)=\sin(\beta-\alpha).
+\]
+Consequently,
+\[
+  \boxed{
+  \sin(\beta-\alpha)
+  =\sin\beta\cos\alpha-\cos\beta\sin\alpha.}
+\]
+Changing signs or interchanging \(\alpha\) and \(\beta\) produces all sine addition and subtraction formulas.
+
+Orientation is essential here.  Ordinary unsigned area would give only
+\[
+  |\sin(\beta-\alpha)|.
+\]
+The determinant remembers whether the second vector lies counterclockwise or clockwise from the first.  The sign in the addition formula is therefore an orientation statement, not an arbitrary convention.
+
+The cosine and sine proofs can be combined in one identity.  In an oriented Euclidean plane,
+\[
+  P\cdot Q+i\det(P,Q)
+  =e^{i(\beta-\alpha)}.
+\]
+The real part records metric information; the imaginary part records oriented area.
+
+\section{The rotation proof begins from a group law}
+
+Let \(R(\theta)\) be the unique orientation-preserving Euclidean isometry fixing the origin and sending the first basis vector to \(u(\theta)\).  Its second column must be the positive quarter-turn of the first, so
+\[
+  R(\theta)=
+  \begin{pmatrix}
+    \cos\theta&-\sin\theta\\
+    \sin\theta&\cos\theta
+  \end{pmatrix}.
+\]
+
+Rotating first by \(\beta\) and then by \(\alpha\) adds directed angles.  Hence
+\[
+  R(\alpha)R(\beta)=R(\alpha+\beta).
+\]
+This statement is geometric: it says that composition in the rotation group corresponds to addition of angle parameters.
+
+Matrix multiplication gives
+\[
+  R(\alpha)R(\beta)
+  =
+  \begin{pmatrix}
+    \cos\alpha\cos\beta-\sin\alpha\sin\beta
+    &-\cos\alpha\sin\beta-\sin\alpha\cos\beta\\
+    \sin\alpha\cos\beta+\cos\alpha\sin\beta
+    &-\sin\alpha\sin\beta+\cos\alpha\cos\beta
+  \end{pmatrix}.
+\]
+Comparing with \(R(\alpha+\beta)\) proves both addition formulas at once.
+
+The proof is short, but it is not assumption-free.  One must know that rotations compose by adding directed angles and that the displayed matrix represents the geometric rotation independently of the formulas being proved.  If the matrix formula for \(R(\theta)\) was itself derived by applying the addition formulas to a general vector, the reasoning would be circular.
+
+The structural advantage is substantial.  The formulas are now matrix coefficients of a representation
+\[
+  R:\mathbb R/2\pi\mathbb Z\longrightarrow SO(2).
+\]
+The identity
+\[
+  R(\alpha+\beta)=R(\alpha)R(\beta)
+\]
+is a homomorphism law, and the trigonometric identities are its coordinate expansion.
+
+\section{An analytic Euler proof with no hidden circularity}
+
+Euler's formula is often used in one line:
+\[
+  e^{i\theta}=\cos\theta+i\sin\theta.
+\]
+Then
+\[
+  e^{i(\alpha+\beta)}=e^{i\alpha}e^{i\beta}
+\]
+immediately yields the addition formulas by comparing real and imaginary parts.  This is valid only if Euler's formula and the exponential law were established without already using the addition formulas.
+
+One noncircular route begins from power series.  Define
+\[
+  e^z=\sum_{n=0}^{\infty}\frac{z^n}{n!},
+\]
+\[
+  \cos z=\sum_{n=0}^{\infty}(-1)^n\frac{z^{2n}}{(2n)!},
+  \qquad
+  \sin z=\sum_{n=0}^{\infty}(-1)^n\frac{z^{2n+1}}{(2n+1)!}.
+\]
+Absolute convergence justifies regrouping terms, and separating even and odd powers gives
+\[
+  e^{iz}=\cos z+i\sin z.
+\]
+The Cauchy product of the exponential series proves
+\[
+  e^{z+w}=e^ze^w.
+\]
+Therefore
+\[
+  \cos(\alpha+\beta)+i\sin(\alpha+\beta)
+  =
+  (\cos\alpha+i\sin\alpha)
+  (\cos\beta+i\sin\beta).
+\]
+Multiplying the right-hand side and comparing components proves the formulas.
+
+A second noncircular analytic route uses differential equations.  Let \(z(t)\) solve
+\[
+  z'(t)=iz(t),
+  \qquad
+  z(0)=1.
+\]
+Uniqueness implies the flow law
+\[
+  z(s+t)=z(s)z(t).
+\]
+Writing \(z=x+iy\) gives
+\[
+  x'=-y,
+  \qquad
+  y'=x,
+  \qquad
+  x(0)=1,
+  \quad
+  y(0)=0.
+\]
+If cosine and sine are defined as the solutions of this system, then
+\[
+  z(t)=\cos t+i\sin t,
+\]
+and the flow law again yields the addition formulas.
+
+These analytic proofs generalize well because exponentials and flows exist in many algebras and Lie groups.  Their cost is that they depend on analysis rather than elementary circle geometry.
+
+\section{Where the circular Euler proof enters}
+
+There is another common derivation of Euler's formula.  One starts with the trigonometric addition formulas, proves that
+\[
+  \theta\longmapsto \cos\theta+i\sin\theta
+\]
+is multiplicative, and then identifies this multiplicative map with \(e^{i\theta}\).  This is an excellent derivation of Euler's formula from trigonometry.
+
+It cannot then be reversed and advertised as an independent proof of the addition formulas.  The logical loop would be
+\[
+  \text{addition formulas}
+  \Longrightarrow
+  \text{Euler formula}
+  \Longrightarrow
+  \text{addition formulas}.
+\]
+The final implication is correct, but the chain as a whole proves nothing new.
+
+The issue is not that a theorem may never be used in both directions.  Equivalent statements often illuminate each other.  The issue is whether one is claiming an independent foundation.  To break the loop, Euler's formula must enter from a separate construction such as power series, an ODE, or the complex exponential defined by functional analysis.
+
+\section{Tangent lives on a projective line}
+
+Once the sine and cosine formulas are known, division gives
+\[
+  \tan(\alpha+\beta)
+  =
+  \frac{\tan\alpha+	an\beta}
+  {1-	an\alpha	an\beta},
+\]
+provided the expressions are finite.  A direct slope calculation explains the fractional-linear shape.
+
+Represent a nonvertical direction by a vector \((1,m)^T\), where \(m\) is its slope.  Rotating it through \(\alpha\) gives
+\[
+  R(\alpha)
+  \begin{pmatrix}1\\m\end{pmatrix}
+  =
+  \begin{pmatrix}
+    \cos\alpha-m\sin\alpha\\
+    \sin\alpha+m\cos\alpha
+  \end{pmatrix}.
+\]
+The new slope is
+\[
+  m'
+  =
+  \frac{\sin\alpha+m\cos\alpha}
+  {\cos\alpha-m\sin\alpha}
+  =
+  \frac{\tan\alpha+m}
+  {1-m	an\alpha}.
+\]
+Putting \(m=\tan\beta\) gives the tangent addition formula.
+
+If
+\[
+  1-m	an\alpha=0,
+\]
+the rotated direction is vertical.  The denominator does not signal a breakdown of rotation; it says that the affine slope chart has reached the point at infinity of the projective line
+\[
+  \mathbb{RP}^1.
+\]
+The transformation
+\[
+  m\longmapsto
+  \frac{\tan\alpha+m}{1-m	an\alpha}
+\]
+is a M\"obius transformation on that projective line.  This is why proving tangent first is usually awkward: tangent is not a global coordinate, whereas sine and cosine remain finite everywhere.
+
+\section{A dependency graph for the proofs}
+
+The four routes can be displayed as a directed acyclic graph only after the foundational choices are fixed.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  >=Stealth,
+  box/.style={draw,rounded corners,align=center,inner sep=3pt,font=\scriptsize}
+]
+  \node[box] (series) at (-4.0,0) {power series\\or ODE uniqueness};
+  \node[box] (euclid) at (0,0) {Euclidean metric,\\orientation, unit circle};
+  \node[box] (rot) at (4.0,0) {rotation group\\and matrix coefficients};
+
+  \node[box] (exp) at (-4.0,-1.35) {exponential law\\and analytic Euler formula};
+  \node[box] (geom) at (0,-1.35) {chord length, dot product,\\signed area, determinant};
+  \node[box] (mat) at (4.0,-1.35) {$R(\alpha)R(\beta)=R(\alpha+\beta)$};
+
+  \node[box] (add) at (0,-2.85) {sine and cosine addition formulas};
+  \node[box] (tan) at (-2.1,-4.15) {tangent rule and\\projective action};
+  \node[box] (later) at (2.1,-4.15) {De Moivre, multiple angles,\\Fourier characters};
+
+  \draw[->] (series)--(exp);
+  \draw[->] (euclid)--(geom);
+  \draw[->] (rot)--(mat);
+  \draw[->] (exp)--(add);
+  \draw[->] (geom)--(add);
+  \draw[->] (mat)--(add);
+  \draw[->] (add)--(tan);
+  \draw[->] (add)--(later);
+\end{tikzpicture}
+\caption{Three independent routes to the addition formulas.  A geometrically derived Euler formula would lie downstream of the central box and cannot be moved upstream without circularity.}
+\end{figure}
+
+The graph also clarifies equivalence.  Once the addition formulas are known, they can reconstruct the rotation homomorphism and the multiplicativity of \(\cos\theta+i\sin\theta\).  Those reverse arrows are mathematically useful, but they belong to an equivalence diagram, not to a foundational proof DAG.
+
+\section{The same group template produces hyperbolic identities}
+
+The rotation matrix is built from an element whose square is \(-I\).  Hyperbolic functions arise from a generator whose square is \(I\).  Let
+\[
+  K=
+  \begin{pmatrix}
+    0&1\\
+    1&0
+  \end{pmatrix},
+  \qquad
+  K^2=I.
+\]
+Then
+\[
+  e^{tK}
+  =I\cosh t+K\sinh t
+  =
+  \begin{pmatrix}
+    \cosh t&\sinh t\\
+    \sinh t&\cosh t
+  \end{pmatrix}.
+\]
+Write this matrix as \(H(t)\).  The exponential law gives
+\[
+  H(s+t)=H(s)H(t).
+\]
+Multiplying matrices yields
+\[
+  \boxed{
+  \cosh(s+t)
+  =\cosh s\cosh t+\sinh s\sinh t,}
+\]
+\[
+  \boxed{
+  \sinh(s+t)
+  =\sinh s\cosh t+\cosh s\sinh t.}
+\]
+The sign difference from circular cosine is explained by
+\[
+  K^2=I
+  \qquad\text{instead of}\qquad
+  J^2=-I.
+\]
+
+Moreover,
+\[
+  H(t)^T
+  \begin{pmatrix}1&0\\0&-1\end{pmatrix}
+  H(t)
+  =
+  \begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\]
+Thus \(H(t)\) preserves the Minkowski quadratic form \(x^2-y^2\), just as \(R(t)\) preserves the Euclidean form \(x^2+y^2\).  Circular and hyperbolic addition laws are two real two-dimensional representations of one-parameter groups.
+
+Spherical trigonometry does not arise by replacing every symbol in this calculation.  Rotations about different axes in three dimensions generally do not commute, and the sides of a spherical triangle are not one additive parameter along a fixed subgroup.  Genuine generalization requires identifying the preserved structure, not merely changing \(\sin\) into another named function.
+
+\section{Which proof should be used?}
+
+The answer depends on what has already been developed and what one wants next.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYYY@{}}
+\toprule
+Proof route & Main prerequisites & What becomes transparent & Best continuation\\
+\midrule
+Chord and area & Euclidean congruence, distance, orientation & metric and sign & triangle geometry\\
+Rotation matrices & classification and composition of rotations & group law and representation & linear algebra, Lie groups\\
+Power series or ODE & convergence or uniqueness theory & exponential flow & complex analysis, differential equations\\
+Projective slope & rotation action on directions & tangent denominator and infinity & projective geometry\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+For formal verification, the analytic series route has explicit algebraic subgoals but requires substantial infrastructure for convergence and rearrangement.  The matrix route is short once a library already contains rotations as orientation-preserving isometries.  The synthetic route may look elementary on paper but demands careful encoding of directed angles, congruence, and orientation.  A proof assistant rewards explicit dependencies; it does not automatically make the visually shortest proof the formally shortest one.
+
+The important lesson is not that one proof wins.  The geometric proof identifies the quantities being measured.  The matrix proof identifies the composition law.  The analytic proof exposes a flow and generalizes to exponentials in other algebras.  The projective calculation explains a singular denominator.  Together they show how one identity can sit at the intersection of geometry, algebra, analysis, and representation theory without those subjects becoming logically indistinguishable.

@@ -1,14 +1,177 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20210204}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20210204}
-\end{document}
+\notechapter{N-20210204}{Sets, Classes, and the First Warnings About Size}
+
+\section{Why classes enter before functions}
+
+The basic language of sets, classes, indexed families, and functions begins with a distinction that is easy to underestimate: sets may be elements of other collections, whereas proper classes cannot be treated in the same way without recreating the classical paradoxes.
+
+\begin{definition}
+A \vocab{set} is a class which can be an element of another class.  A class which is not a set is called a \vocab{proper class}.
+\end{definition}
+
+This is not meant to be the whole foundation of set theory, but it explains the working convention of the note: some collections are small enough to be members of other collections, while others are too large and must remain proper classes.
+
+\begin{caution}
+The distinction between sets and proper classes is formally essential: it is one of the mechanisms that prevents the usual paradoxes.  In a class theory such as NBG, sets are precisely the classes that may occur as elements of classes; proper classes may not be elements.
+\end{caution}
+
+\section{Russell's class as the first warning}
+
+The first serious example is Russell's construction.  Consider
+\[
+  M = \{X \mid X \text{ is a set and } X \notin X\}.
+\]
+At first sight this is a natural class: many sets are not members of themselves.  For instance, the set of all books is not itself a book.
+
+\begin{proposition}
+The class \(M\) is not a set.
+\end{proposition}
+
+\begin{proof}
+Assume, for contradiction, that \(M\) is a set.  Then it makes sense to ask whether \(M \in M\).  By the defining condition of \(M\),
+\[
+  M \in M \quad \Longleftrightarrow \quad M \notin M,
+\]
+which is impossible.  Hence \(M\) must be a proper class.
+\end{proof}
+
+This is the first place where the note is not merely listing definitions.  The example shows why unrestricted comprehension cannot simply produce a set from every condition.
+
+\section{Power sets and indexed families}
+
+\begin{definition}
+The \vocab{power set axiom} asserts that for every set \(A\), the class
+\[
+  \mathcal P(A)=\{X \mid X\subseteq A\}
+\]
+of all subsets of \(A\) is itself a set.  It is also common to write \(2^A\) for this power set.
+\end{definition}
+
+The next construction is an indexed family.  Given a family of classes or sets
+\[
+  \{A_i \mid i\in I\},
+\]
+its union and intersection are written
+\[
+  \bigcup_{i\in I} A_i = \{x \mid x\in A_i \text{ for some } i\in I\},
+\]
+and
+\[
+  \bigcap_{i\in I} A_i = \{x \mid x\in A_i \text{ for all } i\in I\}.
+\]
+
+\begin{remark}
+The indexing collection \(I\) need not be finite or countable.  This is a useful mental shift: the notation \(\{A_i\}_{i\in I}\) is not just a long list.  It may be a genuinely infinite family.
+\end{remark}
+
+\begin{caution}
+If \(I\) is allowed to be a proper class, then extra care is needed.  In ordinary ZFC, one usually speaks of set-indexed families.  In a class-theoretic setting, class-indexed families can be discussed, but one must check separately when their unions or intersections are sets.
+\end{caution}
+
+If \(A\) and \(B\) are classes, the relative complement of \(A\) in \(B\) is
+\[
+  B\setminus A = \{x\mid x\in B \text{ and } x\notin A\}.
+\]
+If all classes under discussion are subsets of a fixed universe \(U\), then \(U\setminus A\) is often denoted \(A^c\).
+
+\section{Set identities}
+
+The standard set identities take the following form:
+\begin{proposition}
+Let \(A\), \(B\), and \(B_i\) be subsets of a fixed universe \(U\).  Then
+\[
+ A\cap\left(\bigcup_{i\in I} B_i\right)
+ = \bigcup_{i\in I}(A\cap B_i),
+\]
+\[
+ A\cup\left(\bigcap_{i\in I} B_i\right)
+ = \bigcap_{i\in I}(A\cup B_i),
+\]
+\[
+ \left(\bigcup_{i\in I} A_i\right)^c
+ = \bigcap_{i\in I} A_i^c,
+ \qquad
+ \left(\bigcap_{i\in I} A_i\right)^c
+ = \bigcup_{i\in I} A_i^c.
+\]
+Moreover, \(A\cup B=B\cup A\), \(A\subseteq B\) means every element of \(A\) lies in \(B\), and \(A\cap B=A\) when \(A\subseteq B\).
+\end{proposition}
+
+\begin{proof}
+All of these follow by chasing membership.  For instance, an element \(x\) lies in \(A\cap(\bigcup_i B_i)\) exactly when \(x\in A\) and \(x\in B_i\) for at least one \(i\), which is exactly the condition that \(x\in \bigcup_i(A\cap B_i)\).  The De Morgan laws are proved similarly after replacing ``there exists'' by ``for all'' under negation.
+\end{proof}
+
+\section{Images, inverse images, and functions}
+
+Let \(f:A\to B\) be a function.  If \(S\subseteq A\), the image of \(S\) under \(f\) is
+\[
+  f(S)=\{b\in B\mid b=f(a)\text{ for some }a\in S\}.
+\]
+If \(T\subseteq B\), the inverse image of \(T\) is
+\[
+  f^{-1}(T)=\{a\in A\mid f(a)\in T\}.
+\]
+
+\begin{example}
+For \(f:\mathbb R\to\mathbb R\), \(f(x)=x^2\), we have
+\[
+  f(\mathbb R)=[0,\infty),
+  \qquad
+  f^{-1}(\{9\})=\{-3,3\}.
+\]
+\end{example}
+
+A map \(f:A\to B\) is \vocab{injective} if \(f(a)=f(a')\) implies \(a=a'\).  It is \vocab{surjective} if \(f(A)=B\).  It is \vocab{bijective} if it is both injective and surjective.
+
+\begin{proposition}
+For composable maps \(A\xrightarrow{f}B\xrightarrow{g}C\):
+\begin{enumerate}[(i)]
+  \item if \(f\) and \(g\) are injective, then \(g\circ f\) is injective;
+  \item if \(f\) and \(g\) are surjective, then \(g\circ f\) is surjective;
+  \item if \(g\circ f\) is injective, then \(f\) is injective;
+  \item if \(g\circ f\) is surjective, then \(g\) is surjective.
+\end{enumerate}
+\end{proposition}
+
+\section{One-sided inverses}
+
+One-sided inverses recognize injective and surjective maps.
+
+\begin{theorem}
+Let \(f:A\to B\) be a function and assume \(A\neq\varnothing\).
+\begin{enumerate}[(i)]
+  \item \(f\) is injective if and only if there is a map \(g:B\to A\) such that \(g\circ f=1_A\).
+  \item \(f\) is surjective if and only if there is a map \(h:B\to A\) such that \(f\circ h=1_B\), provided the required choices of elements from the fibres of \(f\) can be made.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+For (i), suppose \(f\) is injective.  For \(b\in f(A)\), there is a unique \(a\in A\) with \(f(a)=b\).  Choose once and for all an element \(a_0\in A\).  Define
+\[
+  g(b)=
+  \begin{cases}
+    a, & b\in f(A)\text{ and }f(a)=b,\\
+    a_0, & b\notin f(A).
+  \end{cases}
+\]
+Then \(g(f(a))=a\) for all \(a\in A\).  Conversely, if \(g\circ f=1_A\), then \(f(a)=f(a')\) implies
+\[
+  a=g(f(a))=g(f(a'))=a',
+\]
+so \(f\) is injective.
+
+For (ii), if \(h\) exists and \(f\circ h=1_B\), then every \(b\in B\) equals \(f(h(b))\), so \(f\) is surjective.  Conversely, if \(f\) is surjective, each fibre \(f^{-1}(b)\) is nonempty.  Choosing \(h(b)\in f^{-1}(b)\) gives a right inverse.
+\end{proof}
+
+\begin{caution}
+The last choice of one element from each fibre is exactly where the Axiom of Choice may enter.  This point will reappear in the chapter on choice and cardinal numbers.
+\end{caution}
+
+\section{Set-level bookkeeping behind functions}
+
+The calculations in this note are elementary only after the ambient set has been fixed.  Russell's class shows why the notation
+\[
+  \{x\mid P(x)\}
+\]
+cannot be used without asking whether the collection is actually a set.  Once a set \(A\) is available, the usual constructions are safe: subsets live in \(\mathcal P(A)\), indexed unions and intersections are formed from a family \((A_i)_{i\in I}\), and membership proofs reduce identities such as De Morgan's laws to quantifier manipulations.
+
+For functions the same bookkeeping reappears in a more operational form.  The inverse image \(f^{-1}(T)\) is always defined for \(T\subseteq B\), while the image \(f(S)\) depends on the part of the domain actually hit.  Injectivity is detected by a left inverse \(g\circ f=1_A\); surjectivity is detected by a right inverse \(f\circ h=1_B\).  The construction of \(g\) for an injection uses only a single default element of \(A\), whereas the construction of \(h\) for a surjection asks for one chosen element from each fibre \(f^{-1}(b)\).  That fibre-by-fibre choice is the exact point to remember when the later notes discuss the Axiom of Choice and cardinal comparison.

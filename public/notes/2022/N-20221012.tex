@@ -1,14 +1,502 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221012}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221012}
-\end{document}
+\notechapter{N-20221012}{Classical Inequalities from Convexity, Duality, and Norm Geometry}
+
+\section{A convex graph lies above each supporting tangent}
+
+A differentiable function \(f\) on an interval is convex when its slopes increase.  Equivalently, for every point \(x_0\), the graph lies above the tangent line:
+\[
+  \boxed{
+  f(x)\ge f(x_0)+f'(x_0)(x-x_0).}
+\]
+This one-dimensional picture already contains Bernoulli's inequality.  Let
+\[
+  f(x)=(1+x)^r,
+  \qquad x>-1,
+  \qquad r\ge1.
+\]
+Since
+\[
+  f''(x)=r(r-1)(1+x)^{r-2}\ge0,
+\]
+the function is convex.  Its tangent at \(x=0\) is
+\[
+  f(0)+f'(0)x=1+rx.
+\]
+Therefore
+\[
+  \boxed{(1+x)^r\ge1+rx.}
+\]
+For an integer \(r=n\), this is the classical Bernoulli inequality.  If \(r>1\), equality holds only at \(x=0\).
+
+The proof matters more than the formula.  Bernoulli is not an isolated binomial estimate; it is the first example of a general principle: convexity converts local first-order information into a global lower bound.
+
+\section{Jensen averages the supporting-line inequality}
+
+Let \(f\) be differentiable and convex, and let
+\[
+  \lambda_i\ge0,
+  \qquad
+  \sum_{i=1}^n\lambda_i=1.
+\]
+Set
+\[
+  m=\sum_{i=1}^n\lambda_i x_i.
+\]
+The supporting line at \(m\) gives
+\[
+  f(x_i)\ge f(m)+f'(m)(x_i-m).
+\]
+Multiply by \(\lambda_i\) and sum.  The linear terms cancel because
+\[
+  \sum_i\lambda_i(x_i-m)=0.
+\]
+Hence
+\[
+  \boxed{
+  f\left(\sum_i\lambda_i x_i\right)
+  \le
+  \sum_i\lambda_i f(x_i).}
+\]
+This is Jensen's inequality.
+
+If \(f\) is strictly convex and all weights are positive, equality requires
+\[
+  x_1=\cdots=x_n.
+\]
+For a concave function the inequality reverses.
+
+Take the concave function
+\[
+  f(x)=\log x
+\]
+on \((0,\infty)\), with equal weights \(1/n\).  Jensen gives
+\[
+  \frac1n\sum_{i=1}^n\log a_i
+  \le
+  \log\left(\frac{a_1+\cdots+a_n}{n}\right).
+\]
+Exponentiating yields AM--GM:
+\[
+  \boxed{
+  \sqrt[n]{a_1\cdots a_n}
+  \le
+  \frac{a_1+\cdots+a_n}{n}.}
+\]
+Equality holds exactly when all \(a_i\) are equal.
+
+The same tangent-line mechanism therefore proves both an additive estimate such as Bernoulli and a multiplicative estimate such as AM--GM; the difference lies in the chosen convex or concave function.
+
+\section{Smoothing leads from Jensen to majorization}
+
+Jensen compares a list with its weighted average.  Majorization compares two lists with the same total sum and asks which one is more spread out.
+
+For decreasing rearrangements
+\[
+  x_1^{\downarrow}\ge\cdots\ge x_n^{\downarrow},
+  \qquad
+  y_1^{\downarrow}\ge\cdots\ge y_n^{\downarrow},
+\]
+we say that \(x\) majorizes \(y\), written \(x\succ y\), when
+\[
+  \sum_{i=1}^k x_i^{\downarrow}
+  \ge
+  \sum_{i=1}^k y_i^{\downarrow}
+  \qquad(1\le k<n),
+\]
+and the total sums are equal.
+
+The elementary move behind this order is smoothing.  Keep the mean \(m\) fixed and compare
+\[
+  m+t,
+  \qquad
+  m-t.
+\]
+For differentiable convex \(f\), define
+\[
+  g(t)=f(m+t)+f(m-t),
+  \qquad t\ge0.
+\]
+Then
+\[
+  g'(t)=f'(m+t)-f'(m-t)\ge0
+\]
+because \(f'\) is increasing.  Moving two entries closer together decreases the sum of their convex images.
+
+A finite sequence of such balancing moves transforms a majorizing vector into a more even one.  This gives the content of Karamata's inequality:
+\[
+  x\succ y
+  \quad\Longrightarrow\quad
+  \sum_i f(x_i)\ge\sum_i f(y_i)
+\]
+for convex \(f\).
+
+For example,
+\[
+  (4,1,1)\succ(2,2,2).
+\]
+With \(f(t)=t^2\),
+\[
+  4^2+1^2+1^2=18
+  \ge
+  2^2+2^2+2^2=12.
+\]
+With \(f(t)=e^t\), the same ordering gives
+\[
+  e^4+2e\ge3e^2.
+\]
+Majorization formalizes the intuition that convex functions penalize unevenness.
+
+\section{Young's inequality is a tangent bound in dual exponents}
+
+Let
+\[
+  p,q>1,
+  \qquad
+  \frac1p+\frac1q=1.
+\]
+Young's inequality states that for \(a,b\ge0\),
+\[
+  \boxed{
+  ab\le\frac{a^p}{p}+\frac{b^q}{q}.}
+\]
+
+A direct derivation shows where the conjugate exponents come from.  Fix \(a\) and consider
+\[
+  \Phi(b)=ab-\frac{b^q}{q}.
+\]
+Its derivative is
+\[
+  \Phi'(b)=a-b^{q-1}.
+\]
+The maximum occurs at
+\[
+  b=a^{1/(q-1)}=a^{p-1},
+\]
+because
+\[
+  q-1=\frac1{p-1}.
+\]
+At this point,
+\[
+  \Phi(b)=a^p-\frac{a^p}{q}=\frac{a^p}{p}.
+\]
+Thus
+\[
+  ab-\frac{b^q}{q}\le\frac{a^p}{p},
+\]
+which is Young's inequality.
+
+Equality holds when
+\[
+  b=a^{p-1},
+\]
+or equivalently
+\[
+  a^p=b^q.
+\]
+The two powers are paired so that each is the optimal supporting term for the other.  This duality is what later makes Hölder's inequality exact.
+
+\section{Hölder follows by normalizing Young's inequality}
+
+For vectors \(x=(x_i)\) and \(y=(y_i)\), define
+\[
+  \|x\|_p=\left(\sum_i|x_i|^p\right)^{1/p},
+  \qquad
+  \|y\|_q=\left(\sum_i|y_i|^q\right)^{1/q}.
+\]
+If either norm is zero, Hölder is trivial.  Otherwise set
+\[
+  X_i=\frac{|x_i|}{\|x\|_p},
+  \qquad
+  Y_i=\frac{|y_i|}{\|y\|_q}.
+\]
+Young's inequality gives
+\[
+  X_iY_i
+  \le
+  \frac{X_i^p}{p}+\frac{Y_i^q}{q}.
+\]
+Summing and using
+\[
+  \sum_iX_i^p=1,
+  \qquad
+  \sum_iY_i^q=1
+\]
+yields
+\[
+  \sum_iX_iY_i\le\frac1p+\frac1q=1.
+\]
+Therefore
+\[
+  \boxed{
+  \sum_i|x_iy_i|
+  \le
+  \|x\|_p\|y\|_q.}
+\]
+This is Hölder's inequality.
+
+Equality requires equality in Young for every nonzero component:
+\[
+  X_i^p=Y_i^q.
+\]
+Thus the normalized mass distributions \((|x_i|^p)\) and \((|y_i|^q)\) must agree.
+
+For \(p=q=2\), Hölder becomes Cauchy--Schwarz:
+\[
+  \left|\sum_i x_iy_i\right|
+  \le
+  \left(\sum_i x_i^2\right)^{1/2}
+  \left(\sum_i y_i^2\right)^{1/2}.
+\]
+The equality condition reduces to linear dependence of the two vectors.
+
+\section{Hölder identifies the dual norm exactly}
+
+Hölder shows that every \(y\) with \(\|y\|_q=1\) satisfies
+\[
+  \left|\sum_i x_iy_i\right|\le\|x\|_p.
+\]
+The bound is attained.  For \(x\neq0\), define
+\[
+  y_i
+  =\frac{\operatorname{sgn}(x_i)|x_i|^{p-1}}
+  {\|x\|_p^{p-1}}.
+\]
+Since
+\[
+  (p-1)q=p,
+\]
+we have
+\[
+  \sum_i|y_i|^q
+  =\frac{\sum_i|x_i|^p}{\|x\|_p^p}=1.
+\]
+Moreover,
+\[
+  \sum_i x_iy_i
+  =\frac{\sum_i|x_i|^p}{\|x\|_p^{p-1}}
+  =\|x\|_p.
+\]
+Hence
+\[
+  \boxed{
+  \|x\|_p
+  =\sup_{\|y\|_q=1}\sum_i x_iy_i.}
+\]
+
+This is the dual-norm formula.  An \(\ell^p\) norm is recovered by testing the vector against all unit vectors in the conjugate \(\ell^q\) norm.  Hölder is therefore not only an inequality; it identifies the exact linear functionals that measure \(\ell^p\) geometry.
+
+The case \(p=2\) is self-dual.  The maximizing vector is parallel to \(x\), which is the familiar equality condition in Cauchy--Schwarz.
+
+\section{Minkowski is the triangle inequality produced by duality}
+
+Using the dual-norm formula,
+\[
+\begin{aligned}
+  \|x+z\|_p
+  &=\sup_{\|y\|_q=1}\sum_i(x_i+z_i)y_i\\
+  &\le
+  \sup_{\|y\|_q=1}\sum_i x_iy_i
+  +
+  \sup_{\|y\|_q=1}\sum_i z_iy_i\\
+  &=\|x\|_p+\|z\|_p.
+\end{aligned}
+\]
+Thus
+\[
+  \boxed{
+  \left(\sum_i|x_i+z_i|^p\right)^{1/p}
+  \le
+  \left(\sum_i|x_i|^p\right)^{1/p}
+  +
+  \left(\sum_i|z_i|^p\right)^{1/p}.}
+\]
+This is Minkowski's inequality.
+
+For \(p=2\), it is the Euclidean triangle inequality.  For general \(p>1\), it proves that \(\ell^p\) is a normed vector space.
+
+Equality in the strictly convex \(\ell^p\) norm occurs when the two nonzero vectors point in the same nonnegative direction:
+\[
+  x=\lambda z,
+  \qquad
+  \lambda\ge0.
+\]
+The algebraic equality condition is the norm-geometric statement that travelling along two segments is as short as travelling along their sum only when the segments are aligned.
+
+\section{Cauchy's Engel form is projection geometry in disguise}
+
+Cauchy--Schwarz can be rearranged into the Engel form
+\[
+  \boxed{
+  \sum_{i=1}^n\frac{a_i^2}{b_i}
+  \ge
+  \frac{(a_1+\cdots+a_n)^2}{b_1+\cdots+b_n}}
+  \qquad(b_i>0).
+\]
+Apply Cauchy to the vectors
+\[
+  \left(\frac{a_1}{\sqrt{b_1}},\ldots,
+  \frac{a_n}{\sqrt{b_n}}\right)
+\]
+and
+\[
+  (\sqrt{b_1},\ldots,\sqrt{b_n}).
+\]
+Their inner product is \(a_1+\cdots+a_n\), giving the formula.
+
+Equality holds when the vectors are proportional:
+\[
+  \frac{a_i}{\sqrt{b_i}}=\lambda\sqrt{b_i},
+\]
+so
+\[
+  \frac{a_i}{b_i}=\lambda
+\]
+for every \(i\).
+
+The same result can be read as an optimization problem.  Among all vectors with prescribed weighted sum, the squared weighted norm is minimized by the vector parallel to the constraint direction.  The frequently used contest lemma is therefore a projection theorem in a weighted Euclidean space.
+
+\section{Power means form one monotone scale}
+
+For positive \(a_1,\ldots,a_n\) and \(r\neq0\), define
+\[
+  M_r(a)
+  =\left(\frac1n\sum_{i=1}^n a_i^r\right)^{1/r}.
+\]
+For \(0<r<s\), the function
+\[
+  t\longmapsto t^{s/r}
+\]
+is convex.  Jensen gives
+\[
+  \left(\frac1n\sum_i a_i^r\right)^{s/r}
+  \le
+  \frac1n\sum_i a_i^s.
+\]
+Taking the \(s\)-th root yields
+\[
+  M_r(a)\le M_s(a).
+\]
+
+As \(r\to0\), write
+\[
+  a_i^r=e^{r\log a_i}=1+r\log a_i+o(r).
+\]
+Then
+\[
+  \log M_r
+  =\frac1r\log\left(\frac1n\sum_i a_i^r\right)
+  \longrightarrow
+  \frac1n\sum_i\log a_i.
+\]
+Hence
+\[
+  M_0(a)=\sqrt[n]{a_1\cdots a_n}.
+\]
+For negative orders,
+\[
+  M_{-r}(a_1,\ldots,a_n)
+  =\frac1{M_r(a_1^{-1},\ldots,a_n^{-1})}.
+\]
+Combining these observations gives the full monotonicity:
+\[
+  r<s
+  \quad\Longrightarrow\quad
+  M_r\le M_s.
+\]
+
+The classical chain is therefore one theorem:
+\[
+  M_{-1}\le M_0\le M_1\le M_2,
+\]
+or
+\[
+  \text{harmonic}\le\text{geometric}\le\text{arithmetic}\le\text{quadratic}.
+\]
+Strict inequality holds unless all variables are equal.
+
+\section{Chebyshev is a covariance identity}
+
+Suppose
+\[
+  a_1\le\cdots\le a_n,
+  \qquad
+  b_1\le\cdots\le b_n.
+\]
+Chebyshev's sum inequality states
+\[
+  \frac1n\sum_i a_ib_i
+  \ge
+  \left(\frac1n\sum_i a_i\right)
+  \left(\frac1n\sum_i b_i\right).
+\]
+The difference has the exact form
+\[
+\begin{aligned}
+&\frac1n\sum_i a_ib_i
+-\left(\frac1n\sum_i a_i\right)
+ \left(\frac1n\sum_i b_i\right)\\
+&\qquad=
+\frac1{2n^2}
+\sum_{i,j}(a_i-a_j)(b_i-b_j).
+\end{aligned}
+\]
+Every summand is nonnegative because the two sequences have the same ordering.  Hence the difference is nonnegative.
+
+If one sequence is increasing and the other decreasing, every product changes sign and the inequality reverses.  Chebyshev is therefore a finite covariance statement: similarly ordered variables have nonnegative covariance.
+
+Equality occurs when one sequence is constant, or more generally when every pair with a nonzero difference in one sequence has zero difference in the other.
+
+\section{The log-sum inequality turns convexity into relative entropy}
+
+Let \(a_i,b_i>0\), and set
+\[
+  A=\sum_i a_i,
+  \qquad
+  B=\sum_i b_i.
+\]
+The function
+\[
+  \phi(t)=t\log t
+\]
+is convex on \((0,\infty)\).  Apply Jensen with weights
+\[
+  \lambda_i=\frac{b_i}{B}
+\]
+and points
+\[
+  x_i=\frac{a_i}{b_i}.
+\]
+Since
+\[
+  \sum_i\lambda_i x_i=\frac AB,
+\]
+Jensen gives
+\[
+  \sum_i\frac{b_i}{B}
+  \frac{a_i}{b_i}
+  \log\frac{a_i}{b_i}
+  \ge
+  \frac AB\log\frac AB.
+\]
+Multiplying by \(B\) yields the log-sum inequality:
+\[
+  \boxed{
+  \sum_i a_i\log\frac{a_i}{b_i}
+  \ge
+  A\log\frac AB.}
+\]
+Equality holds exactly when the ratios
+\[
+  \frac{a_i}{b_i}
+\]
+are all equal.
+
+For probability distributions \(p,q\), we have \(A=B=1\), so
+\[
+  D(p\|q)
+  =\sum_i p_i\log\frac{p_i}{q_i}
+  \ge0.
+\]
+The quantity \(D(p\|q)\) is relative entropy or Kullback--Leibler divergence.  It vanishes exactly when \(p=q\).
+
+The route from a tangent line to relative entropy is continuous.  Convexity gives Jensen; the same averaging principle yields AM--GM and majorization; convex conjugacy gives Young; normalization produces Hölder; dual norms produce Minkowski; and the convex function \(t\log t\) measures the cost of replacing one probability distribution by another.  The named inequalities are not a list of unrelated tricks but consequences of how convex functions and dual norms control averaging, pairing, and distance.

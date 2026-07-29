@@ -1,14 +1,317 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20230209}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20230209}
-\end{document}
+\notechapter{N-20230209}{Linear Maps, Matrix Representations, and Tensor Invariance}
+
+\section{From vector identities to linear representations}
+
+Cross products, scalar triple products, exterior algebra, and the Hodge star motivate a broader question: how do coordinate arrays represent invariant linear or multilinear objects?
+
+A linear map \(T:V\to W\) is an object independent of coordinates.  A matrix is what appears only after choosing a basis of \(V\) and a basis of \(W\).  Similarly, a tensor is not the displayed array of numbers; the array is a coordinate representation whose transformation law tells us what object is being represented.
+
+\begin{remark}[Division of labor between the two notes]
+The note \(N\)-20230205 is about why three-dimensional vector identities are really statements about metric, orientation, wedge product, and Hodge star.  The present note is about basis change, matrices, invariants, and tensor transformation laws.  This separation prevents the same vector triple product discussion from being repeated twice.
+\end{remark}
+
+
+\section{Coordinates as isomorphisms}
+
+A basis is not just a list of vectors; it is an isomorphism from an abstract vector space to a coordinate space.  If \(B=(b_1,\ldots,b_n)\) is a basis of \(V\), then
+\[
+  [\,]_B:V\longrightarrow k^n
+\]
+sends a vector to its coordinate column in that basis.  The vector \(v\) is intrinsic; the column \([v]_B\) depends on \(B\).
+
+This distinction is the source of all basis-change formulas.  A matrix is not the linear map itself.  A matrix is the expression of a linear map after choosing coordinate isomorphisms.
+
+\begin{definition}[Matrix of a linear map]
+Let \(T:V\to W\) be a linear map, let \(B\) be a basis of \(V\), and let \(C\) be a basis of \(W\).  The matrix of \(T\) in these bases is the matrix \([T]_{C,B}\) satisfying
+\[
+  [T(v)]_C=[T]_{C,B}[v]_B
+\]
+for all \(v\in V\).  Equivalently,
+\[
+  [T]_{C,B}=[\,]_C\circ T\circ [\,]_B^{-1}.
+\]
+\end{definition}
+
+The last formula is often the cleanest one.  It says that the bottom arrow in coordinate space is obtained by transporting the actual map \(T\) through coordinate isomorphisms.
+
+\section{The basis-change formula}
+
+Suppose \(B,B'\) are two bases of \(V\), and \(C,C'\) are two bases of \(W\).  Let
+\[
+  [v]_B=P[v]_{B'},\qquad [w]_C=Q[w]_{C'}.
+\]
+Thus \(P\) converts new \(V\)-coordinates into old \(V\)-coordinates, and \(Q\) converts new \(W\)-coordinates into old \(W\)-coordinates.
+
+\begin{proposition}[Matrix transformation rule]
+If
+\[
+  A=[T]_{C,B},\qquad A'=[T]_{C',B'},
+\]
+then
+\[
+  A'=Q^{-1}AP.
+\]
+\end{proposition}
+
+\begin{proof}
+Starting with new coordinates \([v]_{B'}\), first convert to old coordinates:
+\[
+  [v]_B=P[v]_{B'}.
+\]
+Apply the old matrix \(A\):
+\[
+  [T(v)]_C=A[v]_B=AP[v]_{B'}.
+\]
+Finally convert the output from old \(C\)-coordinates to new \(C'\)-coordinates.  Since \([w]_C=Q[w]_{C'}\), we have \([w]_{C'}=Q^{-1}[w]_C\).  Hence
+\[
+  [T(v)]_{C'}=Q^{-1}AP[v]_{B'}.
+\]
+Therefore \(A'=Q^{-1}AP\).
+\end{proof}
+
+For an endomorphism \(T:V\to V\), if the same basis change is used on domain and codomain, then \(P=Q\) and
+\[
+  A'=P^{-1}AP.
+\]
+This is similarity.  Similar matrices are not two different operators; they are the same operator written in two coordinate systems.
+
+\section{A worked basis-change example}
+
+Let \(T:\mathbb R^2\to\mathbb R^2\) have standard-basis matrix
+\[
+  A=
+  \begin{pmatrix}
+  2&1\\
+  0&3
+  \end{pmatrix}.
+\]
+Use the new basis
+\[
+  b_1=(1,0),\qquad b_2=(1,1).
+\]
+The change-of-basis matrix whose columns are the new basis vectors in the old basis is
+\[
+  P=
+  \begin{pmatrix}
+  1&1\\
+  0&1
+  \end{pmatrix}.
+\]
+Then
+\[
+  A'=P^{-1}AP
+  =
+  \begin{pmatrix}
+  2&0\\
+  0&3
+  \end{pmatrix}.
+\]
+The operator did not change.  The new basis reveals that \(b_1\) and \(b_2\) are eigenvectors, so the matrix becomes diagonal.
+
+This example also explains the meaning of diagonalization: it is not a magical simplification of numbers; it is the search for a coordinate system adapted to the invariant directions of the operator.
+
+\section{Which quantities are invariant?}
+
+For an endomorphism, changing basis replaces \(A\) by \(P^{-1}AP\).  Any expression unchanged under this replacement belongs to the operator rather than to the coordinate matrix.
+
+\begin{proposition}[Similarity invariants]
+If \(A'=P^{-1}AP\), then
+\[
+  \operatorname{tr}(A')=\operatorname{tr}(A),\qquad
+  \det(A')=\det(A),
+\]
+and \(A\) and \(A'\) have the same characteristic polynomial.
+\end{proposition}
+
+\begin{proof}
+For trace,
+\[
+  \operatorname{tr}(P^{-1}AP)
+  =\operatorname{tr}(APP^{-1})
+  =\operatorname{tr}(A),
+\]
+using \(\operatorname{tr}(XY)=\operatorname{tr}(YX)\).  For determinant,
+\[
+  \det(P^{-1}AP)=\det(P^{-1})\det(A)\det(P)=\det(A).
+\]
+For the characteristic polynomial,
+\[
+  \det(\lambda I-P^{-1}AP)
+  =\det(P^{-1}(\lambda I-A)P)
+  =\det(\lambda I-A).
+\]
+\end{proof}
+
+Rank is invariant for maps between different spaces as well, because left and right multiplication by invertible matrices do not change the dimension of the image.  Trace and determinant, however, are naturally invariants of endomorphisms, not arbitrary maps \(V\to W\).
+
+\section{Covectors and the inverse-transpose rule}
+
+A covector is a linear functional \(\alpha:V\to k\).  It pairs with a vector to give a scalar:
+\[
+  \alpha(v)\in k.
+\]
+The scalar must not depend on coordinates.
+
+Assume again that
+\[
+  [v]_B=P[v]_{B'}.
+\]
+Write \(a_B\) and \(a_{B'}\) for the coordinate columns of \(\alpha\) in the dual bases, so that
+\[
+  \alpha(v)=a_B^T[v]_B=a_{B'}^T[v]_{B'}.
+\]
+Substituting \([v]_B=P[v]_{B'}\), we get
+\[
+  a_B^TP[v]_{B'}=a_{B'}^T[v]_{B'}
+\]
+for all \(v\), hence
+\[
+  a_{B'}=P^Ta_B.
+\]
+Equivalently, if one writes coordinate changes in the opposite direction, the familiar inverse-transpose appears.  The important point is not the slogan ``covectors transform oppositely'', but the invariant pairing
+\[
+  \alpha(v)
+\]
+that forces the formula.
+
+\section{Bilinear forms are not linear operators}
+
+A common source of confusion is that both a linear operator and a bilinear form may be represented by square matrices.  Their basis-change laws are different.
+
+Let \(g:V\times V\to k\) be a bilinear form.  In basis \(B\), write
+\[
+  g(v,w)=[v]_B^T G [w]_B.
+\]
+If \([v]_B=P[v]_{B'}\), then
+\[
+  g(v,w)=[v]_{B'}^T P^TGP [w]_{B'}.
+\]
+Thus the matrix of the bilinear form in the new basis is
+\[
+  G'=P^TGP.
+\]
+Compare this with the operator rule \(A'=P^{-1}AP\).  A matrix representing a bilinear form changes by congruence; a matrix representing an endomorphism changes by similarity.
+
+\begin{example}[The Euclidean metric in a non-orthonormal basis]
+In the standard basis of \(\mathbb R^2\), the Euclidean inner product has matrix \(I\).  For the basis
+\[
+  b_1=(1,0),\qquad b_2=(1,1),
+\]
+with
+\[
+  P=
+  \begin{pmatrix}
+  1&1\\
+  0&1
+  \end{pmatrix},
+\]
+the metric matrix becomes
+\[
+  G'=P^TIP
+  =
+  \begin{pmatrix}
+  1&1\\
+  1&2
+  \end{pmatrix}.
+\]
+The inner product is still the same geometric object, but because the new basis is not orthonormal, its coordinate matrix is no longer the identity.
+\end{example}
+
+This is why statements such as ``\(A^T=A\)'' must be interpreted carefully.  A symmetric matrix may represent a symmetric bilinear form in a chosen basis, or it may represent a self-adjoint operator relative to a chosen inner product.  These are related but not identical ideas.
+
+\section{Symmetric and skew parts}
+
+For an ordinary square matrix over a field of characteristic not \(2\), one can write
+\[
+  A=\frac{A+A^T}{2}+\frac{A-A^T}{2}.
+\]
+The first part is symmetric, and the second part is skew-symmetric.  But the coordinate-free meaning depends on what \(A\) represents.
+
+If \(A\) represents a bilinear form, the symmetric part corresponds to
+\[
+  g_s(v,w)=\frac{g(v,w)+g(w,v)}{2},
+\]
+and the skew part corresponds to
+\[
+  g_a(v,w)=\frac{g(v,w)-g(w,v)}{2}.
+\]
+The skew part is an alternating \(2\)-form.
+
+If \(A\) represents a linear operator on an inner-product space, then self-adjointness is the condition
+\[
+  \langle Av,w\rangle=\langle v,Aw\rangle.
+\]
+In an orthonormal basis this becomes \(A^T=A\).  In a non-orthonormal basis with metric matrix \(G\), it becomes
+\[
+  A^T G=G A.
+\]
+So the naive transpose test is valid only after the metric and basis have been fixed.
+
+\section{Tensor slots and transformation laws}
+
+A tensor is best understood by its slots.  The basic examples are:
+\[
+\begin{array}{c|c}
+\text{object} & \text{tensor type}\\
+\hline
+\text{vector} & V\\
+\text{covector} & V^*\\
+\text{bilinear form} & V^*\otimes V^*\\
+\text{linear operator} & V\otimes V^*
+\end{array}
+\]
+The components transform according to which slots are vector slots and which slots are covector slots.
+
+If \([v]_B=P[v]_{B'}\), then schematically:
+\[
+\begin{array}{c|c|c}
+\text{object} & \text{components} & \text{basis-change law}\\
+\hline
+\text{vector} & x & x'=P^{-1}x\\
+\text{covector} & a & a'=P^Ta\\
+\text{operator} & A & A'=P^{-1}AP\\
+\text{bilinear form} & G & G'=P^TGP
+\end{array}
+\]
+The formulas differ because the objects have different tensor types.  Treating every square array as the same kind of object is the conceptual mistake tensor notation is designed to prevent.
+
+\section{Tensor products and universal property}
+
+A bilinear map
+\[
+  B:V\times W\to U
+\]
+is equivalently a linear map
+\[
+  \widetilde B:V\otimes W\to U
+\]
+satisfying
+\[
+  \widetilde B(v\otimes w)=B(v,w).
+\]
+This is not just notation.  It says that the tensor product is the linear object that represents bilinear dependence.
+
+For example, matrix multiplication can be viewed as contraction of repeated indices:
+\[
+  (AB)^i{}_j=A^i{}_kB^k{}_j.
+\]
+The repeated index \(k\) is summed.  The output has one upper and one lower index, so it is again an operator-type tensor.
+
+Trace is another contraction:
+\[
+  \operatorname{tr}(A)=A^i{}_i.
+\]
+This explains why trace is coordinate-invariant for an endomorphism: it contracts one vector slot with one covector slot, producing a scalar.
+
+\section{Coordinate-free reading of the matrix identities}
+
+The scattered formulas involving \(A^{-1}\), \(A^T\), and \(A^{-T}\) should now be read as transformation laws:
+\begin{enumerate}[(i)]
+  \item \(P^{-1}AP\) belongs to linear operators under basis change;
+  \item \(P^TGP\) belongs to bilinear forms and quadratic forms;
+  \item inverse-transpose behavior belongs to covectors and dual bases;
+  \item trace is contraction of an operator-type tensor;
+  \item determinant is the induced scalar on the determinant line.
+\end{enumerate}
+
+The mature lesson is not merely that ``coordinates may change''.  The real lesson is that each mathematical object has a type, and its type determines the correct transformation law.  Tensor notation is useful because it keeps this type information visible.

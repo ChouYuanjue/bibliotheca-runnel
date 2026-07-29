@@ -1,14 +1,774 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20230217}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20230217}
-\end{document}
+\notechapter{N-20230217}{Tensors in Nonorthogonal Coordinates: Dual Bases, Metrics, and Contraction}
+
+\section{Why coordinates become interesting when they are not orthogonal}
+
+In an orthonormal basis, vector calculus can hide a great deal of structure.  The same list of numbers may be used for a vector and for the linear functional obtained by taking its dot product.  Upper and lower indices look interchangeable.  The identity matrix also serves as the metric matrix, and the dual basis is visually indistinguishable from the original basis.
+
+All of these coincidences disappear as soon as the coordinate directions are tilted or stretched.  That is not an inconvenience to be avoided.  It is the setting in which tensor notation begins to explain what is genuinely geometric and what is merely a consequence of a particularly friendly basis.
+
+This chapter therefore has a narrower task than a general introduction to tensors.  The earlier notes treat exterior algebra, Hodge duality, basis change, and tensor invariance in their own right.  Here the focus is concrete: how does one compute honestly in a nonorthogonal frame, and why do dual bases, the metric, index raising, and contraction appear together?
+
+The basic lesson is that a geometric object does not change when coordinates change, but its components must change in a precisely compensating way.
+
+\section{Tensor products package bilinear dependence}
+
+Suppose
+\[
+  B:V\times W\longrightarrow U
+\]
+is bilinear.  It is linear in each argument separately, but it is not a linear map on the Cartesian product in the usual sense.  The tensor product is constructed so that bilinear data can be handled by ordinary linear algebra.
+
+There is a vector space \(V\otimes W\) and a bilinear map
+\[
+  \otimes:V\times W\longrightarrow V\otimes W
+\]
+with the following universal property: for every bilinear map \(B\), there is a unique linear map
+\[
+  \widetilde B:V\otimes W\longrightarrow U
+\]
+such that
+\[
+  \widetilde B(v\otimes w)=B(v,w).
+\]
+Equivalently,
+\[
+  \operatorname{Bil}(V\times W,U)
+  \cong
+  \operatorname{Lin}(V\otimes W,U).
+\]
+
+The symbol \(v\otimes w\) is therefore not an ordered pair.  It is a generator subject to the relations required by bilinearity:
+\[
+  (v_1+v_2)\otimes w
+  =v_1\otimes w+v_2\otimes w,
+\]
+\[
+  v\otimes(w_1+w_2)
+  =v\otimes w_1+v\otimes w_2,
+\]
+\[
+  (cv)\otimes w
+  =v\otimes(cw)
+  =c(v\otimes w).
+\]
+
+If \(e_1,\ldots,e_m\) is a basis of \(V\) and \(f_1,\ldots,f_n\) is a basis of \(W\), then
+\[
+  e_i\otimes f_j,
+  \qquad
+  1\le i\le m,
+  \quad
+  1\le j\le n,
+\]
+form a basis of \(V\otimes W\).  Hence
+\[
+  \dim(V\otimes W)=mn.
+\]
+A general element has the form
+\[
+  T=T^{ij}e_i\otimes f_j.
+\]
+The repeated indices are summed.  The array \((T^{ij})\) is a coordinate description; the tensor \(T\) is the basis-independent object being described.
+
+Not every tensor is a single pure tensor \(v\otimes w\).  For example,
+\[
+  e_1\otimes f_1+e_2\otimes f_2
+\]
+generally cannot be factored into one product.  This is analogous to the difference between a rank-one matrix and a general matrix.
+
+\section{Vectors and covectors are different kinds of objects}
+
+A vector belongs to \(V\).  A covector belongs to the dual space
+\[
+  V^*=\operatorname{Lin}(V,\mathbb R).
+\]
+A covector consumes a vector and returns a scalar.
+
+Given a basis
+\[
+  e_1,\ldots,e_n
+\]
+of \(V\), the dual basis
+\[
+  \varepsilon^1,\ldots,\varepsilon^n
+\]
+of \(V^*\) is defined by
+\[
+  \varepsilon^i(e_j)=\delta^i_j.
+\]
+If
+\[
+  v=v^ie_i,
+\]
+then
+\[
+  v^i=\varepsilon^i(v).
+\]
+Thus the dual basis is the device that extracts coordinates.
+
+A covector \(\alpha\) is written
+\[
+  \alpha=\alpha_i\varepsilon^i,
+\]
+and its action on \(v\) is
+\[
+  \alpha(v)=\alpha_iv^i.
+\]
+This pairing is a contraction: one lower index meets one upper index and disappears.
+
+The placement of indices is not decorative.  Under a change of basis, vector components and covector components transform in opposite ways so that the scalar \(\alpha_iv^i\) remains unchanged.  The general transformation laws were developed in the preceding basis-change note; here we will see their concrete geometric meaning through a nonorthogonal frame.
+
+\section{A nonorthogonal basis exposes the dual basis}
+
+Consider \(\mathbb R^2\) with the basis
+\[
+  g_1=
+  \begin{bmatrix}1\\0\end{bmatrix},
+  \qquad
+  g_2=
+  \begin{bmatrix}1\\1\end{bmatrix}.
+\]
+The coordinate directions meet at \(45^\circ\), not \(90^\circ\).
+
+Let
+\[
+  v=
+  \begin{bmatrix}3\\2\end{bmatrix}.
+\]
+Writing
+\[
+  v=v^1g_1+v^2g_2
+\]
+gives
+\[
+  \begin{bmatrix}3\\2\end{bmatrix}
+  =v^1
+  \begin{bmatrix}1\\0\end{bmatrix}
+  +v^2
+  \begin{bmatrix}1\\1\end{bmatrix}.
+\]
+Therefore
+\[
+  v^1=1,
+  \qquad
+  v^2=2.
+\]
+These are the contravariant components of \(v\) in the basis \((g_i)\).
+
+Now seek vectors \(g^1,g^2\) satisfying
+\[
+  g^i\cdot g_j=\delta^i_j.
+\]
+A direct calculation gives
+\[
+  g^1=
+  \begin{bmatrix}1\\-1\end{bmatrix},
+  \qquad
+  g^2=
+  \begin{bmatrix}0\\1\end{bmatrix}.
+\]
+Indeed,
+\[
+  g^1\cdot g_1=1,
+  \quad
+  g^1\cdot g_2=0,
+  \quad
+  g^2\cdot g_1=0,
+  \quad
+  g^2\cdot g_2=1.
+\]
+The coordinate coefficients can now be recovered by dot products with the reciprocal vectors:
+\[
+  v^1=g^1\cdot v=1,
+  \qquad
+  v^2=g^2\cdot v=2.
+\]
+
+The reciprocal vectors are the Euclidean representatives of the abstract dual covectors.  The dual basis lives naturally in \(V^*\); the inner product identifies each covector with a vector, allowing us to draw it in the same plane.
+
+This is the first important distinction:
+\[
+  \text{dual basis is intrinsic to a chosen basis,}
+\]
+whereas
+\[
+  \text{reciprocal vectors also use the metric.}
+\]
+Without an inner product, the dual basis still exists, but there is no canonical way to turn its covectors into vectors.
+
+\section{The metric is the Gram matrix of the frame}
+
+In the basis \((g_i)\), define
+\[
+  g_{ij}=g_i\cdot g_j.
+\]
+For the example above,
+\[
+  (g_{ij})=
+  \begin{bmatrix}
+    1&1\\
+    1&2
+  \end{bmatrix}.
+\]
+This is the Gram matrix of the basis.  It records lengths and angles of the coordinate directions.
+
+If
+\[
+  u=u^ig_i,
+  \qquad
+  v=v^jg_j,
+\]
+then
+\[
+  u\cdot v=g_{ij}u^iv^j.
+\]
+The familiar formula
+\[
+  u\cdot v=\sum_i u^iv^i
+\]
+is valid only when \(g_{ij}=\delta_{ij}\).
+
+The inverse matrix is
+\[
+  (g^{ij})=(g_{ij})^{-1}
+  =
+  \begin{bmatrix}
+    2&-1\\
+    -1&1
+  \end{bmatrix}.
+\]
+It reconstructs the reciprocal basis:
+\[
+  g^i=g^{ij}g_j.
+\]
+For example,
+\[
+  g^1=2g_1-g_2
+  =
+  \begin{bmatrix}1\\-1\end{bmatrix},
+\]
+\[
+  g^2=-g_1+g_2
+  =
+  \begin{bmatrix}0\\1\end{bmatrix}.
+\]
+
+The inverse relations are
+\[
+  g^{ik}g_{kj}=\delta^i_j.
+\]
+They express that the metric and inverse metric undo one another when used to change index type.
+
+\section{Raising and lowering indices is the metric acting as a map}
+
+The metric is not merely a table of dot products.  It defines a linear map
+\[
+  \flat:V\longrightarrow V^*,
+  \qquad
+  v^\flat(w)=g(v,w).
+\]
+In differential geometry this is called the flat musical isomorphism.  Its inverse is
+\[
+  \sharp:V^*\longrightarrow V.
+\]
+
+In components,
+\[
+  v_i=g_{ij}v^j,
+\]
+which is called lowering an index.  Conversely,
+\[
+  v^i=g^{ij}v_j,
+\]
+raises the index.
+
+For the vector in the running example,
+\[
+  (v^1,v^2)=(1,2).
+\]
+Lowering gives
+\[
+  \begin{bmatrix}v_1\\v_2\end{bmatrix}
+  =
+  \begin{bmatrix}
+    1&1\\
+    1&2
+  \end{bmatrix}
+  \begin{bmatrix}1\\2\end{bmatrix}
+  =
+  \begin{bmatrix}3\\5\end{bmatrix}.
+\]
+These numbers can also be read directly:
+\[
+  v_1=v\cdot g_1=3,
+  \qquad
+  v_2=v\cdot g_2=5.
+\]
+They are not the coefficients used to assemble \(v\) from the basis vectors.  They are the values of the covector \(v^\flat\) on those basis vectors.
+
+Raising them again returns the original coordinates:
+\[
+  \begin{bmatrix}
+    2&-1\\
+    -1&1
+  \end{bmatrix}
+  \begin{bmatrix}3\\5\end{bmatrix}
+  =
+  \begin{bmatrix}1\\2\end{bmatrix}.
+\]
+
+The same example can now verify the transformation laws rather than merely state them.  Replace the frame \((g_1,g_2)\) by
+\[
+  h_1=g_1+g_2,
+  \qquad
+  h_2=g_2.
+\]
+If
+\[
+  P=
+  \begin{bmatrix}
+    1&0\\
+    1&1
+  \end{bmatrix},
+\]
+then the column relation is
+\[
+  \begin{bmatrix}h_1&h_2\end{bmatrix}
+  =
+  \begin{bmatrix}g_1&g_2\end{bmatrix}P.
+\]
+Vector components therefore transform by the inverse matrix:
+\[
+  [v]_h=P^{-1}[v]_g
+  =
+  \begin{bmatrix}
+    1&0\\
+    -1&1
+  \end{bmatrix}
+  \begin{bmatrix}1\\2\end{bmatrix}
+  =
+  \begin{bmatrix}1\\1\end{bmatrix}.
+\]
+Covector components transform in the opposite direction:
+\[
+  [v^\flat]_h=P^T[v^\flat]_g
+  =
+  \begin{bmatrix}
+    1&1\\
+    0&1
+  \end{bmatrix}
+  \begin{bmatrix}3\\5\end{bmatrix}
+  =
+  \begin{bmatrix}8\\5\end{bmatrix}.
+\]
+The metric matrix becomes
+\[
+  G_h=P^TG_gP
+  =
+  \begin{bmatrix}
+    5&3\\
+    3&2
+  \end{bmatrix}.
+\]
+A direct check closes the diagram:
+\[
+  G_h[v]_h
+  =
+  \begin{bmatrix}
+    5&3\\
+    3&2
+  \end{bmatrix}
+  \begin{bmatrix}1\\1\end{bmatrix}
+  =
+  \begin{bmatrix}8\\5\end{bmatrix}
+  =[v^\flat]_h.
+\]
+The object \(v\) and the covector \(v^\flat\) did not change.  Three component arrays changed together so that lowering an index still commutes with change of frame.
+
+In an orthonormal basis, both component lists happen to coincide because \(g_{ij}=\delta_{ij}\).  Tensor notation refuses to build that coincidence into the definitions, which is why it remains valid in arbitrary coordinates and on curved spaces.
+
+\section{Tensor type records what the object consumes and produces}
+
+A tensor of type \((r,s)\) can be viewed as a multilinear map
+\[
+  T:
+  \underbrace{V^*\times\cdots\times V^*}_{r\text{ copies}}
+  \times
+  \underbrace{V\times\cdots\times V}_{s\text{ copies}}
+  \longrightarrow\mathbb R.
+\]
+Equivalently, it belongs to
+\[
+  V^{\otimes r}\otimes(V^*)^{\otimes s}.
+\]
+
+A vector is a tensor of type \((1,0)\).  A covector has type \((0,1)\).  A bilinear form such as the metric has type \((0,2)\):
+\[
+  g=g_{ij}\,\varepsilon^i\otimes\varepsilon^j.
+\]
+A linear map \(A:V\to V\) can be represented as a tensor of type \((1,1)\):
+\[
+  A=A^i{}_j\,e_i\otimes\varepsilon^j.
+\]
+It consumes a vector through the covector slot and produces a vector through the vector slot:
+\[
+  Av=A^i{}_jv^j e_i.
+\]
+
+This notation explains why a matrix can represent different kinds of objects.  The same rectangular array could be the components of a bilinear form, a linear map, or a tensor with another slot arrangement.  Its transformation law and index type tell us which object it represents.
+
+The metric can change tensor type.  For example, from a \((1,1)\)-tensor \(A^i{}_j\), lowering the upper index gives
+\[
+  A_{ij}=g_{ik}A^k{}_j.
+\]
+Whether \(A_{ij}\) is symmetric is therefore a metric-dependent statement about the corresponding operator.  In Euclidean orthonormal coordinates this subtlety is hidden because lowering an index leaves the numerical array unchanged.
+
+\section{Contraction creates invariants by closing one input-output pair}
+
+Contraction pairs one upper and one lower index.  For a \((1,1)\)-tensor,
+\[
+  A^i{}_j,
+\]
+contracting the indices gives
+\[
+  A^i{}_i.
+\]
+This is the trace:
+\[
+  \operatorname{tr}A=A^i{}_i.
+\]
+
+Why is the result basis-independent?  Under a basis change, one index transforms with the change-of-basis matrix and the other with its inverse.  When the indices are contracted, these factors cancel.  The invariant scalar is what remains after the coordinate dependence closes on itself.
+
+The inner product is also a contraction:
+\[
+  u\cdot v=g_{ij}u^iv^j.
+\]
+First the metric lowers one vector index, then the resulting covector is paired with the other vector.
+
+For a rank-two contravariant tensor \(T^{ij}\), contraction with the metric gives
+\[
+  g_{ij}T^{ij}.
+\]
+For a differential operator in Euclidean coordinates, this pattern produces the Laplacian from the Hessian:
+\[
+  \Delta f=\delta^{ij}\partial_i\partial_j f.
+\]
+On a curved Riemannian manifold, the same idea persists, but partial derivatives must be replaced by covariant derivatives and the metric varies from point to point.
+
+Contraction is therefore more than compact notation.  It is one of the principal mechanisms by which tensors produce coordinate-independent scalars and lower-rank tensors.
+
+\section{Orientation and volume are not contained in the metric alone}
+
+In three-dimensional Euclidean space, the scalar triple product
+\[
+  u\cdot(v\times w)
+\]
+measures oriented volume.  In a basis \(g_1,g_2,g_3\), the basis volume is
+\[
+  J=g_1\cdot(g_2\times g_3).
+\]
+The reciprocal vectors can then be written
+\[
+  g^1=\frac{g_2\times g_3}{J},
+  \qquad
+  g^2=\frac{g_3\times g_1}{J},
+  \qquad
+  g^3=\frac{g_1\times g_2}{J}.
+\]
+The denominator appears because the cross product creates a normal vector with the wrong scale; division by the oriented volume normalizes it to evaluate the corresponding basis vector as \(1\).
+
+The Levi--Civita symbol is
+\[
+  \varepsilon_{ijk}=
+  \begin{cases}
+    1,&(i,j,k)\text{ is an even permutation of }(1,2,3),\\
+    -1,&(i,j,k)\text{ is an odd permutation of }(1,2,3),\\
+    0,&\text{two indices coincide.}
+  \end{cases}
+\]
+In a right-handed orthonormal basis,
+\[
+  (u\times v)_i
+  =\varepsilon_{ijk}u^jv^k.
+\]
+
+In general coordinates, however, the bare alternating symbol
+\[
+  [i_1\cdots i_n]\in\{-1,0,1\}
+\]
+is not by itself the component array of an ordinary tensor.  If \(\varepsilon^1,\ldots,\varepsilon^n\) is an oriented coordinate coframe, the metric volume form is
+\[
+  \operatorname{vol}_g
+  =\sqrt{\det(g_{ij})}\,
+   \varepsilon^1\wedge\cdots\wedge\varepsilon^n.
+\]
+Equivalently, the covariant Levi--Civita tensor has components
+\[
+  \epsilon_{i_1\cdots i_n}
+  =\sqrt{\det(g_{ij})}\,[i_1\cdots i_n].
+\]
+The square root supplies the coordinate-volume scale, while orientation chooses the sign.  Keeping the alternating symbol, the tensor, and the differential form distinct prevents the common mistake of assigning tensorial transformation laws to a fixed array of zeros and signs.
+
+This is also why the cross product is special.  It requires a metric to identify vectors and covectors, an orientation to choose a sign, and dimension three so that two-dimensional area elements can be identified with vectors.  The exterior product \(u\wedge v\) is more fundamental and exists in every dimension; the cross product is its three-dimensional metric-dependent avatar.
+
+A reciprocal lattice is a concrete use of the same dual geometry.  Given primitive crystal vectors \(a_1,a_2,a_3\), define reciprocal vectors \(b^i\) by
+\[
+  b^i\cdot a_j=2\pi\delta^i_j.
+\]
+In three dimensions,
+\[
+  b^1=2\pi\frac{a_2\times a_3}
+  {a_1\cdot(a_2\times a_3)},
+\]
+with cyclic formulas for \(b^2,b^3\).  A reciprocal vector
+\[
+  k=h_i b^i,
+  \qquad h_i\in\mathbb Z,
+\]
+defines planes of constant phase
+\[
+  k\cdot x=2\pi m.
+\]
+Because \(k\cdot a_j=2\pi h_j\), translating by a lattice vector changes the phase by an integer multiple of \(2\pi\).  Diffraction indices are therefore covector-like data: they measure lattice directions rather than assemble a physical-space displacement.
+
+\section{Moving frames turn the same algebra into geometry}
+
+On a manifold, the basis vectors may vary from point to point.  A local frame is written
+\[
+  e_1(x),\ldots,e_n(x),
+\]
+and its dual coframe satisfies
+\[
+  \theta^i(e_j)=\delta^i_j.
+\]
+A vector field and a one-form take the forms
+\[
+  X=X^ie_i,
+  \qquad
+  \alpha=\alpha_i\theta^i.
+\]
+The metric is
+\[
+  g=g_{ij}\,\theta^i\otimes\theta^j.
+\]
+At each point, raising and lowering indices is exactly the finite-dimensional computation already performed above.
+
+The new difficulty is differentiation.  Differentiating the components alone is not enough because the frame itself changes:
+\[
+  \partial_k(X^ie_i)
+  =(\partial_kX^i)e_i+X^i\partial_ke_i.
+\]
+A connection packages the derivatives of the basis into coefficients \(\Gamma^i{}_{jk}\), producing the covariant derivative
+\[
+  \nabla_jX^i
+  =\partial_jX^i+\Gamma^i{}_{jk}X^k.
+\]
+For a covector, the correction has the opposite sign:
+\[
+  \nabla_j\alpha_i
+  =\partial_j\alpha_i-\Gamma^k{}_{ji}\alpha_k.
+\]
+The signs differ for the same reason vector and covector components transform oppositely.
+
+In moving-frame notation one writes
+\[
+  \nabla e_j=\omega^i{}_j\otimes e_i,
+\]
+where the matrix of one-forms \(\omega^i{}_j\) records how the frame turns.  For the Levi--Civita connection in an orthonormal frame,
+\[
+  \omega_{ij}+\omega_{ji}=0,
+\]
+so infinitesimal frame change is skew-symmetric, just like an infinitesimal rotation.  The torsion-free first structure equation is
+\[
+  d\theta^i+\omega^i{}_j\wedge\theta^j=0.
+\]
+This is not a new layer of index decoration: it says that the variation of the coframe and the connection correction cancel in the geometric derivative.
+
+This is the natural continuation of reciprocal bases.  Once coordinates vary with position, tensor notation does not merely keep formulas tidy; it ensures that differentiation produces another tensor rather than a coordinate artifact.
+
+\section{A curvilinear example: polar coordinates}
+
+In the Euclidean plane, polar coordinates are
+\[
+  x=r\cos\theta,
+  \qquad
+  y=r\sin\theta.
+\]
+The coordinate basis vectors are
+\[
+  e_r=\frac{\partial(x,y)}{\partial r}
+  =
+  \begin{bmatrix}
+    \cos\theta\\
+    \sin\theta
+  \end{bmatrix},
+\]
+\[
+  e_\theta=\frac{\partial(x,y)}{\partial\theta}
+  =
+  \begin{bmatrix}
+    -r\sin\theta\\
+    r\cos\theta
+  \end{bmatrix}.
+\]
+They are orthogonal but not both unit length:
+\[
+  e_r\cdot e_r=1,
+  \qquad
+  e_r\cdot e_\theta=0,
+  \qquad
+  e_\theta\cdot e_\theta=r^2.
+\]
+Thus
+\[
+  (g_{ij})=
+  \begin{bmatrix}
+    1&0\\
+    0&r^2
+  \end{bmatrix},
+  \qquad
+  (g^{ij})=
+  \begin{bmatrix}
+    1&0\\
+    0&r^{-2}
+  \end{bmatrix}.
+\]
+The reciprocal basis vector corresponding to \(e_\theta\) is
+\[
+  e^\theta=r^{-2}e_\theta.
+\]
+
+The area form is
+\[
+  \sqrt{\det g}\,dr\wedge d\theta
+  =r\,dr\wedge d\theta.
+\]
+The familiar Jacobian factor \(r\) is therefore not an isolated integration trick.  It is the square root of the metric determinant.
+
+For a scalar field \(f\), the differential is
+\[
+  df=(\partial_rf)\,dr+(\partial_\theta f)\,d\theta.
+\]
+Raising its index with the inverse metric gives the gradient:
+\[
+  \nabla f
+  =(\partial_rf)e_r+r^{-2}(\partial_\theta f)e_\theta.
+\]
+Since the unit angular vector is \(\widehat e_\theta=r^{-1}e_\theta\), this is the familiar formula
+\[
+  \nabla f
+  =(\partial_rf)\widehat e_r
+  +\frac1r(\partial_\theta f)\widehat e_\theta.
+\]
+The factor \(1/r\) is a metric effect, not a memorized correction.
+
+\section{A deformation makes the distinction physical}
+
+In continuum mechanics, one compares a reference body \(\mathcal B\) with its deformed configuration \(\mathcal S\).  A deformation is a map
+\[
+  \varphi:\mathcal B\to\mathcal S,
+\]
+and its derivative at a material point \(X\) is the deformation gradient
+\[
+  F=D\varphi(X):T_X\mathcal B\to T_{\varphi(X)}\mathcal S.
+\]
+A small material vector \(dX\) is pushed forward to
+\[
+  dx=F\,dX.
+\]
+A covector transforms in the opposite direction.  If \(\alpha\) measures current tangent vectors, its pullback to the reference configuration is
+\[
+  F^T\alpha,
+\]
+because
+\[
+  (F^T\alpha)(dX)=\alpha(FdX).
+\]
+This identity is the physical version of the vector--covector distinction developed earlier: vectors are transported forward, while measurements of vectors are pulled back.
+
+The current Euclidean metric can also be pulled back to the reference body.  In coordinates the result is the right Cauchy--Green tensor
+\[
+  C=F^TF.
+\]
+For a reference vector \(a\), the squared length after deformation is
+\[
+  \|Fa\|^2
+  =(Fa)^T(Fa)
+  =a^TCa.
+\]
+Thus \(C\) stores all changes of lengths and angles while acting entirely on the reference tangent space.
+
+Consider the simple shear
+\[
+  \varphi(X,Y)=(X+\gamma Y,Y).
+\]
+Its deformation gradient is
+\[
+  F=
+  \begin{bmatrix}
+    1&\gamma\\
+    0&1
+  \end{bmatrix},
+\]
+so
+\[
+  C=F^TF
+  =
+  \begin{bmatrix}
+    1&\gamma\\
+    \gamma&1+\gamma^2
+  \end{bmatrix}.
+\]
+The reference basis vectors behave differently:
+\[
+  Fe_1=e_1,
+  \qquad
+  Fe_2=\gamma e_1+e_2.
+\]
+The first direction keeps unit length, while
+\[
+  \|Fe_2\|^2=1+\gamma^2.
+\]
+Their current inner product is
+\[
+  (Fe_1)\cdot(Fe_2)=\gamma.
+\]
+These three quantities are exactly the entries of \(C\).  The determinant satisfies
+\[
+  \det F=1,
+\]
+so the shear preserves area even though it changes lengths and angles.  A single tensor therefore separates shape change from volume change more clearly than a list of coordinate formulas.
+
+Stress makes the index placement even more consequential.  The Cauchy stress \(\sigma\) acts in the current configuration: after using the current metric to identify a unit normal covector with a normal vector \(n\), the traction is
+\[
+  t=\sigma n.
+\]
+The first Piola--Kirchhoff stress \(P\), by contrast, accepts reference-area data and produces a current force.  Its two slots belong to different configurations.  The relation
+\[
+  P=J\sigma F^{-T},
+  \qquad
+  J=\det F,
+\]
+contains exactly the required pullback of the area covector.
+
+For the simple shear, \(J=1\).  If, only for illustration, the current Cauchy stress is the identity matrix, then
+\[
+  P=F^{-T}
+  =
+  \begin{bmatrix}
+    1&0\\
+    -\gamma&1
+  \end{bmatrix}.
+\]
+Although \(\sigma=I\), the reference-to-current stress array is not the identity because its input lives in a different tangent space.  Writing the two tensors with the same undecorated pair of indices would hide this distinction.
+
+The same lesson was already visible in the nonorthogonal coordinate example.  There,
+\[
+  (v^1,v^2)=(1,2)
+\]
+and
+\[
+  (v_1,v_2)=(3,5)
+\]
+represented the same geometric vector in contravariant and covariant form.  Mechanics adds another layer: the upper or lower index must also remember whether it belongs to the reference or current configuration.  Tensor notation is therefore not decorative bookkeeping.  It prevents illegal pairings, records which metric performs an identification, and makes clear which quantities are pushed forward, pulled back, or compared only after a deformation map has connected their spaces.

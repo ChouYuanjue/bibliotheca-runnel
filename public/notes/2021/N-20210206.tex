@@ -1,14 +1,225 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20210206}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20210206}
-\end{document}
+\notechapter{N-20210206}{Relations, Products, and the First Appearance of Universal Properties}
+
+\section{Relations and equivalence classes}
+
+This chapter continues the foundational setup, moving from sets and functions to relations, products, and the integers.
+
+\begin{definition}
+For sets or classes \(A\) and \(B\), their Cartesian product is
+\[
+  A\times B=\{(a,b)\mid a\in A,\ b\in B\}.
+\]
+A \vocab{relation from \(A\) to \(B\)} is a subclass of \(A\times B\).  A \vocab{relation on \(A\)} is a subclass of \(A\times A\).
+\end{definition}
+
+\begin{caution}
+A relation from \(A\) to \(B\) is a subset of \(A\times B\).
+\end{caution}
+
+\begin{definition}
+A relation \(R\subseteq A\times A\) is an \vocab{equivalence relation} if it is:
+\begin{enumerate}[(i)]
+  \item reflexive: \((a,a)\in R\) for all \(a\in A\);
+  \item symmetric: \((a,b)\in R\) implies \((b,a)\in R\);
+  \item transitive: \((a,b),(b,c)\in R\) implies \((a,c)\in R\).
+\end{enumerate}
+When \(R\) is an equivalence relation, we write \(a\sim b\) for \((a,b)\in R\), and define the equivalence class of \(a\) by
+\[
+  [a]=\{x\in A\mid x\sim a\}.
+\]
+The quotient class is
+\[
+  A/R=\{[a]\mid a\in A\}.
+\]
+\end{definition}
+
+\begin{proposition}
+If \(R\) is an equivalence relation on \(A\), then:
+\begin{enumerate}[(i)]
+  \item \([a]\neq\varnothing\) for every \(a\in A\);
+  \item \(A=\bigcup_{a\in A}[a]=\bigcup_{C\in A/R}C\);
+  \item \([a]=[b]\) if and only if \(a\sim b\).
+\end{enumerate}
+\end{proposition}
+
+\begin{lemma}
+For any \(a,b\in A\), either \([a]\cap[b]=\varnothing\), or \([a]=[b]\).
+\end{lemma}
+
+\begin{proof}
+If \(x\in [a]\cap[b]\), then \(x\sim a\) and \(x\sim b\).  By symmetry and transitivity, \(a\sim b\), and hence any element equivalent to \(a\) is equivalent to \(b\), and conversely.  Thus \([a]=[b]\).
+\end{proof}
+
+\section{Partitions}
+
+\begin{definition}
+Let \(A\) be a nonempty class.  A family \(\{A_i\mid i\in I\}\) of subclasses of \(A\) is a \vocab{partition} of \(A\) if
+\begin{enumerate}[(i)]
+  \item \(A_i\neq\varnothing\) for every \(i\in I\);
+  \item \(\bigcup_{i\in I} A_i=A\);
+  \item \(A_i\cap A_j=\varnothing\) whenever \(i\neq j\).
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+This is one of the most useful ways to remember equivalence relations: an equivalence relation cuts \(A\) into disjoint blocks, and those blocks form a partition.  Conversely, a partition defines an equivalence relation by declaring two elements equivalent exactly when they lie in the same block.
+\end{remark}
+
+\section{Indexed products and projections}
+
+Finite Cartesian products generalize to a set-indexed family \(\{A_i\mid i\in I\}\), define
+\[
+  \prod_{i\in I}A_i
+\]
+to be the set of functions
+\[
+  f:I\to \bigcup_{i\in I}A_i
+\]
+such that \(f(i)\in A_i\) for every \(i\in I\).
+
+When \(I=\{1,2,\dots,n\}\), this agrees with the usual product
+\[
+  A_1\times A_2\times\cdots\times A_n,
+\]
+because such a function is the same information as the ordered \(n\)-tuple
+\[
+  (f(1),f(2),\dots,f(n)).
+\]
+
+\begin{remark}
+When \(I=\{1,2\}\), a point of \(A_1\times A_2\) may be written as a pair \((a_1,a_2)\), but it may also be regarded as a function \(f\) with \(f(1)=a_1\) and \(f(2)=a_2\).  This is a small but important shift: products are not just lists; they are choice-like functions over an index set.
+\end{remark}
+
+For each \(k\in I\), the \vocab{canonical projection}
+\[
+  \pi_k:\prod_{i\in I}A_i\to A_k
+\]
+is defined by
+\[
+  \pi_k(f)=f(k).
+\]
+
+\begin{example}
+If \(I=\mathbb R\) and \(A_i=\mathbb C\) for all \(i\), then an element of \(\prod_{i\in I}A_i\) is a function \(f:\mathbb R\to\mathbb C\).  For example, \(f(x)=ix\).  The projection at \(k\in\mathbb R\) returns
+\[
+  \pi_k(f)=f(k)=ik.
+\]
+\end{example}
+
+\section{The first universal property}
+
+The first universal property now appears.  Products are not only sets of tuples; they are characterized by how maps into them behave.
+
+\begin{theorem}[Universal property of products]
+Let \(\{A_i\mid i\in I\}\) be a family of sets.  There is a set \(D\), equipped with maps
+\[
+  \pi_i:D\to A_i \qquad (i\in I),
+\]
+such that for every set \(C\) and every family of maps \(f_i:C\to A_i\), there is a unique map
+\[
+  f:C\to D
+\]
+with
+\[
+  \pi_i\circ f=f_i
+\]
+for every \(i\in I\).  Moreover, \(D\) is unique up to a unique bijection compatible with the projections.
+\end{theorem}
+
+\begin{proof}
+Take \(D=\prod_{i\in I}A_i\).  Given maps \(f_i:C\to A_i\), define
+\[
+  f(c)(i)=f_i(c).
+\]
+Then \(f(c)\in\prod_i A_i\), and \(\pi_i(f(c))=f_i(c)\).  Uniqueness follows because a point of the product is determined by all of its coordinates.
+\end{proof}
+
+\begin{remark}
+The proof is short because the concrete product is already known.  The deeper point is that the same pattern defines products in arbitrary categories, where elements and coordinates may no longer be available.
+\end{remark}
+
+\section{Integers and induction}
+
+The note then turns to the natural numbers and the integers through Peano's axioms.  In modern notation the Peano axioms say, roughly:
+\begin{enumerate}[(i)]
+  \item \(0\) is a natural number;
+  \item every natural number has a successor;
+  \item \(0\) is not the successor of any natural number;
+  \item distinct natural numbers have distinct successors;
+  \item any property true of \(0\) and inherited by successors is true of all natural numbers.
+\end{enumerate}
+The fifth axiom is the principle of mathematical induction.
+
+\begin{theorem}[Induction and strong induction]
+Let \(S\subseteq \mathbb N\) with \(0\in S\).  If either
+\begin{enumerate}[(i)]
+  \item \(n\in S\) implies \(n+1\in S\) for all \(n\in\mathbb N\), or
+  \item \(\{0,1,\dots,n-1\}\subseteq S\) implies \(n\in S\) for all \(n\in\mathbb N\),
+\end{enumerate}
+then \(S=\mathbb N\).
+\end{theorem}
+
+\begin{caution}
+A proof by taking the least element of \(\mathbb N\setminus S\) is clean if the well-ordering principle for \(\mathbb N\) is already available.  If one is deriving the theory strictly from Peano's axioms, one should first justify the well-ordering principle or prove the statement directly by induction.
+\end{caution}
+
+\section{Division, gcd, and congruence}
+
+\begin{theorem}[Division algorithm]
+If \(a,b\in\mathbb Z\) and \(a\neq0\), then there exist unique integers \(q,r\) such that
+\[
+  b=aq+r,
+  \qquad
+  0\le r<|a|.
+\]
+\end{theorem}
+
+\begin{definition}
+For \(a\neq0\), we write \(a\mid b\) if there exists \(k\in\mathbb Z\) such that \(ak=b\).  Otherwise we write \(a\nmid b\).
+\end{definition}
+
+\begin{definition}
+The positive integer \(c\) is the greatest common divisor of \(a_1,a_2,\dots,a_n\) if
+\begin{enumerate}[(i)]
+  \item \(c\mid a_i\) for every \(1\le i\le n\);
+  \item whenever \(d\in\mathbb Z\) and \(d\mid a_i\) for every \(i\), then \(d\mid c\).
+\end{enumerate}
+It is denoted \((a_1,a_2,\dots,a_n)\).
+\end{definition}
+
+\begin{definition}
+Let \(m>0\).  If \(a,b\in\mathbb Z\) and \(m\mid(a-b)\), then \(a\) is congruent to \(b\) modulo \(m\), written
+\[
+  a\equiv b\pmod m.
+\]
+\end{definition}
+
+\begin{theorem}
+Let \(m>0\) and \(a,b,c,d\in\mathbb Z\).
+\begin{enumerate}[(i)]
+  \item Congruence modulo \(m\) is an equivalence relation on \(\mathbb Z\), with precisely \(m\) equivalence classes.
+  \item If \(a\equiv b\pmod m\) and \(c\equiv d\pmod m\), then
+  \[
+    a+c\equiv b+d\pmod m,
+    \qquad
+    ac\equiv bd\pmod m.
+  \]
+  \item If \(ab\equiv ac\pmod m\) and \((a,m)=1\), then \(b\equiv c\pmod m\).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The key point is divisibility.  For example,
+\[
+  m\mid(a-b),\qquad m\mid(c-d)
+\]
+imply
+\[
+  m\mid (a+c)-(b+d).
+\]
+For multiplication, write
+\[
+  ac-bd=c(a-b)+b(c-d).
+\]
+For cancellation, \(ab\equiv ac\pmod m\) means \(m\mid a(b-c)\).  If \((a,m)=1\), Euclid's lemma gives \(m\mid(b-c)\), hence \(b\equiv c\pmod m\).
+\end{proof}

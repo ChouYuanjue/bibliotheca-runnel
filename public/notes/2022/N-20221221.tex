@@ -1,14 +1,336 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221221}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221221}
-\end{document}
+\notechapter{N-20221221}{Completion, Uniform Structure, and Quotient Topology}
+
+\section{A Cauchy sequence can describe a point missing from the space}
+
+A sequence \((x_n)\) in a metric space \((X,d)\) is Cauchy when for every \(\varepsilon>0\) there is \(N\) such that
+\[
+  d(x_m,x_n)<\varepsilon
+  \qquad(m,n\ge N).
+\]
+It records points that eventually become mutually indistinguishable at every metric scale.  A complete space contains a limit for every such sequence.
+
+The rational sequence
+\[
+  q_n=\frac{\lfloor10^n\sqrt2\rfloor}{10^n}
+\]
+is Cauchy in \(\mathbb Q\), but it has no rational limit.  Nothing is wrong with the sequence; the intended limit is absent from the space.  Completion constructs a space in which every coherent approximation process has a point to name.
+
+Two Cauchy sequences should represent the same new point when their mutual distance tends to zero:
+\[
+  (x_n)\sim(y_n)
+  \quad\Longleftrightarrow\quad
+  d(x_n,y_n)\longrightarrow0.
+\]
+Reflexivity and symmetry are immediate.  If \((x_n)\sim(y_n)\) and \((y_n)\sim(z_n)\), then
+\[
+  d(x_n,z_n)
+  \le d(x_n,y_n)+d(y_n,z_n)\longrightarrow0,
+\]
+so the relation is transitive.
+
+\section{The completion metric is a limit of mutual distances}
+
+Let \(\widehat X\) be the set of equivalence classes of Cauchy sequences.  Define
+\[
+  \widehat d([(x_n)],[(y_n)])
+  =\lim_{n\to\infty}d(x_n,y_n).
+\]
+The scalar sequence on the right is Cauchy because
+\[
+\begin{aligned}
+  |d(x_n,y_n)-d(x_m,y_m)|
+  &\le d(x_n,x_m)+d(y_n,y_m).
+\end{aligned}
+\]
+Hence the limit exists in \(\mathbb R\).
+
+The value does not depend on the chosen representatives.  If
+\[
+  (x_n)\sim(x_n'),
+  \qquad
+  (y_n)\sim(y_n'),
+\]
+then
+\[
+  |d(x_n,y_n)-d(x_n',y_n')|
+  \le d(x_n,x_n')+d(y_n,y_n')\longrightarrow0.
+\]
+Thus both representative pairs give the same limit.
+
+Nonnegativity and symmetry pass directly to the limit.  If \(\widehat d=0\), then \(d(x_n,y_n)\to0\), so the classes are equal.  Finally,
+\[
+  d(x_n,z_n)
+  \le d(x_n,y_n)+d(y_n,z_n)
+\]
+passes to the limit and gives the triangle inequality.  Therefore \(\widehat d\) is a genuine metric.
+
+\section{The original space sits isometrically and densely inside its completion}
+
+Send \(x\in X\) to the constant sequence:
+\[
+  \iota(x)=[(x,x,x,\ldots)].
+\]
+Then
+\[
+  \widehat d(\iota(x),\iota(y))=d(x,y),
+\]
+so \(\iota\) is an isometric embedding.
+
+Its image is dense.  Let
+\[
+  \xi=[(x_n)]\in\widehat X.
+\]
+For fixed \(N\),
+\[
+  \widehat d(\xi,\iota(x_N))
+  =\lim_{m\to\infty}d(x_m,x_N).
+\]
+Because \((x_n)\) is Cauchy, this quantity tends to zero as \(N\to\infty\).  Thus
+\[
+  \iota(x_N)\longrightarrow\xi.
+\]
+Every completed point is a limit of original points.
+
+For \(X=\mathbb Q\), the decimal truncations \((q_n)\) of \(\sqrt2\) define a class in \(\widehat{\mathbb Q}\).  It cannot equal any constant rational class: if it equalled \(r\in\mathbb Q\), then
+\[
+  |q_n-r|\longrightarrow0,
+\]
+forcing \(r=\sqrt2\).  The new class is exactly the missing irrational point described by rational approximations.
+
+\section{A diagonal approximation proves that the completed space is complete}
+
+Let \((\xi_r)\) be a Cauchy sequence in \(\widehat X\).  Passing to a subsequence if necessary, arrange that
+\[
+  \widehat d(\xi_r,\xi_{r+1})<2^{-r}.
+\]
+Density of \(\iota(X)\) lets us choose \(y_r\in X\) with
+\[
+  \widehat d(\iota(y_r),\xi_r)<2^{-r}.
+\]
+Then
+\[
+\begin{aligned}
+  d(y_r,y_{r+1})
+  &\le
+  \widehat d(\iota(y_r),\xi_r)
+  +\widehat d(\xi_r,\xi_{r+1})\\
+  &\qquad
+  +\widehat d(\xi_{r+1},\iota(y_{r+1}))\\
+  &<2^{-r}+2^{-r}+2^{-(r+1)}.
+\end{aligned}
+\]
+The geometric tail shows that \((y_r)\) is Cauchy in \(X\).  Let
+\[
+  \xi=[(y_r)]\in\widehat X.
+\]
+The construction gives
+\[
+  \xi_r\longrightarrow\xi
+\]
+along the chosen subsequence, and since the original sequence was Cauchy, the whole sequence has the same limit.  Hence \(\widehat X\) is complete.
+
+The argument exposes the mechanism: approximate each abstract completed point by an original point with rapidly shrinking error, then use one diagonal Cauchy sequence in \(X\) to encode the limit.
+
+\section{Uniformly continuous maps extend because they preserve Cauchy information}
+
+Let \(Y\) be complete and let
+\[
+  f:X\to Y
+\]
+be uniformly continuous.  If \((x_n)\) is Cauchy, then \((f(x_n))\) is Cauchy.  Indeed, for every \(\varepsilon>0\), choose one \(\delta>0\) working simultaneously for all points:
+\[
+  d_X(x,x')<\delta
+  \quad\Longrightarrow\quad
+  d_Y(f(x),f(x'))<\varepsilon.
+\]
+The Cauchy condition eventually places every pair \(x_m,x_n\) within \(\delta\).
+
+Define
+\[
+  \widehat f:\widehat X\to Y,
+  \qquad
+  \widehat f([(x_n)])
+  =\lim_{n\to\infty}f(x_n).
+\]
+If \((x_n)\sim(y_n)\), uniform continuity gives
+\[
+  d_Y(f(x_n),f(y_n))\longrightarrow0,
+\]
+so the definition is independent of representatives.  It extends \(f\) because constant sequences retain their values.
+
+The extension is unique.  If \(g:\widehat X\to Y\) is continuous and agrees with \(f\) on \(X\), then for
+\[
+  \xi=\lim_n\iota(x_n)
+\]
+one has
+\[
+  g(\xi)
+  =\lim_ng(\iota(x_n))
+  =\lim_nf(x_n)
+  =\widehat f(\xi).
+\]
+Thus completion is characterized by the extension property
+\[
+  \boxed{
+  \text{uniformly continuous maps into complete spaces extend uniquely}.}
+\]
+
+Uniform continuity is essential.  The continuous map
+\[
+  f:(0,1)\to\mathbb R,
+  \qquad
+  f(x)=\frac1x
+\]
+has no continuous extension to the completion \([0,1]\), because it diverges along \(x_n=1/n\to0\).
+
+\section{The universal property makes completion unique}
+
+Suppose
+\[
+  \iota_X:X\hookrightarrow Y,
+  \qquad
+  j_X:X\hookrightarrow Z
+\]
+are dense isometric embeddings into complete metric spaces.  Apply the extension property to the uniformly continuous map
+\[
+  j_X\circ\iota_X^{-1}:\iota_X(X)\to Z.
+\]
+It extends uniquely to an isometry
+\[
+  F:Y\to Z.
+\]
+Reversing the roles gives
+\[
+  G:Z\to Y.
+\]
+Both composites agree with the identity on the dense copy of \(X\).  By uniqueness of extension,
+\[
+  GF=\operatorname{id}_Y,
+  \qquad
+  FG=\operatorname{id}_Z.
+\]
+Therefore any two completions are uniquely isometric in a way that fixes \(X\).
+
+The quotient of Cauchy sequences is one concrete construction; the universal property is what makes the result canonical.
+
+\section{Homeomorphism forgets the uniform scale of closeness}
+
+The interval \((0,1)\) and the real line are homeomorphic via
+\[
+  h(x)=\tan\bigl(\pi(x-1/2)\bigr).
+\]
+Yet \((0,1)\) is bounded and incomplete in its Euclidean metric, while \(\mathbb R\) is unbounded and complete.  Boundedness and completeness are therefore not topological invariants.
+
+The map is not uniformly continuous.  Take
+\[
+  x_n=1-\frac1n,
+  \qquad
+  y_n=1-\frac2n.
+\]
+Then
+\[
+  |x_n-y_n|=\frac1n\longrightarrow0,
+\]
+but
+\[
+  h(x_n)=\cot\frac\pi n,
+  \qquad
+  h(y_n)=\cot\frac{2\pi}n,
+\]
+and their difference grows on the order of \(n\).  No single \(\delta\) controls the map near both endpoints.
+
+Topology records which sets are neighborhoods.  Uniform structure additionally records which pairs are uniformly close across the whole space.  Completion depends on the latter, because Cauchy sequences are uniform objects.
+
+\section{A continuous bijection needs extra hypotheses to be a homeomorphism}
+
+The map
+\[
+  f:[0,2\pi)\to S^1,
+  \qquad
+  f(t)=(\cos t,\sin t)
+\]
+is continuous and bijective, but its inverse is not continuous at \((1,0)\).  Points approaching \((1,0)\) from the lower semicircle have parameters tending to \(2\pi\), while the point itself has parameter \(0\).
+
+A useful positive theorem is the compact--Hausdorff criterion.
+
+\begin{theorem}
+If \(X\) is compact, \(Y\) is Hausdorff, and \(f:X\to Y\) is a continuous bijection, then \(f\) is a homeomorphism.
+\end{theorem}
+
+\begin{proof}
+A closed subset \(C\subseteq X\) is compact.  Its image \(f(C)\) is compact in \(Y\), hence closed because \(Y\) is Hausdorff.  Thus \(f\) is a closed map.  For any closed \(C\subseteq X\),
+\[
+  (f^{-1})^{-1}(C)=f(C)
+\]
+is closed, so \(f^{-1}\) is continuous.
+\end{proof}
+
+The failed half-open-interval example lacks compactness.  The theorem identifies exactly which global hypotheses make inverse continuity automatic.
+
+\section{Quotient topology is designed to control maps out of a gluing}
+
+Let \(q:X\to Y\) be a surjection.  The quotient topology on \(Y\) is defined by
+\[
+  U\subseteq Y\text{ open}
+  \quad\Longleftrightarrow\quad
+  q^{-1}(U)\text{ open in }X.
+\]
+It is the strongest topology on \(Y\) making \(q\) continuous.
+
+Its universal property is the factorization test:
+\[
+  g:Y\to Z\text{ is continuous}
+  \quad\Longleftrightarrow\quad
+  g\circ q:X\to Z\text{ is continuous}.
+\]
+Thus a map out of a quotient is constructed upstairs, where the original points are still visible, provided the map is constant on equivalence classes.
+
+A subset \(A\subseteq X\) is saturated when it is a union of equivalence classes:
+\[
+  A=q^{-1}(q(A)).
+\]
+For arbitrary \(A\),
+\[
+  q(A)\text{ is open in }Y
+  \quad\Longleftrightarrow\quad
+  q^{-1}(q(A))\text{ is open in }X.
+\]
+A quotient map need not send every open set to an open set.  On \([0,1]\), collapse the entire interval \([0,1/2]\) to one point.  The open set \((0,1/2)\) has saturation \([0,1/2]\), which is not open, so its image is not open in the quotient.
+
+The quotient topology controls precisely the saturated information that survives the identification.
+
+\section{Endpoint gluing becomes the circle by quotient factorization}
+
+Let
+\[
+  q:[0,1]\to[0,1]/(0\sim1)
+\]
+be the endpoint quotient, and define
+\[
+  F(t)=e^{2\pi it}.
+\]
+Since
+\[
+  F(0)=F(1),
+\]
+the map is constant on equivalence classes.  The quotient universal property produces a unique continuous map
+\[
+  \overline F:[0,1]/(0\sim1)\to S^1
+\]
+with
+\[
+  \overline F\circ q=F.
+\]
+It is bijective: every point of the circle has a parameter in \([0,1]\), and the only repeated parameter values are the identified endpoints.
+
+The quotient of the compact interval is compact, while \(S^1\) is Hausdorff.  By the compact--Hausdorff theorem,
+\[
+  \boxed{
+  [0,1]/(0\sim1)\cong S^1.}
+\]
+
+A neighborhood of the glued point has preimage
+\[
+  [0,\varepsilon)\cup(1-\varepsilon,1],
+\]
+so two one-sided endpoint neighborhoods become one two-sided circular neighborhood.  The concrete local picture, the quotient factorization property, and the compactness theorem all describe the same gluing.

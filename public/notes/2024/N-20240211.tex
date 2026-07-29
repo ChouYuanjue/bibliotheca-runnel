@@ -1,14 +1,372 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20240211}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20240211}
-\end{document}
+\notechapter{N-20240211}{Topos Theory: Categorical Preliminaries, Internal Logic, and the Geometry of Sets}
+
+\section{Why topoi enter the story}
+
+A topos is one of the places where category theory, logic, geometry, sheaf theory, and foundations meet.  I want to regard it not merely as an abstract generalization of set theory, but as a way of making precise the idea that ``sets may vary over a space'' and that logic may depend on the ambient universe in which it is interpreted.
+
+The route of this chapter is therefore:
+\[
+\begin{gathered}
+  \text{categories}\to \text{limits and universal properties}\\
+  \to \text{cartesian closure}\to \text{subobject classifiers}\\
+  \to \text{elementary topoi}\to \text{sheaf topoi and internal logic}.
+\end{gathered}
+\]
+
+\section{Categories}
+
+\begin{definition}
+A category \(\mathcal C\) consists of:
+\begin{enumerate}[(i)]
+  \item a class of objects \(\operatorname{Ob}(\mathcal C)\);
+  \item for each pair of objects \(X,Y\), a collection \(\operatorname{Hom}_{\mathcal C}(X,Y)\) of morphisms from \(X\) to \(Y\);
+  \item a composition operation
+  \[
+    \operatorname{Hom}_{\mathcal C}(Y,Z)\times
+    \operatorname{Hom}_{\mathcal C}(X,Y)
+    \longrightarrow
+    \operatorname{Hom}_{\mathcal C}(X,Z),
+  \]
+  written \((g,f)\mapsto g\circ f\);
+  \item for each object \(X\), an identity morphism \(\id_X:X\to X\).
+\end{enumerate}
+These data satisfy associativity and identity laws:
+\[
+  h\circ(g\circ f)=(h\circ g)\circ f,
+  \qquad
+  f\circ\id_X=f,\quad \id_Y\circ f=f.
+\]
+\end{definition}
+
+\begin{example}
+The category \(\mathbf{Set}\) has sets as objects and functions as morphisms.  The category \(\mathbf{Grp}\) has groups and group homomorphisms.  The category \(\mathbf{Top}\) has topological spaces and continuous maps.
+\end{example}
+
+\begin{remark}
+The categorical viewpoint is not that objects become unimportant, but that objects are understood through their maps.  This is exactly the shift that later makes generalized set theories possible.
+\end{remark}
+
+\section{Universal properties and limits}
+
+The most important categorical habit is to define objects not by their internal elements, but by how maps into or out of them behave.
+
+\begin{definition}
+A terminal object in \(\mathcal C\) is an object \(1\) such that for every object \(X\), there is a unique morphism
+\[
+  X\to1.
+\]
+Dually, an initial object is an object \(0\) such that for every \(X\), there is a unique morphism
+\[
+  0\to X.
+\]
+\end{definition}
+
+In \(\mathbf{Set}\), a singleton is terminal and the empty set is initial.
+
+\begin{definition}
+A product of \(X\) and \(Y\) is an object \(X\times Y\), equipped with projections
+\[
+  \pi_X:X\times Y\to X,
+  \qquad
+  \pi_Y:X\times Y\to Y,
+\]
+such that for every object \(Z\) and every pair of maps \(f:Z\to X\), \(g:Z\to Y\), there exists a unique map \(\langle f,g\rangle:Z\to X\times Y\) making the diagram commute:
+\[
+\begin{tikzcd}
+& Z \arrow[ddl,bend right=15,swap,"f"] \arrow[ddr,bend left=15,"g"] \arrow[d,dashed,"{\langle f,g\rangle}"] & \\
+& X\times Y \arrow[dl,"\pi_X"] \arrow[dr,swap,"\pi_Y"] & \\
+X && Y.
+\end{tikzcd}
+\]
+\end{definition}
+
+\begin{definition}
+An equalizer of parallel morphisms \(f,g:X\to Y\) is a morphism \(e:E\to X\) such that
+\[
+  f\circ e=g\circ e,
+\]
+and such that any other map \(h:Z\to X\) with \(f\circ h=g\circ h\) factors uniquely through \(e\):
+\[
+\begin{tikzcd}
+Z \arrow[r,dashed,"!" ] \arrow[rr,bend left=18,"h"] & E \arrow[r,"e"] & X \arrow[r,shift left,"f"] \arrow[r,shift right,swap,"g"] & Y
+\end{tikzcd}
+\]
+\end{definition}
+
+\begin{definition}
+A pullback of \(f:X\to Z\) and \(g:Y\to Z\) is an object \(X\times_ZY\) fitting into a cartesian square
+\[
+\begin{tikzcd}
+X\times_ZY \arrow[r] \arrow[d] & Y \arrow[d,"g"]\\
+X \arrow[r,swap,"f"] & Z
+\end{tikzcd}
+\]
+with the universal property that any object mapping compatibly to \(X\) and \(Y\) factors uniquely through the pullback.
+\end{definition}
+
+\begin{remark}
+Products, equalizers, and pullbacks are not isolated gadgets.  They are instances of limits.  A limit is a universal cone over a diagram; it is the categorical way to say that an object satisfies all the compatibility conditions encoded by the diagram.
+\end{remark}
+
+\section{Exponentials and cartesian closure}
+
+In set theory, the set of functions from \(X\) to \(Y\) is denoted \(Y^X\).  Categorically, this is characterized by an adjunction.
+
+\begin{definition}
+A category with finite products is cartesian closed if for every pair of objects \(X,Y\), there exists an exponential object \(Y^X\) and a natural bijection
+\[
+  \operatorname{Hom}_{\mathcal C}(Z,Y^X)
+  \cong
+  \operatorname{Hom}_{\mathcal C}(Z\times X,Y).
+\]
+\end{definition}
+
+The corresponding evaluation map is
+\[
+  \operatorname{ev}:Y^X\times X\to Y.
+\]
+A morphism \(Z\to Y^X\) is the same thing as a morphism \(Z\times X\to Y\).  This is currying in categorical form:
+\[
+\begin{tikzcd}
+Z\times X \arrow[rr,"\widetilde f"] \arrow[dr,swap,"{\hat f\times\id_X}"] && Y\\
+& Y^X\times X \arrow[ur,swap,"\operatorname{ev}"] &
+\end{tikzcd}
+\]
+
+\begin{example}
+In \(\mathbf{Set}\), \(Y^X\) is the ordinary set of functions \(X\to Y\).  The bijection
+\[
+  \operatorname{Hom}_{\mathbf{Set}}(Z,Y^X)
+  \cong
+  \operatorname{Hom}_{\mathbf{Set}}(Z\times X,Y)
+\]
+says that a \(Z\)-indexed family of functions \(X\to Y\) is the same thing as a function of two variables \(Z\times X\to Y\).
+\end{example}
+
+\section{Subobjects and the subobject classifier}
+
+A subset \(A\subseteq X\) may be represented by its characteristic function
+\[
+  \chi_A:X\to\{0,1\}.
+\]
+The categorical version replaces \(\{0,1\}\) by an object \(\Omega\), called the subobject classifier.
+
+\begin{definition}
+A subobject classifier in a category with a terminal object is an object \(\Omega\), together with a map
+\[
+  \mathsf{true}:1\to\Omega,
+\]
+such that for every monomorphism \(m:A\hookrightarrow X\), there is a unique characteristic morphism \(\chi_A:X\to\Omega\) making the square a pullback:
+\[
+\begin{tikzcd}
+A \arrow[r] \arrow[d,swap,"m"] & 1 \arrow[d,"\mathsf{true}"]\\
+X \arrow[r,swap,"\chi_A"] & \Omega.
+\end{tikzcd}
+\]
+\end{definition}
+
+In \(\mathbf{Set}\), \(\Omega=\{0,1\}\), \(\mathsf{true}\) picks \(1\), and \(\chi_A\) is the ordinary characteristic function.
+
+\begin{remark}
+This is one of the decisive steps toward topos theory.  A topos has an internal object of truth values, so logic becomes an internal structure of the category rather than an external metalanguage imposed from outside.
+\end{remark}
+
+\section{Elementary topoi}
+
+\begin{definition}
+An elementary topos is a category \(\mathcal E\) satisfying:
+\begin{enumerate}[(i)]
+  \item it has finite limits;
+  \item it is cartesian closed;
+  \item it has a subobject classifier.
+\end{enumerate}
+\end{definition}
+
+This definition is strikingly short.  It says that a category behaves enough like \(\mathbf{Set}\) to support finite constructions, function spaces, and a logic of predicates.
+
+\begin{example}
+The category \(\mathbf{Set}\) is an elementary topos.  More generally, for any small category \(\mathcal C\), the presheaf category
+\[
+  \widehat{\mathcal C}=\mathbf{Set}^{\mathcal C^{op}}
+\]
+is an elementary topos.
+\end{example}
+
+\begin{example}
+If \(X\) is a topological space, the category \(\operatorname{Sh}(X)\) of sheaves on \(X\) is a topos.  It behaves like a category of sets varying continuously over \(X\).
+\end{example}
+
+\section{A toy presheaf topos}
+
+The smallest example that is not simply \(\mathbf{Set}\) is already useful.  Let
+\[
+  \mathbf 2=(0\to1)
+\]
+be the category associated to the two-element poset.  Consider the presheaf category
+\[
+  \widehat{\mathbf 2}
+  =
+  \mathbf{Set}^{\mathbf 2^{op}}.
+\]
+Every presheaf category is a topos, so this is a genuine elementary topos.
+
+An object \(P\in\widehat{\mathbf 2}\) is exactly the data
+\[
+  P(1)\xrightarrow{\,r\,}P(0),
+\]
+because the arrow \(0\to1\) in \(\mathbf2\) becomes a restriction map \(P(1)\to P(0)\) in \(\mathbf2^{op}\).  It is safest to think of this as a two-stage set: elements visible at stage \(1\) restrict to elements visible at stage \(0\).  It is not automatically an equivalence relation or a quotient; it is simply a function carrying information from the higher stage to the lower stage.
+
+The subobject classifier is made of sieves.  With this convention, the sieves on \(0\) are
+\[
+  \Omega(0)=\{\varnothing,\{id_0\}\},
+\]
+while the sieves on \(1\) are
+\[
+  \Omega(1)=\{\varnothing,\{u:0\to1\},\{id_1,u\}\}.
+\]
+Thus the three-valued part occurs at stage \(1\), and the restriction map
+\[
+  \Omega(1)\longrightarrow\Omega(0)
+\]
+is
+\[
+  \varnothing\mapsto\varnothing,
+  \qquad
+  \{u\}\mapsto\{id_0\},
+  \qquad
+  \{id_1,u\}\mapsto\{id_0\}.
+\]
+The element \(\{u\}\) is the interesting third truth value: not true at stage \(1\) itself, but true after restricting along \(0\to1\).
+
+Here is a characteristic map in this toy universe.  Let
+\[
+  P(1)=\{a,b\},\qquad P(0)=\{*\},
+\]
+with both \(a\) and \(b\) restricting to \(*\).  Define a subpresheaf \(Q\hookrightarrow P\) by
+\[
+  Q(1)=\{a\},\qquad Q(0)=\{*\}.
+\]
+The characteristic morphism \(\chi_Q:P\to\Omega\) sends
+\[
+  \chi_Q(1)(a)=\{id_1,u\},
+  \qquad
+  \chi_Q(1)(b)=\{u\},
+\]
+and
+\[
+  \chi_Q(0)(*)=\{id_0\}.
+\]
+So \(a\) is fully true, while \(b\) is not true at stage \(1\) but becomes true after restriction to stage \(0\).  This is the point at which internal logic stops being two-valued.  In \(\mathbf{Set}^{\mathbf2^{op}}\), a proposition may have a stage-dependent truth value; truth is not merely ``yes'' or ``no'', but is tracked through the restriction structure.
+
+\section{Grothendieck topoi and sheaves}
+
+A Grothendieck topos is, roughly, a category equivalent to sheaves on a site.  A site is a category equipped with a notion of covering.  Thus Grothendieck topoi generalize sheaves on topological spaces.
+
+\begin{remark}
+This is the geometric origin of topos theory.  Instead of studying a space only through its points, one studies its sheaves.  In many situations, the sheaf category remembers more robust information than the point set itself.
+\end{remark}
+
+In algebraic geometry, this becomes essential.  The étale topos of a scheme, for example, packages arithmetic and geometric information that is invisible from the underlying topological space alone.
+
+\section{Internal logic}
+
+Every elementary topos carries an internal higher-order intuitionistic logic.  Subobjects of an object \(X\) behave like predicates on \(X\), and the subobject classifier \(\Omega\) behaves like the object of truth values.
+
+\begin{remark}
+The internal logic of a general topos is usually intuitionistic, not necessarily classical.  The law of excluded middle
+\[
+  P\vee\neg P
+\]
+need not hold internally.  Thus moving from \(\mathbf{Set}\) to a general topos also changes the logic that is naturally available.
+\end{remark}
+
+For a sheaf topos, this has a geometric meaning: truth may be local.  A statement may hold on an open cover without having a single global witness.  This is exactly the kind of phenomenon that sheaf theory is designed to express.
+
+\section{Power objects}
+
+In set theory, \(\mathcal P(X)\) is the set of subsets of \(X\).  In a topos, the analogue is the power object
+\[
+  \Omega^X.
+\]
+Indeed, by cartesian closure and the subobject classifier,
+\[
+  \operatorname{Hom}_{\mathcal E}(B,\Omega^X)
+  \cong
+  \operatorname{Hom}_{\mathcal E}(B\times X,\Omega),
+\]
+which classifies subobjects of \(B\times X\).  Thus \(\Omega^X\) parametrizes subobjects of \(X\), just as \(2^X\) parametrizes subsets of \(X\) in ordinary set theory.
+
+\section{Topos as generalized universe of sets}
+
+A topos can be read in two complementary ways:
+\begin{enumerate}[(i)]
+  \item as a generalized universe of sets, where one can do mathematics internally;
+  \item as a generalized space, where sheaves and local data become fundamental.
+\end{enumerate}
+
+This double reading is the source of its power.  In one direction, topos theory generalizes set-theoretic foundations.  In the other direction, it turns geometry into logic.
+
+\section{A high-level comparison}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Setting & Truth values & Subsets/predicates\\
+\midrule
+\(\mathbf{Set}\) & \(\{0,1\}\) & characteristic functions \(X\to2\)\\
+Boolean topos & Boolean algebra object & classical internal logic\\
+General topos & \(\Omega\) & subobjects classified by \(X\to\Omega\)\\
+Sheaf topos & local truth values & predicates varying over a space\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}
+From a higher viewpoint, a topos is not merely a category satisfying three axioms.  It is a world in which mathematics can be interpreted.  The shift from sets to topoi is analogous to the shift from Euclidean geometry to geometry relative to a transformation group: the ambient universe becomes variable.
+\end{remark}
+
+\section{Further directions}
+
+Several directions naturally follow:
+\begin{enumerate}[(i)]
+  \item Lawvere--Tierney topologies, which internalize sheafification;
+  \item geometric morphisms, the correct maps between topoi;
+  \item classifying topoi, which classify models of geometric theories;
+  \item Grothendieck topoi in algebraic geometry;
+  \item elementary topoi as foundations for constructive mathematics.
+\end{enumerate}
+
+\begin{question}
+The most important question for me is not only what a topos is, but what it means to do mathematics inside one.  Once truth, subsets, and function spaces become internal categorical objects, foundations stop being a fixed background and become part of the geometry.
+\end{question}
+
+
+\section{Subobjects and characteristic maps}
+
+In \(\mathbf{Set}\), a subset \(A\subseteq X\) is classified by its characteristic function
+\[
+  \chi_A:X\to\{0,1\}.
+\]
+A subobject classifier generalizes this.  In a topos, there is an object \(\Omega\) and a map
+\[
+  \mathsf{true}:1\to\Omega
+\]
+such that every subobject \(A\hookrightarrow X\) is obtained as a pullback of \(\mathsf{true}\) along a unique characteristic map \(\chi_A:X\to\Omega\).
+
+This is the categorical replacement for membership predicates.  A subobject is not merely a subset; it is something classified by a truth-value object internal to the topos.
+
+\section{Why logic becomes intuitionistic}
+
+In a general topos, the object \(\Omega\) of truth values need not behave like the two-element Boolean algebra.  As a result, the internal logic is generally intuitionistic.  In particular, the law of excluded middle
+\[
+  P\vee\neg P
+\]
+may fail internally.
+
+This is not a defect.  It means that truth can vary with geometric or contextual information.  In a sheaf topos, a proposition may be true locally on some open sets without being globally decidable.
+
+\section{Sheaves as variable sets}
+
+A sheaf on a topological space assigns data to each open set, with restriction maps and gluing conditions.  One can think of a sheaf as a set varying over the space.  The topos of sheaves on \(X\) therefore behaves like a universe of variable sets over \(X\).
+
+This is the geometric intuition behind topoi.  They are not arbitrary abstract categories; they generalize the category of sets in a way that remembers variation, locality, and gluing.

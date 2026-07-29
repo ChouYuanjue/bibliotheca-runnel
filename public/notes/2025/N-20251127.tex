@@ -1,14 +1,173 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20251127}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20251127}
-\end{document}
+\notechapter{N-20251127}{Self-Avoiding Walks II: The Hexagonal Lattice, Holomorphic Observables, and the Exact Connective Constant}
+
+\section{Why the hexagonal lattice is special}
+
+For most lattices, the connective constant of self-avoiding walks is not known exactly.  The hexagonal lattice is exceptional.  Duminil-Copin and Smirnov proved that its connective constant is
+\[
+  \mu_{\mathrm{hex}}=\sqrt{2+\sqrt2}.
+\]
+Equivalently, the critical step weight is
+\[
+  x_c=\frac1{\mu_{\mathrm{hex}}}=\frac1{\sqrt{2+\sqrt2}}.
+\]
+
+This result is not an enumeration trick in the elementary sense.  It comes from a discrete complex-analytic observable.  The proof is one of the cleanest examples of the modern two-dimensional philosophy: at the critical point, a lattice model may possess a discrete holomorphic structure that forces exact identities.
+
+\begin{remark}
+The number \(\sqrt{2+\sqrt2}\) should not be memorised as a miracle constant.  It is the value for which the parafermionic observable satisfies a local cancellation identity on the hexagonal lattice.
+\end{remark}
+
+\section{A domain version of the counting problem}
+
+Instead of counting walks in the whole plane immediately, one works in a finite domain cut from the hexagonal lattice.  Fix a boundary point \(a\).  For another boundary point or mid-edge \(z\), consider self-avoiding walks \(\gamma\) starting at \(a\) and ending at \(z\), staying inside the domain.  Their weighted sum has the form
+\[
+  \sum_{\gamma:a\to z} x^{|\gamma|} \times \text{a complex phase depending on the winding of }\gamma.
+\]
+The length weight \(x^{|\gamma|}\) remembers the usual self-avoiding-walk generating function.  The complex phase is the new ingredient.
+
+The winding of a planar path records how much the direction of the path turns.  On the hexagonal lattice the allowed turns are highly constrained, and this makes it possible to tune the phase so that local contributions cancel.
+
+
+The first picture for this part is especially helpful.  On the left, the domain is made of hexagonal-lattice cells and the boundary is described by mid-edges.  On the right, the same picture explains winding: the path is not only counted by its length, but also by the total amount it turns.
+
+\Needspace{18\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.92\textwidth]{figures/N-20251127/SAWpicture.pdf}
+  \caption{a hexagonal-lattice domain and the winding of a self-avoiding walk.}
+\end{figure}
+
+\section{The parafermionic observable}
+
+The observable can be remembered schematically as
+\[
+  F(z)=\sum_{\gamma:a\to z} x^{|\gamma|} e^{-i\sigma W(\gamma)},
+\]
+where \(W(\gamma)\) is the total winding and \(\sigma\) is a spin parameter.  The exact theorem uses the special choice
+\[
+  \sigma=\frac58,
+  \qquad
+  x=x_c=\frac1{\sqrt{2+\sqrt2}}.
+\]
+At this value, the observable satisfies a discrete Cauchy--Riemann type relation around each vertex.
+
+The word ``holomorphic'' here should be read carefully.  The observable is defined on a lattice, so it is not holomorphic in the classical analytic sense.  Rather, it satisfies a local linear relation that becomes the Cauchy--Riemann equation in a scaling limit.  This is why the observable is often called discrete holomorphic or preholomorphic.
+
+\begin{remark}
+The observable is not merely a generating function.  The phase remembers geometry.  Without the winding phase, the local cancellation identity would not hold.
+\end{remark}
+
+\section{From local cancellation to a global identity}
+
+The local identity is summed over all vertices in a finite domain.  Interior terms cancel, leaving only boundary contributions.  This is the discrete analogue of using Green's theorem or Cauchy's theorem: local holomorphicity turns an interior statement into a boundary statement.
+
+
+The cancellation is proved by grouping local contributions.  The picture below shows the two types of groupings: pairs of walks that visit all three adjacent mid-edges, and triplets obtained by extending or erasing the last step.  At the special values of \(x\) and \(\sigma\), each such group has total contribution zero.
+
+\Needspace{16\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.84\textwidth]{figures/N-20251127/pairs.pdf}
+  \caption{pair and triplet cancellations in the proof of the local observable identity.}
+\end{figure}
+
+For a suitable trapezoidal domain on the hexagonal lattice, the resulting identity relates generating functions of walks ending on different parts of the boundary.  Very schematically it has the form
+
+
+Here is the actual domain picture used in the lecture notes.  The boundary pieces are labelled separately because the final identity distinguishes walks according to which part of the boundary they hit.
+
+\Needspace{18\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.62\textwidth]{figures/N-20251127/domain.pdf}
+  \caption{the trapezoidal domain \(S_{T,L}\) and its boundary pieces.}
+\end{figure}
+\[
+  1 = A_T(x_c)+B_T(x_c)+E_T(x_c),
+\]
+where the terms count walks from the marked boundary edge to various boundary arcs, with explicit positive coefficients after taking the correct real part.
+
+The important structural fact is positivity.  Once the boundary identity has positive terms, it gives inequalities for ordinary generating functions.  Letting the size of the domain tend to infinity then produces information about convergence and divergence at the critical value.
+
+\section{The upper bound on the connective constant}
+
+To prove
+\[
+  \mu_{\mathrm{hex}}\le \sqrt{2+\sqrt2},
+\]
+one shows that the self-avoiding-walk generating function cannot converge beyond
+\[
+  x_c=\frac1{\sqrt{2+\sqrt2}}.
+\]
+Equivalently, if \(x>x_c\), then the full generating function must diverge.  The boundary identity supplies enough positive mass at \(x_c\) to force criticality at or before this value.
+
+The proof is subtle because finite-domain identities do not immediately determine the infinite-volume connective constant.  One has to pass from boundary generating functions to walks in the full lattice.  The Hammersley--Welsh bridge technology from the previous note is part of the background that makes this passage possible.
+
+\section{The lower bound on the connective constant}
+
+The other inequality
+\[
+  \mu_{\mathrm{hex}}\ge \sqrt{2+\sqrt2}
+\]
+amounts to showing that the generating function still converges below \(x_c\).  In practice one proves that for \(x<x_c\), the weighted sum of self-avoiding walks is finite.  This uses the same domain identities together with limiting arguments and standard consequences of submultiplicativity.
+
+Combining the two bounds gives the exact value
+\[
+  \mu_{\mathrm{hex}}=\sqrt{2+\sqrt2}.
+\]
+
+\begin{theorem}[Connective constant of the hexagonal lattice]
+For self-avoiding walks on the hexagonal lattice,
+\[
+  \lim_{n\to\infty} c_n^{1/n}=\sqrt{2+\sqrt2}.
+\]
+\end{theorem}
+
+\section{Relation with SLE}
+
+The same observable also points toward the expected scaling limit.  The conjectural statement is that two-dimensional self-avoiding walk, after suitable rescaling, converges to \(\mathrm{SLE}_{8/3}\).  This would imply many predicted critical exponents, such as
+\[
+  \nu=\frac34,
+  \qquad
+  \gamma=\frac{43}{32}.
+\]
+
+The exact connective constant result is much more modest than a full scaling-limit theorem, but it belongs to the same conceptual world.  The local observable is designed so that at criticality the lattice model begins to look conformally natural.
+
+\begin{remark}
+The theorem gives the exact exponential growth constant on the hexagonal lattice.  It does not by itself prove the \(\mathrm{SLE}_{8/3}\) scaling limit.  The former is a rigorous theorem; the latter is the guiding two-dimensional conjectural picture.
+\end{remark}
+
+\section{Loop models and the same mechanism}
+
+Self-avoiding walks can be viewed as the \(n=0\) member of the \(O(n)\) loop model.  In the loop model, configurations consist of nonintersecting loops, and each loop receives a weight \(n\).  Formally setting \(n=0\) kills configurations with closed loops and leaves a single open path, which is the self-avoiding walk.
+
+This viewpoint explains why holomorphic observables appear.  For special values of the loop weight and the step weight, the model has a parafermionic observable satisfying local relations.  The hexagonal self-avoiding walk is the most famous case, but the mechanism belongs to a broader family of two-dimensional lattice models.
+
+
+The phase diagram situates this in the \(O(n)\) phase diagram.  For this note, the picture should be read only as orientation: self-avoiding walk corresponds to the \(n=0\) edge of the loop-model story, while the exactly solvable point belongs to a broader two-dimensional critical curve.
+
+\Needspace{16\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.72\textwidth]{figures/N-20251127/phasesO_n_.pdf}
+  \caption{phase diagram for \(O(n)\) loop models.}
+\end{figure}
+
+\section{From example to method}
+
+The proof of the hexagonal connective constant has a clear conceptual shape:
+\[
+\begin{array}{c}
+\text{choose a winding-weighted observable}\\
+\Downarrow\\
+\text{tune }x\text{ and }\sigma\text{ so local cancellations hold}\\
+\Downarrow\\
+\text{sum over a finite domain}\\
+\Downarrow\\
+\text{obtain positive boundary identities}\\
+\Downarrow\\
+\text{pass to the infinite lattice and identify }\mu.
+\end{array}
+\]
+The striking part is that an exact enumerative constant is obtained through a complex-analytic idea rather than through exact enumeration of \(c_n\).

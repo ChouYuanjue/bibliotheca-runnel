@@ -1,14 +1,295 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221120}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221120}
-\end{document}
+\notechapter{N-20221120}{Elliptic Curves from Smooth Cubics to Finite Groups}
+
+\section{A cubic becomes an elliptic curve only after two additions}
+
+Over a field \(k\) of characteristic different from \(2\) and \(3\), a short Weierstrass equation has the form
+\[
+  E:\quad y^2=x^3+ax+b.
+\]
+Two extra requirements turn this equation into an elliptic curve.  First, the cubic must be nonsingular.  Second, one chooses a distinguished point that will serve as the identity of a group law.
+
+The affine equation does not visibly contain such an identity point.  Homogenizing gives the projective cubic
+\[
+  Y^2Z=X^3+aXZ^2+bZ^3.
+\]
+On the line at infinity \(Z=0\), the equation forces \(X=0\), leaving the single point
+\[
+  \mathcal O=[0:1:0].
+\]
+This point is not attached by hand after the geometry is finished.  It is already present in the projective closure, and every vertical affine line meets the cubic there.
+
+\section{The discriminant is exactly the obstruction to smoothness}
+
+Let
+\[
+  f(x)=x^3+ax+b.
+\]
+An affine point \((x,y)\) on the curve is singular when both partial derivatives of
+\[
+  F(x,y)=y^2-f(x)
+\]
+vanish:
+\[
+  2y=0,
+  \qquad
+  3x^2+a=0.
+\]
+Thus a singular point must have \(y=0\), while \(x\) is a common root of \(f\) and \(f'\).  Equivalently, the cubic polynomial has a repeated root.
+
+For a depressed cubic \(x^3+ax+b\), the resultant of \(f\) and \(f'\) is, up to sign,
+\[
+  4a^3+27b^2.
+\]
+Hence the curve is nonsingular precisely when
+\[
+  \boxed{4a^3+27b^2\ne0.}
+\]
+The conventional discriminant is
+\[
+  \Delta=-16(4a^3+27b^2).
+\]
+At the point at infinity, the projective partial derivative with respect to \(Z\) is nonzero, so \(\mathcal O\) is smooth as well.
+
+The condition is geometric, not decorative.  At a node or cusp there is no single tangent direction with the behavior required by the chord-and-tangent construction.  Smoothness is what allows the cubic to carry a regular group law.
+
+\section{A line determines the third point, and Vieta determines its coordinates}
+
+Take two affine points
+\[
+  P=(x_1,y_1),
+  \qquad
+  Q=(x_2,y_2)
+\]
+with \(x_1\ne x_2\).  The line through them is
+\[
+  y=m(x-x_1)+y_1,
+  \qquad
+  m=\frac{y_2-y_1}{x_2-x_1}.
+\]
+Substituting into the cubic gives a polynomial equation of degree three in \(x\).  Two roots are already known: \(x_1,x_2\).  If the third intersection has coordinate \(x_R\), comparison of the quadratic coefficient gives
+\[
+  x_1+x_2+x_R=m^2.
+\]
+Therefore
+\[
+  x_R=m^2-x_1-x_2.
+\]
+The third point itself is
+\[
+  R=(x_R,m(x_R-x_1)+y_1).
+\]
+The group sum is defined by reflecting this point across the \(x\)-axis:
+\[
+  P+Q=-R.
+\]
+Thus
+\[
+  \boxed{
+  x_{P+Q}=m^2-x_1-x_2,}
+\]
+\[
+  \boxed{
+  y_{P+Q}=m(x_1-x_{P+Q})-y_1.}
+\]
+The formulas are Vieta's relations applied to the line--cubic intersection, not independent identities to memorize.
+
+\section{Tangency, inverses, and the point at infinity complete the rule}
+
+When \(P=Q\), the secant slope is replaced by the tangent slope.  Implicit differentiation of
+\[
+  y^2=x^3+ax+b
+\]
+gives
+\[
+  2y\frac{dy}{dx}=3x^2+a.
+\]
+Hence, when \(y_1\ne0\),
+\[
+  m=\frac{3x_1^2+a}{2y_1}.
+\]
+The same coordinate formulas then compute \(2P\).
+
+The reflection
+\[
+  -(x,y)=(x,-y)
+\]
+is the group inverse.  The line through \(P\) and \(-P\) is vertical and meets the projective cubic at \(\mathcal O\), so
+\[
+  P+(-P)=\mathcal O.
+\]
+If \(y=0\), the tangent is vertical; consequently
+\[
+  2P=\mathcal O,
+\]
+and \(P\) is a point of order two.
+
+Finally,
+\[
+  P+\mathcal O=P.
+\]
+Projective geometry has removed the exceptional case: a vertical line still has its third intersection, but that intersection lies at infinity.
+
+\section{A rational example shows both addition and doubling}
+
+Consider
+\[
+  E:\quad y^2=x^3-x+1
+\]
+over \(\mathbb Q\).  The points
+\[
+  P=(0,1),
+  \qquad
+  Q=(1,1)
+\]
+lie on the curve.  Their joining line is horizontal, so \(m=0\).  Hence
+\[
+  x_{P+Q}=0^2-0-1=-1,
+\]
+\[
+  y_{P+Q}=0(0-(-1))-1=-1.
+\]
+Therefore
+\[
+  P+Q=(-1,-1).
+\]
+A direct substitution verifies
+\[
+  (-1)^2=(-1)^3-(-1)+1=1.
+\]
+
+For doubling \(P\),
+\[
+  m=\frac{3\cdot0^2-1}{2\cdot1}=-\frac12.
+\]
+Thus
+\[
+  x_{2P}=\frac14,
+\]
+\[
+  y_{2P}
+  =-\frac12\left(0-\frac14\right)-1
+  =-\frac78.
+\]
+Indeed,
+\[
+  \left(-\frac78\right)^2
+  =\left(\frac14\right)^3-\frac14+1
+  =\frac{49}{64}.
+\]
+The geometry and the rational arithmetic agree exactly.
+
+\section{Divisors explain why the chord rule is associative}
+
+The coordinate formulas make closure and inverses visible, but a direct verification of
+\[
+  (P+Q)+R=P+(Q+R)
+\]
+would be unpleasant.  The reason for associativity is better seen through divisors.
+
+On the projective cubic, let \(L\) be a line meeting \(E\) at \(P,Q,R\), counted with multiplicity.  The line at infinity meets the Weierstrass cubic at \(\mathcal O\) with multiplicity three.  The ratio of the two linear forms therefore defines a rational function on \(E\) whose divisor is
+\[
+  P+Q+R-3\mathcal O.
+\]
+A principal divisor represents zero in the degree-zero Picard group, so
+\[
+  [P-\mathcal O]+[Q-\mathcal O]+[R-\mathcal O]=0
+  \qquad\text{in }\operatorname{Pic}^0(E).
+\]
+Since the geometric rule defines \(P+Q=-R\), it is exactly the rule required for
+\[
+  P\longmapsto[P-\mathcal O]
+\]
+to respect addition.
+
+For a smooth genus-one curve with chosen point \(\mathcal O\), this map is an isomorphism
+\[
+  E\cong\operatorname{Pic}^0(E).
+\]
+The Picard group is an abelian group because divisor classes add associatively.  The chord-and-tangent operation inherits that associativity.  Thus divisor theory does not merely restate the picture in advanced language; it supplies the group axiom that the picture alone does not prove.
+
+\section{The same formulas work over finite fields}
+
+Let \(p>3\) be prime and suppose \(\Delta\not\equiv0\pmod p\).  The set
+\[
+  E(\mathbb F_p)
+  =\{(x,y)\in\mathbb F_p^2:y^2=x^3+ax+b\}
+  \cup\{\mathcal O\}
+\]
+forms a finite abelian group.  The addition formulas are unchanged, but division means multiplication by a modular inverse.
+
+For example, on
+\[
+  E:\quad y^2=x^3-x+1
+  \qquad\text{over }\mathbb F_5,
+\]
+the quadratic residues are \(0,1,4\).  Checking each \(x\) gives
+\[
+\begin{array}{c|ccccc}
+  x&0&1&2&3&4\\ \hline
+  x^3-x+1&1&1&2&0&1\\
+  \#\{y:y^2=x^3-x+1\}&2&2&0&1&2.
+\end{array}
+\]
+Including \(\mathcal O\),
+\[
+  \#E(\mathbb F_5)=2+2+0+1+2+1=8.
+\]
+Hasse's theorem predicts
+\[
+  \bigl|\#E(\mathbb F_5)-(5+1)\bigr|
+  \le2\sqrt5,
+\]
+and the count \(8\) satisfies this bound.
+
+\section{One point generates the entire eight-element example}
+
+Take
+\[
+  P=(0,1)\in E(\mathbb F_5).
+\]
+For doubling,
+\[
+  m=\frac{-1}{2}\equiv4\cdot3\equiv2\pmod5,
+\]
+so
+\[
+  2P=(4,1).
+\]
+Doubling again,
+\[
+  m=\frac{3\cdot4^2-1}{2}
+  \equiv\frac2{2}\equiv1\pmod5,
+\]
+and therefore
+\[
+  4P=(3,0).
+\]
+Because a point with \(y=0\) has order two,
+\[
+  8P=\mathcal O.
+\]
+Since \(4P\ne\mathcal O\), the order of \(P\) is exactly eight.  The group has eight elements and contains an element of order eight, hence
+\[
+  E(\mathbb F_5)\cong\mathbb Z/8\mathbb Z.
+\]
+This small example makes scalar multiplication concrete rather than treating the finite group as a black box.
+
+\section{Scalar multiplication creates the computational asymmetry}
+
+For a positive integer \(n\), scalar multiplication is
+\[
+  [n]P=P+\cdots+P.
+\]
+It is computed efficiently by binary expansion.  To evaluate \([13]P\), for example, one forms
+\[
+  P,\ 2P,\ 4P,\ 8P
+\]
+and combines the terms corresponding to
+\[
+  13=8+4+1.
+\]
+This double-and-add method requires only logarithmically many group operations.
+
+The inverse problem asks for \(n\) given \(P\) and \(Q=[n]P\).  On suitably chosen large finite-field subgroups, no comparably efficient general method is known; this is the elliptic-curve discrete logarithm problem.  The cryptographic use therefore rests on a precise asymmetry: projective algebra makes the forward group operation explicit and fast, while recovering the scalar remains difficult.
+
+The path from the cubic equation to that asymmetry is now continuous.  The discriminant guarantees a smooth projective curve, the point at infinity supplies an identity, line intersections give the addition formulas, divisor classes prove associativity, and reduction modulo a prime turns the same geometry into a finite abelian group.

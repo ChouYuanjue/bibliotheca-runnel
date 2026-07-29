@@ -703,13 +703,13 @@
       "volume": "Topology and Homotopy",
       "sectionCount": 15,
       "sections": [
-        "Why ordinary cancellation misses the point",
+        "From the meme to the lecture's explanation",
         "The lecture starts from ordinary equations",
         "The Hopf fibration as the first nontrivial map",
         "Homotopy groups and the first stable class",
         "From natural numbers to finite sets",
         "The space of finite sets",
-        "Why the infinite-stability analogy points in the wrong direction",
+        "Why the first reading was close but needed correction",
         "Finite sets and stable spheres"
       ],
       "pdf": "/notes/2025/N-20251217.pdf",
@@ -1072,12 +1072,12 @@
       "year": "2025",
       "month": "Jul",
       "day": "07",
-      "title": "Nikonov's Paper at One Crossing: Region Probes and Partial Tribrackets",
+      "title": "Nikonov's Paper at One Crossing: Region Probes, Partial Tribrackets, and What the Seminar Was About",
       "volume": "Curves and Structures",
       "sectionCount": 8,
       "sections": [
-        "Reading only one small part of a long paper",
-        "Where this sits inside Nikonov's paper",
+        "Following the region probes",
+        "The local dictionary",
         "A region is not just a blank patch",
         "At a crossing, four regions want to talk to each other",
         "Why the operation is partial",
@@ -1094,7 +1094,7 @@
       "year": "2025",
       "month": "Jul",
       "day": "05",
-      "title": "Knots, Diagrams, Probes, and the Space Between the Lines",
+      "title": "Nikonov's Seminar Prelude: Knots, Diagrams, Probes, and the Space Between the Lines",
       "volume": "Curves and Structures",
       "sectionCount": 7,
       "sections": [
@@ -1104,7 +1104,7 @@
         "The pieces of a diagram",
         "Nikonov's bridge: diagram elements as probes",
         "Invariants, coinvariants, and labels",
-        "Scope and the next algebraic layer"
+        "From probes to colorings"
       ],
       "pdf": "/notes/2025/N-20250705.pdf",
       "tex": "/notes/2025/N-20250705.tex"
@@ -1225,17 +1225,17 @@
       "year": "2024",
       "month": "Jul",
       "day": "27",
-      "title": "Hopf Fibration, Homotopy, and a Tempting Infinite-Stability Reading",
+      "title": "Hopf Fibration, Homotopy, and the Infinite-Stability Reading",
       "volume": "Topology and Homotopy",
       "sectionCount": 7,
       "sections": [
-        "The infinite-stability interpretation",
+        "From the meme to infinite stability",
         "The analytic reflex",
-        "The Eilenberg swindle as the central candidate",
-        "The role assigned to the Hopf fibration",
-        "The meme as an association ladder",
-        "The infinite-stability thesis",
-        "Where the interpretation fails"
+        "The Eilenberg swindle",
+        "Where the Hopf fibration enters",
+        "Reading the ladder",
+        "The infinite-stability reading",
+        "The finite clues"
       ],
       "pdf": "/notes/2024/N-20240727.pdf",
       "tex": "/notes/2024/N-20240727.tex"

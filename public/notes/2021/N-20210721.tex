@@ -1,14 +1,382 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20210721}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20210721}
-\end{document}
+\notechapter{N-20210721}{A Gateway to Dualities: Space, Algebra, and the Dualizing Object}
+
+\section{Starting point}
+
+A recurring family of dualities places three ingredients side by side: a geometric object, an algebraic presentation, and a dualizing or gauge object.  Stone spaces and Boolean algebras form the most concrete entry point, because they expose a spatial fact about logic: Boolean operations are realized by clopen regions, while complete truth assignments become points.
+
+The aim is not merely to list several dualities, but to isolate the mechanism behind them:
+\[
+\begin{array}{c}
+  \text{a space is studied through its observations,}\\
+  \text{an algebra is studied through its models or points.}
+\end{array}
+\]
+The dualizing object is the interpreter through which the two sides communicate.  It determines which observations are allowed and therefore which geometry can be recovered.
+
+\section{The table is not a list}
+
+The central examples are:
+
+\begin{center}
+\small
+\begin{tabular}{p{0.27\textwidth}p{0.29\textwidth}p{0.35\textwidth}}
+\toprule
+Geometry & Algebra & Dualizing object / gauge object\\
+\midrule
+Stone spaces & Boolean algebras & the Boolean values \(\mathbf 2=\{0,1\}\)\\
+compact Hausdorff spaces & commutative \(C^*\)-algebras & the complex numbers \(\mathbb C\)\\
+affine schemes & commutative rings & the affine line \(\mathbb A^1\)\\
+locales & frames & the Sierpi\'nski space \(\mathbb S\)\\
+topoi & logoi & the topos \(\mathbf{Set}\) of sets\\
+\(\infty\)-topoi & \(\infty\)-logoi & the \(\infty\)-topos of \(\infty\)-groupoids\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The table should not be read as six unrelated examples.  It is an architectural diagram.  The left column contains objects that behave like spaces.  The middle column contains algebraic or logical presentations of those spaces.  The right column contains the object used to measure, test, or observe them.
+
+The shortest slogan is:
+\[
+  \text{geometry is recovered from algebra, and algebra is recovered from geometry.}
+\]
+But this slogan is still too vague.  The real mechanism is contravariant homming into a dualizing object.
+
+\section{The dualizing object}
+
+Let \(\Omega\) be a dualizing object.  A geometric object \(X\) gives an algebra of \(\Omega\)-valued observations:
+\[
+  X \longmapsto \operatorname{Hom}(X,\Omega).
+\]
+A point of \(\operatorname{Hom}(X,\Omega)\) is a way of asking a question about \(X\), with answer living in \(\Omega\).
+
+Conversely, an algebraic object \(A\) gives a geometric space of \(\Omega\)-valued models:
+\[
+  A \longmapsto \operatorname{Hom}(A,\Omega).
+\]
+A point of this new space is a way to interpret the algebra \(A\) inside the measuring object \(\Omega\).
+
+The reason a duality reverses arrows is already visible here.  If
+\[
+  f:X\to Y
+\]
+is a map of spaces, then precomposition gives
+\[
+  \operatorname{Hom}(Y,\Omega)\longrightarrow \operatorname{Hom}(X,\Omega),
+  \qquad
+  \varphi\longmapsto \varphi\circ f.
+\]
+So a map \(X\to Y\) produces a map in the opposite direction on the algebras of observations.  This elementary reversal is the seed of the whole table.
+
+\begin{remark}
+The third column is therefore not an accessory.  It tells us what kind of observation is allowed.  Changing the dualizing object changes the kind of geometry that can be seen.
+\end{remark}
+
+\section{Stone duality as the first complete example}
+
+The first row is the best place to begin because it is the most logical and the most concrete:
+\[
+  \text{Stone spaces}\quad \longleftrightarrow\quad \text{Boolean algebras},
+  \qquad
+  \Omega=\mathbf 2=\{0,1\}.
+\]
+Here \(\mathbf 2\) is the space of truth values.  A map into \(\mathbf 2\) is a yes-or-no observation.
+
+\subsection{Boolean algebras as propositional logic}
+
+A Boolean algebra is an algebraic model of classical propositional logic.
+
+\begin{definition}[Boolean algebra]
+A Boolean algebra is a structure
+\[
+  B=(B,\vee,\wedge,{}',0,1)
+\]
+where \(\vee\) and \(\wedge\) are join and meet, \(0\) and \(1\) are bottom and top, and each element \(a\in B\) has a complement \(a'\).  It satisfies the usual associativity, commutativity, absorption, distributivity, and complementation laws.
+\end{definition}
+
+The example to keep in mind is the power set \(\mathcal P(X)\).  Then
+\[
+  A\vee B=A\cup B,
+  \qquad
+  A\wedge B=A\cap B,
+  \qquad
+  A'=X\setminus A.
+\]
+So Boolean algebra is the algebra of regions that can be combined by union, intersection, and complement.
+
+\subsection{Stone spaces as spaces with Boolean topology}
+
+A Stone space is a topological space whose topology is controlled by clopen sets.
+
+\begin{definition}[Stone space]
+A Stone space is a compact Hausdorff totally disconnected space.  Equivalently, it is a compact Hausdorff space with a basis of clopen subsets.
+\end{definition}
+
+A subset is clopen if it is both closed and open.  In ordinary connected spaces, clopen sets are rare.  In a Stone space, clopen sets are abundant enough to form the logical basis of the space.
+
+For any Stone space \(X\), the clopen subsets form a Boolean algebra:
+\[
+  \operatorname{Clop}(X).
+\]
+The Boolean operations are exactly the set operations:
+\[
+  U\vee V=U\cup V,
+  \qquad
+  U\wedge V=U\cap V,
+  \qquad
+  U'=X\setminus U.
+\]
+This gives the direction
+\[
+  X\longmapsto \operatorname{Clop}(X).
+\]
+
+\subsection{Why \(\mathbf 2\) is the dualizing object}
+
+The set \(\mathbf 2=\{0,1\}\) is given the discrete topology.  A continuous map
+\[
+  \chi:X\to \mathbf 2
+\]
+is the characteristic function of a clopen subset of \(X\).  Indeed,
+\[
+  \chi^{-1}(\{1\})
+\]
+is clopen because \(\{1\}\subset \mathbf 2\) is clopen.
+
+Thus
+\[
+  \operatorname{Hom}_{\mathbf{Top}}(X,\mathbf 2)\cong \operatorname{Clop}(X).
+\]
+This is the first half of the row: the algebra of logic on a Stone space is the algebra of truth-valued continuous observations.
+
+\subsection{Ultrafilters as points}
+
+Now start from a Boolean algebra \(B\).  A point of the Stone space of \(B\) is not given in advance.  It must be reconstructed from the algebra.
+
+\begin{definition}[Filter and ultrafilter]
+A filter \(F\subseteq B\) is a subset such that \(1\in F\), \(0\notin F\), it is closed under finite meets, and it is upward closed.  An ultrafilter is a maximal proper filter.
+\end{definition}
+
+An ultrafilter is a complete truth assignment.  For every proposition \(a\in B\), exactly one of \(a\) and \(a'\) belongs to the ultrafilter.  So an ultrafilter decides every proposition in a way compatible with Boolean logic.
+
+Let
+\[
+  S(B)=\{\mathfrak u : \mathfrak u\text{ is an ultrafilter on }B\}.
+\]
+For each \(a\in B\), define
+\[
+  U_a=\{\mathfrak u\in S(B):a\in\mathfrak u\}.
+\]
+The sets \(U_a\) form a basis of clopen subsets.  This turns \(S(B)\) into a Stone space.
+
+The map
+\[
+  a\longmapsto U_a
+\]
+preserves Boolean operations:
+\[
+  U_{a\wedge b}=U_a\cap U_b,
+  \qquad
+  U_{a\vee b}=U_a\cup U_b,
+  \qquad
+  U_{a'}=S(B)\setminus U_a.
+\]
+
+\begin{theorem}[Stone representation theorem]
+For every Boolean algebra \(B\), the map
+\[
+  B\longrightarrow \operatorname{Clop}(S(B)),
+  \qquad
+  a\longmapsto U_a
+\]
+is an isomorphism of Boolean algebras.
+\end{theorem}
+
+This is the missing geometric half of Boolean algebra.  A Boolean algebra is not only a symbolic calculus of propositions.  It is the algebra of clopen regions of a canonically reconstructed space.
+
+\section{What Stone duality says in one sentence}
+
+Stone duality says:
+\[
+  \text{logic has a topology.}
+\]
+The propositions are clopen subsets.  The truth assignments are points.  The Boolean algebra is the algebra of observable yes-or-no regions of the Stone space.
+
+The dualizing object \(\mathbf 2\) explains both directions:
+\[
+  X\longmapsto \operatorname{Hom}(X,\mathbf 2)\cong\operatorname{Clop}(X),
+\]
+\[
+  B\longmapsto \operatorname{Hom}(B,\mathbf 2)\cong S(B).
+\]
+On the geometric side, maps to \(\mathbf 2\) are clopen predicates.  On the algebraic side, homomorphisms to \(\mathbf 2\) are truth assignments, equivalently ultrafilters.
+
+The algebraic rules do more than organize Boolean operations: they reconstruct a space of compatible truth assignments.
+
+\section{Gelfand duality as a continuous analogue}
+
+The second row replaces truth-valued observations by complex-valued observations:
+\[
+  \text{compact Hausdorff spaces}\quad \longleftrightarrow\quad
+  \text{commutative }C^*\text{-algebras},
+  \qquad
+  \Omega=\mathbb C.
+\]
+
+If \(X\) is compact Hausdorff, then \(C(X)\), the algebra of continuous complex-valued functions on \(X\), is a commutative unital \(C^*\)-algebra.  This is the direction
+\[
+  X\longmapsto C(X)=\operatorname{Hom}(X,\mathbb C)
+\]
+in a suitably interpreted sense.
+
+Conversely, if \(A\) is a commutative unital \(C^*\)-algebra, its spectrum is the set of characters
+\[
+  \operatorname{Spec}(A)=\operatorname{Hom}_{C^*\text{-alg}}(A,\mathbb C).
+\]
+These characters are the points of the reconstructed compact Hausdorff space.
+
+\begin{theorem}[Gelfand duality]
+The category of compact Hausdorff spaces is contravariantly equivalent to the category of commutative unital \(C^*\)-algebras.  In particular,
+\[
+  A\cong C(\operatorname{Spec}(A))
+\]
+for commutative unital \(C^*\)-algebras \(A\).
+\end{theorem}
+
+The analogy with Stone duality is direct:
+\[
+\begin{array}{c|c}
+\text{Stone duality} & \text{Gelfand duality}\\
+\hline
+\mathbf 2\text{-valued observations} & \mathbb C\text{-valued observations}\\
+\text{clopen predicates} & \text{continuous functions}\\
+\text{ultrafilters} & \text{characters}\\
+\text{Boolean logic} & \text{commutative functional analysis}
+\end{array}
+\]
+
+\section{Affine schemes and the affine line}
+
+The third row is algebraic geometry:
+\[
+  \text{affine schemes}\quad \longleftrightarrow\quad \text{commutative rings},
+  \qquad
+  \Omega=\mathbb A^1.
+\]
+
+The affine line \(\mathbb A^1\) is the object that represents regular functions.  For an affine scheme \(X\), maps
+\[
+  X\to \mathbb A^1
+\]
+are regular functions on \(X\).  Thus the ring of functions on \(X\) is recovered as
+\[
+  \operatorname{Hom}(X,\mathbb A^1).
+\]
+
+Conversely, a commutative ring \(R\) gives the affine scheme
+\[
+  \operatorname{Spec}R,
+\]
+whose points are prime ideals of \(R\).  The slogan is the same: an algebraic space is reconstructed from its algebra of functions.
+
+This row is close in spirit to Gelfand duality, but the geometry is algebraic rather than analytic.  The measuring object is no longer \(\mathbb C\) as a topological field of values, but \(\mathbb A^1\) as the universal carrier of regular functions.
+
+\section{Locales and the Sierpi\'nski space}
+
+The fourth row is
+\[
+  \text{locales}\quad \longleftrightarrow\quad \text{frames},
+  \qquad
+  \Omega=\mathbb S.
+\]
+A locale is a point-free space.  Instead of starting with points and then defining open sets, one starts with the lattice of opens.
+
+\begin{definition}[Frame]
+A frame is a complete lattice \(L\) in which finite meets distribute over arbitrary joins:
+\[
+  a\wedge\bigvee_i b_i=\bigvee_i(a\wedge b_i).
+\]
+\end{definition}
+
+For a topological space \(X\), the lattice \(\mathcal O(X)\) of open subsets is a frame.  Locale theory studies this frame as the primary object.
+
+The dualizing object here is the Sierpi\'nski space \(\mathbb S\), with two points \(\{0,1\}\), where \(\{1\}\) is open but \(\{0\}\) is not.  The key fact is:
+\[
+  \operatorname{Hom}(X,\mathbb S)\cong \mathcal O(X).
+\]
+A continuous map \(X\to\mathbb S\) is exactly the characteristic function of an open subset of \(X\).
+
+This makes the third-column idea completely visible.  The Sierpi\'nski space is not merely a two-point curiosity.  It is the classifier of open sets.
+
+\section{Topoi, logoi, and higher versions}
+
+The last rows are much larger in scope:
+\[
+  \text{topoi}\quad \longleftrightarrow\quad \text{logoi},
+  \qquad
+  \Omega=\mathbf{Set},
+\]
+and
+\[
+  \infty\text{-topoi}\quad \longleftrightarrow\quad \infty\text{-logoi}.
+\]
+A topos can be read as a generalized space, often presented as a category of sheaves.  It is a place where mathematics can be carried out internally.  A logos is the corresponding logical or algebraic presentation.
+
+The row is harder than Stone duality, but the analogy is still useful:
+\[
+  \text{space of models}\quad \longleftrightarrow\quad \text{logic/theory of that space}.
+\]
+The topos of sets \(\mathbf{Set}\) acts as a reference universe.  For \(\infty\)-topoi, ordinary sets are replaced by spaces or \(\infty\)-groupoids, so that higher homotopical information is retained rather than collapsed.
+
+For this note, the details of logoi are less important than the direction of generalization.  The table begins with Boolean truth values and ends with entire universes of mathematics as measuring objects.
+
+\section{The formal meaning of duality}
+
+Categorically, a duality between categories \(\mathcal C\) and \(\mathcal D\) is an equivalence
+\[
+  \mathcal C\simeq \mathcal D^{op}.
+\]
+Equivalently, there are contravariant functors
+\[
+  F:\mathcal C\to\mathcal D,
+  \qquad
+  G:\mathcal D\to\mathcal C
+\]
+which recover the original objects up to natural isomorphism.
+
+In many rows of the table, the functors are built by homming into a dualizing object.  This is why the third column matters.  It is the object that converts a space into its algebra of observations and an algebra into its space of models.
+
+So the statement is not simply:
+\[
+  \text{algebra is the dual of geometry.}
+\]
+A more precise statement is:
+\[
+\begin{array}{c}
+  \text{for suitable categories, a chosen measuring object}\\
+  \text{produces a contravariant equivalence.}
+\end{array}
+\]
+The geometry/algebra distinction is then a matter of viewpoint.  A space can be treated through its functions.  An algebra can be treated through its spectrum of points.
+
+\section{The duality principle behind the table}
+
+The table's first row was already enough to contain the lesson.  A Boolean algebra is not only a formal calculus of \(\vee\), \(\wedge\), and complement.  It has a Stone space of complete truth assignments.  Conversely, a Stone space is not only a topological object.  It has a Boolean algebra of clopen predicates.
+
+The right summary is:
+\[
+\begin{array}{c}
+\text{points are models or truth assignments,}\\
+\text{propositions are regions,}\\
+\text{the dualizing object tells us what kind of question is being asked.}
+\end{array}
+\]
+
+In Stone duality, the question is yes-or-no, so the dualizing object is \(\mathbf 2\).  In Gelfand duality, the question is complex-valued measurement, so the dualizing object is \(\mathbb C\).  In locale theory, the question is openness, so the dualizing object is the Sierpi\'nski space.  In topos theory, the question becomes internal mathematics itself.
+
+Boolean operations describe the syntax of propositions, while the Stone space supplies the topology of their complete truth assignments.  The structural lesson of the table is:
+\[
+\begin{array}{c}
+  \text{space is recovered from its observations,}\\
+  \text{logic is recovered as the topology of its truth assignments.}
+\end{array}
+\]

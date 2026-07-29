@@ -1,14 +1,291 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220323}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220323}
-\end{document}
+\notechapter{N-20220323}{Complex Differentiability, Cauchy--Riemann Equations, and Holomorphic Rigidity}
+
+\section{One difference quotient must survive every planar direction}
+
+Let \(U\subseteq\mathbb C\) be open and let \(f:U\to\mathbb C\).  The complex derivative at \(z_0\in U\) is
+\[
+  f'(z_0)
+  =\lim_{h\to0}
+  \frac{f(z_0+h)-f(z_0)}{h},
+\]
+provided the limit exists.  The increment \(h\) approaches zero through the whole plane.  This is much stronger than asking for two one-sided real limits.
+
+Write
+\[
+  z=x+iy,
+  \qquad
+  f(z)=u(x,y)+iv(x,y).
+\]
+If \(f\) is complex differentiable at \(z_0=x_0+iy_0\), then the quotient has the same limit along the real and imaginary axes.
+
+Along \(h=t\in\mathbb R\),
+\[
+  f'(z_0)
+  =u_x(x_0,y_0)+iv_x(x_0,y_0).
+\]
+Along \(h=it\),
+\[
+\begin{aligned}
+  f'(z_0)
+  &=\lim_{t\to0}
+  \frac{u(x_0,y_0+t)-u(x_0,y_0)
+  +i\bigl(v(x_0,y_0+t)-v(x_0,y_0)\bigr)}{it}\\
+  &=v_y(x_0,y_0)-iu_y(x_0,y_0).
+\end{aligned}
+\]
+Equality gives the Cauchy--Riemann equations
+\[
+  \boxed{u_x=v_y,
+  \qquad
+  u_y=-v_x.}
+\]
+The derivative can then be written in either form:
+\[
+  f'=u_x+iv_x=v_y-iu_y.
+\]
+
+\section{Cauchy--Riemann is sufficient under real differentiability}
+
+The equations alone at one point do not automatically imply complex differentiability.  A clean sufficient hypothesis is real differentiability.
+
+\begin{proposition}
+Suppose \(u,v:\mathbb R^2\to\mathbb R\) are differentiable at \((x_0,y_0)\) and satisfy the Cauchy--Riemann equations there.  Then \(f=u+iv\) is complex differentiable at \(z_0=x_0+iy_0\).
+\end{proposition}
+
+\begin{proof}
+Let \(h=\Delta x+i\Delta y\).  Real differentiability gives
+\[
+\begin{aligned}
+  \Delta u&=u_x\Delta x+u_y\Delta y+r_1(h),\\
+  \Delta v&=v_x\Delta x+v_y\Delta y+r_2(h),
+\end{aligned}
+\]
+where
+\[
+  \frac{|r_1(h)|+|r_2(h)|}{|h|}\to0.
+\]
+Using \(u_x=v_y\) and \(u_y=-v_x\),
+\[
+\begin{aligned}
+  \Delta f
+  &=\Delta u+i\Delta v\\
+  &=(u_x+iv_x)(\Delta x+i\Delta y)
+  +r_1(h)+ir_2(h).
+\end{aligned}
+\]
+Hence
+\[
+  \frac{\Delta f}{h}
+  =u_x+iv_x+
+  \frac{r_1(h)+ir_2(h)}{h}
+  \longrightarrow u_x+iv_x.
+\]
+\end{proof}
+
+If the first partial derivatives are continuous in a neighborhood, real differentiability is automatic.  Thus the familiar \(C^1\) version is:
+\[
+  f\text{ holomorphic}
+  \quad\Longleftrightarrow\quad
+  u_x=v_y,
+  \quad
+  u_y=-v_x.
+\]
+
+\section{Wirtinger derivatives isolate the holomorphic part}
+
+Define
+\[
+  \partial_z
+  =\frac12\left(\partial_x-i\partial_y\right),
+  \qquad
+  \partial_{\bar z}
+  =\frac12\left(\partial_x+i\partial_y\right).
+\]
+Since
+\[
+  x=\frac{z+\bar z}{2},
+  \qquad
+  y=\frac{z-\bar z}{2i},
+\]
+these operators treat \(z\) and \(\bar z\) as formally independent coordinates:
+\[
+  \partial_z z=1,
+  \quad
+  \partial_z\bar z=0,
+  \quad
+  \partial_{\bar z}z=0,
+  \quad
+  \partial_{\bar z}\bar z=1.
+\]
+For \(f=u+iv\),
+\[
+  2\partial_{\bar z}f
+  =(u_x-v_y)+i(v_x+u_y).
+\]
+Therefore the Cauchy--Riemann equations are exactly
+\[
+  \boxed{\partial_{\bar z}f=0.}
+\]
+Under real differentiability, this is equivalent to holomorphicity.
+
+The operator \(\partial_{\bar z}\) measures failure of holomorphicity.  For example,
+\[
+  \partial_{\bar z}\bar z=1,
+\]
+so \(\bar z\) is nowhere holomorphic.  Also
+\[
+  |z|^2=z\bar z,
+  \qquad
+  \partial_{\bar z}|z|^2=z.
+\]
+Hence \(|z|^2\) is complex differentiable only at \(z=0\), and it is not holomorphic on any neighborhood of that point.
+
+\section{The Jacobian must be a rotation followed by a scaling}
+
+The real derivative of \(f=u+iv\) is the Jacobian matrix
+\[
+  Df=
+  \begin{pmatrix}
+  u_x&u_y\\
+  v_x&v_y
+  \end{pmatrix}.
+\]
+Under the Cauchy--Riemann equations,
+\[
+  Df=
+  \begin{pmatrix}
+  a&-b\\
+  b&a
+  \end{pmatrix},
+  \qquad
+  a=u_x,
+  \quad
+  b=v_x.
+\]
+This is precisely the real matrix of multiplication by
+\[
+  f'(z_0)=a+ib.
+\]
+If \(f'(z_0)\ne0\), write
+\[
+  f'(z_0)=\rho e^{i\theta}.
+\]
+Then
+\[
+  Df(z_0)=
+  \rho
+  \begin{pmatrix}
+  \cos\theta&-\sin\theta\\
+  \sin\theta&\cos\theta
+  \end{pmatrix}.
+\]
+Infinitesimally, \(f\) scales every direction by \(\rho\) and rotates every direction by \(\theta\).  Thus a holomorphic map with nonzero derivative preserves oriented angles.  This is the local meaning of conformality.
+
+At a critical point \(f'(z_0)=0\), the first-order map collapses.  For instance, \(f(z)=z^m\) near \(0\) multiplies angles by \(m\) but has zero linear part when \(m\ge2\).
+
+\section{Cauchy's integral formula turns boundary values into derivatives}
+
+The rigidity of holomorphic functions does not follow from the Cauchy--Riemann equations alone by a short algebraic argument.  The decisive analytic input is Cauchy's integral formula.
+
+If \(f\) is holomorphic on a neighborhood of the closed disk
+\[
+  \overline{D(a,R)},
+\]
+then for \(|z-a|<R\),
+\[
+  \boxed{
+  f(z)=\frac{1}{2\pi i}
+  \int_{|\zeta-a|=R}
+  \frac{f(\zeta)}{\zeta-z}\,d\zeta.}
+\]
+Differentiating under the integral sign gives
+\[
+  f^{(n)}(z)
+  =\frac{n!}{2\pi i}
+  \int_{|\zeta-a|=R}
+  \frac{f(\zeta)}{(\zeta-z)^{n+1}}\,d\zeta.
+\]
+One complex derivative therefore forces derivatives of every order.
+
+The same formula yields the Cauchy estimate.  If
+\[
+  M_R=\max_{|\zeta-a|=R}|f(\zeta)|,
+\]
+then
+\[
+  |f^{(n)}(a)|
+  \le \frac{n!M_R}{R^n}.
+\]
+Boundary control becomes quantitative control of all derivatives in the interior.
+
+\section{Holomorphic functions are analytic}
+
+For \(|z-a|<R\), expand the kernel as a geometric series:
+\[
+\begin{aligned}
+  \frac{1}{\zeta-z}
+  &=\frac{1}{\zeta-a}
+  \frac{1}{1-\frac{z-a}{\zeta-a}}\\
+  &=\sum_{n=0}^{\infty}
+  \frac{(z-a)^n}{(\zeta-a)^{n+1}}.
+\end{aligned}
+\]
+The series converges uniformly on the integration circle for \(|z-a|<R\).  Substitution into Cauchy's formula gives
+\[
+  f(z)=\sum_{n=0}^{\infty}c_n(z-a)^n,
+\]
+where
+\[
+  c_n=
+  \frac{1}{2\pi i}
+  \int_{|\zeta-a|=R}
+  \frac{f(\zeta)}{(\zeta-a)^{n+1}}\,d\zeta
+  =\frac{f^{(n)}(a)}{n!}.
+\]
+Thus
+\[
+  \boxed{
+  f(z)=\sum_{n=0}^{\infty}
+  \frac{f^{(n)}(a)}{n!}(z-a)^n.}
+\]
+Holomorphicity implies analyticity.  This is the sharp contrast with smooth real functions such as
+\[
+  g(x)=
+  \begin{cases}
+  e^{-1/x^2},&x\ne0,\\
+  0,&x=0,
+  \end{cases}
+\]
+whose Taylor series at \(0\) vanishes identically although the function does not.
+
+\section{Zeros are isolated unless the whole function vanishes}
+
+Suppose \(f\) is holomorphic near \(a\) and not identically zero.  Its Taylor series has a first nonzero coefficient:
+\[
+  f(z)=c_m(z-a)^m+c_{m+1}(z-a)^{m+1}+\cdots,
+  \qquad
+  c_m\ne0.
+\]
+Factor
+\[
+  f(z)=(z-a)^m g(z),
+  \qquad
+  g(a)=c_m\ne0.
+\]
+By continuity, \(g\) is nonzero near \(a\), so \(a\) is an isolated zero of multiplicity \(m\).
+
+This proves the identity theorem.  If two holomorphic functions agree on a set with a limit point inside a connected domain, their difference has non-isolated zeros and must vanish identically.
+
+The chain of rigidity is now explicit:
+\[
+\begin{aligned}
+  \partial_{\bar z}f=0
+  &\longrightarrow
+  \text{Cauchy formula}
+  \longrightarrow
+  \text{power series},\\
+  &\longrightarrow
+  \text{isolated zeros and unique continuation}.
+\end{aligned}
+\]
+The operator \(\partial_{\bar z}\) is the local differential equation; Cauchy's formula supplies the global analytic mechanism that makes its solutions rigid.

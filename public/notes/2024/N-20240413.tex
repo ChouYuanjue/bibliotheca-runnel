@@ -1,14 +1,257 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20240413}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20240413}
-\end{document}
+\notechapter{N-20240413}{Local Linear Geometry: A Mapmaker's View of Derivatives and Tangent Spaces}
+
+\section{The mapmaker's problem}
+
+Suppose one wants to draw a map of a curved surface. A small enough region of the Earth can be treated as flat, even though the Earth is not flat. This is not a lie; it is a local approximation.
+
+Differential geometry begins from the same idea. Curved objects are understood by replacing them, near one point, with linear objects. The derivative is the machine that performs this replacement.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.54\linewidth]{figures/N-20240413/tangent.pdf}
+\caption{The tangent line is the first linear shadow of a curve. Higher-order details are deliberately ignored.}
+\end{figure}
+
+The guiding principle for this chapter is:
+\[
+  \text{to see a curved object clearly, first learn its best linear shadow.}
+\]
+This principle sounds elementary, but it is the starting point for manifolds, tangent spaces, differential forms, and eventually curvature.
+
+\section{Derivative first, partial derivatives second}
+
+Let
+\[
+  f:\mathbb R^n\to\mathbb R^m.
+\]
+At a point \(p\), the derivative should be thought of as a linear map
+\[
+  Df_p:\mathbb R^n\to\mathbb R^m
+\]
+satisfying
+\[
+  f(p+h)=f(p)+Df_p(h)+o(\|h\|).
+\]
+This formula says that \(Df_p(h)\) is the best first-order prediction of how \(f\) changes when the input moves by \(h\).
+
+The Jacobian matrix is only a coordinate display of this linear map. If \(f=(f_1,\ldots,f_m)\), then
+\[
+  J_f(p)=
+  \begin{bmatrix}
+  \partial f_1/\partial x_1&\cdots&\partial f_1/\partial x_n\\
+  \vdots&\ddots&\vdots\\
+  \partial f_m/\partial x_1&\cdots&\partial f_m/\partial x_n
+  \end{bmatrix}_{p}.
+\]
+The matrix is useful, but the linear map is the concept.
+
+\paragraph{A useful correction.}
+Students often learn multivariable calculus as a list of partial derivatives. Geometry reverses the priority: the total derivative is the object, and partial derivatives are its coordinates.
+
+\section{The chain rule is not a formula trick}
+
+If
+\[
+  \mathbb R^n\xrightarrow{f}\mathbb R^m\xrightarrow{g}\mathbb R^k,
+\]
+then
+\[
+  D(g\circ f)_p=Dg_{f(p)}\circ Df_p.
+\]
+In coordinates this becomes matrix multiplication. Geometrically it says something simpler: if \(f\) is locally approximated by \(Df_p\), and \(g\) is locally approximated by \(Dg_{f(p)}\), then their composition is locally approximated by the composition of the two linear maps.
+
+This is why the chain rule is one of the first genuinely structural theorems in calculus. It says that differentiation respects composition.
+
+\section{A small laboratory: polar coordinates}
+
+Consider
+\[
+  F(r,\theta)=(r\cos\theta,r\sin\theta).
+\]
+Then
+\[
+  DF_{(r,\theta)}=
+  \begin{bmatrix}
+  \cos\theta&-r\sin\theta\\
+  \sin\theta&r\cos\theta
+  \end{bmatrix}.
+\]
+The two columns are
+\[
+  \frac{\partial F}{\partial r}=(\cos\theta,\sin\theta),
+  \qquad
+  \frac{\partial F}{\partial\theta}=(-r\sin\theta,r\cos\theta).
+\]
+The first vector points outward. The second vector points around the circle. Thus a coordinate change is not only a substitution rule; it turns coordinate motion into tangent motion.
+
+Notice the factor \(r\) in the angular direction. Moving by \(d\theta\) near the origin is physically shorter than moving by the same \(d\theta\) far away. The derivative records this distortion.
+
+\section{Tangent planes from equations}
+
+A graph \(z=f(x,y)\) has tangent plane
+\[
+  z=f(a,b)+f_x(a,b)(x-a)+f_y(a,b)(y-b).
+\]
+A level surface
+\[
+  F(x,y,z)=c
+\]
+has tangent plane
+\[
+  \nabla F(p)\cdot(X-p)=0.
+\]
+Both formulas are versions of the same principle: differentiate the defining data and keep only the first-order part.
+
+For the sphere
+\[
+  S^2=\{x\in\mathbb R^3:\|x\|^2=1\},
+\]
+let \(p\in S^2\). If \(\gamma(t)\subset S^2\) and \(\gamma(0)=p\), then
+\[
+  \gamma(t)\cdot\gamma(t)=1.
+\]
+Differentiating gives
+\[
+  p\cdot\gamma'(0)=0.
+\]
+So
+\[
+  T_pS^2=\{v\in\mathbb R^3:p\cdot v=0\}.
+\]
+The tangent plane is perpendicular to the radius vector. This is the most concrete form of the slogan ``differentiate the constraint.''
+
+\section{A manifold is a space with local Euclidean windows}
+
+A smooth manifold is a space that can be covered by coordinate windows
+\[
+  \varphi:U\to\mathbb R^n
+\]
+whose overlaps are smoothly compatible. A chart is not the manifold itself. It is a local language for talking about it.
+
+The circle, sphere, torus, and projective spaces all share this feature: no single coordinate system describes them perfectly, but many local coordinate systems can be patched together.
+
+\paragraph{Why charts matter.}
+Charts let us import calculus into spaces that are not globally Euclidean. Differentiation, tangent vectors, and smooth maps are all defined by moving into a chart, doing the Euclidean calculation, and checking that the answer does not depend on the chart in a bad way.
+
+\section{Two pictures of tangent vectors}
+
+There are two useful definitions of a tangent vector at \(p\).
+
+The first is dynamic: a tangent vector is the velocity of a curve through \(p\):
+\[
+  v=\gamma'(0),\qquad \gamma(0)=p.
+\]
+The second is operational: a tangent vector differentiates functions:
+\[
+  v(f)=\left.\frac{d}{dt}\right|_{t=0}f(\gamma(t)).
+\]
+The second definition is more intrinsic. It does not require the manifold to be sitting inside a larger Euclidean space.
+
+A smooth map \(F:M\to N\) sends tangent vectors forward:
+\[
+  dF_p:T_pM\to T_{F(p)}N.
+\]
+This is the derivative on manifolds.
+
+\section{Regular values: one clean machine for making manifolds}
+
+Suppose
+\[
+  F:\mathbb R^n\to\mathbb R^k
+\]
+is smooth. If \(c\) is a regular value, meaning \(DF_p\) is surjective for every \(p\in F^{-1}(c)\), then
+\[
+  F^{-1}(c)
+\]
+is a smooth manifold of dimension \(n-k\).
+
+This theorem is useful because many geometric objects are naturally described by equations. Spheres, matrix groups, and many surfaces arise this way. The theorem says that if the equations cut cleanly, the solution set is a manifold.
+
+
+\section{One chart in detail: stereographic projection}
+
+The sphere is the first place where one really feels why a single coordinate system is not enough.  Remove the north pole
+\[
+  N=(0,0,1)
+\]
+from \(S^2\).  Stereographic projection sends a point \((X,Y,Z)\in S^2\setminus\{N\}\) to the point where the line through \(N\) and \((X,Y,Z)\) meets the plane \(Z=0\):
+\[
+  (X,Y,Z)\longmapsto \left(\frac{X}{1-Z},\frac{Y}{1-Z}\right).
+\]
+The inverse map is
+\[
+  (u,v)\longmapsto
+  \left(
+  \frac{2u}{u^2+v^2+1},
+  \frac{2v}{u^2+v^2+1},
+  \frac{u^2+v^2-1}{u^2+v^2+1}
+  \right).
+\]
+This formula is worth seeing once because it makes the word ``chart'' concrete.  The sphere is not being flattened globally; one point is missing, and the remaining part is described by ordinary coordinates \((u,v)\).
+
+A second chart, obtained by projecting from the south pole, covers the missing point.  The transition map between the two charts is smooth away from the origin.  This is the atlas idea in its most visible form.
+
+\section{Vector fields: tangent spaces glued along a space}
+
+A tangent vector lives at one point.  A vector field chooses a tangent vector at every point:
+\[
+  p\longmapsto V(p)\in T_pM.
+\]
+On the plane, one may draw a vector field as little arrows attached to points.  On a manifold, this picture is still correct, but each arrow belongs to a different tangent space.
+
+For example, on the unit circle \(S^1\subset\mathbb R^2\), the vector field
+\[
+  V(x,y)=(-y,x)
+\]
+is tangent to the circle because
+\[
+  (x,y)\cdot(-y,x)=0.
+\]
+It rotates counterclockwise around the circle.  This example shows a useful habit: to check whether a vector field is tangent to a constraint, check whether it preserves the constraint to first order.
+
+\section{Pushforward in a concrete example}
+
+Let
+\[
+  F:\mathbb R^2\to\mathbb R^2,\qquad F(x,y)=(x^2-y^2,2xy).
+\]
+This is the complex squaring map \(z\mapsto z^2\) written in real coordinates.  Its derivative is
+\[
+  DF_{(x,y)}=\begin{bmatrix}2x&-2y\\2y&2x\end{bmatrix}.
+\]
+At the point \((1,0)\), a tangent vector \((a,b)\) is sent to
+\[
+  (2a,2b).
+\]
+At the point \((0,1)\), it is sent to
+\[
+  (-2b,2a).
+\]
+The same coordinate vector can be stretched and rotated differently depending on the base point.  This is why the derivative of a nonlinear map is a family of linear maps, one for each point.
+
+\section{What curvature will later add}
+
+This chapter only keeps first-order information.  A tangent plane cannot distinguish a sphere from a plane at the point of tangency.  Curvature begins when one asks how tangent spaces change from point to point.
+
+So the local-linear story is not the end of geometry.  It is the first layer.  The later layers ask:
+\[
+\begin{array}{c}
+\text{How do tangent spaces vary?}\\
+\text{How do we compare vectors at different points?}\\
+\text{How does a manifold bend?}
+\end{array}
+\]
+Those questions require connections, metrics, and curvature.  But without the tangent-space layer, none of them can even be stated cleanly.
+
+The local-linear picture becomes useful through the chain
+\[
+\begin{array}{c}
+\text{derivative} \longrightarrow
+\text{linear approximation} \longrightarrow
+\text{tangent space} \longrightarrow
+\text{manifold calculus}.
+\end{array}
+\]
+In a calculation this chain has a definite order.  First choose a chart or a defining equation.  Then replace the nonlinear object by its first-order part: for a parametrized surface this means differentiating the parametrization; for a level set \(F^{-1}(c)\) this means studying \(dF_p\).  The tangent space is the kernel of the linear constraint when the manifold is cut out by equations, and it is the span of coordinate velocity vectors when the manifold is parametrized.
+
+The stereographic-projection example and the regular-value criterion are two versions of the same habit.  A chart lets one compute on \(\mathbb R^n\); a regular value tells one that the kernel of a derivative has the expected dimension.  Curvature, connections, and metrics will later add second-order and comparison data, but the first check remains the same: before asking how a manifold bends, identify the tangent space in which the infinitesimal question lives.

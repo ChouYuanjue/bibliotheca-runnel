@@ -1,14 +1,479 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20251210}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20251210}
-\end{document}
+\notechapter{N-20251210}{Calculus Review II: Monotonicity, Integration Methods, Applications, and More}
+
+
+
+\section{Strict monotonicity from the derivative}
+
+If $f$ is differentiable on an interval $I$ and
+\[
+  f'(x)>0\quad(x\in I),
+\]
+then $f$ is strictly increasing on $I$.  If
+\[
+  f'(x)<0\quad(x\in I),
+\]
+then $f$ is strictly decreasing.
+
+The proof uses the Lagrange mean value theorem.  For $x_2>x_1$,
+\[
+  f(x_2)-f(x_1)=f'(\xi)(x_2-x_1)
+\]
+for some $\xi\in(x_1,x_2)$.  If $f'(\xi)>0$, then the difference is positive.
+
+\section{First derivative test for extrema}
+
+Suppose $f$ is continuous near $x_0$ and differentiable in the punctured neighborhood.  If the sign of $f'$ changes from negative to positive at $x_0$, then $f(x_0)$ is a local minimum.  If the sign changes from positive to negative, then $f(x_0)$ is a local maximum.
+
+The compact criterion is:
+\[
+  (x-x_0)f'(x)>0
+  \quad\Longrightarrow\quad
+  f(x_0)\text{ is a local minimum},
+\]
+\[
+  (x-x_0)f'(x)<0
+  \quad\Longrightarrow\quad
+  f(x_0)\text{ is a local maximum}.
+\]
+
+\section{Second derivative test}
+
+If
+\[
+  f'(x_0)=0,\qquad f''(x_0)\ne0,
+\]
+then
+\[
+  f''(x_0)>0\quad\Longrightarrow\quad x_0\text{ is a local minimum},
+\]
+\[
+  f''(x_0)<0\quad\Longrightarrow\quad x_0\text{ is a local maximum}.
+\]
+A useful mnemonic is that $f''>0$ looks like a smile and $f''<0$ looks like a frown.
+
+\section{Concavity and inflection points}
+
+A curve segment is concave up if it lies above its tangent lines, and concave down if it lies below its tangent lines.  In the usual calculus language,
+\[
+  f''(x)>0
+\]
+indicates concave up, while
+\[
+  f''(x)<0
+\]
+indicates concave down.
+
+An inflection point is a point where the concavity changes.  A necessary condition, when $f''$ exists, is
+\[
+  f''(x_0)=0.
+\]
+But this is not sufficient.  The note highlights that $f''(x_0)=0$ or nonexistence of $f''(x_0)$ only gives candidates; one must check whether the sign of $f''$ changes across $x_0$.
+
+The scanned page distinguishes several types: smooth horizontal inflection, smooth non-horizontal inflection, and sharp or vertical tangent behavior.  The visual test is concavity change, not merely whether the tangent exists.
+
+\section{Asymptotes}
+
+The notes classify asymptotes.
+
+A vertical asymptote occurs when
+\[
+  \lim_{x\to x_0}f(x)=\pm\infty.
+\]
+Then $x=x_0$ is a vertical asymptote.
+
+A horizontal asymptote occurs when
+\[
+  \lim_{x\to+\infty}f(x)=c
+  \quad\text{or}\quad
+  \lim_{x\to-\infty}f(x)=c.
+\]
+Then $y=c$ is a horizontal asymptote.
+
+For an oblique asymptote
+\[
+  y=ax+b,
+\]
+we require
+\[
+  \lim_{x\to\infty}[f(x)-(ax+b)]=0.
+\]
+The page derives
+\[
+  a=\lim_{x\to\infty}
+\frac{f(x)}x,
+\]
+and then
+\[
+  b=\lim_{x\to\infty}(f(x)-ax).
+\]
+These formulas are highlighted in the source.
+
+\section{General procedure for sketching a curve}
+
+The pages give a curve-sketching checklist:
+
+\begin{enumerate}[(i)]
+  \item determine the domain;
+  \item check symmetry and periodicity;
+  \item compute $f'(x)$ and $f''(x)$;
+  \item find critical points and possible inflection points;
+  \item determine intervals of monotonicity and concavity;
+  \item find asymptotes;
+  \item locate intercepts or special points if useful;
+  \item draw the graph according to this information.
+\end{enumerate}
+
+This is not a mechanical ritual.  The derivative table tells how the curve moves; the second derivative table tells how it bends; asymptotes determine the large-scale shape.
+
+\section{Basic antiderivative table}
+
+The integration section records standard formulas:
+\[
+  \int 0\,dx=C,\qquad
+  \int x^\mu\,dx=
+\frac{x^{\mu+1}}{\mu+1}+C\quad(\mu\ne-1),
+\]
+\[
+  \int
+\frac1x\,dx=\ln|x|+C,
+  \qquad
+  \int a^x\,dx=
+\frac{a^x}{\ln a}+C.
+\]
+Trigonometric formulas include
+\[
+  \int\sin x\,dx=-\cos x+C,\qquad
+  \int\cos x\,dx=\sin x+C,
+\]
+\[
+  \int\sec^2x\,dx=	an x+C,\qquad
+  \int\csc^2x\,dx=-\cot x+C,
+\]
+\[
+  \int
+\frac{dx}{\sqrt{1-x^2}}=\arcsin x+C,
+  \qquad
+  \int
+\frac{dx}{1+x^2}=\arctan x+C.
+\]
+The page also lists logarithmic forms such as
+\[
+  \int
+\frac{dx}{\sqrt{x^2+a^2}}
+  =\ln|x+\sqrt{x^2+a^2}|+C.
+\]
+
+\section{Substitution}
+
+For a composite function, the substitution rule is
+\[
+  \int f(
+arphi(v))
+arphi'(v)\,dv
+  =
+  \int f(u)\,du,
+  \qquad u=
+arphi(v).
+\]
+Equivalently,
+\[
+  \int f(u)\,du
+  =
+  \int f(
+arphi(v))
+arphi'(v)\,dv.
+\]
+The scanned page calls the two directions the first and second substitution methods.  The first recognizes a derivative already present; the second introduces a new variable to simplify the integral.
+
+\section{Integration by parts}
+
+From
+\[
+  d(uv)=u\,dv+v\,du,
+\]
+one obtains
+\[
+  \int u\,dv=uv-\int v\,du.
+\]
+The page presents integration by parts as the other major method after substitution.  Its use depends on choosing $u$ so that differentiating it simplifies the expression and choosing $dv$ so that it can be integrated.
+
+\section{Rational functions and partial fractions}
+
+A rational function is
+\[
+\frac{P(x)}{Q(x)},
+\]
+where $P,Q$ are polynomials and $Q\ne0$.  If $\deg P\ge \deg Q$, first divide polynomials to write it as a polynomial plus a proper rational function.
+
+The pages list the elementary partial fraction forms.  A real linear factor $(x-a)^k$ contributes
+\[
+\frac{A_1}{x-a}+
+\frac{A_2}{(x-a)^2}+\cdots+
+\frac{A_k}{(x-a)^k}.
+\]
+An irreducible quadratic factor $(x^2+px+q)^k$ with $p^2-4q<0$ contributes
+\[
+\frac{M_1x+N_1}{x^2+px+q}
+  +\cdots+
+\frac{M_kx+N_k}{(x^2+px+q)^k}.
+\]
+Thus integration of rational functions reduces to two basic integral types:
+\[
+  \int
+\frac{dx}{(x-a)^k},
+  \qquad
+  \int
+\frac{Mx+N}{(x^2+px+q)^k}\,dx.
+\]
+
+\section{Quadratic denominator reduction}
+
+For the second type, split the numerator as a derivative part plus a remainder:
+\[
+  Mx+N=
+\frac M2(2x+p)+\left(N-
+\frac M2p
+\right).
+\]
+Then
+\[
+  \int
+\frac{Mx+N}{(x^2+px+q)^k}\,dx
+  =
+\frac M2 I_k^1+\left(N-
+\frac M2p
+\right)I_k^2,
+\]
+where
+\[
+  I_k^1=\int
+\frac{d(x^2+px+q)}{(x^2+px+q)^k},
+\]
+and
+\[
+  I_k^2=\int
+\frac{dx}{(x^2+px+q)^k}.
+\]
+Complete the square by setting
+\[
+  t=x+
+\frac p2,\qquad
+  a^2=q-
+\frac{p^2}{4}>0.
+\]
+Then
+\[
+  x^2+px+q=t^2+a^2.
+\]
+For $k=1$,
+\[
+  I_1^2=
+\frac1a\arctan
+\frac ta+C.
+\]
+For higher $k$, the recurrence shown on the page is
+\[
+  I_{k+1}^2=
+\frac1{2ka^2}
+  \left(
+\frac{t}{(t^2+a^2)^k}+(2k-1)I_k^2
+\right).
+\]
+
+\section{Trigonometric rational functions}
+
+The notes next handle rational functions of $\sin x$ and $\cos x$.  Use the tangent half-angle substitution
+\[
+  t=	an
+\frac x2,\qquad -\pi<x<\pi.
+\]
+Then
+\[
+  \sin x=
+\frac{2t}{1+t^2},\qquad
+  \cos x=
+\frac{1-t^2}{1+t^2},\qquad
+  	an x=
+\frac{2t}{1-t^2},
+\]
+and
+\[
+  dx=
+\frac{2\,dt}{1+t^2}.
+\]
+Thus
+\[
+  \int R(\sin x,\cos x)\,dx
+  =
+  \int R\left(
+\frac{2t}{1+t^2},
+\frac{1-t^2}{1+t^2}
+\right)
+\frac{2\,dt}{1+t^2},
+\]
+which becomes a rational integral in $t$.
+
+\section{Definite integrals and Riemann sums}
+
+The page defines the definite integral.  Divide $[a,b]$ by
+\[
+  a=x_0<x_1<\cdots<x_n=b,
+\]
+let
+\[
+  \Delta x_i=x_i-x_{i-1},
+\]
+and choose sample points $\xi_i\in[x_{i-1},x_i]$.  The Riemann sum is
+\[
+  \sum_{i=1}^n f(\xi_i)\Delta x_i.
+\]
+If the limit exists as the mesh
+\[
+  \lambda=\max_i\Delta x_i
+\]
+tends to zero, then
+\[
+  \int_a^b f(x)\,dx
+\]
+is the definite integral.
+
+The pages list sufficient conditions for integrability: continuous functions, monotone bounded functions, and bounded functions with finitely many discontinuities are integrable on closed intervals.
+
+\section{Basic properties of definite integrals}
+
+The standard properties are:
+\[
+  \int_a^b [\alpha f(x)+\beta g(x)]\,dx
+  =
+  \alpha\int_a^b f(x)\,dx+\beta\int_a^b g(x)\,dx,
+\]
+\[
+  \int_a^b f(x)\,dx=-\int_b^a f(x)\,dx,\qquad
+  \int_a^a f(x)\,dx=0,
+\]
+\[
+  \int_a^b f(x)\,dx=\int_a^c f(x)\,dx+\int_c^b f(x)\,dx.
+\]
+If $f(x)\ge0$ on $[a,b]$, then
+\[
+  \int_a^b f(x)\,dx\ge0.
+\]
+If $f\le g$, then
+\[
+  \int_a^b f(x)\,dx\le\int_a^b g(x)\,dx.
+\]
+
+\section{Integral mean value theorem}
+
+\begin{theorem}[Integral mean value theorem]
+If \(f\) is continuous on \([a,b]\), then there exists \(c\in[a,b]\) such that
+\[
+  \int_a^b f(x)\,dx=f(c)(b-a).
+\]
+\end{theorem}
+
+
+If $f$ is continuous on $[a,b]$, then there exists $\xi\in[a,b]$ such that
+\[
+  \int_a^b f(x)\,dx=f(\xi)(b-a).
+\]
+If $g$ does not change sign, the weighted form is
+\[
+  \int_a^b f(x)g(x)\,dx
+  =
+  f(\xi)\int_a^b g(x)\,dx.
+\]
+This interprets integrals as average values.
+
+\section{Applications: area, volume, and arc length}
+
+Area between curves is computed by
+\[
+  A=\int_a^b [f(x)-g(x)]\,dx
+\]
+when $f\ge g$.  If horizontal slicing is better,
+\[
+  A=\int_c^d [x_{right}(y)-x_{left}(y)]\,dy.
+\]
+
+The volume of a solid of revolution around the $x$-axis is
+\[
+  V=\pi\int_a^b [f(x)]^2\,dx.
+\]
+The shell method has the form
+\[
+  V=2\pi\int_a^b x f(x)\,dx
+\]
+when rotating a region around the $y$-axis.
+
+Arc length of $y=f(x)$ is
+\[
+  L=\int_a^b \sqrt{1+[f'(x)]^2}\,dx.
+\]
+For a parametric curve $x=x(t),y=y(t)$,
+\[
+  L=\int_\alpha^\beta
+  \sqrt{(x'(t))^2+(y'(t))^2}\,dt.
+\]
+
+\section{Improper integrals}
+
+The last pages include reminders about improper integrals.  If the interval is unbounded,
+\[
+  \int_a^{+\infty}f(x)\,dx
+  =
+  \lim_{R\to+\infty}\int_a^R f(x)\,dx.
+\]
+If the integrand has a singularity at $b$, then
+\[
+  \int_a^b f(x)\,dx
+  =
+  \lim_{t\to b^-}\int_a^t f(x)\,dx.
+\]
+Convergence depends on the existence of these limits.
+
+A standard comparison is the $p$-integral:
+\[
+  \int_1^\infty 
+\frac{dx}{x^p}
+\]
+converges iff $p>1$, while
+\[
+  \int_0^1 
+\frac{dx}{x^p}
+\]
+converges iff $p<1$.
+
+\section{Broader perspective}
+
+This note connects derivative information with the global shape of a curve, then connects antiderivatives with accumulation.  Derivatives decide monotonicity, extrema, concavity, inflection points, and asymptotes.  Integration methods reduce complicated antiderivatives to known forms.  Definite integrals turn limits of sums into area, volume, length, and average value.  The same calculus ideas are being used both for qualitative geometry and quantitative computation.
+
+\section{Monotonicity and derivative sign}
+
+If \(f'\ge0\) on an interval, the mean value theorem gives
+\[
+  f(y)-f(x)=f'(c)(y-x)\ge0\qquad (x<y).
+\]
+So monotonicity is not a separate rule; it is a global consequence of local derivative sign.
+
+Strict monotonicity needs care: \(f'>0\) everywhere is sufficient, but not necessary.  Functions can be strictly increasing even when the derivative vanishes at isolated or many points.
+
+\section{Convexity and supporting lines}
+
+Convexity can be read geometrically: the graph lies below chords and above supporting tangent lines.  If \(f\) is differentiable and convex, then
+\[
+  f(y)\ge f(x)+f'(x)(y-x).
+\]
+This inequality is the foundation of many optimization methods.
+
+\section{Integration methods as inverse rules}
+
+Substitution reverses the chain rule, integration by parts reverses the product rule, and partial fractions use algebraic decomposition before integration.  These methods are not unrelated tricks; each integration technique recognizes which differentiation rule produced the integrand.
+
+\section{Error terms and numerical integration}
+
+Midpoint and trapezoidal error formulas depend on second derivatives.  They express how curvature controls the difference between an integral and a simple area approximation.  In numerical analysis, this becomes a systematic study of quadrature rules and convergence rates.
+
+\section{Local derivative data and global shape}
+
+Curve sketching, monotonicity, extrema, concavity, asymptotes, integration methods, and numerical errors all use derivatives to convert local information into global shape or accumulated quantity.

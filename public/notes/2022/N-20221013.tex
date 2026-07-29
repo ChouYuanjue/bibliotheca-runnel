@@ -1,14 +1,274 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221013}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221013}
-\end{document}
+\notechapter{N-20221013}{Oriented Boundary Sums, Polynomial Remainders, and Congruence Classes}
+
+\section{Three short computations hide three different kinds of structure}
+
+A coordinate-area formula, a polynomial remainder problem, and a modular-exponent problem can appear on the same exercise sheet without sharing one master theorem.  What they do share is a style of simplification: each calculation throws away information that the question does not need.
+
+For a polygon, the relevant data are the oriented contributions of its edges.  For a polynomial modulo \(x-a\), all multiples of \(x-a\) become invisible and only the value at \(a\) remains.  For an integer modulo \(m\), numbers differing by a multiple of \(m\) are treated as the same residue class.  The useful lesson is therefore not that every ``remainder'' is secretly identical, but that one should identify the map that preserves exactly the requested invariant.
+
+\section{A determinant is the signed area of two position vectors}
+
+For vectors
+\[
+  p=(x_1,y_1),
+  \qquad
+  q=(x_2,y_2),
+\]
+define
+\[
+  \det(p,q)=x_1y_2-x_2y_1.
+\]
+Its absolute value is the area of the parallelogram spanned by \(p,q\), while its sign records orientation.  Thus the oriented area of the triangle with vertices \(0,p,q\) is
+\[
+  \frac12\det(p,q).
+\]
+
+Let a polygon have cyclically ordered vertices
+\[
+  p_i=(x_i,y_i),
+  \qquad i=1,\ldots,n,
+  \qquad p_{n+1}=p_1.
+\]
+Triangulating from the origin suggests the signed sum
+\[
+  \frac12\sum_{i=1}^n\det(p_i,p_{i+1}).
+\]
+If the origin lies outside the polygon, some triangles point with the opposite orientation.  This is not a defect: the negative pieces cancel the extra positive pieces, leaving the polygon's oriented area.
+
+\section{The shoelace formula is a boundary integral evaluated edge by edge}
+
+Green's theorem gives an origin-free expression for the oriented area of a positively oriented region \(D\):
+\[
+  \operatorname{Area}(D)
+  =\frac12\int_{\partial D}(x\,dy-y\,dx).
+\]
+For a polygon, parametrize the edge from \(p_i\) to \(p_{i+1}\) by
+\[
+  r_i(t)=p_i+t(p_{i+1}-p_i),
+  \qquad 0\le t\le1.
+\]
+Writing \(r_i(t)=(x(t),y(t))\), a direct calculation gives
+\[
+\begin{aligned}
+  \frac12\int_{p_i}^{p_{i+1}}(x\,dy-y\,dx)
+  &=\frac12\int_0^1
+  \bigl(x(t)y'(t)-y(t)x'(t)\bigr)\,dt\\
+  &=\frac12(x_i y_{i+1}-x_{i+1}y_i).
+\end{aligned}
+\]
+Summing over the edges yields
+\[
+  \boxed{
+  \operatorname{Area}(D)
+  =\frac12\left|
+  \sum_{i=1}^n(x_i y_{i+1}-x_{i+1}y_i)
+  \right|.}
+\]
+The familiar crossing columns are therefore a mnemonic for a discrete line integral, not the reason the formula is true.
+
+\section{Translation and orientation provide immediate consistency checks}
+
+The shoelace sum should not depend on where the coordinate origin is placed.  Translate every vertex by a fixed vector \(t\).  Then
+\[
+\begin{aligned}
+  \det(p_i+t,p_{i+1}+t)
+  &=\det(p_i,p_{i+1})
+    +\det(t,p_{i+1}-p_i).
+\end{aligned}
+\]
+After summing around the closed polygon, the extra term vanishes because
+\[
+  \sum_{i=1}^n(p_{i+1}-p_i)=0.
+\]
+Thus the signed area is translation invariant even though each individual determinant uses position vectors from the origin.
+
+Reversing the cyclic order changes every edge orientation and therefore changes the sign of the sum.  The absolute value in the ordinary shoelace formula forgets this orientation.  For a self-intersecting closed polygonal path, the same sum computes signed area with winding multiplicity; overlapping regions may cancel rather than simply add.
+
+\section{A complete polygon calculation}
+
+Take the vertices
+\[
+  (3,4),\ (5,11),\ (12,8),\ (9,5),\ (5,6)
+\]
+in the displayed cyclic order.  The signed double area is
+\[
+\begin{aligned}
+  2A={}&3\cdot11-5\cdot4
+      +5\cdot8-12\cdot11\\
+      &+12\cdot5-9\cdot8
+      +9\cdot6-5\cdot5\\
+      &+5\cdot4-3\cdot6\\
+  ={}&-60.
+\end{aligned}
+\]
+Hence
+\[
+  A=30.
+\]
+The negative sign only says that the listed orientation is clockwise.  Reversing the order would give \(+60\) without changing the ordinary area.
+
+\section{Evaluation removes every multiple of \texorpdfstring{$x-a$}{x-a}}
+
+Let \(k\) be a field and \(f\in k[x]\).  Polynomial division gives unique \(q\in k[x]\) and \(r\in k\) such that
+\[
+  f(x)=(x-a)q(x)+r.
+\]
+Substituting \(x=a\) kills the divisible part:
+\[
+  f(a)=r.
+\]
+Thus the remainder theorem is the statement
+\[
+  f(x)\equiv f(a)\pmod{x-a}.
+\]
+
+This is naturally encoded by the evaluation homomorphism
+\[
+  \operatorname{ev}_a:k[x]\longrightarrow k,
+  \qquad
+  f\longmapsto f(a).
+\]
+Its kernel is the ideal \((x-a)\), so the first isomorphism theorem gives
+\[
+  k[x]/(x-a)\cong k.
+\]
+The quotient notation is useful because it says exactly what has been discarded: two polynomials become equal when their difference is divisible by \(x-a\).
+
+\section{Remainders modulo several linear factors are interpolation data}
+
+Suppose \(f(x)\) leaves remainder \(99\) modulo \(x-19\) and remainder \(19\) modulo \(x-99\).  The remainder modulo
+\[
+  (x-19)(x-99)
+\]
+has degree at most one, so write
+\[
+  R(x)=ux+v.
+\]
+It must satisfy
+\[
+  R(19)=99,
+  \qquad
+  R(99)=19.
+\]
+Hence
+\[
+  19u+v=99,
+  \qquad
+  99u+v=19,
+\]
+and therefore
+\[
+  u=-1,
+  \qquad
+  v=118.
+\]
+Thus
+\[
+  \boxed{R(x)=118-x.}
+\]
+
+This is not a separate trick from interpolation.  A polynomial of degree at most one is uniquely determined by its values at two distinct points.  In Lagrange form,
+\[
+  R(x)
+  =99\frac{x-99}{19-99}
+   +19\frac{x-19}{99-19},
+\]
+which simplifies to the same answer.
+
+\section{The polynomial Chinese remainder theorem explains uniqueness}
+
+Because \(19\ne99\), the ideals \((x-19)\) and \((x-99)\) are comaximal.  The Chinese remainder theorem gives
+\[
+  k[x]/\bigl((x-19)(x-99)\bigr)
+  \cong
+  k[x]/(x-19)\times k[x]/(x-99).
+\]
+Using evaluation on each factor,
+\[
+  k[x]/\bigl((x-19)(x-99)\bigr)
+  \cong k\times k.
+\]
+A residue class modulo the quadratic is therefore exactly a pair of values
+\[
+  \bigl(f(19),f(99)\bigr).
+\]
+The linear remainder found above is the unique degree-\(<2\) representative of the pair \((99,19)\).
+
+More generally, for distinct \(a_1,\ldots,a_n\),
+\[
+  k[x]/\prod_{i=1}^n(x-a_i)
+  \cong k^n,
+\]
+and the inverse map is Lagrange interpolation.  The elementary remainder theorem has grown into a structural statement without changing the computation it was designed to perform.
+
+\section{Integer congruence is another quotient arithmetic}
+
+For integers, write
+\[
+  a\equiv b\pmod m
+\]
+when \(m\mid(a-b)\).  Arithmetic then takes place in the quotient ring
+\[
+  \mathbb Z/m\mathbb Z.
+\]
+Addition and multiplication descend because replacing an integer by another representative of the same class does not change the resulting class.
+
+Division is more delicate.  From
+\[
+  ca\equiv cb\pmod m
+\]
+one may cancel \(c\) only when its residue class is a unit, equivalently when
+\[
+  \gcd(c,m)=1.
+\]
+For example,
+\[
+  2x\equiv2\pmod6
+\]
+has the two solutions
+\[
+  x\equiv1,4\pmod6.
+\]
+Cancelling \(2\) would incorrectly discard one of them.  Quotient arithmetic preserves addition and multiplication automatically, but inverse operations require invertibility.
+
+Small residue sets give quick impossibility tests.  Squares satisfy
+\[
+  n^2\equiv0,1\pmod3
+\]
+and
+\[
+  n^2\equiv0,1,4\pmod8.
+\]
+A proposed square lying outside these lists is impossible before any large-number calculation begins.
+
+\section{Finite unit groups turn huge powers into short cycles}
+
+If \(p\) is prime and \(p\nmid a\), Fermat's theorem says
+\[
+  a^{p-1}\equiv1\pmod p.
+\]
+The reason is that the nonzero residue classes form the finite group
+\[
+  (\mathbb Z/p\mathbb Z)^\times
+\]
+of order \(p-1\).  Lagrange's theorem makes the exponent of every element divide the group order.
+
+To compute
+\[
+  2^{1000}\pmod{13},
+\]
+use
+\[
+  2^{12}\equiv1\pmod{13}
+\]
+and reduce the exponent:
+\[
+  1000=83\cdot12+4.
+\]
+Therefore
+\[
+  2^{1000}\equiv2^4=16\equiv3\pmod{13}.
+\]
+The quotient ring has retained precisely the residue information while discarding the enormous integer itself.
+
+The three parts of the chapter now end differently.  The polygon formula converts a closed boundary into oriented area.  Polynomial evaluation converts divisibility by linear factors into interpolation data.  Modular arithmetic converts integers into residue classes and exposes finite cycles.  Their common practical habit is to choose the correct invariant map before expanding the calculation.

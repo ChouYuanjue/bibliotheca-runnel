@@ -1,14 +1,257 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260403}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260403}
-\end{document}
+\notechapter{N-20260403}{Double Integrals: Riemann Sums, Area, Symmetry, and Average Value}
+
+\section{From area sums to double integrals}
+
+A double integral is the two-dimensional version of adding many small contributions.  If a quantity has density \(f(x,y)\) over a plane region \(D\), then a small cell of area \(\Delta A_i\) contributes approximately
+\[
+  f(\xi_i,\eta_i)\Delta A_i.
+\]
+Adding all cells and refining the partition gives the integral.
+
+\begin{definition}[Riemann double integral]
+Let \(D\subseteq \mathbb R^2\) be a bounded region and let \(f:D\to\mathbb R\) be bounded.  Partition \(D\) into small subregions \(\Delta D_i\), choose sample points \((\xi_i,\eta_i)\in \Delta D_i\), and form
+\[
+  S(P,f)=\sum_i f(\xi_i,\eta_i)\Delta A_i.
+\]
+If \(S(P,f)\) tends to a limit independent of the partition and sample points as the mesh tends to \(0\), then the limit is denoted
+\[
+  \iint_D f(x,y)\,dA.
+\]
+\end{definition}
+
+The notation \(dA\) or \(d\sigma\) represents an infinitesimal area element.  It is not an independent variable; it tells us what geometric measure is being used.
+
+\section{Geometric meanings}
+
+The meaning depends on the integrand.
+
+\[
+\begin{array}{c|c}
+\text{integrand} & \text{meaning of }\iint_D f\,dA\\
+\hline
+f=1 & \text{area of }D\\
+f\ge0 & \text{volume under }z=f(x,y)\\
+f\text{ sign-changing} & \text{signed volume}\\
+f=\rho & \text{mass of a lamina with density }\rho
+\end{array}
+\]
+
+\begin{example}[Area as an integral]
+For the disk \(D=\{(x,y):x^2+y^2\le R^2\}\),
+\[
+  \operatorname{area}(D)=\iint_D 1\,dA.
+\]
+Using polar coordinates later gives
+\[
+  \int_0^{2\pi}\int_0^R r\,dr\,d\theta=\pi R^2.
+\]
+\end{example}
+
+\section{Basic properties}
+
+The following properties are the main algebra of double integrals.
+
+\begin{proposition}
+Assume the displayed integrals exist.
+\begin{enumerate}[(i)]
+  \item Linearity:
+  \[
+    \iint_D(af+bg)\,dA=a\iint_D f\,dA+b\iint_D g\,dA.
+  \]
+  \item Additivity over regions: if \(D=D_1\cup D_2\) and the overlap has area zero, then
+  \[
+    \iint_D f\,dA=\iint_{D_1}f\,dA+\iint_{D_2}f\,dA.
+  \]
+  \item Monotonicity: if \(f\le g\) on \(D\), then
+  \[
+    \iint_D f\,dA\le\iint_D g\,dA.
+  \]
+  \item Estimate: if \(m\le f\le M\) on \(D\), then
+  \[
+    m\,\operatorname{area}(D)\le \iint_D f\,dA\le M\,\operatorname{area}(D).
+  \]
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Proof idea]
+Each statement is first true for finite Riemann sums.  Passing to the limit preserves addition, scalar multiplication, and inequalities.  The estimate comes from multiplying \(m\le f(\xi_i,\eta_i)\le M\) by \(\Delta A_i\) and summing.
+\end{proof}
+
+\section{Existence of the integral}
+
+For most calculus computations, the following sufficient condition is enough.
+
+\begin{theorem}
+If \(f\) is continuous on a bounded closed elementary region \(D\), then \(f\) is Riemann integrable on \(D\).
+\end{theorem}
+
+The theorem is often used silently.  It is the reason that ordinary continuous examples can be computed by choosing convenient coordinates and orders of integration.
+
+\begin{remark}
+The statement is not saying that only continuous functions are integrable.  Piecewise continuous functions and many functions with mild discontinuities are also integrable.  Continuity is simply the safest elementary hypothesis.
+\end{remark}
+
+\section{Symmetry before computation}
+
+Symmetry is one of the fastest ways to evaluate an integral.
+
+\begin{proposition}[Odd cancellation]
+Let \(D\) be symmetric under a measure-preserving transformation \(T:D\to D\).  If
+\[
+  f(T(x,y))=-f(x,y),
+\]
+then
+\[
+  \iint_D f\,dA=0.
+\]
+If \(f\circ T=f\), then the integral over \(D\) can often be reduced to a fundamental half or sector of \(D\).
+\end{proposition}
+
+\begin{example}
+Let \(D\) be the disk centered at the origin.  Since \(D\) is symmetric under \((x,y)\mapsto(-x,y)\),
+\[
+  \iint_D x e^{y^2}\,dA=0.
+\]
+The integrand is odd in \(x\), while the region is unchanged by reflecting across the \(y\)-axis.
+\end{example}
+
+\section{Mean value theorem for double integrals}
+
+\begin{theorem}[Mean value theorem]
+Let \(D\) be compact and connected, and let \(f:D\to\mathbb R\) be continuous.  Then there exists a point \(P_0\in D\) such that
+\[
+  \iint_D f\,dA=f(P_0)\operatorname{area}(D).
+\]
+Equivalently, the average value
+\[
+  f_{\mathrm{avg}}=\frac{1}{\operatorname{area}(D)}\iint_D f\,dA
+\]
+is attained somewhere on \(D\).
+\end{theorem}
+
+\begin{proof}[Proof skeleton]
+By compactness, \(f\) attains a minimum \(m\) and maximum \(M\) on \(D\).  The estimate property gives
+\[
+  m\le f_{\mathrm{avg}}\le M.
+\]
+Since \(D\) is connected and \(f\) is continuous, the image \(f(D)\) is an interval.  Therefore the intermediate value theorem gives a point \(P_0\) where \(f(P_0)=f_{\mathrm{avg}}\).
+\end{proof}
+
+\section{A worked average-value example}
+
+\begin{example}
+Let \(D=[0,1]\times[0,2]\) and \(f(x,y)=x+y\).  Then
+\[
+  \iint_D(x+y)\,dA
+  =\int_0^1\int_0^2(x+y)\,dy\,dx
+  =\int_0^1(2x+2)\,dx=3.
+\]
+Since \(\operatorname{area}(D)=2\), the average value is \(3/2\).  The mean-value theorem says there is a point in the rectangle with \(x+y=3/2\), for example \((1/2,1)\).
+\end{example}
+
+\section{Relation with product measure}
+
+The elementary Riemann picture divides a region into small rectangles.  In measure-theoretic language, this is integration with respect to two-dimensional Lebesgue measure:
+\[
+  \iint_D f(x,y)\,dA
+  =\int_{\mathbb R^2} f(x,y)\mathbf 1_D(x,y)\,d\lambda^2.
+\]
+This viewpoint separates two choices:
+\begin{enumerate}[(i)]
+  \item the function being accumulated;
+  \item the measure that tells how large each piece of the region is.
+\end{enumerate}
+
+For nonnegative measurable functions, Tonelli's theorem justifies iterated integration even when the value may be infinite.  For sign-changing functions, Fubini's theorem requires integrability of \(|f|\).  The elementary rule "switch the order of integration" is therefore backed by real hypotheses.
+
+\section{A real Fubini warning: conditional two-dimensional accumulation}
+
+It is tempting to treat order-switching as a harmless algebraic move.  The advanced point is sharper: for sign-changing functions, order-switching is licensed by absolute integrability.  Without that hypothesis, different limiting procedures can see different cancellations.
+
+A standard improper example on the square near the origin is
+\[
+  f(x,y)=\frac{x^2-y^2}{(x^2+y^2)^2},\qquad (x,y)\in(0,1]^2.
+\]
+For fixed \(x>0\),
+\[
+  \int_0^1 \frac{x^2-y^2}{(x^2+y^2)^2}\,dy
+  =\left[\frac{y}{x^2+y^2}\right]_{0}^{1}
+  =\frac{1}{1+x^2}.
+\]
+Hence
+\[
+  \int_0^1\int_0^1 f(x,y)\,dy\,dx=\frac{\pi}{4}.
+\]
+But for fixed \(y>0\),
+\[
+  \int_0^1 \frac{x^2-y^2}{(x^2+y^2)^2}\,dx
+  =\left[-\frac{x}{x^2+y^2}\right]_{0}^{1}
+  =-\frac{1}{1+y^2},
+\]
+so
+\[
+  \int_0^1\int_0^1 f(x,y)\,dx\,dy=-\frac{\pi}{4}.
+\]
+The two answers differ because the singularity at \((0,0)\) is not absolutely integrable.  This is the concrete content of the distinction between Tonelli's theorem and Fubini's theorem.
+
+\section{Product measure behind rectangular sums}
+
+The phrase "divide the region into rectangles" hides a construction.  Rectangles \(A\times B\) are assigned area by
+\[
+  \lambda^2(A\times B)=\lambda(A)\lambda(B).
+\]
+This rule first defines area on finite unions of rectangles.  One then extends it to the sigma-algebra generated by rectangles.  The double integral is integration with respect to this product measure.
+
+This explains why iterated integrals work first for indicator functions of rectangles:
+\[
+  \int \mathbf 1_{A\times B}(x,y)\,d(\mu\times\nu)
+  =\mu(A)\nu(B)
+  =\int_A\left(\int_B1\,d\nu\right)d\mu.
+\]
+Linearity handles simple functions, monotone convergence handles nonnegative measurable functions, and absolute integrability handles signed functions.  Thus the elementary Riemann-sum picture is not abandoned in measure theory; it is completed.
+
+\section{Symmetry as projection onto invariant functions}
+
+If a finite group \(G\) acts on \(D\) by area-preserving transformations, averaging over the group defines the Reynolds operator
+\[
+  \mathcal R f=\frac{1}{|G|}\sum_{g\in G} f\circ g.
+\]
+Because the action preserves area,
+\[
+  \iint_D f\,dA=\iint_D \mathcal R f\,dA.
+\]
+So integration only sees the invariant part of the function.  Odd functions cancel because their invariant part is zero.  This is the same idea that later appears in representation theory as projection onto the trivial representation, but here it is already visible in a disk or rectangle symmetry problem.
+
+For example, on the disk, the rotation group kills all angular Fourier modes except the constant mode:
+\[
+  f(r,\theta)=a_0(r)+\sum_{n\ge1}\bigl(a_n(r)\cos n\theta+b_n(r)\sin n\theta\bigr)
+\]
+gives
+\[
+  \iint_D f\,dA=\int_0^R\int_0^{2\pi} a_0(r)\,r\,d\theta\,dr.
+\]
+The elementary symmetry shortcut is the first case of harmonic decomposition.
+
+\section{Average value as a pushforward distribution}
+
+For continuous \(f:D\to\mathbb R\), the average value can be viewed probabilistically.  Put the uniform probability measure on \(D\):
+\[
+  \mathbb P(E)=\frac{\operatorname{area}(E)}{\operatorname{area}(D)}.
+\]
+Then
+\[
+  f_{\mathrm{avg}}=\mathbb E[f].
+\]
+The pushforward measure \(f_*\mathbb P\) on \(\mathbb R\) records how much area of \(D\) lies at each range of values of \(f\).  The mean value theorem says that if \(D\) is connected and \(f\) is continuous, this expectation lies inside the interval \(f(D)\), hence equals \(f(P_0)\) for some point.
+
+This interpretation is useful later: integration can be studied either by integrating over the original region or by pushing measure forward through a function and integrating over its values.
+
+\section{How the double-integral setup is checked}
+
+A double integral begins as a limit of weighted area sums, so the first data to identify are the region \(D\), the area element, and the function being averaged over that region.  Linearity and additivity come directly from cutting the region into pieces; this is why splitting a domain along a change in boundary formula is legitimate rather than cosmetic.
+
+The examples in this note give three practical tests.  If the region has a symmetry and the integrand is odd under that symmetry, the corresponding contribution vanishes because the area measure is preserved.  If the question asks for an average value, rewrite
+\[
+  \iint_D f\,dA= f_{\mathrm{avg}}\operatorname{area}(D)
+\]
+and check connectedness and continuity before invoking the mean value theorem.  If the computation is rearranged by Fubini or by a change of variables, the real issue is not the order of symbols but whether the slices describe the same region and whether the Jacobian accounts for area distortion.  This is the point at which Tonelli, Fubini, and change of variables turn the geometric setup into a justified calculation.

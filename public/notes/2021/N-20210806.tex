@@ -1,14 +1,427 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20210806}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20210806}
-\end{document}
+\notechapter{N-20210806}{Group Actions, Homotopy, and a Rough Road to the Hopf Fibration}
+
+\section{Purpose of the note}
+
+The goal is a compact route through the vocabulary needed for homotopy groups and the Hopf fibration: group actions, homotopy, cofibrations and fibrations, homotopy groups, and finally the Hopf map itself.
+
+\section{Group actions}
+
+A group action is one of the first ways in which abstract algebra touches geometry and topology.  A group can be understood as acting by symmetries or permutations of a set.
+
+\begin{definition}
+Let \(G\) be a group and \(X\) a set.  A left action of \(G\) on \(X\) is a map
+\[
+  G\times X\to X,\qquad (g,x)\mapsto g\cdot x,
+\]
+such that
+\[
+  e\cdot x=x,\qquad (gh)\cdot x=g\cdot(h\cdot x).
+\]
+Equivalently, it is a homomorphism
+\[
+  \varphi:G\to S_X,
+\]
+where \(S_X\) is the permutation group of \(X\).
+\end{definition}
+
+\begin{remark}
+One may also use right actions, written \(x\cdot g\), satisfying
+\[
+  x\cdot 1=x,\qquad (x\cdot g)\cdot h=x\cdot(gh).
+\]
+Unless stated otherwise, the left-action convention will be used throughout.
+\end{remark}
+
+\begin{example}
+The symmetric group \(S_n\) acts on \(X=\{1,2,\dots,n\}\).  Cayley's theorem says that every group \(G\) can be realized as a subgroup of the permutation group of its underlying set, by the action of left multiplication.
+\end{example}
+
+\begin{example}
+The symmetry group of a cube acts on the cube and may also be regarded as a group of linear transformations of \(\mathbb R^3\) preserving the cube.
+\end{example}
+
+\begin{example}[Conjugation]
+A group \(G\) acts on itself by conjugation:
+\[
+  g\cdot x=gxg^{-1}.
+\]
+For a fixed \(a\in G\), its orbit is
+\[
+  \operatorname{Orb}_G(a)=\{gag^{-1}\mid g\in G\},
+\]
+which is the conjugacy class of \(a\).  Its stabilizer is
+\[
+  \operatorname{Stab}_G(a)=\{g\in G\mid gag^{-1}=a\},
+\]
+which is the centralizer of \(a\).
+\end{example}
+
+\begin{definition}
+For an action of \(G\) on \(X\), the stabilizer and orbit of \(x\in X\) are
+\[
+  \operatorname{Stab}_G(x)=\{g\in G\mid g\cdot x=x\},
+\]
+\[
+  \operatorname{Orb}_G(x)=\{g\cdot x\mid g\in G\}.
+\]
+\end{definition}
+
+\begin{theorem}[Orbit-stabilizer]
+If \(G\) is finite, then
+\[
+  |G|=|\operatorname{Stab}_G(x)|\,|\operatorname{Orb}_G(x)|.
+\]
+\end{theorem}
+
+\begin{proof}
+The map \(G\to\operatorname{Orb}_G(x)\), \(g\mapsto g\cdot x\), has fibres equal to left cosets of \(\operatorname{Stab}_G(x)\).  Hence the orbit has \([G:\operatorname{Stab}_G(x)]\) elements.
+\end{proof}
+
+\section{Homotopy}
+
+Algebraic topology tries to classify topological spaces and continuous maps using algebraic invariants.  Before doing that, one needs a flexible notion of sameness.  Homotopy is such a notion.
+
+\begin{definition}
+Let \(X,Y\) be topological spaces and \(f,g:X\to Y\) continuous maps.  A homotopy from \(f\) to \(g\) is a continuous map
+\[
+  F:X\times I\to Y,\qquad I=[0,1],
+\]
+such that
+\[
+  F(x,0)=f(x),\qquad F(x,1)=g(x).
+\]
+When such an \(F\) exists, write \(f\simeq g\).
+\end{definition}
+
+Equivalently, a homotopy may be viewed as a map
+\[
+  F:X\to Y^I,
+\]
+where \(Y^I=\operatorname{Top}(I,Y)\) is the path space, and the endpoint evaluation maps recover \(f\) and \(g\).
+
+\begin{proposition}
+Homotopy is an equivalence relation on maps \(X\to Y\), and it is compatible with composition.  If \(f\simeq g\), then
+\[
+  k\circ f\circ h\simeq k\circ g\circ h
+\]
+whenever the compositions are defined.
+\end{proposition}
+
+\begin{definition}
+Two spaces \(X\) and \(Y\) have the same homotopy type if there are maps \(f:X\to Y\) and \(g:Y\to X\) such that
+\[
+  g\circ f\simeq \id_X,\qquad f\circ g\simeq \id_Y.
+\]
+\end{definition}
+
+\section{Cofibrations, fibrations, and deformation retracts}
+
+Cofibrations and fibrations are most transparent through their extension and lifting diagrams.  Each arrow is part of the data, and writing the diagrams explicitly prevents the simple geometric idea from disappearing behind the abstraction.
+
+\subsection{Homotopy extension property}
+
+A map \(j:A\to X\) is a cofibration if it has the homotopy extension property.  The situation is this.  We know a map
+\[
+  g:X\to Z,
+\]
+and we also know a homotopy on the smaller space
+\[
+  G:A\times I\to Z.
+\]
+These two pieces of data must agree at time \(0\): for every \(a\in A\),
+\[
+  G(a,0)=g(j(a)).
+\]
+If this compatibility condition holds, the homotopy extension property asks for a map
+\[
+  \overline G:X\times I\to Z
+\]
+such that
+\[
+  \overline G(x,0)=g(x),
+  \qquad
+  \overline G(j(a),t)=G(a,t).
+\]
+In other words, a homotopy that has only been prescribed on the subspace \(A\) must extend to a homotopy on all of \(X\), while keeping the original time-zero map on \(X\).
+
+The corresponding diagram is
+\[
+\begin{tikzcd}[column sep=5.0em,row sep=3.8em]
+A \arrow[r,"j"] \arrow[d,"i_0"']
+  & X \arrow[d,"i_0"] \arrow[rr,"g",bend left=10]
+  & & Z \arrow[d,equal] \\
+A\times I \arrow[r,"j\times I"] \arrow[rrr,"G"',bend right=10]
+  & X\times I \arrow[rr,dashed,"\overline G" description]
+  & & Z
+\end{tikzcd}
+\]
+Here \(i_0\) denotes insertion at time zero: \(a\mapsto(a,0)\) or \(x\mapsto(x,0)\), according to the source.  The bottom arrow \(j\times I\) says that the cylinder over \(A\) sits inside the cylinder over \(X\).  The two solid maps into \(Z\) are the information already given: \(g\) on \(X\), and \(G\) on \(A\times I\).  The rightmost equality means that both pieces are maps into the same target \(Z\), not two different copies of \(Z\).  The dashed arrow is not part of the data.  It is exactly the thing whose existence is required.
+
+This is why the word ``extension'' is literal.  We first define a map on the union
+\[
+  X\times\{0\}\cup A\times I.
+\]
+On \(X\times\{0\}\) it is \(g\).  On \(A\times I\) it is \(G\).  The compatibility condition \(G(a,0)=g(j(a))\) says these two formulas agree on the overlap \(A\times\{0\}\).  The H.E.P. says this partial map extends across the whole cylinder \(X\times I\).
+
+A useful mental picture is: \(A\subset X\) is a part of the space whose motion has already been specified.  A cofibration is an inclusion good enough that this partial motion can be filled in over the rest of \(X\).  Thus cofibrations are the maps along which homotopies extend outward.
+
+\subsection{Homotopy lifting property}
+
+A fibration is the dual-looking story.  Let
+\[
+  p:X\to A
+\]
+be a map.  The homotopy lifting property says that if a homotopy has been drawn downstairs in \(A\), and if its starting point has already been lifted upstairs to \(X\), then the whole homotopy can be lifted upstairs.
+
+Using path spaces makes the diagram compact.  The notation \(A^I\) means the space of paths \(I\to A\), and \(X^I\) means the space of paths \(I\to X\).  Evaluation at time \(0\) gives
+\[
+  ev_0:A^I\to A,
+  \qquad
+  ev_0:X^I\to X.
+\]
+The map \(p:X\to A\) also induces a map on path spaces
+\[
+  p^I:X^I\to A^I,\qquad \gamma\mapsto p\circ\gamma.
+\]
+Now take a parameter space \(Z\).  A map
+\[
+  F:Z\to A^I
+\]
+is a \(Z\)-indexed family of paths downstairs in \(A\).  A map
+\[
+  \widetilde f_0:Z\to X
+\]
+chooses a starting lift upstairs.  The compatibility condition is
+\[
+  p\circ \widetilde f_0=ev_0\circ F.
+\]
+This simply says: the chosen point upstairs really lies over the initial point of the path downstairs.
+
+The lifting diagram is
+\[
+\begin{tikzcd}[column sep=4.6em,row sep=3.4em]
+X^I \arrow[r,"ev_0"] \arrow[d,"p^I"']
+  & X \arrow[d,"p"] \\
+A^I \arrow[r,"ev_0"']
+  & A
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[column sep=5.0em,row sep=3.8em]
+& X^I \arrow[d,"{(p^I,ev_0)}"] \\
+Z \arrow[ur,dashed,"\overline F"] \arrow[r,"{(F,\widetilde f_0)}"']
+  & A^I\times_A X
+\end{tikzcd}
+\]
+The square on the left is the structural square.  The horizontal map \(p^I:X^I\to A^I\) sends an upstairs path to its downstairs projection, and the two \(ev_0\) arrows take initial points.  The square commutes because evaluating \(p\circ\gamma\) at time \(0\) gives \(p(\gamma(0))\).  The diagram on the right packages the actual lifting problem.  A pair \((F,\widetilde f_0)\) lands in the fiber product \(A^I\times_A X\) exactly when \(p\circ\widetilde f_0=ev_0\circ F\).  The dashed arrow \(\overline F:Z\to X^I\) is the desired lifted family of paths.
+
+Unpacking the dashed arrow, for each \(z\in Z\) it gives a path
+\[
+  \overline F(z):I\to X.
+\]
+The two required equations are
+\[
+  p\circ \overline F(z)=F(z),
+  \qquad
+  \overline F(z)(0)=\widetilde f_0(z).
+\]
+So the lifted path projects to the given downstairs path and starts at the chosen upstairs point.  This is the exact formal meaning of ``lift upward from the base.''
+
+The relationship with the earlier definition is now transparent.  A cofibration problem begins with a homotopy on a subspace and asks to extend it sideways across a larger cylinder.  A fibration problem begins with a homotopy downstairs and asks to lift it vertically to a path or homotopy upstairs.  Both are extension problems, but in different directions: H.E.P. fills missing points in the domain; H.L.P. fills missing lifts in the total space.
+
+\begin{definition}
+A map \(j:A\to X\) is a cofibration if it has the homotopy extension property described above.
+\end{definition}
+
+\begin{definition}
+A map \(p:X\to A\) is a fibration if it has the homotopy lifting property described above.
+\end{definition}
+
+\begin{remark}
+Cofibration and fibration are dual-looking ideas.  A cofibration lets homotopies extend outward from a subspace; a fibration lets homotopies lift upward from the base.  In the Hopf fibration \(S^3\to S^2\), the word ``fibration'' means exactly that small motions of a point in the base sphere can be lifted to motions in \(S^3\), once a starting point in the circle fiber has been chosen.
+\end{remark}
+
+\begin{definition}
+A deformation retract of \(X\) onto a subspace \(A\) is a homotopy
+\[
+  H:X\times I\to X
+\]
+such that
+\[
+  H(x,0)=x,\qquad H(x,1)\in A,\qquad H(a,t)=a
+\]
+for all \(x\in X\), \(a\in A\), and \(t\in I\).
+\end{definition}
+
+\begin{proposition}
+The pair \((X,A)\) has the homotopy extension property if and only if
+\[
+  X\times\{0\}\cup A\times I
+\]
+is a retract of \(X\times I\).
+\end{proposition}
+
+\section{Spheres and homotopy groups}
+
+The \(n\)-sphere is
+\[
+  S^n=\{(x_1,\dots,x_{n+1})\in\mathbb R^{n+1}\mid x_1^2+\cdots+x_{n+1}^2=1\}.
+\]
+The \(n\)-torus is
+\[
+  T^n=(S^1)^n.
+\]
+Thus a point of \(T^2\) may be described by a pair of angles, or equivalently by a point of \(S^1\times S^1\).
+
+Stereographic projection identifies a sphere minus one point with Euclidean space.  For example,
+\[
+  S^2\setminus\{\text{north pole}\}\cong\mathbb R^2.
+\]
+The equator is the region where the projection is least distorted; away from it, shapes become increasingly distorted.
+
+\begin{definition}
+Let \(X\) be a based space with basepoint \(x_0\).  The \(n\)-th homotopy group or homotopy set is
+\[
+  \pi_n(X,x_0)=[(S^n,*),(X,x_0)],
+\]
+the set of based homotopy classes of based maps \(S^n\to X\).  For \(n\ge1\), it has a natural group structure.
+\end{definition}
+
+Using the model
+\[
+  S^n\simeq I^n/\partial I^n,
+\]
+the group operation for \(n\ge1\) may be described by pinching the sphere along an equator:
+\[
+  S^n\to S^n\vee S^n.
+\]
+Given two based maps \(f,g:S^n\to X\), the product first pinches \(S^n\) into two copies, then applies \(f\) on one copy and \(g\) on the other.
+
+\begin{remark}
+For \(n=0\), \(\pi_0(X)\) records path components and is not usually a group.  For \(n\ge1\), \(\pi_n(X,x_0)\) is a group; for \(n\ge2\), it is abelian.
+\end{remark}
+
+\section{The Hopf fibration}
+
+The Hopf fibration is a map
+\[
+  S^3\to S^2.
+\]
+It is one of the first examples showing that spheres are connected by unexpectedly rich maps.
+
+Describe
+\[
+  S^3=\{(z_1,z_2)\in\mathbb C^2\mid |z_1|^2+|z_2|^2=1\}.
+\]
+A clean formula for the Hopf map is
+\[
+  h:S^3\to\mathbb CP^1\cong S^2,\qquad h(z_1,z_2)=[z_1:z_2].
+\]
+On the chart \(z_1\neq0\), this looks like
+\[
+  z_2/z_1.
+\]
+The case \(z_1=0\) is the point at infinity.
+
+\begin{caution}
+It is tempting to say \(z_2/0=\infty\), and that intuition is useful.  The mathematically clean way is to use projective coordinates \([z_1:z_2]\), which handle infinity automatically.
+\end{caution}
+
+The fibers over three simple points can be written without any abstraction:
+\[
+  F_1=h^{-1}([1:0])
+  =\{(e^{it},0):0\le t<2\pi\},
+\]
+\[
+  F_2=h^{-1}([0:1])
+  =\{(0,e^{it}):0\le t<2\pi\},
+\]
+and
+\[
+  F_3=h^{-1}([1:1])
+  =
+  \left\{\left(\frac{e^{it}}{\sqrt2},\frac{e^{it}}{\sqrt2}\right):0\le t<2\pi\right\}.
+\]
+To see them inside ordinary three-space, use stereographic projection
+\[
+  \Pi(z_1,z_2)=
+  \left(
+  \frac{\operatorname{Re}(z_1)}{1-\operatorname{Im}(z_2)},
+  \frac{\operatorname{Im}(z_1)}{1-\operatorname{Im}(z_2)},
+  \frac{\operatorname{Re}(z_2)}{1-\operatorname{Im}(z_2)}
+  \right).
+\]
+Writing \(z_1=x_1+iy_1\) and \(z_2=x_2+iy_2\), this is the projection from the point \((0,i)\in S^3\).
+
+For \(F_1\), substitution gives
+\[
+  \Pi(e^{it},0)=(\cos t,\sin t,0),
+\]
+the standard unit circle in the plane \(z=0\).  For \(F_2\),
+\[
+  \Pi(0,e^{it})
+  =
+  \left(0,0,\frac{\cos t}{1-\sin t}\right),
+\]
+so this fiber becomes the vertical line together with the point at infinity; the missing value \(t=\pi/2\) is precisely the projection point.  For \(F_3\),
+\[
+  \Pi\left(\frac{e^{it}}{\sqrt2},\frac{e^{it}}{\sqrt2}\right)
+  =
+  \left(
+  \frac{\cos t/\sqrt2}{1-\sin t/\sqrt2},
+  \frac{\sin t/\sqrt2}{1-\sin t/\sqrt2},
+  \frac{\cos t/\sqrt2}{1-\sin t/\sqrt2}
+  \right).
+\]
+This curve lies in the plane \(X=Z\).  Eliminating \(t\) gives
+\[
+  2X^2+(Y-1)^2=2,
+  \qquad Z=X,
+\]
+so it is again a circle, not a random distorted loop.
+
+The important topological fact is that \(\Pi(F_1)\) and \(\Pi(F_3)\) form a Hopf link.  With the orientations induced by increasing \(t\), their linking number is \(+1\); reversing one orientation changes the sign.  The computation matches the picture: one circle passes once through a spanning disk of the other.  The core geometric intuition of the Hopf fibration is that any two distinct circle fibers in \(S^3\) become linked once after stereographic projection to \(\mathbb R^3\).
+
+There is also a quaternionic picture.  Regard \(S^3\) as the unit quaternions and \(S^2\) as the purely imaginary unit quaternions.  Fix \(p\in S^2\).  For a unit quaternion \(q\in S^3\), define
+\[
+  q\mapsto qpq^{-1}.
+\]
+This gives another description of a map \(S^3\to S^2\), equivalent to the Hopf fibration.
+
+\begin{remark}
+The main fact to remember is simple but powerful: the Hopf fibration has total space \(S^3\), base \(S^2\), and fibre \(S^1\).  A full understanding needs pictures, but the formula already shows why complex numbers, quaternions, and topology appear together.
+\end{remark}
+
+\section{Further reading and visual models}
+
+Hatcher's \emph{Algebraic Topology}, Niles Johnson's visual material on the Hopf fibration, and interactive Hopf-fibration demonstrations provide natural continuations.  The extension and lifting diagrams above connect the abstract definitions with the literal operations ``extend'' and ``lift''.  The same visual habit is useful for the pinch map
+\[
+  S^n\to S^n\vee S^n
+\]
+and to the Hopf fibration itself.  The definitions and formulas are already in place, but the geometry becomes much more memorable when the pinch map, circle fibers, and linked fibers are kept visible.
+
+
+\section{Group actions as symmetry bookkeeping}
+
+A group action of \(G\) on \(X\) is a map
+\[
+  G\times X\to X
+\]
+satisfying \(e\cdot x=x\) and \((gh)\cdot x=g\cdot(h\cdot x)\).  The orbit of \(x\) is
+\[
+  Gx=\{g\cdot x:g\in G\},
+\]
+and the stabilizer is
+\[
+  G_x=\{g:g\cdot x=x\}.
+\]
+The orbit-stabilizer relation says that symmetry and movement are complementary.  Large stabilizer means small orbit; small stabilizer means large orbit.
+
+\section{Hopf fibration intuition}
+
+The Hopf fibration is a map
+\[
+  S^3	o S^2
+\]
+whose fibers are circles.  One way to see it is through complex coordinates: points of \(S^3\subset\mathbb C^2\) are pairs \((z_1,z_2)\) with \(|z_1|^2+|z_2|^2=1\).  Multiplying both coordinates by the same unit complex number moves along a circle fiber.  The quotient by this circle action gives \(\mathbb{CP}^1\cong S^2\).
+
+The sentence to remember is concrete: the fibers are not merely many disjoint circles; any two of them are linked once.  This is why the formula \(S^3\to S^2\) is already a three-dimensional knot-theoretic picture.

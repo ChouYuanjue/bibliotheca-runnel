@@ -1,14 +1,349 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220212}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220212}
-\end{document}
+\notechapter{N-20220212}{Riemann Surfaces as One-Dimensional Complex Manifolds}
+
+\section{Structure beyond topology}
+
+The starting question is: what does it mean for a space to carry a structure?  A topological manifold has a topology; a smooth manifold has a smooth structure; a complex manifold has a complex structure.
+
+A topology tells us which sets are open, which sequences or nets converge, and which maps are continuous.  A smooth structure adds the ability to speak about differentiability in local coordinates.  A complex structure is stricter: coordinate changes must be holomorphic.
+
+\begin{example}
+The interval \((0,2)\subset\mathbb R\) is a topological \(1\)-manifold.  One chart may be the identity map
+\[
+  \varphi_1(x)=x.
+\]
+Another chart can still be a homeomorphism while failing to be smooth.  This shows why topology alone is not enough to define smoothness.
+\end{example}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.72\textwidth]{figures/N-20220212/fig-01.png}
+  \caption{Two coordinate descriptions of the interval used to separate topology from smooth structure.}
+\end{figure}
+
+\begin{remark}
+The lesson is that the same underlying topological space may admit different additional structures.  Smoothness is not merely a property of the set; it is encoded by charts and transition maps.
+\end{remark}
+
+\section{From smooth structure to complex structure}
+
+A smooth surface embedded in \(\mathbb R^3\) can be described locally by diffeomorphisms to open subsets of \(\mathbb R^2\).  But this embedded definition is not sufficiently general: for example, the Klein bottle cannot be embedded in \(\mathbb R^3\).
+
+The abstract definition of a smooth manifold therefore uses charts
+\[
+  \varphi_i:U_i\to E_i\subseteq\mathbb R^n
+\]
+whose transition maps are smooth.  The same philosophy gives complex manifolds by replacing \(\mathbb R^n\) with \(\mathbb C^n\) and smooth transition maps with holomorphic transition maps.
+
+\begin{remark}
+Because holomorphic functions are automatically analytic, a complex structure is very rigid.  This is why a Riemann surface is much more than a real two-dimensional smooth manifold.
+\end{remark}
+
+\section{Definition of a Riemann surface}
+
+\begin{definition}
+A Riemann surface is a connected, Hausdorff, second-countable topological space \(X\) equipped with an atlas \(\{(U_i,\varphi_i)\}\), where
+\[
+  \varphi_i:U_i\xrightarrow{\sim}E_i\subseteq\mathbb C
+\]
+is a homeomorphism onto an open subset of \(\mathbb C\), and all transition maps
+\[
+  \varphi_j\circ\varphi_i^{-1}
+\]
+are holomorphic on their domains.
+\end{definition}
+
+Each \(\varphi_i\) is a complex chart.  A local coordinate near \(p\in X\) is the complex number
+\[
+  z=\varphi_i(x).
+\]
+If \(\varphi_i(p)=0\), the coordinate is centered at \(p\).
+
+\begin{definition}
+More generally, a complex \(n\)-manifold is a Hausdorff space locally modeled on open subsets of \(\mathbb C^n\), with holomorphic transition maps.
+\end{definition}
+
+Every complex \(n\)-manifold is naturally a smooth real \(2n\)-manifold.
+
+\section{Examples}
+
+\begin{example}[Open subsets of the plane]
+Every connected open subset \(U\subseteq\mathbb C\) is a Riemann surface, with the identity chart.
+\end{example}
+
+\begin{example}[The Riemann sphere]
+The Riemann sphere \(\mathbb C_\infty\) is the complex plane together with a point at infinity.  One way to construct its complex structure is to cover it by two charts: one chart with coordinate \(z\), and another chart near infinity with coordinate
+\[
+  t=1/z.
+\]
+On the overlap, the transition function is
+\[
+  z=1/t,
+\]
+which is holomorphic away from \(0\).  Thus the two charts glue into a Riemann surface.
+\end{example}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.70\textwidth]{figures/N-20220212/fig-02.png}
+  \caption{Stereographic charts used to define the complex structure on the Riemann sphere.}
+\end{figure}
+
+\begin{caution}
+The sign choice in the stereographic chart matters.  If the transition map became \(z=1/\overline t\), it would be antiholomorphic rather than holomorphic.  The complex structure depends on getting this orientation right.
+\end{caution}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.70\textwidth]{figures/N-20220212/fig-03.png}
+  \caption{The second stereographic chart and the transition coordinate near infinity.}
+\end{figure}
+
+\begin{example}[A complex torus]
+Let \(L=\mathbb Z[i]\subset\mathbb C\), a lattice under addition.  The quotient
+\[
+  \mathbb C/L
+\]
+is a complex torus.  Locally, the quotient map from \(\mathbb C\) gives complex coordinates, and different choices of lifts differ by translations
+\[
+  z\mapsto z+a,\qquad a\in L,
+\]
+which are holomorphic.
+\end{example}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.70\textwidth]{figures/N-20220212/fig-04.png}
+  \caption{The quotient picture of a complex torus, with opposite sides identified.}
+\end{figure}
+
+\begin{remark}
+The complex torus is compact.  Any holomorphic function on it is constant, but meromorphic functions on it are much more interesting.
+\end{remark}
+
+\begin{example}
+A disjoint union of two Riemann spheres is not a Riemann surface under the convention used here, because a Riemann surface is required to be connected.  If one drops connectedness, each connected component is a Riemann surface.
+\end{example}
+
+\section{Holomorphic maps between Riemann surfaces}
+
+\begin{definition}
+Let \(X,Y\) be Riemann surfaces.  A map \(f:X\to Y\) is holomorphic at \(p\in X\) if, for charts
+\[
+  \varphi_1:U_1\to E_1,\qquad \varphi_2:U_2\to E_2
+\]
+with \(p\in U_1\) and \(f(p)\in U_2\), the local expression
+\[
+  \varphi_2\circ f\circ\varphi_1^{-1}
+\]
+is holomorphic near \(\varphi_1(p)\).  The map is holomorphic if this holds at every point.
+\end{definition}
+
+\begin{example}[The cubic map]
+The map
+\[
+  f:\mathbb C\to\mathbb C,\qquad f(z)=z^3
+\]
+is holomorphic.  In the usual global coordinate on \(\mathbb C\), this is just a polynomial, hence holomorphic everywhere.  At a point \(a\neq0\), the derivative
+\[
+  f'(a)=3a^2
+\]
+is nonzero, so the inverse function theorem gives a local holomorphic inverse near \(a\).  At \(0\), however, the derivative vanishes.  The local model is exactly
+\[
+  z\mapsto z^3,
+\]
+so the map has multiplicity \(3\) at the origin.  This is the first concrete place where ``holomorphic map'' and ``branched covering'' begin to touch.
+\end{example}
+
+\begin{example}[Inclusion into the Riemann sphere]
+The inclusion
+\[
+  \mathbb C\hookrightarrow \mathbb C_\infty
+\]
+is a holomorphic map of Riemann surfaces.  On the finite chart of \(\mathbb C_\infty\), this map is simply
+\[
+  z\mapsto z,
+\]
+so it is holomorphic in the most literal possible sense.  The point of the example is not the formula itself, but the target: the Riemann sphere adds one extra point \(\infty\), and the ordinary plane sits inside it as the finite chart.  Thus a map into \(\mathbb C_\infty\) may be checked by using the coordinate \(z\) away from infinity and the coordinate \(w=1/z\) near infinity.
+\end{example}
+
+\section{Meromorphic functions as maps to the sphere}
+
+The Riemann sphere lets us treat poles as honest values.  A meromorphic function
+\[
+  f:X\to\mathbb C
+\]
+can be regarded as a holomorphic map
+\[
+  g:X\to\mathbb C_\infty
+\]
+by sending poles to \(\infty\).
+
+\begin{proposition}
+Nonconstant meromorphic functions \(X\to\mathbb C\) correspond to holomorphic maps \(X\to\mathbb C_\infty\) not identically equal to \(\infty\).
+\end{proposition}
+
+\begin{proof}[Idea]
+Away from a pole this is clear.  Near a pole, use the coordinate \(t=1/z\) near infinity on \(\mathbb C_\infty\).  If \(f\) has a pole, then \(1/f\) is holomorphic and vanishes there, so the map into the sphere is holomorphic in the \(t\)-coordinate.
+\end{proof}
+
+\section{Degree and multiplicity}
+
+For nonconstant holomorphic maps between compact Riemann surfaces, fibres behave surprisingly well when counted with multiplicity.
+
+\begin{proposition}
+Let \(X,Y\) be compact Riemann surfaces and let \(f:X\to Y\) be nonconstant holomorphic.  For each \(y\in Y\), count the points in \(f^{-1}(y)\) with multiplicity.  The resulting number is finite and independent of \(y\).  This number is the degree of \(f\), denoted \(\deg(f)\).
+\end{proposition}
+
+\begin{remark}
+This is much stronger than what one expects from arbitrary smooth maps.  The rigidity of holomorphic maps makes the fibre count locally constant, and connectedness makes it globally constant.
+\end{remark}
+
+\begin{example}[The power map has degree \(k\)]
+The map
+\[
+  z\mapsto z^k
+\]
+extends to a holomorphic map \(\mathbb C_\infty\to\mathbb C_\infty\) of degree \(k\).  On the finite chart this is a polynomial.  Near infinity, use the coordinate \(w=1/z\).  Then
+\[
+  z^k=\frac1{w^k},
+  \qquad
+  \frac1{z^k}=w^k,
+\]
+so the extended map is also holomorphic at \(\infty\).  For a generic value \(a\in\mathbb C^*\), the equation
+\[
+  z^k=a
+\]
+has \(k\) distinct solutions.  Counting multiplicity, the same number remains true over the exceptional values \(0\) and \(\infty\).  This is why the degree is \(k\), not merely because the formula contains the exponent \(k\).
+\end{example}
+
+\begin{definition}
+Let \(f:X\to Y\) be a nonconstant holomorphic map and \(p\in X\).  The multiplicity of \(f\) at \(p\) is the unique integer \(m\ge1\) such that, after choosing suitable local coordinates centered at \(p\) and \(f(p)\), the map is locally of the form
+\[
+  z\mapsto z^m.
+\]
+\end{definition}
+
+\begin{remark}
+The guiding slogan is: every nonconstant holomorphic map locally looks like a power map.  This is one of the reasons Riemann surfaces are so much cleaner than arbitrary smooth surfaces.
+\end{remark}
+
+\begin{proof}[Idea of the local normal form]
+Choose local coordinates centered at \(p\) and \(f(p)\), so the local expression becomes a nonconstant holomorphic function \(F\) with \(F(0)=0\).  Its Taylor expansion has the form
+\[
+  F(z)=a_mz^m+a_{m+1}z^{m+1}+\cdots,
+  \qquad a_m\neq0.
+\]
+Thus
+\[
+  F(z)=z^m u(z),
+\]
+where \(u\) is holomorphic and \(u(0)\neq0\).  After shrinking the coordinate neighborhood, \(u\) has a holomorphic \(m\)-th root \(v\).  Replacing the source coordinate \(z\) by \(zv(z)\), the map becomes exactly
+\[
+  z\mapsto z^m.
+\]
+The integer \(m\) is uniquely determined by the order of vanishing of \(F\) at \(0\), hence does not depend on the chosen coordinates.
+\end{proof}
+
+\section{Local power form is not global}
+
+The local normal form \(z\mapsto z^m\) must be read with the word \emph{local} emphasized.  A useful test case is
+\[
+  U=\mathbb C^*,
+  \qquad
+  F:U\to\mathbb C^*,
+  \qquad
+  F(z)=z^2.
+\]
+At \(p=1\), the derivative is nonzero, so in the local-normal-form sense the multiplicity is \(m=1\).  Nearby, one can choose a local inverse
+\[
+  z=\sqrt{w}
+\]
+with \(w=F(z)\).  But this square-root coordinate cannot be chosen globally on \(\mathbb C^*\).  If the target point travels once around the loop
+\[
+  w(t)=e^{2\pi it},
+  \qquad 0\le t\le1,
+\]
+then analytic continuation of the local branch starting at \(\sqrt1=1\) ends at \(-1\), not \(1\).  This sign change is monodromy.
+
+There is a small trap here.  If one instead moves the source point as
+\[
+  p(t)=e^{2\pi it},
+\]
+then \(F(p(t))=e^{4\pi it}\) winds twice around the target origin, so the square root changes sign twice and returns to the original branch.  The monodromy is seen by following a local inverse over a loop in the target, not by confusing the covering coordinate with a single global coordinate downstairs.
+
+Thus the map \(z\mapsto z^2\) is an unbranched two-fold covering of \(\mathbb C^*\), while the missing point \(0\) is where the corresponding map on \(\mathbb C\) would branch.  To make \(\sqrt w\) single-valued one must either cut the base, for example by removing a ray, or pass to a covering space.  This is the global meaning of the failure: local coordinate charts glue with a monodromy representation, and on a non-simply-connected region those gluings need not collapse to one global coordinate.
+
+\section{Holomorphic transition maps}
+
+A Riemann surface is locally modeled on open subsets of \(\mathbb C\), but the crucial condition is on overlaps.  If two charts
+\[
+  \varphi:U\to V\subseteq\mathbb C,\qquad
+  \psi:U'\to V'\subseteq\mathbb C
+\]
+overlap, then the transition map
+\[
+  \psi\circ\varphi^{-1}:\varphi(U\cap U')\to\psi(U\cap U')
+\]
+must be holomorphic.  This is what makes complex analysis possible on the surface without choosing one global coordinate.
+
+The condition is stronger than smoothness.  Holomorphic maps are rigid: they preserve angles, satisfy Cauchy--Riemann equations, and are locally power series.  Thus a Riemann surface is not just a two-dimensional smooth surface; it is a surface with complex-analytic coordinate changes.
+
+\section{Examples beyond the plane}
+
+The complex plane \(\mathbb C\) is a Riemann surface with one global chart.  The Riemann sphere
+\[
+  \widehat{\mathbb C}=\mathbb C\cup\{\infty\}
+\]
+requires two charts: one coordinate \(z\) near finite points and another coordinate \(w=1/z\) near infinity.  The transition map \(w=1/z\) is holomorphic away from zero, so the charts are compatible.
+
+A complex torus is obtained from \(\mathbb C\) by quotienting by a lattice
+\[
+  \Lambda=\mathbb Z\omega_1+\mathbb Z\omega_2.
+\]
+The quotient
+\[
+  \mathbb C/\Lambda
+\]
+is topologically a torus but also carries a complex structure inherited from the plane.  This example is the bridge from elementary complex analysis to elliptic curves.
+
+\section{Meromorphic functions}
+
+On a compact Riemann surface, holomorphic functions are often forced to be constant by the maximum principle.  Meromorphic functions are therefore more flexible.  A meromorphic function is holomorphic except at isolated poles.  Locally near a pole, it has a Laurent expansion with finitely many negative terms.
+
+Thinking of meromorphic functions as holomorphic maps to the Riemann sphere is useful:
+\[
+  f:X\to\widehat{\mathbb C}.
+\]
+A pole is simply a point mapped to \(\infty\).  This viewpoint turns singularities into ordinary values on a compact target.
+
+\section{Riemann surfaces retain complex structure beyond topology}
+
+The main transition in the note is from topology to complex geometry.  A topological surface only knows neighborhoods up to homeomorphism.  A smooth surface knows differentiable coordinate changes.  A Riemann surface knows holomorphic coordinate changes, so complex analysis can be done intrinsically.  This is why Riemann surfaces are simultaneously one-dimensional complex manifolds and two-dimensional real manifolds.
+
+\section{Complex structure is stronger than topology}
+
+A Riemann surface is topological dimension two but complex dimension one.  The complex charts have holomorphic transition maps, so local coordinates remember angle and orientation.  This is why every holomorphic map between Riemann surfaces is far more rigid than a continuous map.
+
+\section{Meromorphic functions and branched coverings}
+
+A nonconstant meromorphic function on a compact Riemann surface is a holomorphic map to the Riemann sphere:
+\[
+  f:X\to\mathbb P^1(\mathbb C).
+\]
+Its degree counts preimages with multiplicity.  Branch points are where local behavior looks like
+\[
+  z\mapsto z^e.
+\]
+The integer \(e\) records ramification.
+
+\section{Riemann--Hurwitz}
+
+For a holomorphic map \(f:X\to Y\) of degree \(d\), Riemann--Hurwitz says
+\[
+  2g_X-2=d(2g_Y-2)+\sum_{p\in X}(e_p-1).
+\]
+This formula ties topology, degree, and branching into one invariant statement.
+
+\section{Complex curves through topology and ramification}
+
+Riemann surfaces are where topology, complex analysis, and algebraic geometry first coincide.  Holomorphic charts give rigidity, meromorphic functions give maps to the sphere, divisors record zeros and poles, and ramification translates analytic multiplicity into topological genus.

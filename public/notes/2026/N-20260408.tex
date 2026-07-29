@@ -1,14 +1,193 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260408}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260408}
-\end{document}
+\notechapter{N-20260408}{Volumes, Spatial Regions, and Order of Integration}
+
+\section{Volume as an integral}
+
+The volume of a solid is the integral of the constant density \(1\).  If a solid lies between two graphs
+\[
+  z=z_1(x,y),\qquad z=z_2(x,y)
+\]
+over a plane region \(D\), then
+\[
+  V=\iint_D \bigl[z_2(x,y)-z_1(x,y)\bigr]\,dA.
+\]
+If the solid is better described directly in three dimensions, then
+\[
+  V=\iiint_{\Omega}1\,dV.
+\]
+
+\begin{example}
+The solid under \(z=4-x^2-y^2\) and above the disk \(x^2+y^2\le4\) has volume
+\[
+  V=\iint_{x^2+y^2\le4}(4-x^2-y^2)\,dA.
+\]
+In polar coordinates this becomes
+\[
+  V=\int_0^{2\pi}\int_0^2(4-r^2)r\,dr\,d\theta=8\pi.
+\]
+\end{example}
+
+\section{Describing spatial regions}
+
+A spatial region can be simple with respect to different coordinate planes.  An \(xy\)-simple description has the form
+\[
+  \Omega=\{(x,y,z):(x,y)\in D,\ z_1(x,y)\le z\le z_2(x,y)\}.
+\]
+Then
+\[
+  \iiint_{\Omega}f\,dV
+  =\iint_D\int_{z_1(x,y)}^{z_2(x,y)}f(x,y,z)\,dz\,dA.
+\]
+
+The same solid may be \(yz\)-simple or \(zx\)-simple instead.  The best description is the one in which the inner bounds are simplest.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\textwidth,height=0.74\textheight,keepaspectratio]{figures/notes-md/N-20260408/N-20260408-fig-01-composite-solid-hemisphere-and-cone.png}
+\caption{A composite solid with a hemispherical part and a conical part.  The picture is used to decide cross-sections and height bounds before writing the integral.}
+\end{figure}
+
+\section{A reconstruction workflow}
+
+When an integral or picture is given, reconstruct the solid before integrating.
+
+\begin{enumerate}[(i)]
+  \item Identify the bounding surfaces.
+  \item Find the projection or shadow on a coordinate plane.
+  \item Decide which variable has clear lower and upper surfaces.
+  \item Split the shadow when the top, bottom, left, or right boundary changes formula.
+  \item Only then write the integral.
+\end{enumerate}
+
+Most wrong triple integrals have correct antiderivatives but wrong regions.
+
+\section{Changing order of integration}
+
+Changing the order of integration means choosing a new projection and new fibers.  For example, an integral written as
+\[
+  \int_a^b\int_{\varphi_1(x)}^{\varphi_2(x)}\int_{z_1(x,y)}^{z_2(x,y)}f\,dz\,dy\,dx
+\]
+uses vertical segments above an \(xy\)-region.  Reordering may require projecting onto the \(xz\)- or \(yz\)-plane instead.
+
+\begin{caution}
+Do not change the order by simply permuting differentials.  The bounds describe a region.  A new order requires a new description of the same region.
+\end{caution}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\textwidth,height=0.74\textheight,keepaspectratio]{figures/notes-md/N-20260408/N-20260408-fig-02-truncated-rotational-solid.png}
+\caption{A rotational solid with circular cross-sections at different heights.  Such diagrams are read by projecting to the base plane and then recovering the vertical bounds.}
+\end{figure}
+
+\section{Cross-sections}
+
+Sometimes the cleanest volume method is to integrate cross-sectional area:
+\[
+  V=\int_a^b A(t)\,dt.
+\]
+Here \(A(t)\) is the area of the slice of the solid by a plane such as \(z=t\).  This is the one-variable version of slicing.
+
+\begin{example}
+For a right circular cone of height \(h\) and base radius \(R\), the slice at height \(z\) has radius \(R(1-z/h)\), so
+\[
+  A(z)=\pi R^2\left(1-\frac{z}{h}\right)^2.
+\]
+Thus
+\[
+  V=\int_0^h \pi R^2\left(1-\frac{z}{h}\right)^2\,dz
+  =\frac{1}{3}\pi R^2h.
+\]
+\end{example}
+
+\section{Top minus bottom}
+
+For a solid between surfaces, the double-integral formula
+\[
+  V=\iint_D(z_{\mathrm{top}}-z_{\mathrm{bottom}})\,dA
+\]
+is often faster than a full triple integral.  But this formula is only legal after the top and bottom are correctly identified over the same base region \(D\).
+
+\section{Cylindrical and spherical descriptions}
+
+If the solid has rotational symmetry, rectangular projections may be awkward.  Cylindrical coordinates describe a solid by inequalities in \(r,\theta,z\), and spherical coordinates describe it by inequalities in \(\rho,\varphi,\theta\).  The cost is the Jacobian:
+\[
+  dV=r\,dr\,d\theta\,dz,\qquad
+  dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta.
+\]
+
+The coordinate system should match the surface equations.  A sphere centered at the origin asks for spherical coordinates; a cylinder around the \(z\)-axis asks for cylindrical coordinates.
+
+\section{Absolute extrema over solids}
+
+Volume setup also appears in average-value problems.  If \(f\) is continuous on a solid \(\Omega\), its average value is
+\[
+  f_{\mathrm{avg}}=\frac{1}{\operatorname{vol}(\Omega)}\iiint_{\Omega}f\,dV.
+\]
+When \(\Omega\) is compact and connected, this average value is attained somewhere in \(\Omega\).  This is the three-dimensional analogue of the mean-value theorem for integrals.
+
+\section{Fibre integration: top-minus-bottom as a pushforward}
+
+The formula
+\[
+  V=\iint_D(z_{\mathrm{top}}-z_{\mathrm{bottom}})\,dA
+\]
+has a precise structural meaning.  Let
+\[
+  \pi:\Omega\to D,\qquad \pi(x,y,z)=(x,y)
+\]
+be projection onto the base.  The fibre over \((x,y)\) is the vertical segment
+\[
+  \pi^{-1}(x,y)=\{z:z_{\mathrm{bottom}}(x,y)\le z\le z_{\mathrm{top}}(x,y)\}.
+\]
+Its length is
+\[
+  \ell(x,y)=z_{\mathrm{top}}(x,y)-z_{\mathrm{bottom}}(x,y).
+\]
+The volume is the integral of fibre length over the base:
+\[
+  \operatorname{vol}(\Omega)=\int_D \ell(x,y)\,dA.
+\]
+This is the elementary version of integration along fibres.  In differential geometry and topology, fibre integration pushes a form on a total space down to a form on the base.
+
+\section{Cavalieri principle and layer-cake formula}
+
+Cross-sectional integration
+\[
+  V=\int_a^b A(t)\,dt
+\]
+is Cavalieri's principle in analytic form.  A more advanced cousin is the layer-cake formula.  For a nonnegative function \(f\),
+\[
+  \int_D f\,dA=\int_0^\infty \operatorname{area}(\{(x,y)\in D:f(x,y)>t\})\,dt.
+\]
+Geometrically, the volume under \(z=f(x,y)\) can be computed by stacking horizontal slices instead of vertical columns.
+
+For example, for \(f(x,y)=1-x^2-y^2\) on the unit disk, the level set \(f>t\) is the disk \(x^2+y^2<1-t\), so
+\[
+  \int_D f\,dA=\int_0^1 \pi(1-t)\,dt=\frac{\pi}{2}.
+\]
+This equals the usual polar-coordinate computation.  The point is not the answer but the shift: one can integrate by columns, by horizontal layers, or by fibres of a map.
+
+\section{Why regions must be split: projections can change topology}
+
+A projection can make a simple solid look complicated.  Suppose a vertical line over a base point intersects the solid in two disjoint intervals rather than one.  Then there is no single pair \(z_1(x,y)\le z\le z_2(x,y)\) describing the fibre.  The correct response is to split the base into pieces on which the fibre structure is stable.
+
+This is a low-dimensional version of a general principle: maps are easiest to integrate over where their fibres vary regularly.  Critical values and singular fibres force decompositions.  In advanced language, one tries to partition the base so that the projection behaves like a fibration on each piece.
+
+\section{Order of integration as choosing a foliation}
+
+Writing
+\[
+  \iiint_{\Omega} f\,dz\,dy\,dx
+\]
+means that \(\Omega\) is being decomposed into one-dimensional fibres parallel to the \(z\)-axis, then those fibres are organized over a region in the \(xy\)-plane.  A different order chooses a different family of fibres.  Thus changing order is choosing a different foliation of the same solid.
+
+This language sounds advanced, but it is exactly what the pictures are doing.  A good diagram shows which family of slices has the simplest geometry.
+
+\section{Reconstructing the solid before integrating}
+
+For the problems in this note, the integral sign is less important than the solid it describes.  An order such as
+\[
+  dz\,dy\,dx
+\]
+means that vertical line fibres are being placed over a region in the \(xy\)-plane.  Changing the order means choosing a different family of fibres, so the projection may change and the projected region may need to be split.
+
+A reliable setup has four checks.  First draw or describe the solid independently of the given bounds.  Second choose the projection plane whose shadow has the simplest boundary.  Third write the inner bounds as the entrance and exit points of a fibre through the solid.  Fourth check whether the shadow changes formula across the projection; if it does, split the integral.  The layer-cake and Cavalieri interpretations are useful because they keep the same discipline: volume is assembled from slices, and each slice must correspond to an actual cross-section of the solid.

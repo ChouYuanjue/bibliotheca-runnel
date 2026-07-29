@@ -1,14 +1,671 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221211}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221211}
-\end{document}
+\notechapter{N-20221211}{Derivatives: Local Linearization, Computation Graphs, and Higher-Order Data}
+
+\section{A tangent line is a local model, not only a slope}
+
+The difference quotient
+\[
+  \frac{f(a+h)-f(a)}{h}
+\]
+compares the actual change in \(f\) with the input change \(h\).  If the quotient approaches a finite number \(L\), then
+\[
+  f(a+h)-f(a)\approx Lh
+\]
+for small \(h\).  The derivative is therefore the coefficient of the best first-order linear model near \(a\).
+
+This viewpoint is stronger than the phrase ``slope of the tangent line.''  A slope describes a graph in the plane.  Linearization describes how the function transports small perturbations:
+\[
+  h\longmapsto f'(a)h.
+\]
+It survives in several variables, on manifolds, and inside automatic differentiation systems where no graph is ever drawn.
+
+The tangent-line approximation is
+\[
+  f(a+h)\approx f(a)+f'(a)h.
+\]
+To make the word ``approximately'' precise, define a remainder
+\[
+  r(h)=f(a+h)-f(a)-Lh.
+\]
+The linear model is first-order accurate when
+\[
+  \frac{r(h)}{h}\longrightarrow0.
+\]
+This is written
+\[
+  r(h)=o(h).
+\]
+Thus differentiability at \(a\) is equivalently the existence of a number \(L\) such that
+\[
+  \boxed{
+  f(a+h)=f(a)+Lh+o(h).}
+\]
+The number \(L\) is necessarily \(f'(a)\).
+
+Indeed, subtract \(f(a)\), divide by \(h\), and let \(h\to0\):
+\[
+  \frac{f(a+h)-f(a)}{h}
+  =L+\frac{o(h)}{h}
+  \longrightarrow L.
+\]
+Conversely, if the difference quotient tends to \(L\), then
+\[
+  r(h)=h\left(
+    \frac{f(a+h)-f(a)}{h}-L
+  \right)=o(h).
+\]
+The limit definition and the linearization definition contain exactly the same information.
+
+\section{The algebra of small remainders generates the rules}
+
+Suppose \(f\) and \(g\) are differentiable at \(a\).  Write
+\[
+  f(a+h)=f(a)+f'(a)h+r_f(h),
+  \qquad r_f(h)=o(h),
+\]
+\[
+  g(a+h)=g(a)+g'(a)h+r_g(h),
+  \qquad r_g(h)=o(h).
+\]
+The sum rule is immediate:
+\[
+  (f+g)(a+h)
+  =(f+g)(a)+(f'(a)+g'(a))h+o(h).
+\]
+Hence
+\[
+  (f+g)'(a)=f'(a)+g'(a).
+\]
+
+For the product, multiply the two expansions:
+\[
+\begin{aligned}
+  f(a+h)g(a+h)
+  ={}&f(a)g(a)\\
+  &+\bigl(f'(a)g(a)+f(a)g'(a)\bigr)h\\
+  &+f'(a)g'(a)h^2
+    +f(a)r_g(h)+g(a)r_f(h)\\
+  &+f'(a)h r_g(h)+g'(a)h r_f(h)
+    +r_f(h)r_g(h).
+\end{aligned}
+\]
+Every term after the first-order line is \(o(h)\).  Therefore
+\[
+  \boxed{(fg)'=f'g+fg'.}
+\]
+The product rule is not an arbitrary mnemonic.  It is what remains after second-order-small terms are discarded.
+
+If \(g(a)\ne0\), continuity gives \(g(a+h)\ne0\) for sufficiently small \(h\).  Applying the product rule to
+\[
+  g\cdot\frac1g=1
+\]
+gives
+\[
+  \left(\frac1g\right)'
+  =-\frac{g'}{g^2}.
+\]
+Combining this with the product rule yields the quotient rule.
+
+The chain rule has the same interpretation.  Suppose \(b=f(a)\).  Then
+\[
+  f(a+h)=b+f'(a)h+o(h).
+\]
+Let
+\[
+  k=f'(a)h+o(h).
+\]
+Since \(k=O(h)\), differentiability of \(g\) at \(b\) gives
+\[
+  g(b+k)=g(b)+g'(b)k+o(k).
+\]
+Because \(o(k)=o(h)\),
+\[
+  g(f(a+h))
+  =g(f(a))+g'(f(a))f'(a)h+o(h).
+\]
+Thus
+\[
+  \boxed{(g\circ f)'(a)=g'(f(a))f'(a).}
+\]
+The chain rule is composition of local linear maps.
+
+\section{Powers, exponentials, and logarithms}
+
+For a positive integer \(n\), the binomial theorem gives
+\[
+  (x+h)^n-x^n
+  =nx^{n-1}h+\binom n2x^{n-2}h^2+\cdots+h^n.
+\]
+After division by \(h\), every term except the first vanishes as \(h\to0\).  Hence
+\[
+  (x^n)'=nx^{n-1}.
+\]
+Negative integer powers follow from the reciprocal rule.
+
+For a rational exponent \(r=m/n\), one may differentiate
+\[
+  y^n=x^m
+\]
+on a real domain where the chosen power is defined and locally single-valued.  This gives
+\[
+  ny^{n-1}y'=mx^{m-1},
+\]
+so
+\[
+  (x^r)'=rx^{r-1}.
+\]
+The domain matters.  A denominator with even \(n\) restricts real inputs, while an odd denominator permits negative inputs but may still create a singular derivative at zero.
+
+For arbitrary real \(\alpha\), define on \(x>0\)
+\[
+  x^\alpha=e^{\alpha\ln x}.
+\]
+Then the chain rule gives
+\[
+  \frac{d}{dx}x^\alpha
+  =e^{\alpha\ln x}\frac{\alpha}{x}
+  =\alpha x^{\alpha-1}.
+\]
+This proof explains why the unrestricted real-power formula naturally lives on the positive half-line.
+
+The exponential can be characterized by the differential equation
+\[
+  y'=y,
+  \qquad y(0)=1.
+\]
+Its flow property is
+\[
+  e^{x+t}=e^xe^t.
+\]
+Differentiating with respect to \(t\) at \(t=0\) gives
+\[
+  (e^x)'=e^x.
+\]
+More generally,
+\[
+  (a^x)'=a^x\ln a
+\]
+for \(a>0\).
+
+The logarithm is the inverse of the exponential.  If
+\[
+  y=\ln x,
+  \qquad x=e^y,
+\]
+then
+\[
+  1=e^yy'=xy',
+\]
+so
+\[
+  \boxed{(\ln x)'=\frac1x.}
+\]
+The identity
+\[
+  \ln(xy)=\ln x+\ln y
+\]
+shows that logarithm converts multiplication into addition.  Its differential
+\[
+  d(\ln x)=\frac{dx}{x}
+\]
+is the infinitesimal quantity invariant under multiplicative rescaling.
+
+\section{The inverse rule and where it fails}
+
+Let \(f\) be differentiable near \(a\), one-to-one there, and suppose
+\[
+  f'(a)\ne0.
+\]
+Put
+\[
+  b=f(a).
+\]
+If the local inverse is differentiable at \(b\), the identity
+\[
+  f^{-1}(f(x))=x
+\]
+and the chain rule give
+\[
+  (f^{-1})'(b)f'(a)=1.
+\]
+Therefore
+\[
+  \boxed{
+  (f^{-1})'(b)=\frac1{f'(a)}.}
+\]
+The one-dimensional inverse function theorem supplies the missing existence statement: under suitable continuity hypotheses, nonvanishing derivative makes the map locally invertible with a differentiable inverse.
+
+The condition \(f'(a)\ne0\) is sufficient, not logically necessary for every kind of inverse.  The function
+\[
+  f(x)=x^3
+\]
+is globally one-to-one and has an inverse, even though \(f'(0)=0\).  Its inverse
+\[
+  f^{-1}(y)=y^{1/3}
+\]
+has no finite derivative at zero.  The vertical tangent of the inverse records the collapse of first-order information in the original map.
+
+Inverse trigonometric derivatives are applications rather than a separate theory.  Once sine is restricted to
+\[
+  [-\pi/2,\pi/2],
+\]
+the inverse rule gives, for \(|x|<1\),
+\[
+  (\arcsin x)'
+  =\frac1{\sqrt{1-x^2}}.
+\]
+Likewise,
+\[
+  (\arccos x)'=-\frac1{\sqrt{1-x^2}},
+  \qquad
+  (\arctan x)'=\frac1{1+x^2}.
+\]
+The branch choices and endpoint singularities are developed in the preceding trigonometric note.  Here they illustrate the general inverse rule and its failure when the original derivative vanishes.
+
+\section{A small derivative library and its dependency map}
+
+A derivative table is useful when it remembers how each entry was produced.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+Function & Derivative & Structural source\\
+\midrule
+\(x^\alpha\), \(x>0\) & \(\alpha x^{\alpha-1}\) & exponential and logarithm\\
+\(e^x\) & \(e^x\) & one-parameter flow\\
+\(\ln x\) & \(1/x\) & inverse function rule\\
+\(\sin x\), \(\cos x\) & \(\cos x\), \(-\sin x\) & basic limits and addition laws\\
+\(\tan x\) & \(\sec^2x\) & quotient rule\\
+\(\arcsin x\) & \((1-x^2)^{-1/2}\) & branch-restricted inverse rule\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The general rules form a compact dependency graph:
+\[
+  \text{linearization}
+  \longrightarrow
+  \begin{cases}
+    \text{sum and product rules},\\
+    \text{chain rule},\\
+    \text{inverse rule},
+  \end{cases}
+  \longrightarrow
+  \text{elementary derivative library}.
+\]
+This ordering is more reusable than memorizing a long page of formulas.  New functions enter the library by exposing their algebraic composition or defining differential equation.
+
+\section{Forward mode: propagate a perturbation}
+
+Automatic differentiation applies the chain rule to a computation graph without symbolic expansion and without finite-difference approximation.  Consider
+\[
+  F(x)=\ln\left(1+\sin^2(x^2)\right).
+\]
+Break the expression into nodes:
+\[
+  u=x^2,
+  \qquad
+  v=\sin u,
+  \qquad
+  w=1+v^2,
+  \qquad
+  F=\ln w.
+\]
+
+Forward mode attaches to every value its derivative with respect to the chosen input.  Starting from
+\[
+  \dot x=1,
+\]
+we propagate
+\[
+  \dot u=2x\dot x=2x,
+\]
+\[
+  \dot v=\cos u\,\dot u=2x\cos(x^2),
+\]
+\[
+  \dot w=2v\dot v
+  =4x\sin(x^2)\cos(x^2),
+\]
+\[
+  \dot F=\frac{\dot w}{w}
+  =\frac{4x\sin(x^2)\cos(x^2)}
+  {1+\sin^2(x^2)}.
+\]
+The dot notation represents a tangent perturbation.  If the input changes by \(\varepsilon\), then to first order each node changes by its dotted value times \(\varepsilon\).
+
+This mechanism can be encoded by dual numbers.  Introduce a symbol \(\epsilon\) with
+\[
+  \epsilon^2=0.
+\]
+Then
+\[
+  f(x+\epsilon)=f(x)+f'(x)\epsilon.
+\]
+Ordinary arithmetic on pairs
+\[
+  x+\dot x\epsilon
+\]
+automatically propagates values and first derivatives.  The nilpotent relation discards all terms beyond first order, exactly as the \(o(h)\) calculus did analytically.
+
+\section{Reverse mode: pull sensitivity backward}
+
+Reverse mode evaluates the same graph forward to store intermediate values, then propagates output sensitivity backward.  Write
+\[
+  \bar z=\frac{\partial F}{\partial z}
+\]
+for the adjoint associated with a node \(z\).  Begin at the output with
+\[
+  \bar F=1.
+\]
+The local derivatives give
+\[
+  \bar w=\bar F\frac{\partial F}{\partial w}
+  =\frac1w,
+\]
+\[
+  \bar v=\bar w\frac{\partial w}{\partial v}
+  =\frac{2v}{w},
+\]
+\[
+  \bar u=\bar v\frac{\partial v}{\partial u}
+  =\frac{2v\cos u}{w},
+\]
+\[
+  \bar x=\bar u\frac{\partial u}{\partial x}
+  =\frac{4x\sin(x^2)\cos(x^2)}
+  {1+\sin^2(x^2)}.
+\]
+The final adjoint \(\bar x\) is \(F'(x)\), matching forward mode.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  >=Stealth,
+  node distance=14mm,
+  box/.style={draw,rounded corners,minimum width=14mm,minimum height=8mm,align=center}
+]
+  \node[box] (x) {$x$};
+  \node[box,right=of x] (u) {$u=x^2$};
+  \node[box,right=of u] (v) {$v=\sin u$};
+  \node[box,right=of v] (w) {$w=1+v^2$};
+  \node[box,right=of w] (y) {$F=\ln w$};
+  \draw[->] (x)--node[above,font=\scriptsize] {$2x$} (u);
+  \draw[->] (u)--node[above,font=\scriptsize] {$\cos u$} (v);
+  \draw[->] (v)--node[above,font=\scriptsize] {$2v$} (w);
+  \draw[->] (w)--node[above,font=\scriptsize] {$1/w$} (y);
+  \draw[<-,dashed] (x.south)--node[below,font=\scriptsize] {reverse adjoints} (y.south);
+\end{tikzpicture}
+\caption{Forward mode pushes a tangent from left to right; reverse mode pulls an output covector from right to left through the same local derivatives.}
+\end{figure}
+
+Forward mode is efficient when there are few input directions and many outputs.  Reverse mode is efficient for a scalar output with many inputs, which is why it underlies backpropagation.  The two modes are not different chain rules.  They choose opposite orders for composing the same local linear maps and their duals.
+
+\section{Second-order automatic differentiation is jet composition}
+
+Forward mode used dual numbers
+\[
+  \mathbb R[\epsilon]/(\epsilon^2)
+\]
+to retain a value and one first-order perturbation.  Keeping one more power gives
+\[
+  \mathbb R[\epsilon]/(\epsilon^3),
+\]
+which stores second-order local data.  Represent an input curve through \(x\) by
+\[
+  X(\epsilon)
+  =x+v\epsilon+\frac12a\epsilon^2.
+\]
+The coefficients \(v\) and \(a\) are its velocity and acceleration at \(\epsilon=0\).
+
+Taylor expansion followed by the rule \(\epsilon^3=0\) gives
+\[
+\begin{aligned}
+  f(X(\epsilon))
+  ={}&f(x)
+   +f'(x)\left(v\epsilon+\frac12a\epsilon^2\right)\\
+   &+\frac12f''(x)(v\epsilon)^2
+   \pmod{\epsilon^3}.
+\end{aligned}
+\]
+Therefore
+\[
+  \boxed{
+  f(X(\epsilon))
+  =f(x)+f'(x)v\epsilon
+  +\frac12\bigl(f''(x)v^2+f'(x)a\bigr)\epsilon^2.}
+\]
+The first-order coefficient is the transported velocity.  The second-order coefficient contains two effects: curvature of the function, \(f''(x)v^2\), and acceleration already present in the input curve, \(f'(x)a\).  This is the same distinction that appears in the second derivative of a composition.
+
+For a concrete computation, take
+\[
+  F(x)=e^{\sin x}
+\]
+and seed a unit-speed straight perturbation at \(x=0\):
+\[
+  X(\epsilon)=\epsilon,
+  \qquad v=1,
+  \qquad a=0.
+\]
+First propagate through sine:
+\[
+  \sin\epsilon=\epsilon\pmod{\epsilon^3},
+\]
+because the first discarded term is \(-\epsilon^3/6\).  Then propagate through the exponential:
+\[
+  e^{\epsilon}
+  =1+\epsilon+\frac12\epsilon^2
+  \pmod{\epsilon^3}.
+\]
+The three stored coefficients give
+\[
+  F(0)=1,
+  \qquad
+  F'(0)=1,
+  \qquad
+  F''(0)=1.
+\]
+No symbolic second derivative of the full composite was formed; each node merely propagated a truncated local polynomial.
+
+This procedure is precisely composition of second jets.  The second jet of \(f\) at \(x\) can be represented by
+\[
+  j_x^2f(h)
+  =f(x)+f'(x)h+\frac12f''(x)h^2
+  \pmod{h^3}.
+\]
+Composing functions means substituting one truncated polynomial into another and discarding terms of degree three or higher.  At higher orders the coefficient bookkeeping is governed by set partitions and the Fa\`a di Bruno formula; the dedicated higher-derivative chapter develops that combinatorics in full.
+
+The same idea works in several variables.  For a smooth scalar function
+\[
+  f:\mathbb R^n\to\mathbb R
+\]
+and a direction \(v\), substitute
+\[
+  x+\epsilon v
+\]
+into its second-order expansion:
+\[
+  f(x+\epsilon v)
+  =f(x)
+  +\epsilon\nabla f(x)^Tv
+  +\frac12\epsilon^2v^T\nabla^2f(x)v
+  \pmod{\epsilon^3}.
+\]
+Thus one second-order forward sweep computes a Hessian quadratic form \(v^THv\) without constructing every entry of \(H\).  Mixed terms can be recovered by polarization:
+\[
+  u^THv
+  =\frac12\bigl((u+v)^TH(u+v)-u^THu-v^THv\bigr).
+\]
+Higher-order automatic differentiation is therefore not an unrelated extension of the chain rule.  It is ordinary computation performed in a richer truncated algebra that retains more of the local Taylor model.
+
+\section{Differentials are covectors}
+
+For a function \(f:\mathbb R\to\mathbb R\), the differential at \(a\) is the linear functional
+\[
+  df_a(h)=f'(a)h.
+\]
+In the coordinate \(x\), this is written
+\[
+  df=f'(x)\,dx.
+\]
+The symbol \(dx\) is the basic covector that sends an increment \(h\) to \(h\).  It is not necessary to treat \(dy/dx\) as an ordinary fraction in order to justify the notation.
+
+If \(g\) is another function, then
+\[
+  d(g\circ f)_a
+  =dg_{f(a)}\circ df_a.
+\]
+In pullback notation,
+\[
+  d(g\circ f)=f^*(dg).
+\]
+This is the chain rule for one-forms.  Reverse-mode automatic differentiation follows the same direction: an output covector is pulled backward through the transpose or adjoint of each derivative map.
+
+For a function of several variables, the differential is no longer multiplication by one number.  If
+\[
+  f:\mathbb R^n\to\mathbb R,
+\]
+then
+\[
+  df_x(h)=\nabla f(x)^Th.
+\]
+The gradient vector depends on the chosen inner product, while the differential is intrinsically a covector.  The one-dimensional notation hides this distinction because every linear map \(\mathbb R\to\mathbb R\) is represented by a scalar.
+
+\section{Differentiable does not mean smoothly differentiable}
+
+Continuity is necessary for differentiability, but it is not sufficient.  The function
+\[
+  f(x)=|x|
+\]
+is continuous at zero, yet
+\[
+  \lim_{h\to0^+}\frac{|h|}{h}=1,
+  \qquad
+  \lim_{h\to0^-}\frac{|h|}{h}=-1.
+\]
+No single linear map approximates the function from both sides.
+
+A derivative may exist without varying continuously.  Define
+\[
+  g(x)=
+  \begin{cases}
+    x^2\sin(1/x),&x\ne0,\\
+    0,&x=0.
+  \end{cases}
+\]
+At zero,
+\[
+  \frac{g(h)-g(0)}{h}
+  =h\sin(1/h)\longrightarrow0,
+\]
+so \(g'(0)=0\).  For \(x\ne0\),
+\[
+  g'(x)=2x\sin(1/x)-\cos(1/x),
+\]
+which has no limit as \(x\to0\).  The function is differentiable everywhere but not continuously differentiable at zero.
+
+These examples separate three notions:
+\[
+  \text{continuity},
+  \qquad
+  \text{differentiability},
+  \qquad
+  C^1\text{ regularity}.
+\]
+Each additional level controls more than the existence of a tangent at one point.
+
+\section{Fr\'echet differentiability asks for one uniform linear model}
+
+The formula
+\[
+  f(a+h)=f(a)+f'(a)h+o(h)
+\]
+contains the multidimensional definition almost unchanged.  For a map between normed spaces,
+\[
+  F:X\to Y,
+\]
+we seek a bounded linear map
+\[
+  DF(a):X\to Y
+\]
+such that
+\[
+  \boxed{
+  \|F(a+h)-F(a)-DF(a)h\|_Y
+  =o(\|h\|_X).}
+\]
+This is the Fr\'echet derivative.  The estimate must hold uniformly as \(h\) approaches zero from every direction, not along one line at a time.
+
+Consider
+\[
+  F(x,y)=
+  \begin{pmatrix}
+    e^x\cos y\\
+    e^x\sin y
+  \end{pmatrix}.
+\]
+At \((0,0)\), use
+\[
+  e^h=1+h+O(h^2),
+  \qquad
+  \cos k=1+O(k^2),
+  \qquad
+  \sin k=k+O(k^3).
+\]
+Then
+\[
+\begin{aligned}
+  e^h\cos k&=1+h+O(h^2+k^2),\\
+  e^h\sin k&=k+O(|hk|+|k|^3).
+\end{aligned}
+\]
+Hence
+\[
+  F(h,k)
+  =
+  \begin{pmatrix}1\\0\end{pmatrix}
+  +
+  \begin{pmatrix}h\\k\end{pmatrix}
+  +O(h^2+k^2),
+\]
+so
+\[
+  DF(0,0)=I.
+\]
+The Jacobian is not merely a table of partial derivatives; it is the linear map that simultaneously approximates the function for every small vector \((h,k)\).
+
+Directional derivatives alone do not guarantee such a map.  Define
+\[
+  G(x,y)=
+  \begin{cases}
+  \dfrac{x^3}{x^2+y^2},&(x,y)\ne(0,0),\\[0.8em]
+  0,&(x,y)=(0,0).
+  \end{cases}
+\]
+Along a direction \(v=(a,b)\),
+\[
+  G(ta,tb)
+  =t\frac{a^3}{a^2+b^2}.
+\]
+Therefore every directional derivative at the origin exists and equals
+\[
+  D_vG(0,0)=\frac{a^3}{a^2+b^2}.
+\]
+But this expression is not linear in \((a,b)\).  For example,
+\[
+  D_{(1,0)}G=1,
+  \qquad
+  D_{(0,1)}G=0,
+  \qquad
+  D_{(1,1)}G=\frac12,
+\]
+whereas linearity would require the last value to be \(1\).  No single linear map can represent all directional changes, so \(G\) is not Fr\'echet differentiable at the origin.
+
+Once the Fr\'echet derivative exists, the chain rule becomes literal composition:
+\[
+  D(H\circ F)(a)=DH(F(a))\circ DF(a).
+\]
+After bases are chosen, this is Jacobian multiplication.  Forward mode applies the composite map to tangent vectors; reverse mode applies its dual maps to covectors.  The differential \(df_a\) is the scalar-valued covector version, while jets retain the higher-order terms discarded by the first linear model.
+
+The chapter therefore ends with the same object with which it began: the best local linear map.  Elementary differentiation rules explain how it behaves under algebra and composition; inverse-function formulas ask when it can be inverted; automatic differentiation transports it through a graph; and Fr\'echet differentiability specifies what it means for one approximation to control all nearby directions at once.
+

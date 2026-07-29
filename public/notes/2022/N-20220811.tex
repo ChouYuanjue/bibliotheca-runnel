@@ -1,14 +1,276 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220811}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220811}
-\end{document}
+\notechapter{N-20220811}{Inequality Exercises: Cauchy, AM--GM, Vectors, and Optimization}
+
+\section{How to read this note}
+
+A compact inequality practice set is most useful when it reveals the standard inequality hidden inside each expression.  The useful question is not ``which formula should be memorized?'', but rather ``what structure does the expression already have?''
+
+If there are fractions with variable denominators, Cauchy or Engel form is natural.  If there are products such as \(abc\), AM--GM is natural.  If there are square roots of quadratic expressions, think of vector lengths and the triangle inequality.  If the problem asks for a maximum or minimum under a quadratic constraint, expect equality cases in Cauchy--Schwarz.
+
+\section{A fraction problem with a constraint}
+
+One problem asks to handle expressions of the form
+\[
+  \frac{4}{4-x^2}+\frac{9}{9-y^2}
+\]
+under constraints such as \(xy=-1\) and bounded intervals for \(x,y\).  A Cauchy-style lower bound gives:
+\[
+  \frac{4}{4-x^2}+\frac{9}{9-y^2}
+  \ge
+  \frac{(2+3)^2}{(4-x^2)+(9-y^2)}.
+\]
+Then the constraint controls the denominator.  The important point is that the numerator \(4,9\) are squares, so the expression is inviting the Cauchy inequality
+\[
+  \frac{a^2}{u}+\frac{b^2}{v}\ge \frac{(a+b)^2}{u+v}.
+\]
+
+This is one of the most common contest moves: when a sum of fractions has square numerators, try to combine them by Cauchy rather than simplifying separately.
+
+\section{A weighted square-root comparison}
+
+Another exercise defines
+\[
+  P=\sqrt{ab}+\sqrt{cd},
+\]
+and
+\[
+  Q=\sqrt{ma+nc}\sqrt{\frac bm+\frac dn},
+\]
+where the variables are positive.  Expanding \(Q^2\) gives
+\[
+\begin{aligned}
+Q^2
+&=(ma+nc)\left(\frac bm+\frac dn\right)\\
+&=ab+cd+\frac{mad}{n}+\frac{ncb}{m}.
+\end{aligned}
+\]
+By AM--GM,
+\[
+  \frac{mad}{n}+\frac{ncb}{m}\ge 2\sqrt{abcd}.
+\]
+Hence
+\[
+  Q^2\ge ab+cd+2\sqrt{abcd}=(\sqrt{ab}+\sqrt{cd})^2=P^2.
+\]
+So \(P\le Q\), with equality exactly when
+\[
+  \frac{mad}{n}=\frac{ncb}{m}.
+\]
+Strict inequality holds precisely when this equality condition fails.
+
+\section{Maximizing a radical expression}
+
+The note then asks for the maximum of
+\[
+  f(x)=2\sqrt{x-3}+\sqrt{5-x},\qquad 3\le x\le5.
+\]
+One way is calculus.  We have
+\[
+  f'(x)=\frac1{\sqrt{x-3}}-\frac1{2\sqrt{5-x}}.
+\]
+Setting \(f'(x)=0\) gives
+\[
+  2\sqrt{5-x}=\sqrt{x-3},
+\]
+so
+\[
+  4(5-x)=x-3,\qquad x=\frac{23}{5}.
+\]
+At this point,
+\[
+  f\left(\frac{23}{5}\right)
+  =2\sqrt{\frac85}+\sqrt{\frac25}
+  =\sqrt{10}.
+\]
+
+The same conclusion can be reached without derivatives, by Cauchy--Schwarz:
+\[
+  \left(2\sqrt{x-3}+\sqrt{5-x}\right)^2
+  \le (4+1)((x-3)+(5-x))=10.
+\]
+Equality holds when
+\[
+  \frac{2}{1}=\frac{\sqrt{x-3}}{\sqrt{5-x}},
+\]
+which again gives \(x=23/5\).  This non-calculus proof is more elegant because it explains the form of the answer.
+
+\section{Equality in Cauchy--Schwarz}
+
+A vector problem gives
+\[
+  a^2+b^2+c^2=25,\qquad x^2+y^2+z^2=36,\qquad ax+by+cz=30.
+\]
+By Cauchy--Schwarz,
+\[
+  (ax+by+cz)^2\le(a^2+b^2+c^2)(x^2+y^2+z^2)=25\cdot36=900.
+\]
+Since \(ax+by+cz=30\), equality holds.  Therefore
+\[
+  (a,b,c)=k(x,y,z).
+\]
+Comparing norms gives
+\[
+  k=\frac56.
+\]
+Thus
+\[
+  \frac{a+b+c}{x+y+z}=\frac56.
+\]
+This is an excellent example of why equality cases matter.  The inequality is not just bounding a number; it tells us the exact geometry of the vectors.
+
+\section{Triangle-angle inequalities}
+
+Let \(A,B,C\) be the angles of a triangle.  Then
+\[
+  A+B+C=\pi.
+\]
+By Cauchy--Schwarz,
+\[
+  (A+B+C)\left(\frac1A+\frac1B+\frac1C\right)\ge(1+1+1)^2=9.
+\]
+Hence
+\[
+  \frac1A+\frac1B+\frac1C\ge\frac9\pi.
+\]
+Similarly,
+\[
+  A^2+B^2+C^2\ge\frac{(A+B+C)^2}{3}=\frac{\pi^2}{3}.
+\]
+Both equalities occur only for
+\[
+  A=B=C=\frac\pi3.
+\]
+Symmetric triangle inequalities often attain equality at the equilateral triangle.
+
+\section{Two spheres and a linear equation}
+
+Another problem asks to solve a system of two sphere equations.  The trick is to subtract them.  If two equations are
+\[
+  (x-a_1)^2+(y-b_1)^2+(z-c_1)^2=R_1^2,
+\]
+\[
+  (x-a_2)^2+(y-b_2)^2+(z-c_2)^2=R_2^2,
+\]
+subtracting cancels \(x^2+y^2+z^2\) and leaves a plane.  The intersection of two spheres is therefore a circle, a point, or empty; algebraically it becomes a sphere-plane problem.
+
+Cauchy--Schwarz bounds a linear expression such as
+\[
+  -8x+6y-24z.
+\]
+The equality condition determines the direction of the vector \((x,y,z)\).  Again the method is geometric: a linear function is maximized on a sphere in the direction of its coefficient vector.
+
+\section{A product inequality}
+
+If
+\[
+  (1+a)(1+b)(1+c)=8,\qquad a,b,c>0,
+\]
+then one obtains
+\[
+  abc\le1.
+\]
+Indeed,
+\[
+\begin{aligned}
+8&=1+a+b+c+ab+bc+ca+abc\\
+&\ge 1+3\sqrt[3]{abc}+3\sqrt[3]{(ab)(bc)(ca)}+abc\\
+&=1+3t+3t^2+t^3=(1+t)^3,
+\end{aligned}
+\]
+where \(t=\sqrt[3]{abc}\).  Thus \(1+t\le2\), so \(t\le1\), and therefore \(abc\le1\).
+
+\section{Vector-style radical inequality}
+
+The pages also contain an inequality of the form
+\[
+  \sqrt{x^2+xy+y^2}+\sqrt{x^2+xz+z^2}\ge \sqrt{y^2+yz+z^2}.
+\]
+This is best understood as a disguised triangle inequality.  One rewrites each quadratic as a squared Euclidean norm of a two-dimensional vector.  For example,
+\[
+  x^2+xy+y^2=\left(x+\frac y2\right)^2+\frac34y^2.
+\]
+Once each radical is interpreted as a vector length, the inequality becomes
+\[
+  \|u\|+\|v\|\ge\|u+v\|.
+\]
+This is a typical high-level move: turn algebraic square roots into geometry.
+
+\section{The deeper habit}
+
+The note is not merely a list of inequality tricks.  It repeatedly uses the same three ideas: Cauchy detects equality of vectors, AM--GM detects equality of positive quantities, and radical inequalities often hide triangle inequalities.  The more mature way to remember the sheet is therefore:
+\[
+  \text{fractions}\to\text{Cauchy},\qquad
+  \text{products}\to\text{AM--GM},\qquad
+  \text{radicals}\to\text{norms}.
+\]
+
+\section{Equality cases as structural information}
+
+In inequality problems, equality conditions are not afterthoughts.  They often reveal the correct substitution or normalization.  For Cauchy--Schwarz,
+\[
+  \left(\sum_i a_i b_i\right)^2=\left(\sum_i a_i^2\right)\left(\sum_i b_i^2\right)
+\]
+holds exactly when \(a\) and \(b\) are proportional.  If a proposed solution cannot recover the equality case, it is probably not using the natural structure.
+
+\section{Optimization on constrained domains}
+
+Many radical or fraction inequalities are optimization problems on a constrained set.  A constraint such as \(x+y+z=1\) suggests compactness if variables are nonnegative.  Then a maximum exists, and one can use convexity, Cauchy, or Lagrange multipliers to locate it.
+
+This separates two tasks: first prove existence or reduce the domain; then identify the inequality that gives the optimum.
+
+\section{Vectors and geometric inequalities}
+
+Vector methods convert algebraic inequalities into length comparisons.  If an expression can be written as a dot product, Cauchy applies.  If it is a sum of lengths, triangle inequality or Minkowski applies.
+
+The power of vectors is that equality becomes a geometric condition: parallel vectors, collinearity, or degenerate triangles.
+
+\section{Equality cases as geometric diagnostics}
+
+The exercise sheet is about choosing the right geometry.  Cauchy handles dot products, AM--GM handles balanced positive products, convexity handles averages, and Lagrange multipliers handle smooth constrained extrema.  Equality cases are the map showing which method is natural.
+
+\section{Equality cases as geometry}
+
+The original inequality exercises repeatedly ask when equality holds.  This is not a side detail; equality describes the geometry of the inequality.  In Cauchy--Schwarz,
+\[
+  \left(\sum a_ib_i\right)^2\le \left(\sum a_i^2\right)\left(\sum b_i^2\right),
+\]
+equality holds exactly when the vectors $(a_i)$ and $(b_i)$ are linearly dependent.  In AM--GM,
+\[
+  \frac{x_1+\cdots+x_n}{n}\ge \sqrt[n]{x_1\cdots x_n},
+\]
+equality holds when all variables are equal.  These equality sets often reveal the hidden symmetry of a problem.
+
+\section{Lagrange multipliers and inequalities}
+
+Many inequality exercises are optimization problems with constraints.  If one wants to extremize $f(x_1,\ldots,x_n)$ under $g(x_1,\ldots,x_n)=0$, the smooth interior candidates satisfy
+\[
+  \nabla f=\lambda \nabla g.
+\]
+For example, optimizing a quadratic form under $\|x\|=1$ leads to
+\[
+  Ax=\lambda x,
+\]
+so eigenvalues are extrema of quadratic forms on the unit sphere.  This is the Rayleigh quotient principle:
+\[
+  \lambda_{\min}\le \frac{x^TAx}{x^Tx}\le \lambda_{\max}
+\]
+for symmetric $A$.
+
+\section{Semidefinite viewpoint}
+
+Some inequalities are equivalent to positive semidefiniteness.  To prove
+\[
+  ax^2+2bxy+cy^2\ge0
+\]
+for all $x,y$, one checks
+\[
+  \begin{pmatrix}a&b\\b&c\end{pmatrix}\succeq0.
+\]
+That means
+\[
+  a\ge0,\qquad ac-b^2\ge0.
+\]
+This connects elementary quadratic inequalities to semidefinite programming, where one optimizes linear functions over the cone of positive semidefinite matrices.
+
+\section{Classical inequalities encode convex optimization}
+
+The contest techniques in the source—Cauchy, AM--GM, substitutions, and equality checking—should be read as finite-dimensional optimization.  The advanced language does not replace the computations; it explains why the same few patterns recur: projection, convexity, eigenvalues, and positive semidefinite forms.

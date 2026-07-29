@@ -1,14 +1,285 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20251109}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20251109}
-\end{document}
+\notechapter{N-20251109}{Kernels, Cokernels, Images, and Coimages in Abelian Categories}
+
+\section{The setting: maps with zero maps}
+
+The uploaded note studies a morphism
+\[
+  f:A\to B
+\]
+from the categorical viewpoint.  The words domain and codomain mean exactly what they mean for an ordinary function:
+\[
+  A=\text{domain},\qquad B=\text{codomain}.
+\]
+For linear maps one may think of \(A\) as the input space and \(B\) as the declared output space.  The actual values reached by \(f\) may form a smaller object inside \(B\); that smaller object is the image.
+
+The categorical definitions below need a zero object and zero morphisms.  A zero object is simultaneously initial and terminal.  Once a category has a zero object \(0\), every pair of objects \(X,Y\) has a distinguished zero morphism
+\[
+  0_{X,Y}:X\to 0\to Y.
+\]
+This lets equations such as \(f\circ k=0\) make sense without mentioning elements.
+
+The most familiar examples are:
+\[
+  \mathbf{Vect}_k,\qquad \mathbf{Ab},\qquad R\text{-}\mathbf{Mod}.
+\]
+These are abelian categories.  In them, kernels, cokernels, images, and coimages behave like the objects from linear algebra and module theory.
+
+\section{Kernel: the universal object killed by a map}
+
+For a morphism \(f:A\to B\), a kernel of \(f\) is a morphism
+\[
+  k:K\to A
+\]
+such that
+\[
+  f\circ k=0,
+\]
+and universal with this property: whenever \(k':K'\to A\) also satisfies \(f\circ k'=0\), there is a unique morphism \(u:K'\to K\) with
+\[
+  k'=k\circ u.
+\]
+In diagram form:
+\[
+\begin{tikzcd}[column sep=4.2em,row sep=3.2em]
+K' \arrow[dr, "k'"', bend right=18] \arrow[d, dashed, "u"'] & \\
+K \arrow[r, "k"'] & A \arrow[r, "f"'] & B .
+\end{tikzcd}
+\]
+The condition is that both routes from \(K'\) to \(B\) are zero after applying \(f\).
+
+In vector spaces this recovers
+\[
+  \operatorname{Ker}(f)=\{a\in A:f(a)=0\}.
+\]
+The categorical definition says something stronger than just listing elements: the kernel is the best, largest, and universal way to factor all inputs that become zero.
+
+In an abelian category, the kernel morphism \(k:K\to A\) is a monomorphism.  It is therefore legitimate to think of \(K\) as a subobject of the domain \(A\), though the invariant datum is the arrow \(k\), not merely the object \(K\).
+
+\section{Cokernel: the universal quotient killing a map}
+
+The cokernel is the dual construction.  A cokernel of \(f:A\to B\) is a morphism
+\[
+  c:B\to C
+\]
+such that
+\[
+  c\circ f=0,
+\]
+and universal with this property: whenever \(c':B\to C'\) satisfies \(c'\circ f=0\), there is a unique morphism \(u:C\to C'\) with
+\[
+  c'=u\circ c.
+\]
+The diagram is:
+\[
+\begin{tikzcd}[column sep=4.2em,row sep=3.2em]
+A \arrow[r, "f"] & B \arrow[r, "c"] \arrow[dr, "c'"', bend right=18] & C \arrow[d, dashed, "u"] \\
+& & C' .
+\end{tikzcd}
+\]
+In vector spaces or modules,
+\[
+  \operatorname{Coker}(f)=B/\operatorname{Im}(f).
+\]
+Thus the cokernel measures what remains in the codomain after the actual output of \(f\) has been collapsed to zero.
+
+In an abelian category, the cokernel morphism \(c:B\to C\) is an epimorphism.  It is therefore the categorical version of a quotient object of the codomain.
+
+\section{Image: the part of the codomain actually reached}
+
+In linear algebra the image is
+\[
+  \operatorname{Im}(f)=\{f(a):a\in A\}\subseteq B.
+\]
+In an abelian category, one defines the image without element language by first taking the cokernel
+\[
+  c:B\to \operatorname{Coker}(f)
+\]
+and then taking the kernel of that cokernel:
+\[
+  \operatorname{Im}(f)=\operatorname{Ker}\bigl(B\xrightarrow{c}\operatorname{Coker}(f)\bigr).
+\]
+So the image is represented by a monomorphism
+\[
+  i:\operatorname{Im}(f)\to B.
+\]
+The diagram is:
+\[
+\begin{tikzcd}[column sep=4.2em]
+\operatorname{Im}(f) \arrow[r, "i", hook] & B \arrow[r, "c"] & \operatorname{Coker}(f).
+\end{tikzcd}
+\]
+The equation \(c\circ i=0\) says that everything in the image is killed by the quotient map \(c\).  The universal property says that it is the largest subobject of \(B\) killed by \(c\).
+
+This gives a useful slogan:
+\[
+  \operatorname{Im}(f)=\text{the part of the codomain not visible to the cokernel.}
+\]
+
+\section{Coimage: the effective part of the domain}
+
+The coimage is dual to the image.  Begin with the kernel
+\[
+  k:\operatorname{Ker}(f)\to A.
+\]
+Then define the coimage as the cokernel of the kernel:
+\[
+  \operatorname{Coim}(f)=\operatorname{Coker}\bigl(\operatorname{Ker}(f)\xrightarrow{k}A\bigr).
+\]
+So it is represented by an epimorphism
+\[
+  q:A\to \operatorname{Coim}(f).
+\]
+The diagram is:
+\[
+\begin{tikzcd}[column sep=4.2em]
+\operatorname{Ker}(f) \arrow[r, "k", hook] & A \arrow[r, "q", two heads] & \operatorname{Coim}(f).
+\end{tikzcd}
+\]
+In vector spaces this is the quotient
+\[
+  \operatorname{Coim}(f)=A/\operatorname{Ker}(f).
+\]
+It is the domain after removing precisely the part that \(f\) sends to zero.  In that sense, it is the effective input object of \(f\).
+
+\section{The standard factorization}
+
+In an abelian category, every morphism \(f:A\to B\) factors through its coimage and image:
+\[
+  A \xrightarrow{q} \operatorname{Coim}(f)
+  \xrightarrow{\overline f}
+  \operatorname{Im}(f)
+  \xrightarrow{i} B.
+\]
+Here:
+\begin{itemize}
+  \item \(q:A\to \operatorname{Coim}(f)\) is the cokernel of \(\operatorname{Ker}(f)\to A\), hence an epimorphism;
+  \item \(i:\operatorname{Im}(f)\to B\) is the kernel of \(B\to \operatorname{Coker}(f)\), hence a monomorphism;
+  \item the middle map \(\overline f:\operatorname{Coim}(f)\to \operatorname{Im}(f)\) is an isomorphism in an abelian category;
+  \item the original morphism is recovered by
+  \[
+    f=i\circ \overline f\circ q.
+  \]
+\end{itemize}
+A compact diagram is:
+\[
+\begin{tikzcd}[column sep=3.3em,row sep=3.2em]
+\operatorname{Ker}(f) \arrow[r, "k", hook] & A \arrow[r, "q", two heads] \arrow[rrr, bend left=18, "f"] & \operatorname{Coim}(f) \arrow[r, "\overline f", "\cong"'] & \operatorname{Im}(f) \arrow[r, "i", hook] & B \arrow[r, "c", two heads] & \operatorname{Coker}(f).
+\end{tikzcd}
+\]
+This is the categorical form of the first isomorphism theorem:
+\[
+  A/\operatorname{Ker}(f)\cong \operatorname{Im}(f).
+\]
+The uploaded note's phrase that coimage is effective input and image is actual output is exactly this factorization: \(q\) discards useless input, \(i\) embeds the actual output into the declared codomain, and \(\overline f\) identifies these two descriptions.
+
+\section{A vector-space sanity check}
+
+Let \(T:V\to W\) be a linear map.  Then
+\[
+  \operatorname{Ker}(T)=\{v\in V:T(v)=0\},
+  \qquad
+  \operatorname{Coker}(T)=W/\operatorname{Im}(T).
+\]
+The coimage is
+\[
+  \operatorname{Coim}(T)=V/\operatorname{Ker}(T),
+\]
+and the induced map
+\[
+  \overline T:V/\operatorname{Ker}(T)\to \operatorname{Im}(T),
+  \qquad [v]\mapsto T(v),
+\]
+is an isomorphism.  It is well-defined because if \(v-v'\in\operatorname{Ker}(T)\), then \(T(v)=T(v')\).  It is injective because \(T(v)=0\) means \([v]=0\), and it is surjective by definition of image.
+
+For a matrix \(A:k^n\to k^m\), this says that the rank is the dimension of both sides of the middle isomorphism:
+\[
+  \dim(k^n/\operatorname{Ker}A)=\dim \operatorname{Im}A=\operatorname{rank}A.
+\]
+This is rank-nullity in categorical clothing.
+
+\section{A module example: multiplication by an integer}
+
+Consider the group homomorphism
+\[
+  f:\mathbb Z\to\mathbb Z,
+  \qquad f(x)=nx.
+\]
+If \(n\ne0\), then
+\[
+  \operatorname{Ker}(f)=0,
+  \qquad
+  \operatorname{Im}(f)=n\mathbb Z,
+  \qquad
+  \operatorname{Coker}(f)=\mathbb Z/n\mathbb Z.
+\]
+The coimage is
+\[
+  \operatorname{Coim}(f)=\mathbb Z/0\cong\mathbb Z.
+\]
+The middle isomorphism is
+\[
+  \mathbb Z\xrightarrow{\sim} n\mathbb Z,
+  \qquad x\mapsto nx.
+\]
+This example is useful because the image is literally a subgroup of the codomain, while the coimage is a quotient of the domain.  They look different as subobject and quotient, but in an abelian category they are canonically isomorphic through \(f\).
+
+\section{Exactness language}
+
+Kernel and image are also the grammar of exact sequences.  A sequence
+\[
+  X\xrightarrow{g}Y\xrightarrow{h}Z
+\]
+is exact at \(Y\) when
+\[
+  \operatorname{Im}(g)=\operatorname{Ker}(h)
+\]
+as subobjects of \(Y\).  The equality means that the elements, vectors, or generalized inputs that \(h\) kills are exactly those that came from \(g\).
+
+In categorical language, exactness replaces element chasing by universal properties.  For example, saying that
+\[
+  \operatorname{Ker}(f)\to A\to B
+\]
+is exact at \(A\) is precisely saying that the first arrow is the kernel of \(f\).  Saying that
+\[
+  A\to B\to \operatorname{Coker}(f)
+\]
+is exact at \(B\) is precisely saying that the second arrow is the cokernel of \(f\), after passing through the image.
+
+\section{Warnings: what depends on being abelian}
+
+The statements above should not be read as valid in every category.  Several layers are being used.
+\begin{itemize}
+  \item A category must have a zero object and zero morphisms before kernels and cokernels can even be formulated in this form.
+  \item A category may have kernels and cokernels but still fail to make every monomorphism a kernel or every epimorphism a cokernel.
+  \item The canonical map \(\operatorname{Coim}(f)\to\operatorname{Im}(f)\) need not be an isomorphism outside abelian categories.
+\end{itemize}
+Thus the beautiful factorization
+\[
+  \operatorname{Coim}(f)\cong \operatorname{Im}(f)
+\]
+is not a formal tautology.  It is one of the defining strengths of abelian categories.
+
+For intuition, \(\mathbf{Set}\) is not the right environment for this theory: it has no zero object in the needed sense.  Pointed sets have a zero object and kernels in a pointed sense, but they are not abelian.  Vector spaces, abelian groups, and modules are the safe models.
+
+\section{Synthesis: from element chasing to universal properties}
+
+The definitions fit into the following table:
+\[
+\begin{array}{c|c|c|c}
+\text{object} & \text{categorical construction} & \text{linear algebra model} & \text{where it lives}\\
+\hline
+\operatorname{Ker}(f) & \text{universal map into }A\text{ killed by }f & \{a:f(a)=0\} & \text{subobject of }A\\
+\operatorname{Coker}(f) & \text{universal quotient of }B\text{ killing }f & B/\operatorname{Im}(f) & \text{quotient of }B\\
+\operatorname{Im}(f) & \operatorname{Ker}(B\to\operatorname{Coker}(f)) & \{f(a):a\in A\} & \text{subobject of }B\\
+\operatorname{Coim}(f) & \operatorname{Coker}(\operatorname{Ker}(f)\to A) & A/\operatorname{Ker}(f) & \text{quotient of }A
+\end{array}
+\]
+The standard factorization
+\[
+  A\twoheadrightarrow \operatorname{Coim}(f)
+  \xrightarrow{\sim}
+  \operatorname{Im}(f)\hookrightarrow B
+\]
+turns a morphism into three conceptual pieces: quotient out the part of the input killed by \(f\), identify the remaining effective input with the subobject actually reached in \(B\), and then include that subobject in the codomain.
+
+For vector spaces this says exactly the familiar rank--nullity picture: \(A/\ker f\) is isomorphic to \(\operatorname{im}f\).  For modules and abelian groups the same statement is the first isomorphism theorem.  The categorical formulation is useful because it records which part of the argument is universal and which part depends on being in an abelian category: the comparison map \(\operatorname{Coim}(f)\to\operatorname{Im}(f)\) is an isomorphism in the safe models listed above, but it should not be assumed in an arbitrary category with kernels and cokernels.

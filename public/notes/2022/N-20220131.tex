@@ -1,14 +1,180 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220131}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220131}
-\end{document}
+\notechapter{N-20220131}{Rethinking Set Theory Through Functions Rather Than Membership}
+
+\section{Why this translation/note matters}
+
+Tom Leinster's \emph{Rethinking Set Theory}, a Chauvenet Prize-winning article, asks why the set theory used by working mathematicians feels so different from the official ZFC story.  Its aim is not to make set theory more technical, but to identify the principles actually used in ordinary mathematical practice.
+
+The guiding question is simple:
+\begin{question}
+If most mathematicians manipulate sets safely without remembering the ZFC axioms, what principles are they actually using?
+\end{question}
+
+The answer explored here is Lawvere's Elementary Theory of the Category of Sets, usually abbreviated ETCS.  The important point is that ETCS is not an attempt to replace set theory by category theory.  It is another axiomatization of set theory, written in a language closer to everyday mathematical practice.
+
+\section{The discomfort with ZFC}
+
+ZFC treats every element of every set as itself a set.  Formally, this is convenient.  But in ordinary mathematics it is strange.  Questions such as ``what are the elements of \(\pi\)?'' or ``what are the elements of a real number?'' are normally treated as meaningless in mathematical practice.
+
+In ZFC, however, every object has been coded as a set, so asking for the elements of a real number is formally allowed.  This does not mean ZFC is wrong.  It means that ZFC uses the word ``set'' differently from how mathematicians often use it in practice.
+
+\begin{remark}
+The point is not merely that real numbers are encoded arbitrarily.  The deeper point is linguistic: ZFC makes membership primitive, while ordinary mathematics often treats functions, products, subsets, and inverse images as the more natural operations.
+\end{remark}
+
+A typical ZFC axiom such as foundation says that every nonempty set has an element disjoint from it.  This makes formal sense only because all elements are also sets.  But when the set under discussion is something like \(\mathbb R\), the ordinary mathematical intuition does not ask whether \(\pi\cap\mathbb R=\varnothing\).
+
+\section{Three misunderstandings about ETCS}
+
+The original article emphasizes three misunderstandings.
+
+\begin{enumerate}[(i)]
+  \item ETCS is not a competitor to set theory; it is a form of set theory.
+  \item ETCS does not require more sophisticated mathematics than ZFC.  It can be stated elementarily, even though its origin is categorical.
+  \item ETCS is not circular merely because it is inspired by categories.  ZFC says, roughly, ``there are things called sets and a relation called membership.''  ETCS says, roughly, ``there are things called sets and things called functions, and functions compose.''  Both are first-order theories.
+\end{enumerate}
+
+\begin{caution}
+It is easy to overstate the category-theoretic flavor.  The point here is not to presuppose the whole theory of categories.  The point is to take functions and composition as basic, because that is often closer to actual mathematical use.
+\end{caution}
+
+\section{Elements as special functions}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.82\textwidth]{figures/N-20220131/fig-01.png}
+  \caption{The motivating picture: elements can be represented as maps from a singleton.}
+\end{figure}
+
+The key idea is to define elements using functions.  Suppose there is a singleton set
+\[
+  1=\{\bullet\}.
+\]
+Then an element of a set \(X\) can be identified with a function
+\[
+  1\to X.
+\]
+Indeed, such a function is determined by the image of \(\bullet\), and that image is an element of \(X\).
+
+At first this looks like a formal trick, but it is a very general mathematical pattern:
+\begin{itemize}
+  \item a loop in a topological space \(X\) is a continuous map \(S^1\to X\);
+  \item a sequence in \(X\) is a function \(\mathbb N\to X\);
+  \item a solution of equations in a ring can be represented by a suitable homomorphism out of a quotient ring;
+  \item a point of a space is often best treated as a map from a test object.
+\end{itemize}
+
+\begin{remark}
+This is the first philosophical shift: instead of saying that functions are built out of elements, we may say that elements are special cases of functions.
+\end{remark}
+
+\section{The informal ETCS-style principles}
+
+The informal ETCS-style principles can be stated as follows:
+\begin{enumerate}[(i)]
+  \item functions compose associatively and have identity functions;
+  \item there is a singleton set;
+  \item there is an empty set;
+  \item a function is determined by its effect on elements;
+  \item products \(X\times Y\) exist;
+  \item function sets \(Y^X\) exist;
+  \item inverse images of elements or subsets exist;
+  \item subsets of \(X\) correspond to functions \(X\to\{0,1\}\);
+  \item the natural numbers form a set;
+  \item every surjection has a right inverse, i.e. a choice principle.
+\end{enumerate}
+
+These principles are striking because they sound like the operations used constantly in ordinary mathematics.  They do not begin by asking what the elements of elements are.
+
+\section{Subsets via characteristic functions}
+
+A subset \(A\subseteq X\) may be represented by its characteristic function
+\[
+  \chi_A:X\to\{0,1\},\qquad
+  \chi_A(x)=
+  \begin{cases}
+    1,&x\in A,\\
+    0,&x\notin A.
+  \end{cases}
+\]
+Thus the power set of \(X\) is expressed as a function set
+\[
+  2^X.
+\]
+This fits the ETCS point of view perfectly: subsets are not introduced by a membership relation alone, but through maps into a classifier of truth values.
+
+\section{Products, exponentials, and inverse images}
+
+The ordinary constructions of mathematics appear directly:
+\[
+  X\times Y
+\]
+represents pairs; the exponential
+\[
+  Y^X
+\]
+represents functions from \(X\) to \(Y\); and inverse images let us pull subsets back along functions.  These are exactly the operations that mathematicians use constantly when building structures.
+
+\begin{remark}
+In this sense, ETCS feels less like an encoding scheme and more like a formalization of actual mathematical behavior.
+\end{remark}
+
+\section{Choice as right inverses}
+
+The choice principle in this language says that every surjection has a right inverse.  If
+\[
+  f:X\twoheadrightarrow Y
+\]
+is surjective, then there exists
+\[
+  g:Y\to X
+\]
+with
+\[
+  f\circ g=\id_Y.
+\]
+This is exactly the idea of choosing one element from each fibre of \(f\).
+
+\begin{caution}
+This formulation is often more transparent than the usual family-of-nonempty-sets version, but it is the same choice principle in a categorical dress.
+\end{caution}
+
+\section{Why a function-centered foundation matters}
+
+The main lesson is not that ZFC is useless or wrong.  ZFC is powerful and foundationally successful.  The lesson is that there is a mismatch between the official membership-first universe of ZFC and the function-centered practice of most mathematics.
+
+ETCS suggests that one can axiomatize set theory using:
+\[
+\begin{gathered}
+  \text{sets},\quad \text{functions},\quad \text{composition},\\
+  \text{products},\quad \text{function spaces},\quad \text{subsets},\\
+  \text{natural numbers},\quad \text{choice}.
+\end{gathered}
+\]
+That language is closer to the way sets are used in ordinary mathematics.
+
+\begin{question}
+Is ETCS only a more convenient presentation of ordinary mathematics, or does it also change how one should teach foundations?  The article strongly suggests the latter, making pedagogy part of the foundational question.
+\end{question}
+
+
+\section{ETCS intuition: membership is not primitive practice}
+
+One of the central insights of ETCS is that working mathematicians rarely use the membership relation as their main tool.  They use functions.  A set is understood by the maps into it, the maps out of it, its products, its subsets, and its quotients.
+
+For example, instead of defining an ordered pair through nested braces, one can characterize the product \(A\times B\) by its universal property.  Instead of treating a subset as a special kind of element relation, one can treat it through its characteristic map to a subobject classifier.  This does not deny membership; it changes which notions are primitive.
+
+\section{Element reasoning inside categorical set theory}
+
+A common worry is that categorical set theory loses elements.  It does not.  In a category of sets, an element of \(A\) can be represented as a map
+\[
+  1\to A
+\]
+from a terminal object.  Thus element reasoning is recovered as morphism reasoning from the one-point set.
+
+This is a typical categorical move: replace internal membership statements by external mapping properties.  The result often looks more abstract, but it is closer to how structures are transported by functions.
+
+\section{Why this matters philosophically}
+
+ZFC gives a reductionist foundation: everything is encoded as a set.  ETCS gives a structural foundation: sets are objects in a category satisfying axioms that support ordinary set operations.  The philosophical difference is that ETCS does not ask what a set is made of at the lowest membership level; it asks what role sets play in mathematics.
+
+This is why Leinster's article is compelling.  It shows that the official foundation and the working foundation are not identical.  ZFC is powerful as a background theory, but ETCS more closely describes the everyday language of functions, products, quotients, and subsets.

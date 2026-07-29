@@ -1,14 +1,236 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20230123}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20230123}
-\end{document}
+\notechapter{N-20230123}{Definite Integrals, Line Integrals, Work, Green-Type Thinking, and Vector Operations}
+
+\section{Indefinite and definite integrals}
+
+Indefinite and definite integrals play different roles.  An indefinite integral is an antiderivative family:
+\[
+  \int f(x)\,dx=F(x)+C,\qquad F'(x)=f(x).
+\]
+A definite integral is a number:
+\[
+  \int_a^b f(x)\,dx.
+\]
+Geometrically, it is signed area under the graph.  Analytically, it is the limit of Riemann sums.
+
+The fundamental theorem of calculus connects the two:
+\[
+  \int_a^b f(x)\,dx=F(b)-F(a)
+\]
+when $F'=f$.
+
+\section{Area by slicing}
+
+The page includes diagrams of shaded regions.  The standard method is to slice a region into thin strips.  If vertical strips are convenient, then
+\[
+  A=\int_a^b (y_{top}(x)-y_{bottom}(x))\,dx.
+\]
+If horizontal strips are more convenient, then
+\[
+  A=\int_c^d (x_{right}(y)-x_{left}(y))\,dy.
+\]
+Choosing the direction of slicing is part of the solution, not a fixed rule.
+
+\section{Work as an integral}
+
+The physical meaning of a definite integral appears in work.  If a force $F(x)$ acts along a line, then the work from $x=a$ to $x=b$ is
+\[
+  W=\int_a^b F(x)\,dx.
+\]
+If the force is constant, this reduces to $W=F(b-a)$.  If the force changes with position, integration adds the small contributions
+\[
+  dW=F(x)\,dx.
+\]
+This is the same accumulation idea as area, but with a physical interpretation.
+
+\section{Line integrals}
+
+The note then introduces line integrals.  If a curve is parametrized by
+\[
+  r(t)=(x(t),y(t)),\qquad a\le t\le b,
+\]
+then the scalar line element is
+\[
+  ds=\sqrt{(x'(t))^2+(y'(t))^2}\,dt.
+\]
+A scalar line integral is
+\[
+  \int_C f\,ds
+  =\int_a^b f(x(t),y(t))\sqrt{(x'(t))^2+(y'(t))^2}\,dt.
+\]
+For a vector field $F=(P,Q)$, the work integral is
+\[
+  \int_C F\cdot dr
+  =\int_C P\,dx+Q\,dy
+  =\int_a^b [P(x(t),y(t))x'(t)+Q(x(t),y(t))y'(t)]\,dt.
+\]
+
+\section{Green-type intuition}
+
+An oriented boundary and a vector field suggest that circulation around the boundary should be related to a double integral over the region.  In the plane, Green's theorem says
+\[
+  \oint_{\partial D} P\,dx+Q\,dy
+  =
+  \iint_D \left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)\,dA.
+\]
+Even if the note does not prove the theorem fully, it records the key intuition: local rotation accumulated over an area produces circulation on the boundary.
+
+\section{Polar coordinates}
+
+In polar coordinates, the change of variables is
+\[
+  x=r\cos\theta,\qquad y=r\sin\theta.
+\]
+The area element becomes
+\[
+  dA=r\,dr\,d\theta.
+\]
+The factor $r$ is the Jacobian.  Geometrically, a small polar rectangle has side lengths approximately $dr$ and $r\,d\theta$.
+
+Thus a disk of radius $R$ has area
+\[
+  \int_0^{2\pi}\int_0^R r\,dr\,d\theta=\pi R^2.
+\]
+
+\section{Spherical coordinates}
+
+For spherical coordinates, a common convention is
+\[
+  x=\rho\sin\varphi\cos\theta,\qquad
+  y=\rho\sin\varphi\sin\theta,\qquad
+  z=\rho\cos\varphi.
+\]
+The volume element is
+\[
+  dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta.
+\]
+The factor $\rho^2\sin\varphi$ comes from the three small lengths:
+\[
+  d\rho,\qquad \rho\,d\varphi,\qquad \rho\sin\varphi\,d\theta.
+\]
+This explains the diagram on the final page: the small spherical patch has dimensions determined by radius and angle.
+
+\section{Dot product and cross product}
+
+The note also summarizes vector operations.  The dot product is
+\[
+  a\cdot b=|a||b|\cos\theta.
+\]
+It measures projection and appears in work:
+\[
+  dW=F\cdot dr.
+\]
+The cross product has magnitude
+\[
+  |a\times b|=|a||b|\sin\theta
+\]
+and direction given by orientation.  It measures the area of the parallelogram spanned by $a$ and $b$.
+
+In coordinates,
+\[
+  a\times b=
+  \begin{vmatrix}
+  i&j&k\\
+  a_1&a_2&a_3\\
+  b_1&b_2&b_3
+  \end{vmatrix}.
+\]
+
+\section{After the examples: what object is being integrated?}
+
+The examples develop integration as accumulation over different geometric objects.  The clean way to organize them is not by dimension alone, but by the type of object being integrated.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+Integral & Object being integrated & Geometric meaning\\
+\midrule
+\(\int_a^b f(x)\,dx\) & density on an oriented interval & signed accumulation\\
+\(\int_C f\,ds\) & scalar density along a curve & mass/length-weighted accumulation\\
+\(\int_C P\,dx+Q\,dy\) & one-form & work or circulation\\
+\(\iint_D f\,dA\) & area density & accumulation over a region\\
+\(\iiint_\Omega f\,dV\) & volume density & weighted volume or mass\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+This table prevents a common confusion.  A line integral of \(f\,ds\) and a work integral \(P\,dx+Q\,dy\) both run along a curve, but they integrate different geometric objects.  The first uses arclength and ignores orientation; the second is a pullback of a one-form and changes sign when the orientation is reversed.
+
+Green's theorem then becomes a boundary-to-interior conversion:
+\[
+\oint_{\partial D}P\,dx+Q\,dy
+=
+\iint_D(\partial_x Q-\partial_y P)\,dA.
+\]
+It says that circulation around the boundary is curl accumulated over the interior.
+
+\section{Line integrals as pullbacks}
+
+For a parametrized curve $\gamma:[a,b]\to\mathbb R^n$, a line integral of a one-form
+\[
+  \omega=P_1dx_1+\cdots+P_ndx_n
+\]
+is
+\[
+  \int_\gamma \omega
+  =\int_a^b \sum_i P_i(\gamma(t))\gamma_i'(t)\,dt.
+\]
+This is the pullback of the one-form to the interval:
+\[
+  \gamma^*\omega=\sum_i P_i(\gamma(t))\gamma_i'(t)dt.
+\]
+Thus the elementary formula $Pdx+Qdy$ is already differential-form notation.
+
+\section{Exact forms and potentials}
+
+A one-form $\omega$ is exact if $\omega=df$ for some potential $f$.  Then
+\[
+  \int_\gamma df=f(\gamma(b))-f(\gamma(a)).
+\]
+This is the fundamental theorem of line integrals.
+
+A form is closed if $d\omega=0$.  In the plane, for $\omega=Pdx+Qdy$, this means
+\[
+  Q_x-P_y=0.
+\]
+On simply connected domains, closed one-forms are exact.  On domains with holes, this may fail.
+
+\section{Conservation laws}
+
+In mechanics, work is a line integral
+\[
+  W=\int_C F\cdot dr.
+\]
+If $F=-\nabla V$ is conservative, then
+\[
+  W=V(A)-V(B)
+\]
+depends only on endpoints.  Conservation of energy is therefore a statement about exact one-forms.
+
+This connects elementary work integrals to topology: path independence is not only about derivatives; it also depends on whether the domain has holes.
+
+\section{De Rham preview}
+
+De Rham cohomology measures the failure of closed forms to be exact:
+\[
+  H^1_{dR}(M)=\frac{\{\text{closed 1-forms}\}}{\{\text{exact 1-forms}\}}.
+\]
+For the punctured plane, the form
+\[
+  \omega=\frac{-y\,dx+x\,dy}{x^2+y^2}
+\]
+is closed but not exact.  Its integral around the unit circle is $2\pi$.
+
+The elementary line integral around a circle is therefore a measurement of a topological hole.
+
+\section{Work integrals and gauge freedom}
+
+If a force field is conservative, $F=-\nabla V$, then work depends only on endpoints.  The potential $V$ is not unique: adding a constant changes nothing.  This is the simplest form of gauge freedom.  The physically meaningful object is the differential $dV$, not the absolute zero of potential.
+
+In electromagnetism, potentials have richer gauge freedom.  A vector potential $A$ may be changed by a gradient without changing the magnetic field $B=\nabla\times A$.  The elementary fact that potentials are determined only up to constants is the first example of this broader principle.
+
+\section{Polar and spherical adapted charts}
+
+The original integral examples using polar or spherical coordinates should be read as choosing charts adapted to symmetry.  A chart is a coordinate map from a parameter domain to the geometric region.  The integration element is obtained by pulling back the metric or volume form.
+
+Thus polar coordinates are not merely a trick for circular regions.  They are a coordinate chart on the punctured plane adapted to the action of rotations.  Spherical coordinates are adapted to radial symmetry in three dimensions.

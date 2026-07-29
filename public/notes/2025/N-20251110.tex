@@ -1,14 +1,420 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20251110}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20251110}
-\end{document}
+\notechapter{N-20251110}{Determinants and Rank: From Alternating Volume to Elimination and Rank Strata}
+
+\section{Why one scalar can encode both volume and independence}
+
+A determinant problem often looks like a request to simplify a large array.  The useful starting point is more geometric.  If the columns of
+\[
+  A=(a_1,\ldots,a_n)
+\]
+are vectors in \(k^n\), then \(\det A\) is the oriented volume scale of the parallelotope they span.  Three properties determine this quantity uniquely:
+
+\begin{enumerate}[(i)]
+  \item it is linear in each column while the others are fixed;
+  \item it changes sign when two columns are exchanged;
+  \item \(\det I=1\).
+\end{enumerate}
+
+Alternation immediately gives
+\[
+  a_i=a_j\text{ for some }i\ne j
+  \quad\Longrightarrow\quad
+  \det A=0.
+\]
+More generally,
+\[
+  \det A\ne0
+  \quad\Longleftrightarrow\quad
+  a_1,\ldots,a_n\text{ are linearly independent}.
+\]
+Thus determinant computation and rank detection are not separate topics.  A nonzero determinant says that no direction has collapsed; a zero determinant says that the image volume has fallen into a lower-dimensional subspace.
+
+Elementary column operations now have conceptual explanations.  Adding a multiple of one column to another leaves the wedge volume unchanged.  Scaling one column scales the volume by the same factor.  Exchanging two columns reverses orientation.  Every safe determinant trick is an application of these three rules.
+
+\section{Cofactors and minors are coordinates of exterior powers}
+
+A linear map \(A:V\to V\) induces maps
+\[
+  \Lambda^rA:\Lambda^rV\to\Lambda^rV.
+\]
+In a basis, the entries of \(\Lambda^rA\) are the \(r\times r\) minors of \(A\).  At the top degree, \(\Lambda^nV\) is one-dimensional and
+\[
+  \Lambda^nA=(\det A)I.
+\]
+This is the coordinate-free source of multiplicativity:
+\[
+  \det(AB)=\det A\det B,
+\]
+because
+\[
+  \Lambda^n(AB)=\Lambda^nA\circ\Lambda^nB.
+\]
+
+For \(r=n-1\), the minors assemble into the adjugate.  If \(C_{ij}\) is the cofactor of \(a_{ij}\), then
+\[
+  \operatorname{adj}(A)=(C_{ji})
+\]
+and
+\[
+  A\operatorname{adj}(A)
+  =\operatorname{adj}(A)A
+  =(\det A)I.
+\]
+The diagonal entries of this product are ordinary Laplace expansions.  An off-diagonal entry is the determinant obtained by replacing one row by another already present, hence it vanishes.
+
+The same exterior-power bookkeeping gives the Cauchy--Binet formula.  For
+\[
+  X\in k^{m\times n},
+  \qquad
+  Y\in k^{n\times m},
+  \qquad m\le n,
+\]
+one has
+\[
+  \boxed{
+  \det(XY)
+  =\sum_{|S|=m}\det(X_{[:,S]})\det(Y_{[S,:]}).}
+\]
+General Laplace expansion is a special case: selecting a group of rows and summing products of complementary minors is exactly composition on an exterior power.
+
+\section{Vandermonde determinants measure uniqueness of interpolation}
+
+Let \(\mathcal P_{n-1}\) be the vector space of polynomials of degree at most \(n-1\).  Evaluation at points \(x_1,\ldots,x_n\) defines a linear map
+\[
+  \operatorname{ev}:\mathcal P_{n-1}\longrightarrow k^n,
+  \qquad
+  p\longmapsto(p(x_1),\ldots,p(x_n)).
+\]
+In the monomial basis \(1,t,\ldots,t^{n-1}\), its matrix is the Vandermonde matrix
+\[
+  V=
+  \begin{pmatrix}
+    1&x_1&x_1^2&\cdots&x_1^{n-1}\\
+    1&x_2&x_2^2&\cdots&x_2^{n-1}\\
+    \vdots&\vdots&\vdots&&\vdots\\
+    1&x_n&x_n^2&\cdots&x_n^{n-1}
+  \end{pmatrix}.
+\]
+Its determinant is
+\[
+  \boxed{
+  \det V=\prod_{1\le i<j\le n}(x_j-x_i).}
+\]
+The factorization can be proved by observing that the determinant is alternating in the \(x_i\), hence divisible by every \(x_j-x_i\), and that both sides have the same total degree and leading coefficient.
+
+This formula has a direct meaning:
+\[
+  \det V\ne0
+  \quad\Longleftrightarrow\quad
+  x_1,\ldots,x_n\text{ are distinct}
+\]
+\[
+  \quad\Longleftrightarrow\quad
+  \text{values at the }x_i\text{ determine }p\in\mathcal P_{n-1}\text{ uniquely}.
+\]
+Lagrange interpolation is simply the inverse of this evaluation map.
+
+The square of the Vandermonde product,
+\[
+  \prod_{i<j}(x_i-x_j)^2,
+\]
+is the discriminant of a monic polynomial with roots \(x_i\), up to the conventional sign.  It vanishes exactly when two roots collide.  The same determinant therefore detects both failure of interpolation and repeated roots.
+
+\section{Finite differences expose hidden polynomial dependence}
+
+Suppose columns are formed by evaluating a polynomial sequence at consecutive integers.  Repeated column subtraction is the matrix version of the finite-difference operator
+\[
+  (\Delta f)(x)=f(x+1)-f(x).
+\]
+If \(f\) has degree \(d\), then \(\Delta f\) has degree \(d-1\), and
+\[
+  \Delta^{d+1}f=0.
+\]
+This explains why many determinants built from low-degree polynomial data vanish after a few adjacent differences.
+
+For example, consider
+\[
+  D=
+  \det
+  \begin{pmatrix}
+    1&1&1&1\\
+    0&1&2&3\\
+    0^2&1^2&2^2&3^2\\
+    0^2+0&1^2+1&2^2+2&3^2+3
+  \end{pmatrix}.
+\]
+The last row is the sum of the second and third rows, so \(D=0\).  Repeated differences reveal the same fact without spotting the relation immediately: every row is generated by polynomials of degree at most two, so four evaluation rows cannot be independent.
+
+A nonzero finite-difference determinant is equally informative.  For a polynomial \(p\) of exact degree \(n-1\) with leading coefficient \(c\), the determinant
+\[
+  \det\bigl(p_i(j)\bigr)_{0\le i,j<n}
+\]
+can often be reduced to a triangular matrix whose diagonal contains successive leading finite differences.  The determinant records the product of the new independent polynomial degrees.  The row operations are not a bag of tricks; they are a change from monomials to the Newton finite-difference basis.
+
+\section{Block elimination produces the Schur complement}
+
+Let
+\[
+  M=
+  \begin{pmatrix}
+    A&B\\
+    C&D
+  \end{pmatrix}
+\]
+with \(A\) square and invertible.  Multiplying on the left by
+\[
+  L=
+  \begin{pmatrix}
+    I&0\\
+    -CA^{-1}&I
+  \end{pmatrix}
+\]
+performs block Gaussian elimination:
+\[
+  LM=
+  \begin{pmatrix}
+    A&B\\
+    0&D-CA^{-1}B
+  \end{pmatrix}.
+\]
+Since \(\det L=1\),
+\[
+  \boxed{
+  \det M
+  =\det A\,\det(D-CA^{-1}B).}
+\]
+The matrix
+\[
+  S=D-CA^{-1}B
+\]
+is the Schur complement of \(A\).
+
+Its role is clearer in a linear system.  From
+\[
+  A x+B y=u,
+  \qquad
+  C x+D y=v,
+\]
+the first equation gives
+\[
+  x=A^{-1}(u-By).
+\]
+Substitution leaves the effective equation
+\[
+  Sy=v-CA^{-1}u.
+\]
+The same object controls determinant, invertibility, and elimination of the \(x\)-variables.
+
+The hypothesis that \(A\) is invertible cannot be silently discarded.  If \(A\) is singular, the displayed formula is not defined; one must pivot to another block, use a limiting argument only when justified, or return to rank and minors.
+
+\section{Low-rank updates reduce a large determinant to a small one}
+
+Suppose \(A\) is invertible and the perturbation has rank one:
+\[
+  A+uv^T.
+\]
+Factor out \(A\):
+\[
+  A+uv^T=A(I+A^{-1}uv^T).
+\]
+Sylvester's determinant identity
+\[
+  \det(I_m+UV)=\det(I_r+VU)
+\]
+for \(U\in k^{m\times r}\), \(V\in k^{r\times m}\) gives, with \(r=1\),
+\[
+  \boxed{
+  \det(A+uv^T)
+  =\det A\,(1+v^TA^{-1}u).}
+\]
+This is the matrix determinant lemma.
+
+Consider the arrowhead matrix
+\[
+  M=
+  \begin{pmatrix}
+    d_1&0&\cdots&0&u_1\\
+    0&d_2&\cdots&0&u_2\\
+    \vdots&\vdots&\ddots&\vdots&\vdots\\
+    0&0&\cdots&d_n&u_n\\
+    v_1&v_2&\cdots&v_n&\alpha
+  \end{pmatrix},
+\]
+where every \(d_i\ne0\).  Taking
+\[
+  A=\operatorname{diag}(d_1,\ldots,d_n)
+\]
+in the Schur complement formula yields
+\[
+  \det M
+  =\left(\prod_{i=1}^n d_i\right)
+   \left(
+   \alpha-\sum_{i=1}^n\frac{u_iv_i}{d_i}
+   \right).
+\]
+A determinant of order \(n+1\) has become one scalar correction to the diagonal product.
+
+For a rank-\(r\) update,
+\[
+  \det(A+UV^T)
+  =\det A\,\det(I_r+V^TA^{-1}U).
+\]
+The computational gain is structural: only the coupled \(r\)-dimensional directions need a new determinant.
+
+\section{Recursive determinants are second-order dynamical systems}
+
+Let
+\[
+  D_n=\det
+  \begin{pmatrix}
+    a&b&0&\cdots&0\\
+    c&a&b&\ddots&\vdots\\
+    0&c&a&\ddots&0\\
+    \vdots&\ddots&\ddots&\ddots&b\\
+    0&\cdots&0&c&a
+  \end{pmatrix}.
+\]
+Expansion along the first row gives
+\[
+  D_n=aD_{n-1}-bcD_{n-2},
+  \qquad
+  D_0=1,
+  \quad
+  D_1=a.
+\]
+Rather than treating each order as a new determinant, package the recurrence as
+\[
+  \begin{pmatrix}D_n\\D_{n-1}\end{pmatrix}
+  =
+  \begin{pmatrix}
+    a&-bc\\
+    1&0
+  \end{pmatrix}
+  \begin{pmatrix}D_{n-1}\\D_{n-2}\end{pmatrix}.
+\]
+The \(2\times2\) transfer matrix carries the entire family.
+
+If the characteristic roots of
+\[
+  r^2-ar+bc=0
+\]
+are distinct, say \(r_+,r_-\), then
+\[
+  D_n
+  =\frac{r_+^{n+1}-r_-^{n+1}}{r_+-r_-}.
+\]
+When the roots coincide, the solution contains a polynomial factor in \(n\).  Repeated-root behavior of the transfer matrix is the same phenomenon as a Jordan block in a recurrence.  A patterned determinant has become a small linear dynamical system.
+
+\section{Cramer's rule lives only on the invertible open set}
+
+For a square system
+\[
+  Ax=b
+\]
+with \(\det A\ne0\), the unique solution is
+\[
+  x=A^{-1}b.
+\]
+Using
+\[
+  A^{-1}=\frac{\operatorname{adj}(A)}{\det A}
+\]
+gives Cramer's formula
+\[
+  x_j=\frac{\det A_j}{\det A},
+\]
+where \(A_j\) is obtained by replacing column \(j\) by \(b\).
+
+The formula is elegant but its domain is important.  It describes the open set
+\[
+  \{A:\det A\ne0\}
+\]
+of invertible matrices.  On the hypersurface \(\det A=0\), ratios of determinants cease to be the right language.  Solvability is instead the image condition
+\[
+  b\in\operatorname{im}A,
+\]
+or equivalently
+\[
+  \operatorname{rank}A
+  =\operatorname{rank}[A\mid b].
+\]
+If the common rank is \(r<n\), the solution set is an affine space
+\[
+  x_0+\ker A
+\]
+of dimension \(n-r\).  Rank is therefore not a fallback after determinant tricks fail; it is the correct invariant on the singular locus.
+
+\section{Minors cut out the geometry of rank failure}
+
+A matrix satisfies
+\[
+  \operatorname{rank}A\le r
+\]
+exactly when all \((r+1)\times(r+1)\) minors vanish.  Thus matrices of rank at most \(r\) form an algebraic set, the determinantal variety
+\[
+  \mathcal D_r
+  =\{A\in k^{m\times n}:\operatorname{rank}A\le r\}.
+\]
+
+For \(2\times3\) matrices of rank at most one, write
+\[
+  A=
+  \begin{pmatrix}
+    a&b&c\\
+    d&e&f
+  \end{pmatrix}.
+\]
+The defining equations are its three \(2\times2\) minors:
+\[
+  ae-bd=0,
+  \qquad
+  af-cd=0,
+  \qquad
+  bf-ce=0.
+\]
+Away from the zero matrix, every such matrix factors as
+\[
+  A=uv^T,
+  \qquad
+  u\in k^2\setminus\{0\},
+  \quad
+  v\in k^3\setminus\{0\}.
+\]
+The factorization has one scaling redundancy
+\[
+  (u,v)\sim(\lambda u,\lambda^{-1}v),
+\]
+so the rank-one stratum has dimension
+\[
+  2+3-1=4.
+\]
+This agrees with the general formula
+\[
+  \dim\mathcal D_r=r(m+n-r).
+\]
+
+The same example lets us see the singular locus rather than merely name it.  On the open chart where \(a\ne0\), the equations
+\[
+  ae-bd=0,
+  \qquad
+  af-cd=0
+\]
+solve uniquely for
+\[
+  e=\frac{bd}{a},
+  \qquad
+  f=\frac{cd}{a}.
+\]
+The third minor then vanishes automatically:
+\[
+  bf-ce
+  =b\frac{cd}{a}-c\frac{bd}{a}=0.
+\]
+Thus \((a,b,c,d)\) are four local coordinates near every rank-one point with \(a\ne0\).  If a different entry is nonzero, the same argument uses the corresponding chart.  Every nonzero rank-one matrix is therefore a smooth point of this four-dimensional variety.
+
+At the zero matrix, all first derivatives of the three defining minors vanish.  Their Jacobian has rank zero there, so the equations have no nontrivial linear part and the tangent space is the entire six-dimensional ambient space.  The origin is singular.  In this example,
+\[
+  \operatorname{Sing}(\mathcal D_1)=\mathcal D_0=\{0\}.
+\]
+More generally, the singular locus of the rank-at-most-\(r\) determinantal variety is the lower stratum \(\mathcal D_{r-1}\).
+
+For square matrices, \(\det A=0\) is the boundary where one direction collapses; deeper rank strata record how many independent directions have collapsed.  Cofactors, Schur complements, determinant lemmas, and rank conditions are therefore different local descriptions of the same geometry of elimination and loss of dimension.

@@ -1,14 +1,279 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20230118}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20230118}
-\end{document}
+\notechapter{N-20230118}{Local Information, Global Structure: Pigeonhole, Ramsey, Radon, and Helly}
+
+\section{Pigeonhole is an averaging theorem with a design problem hidden inside}
+
+If \(N\) objects are placed into \(r\) boxes, some box contains at least
+\[
+  \left\lceil\frac Nr\right\rceil
+\]
+objects.  The proof is the contrapositive: if every box held at most \(q\) objects, the total would be at most \(rq\).
+
+The theorem is easy; choosing the boxes is the real work.  Suppose nine elements are each recorded by membership in three sets \(A,B,C\).  Every element receives a bit pattern
+\[
+  (\mathbf1_A(x),\mathbf1_B(x),\mathbf1_C(x))
+  \in\{0,1\}^3.
+\]
+There are only
+\[
+  2^3=8
+\]
+possible patterns.  Among nine elements, two have the same pattern and therefore belong to exactly the same subcollection of \(A,B,C\).
+
+The conclusion is not merely “two objects coincide.”  A carefully chosen finite state space forces two complicated objects to become indistinguishable with respect to all recorded tests.
+
+\section{Partial sums turn a divisibility problem into a finite-state collision}
+
+Let \(a_1,\ldots,a_n\) be integers.  There is always a nonempty consecutive block whose sum is divisible by \(n\).
+
+Consider the partial sums
+\[
+  s_k=a_1+\cdots+a_k,
+  \qquad k=1,\ldots,n,
+\]
+and reduce them modulo \(n\).  If some
+\[
+  s_k\equiv0\pmod n,
+\]
+then \(a_1+\cdots+a_k\) is the required block.  Otherwise the \(n\) partial sums occupy only the \(n-1\) nonzero residue classes, so two satisfy
+\[
+  s_i\equiv s_j\pmod n,
+  \qquad i<j.
+\]
+Subtracting gives
+\[
+  a_{i+1}+\cdots+a_j
+  =s_j-s_i
+  \equiv0\pmod n.
+\]
+
+The objects are partial histories, the boxes are residue states, and a collision cancels the common prefix.  This pattern appears throughout additive combinatorics and automata: encode a running process in finitely many states, then use repetition to extract a structured segment.
+
+\section{Repeated pigeonhole becomes sequential compactness on an interval}
+
+Let \((x_n)\) be an infinite sequence in \([0,1]\).  Divide the interval into two closed halves.  At least one half contains infinitely many terms; call it \(I_1\).  Divide \(I_1\) into two halves and choose one, \(I_2\), that again contains infinitely many terms.  Continuing gives nested intervals
+\[
+  I_1\supset I_2\supset I_3\supset\cdots
+\]
+with
+\[
+  |I_k|=2^{-k}.
+\]
+Choose indices
+\[
+  n_1<n_2<\cdots
+\]
+so that
+\[
+  x_{n_k}\in I_k.
+\]
+The nested interval theorem gives a unique point
+\[
+  x\in\bigcap_{k=1}^\infty I_k.
+\]
+For \(j\ge k\), both \(x_{n_j}\) and \(x\) lie in \(I_k\), so
+\[
+  |x_{n_j}-x|\le2^{-k}.
+\]
+Hence
+\[
+  x_{n_j}\to x.
+\]
+
+This is Bolzano--Weierstrass on \([0,1]\).  The infinite conclusion is built by iterating a finite pigeonhole step at finer and finer scales.  In a compact metric space, finite covers by small balls play the role of interval subdivisions.
+
+\section{Ramsey theory forces a pattern, not merely a repeated label}
+
+Color every edge of the complete graph \(K_6\) red or blue.  Choose a vertex \(v\).  Among the five edges incident to \(v\), at least three have the same color; suppose
+\[
+  va,vb,vc
+\]
+are red.
+
+If any of
+\[
+  ab,bc,ca
+\]
+is red, that edge together with \(v\) forms a red triangle.  If none is red, then all three are blue and \(abc\) is a blue triangle.  Thus every red--blue coloring of \(K_6\) contains a monochromatic triangle:
+\[
+  R(3,3)\le6.
+\]
+
+The bound is sharp.  Color the edges of a five-cycle red and its five diagonals blue.  The red graph is a cycle and has no triangle; the blue graph is another five-cycle and also has no triangle.  Therefore
+\[
+  R(3,3)>5,
+\]
+so
+\[
+  \boxed{R(3,3)=6.}
+\]
+
+Pigeonhole forced three edges of one color around a vertex.  The graph structure then amplified that local repetition into a monochromatic triangle.  Ramsey theory studies how large an ambient configuration must be before a specified organized substructure becomes unavoidable.
+
+\section{Intervals give the one-dimensional Helly theorem}
+
+Let
+\[
+  I_i=[a_i,b_i]
+  \qquad(i=1,\ldots,m)
+\]
+be closed intervals, and assume every pair intersects.  Set
+\[
+  a=\max_i a_i,
+  \qquad
+  b=\min_i b_i.
+\]
+Choose indices \(p,q\) with
+\[
+  a=a_p,
+  \qquad
+  b=b_q.
+\]
+Since \(I_p\cap I_q\ne\varnothing\),
+\[
+  a_p\le b_q,
+\]
+so \(a\le b\).  Every interval contains the segment \([a,b]\), and therefore
+\[
+  \bigcap_{i=1}^m I_i\ne\varnothing.
+\]
+
+Pairwise intersection is enough in one dimension because the order lets one reduce all left endpoints to their maximum and all right endpoints to their minimum.  In higher dimensions there is no total order of boundaries; convexity and affine dependence replace it.
+
+\section{Radon's theorem is an affine dependence split into two convex combinations}
+
+\begin{theorem}[Radon]
+Any \(d+2\) points in \(\mathbb R^d\) can be partitioned into two disjoint sets whose convex hulls intersect.
+\end{theorem}
+
+Let the points be \(p_1,\ldots,p_{d+2}\).  The lifted vectors
+\[
+  (p_i,1)\in\mathbb R^{d+1}
+\]
+are linearly dependent, so there are scalars \(\lambda_i\), not all zero, with
+\[
+  \sum_i\lambda_i p_i=0,
+  \qquad
+  \sum_i\lambda_i=0.
+\]
+Let
+\[
+  I=\{i:\lambda_i>0\},
+  \qquad
+  J=\{i:\lambda_i<0\}.
+\]
+Both are nonempty.  Put
+\[
+  s=\sum_{i\in I}\lambda_i
+  =-\sum_{j\in J}\lambda_j>0.
+\]
+Then
+\[
+  \sum_{i\in I}\frac{\lambda_i}{s}p_i
+  =
+  \sum_{j\in J}\frac{-\lambda_j}{s}p_j.
+\]
+Both sides are convex combinations.  Their common value lies in
+\[
+  \operatorname{conv}\{p_i:i\in I\}
+  \cap
+  \operatorname{conv}\{p_j:j\in J\}.
+\]
+
+The Radon partition is the geometric form of a minimal affine dependence.  In oriented-matroid language, such a signed dependence is the prototype of a circuit.
+
+\section{Helly's theorem follows by applying Radon to carefully chosen witnesses}
+
+\begin{theorem}[Finite Helly]
+Let \(C_1,\ldots,C_m\) be convex subsets of \(\mathbb R^d\), with \(m\ge d+1\).  If every \(d+1\) of them have nonempty intersection, then
+\[
+  \bigcap_{i=1}^mC_i\ne\varnothing.
+\]
+\end{theorem}
+
+We prove the theorem by induction on \(m\).  The case \(m=d+1\) is the hypothesis.  Assume \(m>d+1\) and the result holds for \(m-1\) sets.
+
+For each \(i=1,\ldots,d+2\), the family obtained by omitting \(C_i\) has \(m-1\) members and still satisfies the local intersection hypothesis.  By induction, choose
+\[
+  x_i\in\bigcap_{j\ne i}C_j.
+\]
+Apply Radon's theorem to \(x_1,\ldots,x_{d+2}\).  There is a partition
+\[
+  I\sqcup J=[d+2]
+\]
+and a point
+\[
+  x\in\operatorname{conv}\{x_i:i\in I\}
+  \cap
+  \operatorname{conv}\{x_j:j\in J\}.
+\]
+
+Fix a set \(C_k\).  If \(k\in I\), then every \(x_j\) with \(j\in J\) belongs to \(C_k\), because \(j\ne k\).  Convexity gives
+\[
+  x\in C_k.
+\]
+If \(k\in J\), use the convex hull indexed by \(I\).  If \(k>d+2\), every \(x_i\) lies in \(C_k\).  Thus \(x\) belongs to every \(C_k\), completing the induction.
+
+The proof shows exactly where the number \(d+1\) comes from: Radon's affine dependence begins at \(d+2\) points.
+
+\section{Carathéodory reduces a large convex representation to \texorpdfstring{$d+1$}{d+1} points}
+
+\begin{theorem}[Carathéodory]
+If \(x\in\operatorname{conv}S\subset\mathbb R^d\), then \(x\) lies in the convex hull of at most \(d+1\) points of \(S\).
+\end{theorem}
+
+Write
+\[
+  x=\sum_{i=1}^m\alpha_i p_i,
+  \qquad
+  \alpha_i>0,
+  \qquad
+  \sum_i\alpha_i=1,
+\]
+with \(m>d+1\).  The points are affinely dependent, so there are \(\lambda_i\), not all zero, satisfying
+\[
+  \sum_i\lambda_i p_i=0,
+  \qquad
+  \sum_i\lambda_i=0.
+\]
+After changing all signs if necessary, some \(\lambda_i>0\).  Let
+\[
+  t=\min_{\lambda_i>0}\frac{\alpha_i}{\lambda_i}.
+\]
+Then the new coefficients
+\[
+  \alpha_i'=\alpha_i-t\lambda_i
+\]
+remain nonnegative, still sum to one, and give the same point \(x\).  At least one coefficient becomes zero.  Repeating removes points until at most \(d+1\) remain.
+
+Helly compresses an intersection certificate to small subfamilies.  The preceding convex-hull theorem compresses a representation to at most \(d+1\) points.  Both reductions are driven by affine dependence.
+
+\section{Fractional Helly tolerates failed local tests}
+
+The ordinary Helly theorem assumes that every \((d+1)\)-tuple intersects.  Fractional Helly allows failures.
+
+For each \(d\) and \(\alpha>0\), there is \(\beta=\beta(d,\alpha)>0\) such that the following holds.  If at least an \(\alpha\)-fraction of the \((d+1)\)-tuples in a family of \(n\) convex sets in \(\mathbb R^d\) have nonempty intersection, then some point belongs to at least \(\beta n\) members of the family.  One may take
+\[
+  \beta
+  =1-(1-\alpha)^{1/(d+1)}.
+\]
+
+In one dimension, the sets are intervals.  Intersecting pairs are edges of an interval graph, while intervals containing a common point form a clique.  If a positive fraction of all pairs intersect, the theorem guarantees a clique containing a positive fraction of all intervals.  Thus numerous local successes cannot be dispersed arbitrarily; they concentrate around a common witness.
+
+The conclusion is weaker than total intersection but robust under noise.  It is an extremal version of Helly rather than a different slogan about local-to-global behavior.
+
+\section{The nerve records exactly which subfamilies intersect}
+
+For a finite family \(\mathcal F=\{U_i\}_{i\in I}\), its nerve is the simplicial complex
+\[
+  N(\mathcal F)
+  =\{J\subseteq I:\bigcap_{j\in J}U_j\ne\varnothing\}.
+\]
+Vertices represent sets, edges represent pairwise intersections, triangles represent triple intersections, and higher simplices represent higher common intersections.
+
+Take three open disks arranged in a ring so that every pair intersects but the triple intersection is empty.  The nerve consists of three vertices and three edges but no filled triangle.  It is the boundary of a triangle, homotopy equivalent to a circle.  The union of the disks also has a central hole.
+
+The nerve theorem makes this precise: if every nonempty finite intersection in the family is contractible, then the union is homotopy equivalent to the nerve.  Such a family is called a good cover.
+
+A topological Helly theorem follows under acyclicity hypotheses.  For a finite family of open subsets of \(\mathbb R^d\), assume every nonempty finite intersection is contractible, or more generally has the required vanishing reduced homology.  If every \(d+1\) members intersect, then the whole family intersects.  Convex sets satisfy the hypotheses because every nonempty convex intersection is contractible.
+
+The three-disk ring explains what the topology is detecting.  Pairwise data alone allow a one-dimensional hole; filling the triple intersection fills the missing simplex in the nerve.  Topological Helly theorems control which holes an intersection pattern could create in dimension \(d\), replacing linear convexity by precise homological conditions.

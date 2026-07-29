@@ -1,14 +1,385 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220813}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220813}
-\end{document}
+\notechapter{N-20220813}{Contour Integrals: Parametrization, Exactness, Winding, and Residues}
+
+\section{A contour integral is a limit of transformed tangent increments}
+
+A contour is a piecewise \(C^1\) path
+\[
+  \gamma:[a,b]\to\mathbb C.
+\]
+For a continuous function \(f\) on the image of \(\gamma\), define
+\[
+  \int_\gamma f(z)\,dz
+  =\int_a^b f(\gamma(t))\gamma'(t)\,dt.
+\]
+The right-hand side is an ordinary complex-valued Riemann integral.
+
+Let
+\[
+  a=t_0<t_1<\cdots<t_n=b
+\]
+and choose \(\tau_j\in[t_{j-1},t_j]\).  The Riemann sum is
+\[
+  \sum_{j=1}^n
+  f(\gamma(\tau_j))
+  \bigl(\gamma(t_j)-\gamma(t_{j-1})\bigr).
+\]
+Each directed increment is multiplied by \(f\), hence scaled and rotated before the increments are added.  A contour integral is not an area under a graph; it is a limit of transformed tangent vectors.
+
+The basic estimate follows immediately:
+\[
+  \left|\int_\gamma f(z)\,dz\right|
+  \le
+  \int_a^b|f(\gamma(t))|\,|\gamma'(t)|\,dt
+  \le
+  L(\gamma)\max_{z\in\gamma}|f(z)|,
+\]
+where
+\[
+  L(\gamma)=\int_a^b|\gamma'(t)|\,dt.
+\]
+This \(ML\)-estimate is the main error-control tool for contour deformation and limiting arguments.
+
+\section{Orientation, concatenation, and reparametrization}
+
+The reverse contour is
+\[
+  \overline\gamma(t)=\gamma(a+b-t).
+\]
+Substitution gives
+\[
+  \boxed{
+  \int_{\overline\gamma}f(z)\,dz
+  =-\int_\gamma f(z)\,dz.}
+\]
+
+If \(\gamma_1(b_1)=\gamma_2(a_2)\), the concatenated contour \(\gamma_1*\gamma_2\) traverses the first and then the second.  Splitting the parameter interval yields
+\[
+  \boxed{
+  \int_{\gamma_1*\gamma_2}f(z)\,dz
+  =\int_{\gamma_1}f(z)\,dz
+  +\int_{\gamma_2}f(z)\,dz.}
+\]
+
+Let \(\phi:[c,d]\to[a,b]\) be a piecewise \(C^1\), increasing surjection with \(\phi(c)=a\), \(\phi(d)=b\).  Then
+\[
+\begin{aligned}
+  \int_{\gamma\circ\phi}f(z)\,dz
+  &=\int_c^d
+  f(\gamma(\phi(s)))
+  \gamma'(\phi(s))\phi'(s)\,ds\\
+  &=\int_a^b f(\gamma(t))\gamma'(t)\,dt.
+\end{aligned}
+\]
+Thus the integral is unchanged by orientation-preserving reparametrization.  If \(\phi\) reverses orientation, the sign changes.
+
+For the unit circle, all three parametrizations
+\[
+  e^{it},\quad 0\le t\le2\pi;
+  \qquad
+  e^{2\pi it},\quad 0\le t\le1;
+  \qquad
+  e^{2\pi i t^5},\quad 0\le t\le1
+\]
+give the same oriented contour integral.
+
+\section{The complex integral is the pullback of a one-form}
+
+Write
+\[
+  z=x+iy,
+  \qquad
+  f(z)=u(x,y)+iv(x,y),
+  \qquad
+  dz=dx+i\,dy.
+\]
+Then
+\[
+\begin{aligned}
+  f(z)\,dz
+  &=(u+iv)(dx+i\,dy)\\
+  &=(u\,dx-v\,dy)
+  +i(v\,dx+u\,dy).
+\end{aligned}
+\]
+Therefore
+\[
+  \int_\gamma f(z)\,dz
+  =\int_\gamma(u\,dx-v\,dy)
+  +i\int_\gamma(v\,dx+u\,dy).
+\]
+A complex contour integral is two real line integrals coupled by the complex multiplication rule.
+
+In differential-form notation, \(f(z)\,dz\) is a complex-valued one-form.  The parametrized formula is exactly pullback:
+\[
+  \int_\gamma f(z)\,dz
+  =\int_{[a,b]}\gamma^*(f(z)\,dz).
+\]
+This explains reparametrization invariance: integration is applied to the pulled-back one-form on the parameter interval.
+
+\section{Primitives are equivalent to path independence}
+
+Let \(D\subseteq\mathbb C\) be a domain and let \(f:D\to\mathbb C\) be continuous.
+
+\begin{theorem}
+The following are equivalent.
+\begin{enumerate}[(i)]
+  \item There is a holomorphic function \(F:D\to\mathbb C\) with \(F'=f\).
+  \item The integral of \(f\) depends only on the endpoints of the contour.
+  \item Every closed contour \(\gamma\) in \(D\) satisfies
+  \[
+    \int_\gamma f(z)\,dz=0.
+  \]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+If \(F'=f\), the chain rule gives
+\[
+  \frac{d}{dt}F(\gamma(t))
+  =f(\gamma(t))\gamma'(t).
+\]
+Hence
+\[
+  \int_\gamma f(z)\,dz
+  =F(\gamma(b))-F(\gamma(a)),
+\]
+which proves (i)\(\Rightarrow\)(ii), and (ii)\(\Rightarrow\)(iii) is immediate.
+
+Assume (iii).  Fix \(z_0\in D\), and for \(z\in D\) define
+\[
+  F(z)=\int_{\gamma_{z_0,z}}f(\zeta)\,d\zeta,
+\]
+where \(\gamma_{z_0,z}\) is any contour from \(z_0\) to \(z\).  If two contours are chosen, following one and reversing the other gives a closed contour, so (iii) makes \(F\) well defined.
+
+For small \(h\), use the same contour to \(z\) and then the line segment from \(z\) to \(z+h\):
+\[
+  \frac{F(z+h)-F(z)}{h}
+  =\int_0^1 f(z+th)\,dt.
+\]
+By continuity, the right-hand side tends to \(f(z)\).  Thus \(F'(z)=f(z)\).
+\end{proof}
+
+The topology of the domain enters in condition (iii): local primitives may exist while a global primitive fails because closed loops can carry nonzero periods.
+
+\section{Cauchy--Goursat turns holomorphicity into exactness on simple domains}
+
+Suppose \(f=u+iv\) has continuous first partial derivatives on a region containing a positively oriented simple closed contour \(\gamma=\partial\Omega\).  Using the decomposition of \(f\,dz\) and Green's theorem,
+\[
+\begin{aligned}
+  \operatorname{Re}\int_\gamma f(z)\,dz
+  &=\int_\gamma u\,dx-v\,dy\\
+  &=\iint_\Omega(-v_x-u_y)\,dx\,dy,
+\end{aligned}
+\]
+and
+\[
+\begin{aligned}
+  \operatorname{Im}\int_\gamma f(z)\,dz
+  &=\int_\gamma v\,dx+u\,dy\\
+  &=\iint_\Omega(u_x-v_y)\,dx\,dy.
+\end{aligned}
+\]
+The Cauchy--Riemann equations
+\[
+  u_x=v_y,
+  \qquad
+  u_y=-v_x
+\]
+make both integrands zero.  Therefore
+\[
+  \int_\gamma f(z)\,dz=0.
+\]
+
+Goursat's theorem removes the assumption of continuous partial derivatives: complex differentiability alone is enough.  On a simply connected domain, every closed contour is deformable through the domain to a point, and Cauchy--Goursat implies
+\[
+  \int_\gamma f(z)\,dz=0.
+\]
+By the preceding theorem, every holomorphic function on a simply connected domain has a primitive.
+
+The conclusion fails when the domain contains a hole around a singularity.  The model obstruction is \(1/z\) on \(\mathbb C^*\).
+
+\section{Powers on a circle isolate one Fourier mode}
+
+For the circle traversed \(k\) times,
+\[
+  \gamma_k(t)=e^{ikt},
+  \qquad
+  0\le t\le2\pi,
+\]
+one has
+\[
+\begin{aligned}
+  \int_{\gamma_k}z^m\,dz
+  &=\int_0^{2\pi}
+  e^{imkt}ik e^{ikt}\,dt\\
+  &=ik\int_0^{2\pi}e^{ik(m+1)t}\,dt.
+\end{aligned}
+\]
+If \(m\ne-1\), the oscillation completes an integer number of periods and cancels.  If \(m=-1\), the integrand is the constant \(ik\).  Hence
+\[
+  \boxed{
+  \int_{\gamma_k}z^m\,dz
+  =
+  \begin{cases}
+  2\pi i k,&m=-1,\\
+  0,&m\ne-1.
+  \end{cases}}
+\]
+The exceptional exponent \(-1\) is the coefficient that survives contour averaging.  This is the local algebra behind residues.
+
+\section{Winding number is the period of \texorpdfstring{$dz/(z-a)$}{dz/(z-a)}}
+
+Let \(\gamma\) be a closed contour avoiding \(a\).  Define
+\[
+  \operatorname{Ind}(\gamma,a)
+  =\frac{1}{2\pi i}
+  \int_\gamma\frac{dz}{z-a}.
+\]
+For a circle centered at \(a\) traversed \(k\) times, the preceding computation gives
+\[
+  \operatorname{Ind}(\gamma,a)=k.
+\]
+In general the index is an integer, equal to the endpoint change of a lifted argument of \(\gamma(t)-a\).
+
+It is invariant under homotopies that avoid \(a\).  For a smooth homotopy \(\Gamma(t,s)\), differentiate under the integral sign:
+\[
+\begin{aligned}
+  \frac{d}{ds}
+  \int_0^1
+  \frac{\partial_t\Gamma(t,s)}{\Gamma(t,s)-a}\,dt
+  &=\int_0^1
+  \partial_t
+  \left(
+  \frac{\partial_s\Gamma(t,s)}{\Gamma(t,s)-a}
+  \right)dt\\
+  &=0,
+\end{aligned}
+\]
+because the loop has the same initial and terminal point.  Approximation or covering-space lifting gives the general continuous-homotopy statement.
+
+Thus the integral depends on the homotopy class of the loop in \(\mathbb C\setminus\{a\}\), not on its detailed shape.
+
+\section{Closed need not mean exact on a punctured domain}
+
+On \(\mathbb R^2\setminus\{0\}\), consider the real one-form
+\[
+  \alpha
+  =\frac{1}{2\pi}
+  \frac{-y\,dx+x\,dy}{x^2+y^2}.
+\]
+A direct calculation gives
+\[
+  d\alpha=0.
+\]
+So \(\alpha\) is closed.  On the unit circle \(x=\cos t\), \(y=\sin t\),
+\[
+  \alpha=\frac{dt}{2\pi},
+\]
+and therefore
+\[
+  \int_{S^1}\alpha=1.
+\]
+If \(\alpha=dF\) were exact, every closed-loop integral would vanish.  Hence \(\alpha\) is closed but not exact.
+
+This period represents the generator of
+\[
+  H^1_{\mathrm{dR}}(\mathbb C^*)\cong\mathbb R.
+\]
+The complex form \(dz/z\) contains the same obstruction:
+\[
+  \frac{1}{2\pi i}
+  \int_\gamma\frac{dz}{z}
+  =\operatorname{Ind}(\gamma,0).
+\]
+The failure of a global logarithm on \(\mathbb C^*\) is the same phenomenon.  Locally,
+\[
+  d(\log z)=\frac{dz}{z},
+\]
+but no single-valued logarithm exists around a loop of nonzero winding.
+
+\section{Cauchy's integral formula recovers interior values from the boundary}
+
+Let \(f\) be holomorphic on a neighborhood of a positively oriented simple closed contour \(\gamma\) and its interior, and let \(z\) lie inside.  Then
+\[
+  \boxed{
+  f(z)=\frac{1}{2\pi i}
+  \int_\gamma
+  \frac{f(\zeta)}{\zeta-z}\,d\zeta.}
+\]
+
+To see the mechanism, write
+\[
+  \frac{f(\zeta)}{\zeta-z}
+  =\frac{f(\zeta)-f(z)}{\zeta-z}
+  +\frac{f(z)}{\zeta-z}.
+\]
+The first term has a removable singularity at \(\zeta=z\), with value \(f'(z)\), so its closed-contour integral vanishes.  The second term contributes
+\[
+  f(z)\int_\gamma\frac{d\zeta}{\zeta-z}
+  =2\pi i\,f(z)\operatorname{Ind}(\gamma,z).
+\]
+For a simple positively oriented contour containing \(z\), the index is \(1\).
+
+Differentiating under the integral sign gives
+\[
+  f^{(n)}(z)
+  =\frac{n!}{2\pi i}
+  \int_\gamma
+  \frac{f(\zeta)}{(\zeta-z)^{n+1}}\,d\zeta.
+\]
+For example,
+\[
+  \int_{|\zeta|=2}
+  \frac{e^\zeta}{(\zeta-1)^3}\,d\zeta
+  =\frac{2\pi i}{2!}e
+  =\pi i e.
+\]
+
+\section{Residues convert local Laurent coefficients into global integrals}
+
+If \(f\) has an isolated singularity at \(a\), its Laurent expansion is
+\[
+  f(z)=\sum_{n=-\infty}^{\infty}c_n(z-a)^n.
+\]
+The residue is
+\[
+  \operatorname{Res}(f,a)=c_{-1}.
+\]
+All other powers integrate to zero around a small circle, while \((z-a)^{-1}\) contributes \(2\pi i\).  Therefore
+\[
+  \int_{|z-a|=r}f(z)\,dz
+  =2\pi i\operatorname{Res}(f,a).
+\]
+
+For a contour \(\gamma\) avoiding finitely many poles \(a_1,\ldots,a_N\), the residue theorem is
+\[
+  \boxed{
+  \int_\gamma f(z)\,dz
+  =2\pi i
+  \sum_{j=1}^N
+  \operatorname{Ind}(\gamma,a_j)
+  \operatorname{Res}(f,a_j).}
+\]
+Local Laurent coefficients are paired with global winding numbers.
+
+Consider
+\[
+  f(z)=\frac{z+1}{z(z-1)}.
+\]
+The residues are
+\[
+  \operatorname{Res}(f,0)=-1,
+  \qquad
+  \operatorname{Res}(f,1)=2.
+\]
+Hence
+\[
+  \int_{|z|=2}f(z)\,dz
+  =2\pi i(-1+2)=2\pi i.
+\]
+For the smaller contour \(|z|=1/2\), only the pole at \(0\) is enclosed, so
+\[
+  \int_{|z|=1/2}f(z)\,dz=-2\pi i.
+\]
+The integrand has not changed; the answer changes because the winding data relative to the poles has changed.
+

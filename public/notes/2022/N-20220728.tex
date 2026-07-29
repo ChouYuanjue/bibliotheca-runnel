@@ -1,14 +1,544 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220728}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220728}
-\end{document}
+\notechapter{N-20220728}{What Does ``Product'' Mean? Spatial Vectors, Cross Products, and Universal Products}
+
+\section{One word can hide different mathematical types}
+
+In elementary mathematics, the word ``product'' often means the output of a multiplication.  With vectors, however, several constructions carry that name:
+\[
+  a\cdot b\in\mathbb R,
+  \qquad
+  a\times b\in\mathbb R^3,
+  \qquad
+  (a,b)\in V\times W.
+\]
+These expressions do not merely compute different values.  They have different \emph{types}.  The dot product returns a scalar, the cross product returns a vector, and a Cartesian product is a new space whose elements are ordered pairs.
+
+The distinction becomes even sharper in category theory.  A categorical product is not primarily a binary operation on elements.  It is an object characterized by projection maps and a universal mapping property.  The phrase ``product of \(X\) and \(Y\)'' then means an object that packages maps into \(X\) and \(Y\) in the most economical possible way.
+
+This chapter follows the word through two settings.  Spatial vector geometry shows how metric and orientation create the dot and cross products.  Categorical products show how a construction can instead be characterized by the maps it receives.  The comparison is useful only if the two meanings are developed separately before they are placed side by side.
+
+\section{Coordinates describe a vector only after a basis is chosen}
+
+Let \(V\) be a three-dimensional real vector space.  A basis
+\[
+  e_1,e_2,e_3
+\]
+means that every vector \(v\in V\) has a unique expression
+\[
+  v=v^1e_1+v^2e_2+v^3e_3.
+\]
+The triple \((v^1,v^2,v^3)\) is not the vector itself; it is the coordinate list of the vector in this basis.  Changing the basis changes the list while leaving the geometric vector unchanged.
+
+In an orthonormal basis of Euclidean space, vector addition and scalar multiplication act componentwise:
+\[
+  (a^1,a^2,a^3)+(b^1,b^2,b^3)
+  =(a^1+b^1,a^2+b^2,a^3+b^3),
+\]
+\[
+  \lambda(a^1,a^2,a^3)
+  =(\lambda a^1,\lambda a^2,\lambda a^3).
+\]
+The zero vector has coordinates \((0,0,0)\).  Nonzero vectors \(a,b\) are parallel exactly when
+\[
+  a=\lambda b
+\]
+for some nonzero scalar \(\lambda\).  Three vectors form a basis exactly when no one lies in the plane spanned by the other two.
+
+A coordinate list therefore answers a decomposition problem: which scalar multiples of the basis vectors assemble the given vector?  Later, an ordered pair in a categorical product will answer a different packaging problem: which two component maps assemble a map into the product?
+
+\section{The dot product adds metric information}
+
+A bare vector space has addition and scalar multiplication, but no intrinsic lengths or angles.  An inner product adds that geometry.  In an orthonormal basis,
+\[
+  a\cdot b=a^1b^1+a^2b^2+a^3b^3.
+\]
+The norm is
+\[
+  \|a\|=\sqrt{a\cdot a},
+\]
+and for nonzero vectors the angle \(\theta\in[0,\pi]\) is determined by
+\[
+  \cos\theta=\frac{a\cdot b}{\|a\|\|b\|}.
+\]
+Perpendicularity becomes the algebraic condition
+\[
+  a\cdot b=0.
+\]
+
+The dot product also computes projection.  To approximate \(v\) by a multiple of a nonzero vector \(u\), minimize
+\[
+  \|v-tu\|^2.
+\]
+Expanding gives
+\[
+  \|v-tu\|^2
+  =\|v\|^2-2t(u\cdot v)+t^2\|u\|^2.
+\]
+The quadratic is minimized at
+\[
+  t=\frac{u\cdot v}{u\cdot u}.
+\]
+Thus
+\[
+  \operatorname{proj}_u(v)
+  =\frac{u\cdot v}{u\cdot u}u.
+\]
+The formula is not merely a coordinate trick: the inner product measures the component of \(v\) along \(u\).
+
+For example, with
+\[
+  u=(1,1,0),
+  \qquad
+  v=(2,0,1),
+\]
+we have
+\[
+  u\cdot v=2,
+  \qquad
+  u\cdot u=2,
+\]
+so
+\[
+  \operatorname{proj}_u(v)=u=(1,1,0).
+\]
+The residual
+\[
+  v-u=(1,-1,1)
+\]
+is orthogonal to \(u\), as the minimizing condition predicts.
+
+\section{The cross product packages area and orientation}
+
+In an oriented Euclidean three-space, the cross product of \(a\) and \(b\) is the unique vector \(a\times b\) satisfying three conditions:
+
+\begin{enumerate}[(i)]
+  \item it is perpendicular to both \(a\) and \(b\);
+  \item its length is
+  \[
+    \|a\times b\|=\|a\|\|b\|\sin\theta;
+  \]
+  \item its direction follows the chosen orientation.
+\end{enumerate}
+
+The length is the area of the parallelogram spanned by the two vectors.  The sign convention distinguishes a right-handed frame from a left-handed one.  Reversing the inputs reverses the orientation:
+\[
+  a\times b=-(b\times a).
+\]
+
+In a positively oriented orthonormal basis,
+\[
+  a\times b=
+  \begin{pmatrix}
+    a^2b^3-a^3b^2\\
+    a^3b^1-a^1b^3\\
+    a^1b^2-a^2b^1
+  \end{pmatrix}.
+\]
+Take
+\[
+  a=(1,2,0),
+  \qquad
+  b=(0,1,3).
+\]
+Then
+\[
+  a\times b=(6,-3,1).
+\]
+A direct check gives
+\[
+  a\cdot(a\times b)=6-6=0,
+\]
+\[
+  b\cdot(a\times b)=-3+3=0.
+\]
+Moreover,
+\[
+  \|a\times b\|^2=36+9+1=46.
+\]
+The Gram determinant of \(a,b\) is
+\[
+  \det
+  \begin{pmatrix}
+    a\cdot a&a\cdot b\\
+    b\cdot a&b\cdot b
+  \end{pmatrix}
+  =
+  \det
+  \begin{pmatrix}
+    5&2\\
+    2&10
+  \end{pmatrix}
+  =46,
+\]
+confirming that the squared area equals \(\|a\times b\|^2\).
+
+The cross product therefore depends on more structure than vector addition: it uses the metric to define perpendicularity and length, the orientation to choose a sign, and the fact that the dimension is three to turn an oriented area into a perpendicular vector.
+
+\section{The scalar triple product measures oriented volume}
+
+Pairing the cross product with a third vector gives
+\[
+  [a,b,c]=a\cdot(b\times c).
+\]
+This scalar is the oriented volume of the parallelepiped spanned by \(a,b,c\).  In coordinates,
+\[
+  a\cdot(b\times c)
+  =
+  \det
+  \begin{pmatrix}
+    a^1&a^2&a^3\\
+    b^1&b^2&b^3\\
+    c^1&c^2&c^3
+  \end{pmatrix}.
+\]
+Swapping two vectors reverses the sign.  The value vanishes exactly when the three vectors are coplanar.
+
+For
+\[
+  a=(1,0,1),
+  \quad
+  b=(0,2,0),
+  \quad
+  c=(1,1,3),
+\]
+we obtain
+\[
+  b\times c=(6,0,-2),
+\]
+so
+\[
+  a\cdot(b\times c)=4.
+\]
+The parallelepiped has volume \(4\), and the positive sign says that the ordered triple has the chosen orientation.
+
+The determinant, cross product, and scalar triple product are thus not three unrelated formulas.  They are three ways of reading the same oriented-volume structure in three dimensions.
+
+\section{A cross product can generate a rotation}
+
+Fix \(\omega\in\mathbb R^3\).  The map
+\[
+  v\longmapsto\omega\times v
+\]
+is linear, so in coordinates it is represented by the skew-symmetric matrix
+\[
+  [\omega]_\times=
+  \begin{pmatrix}
+    0&-\omega_3&\omega_2\\
+    \omega_3&0&-\omega_1\\
+    -\omega_2&\omega_1&0
+  \end{pmatrix}.
+\]
+Skew-symmetry follows from
+\[
+  u\cdot(\omega\times v)
+  =-v\cdot(\omega\times u).
+\]
+If a rigid body rotates with angular velocity \(\omega\), the instantaneous velocity of a point at position \(r\) is
+\[
+  r'(t)=\omega\times r(t)
+  =[\omega]_\times r(t).
+\]
+The solution is
+\[
+  r(t)=e^{t[\omega]_\times}r(0).
+\]
+
+Suppose \(\omega\) is a unit vector.  Let
+\[
+  K=[\omega]_\times.
+\]
+The vector triple-product identity gives
+\[
+  K^2v=\omega\times(\omega\times v)
+  =\omega(\omega\cdot v)-v.
+\]
+If
+\[
+  P=\omega\omega^T
+\]
+is projection onto the rotation axis, then
+\[
+  K^2=P-I,
+  \qquad
+  K^3=-K.
+\]
+The exponential series therefore collapses to
+\[
+  \boxed{
+  e^{tK}=I+\sin t\,K+(1-\cos t)K^2.}
+\]
+This is Rodrigues' rotation formula.  It fixes the component parallel to \(\omega\) and rotates the perpendicular plane by angle \(t\).
+
+For the axis \(\omega=e_3\),
+\[
+  K=
+  \begin{pmatrix}
+    0&-1&0\\
+    1&0&0\\
+    0&0&0
+  \end{pmatrix},
+\]
+and Rodrigues' formula gives
+\[
+  e^{tK}=
+  \begin{pmatrix}
+    \cos t&-\sin t&0\\
+    \sin t&\cos t&0\\
+    0&0&1
+  \end{pmatrix}.
+\]
+The same operation that first measured oriented area now appears as the infinitesimal generator of spatial rotation.
+
+\section{Why three dimensions are exceptional}
+
+The elementary coordinate formula can make the cross product look universal, but its target being another vector is special.  Two vectors naturally span an oriented parallelogram.  The algebraic object recording that area is a bivector, written
+\[
+  a\wedge b\in\Lambda^2V.
+\]
+In dimension three,
+\[
+  \dim\Lambda^2V=\binom32=3=\dim V.
+\]
+Once a metric and orientation are chosen, oriented area elements can be identified with perpendicular vectors.  The cross product is the result of that identification.
+
+In dimension four,
+\[
+  \dim\Lambda^2V=\binom42=6,
+\]
+so a general oriented two-dimensional area has six independent components and cannot be represented by one ordinary four-vector.  In dimension two, \(\Lambda^2V\) is one-dimensional, so the oriented area is naturally a scalar multiple of the plane's area form rather than another vector in the plane.
+
+The following note develops this exterior-algebra explanation and derives vector identities from wedge product, contraction, and the Hodge star.  Here the dimension count already tells us why the familiar binary cross product should not be copied blindly into arbitrary dimensions.
+
+\section{Cartesian products package two independent pieces of data}
+
+Now change settings.  For sets \(X\) and \(Y\), the Cartesian product is
+\[
+  X\times Y=\{(x,y):x\in X,\ y\in Y\}.
+\]
+Its elements are ordered pairs.  The projections
+\[
+  \pi_X:X\times Y\to X,
+  \qquad
+  \pi_Y:X\times Y\to Y
+\]
+recover the two components:
+\[
+  \pi_X(x,y)=x,
+  \qquad
+  \pi_Y(x,y)=y.
+\]
+
+A function
+\[
+  h:Z\to X\times Y
+\]
+is therefore the same information as a pair of functions
+\[
+  f:Z\to X,
+  \qquad
+  g:Z\to Y.
+\]
+From \(h\), take
+\[
+  f=\pi_X\circ h,
+  \qquad
+  g=\pi_Y\circ h.
+\]
+Conversely, from \(f,g\), define
+\[
+  \langle f,g\rangle(z)=(f(z),g(z)).
+\]
+These constructions are inverse to one another.
+
+For example, a parametrized plane curve
+\[
+  h(t)=(\cos t,\sin t)
+\]
+is exactly the pairing of its coordinate functions:
+\[
+  h=\langle\cos,\sin\rangle.
+\]
+The Cartesian product does not multiply the coordinates.  It stores them side by side while allowing each to be recovered independently.
+
+\section{The universal property removes dependence on ordered pairs}
+
+A category has objects, morphisms between objects, identity morphisms, and associative composition.  In the category \(\mathbf{Set}\), objects are sets and morphisms are functions.  In \(\mathbf{Vect}_{\mathbb R}\), objects are real vector spaces and morphisms are linear maps.  In \(\mathbf{Grp}\), objects are groups and morphisms are group homomorphisms.
+
+The elementwise definition of \(X\times Y\) makes sense in \(\mathbf{Set}\), but category theory asks for a characterization using only morphisms.
+
+\begin{definition}[Categorical product]
+A product of objects \(X,Y\) is an object \(P\) with morphisms
+\[
+  \pi_X:P\to X,
+  \qquad
+  \pi_Y:P\to Y
+\]
+such that for every object \(Z\) and every pair of morphisms
+\[
+  f:Z\to X,
+  \qquad
+  g:Z\to Y,
+\]
+there exists a unique morphism
+\[
+  \langle f,g\rangle:Z\to P
+\]
+with
+\[
+  \pi_X\circ\langle f,g\rangle=f,
+  \qquad
+  \pi_Y\circ\langle f,g\rangle=g.
+\]
+\end{definition}
+
+\[
+\begin{tikzcd}
+& Z \arrow[ddl,bend right=15,swap,"f"]
+    \arrow[ddr,bend left=15,"g"]
+    \arrow[d,dashed,"{\langle f,g\rangle}"] & \\
+& P \arrow[dl,"\pi_X"] \arrow[dr,swap,"\pi_Y"] & \\
+X && Y
+\end{tikzcd}
+\]
+
+Existence says that the two component maps can be packaged into one map.  Uniqueness says that no additional hidden data are present.  Any map into \(P\) is completely determined by its two projections.
+
+In \(\mathbf{Set}\), the ordinary ordered-pair construction satisfies this property.  If
+\[
+  h:Z\to X\times Y
+\]
+has projections \(f,g\), then for every \(z\),
+\[
+  h(z)=(\pi_Xh(z),\pi_Yh(z))=(f(z),g(z)).
+\]
+Thus
+\[
+  h=\langle f,g\rangle
+\]
+and the mediating map is unique.
+
+\section{The universal property makes products unique}
+
+Suppose
+\[
+  (P,\pi_X,\pi_Y)
+  \quad\text{and}\quad
+  (Q,\rho_X,\rho_Y)
+\]
+are both products of \(X,Y\).  The product property of \(P\), applied to the maps \(\rho_X,\rho_Y\), gives a unique map
+\[
+  u:Q\to P
+\]
+with
+\[
+  \pi_Xu=\rho_X,
+  \qquad
+  \pi_Yu=\rho_Y.
+\]
+Similarly there is a unique map
+\[
+  v:P\to Q
+\]
+with
+\[
+  \rho_Xv=\pi_X,
+  \qquad
+  \rho_Yv=\pi_Y.
+\]
+
+Now both \(u\circ v\) and \(\operatorname{id}_P\) have the same projections:
+\[
+  \pi_Xuv=\pi_X,
+  \qquad
+  \pi_Yuv=\pi_Y.
+\]
+Uniqueness in the product property forces
+\[
+  u\circ v=\operatorname{id}_P.
+\]
+Likewise,
+\[
+  v\circ u=\operatorname{id}_Q.
+\]
+Therefore \(P\) and \(Q\) are uniquely isomorphic in a way that preserves their projections.
+
+This is why category theory says ``the product'' even though many concrete models may exist.  The universal property determines the object up to a unique structure-preserving relabelling.
+
+\section{Products in vector spaces and groups}
+
+In \(\mathbf{Vect}_{\mathbb R}\), the product of \(V\) and \(W\) is the vector space
+\[
+  V\times W
+\]
+with componentwise operations:
+\[
+  (v,w)+(v',w')=(v+v',w+w'),
+\]
+\[
+  \lambda(v,w)=(\lambda v,\lambda w).
+\]
+The projections are linear.  Given linear maps
+\[
+  f:U\to V,
+  \qquad
+  g:U\to W,
+\]
+the pairing
+\[
+  \langle f,g\rangle(u)=(f(u),g(u))
+\]
+is linear and is the unique map with the required projections.
+
+For finite-dimensional spaces,
+\[
+  \dim(V\times W)=\dim V+\dim W.
+\]
+Choosing bases of \(V\) and \(W\) concatenates them into a basis of the product.  A vector in \(V\times W\) is therefore decomposed into a \(V\)-component and a \(W\)-component, just as a spatial vector is decomposed into scalar coordinates after a basis is chosen.  The similarity lies in packaging components; the universal property, not a coordinate formula, defines the product.
+
+In \(\mathbf{Grp}\), the product of groups \(G,H\) has elements \((g,h)\) and multiplication
+\[
+  (g,h)(g',h')=(gg',hh').
+\]
+The projections are homomorphisms, and a pair of homomorphisms into \(G,H\) combines uniquely into a homomorphism into \(G\times H\).
+
+These examples show why the categorical definition is useful: the same diagram characterizes products in settings whose elements carry different algebraic structures.
+
+The three main constructions in this chapter can now be compared without relying on the shared English word:
+\[
+  \begin{array}{c|c|c}
+  \text{construction}&\text{input}&\text{output}\\ \hline
+  \text{dot product}&V\times V&\mathbb R\\
+  \text{cross product}&\mathbb R^3\times\mathbb R^3&\mathbb R^3\\
+  \text{categorical product}&X,Y&\text{an object }P\text{ with projections}
+  \end{array}
+\]
+The categorical product \(V\times V\) may serve as the \emph{domain} of the dot or cross product, but neither bilinear operation is itself a categorical product.  The type signatures already prevent the confusion:
+\[
+  \cdot:V\times V\to\mathbb R,
+  \qquad
+  \times:\mathbb R^3\times\mathbb R^3\to\mathbb R^3.
+\]
+A categorical product is characterized by maps \emph{into} it, while a dot or cross product is a particular map \emph{out of} a product object.
+
+The difference can also be seen as information preservation.  An element of \(V\times V\) retains both inputs because the projections recover them exactly:
+\[
+  \pi_1(u,v)=u,
+  \qquad
+  \pi_2(u,v)=v.
+\]
+The cross product deliberately discards information.  For example,
+\[
+  e_1\times e_2=e_3
+\]
+and
+\[
+  (2e_1)\times\left(\frac12e_2\right)=e_3.
+\]
+The same output comes from different ordered pairs, so no pair of projections from the output vector can reconstruct the original inputs.  The dot product loses still more: every orthogonal pair has output zero.  These operations are valuable precisely because they extract a selected geometric invariant rather than preserving all component data.
+
+In categorical language, the cross product is a morphism
+\[
+  V\times V\longrightarrow V
+\]
+whose domain happens to be a product object.  A product cone consists instead of an object together with projection morphisms \emph{from} that object.  Reversing these arrows changes the mathematical question completely.
+
+The dependencies are equally different.  The dot product depends on a metric.  The cross product depends on metric, orientation, and three-dimensionality.  The categorical product depends only on the morphisms of the category and its universal property.  Understanding a construction therefore means more than knowing a formula: one must know its type, the structure it requires, and the property that makes it canonical.

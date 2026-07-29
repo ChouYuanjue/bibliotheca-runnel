@@ -1,14 +1,434 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220911}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220911}
-\end{document}
+\notechapter{N-20220911}{Analytic Geometry through Normals, Line Pencils, and Quadratic Forms}
+
+\section{A line is an affine level set, not a collection of unrelated formulas}
+
+A line in the plane can be written
+\[
+  H=\{x\in\mathbb R^2:n\cdot x=c\},
+  \qquad n\ne0.
+\]
+The vector \(n=(a,b)\) is normal to the line, and a direction vector is
+\[
+  d=(-b,a).
+\]
+If \(p\in H\), every point of the line has the parametric form
+\[
+  x=p+td,
+  \qquad t\in\mathbb R.
+\]
+Conversely, eliminating \(t\) gives
+\[
+  a(x_1-p_1)+b(x_2-p_2)=0.
+\]
+This single description includes vertical lines, where slope notation fails.
+
+The familiar equations are coordinate choices for the same object.  If \(b\ne0\),
+\[
+  ax+by=c
+  \quad\Longleftrightarrow\quad
+  y=-\frac abx+\frac cb.
+\]
+If a line passes through \(p_1,p_2\), its direction is \(p_2-p_1\).  If it meets the coordinate axes away from the origin, dividing by its intercepts produces
+\[
+  \frac xa+\frac yb=1.
+\]
+None of these forms is universally best; the normal form survives every orientation, while slope form is efficient only in the nonvertical chart.
+
+In homogeneous coordinates, the line is represented by the coefficient triple
+\[
+  \ell=[a:b:-c],
+\]
+and incidence with a projective point \(X=[x:y:z]\) is the bilinear equation
+\[
+  ax+by-cz=0.
+\]
+The homogeneous form will later make points at infinity and polar lines ordinary parts of the calculation.
+
+\section{Angles and Euclidean distance come from the normal vector}
+
+Two lines with normals \(n_1,n_2\) are parallel exactly when the normals are proportional.  They are perpendicular exactly when
+\[
+  n_1\cdot n_2=0,
+\]
+because the direction of each line is a quarter-turn of its normal.
+
+For
+\[
+  H=\{x:n\cdot x=c\}
+\]
+and a point \(x_0\), the signed displacement in the normal direction is
+\[
+  \frac{n\cdot x_0-c}{\|n\|_2}.
+\]
+Hence
+\[
+  \boxed{
+  \operatorname{dist}_2(x_0,H)
+  =\frac{|n\cdot x_0-c|}{\|n\|_2}.}
+\]
+To derive it, let
+\[
+  p=x_0-\frac{n\cdot x_0-c}{\|n\|_2^2}n.
+\]
+Then \(n\cdot p=c\), so \(p\in H\), and \(x_0-p\) is normal to the line.  Any other point of \(H\) differs from \(p\) by a tangent vector, so the Pythagorean theorem makes \(p\) the closest point.
+
+For parallel lines
+\[
+  n\cdot x=c_1,
+  \qquad
+  n\cdot x=c_2,
+\]
+the same formula gives
+\[
+  \operatorname{dist}_2(H_1,H_2)
+  =\frac{|c_1-c_2|}{\|n\|_2}.
+\]
+The denominator is not a memorized normalization constant; it compensates for rescaling the defining equation.
+
+\section{Distance to a hyperplane is governed by the dual norm}
+
+The Euclidean formula has a normed-space version.  Let \(\|\cdot\|\) be any norm on \(\mathbb R^n\), and let \(\varphi\) be a nonzero linear functional.  Its dual norm is
+\[
+  \|\varphi\|_*
+  =\sup_{\|u\|\le1}|\varphi(u)|.
+\]
+For the hyperplane
+\[
+  H=\{x:\varphi(x)=c\},
+\]
+one has
+\[
+  \boxed{
+  \operatorname{dist}(x_0,H)
+  =\frac{|\varphi(x_0)-c|}{\|\varphi\|_*}.}
+\]
+Indeed, for every \(x\in H\),
+\[
+  |\varphi(x_0)-c|
+  =|\varphi(x_0-x)|
+  \le\|\varphi\|_*\|x_0-x\|,
+\]
+which gives the lower bound.  In finite dimensions, the supremum defining the dual norm is attained by a unit vector \(u\); moving from \(x_0\) in the signed \(u\)-direction reaches equality.
+
+For \(\varphi(x,y)=ax+by\), the dual of \(\ell^1\) is \(\ell^\infty\), so
+\[
+  \operatorname{dist}_1((x_0,y_0),H)
+  =\frac{|ax_0+by_0-c|}{\max(|a|,|b|)}.
+\]
+The dual of \(\ell^\infty\) is \(\ell^1\), giving
+\[
+  \operatorname{dist}_\infty((x_0,y_0),H)
+  =\frac{|ax_0+by_0-c|}{|a|+|b|}.
+\]
+The familiar square root in the Euclidean formula is therefore a special case of dual-norm geometry.
+
+\section{Circles are quadratic level sets, and subtraction reveals their common geometry}
+
+A circle with center \(m=(a,b)\) and radius \(r\) is
+\[
+  \|x-m\|_2^2=r^2.
+\]
+Expanding gives
+\[
+  x^2+y^2+Dx+Ey+F=0,
+\]
+while completing squares recovers
+\[
+  m=\left(-\frac D2,-\frac E2\right),
+\]
+\[
+  r^2=\frac{D^2+E^2-4F}{4}.
+\]
+The sign of this final quantity distinguishes a real circle, a point circle, and no real locus.
+
+For a point \(p\), define its power with respect to the circle by
+\[
+  \operatorname{Pow}_C(p)=\|p-m\|^2-r^2.
+\]
+If a line through \(p\) meets the circle at \(a,b\), then
+\[
+  \operatorname{Pow}_C(p)=\overline{pa}\,\overline{pb}
+\]
+using directed lengths.  This follows by substituting the line parametrization \(p+td\) into the circle equation: the product of the two parameter roots is the constant term divided by the leading coefficient.
+
+For two circles, the locus of equal powers is their radical axis.  Subtracting
+\[
+  C_1:x^2+y^2-4x=0
+\]
+and
+\[
+  C_2:x^2+y^2-2y-3=0
+\]
+cancels the quadratic terms and gives the line
+\[
+  -4x+2y+3=0.
+\]
+The radical axis is linear because it compares two quadratic functions with the same leading form.
+
+\section{A fractional range problem is a pencil of lines through one point}
+
+Consider
+\[
+  \mu=\frac{x}{y-3}
+\]
+under the constraint
+\[
+  |x|+|y|\le1.
+\]
+For fixed \(\mu\), rewrite the equation as
+\[
+  x=\mu(y-3).
+\]
+This is a line through
+\[
+  P=(0,3).
+\]
+The range problem asks which lines in the pencil through \(P\) meet the diamond
+\[
+  K=\{(x,y):|x|+|y|\le1\}.
+\]
+Because \(K\) is convex and \(P\notin K\), the extreme parameters occur at supporting lines from \(P\) to \(K\).
+
+The support function of the \(\ell^1\)-unit ball is
+\[
+  h_K(n)=\max_{x\in K}n\cdot x=\|n\|_\infty.
+\]
+The line can be written
+\[
+  (1,-\mu)\cdot(x,y)=-3\mu.
+\]
+It meets \(K\) precisely when
+\[
+  |3\mu|\le h_K(1,-\mu)=\max(1,|\mu|).
+\]
+If \(|\mu|>1\), this is impossible.  If \(|\mu|\le1\), it becomes
+\[
+  3|\mu|\le1.
+\]
+Therefore
+\[
+  \boxed{
+  \mu\in\left[-\frac13,\frac13\right].}
+\]
+The endpoints correspond to the supporting lines through the vertices \((1,0)\) and \((-1,0)\).  Convex duality has not replaced the elementary picture; it has explained why the endpoints are support data.
+
+\section{Ratios on a graph are radial coordinates}
+
+For a point \((x,f(x))\) with \(x\ne0\), the ratio
+\[
+  \frac{f(x)}x
+\]
+is the slope of the ray from the origin to the graph point.  Counting solutions of
+\[
+  \frac{f(x)}x=m
+\]
+is therefore the same as counting intersections between the graph and the line
+\[
+  y=mx.
+\]
+A rational expression has become a radial-projection problem.
+
+This viewpoint also identifies tangency thresholds.  As \(m\) varies, the number of intersections can change only when the line becomes tangent to the graph or passes through a singular point.  Algebraically, solving
+\[
+  f(x)=mx
+\]
+together with
+\[
+  f'(x)=m
+\]
+detects those critical slopes.  The graphical and derivative descriptions are the same incidence event viewed globally and locally.
+
+\section{A perpendicular moving-line problem is a circle problem}
+
+Let fixed points be
+\[
+  A=(-3,0),
+  \qquad
+  B=(1,6).
+\]
+Suppose lines through \(A\) and \(B\) meet at \(P\) and are perpendicular.  Then
+\[
+  \angle APB=90^\circ,
+\]
+so Thales' theorem places \(P\) on the circle with diameter \(AB\).
+
+The right triangle gives
+\[
+  PA^2+PB^2=AB^2.
+\]
+Hence
+\[
+  PA\,PB
+  \le\frac{PA^2+PB^2}{2}
+  =\frac{AB^2}{2}.
+\]
+Since
+\[
+  AB^2=(1+3)^2+6^2=52,
+\]
+one obtains
+\[
+  \boxed{
+  PA\,PB\le26.}
+\]
+Equality occurs when \(PA=PB\), namely at the intersections of the diameter circle with the perpendicular bisector of \(AB\).
+
+The coordinate version would introduce two slopes and a quadratic constraint.  The circle formulation identifies the locus first, after which the optimization is a one-line inequality.
+
+\section{A general conic is an affine quadratic form}
+
+Write an affine conic as
+\[
+  F(x)=x^TQx+2\ell^Tx+f=0,
+  \qquad Q=Q^T.
+\]
+An orthogonal change of coordinates diagonalizes \(Q\), removing the cross term without changing Euclidean angles.  If \(Q\) is invertible, translating by
+\[
+  x=u-Q^{-1}\ell
+\]
+removes the linear term.  Rotation handles directions; translation handles the center.
+
+Consider
+\[
+  xy-x-y=0.
+\]
+Set
+\[
+  u=\frac{x+y}{\sqrt2},
+  \qquad
+  v=\frac{x-y}{\sqrt2}.
+\]
+Then
+\[
+  xy=\frac{u^2-v^2}{2},
+  \qquad
+  x+y=\sqrt2\,u.
+\]
+The equation becomes
+\[
+  u^2-v^2-2\sqrt2\,u=0,
+\]
+or
+\[
+  \boxed{
+  (u-\sqrt2)^2-v^2=2.}
+\]
+The original rectangular-looking equation is a hyperbola whose principal axes are the eigenvectors of the quadratic matrix
+\[
+  Q=
+  \begin{pmatrix}
+    0&1/2\\
+    1/2&0
+  \end{pmatrix}.
+\]
+
+\section{Rank and the line at infinity distinguish conic types}
+
+Homogenizing a conic gives
+\[
+  X^TAX=0,
+  \qquad X=(x,y,z)^T,
+\]
+for a symmetric \(3\times3\) matrix \(A\).  The conic is degenerate when \(A\) loses rank.  For example,
+\[
+  xy=0
+\]
+is the union of two lines and has a rank-deficient homogeneous matrix.
+
+The intersection with the line at infinity \(z=0\) records affine directions.
+
+\begin{itemize}
+  \item An ellipse
+  \[
+    \frac{x^2}{a^2}+\frac{y^2}{b^2}=z^2
+  \]
+  has no real point at infinity.
+  \item A parabola
+  \[
+    y^2=2pxz
+  \]
+  meets the line at infinity at one double point \([1:0:0]\).
+  \item A hyperbola
+  \[
+    \frac{x^2}{a^2}-\frac{y^2}{b^2}=z^2
+  \]
+  has two real points at infinity, corresponding to its asymptotic directions.
+\end{itemize}
+
+For
+\[
+  xy-x-y=0,
+\]
+the projective closure is
+\[
+  XY-XZ-YZ=0.
+\]
+At infinity,
+\[
+  Z=0
+  \quad\Longrightarrow\quad
+  XY=0,
+\]
+so the two points are
+\[
+  [1:0:0],
+  \qquad
+  [0:1:0].
+\]
+They are the projective endpoints of the two asymptote directions revealed by the standard hyperbola form.
+
+\section{Polarity turns the conic matrix into its tangent geometry}
+
+Let a nondegenerate projective conic be
+\[
+  F(X)=X^TAX=0,
+  \qquad A=A^T.
+\]
+For a point \(p\), its polar line is
+\[
+  p^TAX=0.
+\]
+If \(p\) lies on the conic, this polar is the tangent line.  Indeed, the differential is
+\[
+  dF_p(H)=2p^TAH.
+\]
+The tangent condition at \(p\) is
+\[
+  p^TA(X-p)=0.
+\]
+Since \(p^TAp=0\), this reduces to
+\[
+  p^TAX=0.
+\]
+
+For the conic
+\[
+  XY-XZ-YZ=0,
+\]
+use the symmetric matrix
+\[
+  A=
+  \begin{pmatrix}
+    0&1&-1\\
+    1&0&-1\\
+    -1&-1&0
+  \end{pmatrix},
+\]
+which represents twice the equation.  The affine point \((2,2)\) corresponds to
+\[
+  p=[2:2:1]
+\]
+and lies on the conic.  Since
+\[
+  Ap=
+  \begin{pmatrix}1\\1\\-4\end{pmatrix},
+\]
+its polar, hence its tangent, is
+\[
+  X+Y-4Z=0.
+\]
+In the affine chart \(Z=1\),
+\[
+  \boxed{x+y=4.}
+\]
+The same answer follows from the gradient of \(xy-x-y\) at \((2,2)\), but the polar calculation remains valid in homogeneous coordinates and transforms naturally with the conic under projective changes of coordinates.

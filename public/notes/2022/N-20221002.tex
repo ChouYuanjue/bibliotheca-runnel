@@ -1,14 +1,324 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221002}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221002}
-\end{document}
+\notechapter{N-20221002}{Finite Fields and Polynomial Factorization}
+
+\section{Why finite fields matter}
+
+The central question is: how do polynomials factor when the coefficients live in a finite field rather than in \(\mathbb Q\), \(\mathbb R\), or \(\mathbb C\)?
+
+The question is not only theoretical: it appears in coding theory, cryptography, computational algebra, and the construction of algebraic extensions.  The definition of a field comes first because factorization depends heavily on the coefficient domain.
+
+\section{Fields}
+
+A field \(F\) is a set with addition and multiplication such that:
+\begin{enumerate}[(i)]
+  \item \((F,+)\) is an abelian group with identity \(0\);
+  \item \(F\setminus\{0\}\) is an abelian group under multiplication with identity \(1\);
+  \item multiplication distributes over addition.
+
+\end{enumerate}
+The exclusion of \(0\) from the multiplicative group is essential.  If \(0\) had a multiplicative inverse, then from \(0\cdot a=0\) one would get contradictions such as \(1=0\).  So the phrase ``every nonzero element has an inverse'' is not a technical nuisance; it is what makes division possible.
+
+Examples are
+\[
+  \mathbb Q,\qquad \mathbb R,\qquad \mathbb C,
+\]
+and, for a prime \(p\),
+\[
+  \mathbb F_p=\mathbb Z/p\mathbb Z.
+\]
+The requirement that \(p\) be prime is crucial.  If \(p\) is composite, zero divisors appear.  For example in \(\mathbb Z/6\mathbb Z\),
+\[
+  2\cdot3\equiv0\pmod6,
+\]
+even though neither factor is zero.
+
+\section{Field extensions}
+
+A field extension \(K/F\) means \(F\) is embedded in a larger field \(K\).  The point of passing to \(K\) is often to make more polynomial equations solvable.  For example,
+\[
+  x^2+1
+\]
+has no root in \(\mathbb R\), but it splits in \(\mathbb C\):
+\[
+  x^2+1=(x-i)(x+i).
+\]
+
+If \(K\) is finite-dimensional as a vector space over \(F\), its dimension is the degree of the extension:
+\[
+  [K:F]=\dim_F K.
+\]
+Finite extensions are tractable because linear algebra applies directly, whereas infinite extensions require substantially heavier tools.
+
+\section{Constructing finite fields}
+
+For a prime \(p\), \(\mathbb F_p\) is the simplest finite field.  To construct fields with \(p^n\) elements, use irreducible polynomials.  If
+\[
+  f(x)\in\mathbb F_p[x]
+\]
+is irreducible of degree \(n\), then
+\[
+  \mathbb F_p[x]/(f(x))
+\]
+is a field with \(p^n\) elements.
+
+For example, over \(\mathbb F_2\), the polynomial
+\[
+  f(x)=x^3+x+1
+\]
+has no root in \(\mathbb F_2\), hence is irreducible of degree \(3\).  Therefore
+\[
+  \mathbb F_2[x]/(x^3+x+1)
+\]
+is a field with \(2^3=8\) elements.
+
+In this quotient field, if \(\alpha\) denotes the class of \(x\), then
+\[
+  \alpha^3+\alpha+1=0,
+\]
+so
+\[
+  \alpha^3=\alpha+1
+\]
+in characteristic \(2\).  Every element can be uniquely written as
+\[
+  a+b\alpha+c\alpha^2,\qquad a,b,c\in\mathbb F_2.
+\]
+
+\section{Important properties of finite fields}
+
+The standard facts are:
+\begin{enumerate}[(i)]
+  \item finite fields have order \(p^n\);
+  \item for every prime power \(p^n\), there is a finite field of that order, unique up to isomorphism;
+  \item the nonzero elements \(\mathbb F_{p^n}^\times\) form a cyclic group of order \(p^n-1\);
+  \item the Frobenius map
+  \[
+    \operatorname{Frob}(a)=a^p
+  \]
+  is an automorphism of \(\mathbb F_{p^n}\).
+
+\end{enumerate}
+
+The cyclicity of the multiplicative group is surprisingly powerful.  It means every nonzero element is a power of one primitive element.  This is why finite field computations often become exponent arithmetic modulo \(p^n-1\).
+
+\section{Polynomial factorization over finite fields}
+
+In \(\mathbb F_q[x]\), every nonzero polynomial factors uniquely into irreducible polynomials, up to order and multiplication by nonzero constants.  This is analogous to unique prime factorization of integers.
+
+However, a polynomial need not split into linear factors over its base finite field.  For example, a polynomial may be irreducible over \(\mathbb F_p\) but split over an extension field.  This is exactly like \(x^2+1\) over \(\mathbb R\), except that the extension fields are finite and highly structured.
+
+\section[Example over F\_3]{Example over \(\mathbb F_3\)}
+
+Consider
+\[
+  f(x)=x^4+x^2+2\in\mathbb F_3[x].
+\]
+First test roots:
+\[
+  f(0)=2\neq0,
+\]
+\[
+  f(1)=1+1+2=4\equiv1\pmod3,
+\]
+\[
+  f(2)=2^4+2^2+2=16+4+2=22\equiv1\pmod3.
+\]
+So \(f\) has no linear factor.  It might still factor as a product of two quadratics.  A systematic check over \(\mathbb F_3\) shows that no such factorization exists, so \(f\) is irreducible over \(\mathbb F_3\).
+
+This illustrates the basic workflow: root testing only detects linear factors.  For degree \(4\), one must also check quadratic factors.
+
+\section{Algorithms}
+
+Several standard factorization algorithms are:
+\begin{enumerate}[(i)]
+  \item trial division, useful for very small degrees;
+  \item Berlekamp's algorithm, which converts factorization into linear algebra over finite fields;
+  \item Cantor--Zassenhaus, a randomized algorithm widely used in computer algebra systems.
+
+\end{enumerate}
+The high-level idea behind these algorithms is that finite fields make the Frobenius map computable.  Since every element of \(\mathbb F_q\) satisfies
+\[
+  a^q=a,
+\]
+the polynomial
+\[
+  x^q-x
+\]
+contains all elements of \(\mathbb F_q\) as roots.  This identity becomes a machine for detecting factors.
+
+\section{Applications}
+
+Finite-field factorization appears in:
+\begin{enumerate}[(i)]
+  \item error-correcting codes;
+  \item cryptographic protocols;
+  \item construction of extension fields;
+  \item computational number theory;
+  \item symbolic algebra systems.
+
+\end{enumerate}
+Finite fields are small enough for exhaustive computation yet structured enough to retain deep algebraic behavior.  That combination explains their central role.
+
+
+\section{Irreducibility over finite fields}
+
+A polynomial can factor differently depending on the coefficient field.  For example, \(x^2+1\) is irreducible over \(\mathbb R\) only if one insists on real linear factors, but over \(\mathbb C\) it splits.  Over finite fields the same phenomenon becomes arithmetic.
+
+For \(\mathbb F_p\), a quadratic polynomial
+\[
+  ax^2+bx+c
+\]
+factors iff its discriminant
+\[
+  \Delta=b^2-4ac
+\]
+is a square in \(\mathbb F_p\).  Thus irreducibility is controlled by quadratic residues.  This links polynomial factorization directly to modular arithmetic.
+
+\section{Constructing extensions}
+
+If \(f(x)\in F[x]\) is irreducible of degree \(n\), then
+\[
+  F[x]/(f(x))
+\]
+is a field extension of \(F\) of degree \(n\).  The class of \(x\) becomes an element \(\alpha\) satisfying \(f(\alpha)=0\).  This is the algebraic meaning of “adjoining a root.”
+
+For finite fields, this construction produces fields with \(p^n\) elements:
+\[
+  \mathbb F_{p^n}\cong \mathbb F_p[x]/(f(x))
+\]
+for any irreducible \(f\) of degree \(n\).  Every finite field has prime-power size, and for each prime power there is a unique finite field up to isomorphism.
+
+\section{Frobenius map}
+
+In characteristic \(p\), the Frobenius map is
+\[
+  \varphi(a)=a^p.
+\]
+It is a field homomorphism because
+\[
+  (a+b)^p=a^p+b^p
+\]
+in characteristic \(p\).  In a finite field, Frobenius is an automorphism.  Its fixed field inside \(\mathbb F_{p^n}\) is \(\mathbb F_p\).
+
+The polynomial
+\[
+  x^{p^n}-x
+\]
+has all elements of \(\mathbb F_{p^n}\) as roots, and it factors over \(\mathbb F_p\) as the product of all monic irreducible polynomials whose degrees divide \(n\).  This is a central organizing fact for finite-field factorization.
+
+\section{Structural consequences}
+
+Finite fields turn algebra into arithmetic.  Roots of polynomials become elements of finite extensions, irreducibility becomes a modular phenomenon, and Frobenius gives a canonical symmetry.  This is why finite fields appear in coding theory and cryptography: their algebra is rich but completely finite and computable.
+
+\section{How the pieces fit}
+
+A finite field is where group theory, ring theory, linear algebra, and number theory meet.  The additive group of \(\mathbb F_{p^n}\) is an \(n\)-dimensional vector space over \(\mathbb F_p\).  The nonzero elements form a cyclic multiplicative group of order \(p^n-1\).  Polynomial quotients construct the field, and Frobenius supplies a canonical symmetry.
+
+Thus a finite field computation often has three simultaneous readings:
+\[
+\begin{array}{c|c}
+\text{operation} & \text{structure being used}\\
+\hline
+\text{addition} & \mathbb F_p\text{-linear algebra}\\
+\text{multiplication} & \text{cyclic unit group and polynomial reduction}\\
+\text{Frobenius }x\mapsto x^p & \text{Galois symmetry}
+\end{array}
+\]
+
+\section{Frobenius and the first Galois group}
+
+In characteristic \(p\), the Frobenius map
+\[
+  F:x\mapsto x^p
+\]
+is a field homomorphism because
+\[
+  (x+y)^p=x^p+y^p.
+\]
+In \(\mathbb F_{p^n}\), it is an automorphism, and
+\[
+  F^n=1.
+\]
+The Galois group is cyclic:
+\[
+  \operatorname{Gal}(\mathbb F_{p^n}/\mathbb F_p)
+  =\langle F\rangle\cong \mathbb Z/n\mathbb Z.
+\]
+This is the cleanest first example of a Galois group: roots are moved by raising to powers of \(p\), and the fixed field of Frobenius is \(\mathbb F_p\).
+
+\section{Irreducible polynomials and orbit size}
+
+An element \(\alpha\in\mathbb F_{q^n}\) has conjugates
+\[
+  \alpha,\quad \alpha^q,\quad \alpha^{q^2},\quad\ldots
+\]
+under Frobenius.  Its minimal polynomial over \(\mathbb F_q\) is
+\[
+  \prod_{i=0}^{d-1}(x-\alpha^{q^i}),
+\]
+where \(d\) is the size of the Frobenius orbit.  Thus irreducible polynomials over finite fields are Frobenius orbits in disguise.
+
+This explains why the degrees of irreducible factors of a polynomial are controlled by Frobenius cycles.
+
+\section{Counting irreducible polynomials}
+
+Every element of \(\mathbb F_{q^n}\) is a root of
+\[
+  x^{q^n}-x.
+\]
+Over \(\mathbb F_q\), this polynomial is the product of all monic irreducible polynomials whose degrees divide \(n\).  If \(N_d\) is the number of monic irreducible polynomials of degree \(d\), then
+\[
+  q^n=\sum_{d\mid n}dN_d.
+\]
+By Möbius inversion,
+\[
+  N_n=\frac1n\sum_{d\mid n}\mu(d)q^{n/d}.
+\]
+This formula turns factorization into enumeration.  The factor \(d\) appears because each degree-\(d\) irreducible polynomial contributes \(d\) roots.
+
+\section{Square-free and distinct-degree factorization}
+
+Finite-field factorization algorithms exploit Frobenius.  The polynomial
+\[
+  x^{q^m}-x
+\]
+has as roots exactly the elements of \(\mathbb F_{q^m}\).  Therefore
+\[
+  \gcd(f(x),x^{q^m}-x)
+\]
+extracts from \(f\) the product of irreducible factors whose degrees divide \(m\).
+
+This is the idea behind distinct-degree factorization.  First remove repeated factors by checking \(\gcd(f,f')\).  Then use Frobenius powers to separate factors by degree.  Finally use algorithms such as Cantor--Zassenhaus to split equal-degree parts.
+
+\section{Berlekamp's algorithm as linear algebra}
+
+Berlekamp's algorithm turns factorization into a nullspace computation.  Over \(\mathbb F_q\), consider the map on the quotient algebra \(A=\mathbb F_q[x]/(f)\)
+\[
+  B:g\mapsto g^q-g.
+\]
+Elements in the kernel satisfy \(g^q=g\), and this kernel contains information about decomposing \(f\) into factors.
+
+Thus the algorithm uses the finite-dimensional \(\mathbb F_q\)-vector space structure of the quotient ring.  This is a concrete instance of a general computational theme: algebraic structure becomes linear algebra after passing to a finite quotient.
+
+\section{Coding theory connection}
+
+Finite fields are essential in coding theory because code symbols can be added, multiplied, and evaluated polynomially.  Reed--Solomon codes evaluate polynomials over \(\mathbb F_q\) at distinct field points:
+\[
+  f\longmapsto (f(a_1),\ldots,f(a_m)).
+\]
+A nonzero polynomial of degree \(<k\) has at most \(k-1\) roots, so two different low-degree polynomials cannot agree at too many evaluation points.  This gives error detection and correction.
+
+Here the same polynomial-root principle used in factorization becomes a robustness principle for information transmission.
+
+\section{Algebraic geometry shadow}
+
+The identity
+\[
+  \#\mathbb A^1(\mathbb F_q)=q
+\]
+and the polynomial \(x^q-x\) already hint at a larger story: equations over finite fields define finite sets of points, and Frobenius acts on their solutions.  In higher-dimensional algebraic geometry, counting points over \(\mathbb F_{q^n}\) reveals cohomological information.
+
+Thus elementary finite-field polynomial factorization is a first step toward modern arithmetic geometry: finite fields provide a world where algebraic equations, symmetries, and point counts interact exactly.
+
+\section{Frobenius structure behind finite fields}
+
+Finite fields are not just small fields.  They are finite vector spaces, cyclic multiplicative groups, quotient rings, Frobenius dynamical systems, and computational domains all at once.  Irreducible polynomials build extensions; Frobenius organizes roots; gcds with \(x^{q^m}-x\) detect factor degrees; and the same algebra supports coding theory and cryptography.

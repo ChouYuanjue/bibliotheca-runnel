@@ -1,14 +1,353 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260311}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260311}
-\end{document}
+\notechapter{N-20260311}{Matrix Computation I: Norms, Amplification, and Numerical Size}
+
+\section{A matrix can be small entrywise and large as an operator}
+
+A matrix is not merely a rectangular table of numbers.  It is a map
+\[
+  x\longmapsto Ax,
+\]
+and numerical analysis cares about what that map can do to perturbations.
+
+Suppose the input is changed from \(x\) to \(x+\delta x\).  The output changes by
+\[
+  A(x+\delta x)-Ax=A\delta x.
+\]
+To say anything useful, we need a notion of size for both \(\delta x\) and \(A\delta x\).  A vector norm measures the size of data; an operator norm measures the largest factor by which a matrix can enlarge that size.
+
+This distinction matters.  The matrix
+\[
+  A=
+  \begin{bmatrix}
+    1&1&\cdots&1\\
+    1&1&\cdots&1\\
+    \vdots&\vdots&\ddots&\vdots\\
+    1&1&\cdots&1
+  \end{bmatrix}
+\]
+has entries no larger than \(1\), yet in the all-ones direction it multiplies Euclidean length by \(n\).  Looking at the largest entry alone misses the collective action of the columns.
+
+\section{Different norms ask different questions}
+
+For \(x=(x_1,\ldots,x_n)^T\), the standard norms are
+\[
+  \|x\|_1=\sum_{i=1}^n|x_i|,
+  \qquad
+  \|x\|_2=\left(\sum_{i=1}^n|x_i|^2\right)^{1/2},
+\]
+\[
+  \|x\|_\infty=\max_i|x_i|.
+\]
+More generally,
+\[
+  \|x\|_p=\left(\sum_{i=1}^n|x_i|^p\right)^{1/p},
+  \qquad 1\le p<\infty.
+\]
+
+These norms emphasize different features.  The \(1\)-norm measures total mass.  The \(2\)-norm is rotationally invariant and fits inner-product geometry.  The \(\infty\)-norm records the worst coordinate.  For
+\[
+  x=(1,1,\ldots,1)^T,
+\]
+we have
+\[
+  \|x\|_1=n,
+  \qquad
+  \|x\|_2=\sqrt n,
+  \qquad
+  \|x\|_\infty=1.
+\]
+None of these answers is more correct in isolation.  They answer different questions about what counts as a large perturbation.
+
+In finite dimensions all norms are equivalent: for any two norms \(\|\cdot\|_a\) and \(\|\cdot\|_b\), there exist constants \(c,C>0\) such that
+\[
+  c\|x\|_a\le \|x\|_b\le C\|x\|_a.
+\]
+Thus they define the same convergent sequences, but the constants may depend strongly on dimension.  Numerical estimates therefore do depend on the chosen norm even when qualitative convergence does not.
+
+\section{Hölder duality explains the familiar inequalities}
+
+Let \(1\le p,q\le\infty\) satisfy
+\[
+  \frac1p+\frac1q=1.
+\]
+Hölder's inequality states
+\[
+  |y^Tx|\le \|y\|_q\|x\|_p.
+\]
+The exponent \(q\) is called the conjugate exponent of \(p\).
+
+This inequality says that a linear functional \(x\mapsto y^Tx\) has size \(\|y\|_q\) when inputs are measured in \(p\)-norm.  More precisely,
+\[
+  \max_{\|x\|_p=1}|y^Tx|=\|y\|_q.
+\]
+For \(1<p<\infty\), equality is achieved by choosing the phases of \(x_i\) to match \(y_i\) and setting
+\[
+  |x_i|\propto |y_i|^{q-1}.
+\]
+For \(p=1\), the maximizing vector concentrates on a coordinate where \(|y_i|\) is largest; hence the dual of \(\ell^1\) is \(\ell^\infty\).  For \(p=\infty\), choose each coordinate with maximal allowed magnitude and matching sign; the dual is \(\ell^1\).
+
+The Cauchy--Schwarz inequality is simply the case \(p=q=2\):
+\[
+  |y^Tx|\le \|y\|_2\|x\|_2.
+\]
+This dual viewpoint is useful because matrix norms can be read as collections of linear functionals acting on columns or rows.
+
+\section{An induced norm measures worst-case amplification}
+
+Given norms on the input and output spaces, define
+\[
+  \|A\|=\max_{x\ne0}\frac{\|Ax\|}{\|x\|}
+  =\max_{\|x\|=1}\|Ax\|.
+\]
+This is the induced, or subordinate, operator norm.  By definition,
+\[
+  \|Ax\|\le \|A\|\,\|x\|.
+\]
+It is the smallest constant for which this inequality holds for every \(x\).
+
+Induced norms are automatically submultiplicative:
+\[
+  \|AB\|
+  =\max_{x\ne0}\frac{\|ABx\|}{\|x\|}
+  \le
+  \max_{x\ne0}
+  \frac{\|A\|\,\|Bx\|}{\|x\|}
+  \le \|A\|\|B\|.
+\]
+Thus a product of linear maps cannot amplify more than the product of their individual worst-case factors.
+
+The standard formulas are
+\[
+  \|A\|_1=\max_j\sum_i|a_{ij}|,
+  \qquad
+  \|A\|_\infty=\max_i\sum_j|a_{ij}|.
+\]
+The first is the largest absolute column sum; the second is the largest absolute row sum.
+
+To see the \(1\)-norm formula, write
+\[
+  \|Ax\|_1
+  \le \sum_i\sum_j|a_{ij}|\,|x_j|
+  =\sum_j\left(\sum_i|a_{ij}|\right)|x_j|.
+\]
+This is bounded by
+\[
+  \left(\max_j\sum_i|a_{ij}|\right)\|x\|_1.
+\]
+Equality is obtained by putting all mass on a column with maximal sum and choosing the sign or phase appropriately.
+
+\section{A worked comparison of three operator norms}
+
+Let
+\[
+  A=
+  \begin{bmatrix}
+    1&-2\\
+    2&2
+  \end{bmatrix}.
+\]
+The absolute column sums are
+\[
+  3,\qquad4,
+\]
+so
+\[
+  \|A\|_1=4.
+\]
+The absolute row sums are
+\[
+  3,\qquad4,
+\]
+so
+\[
+  \|A\|_\infty=4.
+\]
+
+For the Euclidean norm, compute
+\[
+  A^TA=
+  \begin{bmatrix}
+    5&2\\
+    2&8
+  \end{bmatrix}.
+\]
+Its eigenvalues are
+\[
+  \lambda_\pm=\frac{13\pm5}{2}=9,4.
+\]
+Therefore
+\[
+  \|A\|_2=\sqrt{\lambda_{\max}(A^TA)}=3.
+\]
+The three values differ because they optimize over different unit balls.  The \(1\)- and \(\infty\)-balls have corners aligned with coordinate directions; the Euclidean ball is rotationally symmetric.
+
+The right singular vector corresponding to singular value \(3\) is a direction in which \(A\) stretches Euclidean length exactly by a factor of \(3\).  Other input directions stretch less.
+
+\section{The spectral norm comes from singular values}
+
+The Euclidean operator norm satisfies
+\[
+  \|A\|_2
+  =\max_{\|x\|_2=1}\|Ax\|_2.
+\]
+Squaring gives
+\[
+  \|Ax\|_2^2=x^TA^TAx.
+\]
+The maximum of this Rayleigh quotient over the unit sphere is the largest eigenvalue of \(A^TA\).  Hence
+\[
+  \boxed{
+  \|A\|_2=\sqrt{\lambda_{\max}(A^TA)}=\sigma_{\max}(A).}
+\]
+
+This formula explains why singular values, rather than eigenvalues, govern Euclidean amplification.  Eigenvalues describe invariant directions satisfying \(Ax=\lambda x\).  Singular vectors solve a different optimization problem: which input direction produces the longest output?
+
+For a nonnormal matrix these questions can diverge dramatically.  Consider
+\[
+  N_M=
+  \begin{bmatrix}
+    0&M\\
+    0&0
+  \end{bmatrix}.
+\]
+Both eigenvalues are zero, so the spectral radius is zero, yet
+\[
+  \|N_M\|_2=M.
+\]
+The matrix is nilpotent, but it can cause a large one-step transient amplification.  This is why eigenvalues alone are not a complete measure of numerical size.
+
+\section{Unitary transformations preserve Euclidean geometry}
+
+If \(U^TU=I\), then
+\[
+  \|Ux\|_2^2=x^TU^TUx=\|x\|_2^2.
+\]
+Thus orthogonal or unitary matrices are changes of orthonormal coordinates.  They rotate or reflect without changing length.
+
+Consequently,
+\[
+  \|UAV\|_2=\|A\|_2
+\]
+for unitary \(U,V\).  Singular value decomposition writes
+\[
+  A=U\Sigma V^T,
+\]
+so the Euclidean operator norm is simply the largest diagonal entry of \(\Sigma\).
+
+The Frobenius norm
+\[
+  \|A\|_F=\left(\sum_{i,j}|a_{ij}|^2\right)^{1/2}
+\]
+is also unitarily invariant.  Since
+\[
+  \|A\|_F^2=\operatorname{tr}(A^TA),
+\]
+we obtain
+\[
+  \|UAV\|_F^2
+  =\operatorname{tr}(V^TA^TU^TUAV)
+  =\operatorname{tr}(V^TA^TAV)
+  =\operatorname{tr}(A^TA).
+\]
+Equivalently,
+\[
+  \|A\|_F^2=\sum_i\sigma_i(A)^2.
+\]
+
+The spectral norm asks for the single strongest direction.  The Frobenius norm combines energy across all singular directions.  They satisfy
+\[
+  \|A\|_2\le \|A\|_F\le \sqrt{r}\,\|A\|_2,
+\]
+where \(r=\operatorname{rank}A\).
+
+\section{Schatten norms place spectral and Frobenius size in one family}
+
+For \(1\le p<\infty\), define the Schatten \(p\)-norm by applying a vector \(p\)-norm to the singular values:
+\[
+  \|A\|_{S_p}
+  =\left(\sum_i\sigma_i(A)^p\right)^{1/p}.
+\]
+Then
+\[
+  \|A\|_{S_2}=\|A\|_F,
+  \qquad
+  \|A\|_{S_\infty}=\|A\|_2.
+\]
+The case \(p=1\) is the nuclear norm,
+\[
+  \|A\|_*=\sum_i\sigma_i(A).
+\]
+It is used as a convex surrogate for rank because it penalizes the total singular-value mass.
+
+These norms separate two notions that are often conflated.  Entrywise sparsity concerns how many coordinates are nonzero.  Low rank concerns how many singular directions are active.  The \(1\)-norm of entries encourages the former; the nuclear norm encourages the latter.
+
+\section{Norms turn perturbation statements into inequalities}
+
+If \(x\) is perturbed by \(\delta x\), then
+\[
+  \|A(x+\delta x)-Ax\|
+  \le \|A\|\,\|\delta x\|.
+\]
+This is the basic Lipschitz estimate for a linear map.
+
+For a product,
+\[
+  F(x)=W_LW_{L-1}\cdots W_1x,
+\]
+we have
+\[
+  \|F(x+\delta x)-F(x)\|_2
+  \le
+  \left(\prod_{\ell=1}^L\|W_\ell\|_2\right)
+  \|\delta x\|_2.
+\]
+The bound can be pessimistic because the maximally amplified direction of one layer may not align with that of the next.  Still, it gives a rigorous worst-case control and explains why spectral normalization constrains the Lipschitz constant of a network layer.
+
+Norms also bound truncation and rounding errors.  If a computed matrix is \(A+E\), then
+\[
+  \|(A+E)x-Ax\|
+  \le \|E\|\,\|x\|.
+\]
+The norm of the perturbation is meaningful only relative to the chosen geometry.  A small Frobenius perturbation controls average singular energy, while a small spectral perturbation controls every Euclidean input direction.
+
+\section{The distance to singularity appears in the smallest singular value}
+
+For an invertible square matrix,
+\[
+  \sigma_{\min}(A)
+  =\min_{\|x\|_2=1}\|Ax\|_2.
+\]
+This is the least amount by which \(A\) stretches any unit direction.  If it is small, there is a direction that is almost collapsed.
+
+The Euclidean distance from \(A\) to the set of singular matrices is exactly
+\[
+  \sigma_{\min}(A)
+\]
+when distance is measured by the spectral norm.  Indeed, if \(u_n,v_n\) are singular vectors for \(\sigma_{\min}\), then
+\[
+  E=-\sigma_{\min}u_nv_n^T
+\]
+has norm \(\sigma_{\min}\) and makes
+\[
+  (A+E)v_n=0.
+\]
+No smaller perturbation can make the matrix singular, because
+\[
+  \|(A+E)x\|_2
+  \ge \|Ax\|_2-\|E\|_2\|x\|_2
+  \ge \sigma_{\min}(A)-\|E\|_2
+\]
+for unit \(x\).
+
+Thus the smallest singular value is not merely one more number in an SVD table.  It measures how close invertibility is to failure.
+
+\section{A norm is useful only when its role is stated}
+
+Several quantities called ``matrix size'' coexist because they serve different purposes.
+
+The maximum entry answers a local coordinate question.  The Frobenius norm records total entrywise or singular-value energy.  An induced norm controls worst-case amplification for a chosen notion of vector size.  The spectral norm is the Euclidean Lipschitz constant.  The nuclear norm measures total singular mass and is sensitive to low-rank structure.  The smallest singular value measures the weakest direction and the distance to singularity.
+
+The practical habit should therefore be to complete the sentence:
+\[
+  \text{``This norm is being used to control \emph{what}?''}
+\]
+Without that clause, a numerical bound may be formally correct but conceptually irrelevant.  With it, norms become the language that connects geometry, perturbations, algorithms, and stability.

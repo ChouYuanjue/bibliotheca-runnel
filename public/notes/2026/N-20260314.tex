@@ -1,14 +1,170 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260314}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260314}
-\end{document}
+\notechapter{N-20260314}{A Problem-Solving Guide for Multivariable Limits and Local Geometry}
+
+\section{Purpose of this guide}
+
+This note is a compact problem-solving companion to the previous multivariable calculus notes.  It should not replace the definitions.  Its job is to say what to try first, what each method proves, and where each method fails.
+
+\section{Classifying points relative to a set}
+
+For a set \(G\subseteq\mathbb R^n\), classify a point \(P\) by inspecting small balls around it:
+\[
+\begin{array}{c|c}
+\text{classification} & \text{ball test}\\
+\hline
+\text{interior} & \exists r>0,\ B_r(P)\subseteq G\\
+\text{exterior} & \exists r>0,\ B_r(P)\cap G=\varnothing\\
+\text{boundary} & \forall r>0,\ B_r(P)\cap G\ne\varnothing
+\text{ and }B_r(P)\cap G^c\ne\varnothing
+\end{array}
+\]
+
+\begin{example}
+For
+\[
+  G=\{(x,y):0<x^2+y^2<1\},
+\]
+the origin is not in \(G\), but it is a boundary point.  Every ball around the origin contains points with \(0<x^2+y^2<1\), and also contains the origin itself, which lies outside \(G\).
+\end{example}
+
+\section{Limit templates}
+
+To prove a limit at the origin, try to convert the expression into polar form
+\[
+  x=r\cos\theta,\qquad y=r\sin\theta.
+\]
+If the expression becomes
+\[
+  r^\alpha g(\theta)
+\]
+where \(\alpha>0\) and \(g\) is bounded, then the limit is \(0\).
+
+\begin{example}
+For
+\[
+  f(x,y)=\frac{x^2y}{x^2+y^2},
+\]
+we have
+\[
+  f(r\cos\theta,r\sin\theta)
+  =r\cos^2\theta\sin\theta.
+\]
+Since \(|\cos^2\theta\sin\theta|\le1\), the limit is \(0\).
+\end{example}
+
+To disprove a limit, find paths giving different values.  The common path choices are:
+\[
+  y=0,\quad x=0,\quad y=mx,\quad y=x^2,\quad x=y^2.
+\]
+
+\begin{caution}
+Path testing can disprove a limit, but it usually cannot prove one.  Even checking every straight line is not enough, because a curved path may still detect different behavior.
+\end{caution}
+
+\section{Degree comparison for rational expressions}
+
+For rational expressions near the origin, compare the lowest total degrees of numerator and denominator only after checking whether the denominator is comparable to a power of \(r\).  The estimate
+\[
+  x^2+y^2=r^2
+\]
+is reliable.  The expression \(x^4+y^2\), however, is anisotropic: along \(y=x^2\), the two terms have the same size.
+
+\begin{example}
+The function
+\[
+  f(x,y)=\frac{x^2y}{x^4+y^2}
+\]
+looks as if the numerator has degree \(3\) and the denominator has degree \(2\), but the denominator changes scale depending on direction.  Along \(y=x^2\), the limit is \(1/2\).  Degree-counting alone fails.
+\end{example}
+
+\section{Differentiability checklist}
+
+For a scalar function \(f(x,y)\), use the following hierarchy:
+\[
+  C^1\Longrightarrow\text{differentiable}\Longrightarrow\text{continuous}.
+\]
+Partial derivatives alone do not imply continuity.  Directional derivatives in every direction alone do not imply differentiability.
+
+To prove differentiability at \(a\), the definition asks for
+\[
+  f(a+h)=f(a)+L(h)+o(\norm h).
+\]
+The candidate linear map is usually
+\[
+  L(h)=\nabla f(a)\cdot h.
+\]
+Then one must estimate the remainder.
+
+\section{Tangent and normal templates}
+
+For a graph \(z=f(x,y)\), the tangent plane at \((x_0,y_0,z_0)\) is
+\[
+  z-z_0=f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0).
+\]
+For an implicit surface \(F(x,y,z)=0\), the normal vector is \(\nabla F\), and the tangent plane is
+\[
+  \nabla F(P_0)\cdot(P-P_0)=0.
+\]
+For a space curve given by the intersection
+\[
+  F(x,y,z)=0,\qquad G(x,y,z)=0,
+\]
+a tangent direction is
+\[
+  \nabla F(P_0)\times\nabla G(P_0),
+\]
+provided the two normals are not parallel.
+
+\begin{example}
+The curve
+\[
+  x^2+y^2+z^2=1,\qquad z=x
+\]
+at a point \(P_0\) has tangent direction
+\[
+  \nabla(x^2+y^2+z^2-1)(P_0)
+  \times
+  \nabla(z-x)(P_0).
+\]
+This works because the curve lies on both surfaces, so its tangent vector must be perpendicular to both surface normals.
+\end{example}
+
+\section{Local extrema template}
+
+For an unconstrained interior extremum of a differentiable function, first solve
+\[
+  \nabla f=0.
+\]
+Then classify candidates using the Hessian when possible.  For two variables,
+\[
+  H=\begin{pmatrix}A&B\\B&C\end{pmatrix},
+  \qquad D=AC-B^2.
+\]
+At a critical point,
+\[
+\begin{array}{c|c}
+\text{condition} & \text{classification}\\
+\hline
+D>0,\ A>0 & \text{local minimum}\\
+D>0,\ A<0 & \text{local maximum}\\
+D<0 & \text{saddle}\\
+D=0 & \text{inconclusive}
+\end{array}
+\]
+
+For a constraint \(g(x,y)=0\), first try
+\[
+  \nabla f=\lambda\nabla g.
+\]
+Geometrically, the level curve of \(f\) is tangent to the constraint curve at a constrained extremum.
+
+\section{Common failure modes}
+
+\begin{enumerate}[(i)]
+  \item Checking axes proves almost nothing about a two-variable limit.
+  \item Checking all lines still may not prove a limit.
+  \item Existence of partial derivatives is not differentiability.
+  \item The Hessian test classifies only critical points, and it is inconclusive when \(D=0\).
+  \item Lagrange multipliers require checking regularity and comparing all candidate points, including boundary or endpoint cases when the constraint has them.
+\end{enumerate}
+
+The common idea is local replacement: balls replace vague closeness, radial estimates replace path guessing, and linear maps replace nonlinear functions to first order.

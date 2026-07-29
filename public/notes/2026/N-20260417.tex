@@ -1,14 +1,237 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260417}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260417}
-\end{document}
+\notechapter{N-20260417}{Green's Theorem, Conservative Fields, and the Planar Stokes Principle}
+
+\section{Green's theorem}
+
+Green's theorem relates circulation around a boundary to local rotation inside the region.
+
+\begin{theorem}[Green's theorem]
+Let \(D\subseteq\mathbb R^2\) be a positively oriented region with piecewise smooth simple closed boundary \(C=\partial D\).  If \(P\) and \(Q\) have continuous first partial derivatives on a neighborhood of \(D\), then
+\[
+  \oint_C P\,dx+Q\,dy
+  =\iint_D \left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)\,dA.
+\]
+\end{theorem}
+
+The left side is circulation along the boundary.  The right side is total scalar curl over the region.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth,height=0.74\textheight,keepaspectratio]{figures/notes-md/N-20260417/N-20260417-fig-01-green-simple-closed-curves.png}
+\caption{Simple closed curves and non-simple closed curves in the statement of Green's theorem.}
+\end{figure}
+
+\section{Proof idea: rectangles and cancellation}
+
+For a rectangle \([a,b]\times[c,d]\), the theorem follows from the fundamental theorem of calculus.  The \(Q\,dy\) part detects horizontal change in \(Q\), and the \(P\,dx\) part detects vertical change in \(P\) with the opposite sign.
+
+For a region subdivided into many rectangles, internal edges are traversed twice in opposite directions.  Their line integrals cancel.  Only the outer boundary remains.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth,height=0.74\textheight,keepaspectratio]{figures/notes-md/N-20260417/N-20260417-fig-03-green-vertical-simple-region-proof.png}
+\caption{For a vertically simple region, Green's theorem is proved by reducing to one-variable fundamental theorem computations.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth,height=0.74\textheight,keepaspectratio]{figures/notes-md/N-20260417/N-20260417-fig-04-green-subdivision-boundary-cancellation.png}
+\caption{Subdivision by auxiliary arcs: internal boundary contributions cancel, leaving only the outer boundary.}
+\end{figure}
+
+\section{Conservative fields and path independence}
+
+A vector field \(F=(P,Q)\) is \vocab{conservative} on a region \(U\) if there is a potential function \(\phi\) such that
+\[
+  \nabla\phi=F.
+\]
+Then
+\[
+  \int_C P\,dx+Q\,dy=\phi(B)-\phi(A)
+\]
+for every path \(C\) from \(A\) to \(B\).  Thus the integral depends only on endpoints.
+
+\begin{proposition}
+If \(F=\nabla\phi\), then \(P_y=Q_x\).
+\end{proposition}
+
+\begin{proof}
+If \(P=\phi_x\) and \(Q=\phi_y\), then under the usual continuity hypotheses,
+\[
+  P_y=\phi_{xy}=\phi_{yx}=Q_x.
+\]
+\end{proof}
+
+The converse requires a topological hypothesis.
+
+\begin{theorem}[Conservative-field test]
+If \(U\subseteq\mathbb R^2\) is simply connected and \(P_y=Q_x\) on \(U\), then \(F=(P,Q)\) is conservative on \(U\).
+\end{theorem}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth,height=0.74\textheight,keepaspectratio]{figures/notes-md/N-20260417/N-20260417-fig-02-green-simply-connected-regions.png}
+\caption{Simply connected and multiply connected plane regions.  The distinction matters for path independence and conservative fields.}
+\end{figure}
+
+\section{The punctured-plane warning}
+
+The standard example is
+\[
+  F(x,y)=\left(-\frac{y}{x^2+y^2},\frac{x}{x^2+y^2}\right)
+\]
+on \(\mathbb R^2\setminus\{0\}\).  A direct computation gives \(P_y=Q_x\) away from the origin, but around the unit circle \(r(t)=(\cos t,\sin t)\),
+\[
+  F(r(t))=(-\sin t,\cos t),\qquad r'(t)=(-\sin t,\cos t),
+\]
+so
+\[
+  \oint_{S^1}F\cdot dr=\int_0^{2\pi}1\,dt=2\pi.
+\]
+Therefore no global potential exists on the punctured plane.  The hole is detected by circulation.
+
+\section{Area by Green's theorem}
+
+Green's theorem can compute area.  Choose
+\[
+  P=-\frac{y}{2},\qquad Q=\frac{x}{2}.
+\]
+Then \(Q_x-P_y=1\), so
+\[
+  \operatorname{area}(D)=\iint_D1\,dA
+  =\frac{1}{2}\oint_{\partial D}x\,dy-y\,dx.
+\]
+
+\begin{example}
+For the unit circle \(x=\cos t\), \(y=\sin t\),
+\[
+  \frac{1}{2}\int_0^{2\pi}(x y'-y x')\,dt
+  =\frac{1}{2}\int_0^{2\pi}1\,dt=\pi.
+\]
+\end{example}
+
+\section{Differential forms notation}
+
+Let
+\[
+  \omega=P\,dx+Q\,dy.
+\]
+Then
+\[
+  d\omega=(Q_x-P_y)\,dx\wedge dy.
+\]
+Green's theorem becomes
+\[
+  \int_{\partial D}\omega=\int_D d\omega.
+\]
+This is Stokes' theorem in the plane.
+
+The algebraic slogan is: integrate a form over the boundary, or integrate its derivative over the interior.
+
+\section{Closed forms, exact forms, and topology}
+
+A one-form \(\omega\) is \vocab{closed} if \(d\omega=0\).  It is \vocab{exact} if \(\omega=d\phi\) for some function \(\phi\).  Exact forms are always closed, because \(d^2=0\).  The converse depends on the domain.
+
+On simply connected plane regions, closed one-forms are exact.  On the punctured plane, the form
+\[
+  \omega=\frac{-y\,dx+x\,dy}{x^2+y^2}
+\]
+is closed but not exact, because
+\[
+  \int_{S^1}\omega=2\pi.
+\]
+
+\section{Connection with de Rham cohomology}
+
+The first de Rham cohomology group is
+\[
+  H^1_{\mathrm{dR}}(M)
+  =\frac{\ker(d:\Omega^1(M)\to\Omega^2(M))}
+    {\operatorname{im}(d:\Omega^0(M)\to\Omega^1(M))}.
+\]
+It measures closed one-forms modulo exact one-forms.  In elementary vector calculus language, it measures the obstruction to finding potentials for curl-free fields.
+
+\section{Winding number hidden in the punctured-plane example}
+
+For the one-form
+\[
+  \omega=\frac{-y\,dx+x\,dy}{x^2+y^2},
+\]
+write \(x=r\cos\theta\), \(y=r\sin\theta\).  Then formally
+\[
+  \omega=d\theta.
+\]
+The word "formally" matters: \(\theta\) is not a globally single-valued function on \(\mathbb R^2\setminus\{0\}\).  Around a closed loop \(\gamma\),
+\[
+  \frac{1}{2\pi}\int_\gamma \omega
+\]
+is the winding number of \(\gamma\) about the origin.
+
+For the unit circle, the winding number is \(1\).  For a loop going twice around, it is \(2\).  For a loop not enclosing the origin, it is \(0\).  Thus the line integral is not merely detecting that a potential is missing; it measures how the curve winds around the hole.
+
+\section{From Green's theorem to residues}
+
+The same punctured-plane form is connected to complex analysis.  Since
+\[
+  \frac{dz}{z}=\frac{dx+i\,dy}{x+iy},
+\]
+one computes
+\[
+  \operatorname{Im}\frac{dz}{z}
+  =\frac{x\,dy-y\,dx}{x^2+y^2}=\omega.
+\]
+Thus
+\[
+  \int_{S^1}\omega=2\pi
+\]
+is the imaginary part of
+\[
+  \int_{S^1}\frac{dz}{z}=2\pi i.
+\]
+The residue theorem is a complex-analytic refinement of the same topological fact: a closed integral can detect a puncture and its winding number.
+
+\section{Cohomology as bookkeeping for failed potentials}
+
+The statement "curl-free implies conservative" is not universally true; it is true when the relevant cohomology vanishes.  In de Rham notation,
+\[
+  H^1_{\mathrm{dR}}(M)
+  =\frac{\text{closed one-forms}}{\text{exact one-forms}}.
+\]
+A nonzero class is represented by a closed form that is not the differential of any global function.
+
+For \(M=\mathbb R^2\setminus\{0\}\), the class of \(\omega\) above generates \(H^1_{\mathrm{dR}}(M)\cong\mathbb R\).  The integral over \(S^1\) is a period pairing:
+\[
+  ([\omega],[S^1])\longmapsto \int_{S^1}\omega.
+\]
+So the elementary warning about holes is really the first example of pairing cohomology with cycles.
+
+\section{Boundary cancellation and the algebra \texorpdfstring{$\partial^2=0$}{boundary squared is zero}}
+
+The rectangle-subdivision proof of Green's theorem says that every internal edge appears twice with opposite orientations.  Algebraically this is the principle
+\[
+  \partial^2=0:
+  \quad \text{the boundary of a boundary cancels.}
+\]
+De Rham theory has the dual identity
+\[
+  d^2=0.
+\]
+Stokes' theorem connects them:
+\[
+  \int_{\partial C}\omega=\int_C d\omega.
+\]
+If one applies this again, both sides become zero for structural reasons.  Thus Green's theorem is not an isolated vector-calculus trick; it is the two-dimensional visible face of a chain/cochain duality.
+
+\section{What Green's theorem checks in practice}
+
+Green's theorem converts a boundary integral into an area integral:
+\[
+  \oint_{\partial D} P\,dx+Q\,dy
+  =\iint_D \left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dA.
+\]
+In a computation this requires more than recognizing the formula.  The boundary must be positively oriented, the vector field must be defined on a region containing \(D\), and holes in the domain must be accounted for by extra boundary components with the correct orientation.
+
+The punctured-plane example explains why this check matters.  The form
+\[
+  \omega=\frac{-y\,dx+x\,dy}{x^2+y^2}
+\]
+is closed away from the origin, but its integral around \(S^1\) is nonzero, so it is not globally exact on \(\mathbb R^2\setminus\{0\}\).  Green's theorem, the identity \(d^2=0\), and the cancellation of internal boundaries are therefore three views of the same mechanism: local derivative data controls boundary circulation only after the topology of the region has been included.

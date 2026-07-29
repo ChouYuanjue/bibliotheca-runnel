@@ -1,14 +1,563 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221107}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221107}
-\end{document}
+\notechapter{N-20221107}{Trigonometric Limits, Derivatives, and Inverse Trigonometric Examples}
+
+\section{Radians are built into the derivative}
+
+The familiar formula
+\[
+  \frac{d}{dx}\sin x=\cos x
+\]
+is true only when the variable is measured in radians.  This is not a typographical convention.  A derivative compares a small change in function value with a small change in the input, and radian measure is the angle coordinate whose small increment agrees with arc length on the unit circle.
+
+To see what changes in degrees, write
+\[
+  \sin_{\deg}(x)=\sin\left(\frac{\pi x}{180}\right),
+\]
+where the sine on the right uses radians.  The chain rule gives
+\[
+  \frac{d}{dx}\sin_{\deg}(x)
+  =\frac{\pi}{180}
+   \cos\left(\frac{\pi x}{180}\right).
+\]
+The extra factor is the derivative of the unit conversion.  Radians are the unique constant multiple of degrees for which that factor becomes one.
+
+The analytical reason is the limit
+\[
+  \lim_{h\to0}\frac{\sin h}{h}=1.
+\]
+The rest of the trigonometric derivative table can be reconstructed from this limit, the addition formulas, and ordinary differentiation rules.
+
+\section{The circle squeeze proves the first basic limit}
+
+Let \(0<h<\pi/2\).  On the unit circle, compare the area of the inscribed triangle, the circular sector, and the tangent triangle.  Their areas are respectively
+\[
+  \frac12\sin h,
+  \qquad
+  \frac12h,
+  \qquad
+  \frac12\tan h.
+\]
+Therefore
+\[
+  \sin h<h<\tan h.
+\]
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2.15,>=Stealth]
+  \coordinate (O) at (0,0);
+  \coordinate (A) at (1,0);
+  \coordinate (B) at ({cos(38)},{sin(38)});
+  \coordinate (T) at (1,{tan(38)});
+  \draw[->] (-0.15,0)--(1.25,0);
+  \draw[->] (0,-0.15)--(0,1.15);
+  \draw[thick] (O) circle (1);
+  \draw[thick] (O)--(B)--(A)--cycle;
+  \draw[thick] (O)--(T)--(A);
+  \draw (0.28,0) arc[start angle=0,end angle=38,radius=0.28];
+  \node at (0.35,0.12) {$h$};
+  \fill (O) circle (0.7pt) node[below left] {$O$};
+  \fill (A) circle (0.7pt) node[below right] {$A$};
+  \fill (B) circle (0.7pt) node[above left] {$B$};
+  \fill (T) circle (0.7pt) node[above right] {$T$};
+\end{tikzpicture}
+\caption{The area comparison gives \(\sin h<h<\tan h\) for a positive acute angle measured in radians.}
+\end{figure}
+
+Since \(\sin h>0\), division gives
+\[
+  1<\frac{h}{\sin h}<\frac1{\cos h},
+\]
+or equivalently
+\[
+  \cos h<\frac{\sin h}{h}<1.
+\]
+As \(h\to0^+\), both outer terms tend to \(1\).  Hence
+\[
+  \lim_{h\to0^+}\frac{\sin h}{h}=1.
+\]
+The quotient is even because
+\[
+  \frac{\sin(-h)}{-h}=\frac{\sin h}{h},
+\]
+so the same limit holds from the left:
+\[
+  \boxed{\displaystyle
+  \lim_{h\to0}\frac{\sin h}{h}=1.}
+\]
+
+The conclusion depends on radian measure at the area-of-sector step.  In degrees, the sector area would be proportional to \(\pi h/180\), and the limit would be \(\pi/180\).
+
+\section{The second limit and the correct use of small-angle equivalence}
+
+The identity
+\[
+  1-\cos h=2\sin^2\frac h2
+\]
+gives
+\[
+  \frac{1-\cos h}{h}
+  =\frac h2
+   \left(
+     \frac{\sin(h/2)}{h/2}
+   \right)^2.
+\]
+The factor in parentheses tends to \(1\), while \(h/2\to0\).  Therefore
+\[
+  \boxed{\displaystyle
+  \lim_{h\to0}\frac{1-\cos h}{h}=0.}
+\]
+Dividing by one more factor of \(h\) gives
+\[
+  \frac{1-\cos h}{h^2}
+  =\frac12
+   \left(
+     \frac{\sin(h/2)}{h/2}
+   \right)^2,
+\]
+so
+\[
+  \boxed{\displaystyle
+  \lim_{h\to0}\frac{1-\cos h}{h^2}=\frac12.}
+\]
+
+These limits are often summarized as
+\[
+  \sin h\sim h,
+  \qquad
+  1-\cos h\sim\frac{h^2}{2}
+  \qquad(h\to0).
+\]
+The symbol \(f\sim g\) means \(f/g\to1\).  It can safely replace factors inside products and quotients when the surrounding expression respects the limit.  It cannot be substituted blindly inside a cancellation.
+
+For example,
+\[
+  \frac{\sin h-h}{h}
+\]
+cannot be evaluated by replacing \(\sin h\) with \(h\), because the leading terms cancel and the next-order behavior matters.  Small-angle equivalence records the first nonzero scale, not a full Taylor expansion.
+
+\section{Sine and cosine emerge from their addition laws}
+
+Using
+\[
+  \sin(x+h)=\sin x\cos h+\cos x\sin h,
+\]
+we obtain
+\[
+  \frac{\sin(x+h)-\sin x}{h}
+  =\sin x\frac{\cos h-1}{h}
+   +\cos x\frac{\sin h}{h}.
+\]
+The two basic limits give
+\[
+  \lim_{h\to0}\frac{\cos h-1}{h}=0,
+  \qquad
+  \lim_{h\to0}\frac{\sin h}{h}=1.
+\]
+Therefore
+\[
+  \boxed{(\sin x)'=\cos x.}
+\]
+
+Similarly,
+\[
+  \cos(x+h)=\cos x\cos h-\sin x\sin h,
+\]
+so
+\[
+  \frac{\cos(x+h)-\cos x}{h}
+  =\cos x\frac{\cos h-1}{h}
+   -\sin x\frac{\sin h}{h}.
+\]
+Hence
+\[
+  \boxed{(\cos x)'=-\sin x.}
+\]
+
+The derivation exhibits a tight dependency chain:
+\[
+  \text{radian geometry}
+  \Longrightarrow
+  \frac{\sin h}{h}\to1
+  \Longrightarrow
+  \frac{1-\cos h}{h}\to0
+  \Longrightarrow
+  \begin{cases}
+    (\sin x)'=\cos x,\\
+    (\cos x)'=-\sin x.
+  \end{cases}
+\]
+The addition formulas are also required.  A separate note compares their geometric, matrix, and analytic proofs; here they are part of the input to the differentiation argument.
+
+Differentiating once more gives the coupled differential equations
+\[
+  (\sin x)''=-\sin x,
+  \qquad
+  (\cos x)''=-\cos x.
+\]
+Thus sine and cosine are not merely periodic graphs.  They are the two normalized solutions of
+\[
+  y''+y=0
+\]
+with initial data
+\[
+  \cos0=1,
+  \quad
+  \cos'0=0,
+  \qquad
+  \sin0=0,
+  \quad
+  \sin'0=1.
+\]
+
+\section{The other four derivatives are generated, not memorized}
+
+Once sine and cosine are known, quotient and reciprocal rules produce the remaining functions.  Where \(\cos x\ne0\),
+\[
+  \tan x=\frac{\sin x}{\cos x},
+\]
+so
+\[
+  (\tan x)'
+  =\frac{\cos^2x+\sin^2x}{\cos^2x}
+  =\sec^2x.
+\]
+Where \(\sin x\ne0\),
+\[
+  (\cot x)'
+  =\left(\frac{\cos x}{\sin x}\right)'
+  =-\csc^2x.
+\]
+The reciprocal rules give
+\[
+  (\sec x)'
+  =\left(\frac1{\cos x}\right)'
+  =\sec x\tan x,
+\]
+\[
+  (\csc x)'
+  =\left(\frac1{\sin x}\right)'
+  =-\csc x\cot x.
+\]
+
+The domains belong to the formulas:
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYYY@{}}
+\toprule
+Function & Domain & Derivative & Excluded points\\
+\midrule
+\(\sin x\) & \(\mathbb R\) & \(\cos x\) & none\\
+\(\cos x\) & \(\mathbb R\) & \(-\sin x\) & none\\
+\(\tan x\) & \(\cos x\ne0\) & \(\sec^2x\) & \(\pi/2+k\pi\)\\
+\(\cot x\) & \(\sin x\ne0\) & \(-\csc^2x\) & \(k\pi\)\\
+\(\sec x\) & \(\cos x\ne0\) & \(\sec x\tan x\) & \(\pi/2+k\pi\)\\
+\(\csc x\) & \(\sin x\ne0\) & \(-\csc x\cot x\) & \(k\pi\)\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+A derivative formula does not repair a missing function value.  At a pole of tangent or secant, the function itself is undefined, so there is no ordinary real derivative to discuss.
+
+\section{Inverse functions require branches}
+
+A periodic function cannot have a global inverse on all of \(\mathbb R\).  Inverse trigonometric functions are obtained by restricting to intervals on which the original function is one-to-one:
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYYY@{}}
+\toprule
+Inverse & Domain & Principal-value range & Derivative domain\\
+\midrule
+\(\arcsin x\) & \([-1,1]\) & \([-\pi/2,\pi/2]\) & \((-1,1)\)\\
+\(\arccos x\) & \([-1,1]\) & \([0,\pi]\) & \((-1,1)\)\\
+\(\arctan x\) & \(\mathbb R\) & \((-\pi/2,\pi/2)\) & \(\mathbb R\)\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Let
+\[
+  y=\arcsin x.
+\]
+Then
+\[
+  x=\sin y,
+  \qquad
+  y\in[-\pi/2,\pi/2].
+\]
+For \(|x|<1\), the inverse function theorem applies because
+\[
+  \cos y\ne0.
+\]
+Differentiating gives
+\[
+  1=\cos y\,y'.
+\]
+On the chosen branch, \(\cos y\ge0\), and
+\[
+  \cos y=\sqrt{1-\sin^2y}=\sqrt{1-x^2}.
+\]
+Therefore
+\[
+  \boxed{
+  (\arcsin x)'=\frac1{\sqrt{1-x^2}}.}
+\]
+The positive square root is forced by the principal range.  Without the branch information, the sign would be ambiguous.
+
+For \(y=\arccos x\), the principal branch lies in \([0,\pi]\), where \(\sin y\ge0\).  Differentiating \(x=\cos y\) gives
+\[
+  \boxed{
+  (\arccos x)'=-\frac1{\sqrt{1-x^2}}.}
+\]
+For \(y=\arctan x\),
+\[
+  x=\tan y,
+  \qquad
+  y\in(-\pi/2,\pi/2),
+\]
+so
+\[
+  1=\sec^2y\,y'
+\]
+and
+\[
+  \boxed{
+  (\arctan x)'=\frac1{1+x^2}.}
+\]
+
+\section{Endpoint blow-up is a failure of local invertibility}
+
+At \(x=1\), the derivative formula for \(\arcsin x\) diverges.  This is not an algebraic accident.  The original sine curve has a horizontal tangent at \(y=\pi/2\):
+\[
+  \cos\frac\pi2=0.
+\]
+The inverse function theorem fails precisely when the derivative of the original map vanishes.
+
+The local shape can be quantified.  Put
+\[
+  y=\frac\pi2-t,
+  \qquad t\to0^+.
+\]
+Then
+\[
+  \sin y=\cos t
+  =1-\frac{t^2}{2}+o(t^2).
+\]
+If \(x=\sin y\), this gives
+\[
+  1-x\sim\frac{t^2}{2}.
+\]
+Therefore
+\[
+  \boxed{
+  \frac\pi2-\arcsin x
+  \sim\sqrt{2(1-x)}
+  \qquad(x\to1^-).}
+\]
+Differentiating the square-root model predicts the vertical tangent:
+\[
+  (\arcsin x)'
+  \sim\frac1{\sqrt{2(1-x)}}.
+\]
+The same phenomenon occurs near \(-1\).
+
+The square root in this asymptotic is also what appears when the inverse is continued to complex arguments.  Starting from
+\[
+  z=\sin w=\frac{e^{iw}-e^{-iw}}{2i},
+\]
+set \(u=e^{iw}\).  Multiplying by \(2iu\) gives the quadratic equation
+\[
+  u^2-2izu-1=0.
+\]
+Hence
+\[
+  u=iz\pm\sqrt{1-z^2},
+\]
+and solving for \(w\) gives a local inverse of the form
+\[
+  \boxed{
+  \arcsin z
+  =-i\operatorname{Log}\left(iz+\sqrt{1-z^2}\right).}
+\]
+Neither the logarithm nor the square root has a single-valued inverse on all of \(\mathbb C\setminus\{0\}\), so this formula requires compatible branch choices.  The points \(z=\pm1\) are special because the two roots of the quadratic merge there:
+\[
+  1-z^2=0.
+\]
+They are square-root branch points, and the real vertical tangents are their visible restriction to the interval \([-1,1]\).  Differentiating on any consistent local branch recovers
+\[
+  \frac{d}{dz}\arcsin z=\frac1{\sqrt{1-z^2}},
+\]
+with the sign determined by the chosen branch.  Thus the real endpoint blow-up, the inverse-function theorem, and the complex branch structure are three descriptions of the same local degeneracy.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.2,>=Stealth]
+  \draw[->] (-1.25,0)--(1.35,0) node[right] {$x$};
+  \draw[->] (0,-1.9)--(0,1.9) node[above] {$y$};
+  \draw[domain=-1:1,samples=160,thick]
+    plot (\x,{asin(\x)/90*1.55});
+  \draw[dashed] (1,-1.7)--(1,1.7);
+  \draw[dashed] (-1,-1.7)--(-1,1.7);
+  \node[right] at (1,1.55) {$\pi/2$};
+  \node[left] at (-1,-1.55) {$-\pi/2$};
+  \node at (0.55,-1.35) {$y=\arcsin x$};
+\end{tikzpicture}
+\caption{The principal inverse has vertical tangents at \(x=\pm1\), where the derivative of sine on the corresponding branch vanishes.}
+\end{figure}
+
+\section{Three examples that use different ideas}
+
+First consider the composite expression
+\[
+  f(x)=\arcsin(2x-x^2).
+\]
+Its real domain is determined before differentiation:
+\[
+  -1\le2x-x^2\le1.
+\]
+Since
+\[
+  2x-x^2=1-(x-1)^2\le1,
+\]
+the lower inequality gives
+\[
+  (x-1)^2\le2.
+\]
+Thus
+\[
+  x\in[1-\sqrt2,1+\sqrt2].
+\]
+At interior points where \(|2x-x^2|<1\), the chain rule gives
+\[
+  f'(x)
+  =\frac{2-2x}{\sqrt{1-(2x-x^2)^2}}.
+\]
+The apparent zero-over-zero at \(x=1\) should be simplified from the original function or treated by a local limit; blindly substituting into the unsimplified derivative formula hides the cusp-like branch behavior.
+
+For an implicit example, let
+\[
+  \sin(x+y)=x.
+\]
+Differentiating along a differentiable solution curve gives
+\[
+  \cos(x+y)(1+y')=1.
+\]
+Where \(\cos(x+y)\ne0\),
+\[
+  y'=\sec(x+y)-1.
+\]
+The excluded points are exactly where the implicit function theorem cannot solve locally for \(y\) as a function of \(x\).
+
+For a parametric example, take
+\[
+  x(t)=\cos^3t,
+  \qquad
+  y(t)=\sin^3t.
+\]
+Where \(dx/dt\ne0\),
+\[
+  \frac{dy}{dx}
+  =\frac{3\sin^2t\cos t}{-3\cos^2t\sin t}
+  =-\tan t.
+\]
+At \(t=0\), both numerator and denominator of the ratio vanish, so the simplified expression must be interpreted by a limit or by local expansion.  Parametric differentiation is not permission to divide by a zero velocity component.
+
+A final warning concerns units.  If
+\[
+  y=\sin(30x^\circ),
+\]
+then in radian notation
+\[
+  y=\sin\left(\frac{\pi x}{6}\right),
+\]
+so
+\[
+  y'=\frac\pi6\cos\left(\frac{\pi x}{6}\right).
+\]
+Writing \(30\cos(30x)\) mixes degree notation with the radian derivative rule and is wrong.
+
+\section{The circle generator independently recovers the derivative system}
+
+The elementary argument above began with circle geometry and the limit
+\[
+  \frac{\sin h}{h}\longrightarrow1.
+\]
+There is a second route once matrix exponentials and linear differential equations have been developed independently.  Let
+\[
+  J=
+  \begin{pmatrix}
+    0&-1\\
+    1&0
+  \end{pmatrix}.
+\]
+The matrix \(J\) performs a positive quarter-turn and satisfies
+\[
+  J^2=-I.
+\]
+Separating even and odd powers in the exponential series gives
+\[
+\begin{aligned}
+  e^{xJ}
+  &=I+xJ+\frac{x^2J^2}{2!}+\frac{x^3J^3}{3!}+\cdots\\
+  &=I\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}-\cdots\right)
+   +J\left(x-\frac{x^3}{3!}+\frac{x^5}{5!}-\cdots\right)\\
+  &=I\cos x+J\sin x.
+\end{aligned}
+\]
+Therefore
+\[
+  R(x)=e^{xJ}
+  =
+  \begin{pmatrix}
+    \cos x&-\sin x\\
+    \sin x&\cos x
+  \end{pmatrix}.
+\]
+
+Because all scalar multiples of \(J\) commute,
+\[
+  R(x+y)=e^{(x+y)J}=e^{xJ}e^{yJ}=R(x)R(y).
+\]
+Thus \(R:\mathbb R\to SO(2)\) is a one-parameter group.  Differentiating the exponential series term by term gives
+\[
+  R'(x)=JR(x)=R(x)J.
+\]
+If the first column is written
+\[
+  u(x)=
+  \begin{pmatrix}c(x)\\s(x)\end{pmatrix},
+\]
+then
+\[
+  u'(x)=Ju(x)
+\]
+means
+\[
+  c'(x)=-s(x),
+  \qquad
+  s'(x)=c(x),
+\]
+with initial condition
+\[
+  c(0)=1,
+  \qquad
+  s(0)=0.
+\]
+Uniqueness for the linear system identifies \(c\) and \(s\) with cosine and sine.  The derivative formulas are therefore the infinitesimal form of the rotation-group law.
+
+This route also explains the word \emph{generator}.  The tangent vector to the curve \(R(x)\) at the identity is
+\[
+  R'(0)=J.
+\]
+Every later rotation is obtained by transporting the same infinitesimal turning rule along the group:
+\[
+  R'(x)=JR(x).
+\]
+The matrix \(J\) is the Lie-algebra element that generates the entire one-parameter subgroup.
+
+Logically, this is an independent foundation only when the matrix exponential, its differentiation rule, and uniqueness of the linear ODE have been proved without using the trigonometric derivative formulas.  Otherwise it remains a valuable consistency check rather than a new proof.  The two routes meet at the same system,
+\[
+  y''+y=0,
+\]
+but arrive there from different starting data: one from the local metric geometry of the circle, the other from exponentiating an infinitesimal rotation.

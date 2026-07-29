@@ -1,14 +1,302 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20210804}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20210804}
-\end{document}
+\notechapter{N-20210804}{Boolean Algebras, Boolean Rings, and the First Hint of Stone Duality}
+
+\section{Boolean algebra beyond computing}
+
+Boolean algebra is often first encountered through computer science, which can make it look like a computational convention rather than a mathematical structure.  The broader theory immediately pushes beyond that impression.
+
+Boolean algebra belongs simultaneously to logic, set theory, topology, measure theory, ring theory, and categorical duality.  Stone duality supplies the topological direction, while Heyting algebras show how the story changes when classical logic is weakened; the elementary algebraic models come first.
+
+\begin{remark}
+The planned route is deliberately elementary: first collect the algebraic vocabulary, then introduce Boolean rings and Boolean algebras, and only later move toward Stone spaces, Stone duality, and perhaps Heyting algebras.  The point is not to pretend that Boolean algebra is difficult at the entry level, but to show that it has more mathematical depth than its first appearance suggests.
+\end{remark}
+
+\section{A first definition via Heyting algebras}
+
+One compact definition is the following.
+
+\begin{definition}
+A Boolean algebra is a Heyting algebra satisfying the law of excluded middle.  Equivalently, for every element \(x\),
+\[
+  \neg\neg x=x,
+\]
+or equivalently
+\[
+  x\vee\neg x=\top.
+\]
+\end{definition}
+
+\begin{caution}
+This definition is elegant but not beginner-friendly.  If one has not learned Heyting algebras, it hides the concrete content.  The concrete content is therefore developed through groups, rings, lattices, subsets, and characteristic functions.
+\end{caution}
+
+\section{A small amount of algebra}
+
+Let \(S\) be a nonempty set.  A binary operation on \(S\) is a map
+\[
+  S\times S\to S.
+\]
+Depending on context we may denote the value on \((a,b)\) by \(ab\), \(a+b\), \(a-b\), \(a*b\), or \(a\circ b\).
+
+\begin{definition}
+A semigroup is a nonempty set \(G\) with an associative binary operation:
+\[
+  a(bc)=(ab)c.
+\]
+If there is an element \(e\in G\) such that \(ae=ea=a\), and every element \(a\in G\) has an inverse \(a^{-1}\) with
+\[
+  aa^{-1}=a^{-1}a=e,
+\]
+then \(G\) is a group.  If \(ab=ba\) for all \(a,b\in G\), then \(G\) is an abelian group.
+\end{definition}
+
+The full theory of group homomorphisms, kernels, images, cosets, normal subgroups, and quotient groups is not needed here, but one basic model is useful: a quotient group \(G/N\) consists of cosets of a normal subgroup \(N\triangleleft G\), with multiplication
+\[
+  (aN)(bN)=abN.
+\]
+
+\begin{definition}
+A ring \(R\) is a set with addition and multiplication such that \((R,+)\) is an abelian group, multiplication is associative, and multiplication distributes over addition:
+\[
+  a(b+c)=ab+ac,
+  \qquad
+  (b+c)a=ba+ca.
+\]
+If multiplication is commutative, the ring is commutative.  If there is an element \(1\in R\) with \(1a=a1=a\), the ring has a unit.
+\end{definition}
+
+\begin{definition}
+A lattice is a partially ordered set in which finite meets and finite joins exist.  We write
+\[
+  p\wedge q,\qquad p\vee q
+\]
+for meet and join.
+\end{definition}
+
+\begin{remark}
+This algebra review is intentionally minimal.  The important point is that Boolean algebra can be approached from two sides: as a special ring and as a special lattice.
+\end{remark}
+
+\section{Boolean rings}
+
+The smallest nontrivial ring with unit is
+\[
+  \mathbb F_2=\{0,1\},
+\]
+with addition and multiplication modulo \(2\):
+\[
+\begin{array}{c|cc}
++&0&1\\\hline
+0&0&1\\
+1&1&0
+\end{array}
+\qquad
+\begin{array}{c|cc}
+\cdot&0&1\\\hline
+0&0&0\\
+1&0&1
+\end{array}
+\]
+Every element satisfies \(p^2=p\).  This condition is the key.
+
+\begin{definition}
+A Boolean ring is a ring \(R\) in which every element is idempotent:
+\[
+  x^2=x
+  \qquad(x\in R).
+\]
+Some definitions also require a unit, but the idempotence condition is the essential feature.
+\end{definition}
+
+\begin{proposition}
+Every Boolean ring satisfies \(x+x=0\) for every \(x\in R\), and every Boolean ring is commutative.
+\end{proposition}
+
+\begin{proof}
+Since \(x+x\) is idempotent,
+\[
+  x+x=(x+x)^2=x^2+xx+xx+x^2=x+x+2x^2.
+\]
+Thus \(2x^2=0\), and since \(x^2=x\), we get \(2x=0\).
+
+Next,
+\[
+  x+y=(x+y)^2=x^2+xy+yx+y^2=x+y+xy+yx.
+\]
+So \(xy+yx=0\).  But every element is its own additive inverse, hence \(xy=yx\).
+\end{proof}
+
+\section{Examples of Boolean rings}
+
+The two-dimensional example is
+\[
+  \mathbb F_2^2=\{(0,0),(0,1),(1,0),(1,1)\},
+\]
+with coordinatewise operations:
+\[
+  (p_0,p_1)+(q_0,q_1)=(p_0+q_0,p_1+q_1),
+\]
+\[
+  (p_0,p_1)(q_0,q_1)=(p_0q_0,p_1q_1).
+\]
+The zero and unit are
+\[
+  (0,0),\qquad (1,1).
+\]
+The same construction gives \(\mathbb F_2^n\).
+
+Another standard example is a ring of sets.
+
+\begin{example}
+Let \(\mathcal R\) be a class of sets such that if \(E,F\in\mathcal R\), then
+\[
+  E\cup F\in\mathcal R,\qquad E-F\in\mathcal R.
+\]
+Define
+\[
+  E+F=(E\setminus F)\cup(F\setminus E),
+\]
+that is, symmetric difference, and define
+\[
+  EF=E\cap F.
+\]
+Then the set-theoretic laws match the Boolean ring laws.
+\end{example}
+
+\begin{remark}
+This is also why Boolean algebra naturally appears in measure theory.  Collections of measurable sets, especially modulo null sets, behave like Boolean algebras or Boolean rings.
+\end{remark}
+
+\section{Boolean algebras directly}
+
+Let \(X\) be a set.  The power set \(\mathcal P(X)\) has union, intersection, and complement:
+\[
+  P\cup Q,\qquad P\cap Q,\qquad P^c=X\setminus P.
+\]
+This is the concrete model for Boolean algebra.
+
+\begin{definition}
+A Boolean algebra is a nonempty set \(A\) equipped with two binary operations \(\vee,\wedge\), a unary operation \(('\)), and elements \(0,1\), satisfying the identities modeled on union, intersection, and complement.  In particular,
+\[
+  p\wedge0=0,\quad p\wedge1=p,\quad p\wedge p'=0,\quad p\wedge p=p,
+\]
+\[
+  p\vee1=1,\quad p\vee0=p,\quad p\vee p'=1,\quad p\vee p=p,
+\]
+\[
+  (p')'=p,\qquad
+  (p\wedge q)'=p'\vee q',\qquad
+  (p\vee q)'=p'\wedge q',
+\]
+together with commutativity, associativity, and distributivity.
+\end{definition}
+
+\begin{caution}
+Boolean algebras and Boolean rings with unit are two equivalent presentations of the same structure.
+\end{caution}
+
+\section[Characteristic functions and the meaning of 2\textasciicircum{}X]{Characteristic functions and the meaning of \(2^X\)}
+
+Every subset \(P\subseteq X\) corresponds to a characteristic function
+\[
+  \chi_P:X\to\mathbb F_2,\qquad
+  \chi_P(x)=
+  \begin{cases}
+    1,&x\in P,\\
+    0,&x\notin P.
+  \end{cases}
+\]
+This gives a natural bijection
+\[
+  \mathcal P(X)\cong 2^X.
+\]
+Thus writing the power set as \(2^X\) is not merely a notational habit: a subset is the same thing as a \(0/1\)-valued function.
+
+Under this identification, pointwise operations on functions become set operations:
+\[
+  P+Q=(P\cap Q^c)\cup(P^c\cap Q),
+\]
+which is symmetric difference, and
+\[
+  PQ=P\cap Q.
+\]
+The zero and unit are
+\[
+  0=\varnothing,\qquad 1=X.
+\]
+
+\section{Moving between the two structures}
+
+From a Boolean ring \(R\) with unit, define
+\[
+  p\wedge q=pq,\qquad
+  p\vee q=p+q+pq,\qquad
+  p'=p+1.
+\]
+These operations make \(R\) a Boolean algebra.
+
+Conversely, from a Boolean algebra \(A\), define
+\[
+  p+q=(p\wedge q')\vee(p'\wedge q),\qquad pq=p\wedge q.
+\]
+This makes \(A\) a Boolean ring.
+
+\begin{remark}
+The formulas are not magic.  In the subset model, addition is exactly symmetric difference, multiplication is intersection, and complement is symmetric difference with the whole universe.
+\end{remark}
+
+\section{The logical shadow}
+
+The operations \(\wedge,\vee,{}'\) correspond to ``and'', ``or'', and ``not''.  The elements \(0\) and \(1\) correspond to false and true.  This is why Boolean algebra is the algebra of classical propositional logic.
+
+\begin{remark}
+This also explains why Heyting algebras are the natural next object: Boolean algebras model classical logic, while Heyting algebras model intuitionistic logic.  Stone duality then brings topology into the same picture.
+\end{remark}
+
+\section{Filters, ultrafilters, and Stone spaces}
+
+The next natural step is to introduce filters, ultrafilters, Stone spaces, and the Stone representation theorem.  This does not replace the dictionary between Boolean rings, Boolean algebras, sets, and logic; it explains why that dictionary has a topological shadow.
+
+Let \(B\) be a Boolean algebra.  A filter \(F\subseteq B\) is a collection of propositions regarded as ``large'' or ``accepted''.  It satisfies three basic rules:
+\[
+  1\in F,\qquad 0\notin F,
+\]
+if \(a,b\in F\), then \(a\wedge b\in F\), and if \(a\in F\) and \(a\le b\), then \(b\in F\).  Thus a filter is closed under strengthening by consequence and under finite conjunction.
+
+An ultrafilter is a maximal proper filter.  Equivalently, for every \(a\in B\), exactly one of \(a\) and \(a'\) belongs to the ultrafilter.  This makes an ultrafilter look like a complete truth assignment: every Boolean proposition is judged either true or false, compatibly with the Boolean operations.
+
+The Stone space of \(B\), denoted \(S(B)\), is the set of all ultrafilters on \(B\).  For each \(a\in B\), define
+\[
+  U_a=\{\mathfrak u\in S(B):a\in\mathfrak u\}.
+\]
+These subsets form a basis of clopen sets.  The Boolean operations are reflected topologically by
+\[
+  U_{a\wedge b}=U_a\cap U_b,
+  \qquad
+  U_{a\vee b}=U_a\cup U_b,
+  \qquad
+  U_{a'}=S(B)\setminus U_a.
+\]
+So the algebra \(B\) is represented inside the topology of \(S(B)\) as the Boolean algebra of clopen sets.
+
+Stone's representation theorem says, in one common form, that every Boolean algebra is isomorphic to the Boolean algebra of clopen subsets of its Stone space.  The finite example is easy to remember: if \(B=\mathcal P(X)\), then ultrafilters are just choices of points of \(X\), and the Stone space recovers \(X\) with the discrete topology.  For infinite Boolean algebras, non-principal ultrafilters appear, and the resulting Stone space is compact, Hausdorff, and totally disconnected.
+
+
+\section{Boolean rings from Boolean algebras}
+
+Given a Boolean algebra, define addition by symmetric difference
+\[
+  A+B=(A\setminus B)\cup(B\setminus A)
+\]
+and multiplication by intersection
+\[
+  AB=A\cap B.
+\]
+Then every element satisfies \(A^2=A\), so the resulting ring is Boolean.  Conversely, a Boolean ring gives a Boolean algebra by defining meet as multiplication and join by
+\[
+  a\vee b=a+b+ab.
+\]
+This equivalence explains why logic, sets, and algebra keep producing the same identities.
+
+\section{Stone duality as a first hint}
+
+Stone duality says that Boolean algebras correspond to certain topological spaces, namely Stone spaces.  The rough idea is that algebraic operations encode clopen subsets of a space.  Thus Boolean logic can be represented geometrically.  This is one of the earliest examples of algebra and topology reflecting each other.

@@ -1,14 +1,233 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221218}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221218}
-\end{document}
+\notechapter{N-20221218}{Basic Topology I: Metric Spaces, Boundedness, Norms, Open Sets, and Completeness}
+
+\section{Why metrics come first}
+
+Metric spaces are a natural entrance to topology because they preserve the intuition of analysis before arbitrary open sets are introduced.  In real analysis, convergence means
+\[
+  x_n\to x
+  \quad\Longleftrightarrow\quad
+  (\forall \varepsilon>0)(\exists N)(\forall n>N)\ |x_n-x|<\varepsilon.
+\]
+The first abstraction is to replace $|x_n-x|$ by a general distance $d(x_n,x)$.  Thus a sequence in a metric space converges when
+\[
+  (\forall \varepsilon>0)(\exists N)(\forall n>N)\ d(x_n,x)<\varepsilon.
+\]
+The hidden question is: which parts of analysis really require a numerical distance, and which only require a notion of neighborhood?  Metric spaces are the intermediate language between analysis and topology.
+
+\section{Boundedness: diameter and radius}
+
+A metric space $M$ is bounded if there is a constant $D$ such that
+\[
+  d(p,q)\le D\qquad \text{for all }p,q\in M.
+\]
+One can think of $D$ as a diameter bound.  The note also gives an equivalent radius formulation: fixing a point $p$, if there is $R$ such that
+\[
+  d(p,q)\le R\qquad \text{for all }q\in M,
+\]
+then $M$ is bounded.  Indeed, for any $q_1,q_2\in M$,
+\[
+  d(q_1,q_2)\le d(q_1,p)+d(p,q_2)\le 2R.
+\]
+Conversely, a diameter bound immediately gives a radius bound from any chosen point.
+
+The examples are deliberately chosen to break naive intuition: $[0,1]$ is bounded, $\mathbb R^n$ is not, an infinite set with the discrete metric is bounded, but $\mathbb N$ with the usual metric is not.  Thus boundedness belongs to a metric, not to a bare set.
+
+\section{Metric spaces}
+
+A metric space is a pair $(X,d)$ where $d:X\times X\to \mathbb R$ satisfies:
+\begin{enumerate}[(i)]
+  \item $d(x,y)\ge0$;
+  \item $d(x,y)=0$ iff $x=y$;
+  \item $d(x,y)=d(y,x)$;
+  \item $d(x,z)\le d(x,y)+d(y,z)$.
+\end{enumerate}
+A subset $Y\subseteq X$ inherits the subspace metric
+\[
+  d_Y(a,b)=d_X(a,b).
+\]
+This is the metric ancestor of subspace topology.
+
+\section{Sequences and continuity}
+
+A sequence $(x_n)$ converges to $x$ if every small ball around $x$ eventually contains all $x_n$.  In $\mathbb R^k$ with the Euclidean metric, convergence is coordinatewise:
+\[
+  x_n=(x_n^1,\ldots,x_n^k)\to x=(x^1,\ldots,x^k)
+\]
+iff $x_n^i\to x^i$ for each $i$.  One direction follows from $|x_n^i-x^i|\le \|x_n-x\|_2$; the other follows by summing the small coordinate errors.
+
+A map $f:X\to Y$ between metric spaces is continuous at $x_0$ if
+\[
+  (\forall \varepsilon>0)(\exists \delta>0)\quad
+  d_X(x,x_0)<\delta \Rightarrow d_Y(f(x),f(x_0))<\varepsilon.
+\]
+In metric spaces, continuity can also be detected by sequences:
+\[
+  x_n\to x_0 \Rightarrow f(x_n)\to f(x_0).
+\]
+The later general topology notes warn that sequences no longer detect everything in arbitrary topological spaces.
+
+\section{Standard metrics}
+
+On $\mathbb R^n$ the Euclidean, taxicab, and max metrics are
+\[
+  d_2(x,y)=\left(\sum_i |x_i-y_i|^2\right)^{1/2},
+\]
+\[
+  d_1(x,y)=\sum_i |x_i-y_i|,
+\]
+and
+\[
+  d_\infty(x,y)=\max_i |x_i-y_i|.
+\]
+Their balls have different shapes: round disks, diamonds, and squares.  Nevertheless they generate the same usual topology on $\mathbb R^n$.  This is an early hint that topology remembers neighborhoods but forgets exact metric geometry.
+
+The discrete metric on a set $X$ is
+\[
+  d(x,y)=\begin{cases}
+  0,&x=y,\\
+  1,&x\ne y.
+  \end{cases}
+\]
+Then $B_{1/2}(x)=\{x\}$.  Every subset is open and closed, and a sequence converges iff it is eventually constant.
+
+\section{Norms and inner products}
+
+A norm on a vector space $V$ satisfies positivity, homogeneity, and the triangle inequality:
+\[
+  \|v+w\|\le \|v\|+\|w\|.
+\]
+Every norm gives a metric by
+\[
+  d(v,w)=\|v-w\|.
+\]
+The $p$-norms are
+\[
+  \|x\|_p=\left(\sum_i |x_i|^p\right)^{1/p},
+\]
+and $\|x\|_\infty=\max_i |x_i|$.
+
+An inner product gives a norm by
+\[
+  \|v\|=\sqrt{\langle v,v\rangle}.
+\]
+The triangle inequality for this norm follows from Cauchy--Schwarz.  So Euclidean metric geometry, linear algebra, and inequalities are already intertwined.
+
+\section{Open and closed balls}
+
+For $x\in X$ and $r>0$,
+\[
+  B_r(x)=\{y:d(x,y)<r\},\qquad
+  \overline B_r(x)=\{y:d(x,y)\le r\}.
+\]
+Open balls are open.  If $y\in B_r(x)$, choose
+\[
+  \delta=r-d(x,y)>0.
+\]
+Then $B_\delta(y)\subseteq B_r(x)$ by the triangle inequality.  The proof says: every point inside a ball has some remaining margin before hitting the boundary.
+
+\section{Open sets, closed sets, and limit points}
+
+A set $U\subseteq X$ is open if every point $x\in U$ has some ball $B_r(x)$ contained in $U$.  A set is closed if its complement is open.  In metric spaces, a set $C$ is closed iff it contains the limits of all convergent sequences from $C$.
+
+A point $x$ is a limit point of $A$ if every ball around $x$ meets $A$ in a point other than $x$.  The closure satisfies
+\[
+  x\in \overline A
+  \quad\Longleftrightarrow\quad
+  (\forall r>0)\ B_r(x)\cap A\ne\varnothing.
+\]
+The boundary is
+\[
+  \partial A=\overline A\cap \overline{X\setminus A}.
+\]
+Examples matter: every real number is a limit point of $\mathbb Q$, and also of the irrational numbers; in the discrete metric, points are isolated by small balls.
+
+\section{Cauchy sequences and completeness}
+
+A sequence is Cauchy if
+\[
+  (\forall \varepsilon>0)(\exists N)(\forall m,n>N)\ d(x_m,x_n)<\varepsilon.
+\]
+A metric space is complete if every Cauchy sequence converges in the space.  The standard contrast is
+\[
+  \mathbb R \text{ is complete},\qquad \mathbb Q \text{ is not complete}.
+\]
+A rational sequence converging to $\sqrt2$ is Cauchy in $\mathbb Q$, but it has no rational limit.
+
+Convergence names a destination; Cauchy only says the sequence internally stabilizes.  Completeness says internal stabilization is enough to guarantee a destination inside the space.
+
+\section{Total boundedness and compactness}
+
+The note also points toward total boundedness and compactness.  A metric space is totally bounded if for every $\varepsilon>0$, finitely many $\varepsilon$-balls cover it.  Total boundedness is stronger than boundedness: an infinite discrete metric space is bounded, but for $\varepsilon<1$ it cannot be covered by finitely many $\varepsilon$-balls.
+
+In $\mathbb R^n$, compactness is equivalent to closed and bounded, but that is the Heine--Borel theorem, not the definition in arbitrary metric spaces.  A better metric-space memory is:
+\[
+  \text{compact} \Rightarrow \text{complete and totally bounded}.
+\]
+Conversely, in metric spaces, complete plus totally bounded implies compact.
+
+\section{Beyond the first calculation}
+
+This note stages the transition from analysis to topology.  Metrics let us talk about boundedness, convergence, continuity, balls, closed sets, limit points, Cauchy sequences, and completeness.  But later topology keeps only what can be expressed through open sets.  Boundedness and completeness will fail to be topological invariants; continuity and connectedness will survive.
+
+\section{Equivalent metrics and what topology forgets}
+
+On \(\mathbb R^n\), the usual norms produce different numerical distances but the same open sets.  For instance,
+\[
+  \norm{x}_\infty \le \norm{x}_2 \le \sqrt n\norm{x}_\infty.
+\]
+Therefore a ball for one norm contains a smaller ball for the other norm, and the two norms generate the same topology.
+
+This inequality is the concrete mechanism behind the slogan "topology forgets exact metric geometry."  A square ball and a round ball look different, but each can be squeezed inside the other after changing radius.  Thus convergence and continuity agree, while lengths, angles, and diameters do not.
+
+\begin{remark}
+The finite-dimensional hypothesis matters.  In infinite-dimensional function spaces, norms need not be equivalent.  On \(C[0,1]\), the sup norm and the \(L^1\)-norm lead to very different convergence: narrow spikes can have small \(L^1\)-norm but large sup norm.
+\end{remark}
+
+\section{Completion as adding ideal limit points}
+
+The completion of a metric space is not just a larger space containing more points.  It is a controlled way to turn every Cauchy sequence into a convergent sequence.  The construction by Cauchy sequences makes this precise:
+\[
+  \widehat X=\{\text{Cauchy sequences in }X\}/\sim,\qquad
+  (x_n)\sim(y_n)\iff d(x_n,y_n)\to0.
+\]
+The distance between two completed points is
+\[
+  \widehat d([(x_n)],[(y_n)])=\lim_{n\to\infty}d(x_n,y_n).
+\]
+This is well-defined because the two sequences are Cauchy.
+
+For \(\mathbb Q\), a Cauchy sequence of rationals approximating \(\sqrt2\) becomes a genuine point in the completion.  The point is not a preferred decimal expansion; it is the whole equivalence class of rational approximations that close in on the same missing limit.
+
+\section{Uniform structure hidden inside metric topology}
+
+Continuity only cares about open sets.  Cauchy sequences care about more: they need a way to compare two moving points \(x_m\) and \(x_n\).  This information is called a uniform structure.  Two metrics may define the same topology but different Cauchy behavior.
+
+The homeomorphism
+\[
+  (0,1)\to \mathbb R,\qquad x\mapsto \tan \pi(x-1/2)
+\]
+shows the issue.  Topologically the spaces are the same.  But the Euclidean metric on \((0,1)\) sees sequences approaching \(1\) as Cauchy without a limit inside \((0,1)\), while their images in \(\mathbb R\) go to infinity and are not Cauchy.  Thus completeness is not topological; it is uniform/metric.
+
+\section{Compactness through total boundedness}
+
+In metric spaces,
+\[
+  \text{compact}\quad\Longleftrightarrow\quad \text{complete and totally bounded}.
+\]
+This statement is more portable than Heine--Borel.  The two hypotheses do different jobs.  Total boundedness prevents points from spreading out into infinitely many separated regions; completeness prevents Cauchy subsequences from escaping the space.
+
+The contrast with boundedness is useful.  An infinite set with the discrete metric \(d(x,y)=1\) is bounded, because all distances are at most \(1\).  But it is not totally bounded: for \(\varepsilon<1\), every \(\varepsilon\)-ball contains just one point, so no finite family can cover the space.
+
+\section{Baire category as a completeness phenomenon}
+
+Completeness has consequences beyond sequences.  The Baire category theorem says that a complete metric space cannot be written as a countable union of nowhere dense closed sets.  In practice, this means complete spaces are too large to be exhausted by thin pieces.
+
+This theorem explains why complete function spaces are powerful.  Many existence theorems in analysis prove that a desired object lies in a countable intersection of dense open sets.  Completeness then guarantees that the intersection is nonempty and large.  Thus the elementary Cauchy condition eventually becomes a tool for proving generic existence.
+
+\section{Metric spaces through completion and category}
+
+Metric topology is a bridge.  It keeps enough numerical structure to discuss boundedness, Cauchy sequences, total boundedness, and completeness, while already pointing toward open-set topology through balls, neighborhoods, closure, and continuity.  The advanced lesson is to separate three layers:
+\[
+  \text{topological}\quad\subsetneq\quad \text{uniform/metric}\quad\subsetneq\quad \text{geometric}.
+\]
+Continuity lives in the first layer, completeness in the second, and lengths/angles in the third.

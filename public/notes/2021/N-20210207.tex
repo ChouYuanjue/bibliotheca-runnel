@@ -1,14 +1,260 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20210207}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20210207}
-\end{document}
+\notechapter{N-20210207}{Choice, Well-Ordering, and the Arithmetic of Cardinal Size}
+
+\section{Choice enters the story}
+
+Choice enters when a construction requires selecting one element from each set in a family.  The product formulation states this directly.
+
+\begin{axiom}[Axiom of Choice]
+The product of a family of nonempty sets indexed by a nonempty set is nonempty.
+\end{axiom}
+
+\begin{remark}
+Equivalently, if \(S\) is a set, then there is a choice function defined on the collection of all nonempty subsets of \(S\):
+\[
+  f(A)\in A
+\]
+for every nonempty \(A\subseteq S\).  This is an equivalent choice-function formulation.
+\end{remark}
+
+\section{Partially ordered sets}
+
+\begin{definition}
+A \vocab{partially ordered set} is a nonempty set \(A\) together with a relation \(\le\) which is reflexive, transitive, and antisymmetric.  Antisymmetry means that
+\[
+  a\le b\text{ and }b\le a\quad\Longrightarrow\quad a=b.
+\]
+Two elements \(a,b\in A\) are \vocab{comparable} if either \(a\le b\) or \(b\le a\).  If every pair of elements is comparable, then the order is a \vocab{total order} or \vocab{linear order}.
+\end{definition}
+
+\begin{example}
+Let \(A=\mathcal P(\{1,2,3,4,5\})\), ordered by inclusion.  Then \(C\le D\) means \(C\subseteq D\).  This is a partial order, but not a total order: for example, \(\{1,2\}\) and \(\{2,3\}\) are not comparable.
+\end{example}
+
+Let \((A,\le)\) be a partially ordered set.  An element \(a\in A\) is \vocab{maximal} if whenever \(c\in A\) is comparable with \(a\) and \(a\le c\), then \(c=a\).  An \vocab{upper bound} of a nonempty subset \(B\subseteq A\) is an element \(d\in A\) such that \(b\le d\) for every \(b\in B\).  A nonempty subset \(B\subseteq A\) is a \vocab{chain} if it is totally ordered by the inherited order.
+
+\begin{theorem}[Zorn's lemma]
+Let \(A\) be a nonempty partially ordered set.  If every chain in \(A\) has an upper bound in \(A\), then \(A\) has a maximal element.
+\end{theorem}
+
+\begin{caution}
+The standard term is \emph{maximal element}, not ``local maximum''.  A maximal element need not be greatest: there may be no element above all elements of \(A\).
+\end{caution}
+
+\section{Well-ordering}
+
+\begin{definition}
+A partially ordered set \(A\) is \vocab{well ordered} if every nonempty subset of \(A\) has a least element.
+\end{definition}
+
+\begin{proposition}[Well-ordering principle]
+Every nonempty set \(A\) admits a total ordering under which it is well ordered.
+\end{proposition}
+
+\begin{remark}
+This extends mathematical induction from \(\mathbb N\) to arbitrary well-ordered sets.  Conceptually this is the beginning of transfinite induction, even before ordinals are developed systematically.
+\end{remark}
+
+\section{Equipollence and cardinal numbers}
+
+\begin{definition}
+Two sets \(A\) and \(B\) are \vocab{equipollent}, written \(A\sim B\), if there exists a bijection \(A\to B\).
+\end{definition}
+
+\begin{definition}
+If a set \(A\) is equipollent to
+\[
+  I_n=\{1,2,\dots,n\}
+\]
+for some \(n\in\mathbb N\), or to \(I_0=\varnothing\), then \(A\) is finite.  Otherwise \(A\) is infinite.
+\end{definition}
+
+\begin{definition}
+The \vocab{cardinal number} of a set \(A\), denoted \(|A|\), is its equivalence class under equipollence.  It is a finite or infinite cardinal according as \(A\) is finite or infinite.
+\end{definition}
+
+\begin{caution}
+Strictly speaking, the ``equivalence class of all sets bijective with \(A\)'' is usually too large to be a set.  A formal treatment either uses representatives such as initial ordinals, or works in a class theory where such collections are proper classes.  The equivalence-class language is therefore an informal convention.
+\end{caution}
+
+If \(A\) and \(B\) are disjoint sets with \(|A|=\alpha\) and \(|B|=\beta\), define
+\[
+  \alpha+\beta=|A\cup B|.
+\]
+Similarly, cardinal multiplication is defined by
+\[
+  \alpha\beta=|A\times B|.
+\]
+
+\section{Cantor's theorem}
+
+\begin{theorem}[Cantor]
+For every set \(A\),
+\[
+  |A|<|\mathcal P(A)|.
+\]
+\end{theorem}
+
+\begin{proof}
+The map \(a\mapsto\{a\}\) is injective from \(A\) into \(\mathcal P(A)\), so \(|A|\le |\mathcal P(A)|\).
+
+Suppose for contradiction that \(f:A\to\mathcal P(A)\) is surjective.  Define
+\[
+  B=\{a\in A\mid a\notin f(a)\}.
+\]
+Since \(B\subseteq A\), surjectivity gives \(a_0\in A\) with \(f(a_0)=B\).  Then
+\[
+  a_0\in B \quad\Longleftrightarrow\quad a_0\notin f(a_0)=B,
+\]
+which is impossible.  Hence no surjection \(A\to\mathcal P(A)\) exists, and so \(|A|<|\mathcal P(A)|\).
+\end{proof}
+
+This proof deliberately echoes Russell's paradox from the first chapter.  In one case the self-reference shows that a class is too large to be a set; in the other, diagonalization shows that the power set is strictly larger than the original set.
+
+\section{Comparing cardinals}
+
+\begin{theorem}[Cantor--Bernstein]
+If \(A\) and \(B\) are sets such that \(|A|\le |B|\) and \(|B|\le |A|\), then
+\[
+  |A|=|B|.
+\]
+\end{theorem}
+
+\begin{theorem}[Trichotomy for cardinals]
+The class of cardinal numbers is linearly ordered by \(\le\).  If \(\alpha\) and \(\beta\) are cardinal numbers, then exactly one of the following holds:
+\[
+  \alpha<\beta,\qquad \alpha=\beta,\qquad \beta<\alpha.
+\]
+\end{theorem}
+
+\begin{remark}
+This is often called the Law of Trichotomy.  A standard proof orders a family of partial functions by extension, making this one of the classical places where Zorn's lemma enters the comparison of cardinalities.
+\end{remark}
+
+\section{Infinite cardinals and finite disturbance}
+
+The following cardinality statements are best read through explicit encodings: pairing functions and binary strings make the size comparisons concrete.
+
+\begin{theorem}
+Every infinite set has a denumerable subset.  In particular,
+\[
+  \aleph_0\le \alpha
+\]
+for every infinite cardinal \(\alpha\), assuming the usual choice principles being used in this chapter.
+\end{theorem}
+
+\begin{lemma}
+If \(A\) is an infinite set and \(F\) is a finite set, then
+\[
+  |A\cup F|=|A|.
+\]
+In particular,
+\[
+  \alpha+n=\alpha
+\]
+for every infinite cardinal \(\alpha\) and finite cardinal \(n\).
+\end{lemma}
+
+\begin{theorem}
+If \(\alpha\le\beta\) and \(\beta\) is infinite, then
+\[
+  \alpha+\beta=\beta.
+\]
+\end{theorem}
+
+\begin{theorem}
+If \(0<\alpha\le\beta\) and \(\beta\) is infinite, then
+\[
+  \alpha\beta=\beta.
+\]
+In particular,
+\[
+  \aleph_0\cdot\aleph_0=\aleph_0,
+\]
+and if \(B\) is finite then
+\[
+  \aleph_0\cdot |B|=\aleph_0
+\]
+provided \(B\neq\varnothing\).
+\end{theorem}
+
+\begin{theorem}
+Let \(A\) be a set and, for each integer \(n\ge1\), let
+\[
+  A^n=\underbrace{A\times A\times\cdots\times A}_{n\text{ factors}}.
+\]
+If \(A\) is finite, then
+\[
+  |A^n|=|A|^n,
+\]
+and if \(A\) is infinite, then
+\[
+  |A^n|=|A|.
+\]
+Moreover,
+\[
+  \left|\bigcup_{n\in\mathbb N}A^n\right|=\aleph_0|A|.
+\]
+\end{theorem}
+
+\begin{corollary}
+If \(A\) is an infinite set and \(\mathcal F(A)\) denotes the set of all finite subsets of \(A\), then
+\[
+  |\mathcal F(A)|=|A|.
+\]
+\end{corollary}
+
+\section{Concrete encodings behind the arithmetic}
+
+The equality
+\[
+  \aleph_0\cdot\aleph_0=\aleph_0
+\]
+is not just a theorem name.  A direct bijection is the Cantor pairing function
+\[
+  \pi:\mathbb N\times\mathbb N\to\mathbb N,
+  \qquad
+  \pi(m,n)=\frac{(m+n)(m+n+1)}2+m.
+\]
+It enumerates lattice points by diagonals.  For instance,
+\[
+  \pi(0,0)=0,\qquad
+  \pi(1,0)=2,\qquad
+  \pi(0,1)=1.
+\]
+To invert it, start with \(k\in\mathbb N\).  Find the unique integer \(s\ge0\) such that
+\[
+  \frac{s(s+1)}2\le k<\frac{(s+1)(s+2)}2.
+\]
+Then
+\[
+  m=k-\frac{s(s+1)}2,\qquad n=s-m.
+\]
+This recovers a unique pair \((m,n)\), so \(\pi\) is a bijection.
+
+There is an equally concrete encoding of finite subsets of \(\mathbb N\).  If
+\[
+  S=\{s_1<s_2<\cdots<s_k\}\subseteq\mathbb N
+\]
+is finite, define
+\[
+  f(S)=\sum_{i=1}^k2^{s_i},
+\]
+with \(f(\varnothing)=0\).  Binary expansion is unique, so two different finite subsets have different codes.  Hence
+\[
+  |\mathcal F(\mathbb N)|\le\aleph_0.
+\]
+The reverse injection is the singleton map
+\[
+  \mathbb N\hookrightarrow \mathcal F(\mathbb N),
+  \qquad
+  n\mapsto\{n\}.
+\]
+By Cantor--Bernstein,
+\[
+  |\mathcal F(\mathbb N)|=\aleph_0.
+\]
+This is the finite-subset theorem in a form one can actually compute: a finite subset is just the support of the \(1\)'s in a binary expansion.
+
+\begin{gap}
+The general statement \(|\mathcal F(A)|=|A|\) for every infinite set \(A\) still uses the comparison machinery above, and with arbitrary \(A\) one must pay attention to the choice principles being used.  But for the countable model case, the pairing function and the binary encoding already show the mechanism rather than merely quoting the cardinal-arithmetic slogan.
+\end{gap}

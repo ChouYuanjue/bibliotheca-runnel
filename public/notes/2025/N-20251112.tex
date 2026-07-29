@@ -1,14 +1,597 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20251112}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20251112}
-\end{document}
+\notechapter{N-20251112}{Calculus Review I: Limits, Completeness, Asymptotic Scales, and Local Approximation}
+
+\section{Cauchy--Schwarz and Minkowski are error-control mechanisms}
+
+For vectors \(x,y\in\mathbb R^n\), the Cauchy--Schwarz inequality is
+\[
+  |\langle x,y\rangle|
+  \le \|x\|_2\|y\|_2.
+\]
+If \(y\ne0\), consider the nonnegative quadratic
+\[
+  0\le
+  \left\|x-t y\right\|_2^2
+  =\|x\|_2^2-2t\langle x,y\rangle+t^2\|y\|_2^2.
+\]
+Its discriminant is nonpositive, so
+\[
+  \langle x,y\rangle^2
+  \le \|x\|_2^2\|y\|_2^2.
+\]
+Equality holds exactly when \(x\) and \(y\) are linearly dependent.
+
+Minkowski's inequality follows:
+\[
+\begin{aligned}
+  \|x+y\|_2^2
+  &=\|x\|_2^2+2\langle x,y\rangle+\|y\|_2^2\\
+  &\le\|x\|_2^2+2\|x\|_2\|y\|_2+\|y\|_2^2\\
+  &=(\|x\|_2+\|y\|_2)^2.
+\end{aligned}
+\]
+Hence
+\[
+  \boxed{\|x+y\|_2\le\|x\|_2+\|y\|_2.}
+\]
+For nonzero vectors, equality holds exactly when \(x\) and \(y\) point in the same direction.
+
+These inequalities control accumulated errors.  If \(e_1,\ldots,e_m\) are perturbations, then
+\[
+  \left\|\sum_{j=1}^m e_j\right\|
+  \le\sum_{j=1}^m\|e_j\|.
+\]
+If an error is represented by an inner product, Cauchy--Schwarz converts it into a product of sizes.  The same two patterns survive in Hilbert and normed spaces.
+
+\section{Limits are statements about eventual membership in neighborhoods}
+
+For \(a\in\mathbb R\), let
+\[
+  N_\varepsilon(a)=\{x:|x-a|<\varepsilon\}.
+\]
+A sequence \((x_n)\) converges to \(a\) when
+\[
+  \forall\varepsilon>0,
+  \quad
+  x_n\in N_\varepsilon(a)
+  \text{ eventually}.
+\]
+Here ``eventually'' means that there exists \(N\) such that the statement holds for every \(n\ge N\).
+
+For a function \(f\),
+\[
+  \lim_{x\to x_0}f(x)=L
+\]
+means that for every neighborhood \(V\) of \(L\), there is a punctured neighborhood \(U\) of \(x_0\) such that
+\[
+  x\in U\quad\Longrightarrow\quad f(x)\in V.
+\]
+In epsilon--delta notation,
+\[
+  0<|x-x_0|<\delta
+  \quad\Longrightarrow\quad
+  |f(x)-L|<\varepsilon.
+\]
+
+The neighborhood families form filters: intersections of finitely many neighborhoods are neighborhoods, and larger sets remain neighborhoods.  This is why limits compose.  If
+\[
+  f(x)\to L
+  \quad\text{and}\quad
+  g(y)\to M\text{ as }y\to L,
+\]
+then the preimage under \(g\) of a neighborhood of \(M\) contains a neighborhood of \(L\), and the preimage under \(f\) of that neighborhood contains a punctured neighborhood of \(x_0\).
+
+\section{Sequence limits are unique and respect algebraic operations}
+
+Suppose \(x_n\to a\) and \(x_n\to b\).  If \(a\ne b\), choose
+\[
+  \varepsilon=\frac{|a-b|}{3}.
+\]
+For large \(n\),
+\[
+  |a-b|
+  \le|a-x_n|+|x_n-b|
+  <2\varepsilon
+  <|a-b|,
+\]
+a contradiction.  Thus limits are unique.
+
+If \(x_n\to a\) and \(y_n\to b\), then
+\[
+  x_n+y_n\to a+b,
+  \qquad
+  x_ny_n\to ab.
+\]
+For the product,
+\[
+\begin{aligned}
+  |x_ny_n-ab|
+  &\le |x_n||y_n-b|+|b||x_n-a|.
+\end{aligned}
+\]
+A convergent sequence is bounded, so \(|x_n|\le M\) eventually, and both terms tend to zero.  If \(b\ne0\), then \(y_n\ne0\) eventually and
+\[
+  \frac{x_n}{y_n}\to\frac ab.
+\]
+
+The definition of \(x_n\to+\infty\) is also eventual:
+\[
+  \forall M>0,
+  \quad
+  x_n>M\text{ eventually}.
+\]
+It is not convergence to a real number, but it becomes ordinary convergence after adjoining points at infinity or applying a compactifying coordinate such as \(x\mapsto\arctan x\).
+
+\section{Heine's criterion converts function limits into sequence limits}
+
+\begin{theorem}[Heine criterion]
+Let \(f\) be defined on a punctured neighborhood of \(x_0\).  Then
+\[
+  \lim_{x\to x_0}f(x)=L
+\]
+iff for every sequence \(x_n\to x_0\) with \(x_n\ne x_0\), one has
+\[
+  f(x_n)\to L.
+\]
+\end{theorem}
+
+\begin{proof}
+Assume the epsilon--delta limit.  Given \(\varepsilon>0\), choose \(\delta>0\) so that
+\[
+  0<|x-x_0|<\delta
+  \Longrightarrow
+  |f(x)-L|<\varepsilon.
+\]
+Since \(x_n\to x_0\), the hypothesis on \(x_n\) holds eventually, so \(f(x_n)\to L\).
+
+Conversely, suppose the epsilon--delta condition fails.  Then there exists \(\varepsilon_0>0\) such that for every \(n\) one can choose \(x_n\) with
+\[
+  0<|x_n-x_0|<\frac1n,
+  \qquad
+  |f(x_n)-L|\ge\varepsilon_0.
+\]
+Then \(x_n\to x_0\), but \(f(x_n)\not\to L\), contradicting the sequential assumption.
+\end{proof}
+
+To disprove a limit, construct incompatible approaches.  For
+\[
+  f(x)=\cos\frac1x,
+\]
+take
+\[
+  x_n=\frac1{2\pi n},
+  \qquad
+  y_n=\frac1{(2n+1)\pi}.
+\]
+Both tend to zero, but
+\[
+  f(x_n)=1,
+  \qquad
+  f(y_n)=-1.
+\]
+Therefore \(\lim_{x\to0}f(x)\) does not exist.
+
+\section{Asymptotic notation compares scales, not fixed small numbers}
+
+Let \(g(x)>0\) near a limiting point.  The notation
+\[
+  f=O(g)
+\]
+means that there are constants \(C>0\) and a neighborhood on which
+\[
+  |f(x)|\le Cg(x).
+\]
+The notation
+\[
+  f=o(g)
+\]
+means
+\[
+  \frac{f(x)}{g(x)}\to0.
+\]
+We write
+\[
+  f=\Theta(g)
+\]
+when both \(f=O(g)\) and \(g=O(f)\), and
+\[
+  f\sim g
+\]
+when
+\[
+  \frac{f(x)}{g(x)}\to1.
+\]
+
+The implications are
+\[
+  f\sim g
+  \Longrightarrow
+  f=\Theta(g),
+  \qquad
+  f=o(g)
+  \Longrightarrow
+  f=O(g),
+\]
+but the converses fail.
+
+Equivalent infinitesimals may be substituted safely in products and quotients when the remaining factors have controlled limits.  For example,
+\[
+  \sin x\sim x,
+  \qquad
+  1-\cos x\sim\frac{x^2}{2}
+  \quad(x\to0).
+\]
+Hence
+\[
+  \lim_{x\to0}
+  \frac{1-\cos x}{x\sin x}
+  =\lim_{x\to0}
+  \frac{x^2/2}{x^2}
+  =\frac12.
+\]
+
+Substitution is not valid inside arbitrary sums where cancellation may change the leading order.  Although
+\[
+  \sqrt{1+x}\sim1,
+\]
+one cannot replace it by \(1\) in
+\[
+  \sqrt{1+x}-1.
+\]
+The difference is of smaller scale:
+\[
+  \sqrt{1+x}-1
+  =\frac{x}{\sqrt{1+x}+1}
+  \sim\frac x2.
+\]
+
+\section{Squeeze and monotone convergence use order structure}
+
+The squeeze theorem says that if
+\[
+  a_n\le b_n\le c_n
+\]
+eventually and
+\[
+  a_n\to L,
+  \qquad
+  c_n\to L,
+\]
+then \(b_n\to L\).  Indeed,
+\[
+  |b_n-L|
+  \le\max\{|a_n-L|,|c_n-L|\}
+\]
+when \(L\) lies between the bounding terms.
+
+A monotone bounded sequence converges because \(\mathbb R\) has suprema.
+
+\begin{theorem}[Monotone convergence]
+If \((x_n)\) is increasing and bounded above, then
+\[
+  x_n\to\sup_n x_n.
+\]
+\end{theorem}
+
+\begin{proof}
+Let
+\[
+  L=\sup\{x_n:n\in\mathbb N\}.
+\]
+Given \(\varepsilon>0\), the number \(L-\varepsilon\) is not an upper bound.  Hence some \(N\) satisfies
+\[
+  x_N>L-\varepsilon.
+\]
+For \(n\ge N\), monotonicity gives
+\[
+  L-\varepsilon<x_N\le x_n\le L.
+\]
+Thus \(|x_n-L|<\varepsilon\).
+\end{proof}
+
+The proof exposes the completeness input: without the least-upper-bound property, the candidate \(L\) may be missing from the number system.
+
+\section{The Cauchy criterion characterizes convergence in complete spaces}
+
+A sequence is Cauchy if
+\[
+  \forall\varepsilon>0,
+  \quad
+  |x_m-x_n|<\varepsilon
+  \text{ for all sufficiently large }m,n.
+\]
+Every convergent sequence is Cauchy by the triangle inequality.
+
+For the converse in \(\mathbb R\), first note that a Cauchy sequence is bounded.  Choose \(N\) so that
+\[
+  |x_n-x_N|<1
+  \quad(n\ge N).
+\]
+The tail lies in a bounded interval, and the finitely many earlier terms are also bounded.
+
+By Bolzano--Weierstrass, a bounded sequence has a convergent subsequence
+\[
+  x_{n_k}\to L.
+\]
+Given \(\varepsilon>0\), choose \(K\) so that
+\[
+  |x_m-x_n|<\frac\varepsilon2
+  \quad(m,n\ge K)
+\]
+and choose \(k\) with \(n_k\ge K\) and
+\[
+  |x_{n_k}-L|<\frac\varepsilon2.
+\]
+Then for every \(n\ge K\),
+\[
+  |x_n-L|
+  \le|x_n-x_{n_k}|+|x_{n_k}-L|
+  <\varepsilon.
+\]
+Thus \(x_n\to L\).
+
+The same statement fails in \(\mathbb Q\).  Let
+\[
+  q_n=\frac{\lfloor10^n\sqrt2\rfloor}{10^n}.
+\]
+Then \((q_n)\) is Cauchy in the rational metric, but it has no limit in \(\mathbb Q\).  Completion adds the missing limit \(\sqrt2\).
+
+A Banach space is exactly a normed vector space in which every Cauchy sequence converges.  Completeness is therefore not a technical appendix; it is what turns internal error control into the existence of a limit.
+
+\section{Continuity at each point is weaker than uniform continuity}
+
+A function \(f:X\to Y\) between metric spaces is uniformly continuous if
+\[
+  \forall\varepsilon>0,
+  \quad
+  \exists\delta>0,
+  \quad
+  d_X(x,y)<\delta
+  \Longrightarrow
+  d_Y(f(x),f(y))<\varepsilon
+\]
+for all \(x,y\in X\).  The same \(\delta\) must work everywhere.
+
+The function \(f(x)=x^2\) is continuous on \(\mathbb R\) but not uniformly continuous.  Set
+\[
+  x_n=n,
+  \qquad
+  y_n=n+\frac1n.
+\]
+Then
+\[
+  |x_n-y_n|=\frac1n\to0,
+\]
+but
+\[
+  |x_n^2-y_n^2|
+  =2+\frac1{n^2}
+  \not\to0.
+\]
+
+On compact domains, continuity becomes uniform.
+
+\begin{theorem}[Heine--Cantor]
+A continuous function from a compact metric space to a metric space is uniformly continuous.
+\end{theorem}
+
+\begin{proof}
+If uniform continuity failed, there would be \(\varepsilon_0>0\) and pairs \(x_n,y_n\) with
+\[
+  d(x_n,y_n)<\frac1n,
+  \qquad
+  d(f(x_n),f(y_n))\ge\varepsilon_0.
+\]
+Compactness gives a convergent subsequence \(x_{n_k}\to x\).  Since
+\[
+  d(y_{n_k},x)
+  \le d(y_{n_k},x_{n_k})+d(x_{n_k},x)
+  \to0,
+\]
+one also has \(y_{n_k}\to x\).  Continuity then forces both image subsequences to converge to \(f(x)\), contradicting their separation by \(\varepsilon_0\).
+\end{proof}
+
+Uniform continuity preserves Cauchy sequences and is therefore the natural hypothesis for extending a map to a completion.
+
+\section{A derivative is a first-order approximation with a controlled remainder}
+
+The derivative at \(a\) can be written as
+\[
+  f(a+h)=f(a)+f'(a)h+r(h),
+  \qquad
+  \frac{r(h)}{h}\to0.
+\]
+Equivalently,
+\[
+  f(a+h)=f(a)+f'(a)h+o(h).
+\]
+This is stronger than the existence of a slope formula: it says the nonlinear error is negligible compared with the increment.
+
+The differential
+\[
+  df_a(h)=f'(a)h
+\]
+is the linear map giving the best first-order approximation.  In several variables, the correct extension is the Fréchet derivative:
+\[
+  f(a+h)=f(a)+Df(a)h+o(\|h\|).
+\]
+The derivative is therefore a local linear model, not merely a quotient of small numbers.
+
+The chain rule follows by composing the two local models.  If
+\[
+  g(a+h)=g(a)+g'(a)h+o(h)
+\]
+and
+\[
+  f(g(a)+k)=f(g(a))+f'(g(a))k+o(k),
+\]
+then \(k=g'(a)h+o(h)=O(h)\), so
+\[
+  f(g(a+h))
+  =f(g(a))+f'(g(a))g'(a)h+o(h).
+\]
+Thus
+\[
+  (f\circ g)'(a)=f'(g(a))g'(a).
+\]
+
+\section{Taylor's theorem is a finite jet plus a quantified remainder}
+
+If \(f\in C^{n+1}\) near \(a\), Taylor's theorem gives
+\[
+  f(x)
+  =\sum_{k=0}^n
+  \frac{f^{(k)}(a)}{k!}(x-a)^k
+  +R_n(x).
+\]
+The Lagrange remainder has the form
+\[
+  R_n(x)
+  =\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1}
+\]
+for some \(\xi\) between \(a\) and \(x\).
+
+The integral remainder is
+\[
+  \boxed{
+  R_n(x)
+  =\frac1{n!}
+  \int_a^x f^{(n+1)}(t)(x-t)^n\,dt.}
+\]
+It follows by repeated use of the fundamental theorem of calculus.  For example,
+\[
+\begin{aligned}
+  f(x)-f(a)
+  &=\int_a^x f'(t_1)\,dt_1\\
+  &=f'(a)(x-a)
+  +\int_a^x\int_a^{t_1}f''(t_2)\,dt_2\,dt_1,
+\end{aligned}
+\]
+and exchanging the order of integration produces the kernel \((x-t)\).  Iterating gives the general formula.
+
+If
+\[
+  |f^{(n+1)}(t)|\le M
+\]
+between \(a\) and \(x\), then
+\[
+  |R_n(x)|
+  \le\frac{M|x-a|^{n+1}}{(n+1)!}.
+\]
+For \(e^x\) on \([0,1]\), the degree-\(n\) Maclaurin approximation satisfies
+\[
+  \left|
+  e^x-\sum_{k=0}^n\frac{x^k}{k!}
+  \right|
+  \le\frac{e}{(n+1)!}.
+\]
+Taylor expansion is therefore an asymptotic statement with a certified error, not permission to replace every smooth function by an infinite series.
+
+\section{Rotation matrices generate trigonometric identities}
+
+Let
+\[
+  J=
+  \begin{pmatrix}
+  0&-1\\
+  1&0
+  \end{pmatrix},
+  \qquad
+  J^2=-I.
+\]
+The matrix exponential separates into even and odd powers:
+\[
+\begin{aligned}
+  e^{tJ}
+  &=I\cos t+J\sin t\\
+  &=
+  \begin{pmatrix}
+  \cos t&-\sin t\\
+  \sin t&\cos t
+  \end{pmatrix}.
+\end{aligned}
+\]
+It preserves the Euclidean quadratic form:
+\[
+  (e^{tJ})^Te^{tJ}=I.
+\]
+
+The group law
+\[
+  e^{(s+t)J}=e^{sJ}e^{tJ}
+\]
+gives the addition formulas by matrix multiplication:
+\[
+  \cos(s+t)=\cos s\cos t-\sin s\sin t,
+\]
+\[
+  \sin(s+t)=\sin s\cos t+\cos s\sin t.
+\]
+Thus the identities are coordinates of the rotation group, not an isolated table to memorize.
+
+\section{Lorentz boosts generate hyperbolic identities}
+
+Let
+\[
+  K=
+  \begin{pmatrix}
+  0&1\\
+  1&0
+  \end{pmatrix},
+  \qquad
+  K^2=I.
+\]
+Then
+\[
+\begin{aligned}
+  e^{tK}
+  &=I\cosh t+K\sinh t\\
+  &=
+  \begin{pmatrix}
+  \cosh t&\sinh t\\
+  \sinh t&\cosh t
+  \end{pmatrix}.
+\end{aligned}
+\]
+Let
+\[
+  \eta=
+  \begin{pmatrix}
+  1&0\\
+  0&-1
+  \end{pmatrix}.
+\]
+A direct multiplication gives
+\[
+  (e^{tK})^T\eta e^{tK}=\eta.
+\]
+Therefore the boost preserves
+\[
+  x^2-y^2.
+\]
+Applying it to \((1,0)^T\) yields
+\[
+  \begin{pmatrix}\cosh t\\\sinh t\end{pmatrix},
+\]
+so invariance gives
+\[
+  \boxed{\cosh^2t-\sinh^2t=1.}
+\]
+
+Again the group law
+\[
+  e^{(s+t)K}=e^{sK}e^{tK}
+\]
+produces
+\[
+  \cosh(s+t)=\cosh s\cosh t+\sinh s\sinh t,
+\]
+\[
+  \sinh(s+t)=\sinh s\cosh t+\cosh s\sinh t.
+\]
+Circular and hyperbolic functions are parallel because both arise from one-parameter matrix groups.  The sign difference comes from
+\[
+  J^2=-I,
+  \qquad
+  K^2=I,
+\]
+and from the quadratic forms they preserve: Euclidean \(x^2+y^2\) versus Lorentzian \(x^2-y^2\).

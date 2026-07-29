@@ -1,14 +1,483 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20230801}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20230801}
-\end{document}
+\notechapter{N-20230801}{From Self-Duality to Spectral Curves: A Computable Route through Hitchin's Equations}
+
+\section{Why the story begins in four dimensions}
+
+Hitchin's equations live on a Riemann surface, but their form is much easier to remember once one sees the four-dimensional equation from which they descend.  Let \(P\to M\) be a principal bundle over an oriented Riemannian four-manifold, and let \(\mathcal A\) be a connection.  Its curvature is
+\[
+  F_{\mathcal A}=d\mathcal A+\mathcal A\wedge\mathcal A.
+\]
+The Hodge star acts on two-forms and satisfies \(*^2=1\), so every curvature two-form splits as
+\[
+  F_{\mathcal A}=F_{\mathcal A}^{+}+F_{\mathcal A}^{-},
+  \qquad
+  *F_{\mathcal A}^{\pm}=\pm F_{\mathcal A}^{\pm}.
+\]
+An anti-self-dual connection satisfies
+\[
+  F_{\mathcal A}^{+}=0,
+  \qquad\text{equivalently}\qquad
+  F_{\mathcal A}+*F_{\mathcal A}=0.
+\]
+This first-order equation is stronger than the Yang--Mills equation
+\[
+  d_{\mathcal A}^{*}F_{\mathcal A}=0.
+\]
+Indeed, the Bianchi identity \(d_{\mathcal A}F_{\mathcal A}=0\) and anti-self-duality give
+\[
+  d_{\mathcal A}^{*}F_{\mathcal A}
+  =-*d_{\mathcal A}*F_{\mathcal A}
+  =*d_{\mathcal A}F_{\mathcal A}=0.
+\]
+Thus the four-dimensional equation already combines geometry, gauge symmetry, and a variational problem.  The two-dimensional Hitchin system appears when two directions are suppressed but their connection components are retained as fields.
+
+\section{Dimensional reduction produces three coupled equations}
+
+Work locally on
+\[
+  M=\Sigma\times\mathbb R^2
+\]
+with oriented coordinates \((x,y,u,v)\), and assume that all fields are independent of \(u,v\).  Write the four-dimensional connection as
+\[
+  \mathcal A
+  =A_x\,dx+A_y\,dy+\phi_1\,du+\phi_2\,dv.
+\]
+The first two components form a connection
+\[
+  A=A_x\,dx+A_y\,dy
+\]
+on \(\Sigma\); the suppressed components \(\phi_1,\phi_2\) become adjoint-valued functions on \(\Sigma\).
+
+The curvature components are now explicit:
+\[
+  F_{xy}=\partial_xA_y-\partial_yA_x+[A_x,A_y],
+\]
+\[
+  F_{xu}=D_x\phi_1,
+  \qquad
+  F_{xv}=D_x\phi_2,
+\]
+\[
+  F_{yu}=D_y\phi_1,
+  \qquad
+  F_{yv}=D_y\phi_2,
+  \qquad
+  F_{uv}=[\phi_1,\phi_2].
+\]
+With the chosen orientation, the anti-self-duality equations are equivalent, up to the harmless global sign convention between self-dual and anti-self-dual, to
+\[
+  F_{xy}+[\phi_1,\phi_2]=0,
+\]
+\[
+  D_x\phi_1-D_y\phi_2=0,
+  \qquad
+  D_x\phi_2+D_y\phi_1=0.
+\]
+The first equation balances curvature against the commutator of the two reduced fields.  The last two are a covariant Cauchy--Riemann system.
+
+Introduce the complex coordinate
+\[
+  z=x+iy
+\]
+and package the reduced fields into a Higgs field
+\[
+  \Phi=\frac12(\phi_1-i\phi_2)\,dz.
+\]
+After choosing a Hermitian metric and writing \(\Phi^{*h}\) for the adjoint, the three real equations become the two Hitchin equations
+\[
+  \boxed{
+  F_A+[\Phi,\Phi^{*h}]=0,
+  \qquad
+  \bar\partial_A\Phi=0.}
+\]
+Different normalizations of \(z\), the metric, or the factor \(1/2\) move constants between the two terms, but the structure is invariant: a real curvature equation and a complex holomorphicity equation.
+
+\section{Gauge symmetry explains why the solution space is a quotient}
+
+A unitary gauge transformation \(g\) changes the pair by
+\[
+  A\longmapsto gAg^{-1}-dg\,g^{-1},
+  \qquad
+  \Phi\longmapsto g\Phi g^{-1}.
+\]
+Consequently,
+\[
+  F_A\longmapsto gF_Ag^{-1},
+  \qquad
+  [\Phi,\Phi^{*h}]\longmapsto
+  g[\Phi,\Phi^{*h}]g^{-1},
+\]
+and
+\[
+  \bar\partial_A\Phi
+  \longmapsto
+  g(\bar\partial_A\Phi)g^{-1}.
+\]
+The equations are therefore gauge invariant.  Two solutions related by a gauge transformation describe the same geometric object, so the moduli space is not merely a zero set; it is a quotient
+\[
+  \mathcal M_H
+  =\{(A,\Phi):\text{Hitchin equations}\}/\mathcal G.
+\]
+The quotient matters.  A raw solution space contains whole gauge orbits, while stabilizers can create singular points.  This is the first reason that deformation theory and stability cannot be postponed to an ornamental final section.
+
+There is also a symplectic reading.  The affine space of pairs \((A,\Phi)\) carries a natural hyperkähler structure, and the unitary gauge group acts by hyperkähler isometries.  In one complex structure, the real moment map is
+\[
+  \mu_{\mathbb R}(A,\Phi)
+  =F_A+[\Phi,\Phi^{*h}],
+\]
+while the complex moment map is
+\[
+  \mu_{\mathbb C}(A,\Phi)
+  =\bar\partial_A\Phi.
+\]
+Thus Hitchin's moduli space is an infinite-dimensional hyperkähler quotient.  The moment-map language does not replace the PDE; it explains why a metric equation, a holomorphic equation, and a quotient appear together.
+
+\section{The complex equation turns the pair into a Higgs bundle}
+
+The operator \(\bar\partial_A\) defines a holomorphic structure on the underlying complex bundle \(E\).  The equation
+\[
+  \bar\partial_A\Phi=0
+\]
+then says that
+\[
+  \Phi\in H^0\bigl(\Sigma,\operatorname{End}(E)\otimes K\bigr),
+\]
+where \(K\) is the canonical bundle.  A pair \((E,\Phi)\) of this kind is a Higgs bundle.
+
+Not every holomorphic Higgs bundle corresponds to a solution of the real equation.  The missing condition is stability.  For a bundle \(E\), define its slope by
+\[
+  \mu(E)=\frac{\deg E}{\operatorname{rk}E}.
+\]
+A Higgs bundle is stable when every proper nonzero holomorphic subbundle \(F\subset E\) satisfying
+\[
+  \Phi(F)\subset F\otimes K
+\]
+obeys
+\[
+  \mu(F)<\mu(E).
+\]
+Only \(\Phi\)-invariant subbundles are tested, because a subbundle ignored by \(\Phi\) is not a subsystem of the Higgs pair.
+
+The Hitchin--Kobayashi correspondence says, in the appropriate degree-zero setting, that a polystable Higgs bundle admits a Hermitian metric solving
+\[
+  F_A+[\Phi,\Phi^{*h}]=0.
+\]
+The analytic quotient by unitary gauge and the algebraic quotient by complex gauge are therefore two descriptions of the same well-behaved moduli problem.  Stability is not an extra adjective attached after the equations; it is the algebraic condition that replaces the missing compactness of complex gauge orbits.
+
+\section{A local rank-two ansatz turns the matrix equation into one scalar PDE}
+
+The real equation becomes concrete in rank two.  Choose a local holomorphic frame in which
+\[
+  \Phi=
+  \begin{pmatrix}
+    0&Q\\
+    1&0
+  \end{pmatrix}dz
+\]
+for a local quadratic-differential coefficient \(Q\), and choose a diagonal Hermitian metric
+\[
+  h=
+  \begin{pmatrix}
+    e^{-u}&0\\
+    0&e^u
+  \end{pmatrix}.
+\]
+The adjoint of the matrix part of \(\Phi\) is
+\[
+  \Phi^{*h}
+  =
+  \begin{pmatrix}
+    0&e^{2u}\\
+    \overline Q e^{-2u}&0
+  \end{pmatrix}d\bar z.
+\]
+Hence
+\[
+  [\Phi,\Phi^{*h}]
+  =
+  \begin{pmatrix}
+    |Q|^2e^{-2u}-e^{2u}&0\\
+    0&e^{2u}-|Q|^2e^{-2u}
+  \end{pmatrix}dz\wedge d\bar z.
+\]
+The Chern curvature of the diagonal metric is
+\[
+  F_h=
+  \begin{pmatrix}
+    -\partial\bar\partial u&0\\
+    0&\partial\bar\partial u
+  \end{pmatrix}.
+\]
+Therefore the first Hitchin equation reduces, with this convention, to the scalar equation
+\[
+  \boxed{
+  u_{z\bar z}+e^{2u}-|Q|^2e^{-2u}=0.}
+\]
+An overall factor changes if the area form is normalized differently, but the competition between the two exponentials is intrinsic.  Away from zeros of \(Q\), a shift of \(u\) converts the equation into a sinh--Gordon type equation.  The abstract matrix PDE has become a nonlinear scalar equation whose singular behavior is tied to the zeros of the spectral data.
+
+\section{A solution also produces a family of flat connections}
+
+The Hitchin equations connect Higgs bundles to representations because they imply flatness of a one-parameter family.  For \(\lambda\in\mathbb C^*\), define
+\[
+  \nabla_\lambda
+  =D_A+\lambda^{-1}\Phi+\lambda\Phi^{*h}.
+\]
+Its curvature contains three different powers of \(\lambda\):
+\[
+  F_{\nabla_\lambda}
+  =\lambda^{-1}D_A^{0,1}\Phi
+   +\bigl(F_A+[\Phi,\Phi^{*h}]\bigr)
+   +\lambda D_A^{1,0}\Phi^{*h}.
+\]
+The complex equation kills the \(\lambda^{-1}\) term, its adjoint kills the \(\lambda\) term, and the real equation kills the middle term.  Thus
+\[
+  F_{\nabla_\lambda}=0
+\]
+for every \(\lambda\ne0\).
+
+A flat connection has monodromy, giving a representation of the fundamental group.  This is the operational core of nonabelian Hodge theory:
+\[
+\begin{aligned}
+  \text{harmonic bundle}
+  &\longleftrightarrow
+  \text{polystable Higgs bundle},\\
+  \text{flat connection}
+  &\longleftrightarrow
+  \text{representation of }\pi_1(\Sigma).
+\end{aligned}
+\]
+The arrows are not merely analogies.  The harmonic metric is what combines a holomorphic Higgs pair with its adjoint to manufacture the flat family.
+
+\section{The Hitchin map records global eigenvalue data}
+
+For a rank-\(n\) Higgs field, the coefficients of
+\[
+  \det(\eta I-\Phi)
+  =\eta^n+a_1\eta^{n-1}+\cdots+a_n
+\]
+are invariant under conjugation.  Since \(\Phi\) is a \(K\)-valued endomorphism,
+\[
+  a_i\in H^0(\Sigma,K^i).
+\]
+They define the Hitchin map
+\[
+  h:\mathcal M_H
+  \longrightarrow
+  \bigoplus_{i=1}^nH^0(\Sigma,K^i).
+\]
+For trace-free rank two, the characteristic polynomial is
+\[
+  \eta^2-q,
+  \qquad q\in H^0(\Sigma,K^2),
+\]
+so the Hitchin base is simply \(H^0(K^2)\).
+
+The equation
+\[
+  \eta^2=q
+\]
+defines a curve \(\widetilde\Sigma\) inside the total space of \(K\).  Here \(\eta\) is the tautological one-form: at a point \((x,\xi)\in K\), its value is the cotangent vector \(\xi\).  Over a point where \(q(x)\ne0\), the two square roots of \(q(x)\) are the two eigenvalues of \(\Phi(x)\).  At a simple zero of \(q\), the sheets meet and the projection
+\[
+  \pi:\widetilde\Sigma\to\Sigma
+\]
+branches.  The spectral curve is therefore the global replacement for diagonalizing a matrix point by point.
+
+\section{A global rank-two model requires a theta characteristic}
+
+The local companion matrix contains entries of different bundle types, so it should not be placed globally on \(\mathcal O\oplus\mathcal O\).  Choose instead a theta characteristic
+\[
+  S^2\cong K
+\]
+and set
+\[
+  E=S\oplus S^{-1}.
+\]
+Then the Higgs field
+\[
+  \Phi_q=
+  \begin{pmatrix}
+    0&q\\
+    1&0
+  \end{pmatrix}
+  :E\longrightarrow E\otimes K
+\]
+is globally well defined.  Indeed, the lower-left entry belongs to
+\[
+  \operatorname{Hom}(S,S^{-1}\otimes K)
+  \cong S^{-2}\otimes K
+  \cong\mathcal O,
+\]
+while the upper-right entry belongs to
+\[
+  \operatorname{Hom}(S^{-1},S\otimes K)
+  \cong S^2\otimes K
+  \cong K^2.
+\]
+The determinant is trivial, the trace is zero, and
+\[
+  \det(\eta I-\Phi_q)=\eta^2-q.
+\]
+This is the rank-two Hitchin section.  The bundle bookkeeping is not cosmetic: it is what turns a local matrix mnemonic into a global Higgs bundle.
+
+\section{A genus-two spectral curve can be calculated completely}
+
+Take the genus-two hyperelliptic curve
+\[
+  \Sigma:\quad
+  y^2=(x^2-1)(x^2-4)(x^2-9).
+\]
+A basis of holomorphic one-forms is
+\[
+  \omega_0=\frac{dx}{y},
+  \qquad
+  \omega_1=x\frac{dx}{y}.
+\]
+Consider the quadratic differential
+\[
+  q=(x^2-2)\left(\frac{dx}{y}\right)^2.
+\]
+It is holomorphic.  Near either point at infinity, with \(t=1/x\), one has
+\[
+  \frac{dx}{y}\sim -t\,dt,
+  \qquad
+  x^2-2\sim t^{-2},
+\]
+so \(q\) is asymptotic to a nonzero multiple of \(dt^2\).
+
+The zeros occur at \(x=\pm\sqrt2\).  These are not branch values of the hyperelliptic map, so each value of \(x\) gives two points of \(\Sigma\).  Thus \(q\) has four simple zeros, matching
+\[
+  \deg K^2=4g-4=4.
+\]
+The spectral curve is
+\[
+  \widetilde\Sigma:\quad \eta^2=q.
+\]
+It is a double cover of \(\Sigma\) branched at those four zeros.  Riemann--Hurwitz gives
+\[
+  2g(\widetilde\Sigma)-2
+  =2\bigl(2g(\Sigma)-2\bigr)+4
+  =2\cdot2+4=8,
+\]
+so
+\[
+  \boxed{g(\widetilde\Sigma)=5.}
+\]
+The slogan “the spectral curve is a branched cover” has now produced a concrete genus.
+
+\section{Line bundles on the spectral curve reconstruct the Higgs field}
+
+Let \(\mathcal L\) be a line bundle on \(\widetilde\Sigma\).  Pushing forward gives a rank-two bundle
+\[
+  E=\pi_*\mathcal L.
+\]
+Multiplication by the tautological eigenvalue defines
+\[
+  \eta:\mathcal L
+  \longrightarrow
+  \mathcal L\otimes\pi^*K.
+\]
+After applying \(\pi_*\) and the projection formula,
+\[
+  \pi_*(\mathcal L\otimes\pi^*K)
+  \cong(\pi_*\mathcal L)\otimes K,
+\]
+this becomes a Higgs field
+\[
+  \Phi:E\longrightarrow E\otimes K.
+\]
+Thus the nonabelian rank-two object is reconstructed from abelian line-bundle data on the eigenvalue cover.
+
+For fixed determinant, the line bundle is constrained by a norm condition.  The generic Hitchin fiber is the Prym variety
+\[
+  \operatorname{Prym}(\widetilde\Sigma/\Sigma)
+  =\ker\!\left(
+  \operatorname{Nm}:\operatorname{Jac}(\widetilde\Sigma)
+  \to\operatorname{Jac}(\Sigma)
+  \right)^0.
+\]
+Its dimension is
+\[
+  g(\widetilde\Sigma)-g(\Sigma)=5-2=3.
+\]
+On the other hand,
+\[
+  \dim H^0(\Sigma,K^2)=3g-3=3.
+\]
+The base and generic fiber therefore have equal complex dimension.  This is the dimension count behind algebraic complete integrability: the generic Prym fibers are half-dimensional Lagrangian abelian varieties.
+
+\section{The deformation complex computes the tangent space}
+
+To understand a moduli space locally, vary both the holomorphic structure and the Higgs field.  An infinitesimal deformation is a pair
+\[
+  (a,\varphi)
+  \in
+  \Omega^{0,1}(\operatorname{End}_0E)
+  \oplus
+  \Omega^{1,0}(\operatorname{End}_0E).
+\]
+An infinitesimal complex gauge transformation \(s\in\Omega^0(\operatorname{End}_0E)\) changes the pair by
+\[
+  D_0s=(\bar\partial_Es,[\Phi,s]).
+\]
+Linearizing the holomorphicity equation gives
+\[
+  D_1(a,\varphi)
+  =\bar\partial_E\varphi+[a,\Phi].
+\]
+Because \(\bar\partial_E\Phi=0\), one has \(D_1D_0=0\).  The infinitesimal moduli problem is therefore controlled by the complex
+\[
+  \Omega^0(\operatorname{End}_0E)
+  \xrightarrow{D_0}
+  \Omega^{0,1}(\operatorname{End}_0E)
+  \oplus
+  \Omega^{1,0}(\operatorname{End}_0E)
+  \xrightarrow{D_1}
+  \Omega^{1,1}(\operatorname{End}_0E).
+\]
+Equivalently, in holomorphic language one uses the two-term complex
+\[
+  \mathcal C^\bullet:
+  \operatorname{End}_0E
+  \xrightarrow{[\Phi,\cdot]}
+  \operatorname{End}_0E\otimes K.
+\]
+Its hypercohomology has a direct interpretation:
+\[
+  \mathbb H^0(\mathcal C^\bullet)=\text{infinitesimal automorphisms},
+\]
+\[
+  \mathbb H^1(\mathcal C^\bullet)=\text{tangent space},
+  \qquad
+  \mathbb H^2(\mathcal C^\bullet)=\text{obstructions}.
+\]
+For a stable trace-free Higgs bundle, the automorphism space is zero and, by duality, the obstruction space vanishes at a smooth point.  Hence the tangent dimension is minus the Euler characteristic of the complex.
+
+Since \(\operatorname{End}_0E\) has rank \(3\) and degree \(0\), Riemann--Roch gives
+\[
+  \chi(\operatorname{End}_0E)=3(1-g).
+\]
+Also,
+\[
+  \chi(\operatorname{End}_0E\otimes K)
+  =3(2g-2)+3(1-g)=3(g-1).
+\]
+Therefore
+\[
+  \chi(\mathcal C^\bullet)
+  =3(1-g)-3(g-1)
+  =-6(g-1),
+\]
+and
+\[
+  \boxed{
+  \dim_{\mathbb C}T_{(E,\Phi)}\mathcal M_H
+  =6g-6.}
+\]
+For genus two this is \(6\), exactly the sum of the three-dimensional Hitchin base and the three-dimensional Prym fiber.  The local deformation calculation and the global spectral description meet at the same dimension.
+
+The agreement is more than a dimension check.  It shows how the different descriptions solve different parts of the same problem.  Four-dimensional anti-self-duality explains the origin of the equations.  Dimensional reduction identifies the Higgs field as connection data in suppressed directions.  Gauge theory supplies the real moment-map equation and the analytic quotient.  Stability produces a workable algebraic quotient.  The flat family records monodromy and representations.  The Hitchin map extracts invariant eigenvalue data, while the spectral curve converts a nonabelian bundle into a line bundle on a branched cover.  Finally, the deformation complex determines whether the quotient is smooth and computes its tangent dimension.
+
+None of these viewpoints is an optional advanced appendix.  The local scalar equation explains what the PDE asks a metric to do; the genus-two cover makes the spectral construction calculable; and the equality
+\[
+  6g-6=(3g-3)+(3g-3)
+\]
+shows why the Hitchin fibration has exactly the right size to be an integrable system.

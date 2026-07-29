@@ -1,14 +1,550 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260103}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260103}
-\end{document}
+\notechapter{N-20260103}{Rank, Projections, and Long-Term Matrix Dynamics}
+
+\section{The first useful question is often which relation the matrix satisfies}
+
+A large matrix power or rank identity rarely becomes easier by multiplying entries.  The decisive information is often an algebraic relation:
+\[
+  P^2=P,
+  \qquad
+  N^k=0,
+  \qquad
+  A^2+c_1A+c_0I=0,
+  \qquad
+  A=UV^T.
+\]
+Each relation compresses the matrix into a small algebra.  An idempotent splits the space into image and kernel.  A nilpotent has a finite geometric series.  A polynomial relation reduces every high power to lower powers.  A low-rank factorization says that only a few independent directions pass through the map.
+
+This chapter therefore organizes matrix problems by structure rather than by the surface form of an exercise.  Rank describes which directions survive, projections describe how the space splits, polynomial identities describe repeated iteration, and spectral projectors describe what remains after transient modes decay.
+
+\section{Rank factorization exposes the quotient--image structure}
+
+Let \(A:k^n\to k^m\) have rank \(r\).  Choose a basis \(c_1,\ldots,c_r\) of its column space and place these columns in
+\[
+  B\in k^{m\times r}.
+\]
+Every column of \(A\) has unique coordinates in this basis; collect those coordinates in
+\[
+  C\in k^{r\times n}.
+\]
+Then
+\[
+  \boxed{A=BC,}
+\]
+with
+\[
+  \operatorname{rank}B=\operatorname{rank}C=r.
+\]
+This is a rank factorization.  It is the matrix form of
+\[
+  k^n\longrightarrow k^n/\ker A
+  \cong\operatorname{im}A
+  \hookrightarrow k^m.
+\]
+
+For example,
+\[
+  A=
+  \begin{pmatrix}
+    1&2&3\\
+    2&4&6\\
+    1&1&1
+  \end{pmatrix}
+\]
+has rank two.  Its first two columns are independent, and the third satisfies
+\[
+  c_3=-c_1+2c_2.
+\]
+Thus
+\[
+  A=
+  \underbrace{
+  \begin{pmatrix}
+    1&2\\
+    2&4\\
+    1&1
+  \end{pmatrix}}_{B}
+  \underbrace{
+  \begin{pmatrix}
+    1&0&-1\\
+    0&1&2
+  \end{pmatrix}}_{C}.
+\]
+Equivalently,
+\[
+  A=c_1(1,0,-1)+c_2(0,1,2),
+\]
+a sum of two rank-one matrices.
+
+The factorization is not unique.  For any \(S\in GL_r(k)\),
+\[
+  A=(BS)(S^{-1}C).
+\]
+The ambiguity is exactly a change of coordinates in the intermediate \(r\)-dimensional image space.
+
+\section{The four fundamental subspaces are paired by orthogonality}
+
+For a real matrix \(A\in\mathbb R^{m\times n}\), the row space and null space are orthogonal complements:
+\[
+  \operatorname{row}(A)=(\ker A)^\perp.
+\]
+Indeed, \(Ax=0\) says that \(x\) is orthogonal to every row.  Similarly,
+\[
+  \operatorname{col}(A)=(\ker A^T)^\perp.
+\]
+Hence
+\[
+  \mathbb R^n
+  =\operatorname{row}(A)\oplus\ker A,
+\]
+\[
+  \mathbb R^m
+  =\operatorname{col}(A)\oplus\ker A^T.
+\]
+These are the four fundamental subspaces.
+
+Positivity gives the useful identities
+\[
+  \ker(A^TA)=\ker A,
+  \qquad
+  \ker(AA^T)=\ker A^T.
+\]
+For example,
+\[
+  A^TAx=0
+  \quad\Longrightarrow\quad
+  x^TA^TAx=\|Ax\|^2=0,
+\]
+so \(Ax=0\).  Therefore
+\[
+  \operatorname{rank}(A^TA)
+  =\operatorname{rank}(AA^T)
+  =\operatorname{rank}A.
+\]
+A rank identity has been reduced to equality of null spaces, and that equality is certified by a norm square.
+
+If two homogeneous systems \(Ax=0\) and \(Bx=0\) have the same solution space, then
+\[
+  \operatorname{row}(A)
+  =(\ker A)^\perp
+  =(\ker B)^\perp
+  =\operatorname{row}(B).
+\]
+Thus equality of solution sets and equality of row spaces are the same statement viewed from opposite sides.
+
+\section{At corank one, the adjugate becomes a rank-one null-space certificate}
+
+For every square matrix,
+\[
+  A\operatorname{adj}(A)
+  =\operatorname{adj}(A)A
+  =(\det A)I.
+\]
+If \(\operatorname{rank}A=n-1\), then \(\det A=0\) but at least one \((n-1)\)-minor is nonzero, so
+\[
+  \operatorname{adj}(A)\ne0.
+\]
+The identity
+\[
+  A\operatorname{adj}(A)=0
+\]
+shows that every column of \(\operatorname{adj}(A)\) lies in \(\ker A\), which is one-dimensional.  Hence all columns are proportional and
+\[
+  \operatorname{rank}\operatorname{adj}(A)=1.
+\]
+Likewise, every row lies in \(\ker A^T\).  If
+\[
+  Au=0,
+  \qquad
+  v^TA=0,
+\]
+with nonzero \(u,v\), then
+\[
+  \operatorname{adj}(A)=cuv^T
+\]
+for some nonzero scalar \(c\).
+
+For
+\[
+  A=
+  \begin{pmatrix}
+    1&2\\
+    2&4
+  \end{pmatrix},
+\]
+one has
+\[
+  \operatorname{adj}(A)
+  =
+  \begin{pmatrix}
+    4&-2\\
+    -2&1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}-2\\1\end{pmatrix}
+  \begin{pmatrix}-2&1\end{pmatrix}.
+\]
+The same null vector appears on the right and left because \(A\) is symmetric.  Any nonzero column of the adjugate solves \(Ax=0\).
+
+If \(\operatorname{rank}A\le n-2\), every \((n-1)\)-minor vanishes and
+\[
+  \operatorname{adj}(A)=0.
+\]
+The adjugate therefore distinguishes corank one from deeper singularity.
+
+\section{Idempotents are projections, but not always orthogonal projections}
+
+Suppose
+\[
+  P^2=P.
+\]
+Every vector splits as
+\[
+  x=Px+(x-Px).
+\]
+The first term belongs to \(\operatorname{im}P\), while
+\[
+  P(x-Px)=Px-P^2x=0,
+\]
+so the second belongs to \(\ker P\).  Their intersection is zero, hence
+\[
+  V=\operatorname{im}P\oplus\ker P.
+\]
+The matrix acts as identity on its image and zero on its kernel.  Its minimal polynomial divides
+\[
+  t(t-1),
+\]
+so it is diagonalizable with eigenvalues \(0,1\).
+
+The projection is orthogonal exactly when
+\[
+  P^T=P.
+\]
+Without symmetry it is oblique.  For example,
+\[
+  P=
+  \begin{pmatrix}
+    1&-1\\
+    0&0
+  \end{pmatrix}
+\]
+satisfies \(P^2=P\).  It projects onto the \(x\)-axis along the line
+\[
+  \ker P=\operatorname{span}(1,1).
+\]
+The image and kernel are complementary but not orthogonal.
+
+If \(P,Q\) are idempotent over a field of characteristic not two, then
+\[
+  P+Q\text{ is idempotent}
+  \quad\Longleftrightarrow\quad
+  PQ=QP=0.
+\]
+Indeed, expanding \((P+Q)^2=P+Q\) gives
+\[
+  PQ+QP=0.
+\]
+Multiplying on the left and right by \(P\) shows \(PQ=QP\); the displayed sum then gives \(2PQ=0\).  Geometrically, each image lies in the other's kernel, so the two projections occupy noninteracting components.
+
+\section{Nilpotence turns infinite-looking formulas into finite sums}
+
+If \(N^k=0\), then
+\[
+  (I-N)(I+N+\cdots+N^{k-1})=I-N^k=I.
+\]
+Therefore
+\[
+  \boxed{
+  (I-N)^{-1}=I+N+\cdots+N^{k-1}.}
+\]
+The inverse is a polynomial because the geometric series terminates.
+
+For the nilpotent Jordan block
+\[
+  N=
+  \begin{pmatrix}
+    0&1&0\\
+    0&0&1\\
+    0&0&0
+  \end{pmatrix},
+  \qquad N^3=0,
+\]
+one has
+\[
+  (I-N)^{-1}=I+N+N^2
+  =
+  \begin{pmatrix}
+    1&1&1\\
+    0&1&1\\
+    0&0&1
+  \end{pmatrix}.
+\]
+More generally,
+\[
+  (\lambda I+N)^m
+  =\sum_{j=0}^{k-1}
+  \binom mj\lambda^{m-j}N^j.
+\]
+A Jordan block therefore contributes an exponential factor \(\lambda^m\) multiplied by polynomials in \(m\).  The nilpotent part measures the failure of pure eigendirection scaling.
+
+\section{The minimal polynomial reduces every high power}
+
+Cayley--Hamilton says that a matrix satisfies its characteristic polynomial.  The sharper computational object is the minimal polynomial.  If
+\[
+  m_A(t)=t^d+c_{d-1}t^{d-1}+\cdots+c_0,
+\]
+then
+\[
+  A^d=-c_{d-1}A^{d-1}-\cdots-c_0I,
+\]
+and every higher power reduces to a linear combination of
+\[
+  I,A,\ldots,A^{d-1}.
+\]
+Equivalently, compute the remainder of \(t^n\) modulo \(m_A(t)\) and substitute \(A\).
+
+Take
+\[
+  A=
+  \begin{pmatrix}
+    1&1\\
+    0&2
+  \end{pmatrix}.
+\]
+Its minimal polynomial is
+\[
+  m_A(t)=(t-1)(t-2).
+\]
+The degree-one remainder \(r_n(t)=\alpha t+\beta\) of \(t^n\) satisfies
+\[
+  r_n(1)=1,
+  \qquad
+  r_n(2)=2^n.
+\]
+Thus
+\[
+  r_n(t)=(2^n-1)t+(2-2^n),
+\]
+and
+\[
+  \boxed{
+  A^n=(2^n-1)A+(2-2^n)I.}
+\]
+Even \(A^{100}\) is no harder than evaluating two scalar powers.
+
+\section{Polynomial Chinese remainders produce primary projectors}
+
+Suppose
+\[
+  m_A(t)=p_1(t)^{e_1}\cdots p_s(t)^{e_s}
+\]
+with pairwise coprime factors.  The polynomial Chinese remainder theorem provides idempotent classes \(e_i(t)\) satisfying
+\[
+  e_i\equiv1\pmod{p_i^{e_i}},
+  \qquad
+  e_i\equiv0\pmod{p_j^{e_j}}
+  \quad(j\ne i).
+\]
+Substituting \(A\) gives commuting projectors
+\[
+  E_i=e_i(A),
+  \qquad
+  \sum_iE_i=I,
+  \qquad
+  E_iE_j=0.
+\]
+Their images are the primary components
+\[
+  \ker p_i(A)^{e_i}.
+\]
+
+For a concrete example, suppose
+\[
+  m_A(t)=(t-1)^2(t+2).
+\]
+Polynomials with the required congruences are
+\[
+  e_1(t)=\frac{(t+2)(4-t)}9,
+  \qquad
+  e_2(t)=\frac{(t-1)^2}{9}.
+\]
+Indeed,
+\[
+  e_1\equiv1\pmod{(t-1)^2},
+  \qquad
+  e_1\equiv0\pmod{t+2},
+\]
+and \(e_2=1-e_1\).  Therefore
+\[
+  E_1=\frac{(A+2I)(4I-A)}9,
+  \qquad
+  E_2=\frac{(A-I)^2}{9}
+\]
+project onto the generalized \(1\)- and \(-2\)-primary subspaces.
+
+This is the structural source of generalized eigenspace decomposition.  The vector space becomes a module over \(k[t]\), with \(t\) acting as \(A\); coprime polynomial factors split that module into independent primary pieces.
+
+\section{Jordan asymptotics decide whether matrix powers converge}
+
+On a Jordan block
+\[
+  J=\lambda I+N,
+  \qquad N^k=0,
+\]
+one has
+\[
+  J^n
+  =\sum_{j=0}^{k-1}
+  \binom nj\lambda^{n-j}N^j.
+\]
+This formula gives precise long-term behavior.
+
+\begin{itemize}
+  \item If \(|\lambda|<1\), every term tends to zero despite the polynomial factor.
+  \item If \(|\lambda|>1\), some vectors grow exponentially.
+  \item If \(|\lambda|=1\) and \(N\ne0\), polynomial growth prevents boundedness.
+  \item A semisimple eigenvalue \(1\) contributes a persistent projection.
+  \item Any other eigenvalue on the unit circle produces oscillation rather than convergence.
+\end{itemize}
+
+Consequently, \(A^n\) converges exactly when every eigenvalue lies inside the unit disk except possibly the eigenvalue \(1\), and the eigenvalue \(1\) is semisimple.  In that case,
+\[
+  \lim_{n\to\infty}A^n=P_1,
+\]
+where \(P_1\) is the spectral projector onto \(\ker(A-I)\) along the direct sum of the decaying primary components.
+
+The phrase “only the eigenvalue \(1\) remains” is therefore incomplete.  What remains is a specific projection determined by the decomposition of the whole space.
+
+\section{A two-state Markov chain displays the limiting projector explicitly}
+
+Let
+\[
+  T=
+  \begin{pmatrix}
+    1-a&a\\
+    b&1-b
+  \end{pmatrix},
+  \qquad
+  0<a,b<1.
+\]
+Each row sums to one, so \(T\) evolves row probability vectors.  Its eigenvalues are
+\[
+  1,
+  \qquad
+  \rho=1-a-b,
+\]
+with \(|\rho|<1\).  The stationary distribution is
+\[
+  \pi=
+  \left(
+  \frac{b}{a+b},
+  \frac{a}{a+b}
+  \right),
+\]
+because \(\pi T=\pi\).
+
+Let
+\[
+  P=\mathbf1\,\pi
+  =
+  \begin{pmatrix}
+    b/(a+b)&a/(a+b)\\
+    b/(a+b)&a/(a+b)
+  \end{pmatrix}.
+\]
+Then
+\[
+  P^2=P,
+  \qquad
+  TP=PT=P,
+\]
+and \(I-P\) is the projector onto the decaying mode.  Since \(T\) acts by \(\rho\) there,
+\[
+  \boxed{
+  T^n=P+\rho^n(I-P).}
+\]
+Hence
+\[
+  T^n\longrightarrow P.
+\]
+Every initial probability row converges to \(\pi\).  The Markov limit is a spectral projector, while the convergence rate is the magnitude of the subdominant eigenvalue.
+
+\section{Strict diagonal dominance is a fast invertibility certificate}
+
+Suppose
+\[
+  |a_{ii}|>
+  \sum_{j\ne i}|a_{ij}|
+  \qquad(i=1,\ldots,n).
+\]
+If \(Ax=0\) had a nonzero solution, choose \(k\) with
+\[
+  |x_k|=\max_i|x_i|>0.
+\]
+The \(k\)-th equation gives
+\[
+  a_{kk}x_k=-\sum_{j\ne k}a_{kj}x_j.
+\]
+Therefore
+\[
+  |a_{kk}||x_k|
+  \le
+  \sum_{j\ne k}|a_{kj}||x_j|
+  \le
+  \left(\sum_{j\ne k}|a_{kj}|\right)|x_k|,
+\]
+contradicting strict diagonal dominance.  Thus \(A\) is invertible.
+
+The same argument is the zero-eigenvalue case of Gershgorin's theorem.  Every eigenvalue lies in at least one disk
+\[
+  |z-a_{ii}|\le\sum_{j\ne i}|a_{ij}|.
+\]
+Strict diagonal dominance keeps all disks away from zero.  Before computing a determinant or inverse, the row geometry can already certify that no kernel direction exists.
+
+\section{The Drazin inverse separates invertible dynamics from nilpotent transients}
+
+A singular matrix has no ordinary inverse, but its primary decomposition separates the nonzero spectrum from the generalized zero eigenspace.  On the nonzero primary components, \(A\) is invertible; on the zero component, it is nilpotent.  The Drazin inverse \(A^D\) acts as the ordinary inverse on the first part and as zero on the second.
+
+If the nilpotent zero component has index \(k\), the Drazin inverse is characterized by
+\[
+  AA^D=A^DA,
+\]
+\[
+  A^DAA^D=A^D,
+\]
+\[
+  A^{k+1}A^D=A^k.
+\]
+For
+\[
+  A=
+  \begin{pmatrix}
+    2&0&0\\
+    0&0&1\\
+    0&0&0
+  \end{pmatrix}
+  =
+  \begin{pmatrix}2\end{pmatrix}
+  \oplus
+  \begin{pmatrix}0&1\\0&0\end{pmatrix},
+\]
+the nilpotent block has index two and
+\[
+  A^D=
+  \begin{pmatrix}
+    1/2&0&0\\
+    0&0&0\\
+    0&0&0
+  \end{pmatrix}.
+\]
+The Moore--Penrose pseudoinverse is different:
+\[
+  A^+=
+  \begin{pmatrix}
+    1/2&0&0\\
+    0&0&0\\
+    0&1&0
+  \end{pmatrix}.
+\]
+The pseudoinverse is determined by orthogonal least-squares geometry, whereas the Drazin inverse is determined by the algebraic decomposition into invertible and nilpotent dynamics.
+
+This distinction completes the path from rank to iteration.  Rank factorization identifies the active image, idempotents split complementary components, primary projectors isolate spectral modes, powers reveal persistent and transient behavior, and the Drazin inverse inverts exactly the modes that are dynamically invertible while discarding the nilpotent transient part.

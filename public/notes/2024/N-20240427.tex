@@ -1,14 +1,198 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20240427}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20240427}
-\end{document}
+\notechapter{N-20240427}{Differential Forms and Stokes: The Geometry of Boundary Measurements}
+
+\section{A theorem looking for its natural language}
+
+The fundamental theorem of calculus says
+\[
+  \int_a^b f'(x)\,dx=f(b)-f(a).
+\]
+Green's theorem, the divergence theorem, and Stokes' theorem look more complicated, but they share the same shape: integrate a derivative over a region, and the answer lives on the boundary.
+
+Differential forms are the language in which this pattern becomes one theorem:
+\[
+  \int_M d\omega=\int_{\partial M}\omega.
+\]
+The purpose of this chapter is not to glorify notation. It is to make clear why \(dx\), \(dy\), pullback, orientation, and boundary signs belong together.
+
+\section{One-forms: measuring motion}
+
+A tangent vector tells us a direction of motion. A covector measures such a direction. At a point \(p\), a covector is a linear map
+\[
+  \alpha:T_pM\to\mathbb R.
+\]
+A \(1\)-form is a smoothly varying covector.
+
+In the plane, a typical \(1\)-form is
+\[
+  \omega=P(x,y)\,dx+Q(x,y)\,dy.
+\]
+If
+\[
+  v=a\frac{\partial}{\partial x}+b\frac{\partial}{\partial y},
+\]
+then
+\[
+  \omega(v)=Pa+Qb.
+\]
+Thus a \(1\)-form is not a tiny arrow. It is a measuring rule for arrows.
+
+\section{The pullback experiment}
+
+Let \(\gamma(t)=(x(t),y(t))\) be a parametrized curve. Pulling back the form
+\[
+  \omega=P(x,y)\,dx+Q(x,y)\,dy
+\]
+to the interval gives
+\[
+  \gamma^*\omega=
+  \left(P(x(t),y(t))x'(t)+Q(x(t),y(t))y'(t)\right)dt.
+\]
+Therefore
+\[
+  \int_\gamma\omega=
+  \int_a^b
+  \left(P(x(t),y(t))x'(t)+Q(x(t),y(t))y'(t)\right)dt.
+\]
+This is the usual line integral. The conceptual advantage is that the curve integral is reduced to ordinary integration after pullback.
+
+\section{Two-forms: measuring oriented area}
+
+The wedge product is antisymmetric:
+\[
+  dx\wedge dy=-dy\wedge dx,
+  \qquad
+  dx\wedge dx=0.
+\]
+A \(2\)-form such as
+\[
+  f(x,y)\,dx\wedge dy
+\]
+measures signed area with density \(f\). The sign changes if the orientation is reversed.
+
+This is why forms are naturally tied to oriented geometry. A form does not merely ask ``how large?'' It asks ``how large, with which orientation?''
+
+\section{Exterior derivative as one operator}
+
+For a function \(f\),
+\[
+  df=f_x\,dx+f_y\,dy.
+\]
+For a \(1\)-form \(\omega=P\,dx+Q\,dy\),
+\[
+  d\omega=\left(Q_x-P_y\right)dx\wedge dy.
+\]
+The rule
+\[
+  d^2=0
+\]
+is the compact source of several familiar identities: gradients have zero curl, curls have zero divergence, and exact forms are closed.
+
+\section{A familiar theorem reappears}
+
+Apply Stokes to a planar region \(D\) and a \(1\)-form \(\omega=P\,dx+Q\,dy\):
+\[
+  \int_D d\omega=\int_{\partial D}\omega.
+\]
+Writing this in coordinates gives
+\[
+  \iint_D (Q_x-P_y)\,dx\,dy
+  =\int_{\partial D}P\,dx+Q\,dy.
+\]
+This is Green's theorem. The point is not that Green's theorem becomes shorter, but that its boundary nature becomes unavoidable.
+
+\section{Orientation is not decoration}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.56\linewidth]{figures/N-20240427/stokes-patch.png}
+\caption{The orientation of a patch forces an induced orientation on its boundary.}
+\end{figure}
+
+The boundary of an oriented region inherits an orientation. If this convention is changed, Stokes' theorem changes sign. So orientation is not a drawing preference; it is part of the data needed for the theorem to be true.
+
+\section{Why arc length is a different kind of geometry}
+
+It is tempting to treat \(ds\) as a \(1\)-form, but arc length is not linear in the velocity:
+\[
+  ds(\gamma')=\|\gamma'\|\,dt.
+\]
+A \(1\)-form is linear in the tangent vector. A norm is not. This distinction separates two kinds of geometry:
+\[
+\begin{array}{c|c}
+\text{differential forms} & \text{oriented measurement and integration}\\
+\text{Riemannian metrics} & \text{lengths, angles, and distances}
+\end{array}
+\]
+Both are important, but they should not be confused.
+
+
+\section{Closed forms can detect holes}
+
+The distinction between closed and exact forms is one of the first places where analysis notices topology.  On \(\mathbb R^2\setminus\{0\}\), consider
+\[
+  \omega=\frac{-y\,dx+x\,dy}{x^2+y^2}.
+\]
+One computes that
+\[
+  d\omega=0.
+\]
+So \(\omega\) is closed.  But it is not exact on \(\mathbb R^2\setminus\{0\}\).  Indeed, along the unit circle \(\gamma(t)=(\cos t,\sin t)\), \(0\le t\le2\pi\), we get
+\[
+  \gamma^*\omega=dt,
+\]
+and therefore
+\[
+  \int_\gamma\omega=2\pi.
+\]
+If \(\omega=df\), the integral around a closed loop would be \(0\).  The nonzero integral detects the missing origin.
+
+This is a beautiful lesson: a differential form can carry topological information.
+
+\section{A table of classical shadows}
+
+The same theorem appears in several costumes:
+\[
+\begin{array}{c|c|c}
+\text{dimension} & \text{form} & \text{classical theorem}\\
+\hline
+1 & f & \int_a^b df=f(b)-f(a)\\
+2 & P\,dx+Q\,dy & \text{Green's theorem}\\
+3 & \text{flux form} & \text{divergence theorem}\\
+3 & \text{circulation form} & \text{classical Stokes theorem}
+\end{array}
+\]
+The table is not meant as a replacement for calculation.  It is meant to prevent the common mistake of treating these theorems as unrelated facts.
+
+\section{Flux as a form}
+
+In \(\mathbb R^3\), a vector field
+\[
+  \mathbf F=(P,Q,R)
+\]
+corresponds to the \(2\)-form
+\[
+  \omega=P\,dy\wedge dz+Q\,dz\wedge dx+R\,dx\wedge dy.
+\]
+Then
+\[
+  d\omega=(P_x+Q_y+R_z)\,dx\wedge dy\wedge dz.
+\]
+Thus the divergence theorem is exactly Stokes' theorem for this \(2\)-form:
+\[
+  \int_M d\omega=\int_{\partial M}\omega.
+\]
+This is a good example of how vector calculus becomes cleaner when translated into forms.
+
+\section{The moral of pullback}
+
+Integration should not depend on a lucky parametrization.  If a surface is parametrized by
+\[
+  \Phi:U\to M,
+\]
+then an integral over \(M\) is computed by pulling the form back to \(U\):
+\[
+  \int_M\omega=\int_U\Phi^*\omega.
+\]
+The pullback automatically inserts the Jacobian-like factors and orientation signs.  This is why forms are the natural objects to integrate: they know how to move backward along maps.
+
+This naturality is exactly what Stokes' theorem needs.  Differential forms are quantities that can be pulled back and integrated, the exterior derivative is compatible with pullback, and the integral of that derivative over a body becomes a measurement on the induced boundary orientation.

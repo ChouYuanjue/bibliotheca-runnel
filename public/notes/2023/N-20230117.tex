@@ -1,14 +1,207 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20230117}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20230117}
-\end{document}
+\notechapter{N-20230117}{More Function Exercises: Periodicity, Piecewise Definitions, Images, and Functional Equations}
+\enlargethispage{4\baselineskip}
+
+\section{Continuing the function chapter}
+
+Function exercises of this kind are solved by translating each problem into one of several languages:
+\[
+  \text{formula},\qquad \text{graph},\qquad \text{image/preimage},\qquad \text{iteration},\qquad \text{functional equation}.
+\]
+Many errors in such problems come from using a formula while ignoring its domain or from treating a functional equation as if it held only for special values.
+
+\section{Piecewise functions}
+
+A piecewise-defined function may use different formulas on intervals such as
+\[
+  x<0,\qquad x=0,\qquad x>0.
+\]
+When studying continuity or solving equations involving such a function, one must first decide which case the input belongs to.  If the input itself is an expression such as $f(x)$ or $x+1$, the relevant case may change during the calculation.
+
+The safe method is:
+\begin{enumerate}[(i)]
+  \item identify the possible regions of the input;
+  \item solve the equation in each region;
+  \item check that the solution actually belongs to the assumed region.
+
+\end{enumerate}
+
+\section{Periodicity from functional equations}
+
+A relation such as
+\[
+  f(x+1)=1-f(x)
+\]
+implies
+\[
+  f(x+2)=1-f(x+1)=f(x).
+\]
+Thus the function is periodic with period $2$.  The general method is to apply the same equation repeatedly until the input returns to a familiar form.
+
+If instead
+\[
+  f(x+T)=f(x)
+\]
+for all $x$, then $T$ is a period.  The smallest positive period, if it exists, is called the fundamental period.
+
+\section{Graph transformations}
+
+The pages include small sketches of graphs.  The standard transformations are:
+\[
+  y=f(x-a) \quad \text{shift right by }a,
+\]
+\[
+  y=f(x)+b \quad \text{shift up by }b,
+\]
+\[
+  y=-f(x) \quad \text{reflect across the }x\text{-axis},
+\]
+\[
+  y=f(-x) \quad \text{reflect across the }y\text{-axis}.
+\]
+Absolute values fold graphs:
+\[
+  y=|f(x)|
+\]
+reflects the negative part upward, while
+\[
+  y=f(|x|)
+\]
+copies the right half to the left.
+
+\section{Image of an interval}
+
+For a continuous function on an interval, the image is also an interval.  This is the intermediate value principle in set language.  If the function is monotone on the interval, then the endpoints determine the image directly.
+
+To find the range of an expression, rewrite it as a one-variable function, determine monotonicity or extrema, and translate the result back into an interval.
+
+\section{Functional equations and substitution}
+
+Substituting special values such as $x=0$, $y=0$, or $y=x$ is a standard strategy.  For a functional equation in two variables,
+\[
+  F(x,y,f(x),f(y),f(x+y))=0,
+\]
+choosing simple values isolates pieces of the function.
+
+For example, if
+\[
+  f(x+y)=f(x)+f(y)+c,
+\]
+then setting $x=y=0$ determines $f(0)$, and subtracting a constant can reduce the equation to the additive Cauchy equation.
+
+\section{Counting functions between finite sets}
+
+The printed exercise page also touches finite functions.  If $|A|=m$ and $|B|=n$, then the number of functions $A\to B$ is
+\[
+  n^m,
+\]
+because each element of $A$ independently chooses one image in $B$.
+
+If one requires injectivity and $m\le n$, the number is
+\[
+  n(n-1)\cdots(n-m+1).
+\]
+If one requires bijectivity and $m=n$, the number is
+\[
+  n!.
+\]
+
+\section{A compact bridge}
+
+The note is a training page for reading functions flexibly.  A function may be a formula, a graph, a rule on a finite set, or an unknown object constrained by an equation.  Each representation suggests a different method: casework for piecewise definitions, transformations for graphs, counting for finite domains, and substitution for functional equations.
+
+\section{Piecewise functions as glued maps}
+A piecewise function is built by gluing formulas on regions.  The important checks occur at boundaries: continuity, differentiability, or jump behavior depends on whether the pieces match there.
+\section{Periodicity from generated transformations}
+Relations such as \(f(x+a)=f(x)\) or \(f(c-x)=f(x)\) generate translations and reflections of the line.  The resulting group action partitions the domain into orbits.
+\section{Images of intervals}
+For continuous functions, the image of an interval is an interval.  If the interval is compact, the image is compact, so maxima and minima are attained.  This is the topological reason range problems often reduce to endpoint and critical-point checks.
+\section{Local definitions and global function behavior}
+Piecewise definitions, periodicity, graph transformations, images, and functional equations all ask how local rules glue into global behavior over the domain.
+
+\section{Functional equations as dynamics}
+
+A functional equation often specifies a transformation rule rather than a direct formula.  For example, equations involving $f(x+1)$, $f(2x)$, or $f(f(x))$ are naturally studied by iteration.  The orbit of $x$ under a transformation $T$ is
+\[
+  x,\ T(x),\ T^2(x),\ \ldots.
+\]
+A functional equation may prescribe how $f$ behaves along these orbits.
+
+For instance, if
+\[
+  f(x+1)=f(x),
+\]
+then $f$ is constant along orbits of the translation $T(x)=x+1$.  Periodicity is invariance under a group action of $\mathbb Z$.
+
+\section{Cauchy's equation and regularity}
+
+Cauchy's equation is
+\[
+  f(x+y)=f(x)+f(y).
+\]
+If $f$ is continuous, measurable, or bounded on an interval, then
+\[
+  f(x)=cx.
+\]
+But without regularity assumptions, there are wild solutions constructed using a Hamel basis of $\mathbb R$ over $\mathbb Q$.
+
+This shows why elementary functional equations often include hidden conditions such as continuity or monotonicity.  These conditions are not technical decorations; they exclude pathological solutions arising from the axiom of choice.
+
+\section{Symbolic dynamics}
+
+Piecewise-defined functions and iteration can lead to symbolic dynamics.  If an interval map sends subintervals across one another, one can encode an orbit by a sequence of symbols recording which subinterval contains each iterate.
+
+The shift map
+\[
+  \sigma((a_0,a_1,a_2,\ldots))=(a_1,a_2,a_3,\ldots)
+\]
+is a central model.  Complicated interval dynamics can often be compared to shifts on symbol spaces.
+
+Thus a piecewise function graph in an elementary note can be the beginning of chaos, coding of orbits, and topological entropy.
+
+\section{Rigidity from regularity}
+
+Many functional equations have many algebraic solutions but few regular solutions.  The pattern is:
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+Equation & Algebraic freedom & Regularity conclusion \\
+\midrule
+$f(x+y)=f(x)+f(y)$ & Hamel-linear maps & $f(x)=cx$ under continuity \\
+$f(xy)=f(x)+f(y)$ & Logarithmic freedom over the multiplicative group & $f(x)=c\log x$ under continuity \\
+$f(x+T)=f(x)$ & Arbitrary values on a fundamental domain & Periodic structure under smoothness \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The original piecewise and functional-equation exercises should therefore be read as local training for a general principle: algebraic equations become meaningful only after the allowed regularity class is specified.
+
+\section{Piecewise functions and partitions}
+
+A piecewise function is a function defined after partitioning the domain into regions.  The mathematical issue is not only which formula applies, but how the pieces meet.  Discontinuities occur at boundaries of the partition; differentiability requires matching first-order behavior across boundaries.
+
+For example, if
+\[
+  f(x)=\begin{cases}f_1(x),&x<a,\\ f_2(x),&x\ge a,
+  \end{cases}
+\]
+then continuity at $a$ requires
+\[
+  \lim_{x\to a^-}f_1(x)=f_2(a).
+\]
+Differentiability additionally requires matching slopes.  This is a local gluing condition.
+
+\section{Functional equations and invariants}
+
+A functional equation often says that $f$ is invariant or equivariant under transformations.  The equation
+\[
+  f(x+T)=f(x)
+\]
+says $f$ is invariant under the translation action of $T\mathbb Z$.  The equation
+\[
+  f(ax)=bf(x)
+\]
+says $f$ is homogeneous with respect to scaling.
+
+Thus solving a functional equation often means finding the invariants of a group or semigroup action.  This perspective makes the original examples more natural: periodicity, parity, and scaling are all symmetry constraints.

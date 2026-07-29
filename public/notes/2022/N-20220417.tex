@@ -1,14 +1,425 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220417}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220417}
-\end{document}
+\notechapter{N-20220417}{Designing Inequality Proofs: Equality Cases, Homogeneity, and Cyclic Structure}
+
+\section{Finding the likely answer is only half of a proof}
+
+An inequality problem often has an exploratory phase and a certification phase.  During exploration one tests special cases, guesses the equality configuration, normalizes variables, and searches for a familiar pattern.  A complete proof must then establish the bound for every admissible input and verify that equality can actually occur.
+
+For an optimization statement, the two obligations are
+\[
+  F(x)\ge L
+\]
+for all allowed \(x\), and
+\[
+  F(x_0)=L
+\]
+for at least one allowed \(x_0\).  The first proves that \(L\) is a lower bound; the second proves it is sharp.
+
+A simple example is
+\[
+  a^2+b^2+c^2\ge ab+bc+ca.
+\]
+The symmetric point \(a=b=c\) suggests the equality case.  The certification is the identity
+\[
+\begin{aligned}
+  a^2+b^2+c^2-ab-bc-ca
+  =\frac12\bigl((a-b)^2+(b-c)^2+(c-a)^2\bigr).
+\end{aligned}
+\]
+The right-hand side is nonnegative, and it vanishes exactly when
+\[
+  a=b=c.
+\]
+The equality case is not a decorative sentence after the proof.  It confirms that the proposed bound is the best possible and checks that no step has introduced unnecessary slack.
+
+The same habit matters in existence and classification problems.  ``Find all'' requires both producing candidates and excluding everything else.  ``Find the minimum'' requires both a universal lower bound and an example attaining it.  The proof strategy should be designed around both obligations from the beginning.
+
+\section{Homogeneity tells us what may be normalized}
+
+An expression \(F(a,b,c)\) is homogeneous of degree \(d\) if
+\[
+  F(ta,tb,tc)=t^dF(a,b,c)
+\]
+for every positive \(t\).  If both sides of an inequality have the same degree, scaling all variables does not change its truth.  One degree of freedom may then be removed by a normalization such as
+\[
+  a+b+c=1,
+  \qquad
+  abc=1,
+  \qquad
+  a^2+b^2+c^2=1.
+\]
+The best choice is the one that simplifies the structure already present.
+
+For example, the inequality
+\[
+  (a+b+c)^2\ge3(ab+bc+ca)
+\]
+is homogeneous of degree two.  Normalizing \(a+b+c=1\) turns it into
+\[
+  ab+bc+ca\le\frac13.
+\]
+Using
+\[
+  1=(a+b+c)^2
+  =a^2+b^2+c^2+2(ab+bc+ca)
+\]
+and
+\[
+  a^2+b^2+c^2\ge ab+bc+ca
+\]
+gives the result immediately.
+
+If a condition says
+\[
+  abc=1,
+\]
+the substitution
+\[
+  a=\frac{x}{y},
+  \qquad
+  b=\frac{y}{z},
+  \qquad
+  c=\frac{z}{x}
+\]
+builds the constraint automatically.  This substitution is useful only when the resulting cyclic ratios simplify the expression; otherwise the normalization \(abc=1\) may be better used directly.
+
+Homogeneity is therefore not a command to normalize mechanically.  It is permission to choose a convenient cross-section of the scaling orbits.
+
+\section{Cyclic and symmetric expressions carry different information}
+
+For three variables, cyclic summation means
+\[
+  \sum_{\mathrm{cyc}}f(a,b,c)
+  =f(a,b,c)+f(b,c,a)+f(c,a,b).
+\]
+A symmetric sum includes every distinct permutation.  For instance,
+\[
+  \sum_{\mathrm{cyc}}a^2b
+  =a^2b+b^2c+c^2a,
+\]
+whereas
+\[
+  \sum_{\mathrm{sym}}a^2b
+  =a^2b+a^2c+b^2a+b^2c+c^2a+c^2b.
+\]
+
+A symmetric expression is unchanged by every permutation of the variables.  A cyclic expression remembers an orientation.  The two orientations differ by
+\[
+\begin{aligned}
+&a^2b+b^2c+c^2a
+-(ab^2+bc^2+ca^2)\\
+&\qquad=-(a-b)(b-c)(c-a).
+\end{aligned}
+\]
+Thus a cyclic sum becomes equal to its reverse when two variables coincide, but not in general.
+
+This identity is a useful diagnostic.  If a proposed proof replaces a cyclic expression by a symmetric one, it may be discarding the orientation term
+\[
+  (a-b)(b-c)(c-a).
+\]
+Sometimes that loss is harmless because the symmetric estimate is strong enough.  Sometimes the sign of the orientation term is exactly what an ordering assumption such as
+\[
+  a\ge b\ge c
+\]
+was meant to control.
+
+The notation should therefore follow the invariance of the problem.  A cyclic problem often rewards cyclic substitutions and ordered cases; a symmetric homogeneous problem may invite smoothing, majorization, or a reduction to elementary symmetric polynomials.
+
+\section{Equality cases guide the choice of inequality}
+
+Suppose a positive symmetric expression appears to attain equality at
+\[
+  a=b=c.
+\]
+That suggests methods whose equality conditions also force equal variables: AM--GM, Jensen with strict convexity or concavity, Cauchy in a proportional configuration, or smoothing two variables toward their average.
+
+Consider
+\[
+  \frac{a^3}{bc}
+  +\frac{b^3}{ca}
+  +\frac{c^3}{ab}
+  \ge a+b+c,
+  \qquad a,b,c>0.
+\]
+Set
+\[
+  A=\frac{a^3}{bc},
+  \qquad
+  B=\frac{b^3}{ca},
+  \qquad
+  C=\frac{c^3}{ab}.
+\]
+To produce the term \(a\), apply AM--GM to
+\[
+  A,A,B,C.
+\]
+Their product is
+\[
+  A^2BC=a^4,
+\]
+so
+\[
+  \frac{2A+B+C}{4}\ge a.
+\]
+Cyclically,
+\[
+  \frac{A+2B+C}{4}\ge b,
+\]
+\[
+  \frac{A+B+2C}{4}\ge c.
+\]
+Adding gives
+\[
+  A+B+C\ge a+b+c.
+\]
+
+Equality in the first AM--GM step requires
+\[
+  A=B=C,
+\]
+and the same condition appears cyclically.  For positive variables this gives
+\[
+  a=b=c.
+\]
+The proof was designed backward from the desired right-hand terms and the expected equality configuration.  The repeated copy of \(A\) was chosen so that the geometric mean became exactly \(a\).
+
+\section{Denominators often reveal an Engel-form Cauchy step}
+
+Fractions with positive denominators frequently suggest the Engel form
+\[
+  \sum_{i=1}^n\frac{x_i^2}{y_i}
+  \ge
+  \frac{(x_1+\cdots+x_n)^2}{y_1+\cdots+y_n}.
+\]
+The numerators need not initially be squares; one may rewrite
+\[
+  \frac{a}{b+c}=\frac{a^2}{ab+ac}.
+\]
+
+This gives a short proof of Nesbitt's inequality:
+\[
+  \frac{a}{b+c}
+  +\frac{b}{c+a}
+  +\frac{c}{a+b}
+  \ge\frac32,
+  \qquad a,b,c>0.
+\]
+Indeed,
+\[
+\begin{aligned}
+  \sum_{\mathrm{cyc}}\frac{a}{b+c}
+  &=\sum_{\mathrm{cyc}}\frac{a^2}{ab+ac}\\
+  &\ge
+  \frac{(a+b+c)^2}{2(ab+bc+ca)}.
+\end{aligned}
+\]
+Since
+\[
+  (a+b+c)^2\ge3(ab+bc+ca),
+\]
+we obtain
+\[
+  \sum_{\mathrm{cyc}}\frac{a}{b+c}\ge\frac32.
+\]
+
+The equality conditions also match.  Engel equality requires
+\[
+  \frac{a}{ab+ac}
+  =\frac{b}{bc+ab}
+  =\frac{c}{ca+bc},
+\]
+which reduces to
+\[
+  a=b=c.
+\]
+The second inequality has the same equality case, so no slack is lost between the two steps.
+
+A denominator pattern is therefore not merely an obstacle.  It often announces which quantities should become the \(y_i\) in a Cauchy quotient.
+
+\section{Smoothing explains why equal variables often extremize}
+
+Fix the sum
+\[
+  x+y=s.
+\]
+Replacing \(x,y\) by their average
+\[
+  \frac{s}{2},\frac{s}{2}
+\]
+is called a smoothing step.  For a convex function \(f\),
+\[
+  f(x)+f(y)
+  \ge2f\left(\frac{x+y}{2}\right).
+\]
+Thus smoothing decreases a convex symmetric sum.  For a concave function, the direction reverses.
+
+The elementary identity
+\[
+  x^2+y^2-\frac{s^2}{2}
+  =\frac{(x-y)^2}{2}
+\]
+shows this directly for \(f(t)=t^2\).  With the sum fixed, the square sum is minimized when the variables are equal.
+
+The product behaves oppositely:
+\[
+  xy
+  =\frac{s^2-(x-y)^2}{4}
+  \le\frac{s^2}{4}.
+\]
+Hence smoothing increases the product.  Iterating the argument yields AM--GM for three variables with fixed sum:
+\[
+  abc\le\left(\frac{a+b+c}{3}\right)^3.
+\]
+
+A useful calculus diagnostic reaches the same candidate.  To maximize
+\[
+  \log(abc)=\log a+\log b+\log c
+\]
+subject to
+\[
+  a+b+c=s,
+\]
+Lagrange multipliers give
+\[
+  \frac1a=\frac1b=\frac1c,
+\]
+so the only interior critical point is
+\[
+  a=b=c=\frac{s}{3}.
+\]
+Because \(\log\) is strictly concave and the product tends to zero at the boundary, this point is the unique global maximum.  The calculus calculation discovers the candidate; AM--GM or concavity supplies the global certificate.
+
+\section{Triangle substitutions encode the boundary conditions}
+
+If \(a,b,c\) are side lengths of a nondegenerate triangle, then
+\[
+  a<b+c,
+  \qquad
+  b<c+a,
+  \qquad
+  c<a+b.
+\]
+The substitution
+\[
+  a=y+z,
+  \qquad
+  b=z+x,
+  \qquad
+  c=x+y,
+  \qquad x,y,z>0
+\]
+builds these inequalities automatically.  Conversely,
+\[
+  x=\frac{b+c-a}{2},
+  \quad
+  y=\frac{c+a-b}{2},
+  \quad
+  z=\frac{a+b-c}{2}.
+\]
+
+As a simple application, Heron's semiperimeter differences become
+\[
+  s-a=x,
+  \qquad
+  s-b=y,
+  \qquad
+  s-c=z,
+\]
+where
+\[
+  s=x+y+z.
+\]
+The area formula
+\[
+  \Delta^2=s(s-a)(s-b)(s-c)
+\]
+becomes
+\[
+  \Delta^2=(x+y+z)xyz.
+\]
+A geometric constraint has turned into positivity of three independent variables.
+
+The substitution is useful when the expression repeatedly contains
+\[
+  b+c-a,
+  \quad
+  c+a-b,
+  \quad
+  a+b-c.
+\]
+It is not automatically beneficial for every triangle inequality.  As with normalization, the substitution should simplify the actual algebra rather than merely certify that the solver recognizes a standard trick.
+
+\section{Schur's inequality shows how ordering controls a cyclic sign}
+
+Schur's inequality of degree three states
+\[
+  a^3+b^3+c^3+3abc
+  \ge
+  \sum_{\mathrm{sym}}a^2b
+\]
+for nonnegative \(a,b,c\).  Equivalently,
+\[
+  \sum_{\mathrm{cyc}}a(a-b)(a-c)\ge0.
+\]
+Because the expression is symmetric, assume without loss of generality that
+\[
+  a\ge b\ge c.
+\]
+Then group the first two terms:
+\[
+\begin{aligned}
+&a(a-b)(a-c)+b(b-c)(b-a)\\
+&\qquad=(a-b)\bigl(a(a-c)-b(b-c)\bigr)\\
+&\qquad=(a-b)^2(a+b-c).
+\end{aligned}
+\]
+The remaining term is
+\[
+  c(c-a)(c-b)=c(a-c)(b-c).
+\]
+Therefore
+\[
+  \sum_{\mathrm{cyc}}a(a-b)(a-c)
+  =(a-b)^2(a+b-c)+c(a-c)(b-c)\ge0.
+\]
+
+Every factor is nonnegative under the chosen ordering.  Equality occurs when
+\[
+  a=b=c
+\]
+or when one variable is zero and the other two are equal.
+
+This proof illustrates a general pattern.  A symmetric inequality permits an ordering assumption.  The ordered variables control signs that would otherwise be ambiguous, and a cyclic expression can then be regrouped into visibly nonnegative pieces.
+
+\section{A complete proof keeps the equality case alive}
+
+Consider the homogeneous inequality
+\[
+  \frac{a^2}{b+c}
+  +\frac{b^2}{c+a}
+  +\frac{c^2}{a+b}
+  \ge\frac{a+b+c}{2},
+  \qquad a,b,c>0.
+\]
+The denominators suggest Engel form, and the symmetric right-hand side suggests equality at \(a=b=c\).  One line gives
+\[
+\begin{aligned}
+  \sum_{\mathrm{cyc}}\frac{a^2}{b+c}
+  &\ge
+  \frac{(a+b+c)^2}{(b+c)+(c+a)+(a+b)}\\
+  &=\frac{(a+b+c)^2}{2(a+b+c)}\\
+  &=\frac{a+b+c}{2}.
+\end{aligned}
+\]
+The Cauchy equality condition is
+\[
+  \frac{a}{b+c}
+  =\frac{b}{c+a}
+  =\frac{c}{a+b},
+\]
+which for positive variables forces
+\[
+  a=b=c.
+\]
+The candidate survives the only inequality step, so the bound is sharp.
+
+This small example contains the full design process.  Homogeneity permits normalization if desired; symmetry predicts the equality configuration; the denominator pattern identifies Engel form; and the equality condition verifies sharpness.  A good inequality proof is not a list of named weapons.  It is a sequence of transformations chosen so that the structure of the problem and the structure of the theorem line up without losing the extremal case.

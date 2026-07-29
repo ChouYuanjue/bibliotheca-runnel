@@ -1,14 +1,204 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220721}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220721}
-\end{document}
+\notechapter{N-20220721}{Probability, Conditional Probability, and Substitution Tricks in Inequalities}
+
+\section{Random experiments and sample spaces}
+
+A random experiment is a repeatable process whose possible outcomes are known but whose actual outcome is uncertain.  Examples include tossing a coin, drawing a ball from a box, or choosing a card.
+
+The set of all possible basic outcomes is the sample space, denoted
+\[
+  \Omega.
+\]
+A subset \(A\subseteq\Omega\) is an event.  If the sample space is finite and all outcomes are equally likely, then
+\[
+  P(A)=\frac{|A|}{|\Omega|}.
+\]
+
+The note stresses that events are sets.  This is why union, intersection, complement, and inclusion--exclusion immediately become probability tools:
+\[
+  P(A\cup B)=P(A)+P(B)-P(A\cap B).
+\]
+
+\section{Classical model and Venn diagrams}
+
+Consider seven labeled balls with three properties represented by sets \(A_1,A_2,A_3\).  A Venn diagram and factorial counts compute a probability such as
+\[
+  P=\frac{7!-3\cdot6!+3\cdot5!-4!}{7!}.
+\]
+The exact numbers matter less than the method.  If conditions overlap, count by inclusion--exclusion.  A Venn diagram is not a proof by itself, but it helps prevent double-counting.
+
+\section{Conditional probability}
+
+The conditional probability of \(B\) given \(A\) is
+\[
+  P(B\mid A)=\frac{P(A\cap B)}{P(A)}
+\]
+when \(P(A)>0\).  The note includes examples where one must be careful not to confuse \(P(B\mid A)\) with \(P(B)\).
+
+Independence is the condition
+\[
+  P(A\cap B)=P(A)P(B),
+\]
+or equivalently
+\[
+  P(B\mid A)=P(B).
+\]
+This means that knowing \(A\) occurred does not change the probability of \(B\).
+
+A common trap appears in nested events.  If \(A\subseteq B\), then
+\[
+  P(B\mid A)=1,
+\]
+but
+\[
+  P(A\mid B)=\frac{P(A)}{P(B)}
+\]
+may be much smaller.  Conditional probability is not symmetric.
+
+\section{A transition to substitution tricks}
+
+The note then changes direction and discusses substitutions used in inequalities.  A recurring constraint is
+\[
+  abc=1.
+\]
+A standard substitution is
+\[
+  a=\frac xy,\qquad b=\frac yz,\qquad c=\frac zx.
+\]
+Another useful substitution is
+\[
+  x=a+\frac1a,\qquad y=b+\frac1b,\qquad z=c+\frac1c.
+\]
+Such substitutions are not merely algebraic decoration; they encode hidden positivity and symmetry.  Many complicated-looking inequalities become simpler after this change of variables.
+
+\section{A classical symmetric equation}
+
+The pages discuss equations such as
+\[
+  xyz=x+y+z+2.
+\]
+This can be rewritten as
+\[
+  xyz+1=(x+1)(y+1)(z+1)-xy-yz-zx-x-y-z.
+\]
+A better-known substitution is
+\[
+  x=a+\frac1a,\quad y=b+\frac1b,\quad z=c+\frac1c,
+\]
+or trigonometric substitutions when the variables resemble
+\[
+  2\cos A,\quad 2\cos B,\quad 2\cos C.
+\]
+The note is circling around the idea that symmetric algebraic equations often become geometry or trigonometry after the right substitution.
+
+\section{Inequality examples}
+
+One example asks to prove
+\[
+  \frac{a}{b+c+a}+\frac{b}{c+a+b}+\frac{c}{a+b+c}\ge\frac32
+\]
+in a normalized form.  Contest inequalities of this type are handled by standard tools such as Cauchy, AM--GM, or substitution.
+
+The point is that conditions like \(abc=1\), \(x+y+z=\text{constant}\), or \(x^2+y^2+z^2+2xyz=1\) should not be treated as random constraints.  They are invitations to choose a special parametrization.
+
+\section{Jensen, trigonometry, and contest style}
+
+Later examples involve trigonometric inequalities in a triangle.  A triangle condition \(A+B+C=\pi\) naturally suggests identities such as
+\[
+  \cos^2A+\cos^2B+\cos^2C+2\cos A\cos B\cos C=1.
+\]
+This identity is one of the reasons that substitutions by cosines appear in olympiad inequalities.
+
+\section{The hidden structure}
+
+This note looks like probability followed by inequalities, but both topics are about choosing the right sample space.  In probability, the sample space is literal: events are subsets of \(\Omega\).  In inequalities, the ``sample space'' is the domain allowed by the constraint.  A good substitution changes that domain into something more natural, just as choosing a good probability model turns a counting problem into a set problem.
+
+\section{Conditional probability as changing measure}
+
+Conditional probability is not just a formula.  It changes the universe from \(\Omega\) to the event \(B\):
+\[
+  \mathbb P(A\mid B)=\frac{\mathbb P(A\cap B)}{\mathbb P(B)}.
+\]
+The denominator renormalizes the measure so that \(B\) has probability \(1\).
+
+This is why Venn diagrams help: conditioning restricts attention to one region and rescales its area.
+
+\section{Bayes formula and inverse problems}
+
+Bayes' formula
+\[
+  \mathbb P(A_i\mid B)=\frac{\mathbb P(B\mid A_i)\mathbb P(A_i)}{\sum_j \mathbb P(B\mid A_j)\mathbb P(A_j)}
+\]
+turns likelihoods into posterior probabilities.  It is a finite version of inference: update prior weights after observing evidence.
+
+The formula is especially useful when \(B\) is easier to compute conditional on each case \(A_i\) than directly.
+
+\section{Inequality substitutions as coordinate choices}
+
+The substitution tricks in the inequality part should be read as coordinate changes.  Symmetric expressions often simplify under
+\[
+  u=x+y,\qquad v=xy,
+\]
+or under trigonometric substitutions that encode constraints.  The good substitution is the one that turns the constraint into a simple domain.
+
+\section{Changing measures and changing coordinates}
+
+Probability and inequality substitutions share a habit: change the viewpoint before computing.  Conditioning changes the measure; Bayes reverses conditional information; substitutions choose coordinates adapted to the constraint.  This last sentence is worth making more precise, because it is the higher-level bridge hidden inside the elementary examples.
+
+\begin{definition}[Conditioning as a new probability measure]
+Let \((\Omega,\mathcal F,\mathbb P)\) be a probability space and let \(B\in\mathcal F\) satisfy \(\mathbb P(B)>0\).  The conditional probability given \(B\) is the probability measure
+\[
+  \mathbb P_B(A)=\mathbb P(A\mid B)
+  =\frac{\mathbb P(A\cap B)}{\mathbb P(B)}.
+\]
+Equivalently,
+\[
+  \mathbb P_B(A)=\int_A \frac{\mathbf 1_B}{\mathbb P(B)}\,d\mathbb P.
+\]
+Thus \(\mathbb P_B\) is absolutely continuous with respect to \(\mathbb P\), with Radon--Nikodym derivative
+\[
+  \frac{d\mathbb P_B}{d\mathbb P}=\frac{\mathbf 1_B}{\mathbb P(B)}.
+\]
+\end{definition}
+
+This is the clean meaning of the phrase ``conditioning changes the measure''.  The set \(\Omega\) may stay formally the same, but the weights assigned to its parts have changed.  Everything outside \(B\) receives weight zero, and the mass inside \(B\) is rescaled so that the total mass is again one.
+
+\begin{proposition}[Conditional expectation as integration in the new measure]
+For every integrable random variable \(X\),
+\[
+  \mathbb E[X\mid B]
+  =\int_{\Omega}X\,d\mathbb P_B
+  =\frac{1}{\mathbb P(B)}\int_B X\,d\mathbb P.
+\]
+\end{proposition}
+
+\begin{proof}
+By the definition of \(\mathbb P_B\) and its density with respect to \(\mathbb P\),
+\[
+  \int_{\Omega}X\,d\mathbb P_B
+  =\int_{\Omega}X\frac{\mathbf 1_B}{\mathbb P(B)}\,d\mathbb P
+  =\frac{1}{\mathbb P(B)}\int_B X\,d\mathbb P.
+\]
+This is precisely the usual formula for conditional expectation on the event \(B\).
+\end{proof}
+
+Bayes' formula is also clearer from this viewpoint.  Suppose \(A_1,\ldots,A_n\) form a partition of \(\Omega\).  After observing \(B\), the old weights \(\mathbb P(A_i)\) are replaced by
+\[
+  \mathbb P_B(A_i)
+  =\frac{\mathbb P(B\mid A_i)\mathbb P(A_i)}{\sum_j\mathbb P(B\mid A_j)\mathbb P(A_j)}.
+\]
+The numerator is the old weight multiplied by the likelihood of the observation.  The denominator is just the normalization which makes the new weights add to one.  So Bayes' formula is not a trick for reversing arrows; it is a reweighting rule.
+
+The same pattern appears in substitutions for inequalities.  A substitution changes how we integrate, compare, or optimize over a domain.  If \(T:U\to V\) is a change of variables, then a function on \(V\) can be pulled back to \(U\) by
+\[
+  f\longmapsto f\circ T.
+\]
+For integrals, the measure also changes through the Jacobian:
+\[
+  \int_V f(y)\,dy
+  =\int_U f(T(x))\,\left|\det DT(x)\right|\,dx.
+\]
+For inequalities, even when no explicit integral is present, the same philosophy remains: choose coordinates in which the constraint and the symmetry become visible.
+
+\begin{remark}[The shared template]
+Conditioning replaces \(\mathbb P\) by the weighted measure \(\mathbb P_B\).  Bayes' formula replaces prior weights by posterior weights.  A substitution replaces the original coordinates by coordinates adapted to the constraint.  In all three cases, the computation becomes easier because the background viewpoint has changed before the algebra begins.
+\end{remark}

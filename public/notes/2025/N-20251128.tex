@@ -1,14 +1,173 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20251128}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20251128}
-\end{document}
+\notechapter{N-20251128}{Self-Avoiding Walks III: Lace Expansion, Functional Integrals, and the Critical Dimension Four}
+
+\section{The high-dimensional philosophy}
+
+In low dimensions, self-avoidance dominates the geometry of the walk.  In high dimensions, the walk has more room, and self-intersections become less frequent.  The expected result is that the self-avoiding walk behaves like simple random walk at large scales:
+\[
+  |\omega_n|\text{ is typically of order }n^{1/2}.
+\]
+This is called mean-field behaviour.
+
+The rigorous tool that proves this in dimensions \(d\ge5\), for nearest-neighbour self-avoiding walk, is the lace expansion.  It is a systematic inclusion--exclusion method that turns the global self-avoidance constraint into a perturbative correction to the simple random walk equation.
+
+\section{The two-point function}
+
+The central analytic object is the two-point function
+\[
+  G_z(x)=\sum_{\omega:0\to x} z^{|\omega|},
+\]
+where the sum is over self-avoiding walks from \(0\) to \(x\).  The susceptibility is
+\[
+  \chi(z)=\sum_{x\in\mathbb Z^d}G_z(x).
+\]
+The critical point is \(z_c=1/\mu\).
+
+For simple random walk, the two-point function satisfies a renewal equation.  If \(D\) is the one-step distribution, then the generating function \(C_z\) satisfies
+\[
+  C_z=\delta_0+zD*C_z.
+\]
+Equivalently, in Fourier space,
+\[
+  \widehat C_z(k)=\frac1{1-z\widehat D(k)}.
+\]
+
+For self-avoiding walk, this exact renewal equation fails because the future path is constrained by the past.  The lace expansion repairs the equation by adding correction terms.
+
+\section{The lace expansion as corrected random walk}
+
+The output of the lace expansion can be remembered schematically as
+\[
+  G_z=\delta_0+zD*G_z+\Pi_z*G_z,
+\]
+where \(\Pi_z\) is the lace-expansion correction.  This formula is not meant as a definition of \(\Pi_z\); it is the structural form to remember.  The term \(zD*G_z\) is what simple random walk would have.  The term \(\Pi_z*G_z\) records the accumulated effect of forbidding self-intersections.
+
+
+The correction terms are represented by small diagrams.  The following two examples should be read as diagrammatic shorthand rather than literal pictures of the walk.  A line represents a two-point function, and extra chords represent constraints coming from self-intersection corrections.
+
+\Needspace{14\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.32\textwidth]{figures/N-20251128/Theta_pspdftex.pdf}
+  \qquad
+  \includegraphics[width=0.34\textwidth]{figures/N-20251128/ThirdLace_pspdftex.pdf}
+  \caption{typical lace-expansion diagrams.}
+\end{figure}
+
+In Fourier space the relation becomes morally
+\[
+  \widehat G_z(k)=
+  \frac{1}{1-z\widehat D(k)-\widehat\Pi_z(k)}.
+\]
+Thus the proof of mean-field behaviour becomes a problem of showing that \(\Pi_z\) is small and regular enough near criticality.
+
+\begin{remark}
+The lace expansion is often intimidating because the combinatorics of laces is elaborate.  Conceptually, however, its role is simple: it isolates the first random-walk term and packages all self-intersection corrections into a controlled perturbation.
+\end{remark}
+
+\section{Bubble diagrams and diagrammatic estimates}
+
+The perturbative parameter is measured by diagrammatic sums.  A basic example is the bubble diagram
+
+
+The word ``bubble'' is literal in the diagrammatic notation.  One sums over two independent-looking connections between the same endpoints.  Finiteness of the corresponding sum is what makes the high-dimensional expansion behave like a small perturbation.
+
+\Needspace{12\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.34\textwidth]{figures/N-20251128/Bubble_pspdftex.pdf}
+  \caption{the bubble diagram.}
+\end{figure}
+\[
+  B(z)=\sum_{x\in\mathbb Z^d}G_z(x)^2.
+\]
+For simple random walk at criticality, this sum is finite exactly above the critical dimension \(4\).  This is the first signal that dimension \(4\) is the borderline.
+
+In dimensions \(d>4\), one can prove estimates of the following kind:
+\[
+  \sum_x G_{z_c}(x)^2<\infty.
+\]
+Such bounds imply that the lace-expansion correction behaves perturbatively.  They lead to the mean-field critical exponents
+\[
+  \gamma=1,
+  \qquad
+  \nu=\frac12.
+\]
+More concretely, the susceptibility diverges like
+\[
+  \chi(z)\asymp \frac{1}{1-z/z_c},
+\]
+and the mean-square displacement grows linearly in \(n\).
+
+\section{Differential inequalities}
+
+One route to controlling the susceptibility is through differential inequalities.  The generating function \(\chi(z)\) is increasing in \(z\), and differentiating it gives information about the average length of a walk under the \(z\)-weighted measure.  The lace expansion supplies inequalities that compare \(\chi'(z)\) to powers of \(\chi(z)\).
+
+The mean-field picture corresponds to the ordinary differential equation
+\[
+  \chi'(z)\approx C\chi(z)^2.
+\]
+Solving this heuristic equation gives a simple pole at the critical point, hence \(\gamma=1\).  The rigorous proof replaces the heuristic approximation by upper and lower differential inequalities with controlled error terms.
+
+\section{Functional integral representations}
+
+The lecture notes also explain a different representation of the model.  A weakly self-avoiding walk can be written using a self-intersection local time.  In continuous time, one can weight a walk by
+\[
+  \exp\left(-g\sum_x L_x^2\right),
+\]
+where \(L_x\) is the local time spent at \(x\) and \(g>0\) penalises self-intersections.  The strict self-avoiding walk corresponds morally to the limit where self-intersections are forbidden completely.
+
+There is a supersymmetric functional integral representation in which walk quantities are encoded by integrals involving bosonic and fermionic variables.  The point is not that one wants to compute these integrals explicitly.  The point is that the representation turns the probabilistic walk model into a field-theoretic object suitable for renormalisation group analysis.
+
+
+The renormalisation-group part organises space into blocks and then into polymers made of blocks.  This terminology is unfortunately overloaded: these ``polymers'' are not the original self-avoiding walks.  They are bookkeeping regions used to localise the effective interaction at each scale.
+
+\Needspace{15\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.48\textwidth]{figures/N-20251128/polymers3_pspdftex.pdf}
+  \caption{a polymer at one scale and its closure at the next scale.}
+\end{figure}
+
+\begin{remark}
+The fermionic variables are not an extra physical particle in the polymer.  They are an algebraic device that makes cancellations exact.  In this representation, supersymmetry is a bookkeeping symmetry for the walk model.
+\end{remark}
+
+\section{Dimension four and logarithmic corrections}
+
+Dimension \(4\) is the upper critical dimension for self-avoiding walk.  Above four dimensions, the bubble diagram is finite and the lace expansion gives mean-field behaviour.  At four dimensions, the relevant diagram is marginal: it fails only logarithmically.  This is why the leading powers look mean-field but acquire logarithmic corrections.
+
+For the continuous-time weakly self-avoiding walk in \(d=4\), the renormalisation group tracks how coupling constants change across length scales.  One decomposes the covariance into scale pieces and integrates out fluctuations scale by scale.  The effective interaction evolves under a map of the form
+\[
+  Z_0\mapsto Z_1\mapsto Z_2\mapsto\cdots.
+\]
+The essential phenomenon is that the self-interaction coupling is marginally irrelevant: it flows slowly to zero.  The walk becomes asymptotically Gaussian, but only after logarithmic corrections are taken into account.
+
+A typical conclusion has the form
+\[
+  \chi(g,\nu)\sim A\,\varepsilon^{-1}(\log \varepsilon^{-1})^{1/4}
+\]
+as the killing parameter \(\varepsilon\downarrow0\), with model-dependent constants.  The exact formulation depends on the version of the weakly self-avoiding walk, but the memory aid is stable: four dimensions means mean-field powers multiplied by logarithms.
+
+\section{How the three methods fit together}
+
+The three major techniques in these lectures have different roles:
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.25\textwidth}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.35\textwidth}}
+\toprule
+method & dimension or setting & main output\\
+\midrule
+bridges and polygons & all dimensions & growth constants and subexponential bounds\\
+holomorphic observable & \(d=2\), hexagonal lattice & exact connective constant\\
+lace expansion & \(d>4\) & mean-field critical behaviour\\
+renormalisation group & \(d=4\) & logarithmic corrections\\
+\bottomrule
+\end{tabular}
+\end{center}
+This is a useful mental map because the methods are not interchangeable.  The two-dimensional proof uses special planar structure.  The high-dimensional proof uses small intersection probabilities.  The four-dimensional proof needs a scale-by-scale analysis because the perturbation is exactly marginal at first order.
+
+\section{The conceptual turn}
+
+The lace expansion should be remembered as the high-dimensional counterpart of the two-dimensional holomorphic observable.  Both are ways of making the self-avoidance constraint tractable, but they exploit opposite regimes.  In two dimensions, geometry is rigid and special identities appear.  In high dimensions, geometry is loose and self-intersections become a small perturbation.
+
+The critical dimension \(4\) is the boundary between these worlds.  Above it, self-avoiding walk is close to simple random walk.  At it, the same statement remains morally true, but logarithms record the slow decay of the self-interaction.

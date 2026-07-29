@@ -1,14 +1,284 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20240323}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20240323}
-\end{document}
+\notechapter{N-20240323}{Combinatorics: Identities, Generating Functions, Catalan Numbers, and More}
+
+These exercises move from binomial identities and recurrences to convexity and graph walks.  What first looks like a mixed problem set gradually becomes a catalogue of ways to encode counting: by subsets, generating functions, recursive decompositions, convex combinations, and matrix powers.
+
+\section{Binomial identities}
+
+Several binomial identities become clearer once their combinatorial meanings are made explicit.  The basic identity
+\[
+  \sum_{i=0}^n \binom ni=2^n
+\]
+counts all subsets of an $n$-element set: choosing a subset means choosing its size $i$ and then choosing $i$ elements.
+
+Pascal's identity
+\[
+  \binom ni+\binom n{i+1}=\binom{n+1}{i+1}
+\]
+can be proved by fixing a distinguished element in an $(n+1)$-element set.  An $(i+1)$-subset either contains the distinguished element or it does not.  The two cases give the two terms on the left.
+
+Vandermonde's identity
+\[
+  \sum_i \binom mi \binom n{r-i}=\binom{m+n}{r}
+\]
+counts choosing $r$ balls from two boxes with $m$ and $n$ balls.  If $i$ balls are chosen from the first box, then $r-i$ are chosen from the second.
+
+Another useful identity is
+\[
+  \binom nr \binom{n-r}{k-r}=\binom nk \binom kr.
+\]
+Both sides count a pair $(R,K)$ with $R\subseteq K\subseteq[n]$, $|R|=r$, and $|K|=k$.
+
+\section{Good subsets}
+
+A nonempty subset $A\subseteq\{1,2,\ldots,n\}$ is called good if
+\[
+  |A|\le \min_{x\in A}x.
+\]
+Let $a_n$ be the number of good subsets.  The problem asks one to prove
+\[
+  a_{n+2}=a_{n+1}+a_n+1.
+\]
+
+A clean proof splits good subsets of $[n+2]$ into cases.
+
+First, if $n+2\notin A$, then $A$ is just a good subset of $[n+1]$, giving $a_{n+1}$ possibilities.
+
+Second, if $A=\{n+2\}$, this gives one extra subset.
+
+Third, suppose $n+2\in A$ and $|A|\ge2$.  Remove $n+2$ and subtract $1$ from every remaining element.  If
+\[
+  A'=A\setminus\{n+2\},
+\]
+then the condition becomes
+\[
+  |A'|+1\le \min A'.
+\]
+After shifting $B=\{x-1:x\in A'\}$, this is exactly
+\[
+  |B|\le \min B,
+\]
+so $B$ is a good subset of $[n]$.  This gives $a_n$ possibilities.  Hence
+\[
+  a_{n+2}=a_{n+1}+a_n+1.
+\]
+
+A summation proof fixes $|A|=k$.  Every element must then be at least $k$, so the remaining data are chosen from a tail interval, and repeated Pascal identities yield the recurrence.
+
+\section{Generating functions}
+
+For a sequence $(a_n)_{n\ge0}$, its ordinary generating function is
+\[
+  f(x)=\sum_{n\ge0}a_nx^n.
+\]
+The note emphasizes a key principle: coefficients can encode counting problems.
+
+For example, the number of nonnegative integer solutions of
+\[
+  x_1+x_2+\cdots+x_k=n
+\]
+is the coefficient of $x^n$ in
+\[
+  (1+x+x^2+\cdots)^k=\frac1{(1-x)^k}.
+\]
+Using the binomial expansion,
+\[
+  \frac1{(1-x)^k}=\sum_{n\ge0}\binom{n+k-1}{k-1}x^n,
+\]
+so the number of solutions is
+\[
+  \binom{n+k-1}{k-1}.
+\]
+
+The notes also use generating functions to separate parity or color constraints.  A typical trick is to multiply several series, each recording the allowed choices for one box or color, and then read off the coefficient of the target power.
+
+% N-20240323 overflow relief A
+\enlargethispage{4\baselineskip}
+\section{A probability example with repeated trials}
+
+For repeated trials, a generating function rewrites nested binomial sums using exponentials.  The important method is not the final closed form alone but the transformation:
+\[
+  \text{complicated convolution}
+  \quad\longrightarrow\quad
+  \text{product/composition of generating functions}.
+\]
+This is a standard way to turn repeated independent operations into algebra.  Binomial coefficients record choices; exponential series record independent counts; coefficient extraction recovers the desired probability.
+
+\section{Catalan numbers}
+
+The note then turns to Catalan numbers.  One model is the number of ways to triangulate a convex $(n+2)$-gon:
+\[
+  C_n=\frac1{n+1}\binom{2n}{n}.
+\]
+For example, a hexagon has $14$ triangulations.
+
+Let $h_n$ denote the number of triangulations of an $(n+2)$-gon.  Choose the triangle incident with a fixed side.  If its third vertex cuts the polygon into two smaller polygons, the numbers of triangulations multiply.  Therefore
+\[
+  h_n=\sum_{i=0}^{n-1}h_i h_{n-1-i},\qquad h_0=1.
+\]
+If
+\[
+  H(x)=\sum_{n\ge0}h_nx^n,
+\]
+then the recurrence gives
+\[
+  H(x)=1+xH(x)^2.
+\]
+Solving the quadratic and choosing the branch with $H(0)=1$ gives
+\[
+  H(x)=\frac{1-\sqrt{1-4x}}{2x},\qquad
+  h_n=C_n.
+\]
+
+This derivation explains why Catalan numbers appear in triangulations, parentheses, Dyck paths, and many noncrossing structures: all of them are recursively split into a left and a right part.
+
+\section{Convex sets and convex hulls}
+
+The geometry part defines a convex set $S$ by the condition that for any $x,y\in S$ and any $t\in[0,1]$,
+\[
+  tx+(1-t)y\in S.
+\]
+Equivalently, $S$ contains the line segment between any two of its points.  The note contrasts convex and non-convex examples.
+
+For finitely many points $x_1,\ldots,x_k$, their convex hull is
+\[
+  \left\{\sum_{i=1}^k t_ix_i:\ t_i\ge0,\ \sum_{i=1}^k t_i=1\right\}.
+\]
+Induction on $k$ proves the claim: the case $k=2$ is the definition of a segment, and the induction step writes the convex combination as a combination of one point with a convex combination of the remaining points.
+
+\section{Separating convex sets}
+
+The note sketches a separation idea.  For two disjoint convex sets, one tries to find a point pair realizing minimal distance and then uses the perpendicular bisector of the segment between them as a separating line.  In symbols, if $u\in S_1$ and $v\in S_2$ are closest points, then the hyperplane perpendicular to $v-u$ near the midpoint separates the two sets.
+
+In finite-dimensional Euclidean geometry, this is the intuitive core of the separating hyperplane theorem.  Projection onto a line produces inequalities involving squared distances, and the algebra expands
+\[
+  \|u+t(a-u)-v\|^2
+\]
+for small $t$ and extracts a sign condition by letting $t\to0$.
+
+\section{Planar graphs and Euler-type counting}
+
+Graph theory and planar configurations provide another counting mechanism: a planar drawing constrains vertices, edges, and faces through Euler-type formulas.
+
+This connects naturally with the previous convex-geometry material: triangulations, planar graphs, polygon decompositions, and convex hulls are different languages for controlling incidence data.
+
+\section{Graphs and adjacency matrices}
+
+A graph $G$ consists of a vertex set $V=\{v_1,\ldots,v_n\}$ and an edge relation.  For a simple graph, the adjacency matrix $A(G)=(a_{ij})$ is defined by
+\[
+  a_{ij}=
+  \begin{cases}
+  1,&\text{if there is an edge from }v_i\text{ to }v_j,\\
+  0,&\text{otherwise.}
+  \end{cases}
+\]
+For a multigraph, $a_{ij}$ records the number of edges from $v_i$ to $v_j$.
+
+The source quotes the standard theorem: the $(i,j)$-entry of $A(G)^\ell$ equals the number of walks of length $\ell$ from $v_i$ to $v_j$.  The proof is matrix multiplication.  For $\ell=2$,
+\[
+  (A^2)_{ij}=\sum_k a_{ik}a_{kj},
+\]
+which counts all intermediate vertices $v_k$.  The general case follows by induction.
+
+% N-20240323 overflow relief B
+\enlargethispage{4\baselineskip}
+\section{The deeper habit}
+
+Several counting languages share one habit: replace a raw problem by a structure-preserving encoding.  Subsets become binomial coefficients, recursions become generating functions, triangulations become Catalan recurrences, convex hulls become linear combinations, and walks become matrix powers.
+
+\section{Generating functions as algebraic counting}
+A generating function packages a sequence into a formal series.  Products encode decomposition of objects, and coefficient extraction reads off counts:
+\[
+[x^n]A(x)B(x)=\sum_{k=0}^n a_kb_{n-k}.
+\]
+\section{Catalan structures}
+Catalan numbers count many recursively decomposable objects:
+\[
+C_n=\frac1{n+1}\binom{2n}{n}.
+\]
+Their generating function satisfies
+\[
+C(x)=1+xC(x)^2.
+\]
+The quadratic equation records the root-subtree decomposition.
+\section{Convex hulls and separation}
+The separating hyperplane theorem says disjoint convex sets can often be separated by a linear functional.  This is the geometric dual of optimization: a linear functional witnesses non-intersection.
+\section{Generating functions, Catalan recursion, and spectra}
+Binomial identities, generating functions, Catalan numbers, probability trials, and convex separation all share one habit: encode the structure so that algebraic or linear operations reveal the count or obstruction.
+
+\section{Catalan numbers as recursive geometry}
+
+Catalan numbers count many objects: correctly matched parentheses, triangulations of polygons, rooted binary trees, Dyck paths, and noncrossing partitions.  A standard formula is
+\[
+  C_n=\frac1{n+1}\binom{2n}{n}.
+\]
+The recursion
+\[
+  C_{n+1}=\sum_{i=0}^n C_iC_{n-i}
+\]
+comes from choosing the first return of a Dyck path or the root split of a binary tree.
+
+The generating function $C(x)=\sum_{n\ge0}C_nx^n$ satisfies
+\[
+  C(x)=1+xC(x)^2.
+\]
+Solving gives
+\[
+  C(x)=\frac{1-\sqrt{1-4x}}{2x}.
+\]
+Thus an elementary recursion becomes an algebraic generating function.
+
+\section{Lattice paths and reflection principle}
+
+Many Catalan formulas are proved by the reflection principle.  The number of paths from $(0,0)$ to $(n,n)$ that never go above the diagonal is
+\[
+  \binom{2n}{n}-\binom{2n}{n+1}=\frac1{n+1}\binom{2n}{n}.
+\]
+The subtracted term counts bad paths by reflecting the part up to the first diagonal crossing.
+
+This is a model example of an involutive or bijective proof.  Rather than evaluating a sum, one constructs a symmetry pairing bad objects with easier objects.
+
+\section{Graph walks and adjacency matrices}
+
+If $G$ is a finite graph with adjacency matrix $A$, then
+\[
+  (A^k)_{ij}
+\]
+counts walks of length $k$ from vertex $i$ to vertex $j$.  This turns walk counting into matrix powers.
+
+If $A$ is diagonalizable with eigenvalues $\lambda_1,\ldots,\lambda_n$, the growth of walks is controlled by the largest eigenvalues.  In a regular connected graph, the largest eigenvalue is the degree, and the second-largest eigenvalue controls expansion and mixing.
+
+Thus an elementary graph-walk count leads directly to spectral graph theory.
+
+\section{Random walks and Markov chains}
+
+Normalize the adjacency matrix of a $d$-regular graph by
+\[
+  P=\frac1d A.
+\]
+Then $P$ is the transition matrix of a random walk.  The distribution after $k$ steps is
+\[
+  \pi_k=\pi_0P^k.
+\]
+Eigenvalues of $P$ determine convergence to stationarity.  If the graph is connected and non-bipartite, the walk converges to the uniform distribution.
+
+The same object has two readings: $A^k$ counts deterministic walks, while $P^k$ describes probabilities.  These finite graph-walk calculations are the beginning of Markov-chain theory.
+
+\section{Catalan recursion and parenthesization}
+
+Polygon triangulations and parenthesizations are the same combinatorial structure.  A triangulation of an $(n+2)$-gon corresponds to a way of multiplying $n+1$ factors with binary parentheses.  Choosing the triangle incident to a fixed edge splits the polygon into two smaller polygons, producing the Catalan recursion.
+
+This is the combinatorics behind the associahedron, a polytope whose vertices are parenthesizations and whose edges are single reassociations:
+\[
+  (ab)c\leftrightarrow a(bc).
+\]
+The elementary Catalan count therefore touches the geometry of moduli spaces of bracketings.
+
+\section{Adjacency spectra and expansion}
+
+The theorem that $(A^k)_{ij}$ counts walks becomes much stronger when combined with eigenvalues.  If a graph is $d$-regular with adjacency eigenvalues
+\[
+  d=\lambda_1\ge |\lambda_2|\ge\cdots,
+\]
+then $|\lambda_2|$ controls how quickly random walks mix and how well the graph expands.
+
+Expander graphs are sparse graphs that behave like highly connected graphs.  They are central in theoretical computer science, coding theory, and combinatorics.  The elementary walk-counting matrix is the first tool for studying them.

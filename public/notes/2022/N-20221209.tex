@@ -1,14 +1,212 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221209}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221209}
-\end{document}
+\notechapter{N-20221209}{Set-Theoretic and Combinatorial Exercises after the First Lecture}
+
+\section{What this page is doing}
+
+The exercises involve floor functions, set-builder notation, binomial identities, lattice or coordinate sets, and counting arguments.  Their common goal is to translate a compact set expression into something countable.
+
+\section{A floor-function example}
+
+For a set defined by inequalities and floor functions, separate the problem into intervals because
+\[
+  \lfloor x\rfloor=k\quad\Longleftrightarrow\quad k\le x<k+1.
+\]
+This is the essential method.  Any problem involving \(\lfloor x\rfloor\) should first be split into integer strips.
+
+For instance, if a condition contains
+\[
+  3\lfloor x\rfloor-5<0,
+\]
+then
+\[
+  \lfloor x\rfloor<\frac53,
+\]
+so
+\[
+  \lfloor x\rfloor\le1.
+\]
+One then intersects this with the remaining condition, such as a quadratic inequality.  The final answer is an interval or a finite union of intervals.
+
+\section{A binomial counting identity}
+
+The binomial theorem counts terms by choosing which positions have a particular property.  A typical identity is
+\[
+  \sum_{j=0}^n\binom nj=2^n,
+\]
+or, with signs,
+\[
+  \sum_{j=0}^n(-1)^j\binom nj=0.
+\]
+
+The important thought is not the formula alone.  The coefficient \(\binom nj\) counts ways of choosing \(j\) positions among \(n\), and the binomial theorem packages all choices simultaneously.
+
+\section{Solving a system by discriminants}
+
+A two-variable system can often be transformed into a quadratic with a parameter \(p\).  Examine the discriminant
+\[
+  \Delta\ge0
+\]
+to decide when real solutions exist.
+
+This is a recurring analytic-algebraic pattern: if a system can be reduced to a quadratic equation, existence of real solutions is controlled by the discriminant.  The solution set changes when the discriminant becomes zero; this is the boundary between two real roots and no real roots.
+
+\section{A prime-number exercise}
+
+For problems involving primes \(p,q\), parity and basic divisibility give the standard approach:
+\begin{enumerate}[(i)]
+  \item reduce the equation modulo a small integer such as \(2,3,4\);
+  \item use the fact that the only even prime is \(2\);
+  \item separate small exceptional cases before treating odd primes.
+
+\end{enumerate}
+
+This is the same habit developed in earlier divisibility notes: do not solve a Diophantine equation blindly.  First use congruences to force the shape of the variables.
+
+\section{A nested-set exercise}
+
+The note includes a Russian sentence asking to ``describe the next set'' or ``write the following set in ordinary language.''  The examples involve finite sets such as
+\[
+  \varnothing,\qquad \{a_1\},\qquad \{a_1,a_2\},\qquad\ldots
+\]
+and collections of subsets.  The intended lesson is the difference between an element and a subset:
+\[
+  a\in A\quad\text{versus}\quad \{a\}\subseteq A.
+\]
+Confusing these two is one of the most common early set-theory mistakes.
+
+\section{A recurrence of sets}
+
+One exercise defines sets recursively, for example
+\[
+  A_{k+1}=A_k\cup\{x_{k+1}\}
+\]
+or by adding all new subsets involving a new element.  Induction proves the pattern: assume the formula for \(A_k\), then show the construction gives \(A_{k+1}\).
+
+This is the set-theoretic analogue of a recurrence relation.  Instead of numbers changing with \(k\), collections of objects change with \(k\).
+
+\section{An intersection-counting problem}
+
+For an element selected from an intersection of many sets, introduce the auxiliary sets \(B(A_i)\) that record which constraints it satisfies.  The resulting product-like count is less important than the underlying logic:
+\begin{enumerate}[(i)]
+  \item translate membership into a condition;
+  \item count how many sets contain a fixed element;
+  \item use complements or intersections to isolate the desired elements.
+
+\end{enumerate}
+This is a typical finite-set counting method: count incidence pairs in two ways.
+
+
+\section{Set-builder notation as a translation problem}
+
+A complicated set-builder expression should be read in stages.  First identify the universe of discourse.  Then translate each condition into an inequality, divisibility condition, or membership condition.  Finally decide whether the problem is asking for the set itself, its size, or a proof of equality.
+
+For example, a condition involving \(\lfloor x\rfloor\) is not smooth; it divides the real line into half-open intervals.  A condition involving binomial coefficients often asks for a counting interpretation rather than algebraic simplification.
+
+\section{Recursive set construction}
+
+When a set is defined recursively, the first few stages should be computed explicitly.  This reveals whether the construction is increasing, periodic, stabilizing, or producing genuinely new elements.  After that, induction is the natural proof method.
+
+The general pattern is:
+\[
+  S_0\subseteq S_1\subseteq S_2\subseteq\cdots
+\]
+if the rule is monotone.  If the universe is finite, an increasing chain must eventually stabilize.  This is a useful idea behind many finite combinatorial processes.
+
+\section{Further direction}
+
+The exercises are elementary, but they are training the language of discrete mathematics.  Floor functions partition the real line into strips; binomial coefficients count choices; discriminants detect existence; recursive set definitions invite induction; incidence counting turns membership questions into arithmetic.  The high-level skill is always the same: replace notation by a structure that can actually be counted.
+
+\section{Floor functions as lattice-point counts}
+
+A floor expression such as
+\[
+  \left\lfloor \frac{an+b}{m}\right\rfloor
+\]
+counts how many integer thresholds lie below a rational expression.  Sums of floor functions often count lattice points below a line.  For instance,
+\[
+  \sum_{k=0}^{m-1}\left\lfloor \frac{ak}{m}\right\rfloor
+\]
+counts integer points under a rational-slope diagonal in a rectangle.
+
+This links elementary floor exercises to Ehrhart theory, where one studies
+\[
+  L_P(n)=|nP\cap\mathbb Z^d|
+\]
+for a polytope \(P\).  For integral polytopes, \(L_P(n)\) is a polynomial in \(n\).  Floor-sum exercises are one-dimensional shadows of lattice-point enumeration.
+
+\section{Finite differences and binomial basis}
+
+For a sequence \(a(n)\), define
+\[
+  \Delta a(n)=a(n+1)-a(n).
+\]
+If \(a(n)\) is a polynomial of degree \(d\), then \(\Delta a\) has degree \(d-1\), and
+\[
+  \Delta^{d+1}a(n)=0.
+\]
+The binomial basis is adapted to this:
+\[
+  \Delta\binom nk=\binom n{k-1}.
+\]
+Thus integer-valued polynomials are naturally expressed in the basis
+\[
+  \binom n0,\quad \binom n1,\quad \binom n2,\quad\ldots
+\]
+rather than ordinary powers.  This explains why binomial coefficients repeatedly appear in discrete counting formulas.
+
+\section{Recursive set construction and fixed points}
+
+A recursive set construction such as
+\[
+  S_{k+1}=F(S_k)
+\]
+should first be checked for monotonicity.  If \(S_k\subseteq S_{k+1}\) inside a finite universe, then the chain
+\[
+  S_0\subseteq S_1\subseteq S_2\subseteq\cdots
+\]
+must stabilize.  The final set is a fixed point:
+\[
+  F(S)=S.
+\]
+This is the finite version of closure-operator and fixed-point thinking.
+
+\section{Incidence counting}
+
+If a problem asks how many sets contain a fixed element, it often helps to count incidence pairs:
+\[
+  I=\{(x,A):x\in A\}.
+\]
+Counting by \(x\) gives
+\[
+  |I|=\sum_x \#\{A:x\in A\},
+\]
+while counting by \(A\) gives
+\[
+  |I|=\sum_A |A|.
+\]
+Equating the two is double counting.  Many intersection and membership problems are incidence problems in disguise.
+
+\section{Polynomial method}
+
+The polynomial method proves combinatorial facts by encoding conditions into polynomial vanishing.  The elementary fact is that a nonzero polynomial of degree \(d\) over a field has at most \(d\) roots.  If a low-degree polynomial is forced to vanish at too many points, it must be the zero polynomial.
+
+Lagrange interpolation gives an explicit reconstruction formula:
+\[
+  P(x)=\sum_{i=1}^n P(a_i)\prod_{j\ne i}\frac{x-a_j}{a_i-a_j}.
+\]
+This is the advanced extension of discriminant and coefficient arguments: existence questions can be turned into degree and vanishing constraints.
+
+\section{Group actions and corrected division}
+
+When counting objects up to symmetry, one must account for stabilizers.  If a finite group \(G\) acts on \(X\), orbit-stabilizer says
+\[
+  |Gx|=\frac{|G|}{|\operatorname{Stab}(x)|}.
+\]
+Burnside's lemma says
+\[
+  |X/G|=\frac1{|G|}\sum_{g\in G}|\operatorname{Fix}(g)|.
+\]
+This is why symmetry counting cannot always be done by simply dividing by \(|G|\).
+
+\section{Counting by lattices, incidences, and symmetries}
+
+The exercises train translation.  Floor functions translate to lattice-point counts, binomial identities to finite differences and coefficient extraction, recursive set definitions to fixed points, membership counts to incidence pairs, and symmetry counts to group actions.  The mature solution first finds the structure being counted, then chooses the appropriate algebraic language.

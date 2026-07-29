@@ -1,14 +1,268 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20230225}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20230225}
-\end{document}
+\notechapter{N-20230225}{Completed Decimals, Hyperfinite Truncations, and Nonstandard Analysis}
+
+\section{One notation can hide three different objects}
+
+The expression
+\[
+  0.999\ldots
+\]
+is often discussed as though there were only one possible mathematical object behind it.  In fact, three nearby constructions must be separated.
+
+For an ordinary natural number \(n\), the finite decimal with \(n\) nines is
+\[
+  d_n=\sum_{k=1}^{n}9\cdot10^{-k}=1-10^{-n}.
+\]
+It is strictly less than \(1\).  The real infinite decimal is the limit
+\[
+  d=\lim_{n\to\infty}d_n,
+\]
+so it equals \(1\).  A third object becomes available in nonstandard analysis: if \(H\) is an infinite hyperinteger, one may form the hyperfinite sum
+\[
+  d_H=\sum_{k=1}^{H}9\cdot10^{-k}.
+\]
+It is still a finite sum inside the hyperreal universe, but it has more terms than every standard finite truncation.
+
+The familiar disagreement is therefore usually not about algebra.  It is about which of these three objects the notation is intended to denote.
+
+\section{The real decimal is a completed limit}
+
+The real-number definition is direct.  Since
+\[
+  d_n=1-10^{-n},
+\]
+we have
+\[
+  |1-d_n|=10^{-n}.
+\]
+Given \(\varepsilon>0\), choose \(N\) so large that \(10^{-N}<\varepsilon\).  Then for \(n\ge N\),
+\[
+  |1-d_n|<\varepsilon.
+\]
+Hence
+\[
+  \boxed{0.999\ldots=\lim_{n\to\infty}d_n=1.}
+\]
+
+The standard subtraction argument says the same thing more compactly.  If \(x=0.999\ldots\), then
+\[
+  10x=9.999\ldots,
+\]
+and subtraction gives \(9x=9\).  This computation is valid because both decimals denote completed real limits.  It is not a calculation with an unfinished string.
+
+The uniqueness of decimal expansion fails only at terminating endpoints.  More generally,
+\[
+  0.a_1a_2\cdots a_{m-1}(a_m-1)999\ldots
+  =0.a_1a_2\cdots a_m000\ldots
+\]
+whenever \(a_m>0\).  This is not a defect of the real line; it is the usual nonuniqueness of positional notation at boundary points of adjacent decimal intervals.
+
+\section{An ultrapower turns sequences into numbers}
+
+To make “larger than every ordinary integer” precise, begin with all real sequences
+\[
+  (x_1,x_2,x_3,\ldots)\in\mathbb R^{\mathbb N}.
+\]
+Fix a nonprincipal ultrafilter \(\mathcal U\) on \(\mathbb N\).  Two sequences are declared equivalent when they agree on a set belonging to \(\mathcal U\):
+\[
+  (x_n)\sim(y_n)
+  \quad\Longleftrightarrow\quad
+  \{n:x_n=y_n\}\in\mathcal U.
+\]
+The hyperreal field is the quotient
+\[
+  {}^*\mathbb R=\mathbb R^{\mathbb N}/\mathcal U.
+\]
+Addition and multiplication are performed coordinatewise before passing to equivalence classes.
+
+Ordinary reals embed as constant sequences:
+\[
+  r\longmapsto[r,r,r,\ldots].
+\]
+The class
+\[
+  H=[1,2,3,\ldots]
+\]
+is larger than every standard integer \(m\), because
+\[
+  \{n:n>m\}
+\]
+is cofinite and therefore belongs to every nonprincipal ultrafilter.  Thus \(H\) is an infinite hyperinteger.  Its reciprocal
+\[
+  \eta=\frac1H=[1,1/2,1/3,\ldots]
+\]
+is positive but smaller than every positive standard real number.
+
+This construction does not adjoin a mysterious symbol by decree.  It packages asymptotic behavior of sequences into algebraic elements of a larger ordered field.
+
+\section{Infinitesimal closeness and standard part}
+
+A hyperreal \(x\) is infinitesimal when
+\[
+  |x|<r
+\]
+for every positive standard real \(r\).  We write
+\[
+  x\approx y
+\]
+when \(x-y\) is infinitesimal.  A hyperreal is finite when its absolute value is bounded by some standard integer.
+
+Every finite hyperreal is infinitely close to a unique real number.  This real number is its standard part:
+\[
+  \operatorname{st}(x)\in\mathbb R,
+  \qquad
+  x\approx\operatorname{st}(x).
+\]
+Uniqueness is easy.  If \(x\approx r\) and \(x\approx s\) for real numbers \(r,s\), then \(r-s\) is a real infinitesimal.  The only real infinitesimal is \(0\), so \(r=s\).
+
+Existence uses completeness of \(\mathbb R\).  For finite \(x\), consider the standard set
+\[
+  A=\{r\in\mathbb R:r<x\}.
+\]
+It is nonempty and bounded above.  Let \(a=\sup A\).  If \(x-a\) were appreciably positive or negative, the least-upper-bound property would be contradicted.  Therefore \(x\approx a\).
+
+The standard-part map is not defined on infinite hyperreals, and it is not an order-field homomorphism on all of \({}^*\mathbb R\).  On finite hyperreals, however, it respects addition and multiplication:
+\[
+  \operatorname{st}(x+y)=\operatorname{st}(x)+\operatorname{st}(y),
+\]
+\[
+  \operatorname{st}(xy)=\operatorname{st}(x)\operatorname{st}(y).
+\]
+It is the operation that turns an infinitesimally accurate hyperreal computation back into an ordinary real answer.
+
+\section{Transfer explains why finite algebra still works}
+
+The transfer principle says, roughly, that every first-order statement true in the ordered field \(\mathbb R\) remains true in its hyperreal extension.  In particular, polynomial identities, order laws, and statements quantified over finitely many elements transfer.
+
+For every natural number \(n\),
+\[
+  \sum_{k=1}^{n}9\cdot10^{-k}=1-10^{-n}.
+\]
+This is a first-order statement about finite sums.  Transfer therefore gives, for every hypernatural \(H\),
+\[
+  \sum_{k=1}^{H}9\cdot10^{-k}=1-10^{-H}.
+\]
+If \(H\) is infinite, then \(10^{-H}\) is a positive infinitesimal.  Consequently,
+\[
+  d_H<1,
+  \qquad
+  d_H\approx1,
+  \qquad
+  \operatorname{st}(d_H)=1.
+\]
+
+There is no contradiction with the real identity.  The real decimal is the completed limit \(1\); the hyperfinite decimal is a different hyperreal number infinitesimally below \(1\).  Standard part sends the latter to the former.
+
+\section{Internal sets are the domain of transfer}
+
+Transfer cannot be applied indiscriminately to every subset of the hyperreals.  The relevant distinction is between internal and external objects.
+
+An internal set is represented by a sequence of standard sets.  For example, if
+\[
+  A_n=\{1,2,\ldots,n\},
+\]
+then the class \([A_n]\) is the hyperfinite interval
+\[
+  \{1,2,\ldots,H\}
+\]
+for \(H=[n]\).  Although it contains more elements than any standard finite set, it behaves internally like a finite set: transferred finite-sum and finite-counting statements apply to it.
+
+By contrast, the set of all infinitesimals
+\[
+  \mu(0)=\{x\in{}^*\mathbb R:x\approx0\}
+\]
+is external.  So is the set of all finite hyperreals.  These sets are mathematically legitimate subsets, but they are not themselves produced by the ultrapower in the internal way required by transfer.
+
+A useful test comes from overspill.  Suppose an internal set \(A\subseteq{}^*\mathbb N\) contains every standard natural number.  Then \(A\) must contain some infinite hypernatural.  To see the idea, write
+\[
+  A=[A_n].
+\]
+For each standard \(m\), membership of \(m\) means that \(m\in A_n\) for \(\mathcal U\)-many \(n\).  The internal statement “\(1,\ldots,m\in A\)” holds for every standard \(m\), and transfer forces it to hold up to some nonstandard bound.
+
+Now consider the set of standard natural numbers inside \({}^*\mathbb N\).  It contains every standard natural but no infinite hypernatural, so overspill shows that it cannot be internal.  The same phenomenon explains why one cannot transfer a statement that quantifies over “all infinitesimals” as though that collection were an internal finite-scale object.
+
+\section{Derivatives become standard parts of infinitesimal quotients}
+
+Let \(f:\mathbb R\to\mathbb R\) and let \({}^*f\) denote its hyperreal extension.  A standard function is differentiable at \(a\) precisely when there is a real number \(L\) such that for every nonzero infinitesimal \(\eta\),
+\[
+  \frac{{}^*f(a+\eta)-{}^*f(a)}{\eta}\approx L.
+\]
+Then
+\[
+  f'(a)=\operatorname{st}\left(
+  \frac{{}^*f(a+\eta)-{}^*f(a)}{\eta}
+  \right).
+\]
+
+For \(f(x)=x^2\),
+\[
+  \frac{(a+\eta)^2-a^2}{\eta}=2a+\eta,
+\]
+so
+\[
+  f'(a)=\operatorname{st}(2a+\eta)=2a.
+\]
+
+The condition must hold for every nonzero infinitesimal, not merely one convenient choice.  This is the nonstandard form of the ordinary limit requiring all sufficiently small increments to give the same first-order behavior.
+
+For \(f(x)=|x|\) at \(0\), a positive infinitesimal gives quotient \(1\), while a negative infinitesimal gives \(-1\).  No single real standard part works for all infinitesimal directions, so the function is not differentiable at \(0\).  The usual left-right failure appears without introducing two separate limit symbols.
+
+\section{Hyperfinite sums recover the Riemann integral}
+
+Let \(f\) be continuous on \([a,b]\), choose an infinite hyperinteger \(H\), and set
+\[
+  \Delta x=\frac{b-a}{H},
+  \qquad
+  x_i=a+i\Delta x.
+\]
+The hyperfinite Riemann sum is
+\[
+  S_H=\sum_{i=0}^{H-1}{}^*f(x_i)\Delta x.
+\]
+Continuity on a compact interval implies uniform continuity.  Hence replacing each infinitesimal cell by any other point in the same cell changes the sum only infinitesimally.  The standard part is therefore independent of the hyperfinite sampling choice, and
+\[
+  \boxed{
+  \int_a^b f(x)\,dx=\operatorname{st}(S_H).}
+\]
+
+For \(f(x)=x\) on \([0,1]\), take \(x_i=i/H\).  Then
+\[
+  S_H
+  =\sum_{i=0}^{H-1}\frac{i}{H}\frac1H
+  =\frac{H(H-1)}{2H^2}
+  =\frac12-\frac1{2H}.
+\]
+Since \(1/H\) is infinitesimal,
+\[
+  \operatorname{st}(S_H)=\frac12.
+\]
+The phrase “add infinitely many infinitesimal rectangles” has become an ordinary finite-sum identity transferred to a hyperfinite index set.
+
+\section{Loeb measure turns counting into a standard measure}
+
+The hyperfinite grid also explains how a genuinely standard measure can emerge from internal counting.  Let
+\[
+  \Omega_H=\left\{0,\frac1H,\ldots,\frac{H-1}{H}\right\}.
+\]
+For an internal subset \(A\subseteq\Omega_H\), define the internal counting probability
+\[
+  \nu_0(A)=\frac{|A|}{H}.
+\]
+This value is a finite hyperreal.  Taking standard part gives
+\[
+  \nu(A)=\operatorname{st}\nu_0(A).
+\]
+On the algebra of internal subsets, \(\nu\) is finitely additive.  The Loeb construction applies the usual measure-extension machinery to obtain a countably additive standard measure on a larger sigma-algebra.
+
+Consider the interval \([0,t)\subseteq[0,1]\) with standard \(0\le t\le1\).  Its grid approximation contains
+\[
+  \lfloor tH\rfloor
+\]
+points, so
+\[
+  \nu_0([0,t)\cap\Omega_H)
+  =\frac{\lfloor tH\rfloor}{H}
+  \approx t.
+\]
+Therefore its Loeb measure is \(t\), exactly the ordinary length of the interval.
+
+Thus the same hyperfinite idea that distinguishes \(d_H\) from the completed decimal also builds a bridge from finite counting to continuum measure.  Hyperfinite objects are not completed real limits, but after standard part and measure completion they can encode the standard analytic structures those limits describe.

@@ -1,14 +1,243 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20240608}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20240608}
-\end{document}
+\notechapter{N-20240608}{Plane Curves as Algebraic Creatures: Equations, Rings, and Singularities}
+
+\section{The curve is not only the drawing}
+
+A plane curve often begins as a picture. Algebraic geometry asks for something more durable: an equation.
+
+Given a polynomial \(f(x,y)\), define
+\[
+  C=V(f)=\{(x,y):f(x,y)=0\}.
+\]
+The drawing of \(C\) may be helpful, but the equation controls its functions, singularities, and intersections.
+
+A curve is therefore a small laboratory where geometry and algebra constantly translate into each other.
+
+\section{The function ring of a curve}
+
+For \(C=V(f)\), define
+\[
+  k[C]=k[x,y]/(f).
+\]
+This is the coordinate ring of the curve. Two polynomials define the same function on \(C\) if their difference is a multiple of \(f\).
+
+For the parabola \(C=V(y-x^2)\),
+\[
+  k[C]=k[x,y]/(y-x^2)\cong k[x].
+\]
+So although the parabola is drawn curved, its polynomial function theory is the same as that of a line.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.52\linewidth]{figures/N-20240608/parabola.pdf}
+\caption{A parabola is geometrically curved in the plane, but its coordinate ring is as simple as \(k[x]\).}
+\end{figure}
+
+\section{When factorization becomes geometry}
+
+If
+\[
+  f=gh,
+\]
+then
+\[
+  V(f)=V(g)\cup V(h).
+\]
+Thus factorization of equations corresponds to decomposition of curves.
+
+Example:
+\[
+  xy=0
+\]
+is the union of the two coordinate axes. The equation is reducible, and the curve is reducible.
+
+This is the first piece of the algebra-geometry dictionary: algebraic factorization can mean geometric splitting.
+
+\section{Smooth points and singular points}
+
+A point \(p=(a,b)\in V(f)\) is singular if
+\[
+  f(a,b)=0,
+  \qquad
+  f_x(a,b)=0,
+  \qquad
+  f_y(a,b)=0.
+\]
+At such a point, the linear part of the equation vanishes. The usual tangent line no longer comes from the first derivative.
+
+The cusp
+\[
+  y^2=x^3
+\]
+has a singularity at the origin. The node
+\[
+  y^2=x^2(x+1)
+\]
+also has a singularity at the origin, but it looks like two branches crossing. Both are singular, but they are not singular in the same way.
+
+\section{Tangent cones: the first nonzero shadow}
+
+When the linear part vanishes, look at the lowest-degree nonzero part of \(f\). If it is \(f_d\), then
+\[
+  f_d=0
+\]
+is the tangent cone.
+
+For
+\[
+  f(x,y)=y^2-x^2-x^3,
+\]
+the lowest-degree part is
+\[
+  y^2-x^2=(y-x)(y+x).
+\]
+So the tangent cone at the origin consists of the two lines
+\[
+  y=x,
+  \qquad
+  y=-x.
+\]
+This detects the two branches of the node.
+
+\section{The cusp as a ring}
+
+For the cusp \(C=V(y^2-x^3)\), the parametrization
+\[
+  x=t^2,
+  \qquad
+  y=t^3
+\]
+gives a ring map
+\[
+  k[x,y]/(y^2-x^3)\longrightarrow k[t],
+  \qquad
+  x\mapsto t^2,
+  \quad
+  y\mapsto t^3.
+\]
+Its image is \(k[t^2,t^3]\), not all of \(k[t]\). This failure to become the full polynomial ring reflects the singularity. The cusp is close to a line, but not quite a smooth line.
+
+This example is more memorable than the definition: singularities change the algebra of functions.
+
+\section{Intersections: one visible point may count twice}
+
+The line \(y=0\) and the parabola \(y=x^2\) meet at the origin. Substituting \(y=0\) into \(y=x^2\) gives
+\[
+  x^2=0.
+\]
+The intersection has multiplicity \(2\). Geometrically, the line is tangent to the parabola.
+
+This explains why intersection theory counts multiplicities. A tangent intersection is not the same as a transverse crossing.
+
+\section{Projective closure repairs missing intersections}
+
+Affine curves may hide points at infinity. Homogenization fills them in. For
+\[
+  f(x,y)=y-x^2,
+\]
+the homogenization is
+\[
+  F(x,y,z)=yz-x^2.
+\]
+The projective closure is \(V(F)\subset\mathbb P^2\). In the chart \(z=1\) it is the original parabola. At infinity \(z=0\), it contains the point
+\[
+  [0:1:0].
+\]
+
+This is the same philosophy as projective geometry: complete the affine picture so that geometry stops losing information at the boundary of the chart.
+
+\section{Bezout as a promise of clean accounting}
+
+A first form of Bezout's theorem says that two projective plane curves of degrees \(m\) and \(n\) meet in \(mn\) points, counted with multiplicity, over an algebraically closed field, provided they have no common component.
+
+One should not first treat this as a formula to memorize. It is a statement that projective geometry and multiplicity create the correct accounting system for intersections.
+
+
+\section{Normalization: repairing a singular curve}
+
+The cusp \(y^2=x^3\) is parametrized by
+\[
+  x=t^2,\qquad y=t^3.
+\]
+The parameter line with coordinate \(t\) is smooth.  The map from the line to the cusp is almost one-to-one, but at the cusp it repairs the singularity by replacing the bad point with a smooth parameter.
+
+Algebraically, the coordinate ring of the cusp is
+\[
+  k[t^2,t^3]\subset k[t].
+\]
+Passing to \(k[t]\) is a normalization.  One can think of it as adding the missing function \(t\), which the singular coordinate ring did not contain.
+
+This is a useful slogan:
+\[
+  \text{normalization separates or smooths hidden branches of a curve.}
+\]
+For a node, normalization separates the two crossing branches.  For a cusp, it smooths a single branch with a bad tangent behavior.
+
+\section{Resultants: eliminating a variable}
+
+Intersections can also be studied by eliminating variables.  If two curves are given by
+\[
+  f(x,y)=0,\qquad g(x,y)=0,
+\]
+one may eliminate \(y\) to get a polynomial condition on \(x\).  This is the idea behind the resultant.
+
+For example, intersect
+\[
+  y=x^2,\qquad y=mx+b.
+\]
+Substitution gives
+\[
+  x^2-mx-b=0.
+\]
+The discriminant
+\[
+  m^2+4b
+\]
+tells whether the line meets the parabola in two distinct points, one tangent point, or no real points.  Over an algebraically closed field, the quadratic always has two roots counted with multiplicity.
+
+This elementary calculation is a small preview of Bezout's theorem.
+
+\section{A projective calculation with a line and a conic}
+
+Take the conic
+\[
+  xz-y^2=0
+\]
+and the line
+\[
+  z=0.
+\]
+Substituting \(z=0\) into the conic gives
+\[
+  -y^2=0.
+\]
+Thus \(y=0\), and the intersection point is
+\[
+  [1:0:0].
+\]
+The square indicates multiplicity \(2\).  Geometrically, the line at infinity is tangent to this projective conic.
+
+This example is compact but important: projective closure not only adds the missing point; it also remembers how the curve touches the line at infinity.
+
+\section{Real pictures and algebraically closed accounting}
+
+Over \(\mathbb R\), the circle
+\[
+  x^2+y^2+1=0
+\]
+has no real points.  Over \(\mathbb C\), it has many points.  This is why algebraic geometry often works over algebraically closed fields when stating clean intersection theorems.
+
+Real drawings are valuable, but they can hide complex points.  Bezout's theorem counts in the algebraic world where equations have all their roots.
+
+\section{How to read a plane curve from its equation}
+
+For the examples in this note, the useful dictionary is concrete:
+\[
+\begin{array}{c|c}
+\text{equation} & \text{zero set being studied}\\
+\text{factorization} & \text{decomposition into components}\\
+\text{coordinate ring} & \text{polynomial functions restricted to the curve}\\
+\text{vanishing of }F_x,F_y & \text{possible singular point}\\
+\text{homogenization} & \text{points added on the line at infinity}
+\end{array}
+\]
+Thus a quick analysis of a plane curve should not stop after drawing its real graph.  One first factors the polynomial if possible, then solves \(F=F_x=F_y=0\) to find singularities, and finally homogenizes if an intersection count looks wrong in the affine plane.  The line--conic example shows why this last step matters: an intersection can disappear to infinity, and over \(\mathbb R\) it can also be hidden by the absence of real points.  Bezout's theorem becomes reliable only after the curve is viewed projectively and, when necessary, over an algebraically closed field.

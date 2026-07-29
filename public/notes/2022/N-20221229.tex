@@ -1,14 +1,294 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221229}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221229}
-\end{document}
+\notechapter{N-20221229}{Algebraic Topology and Algebra: Products, Wedge Sums, CW Complexes, Cosets, and Surface Gluings}
+
+\section{From quotient pictures to algebraic invariants}
+
+Several threads meet in one progression: the torus as $(\mathbb R/\mathbb Z)^2$, the product $S^1\times S^1$, disjoint unions and wedge sums, CW complexes, cosets, and polygonal gluing descriptions of surfaces.  Topology suggests quotient pictures; quotient pictures resemble congruence classes; congruence classes lead to cosets; and square quotients return as the torus and Klein bottle.
+
+The top margin says that there is another intuitive understanding of
+\[
+  S^1\times S^1 \cong T^2.
+\]
+Think of a torus as a vertical circle carried around a horizontal circle.  The path traced by that moving circle is the torus.  This is not merely a picture: it is a parametrization.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.92\linewidth]{figures/N-20221229/01-torus-product-analysis.png}
+\caption{The original visual analysis of $S^1\times S^1$: one parameter goes around the big circle, the other around the small circular fiber.}
+\end{figure}
+
+\section[The torus as a parametrized product]{\texorpdfstring{$S^1\times S^1$}{S1 x S1} as a parametrized torus}
+
+Write a point of the first circle as an angle $\theta$, and a point of the second circle as an angle $\phi$.  For a torus with major radius $R$ and minor radius $r$, a standard parametrization is
+\[
+  F(\theta,\phi)=((R+r\cos\phi)\cos\theta,
+  (R+r\cos\phi)\sin\theta,
+  r\sin\phi).
+\]
+This realizes $S^1\times S^1\to T^2$.  The first angle decides where the circular cross-section is placed around the central hole; the second decides where we are on that cross-section.
+
+A point $A$ may be decomposed into two circle parameters, but the invariant statement is cleaner: the torus is the space of ordered pairs of circle-points, realized geometrically by the map above.
+
+\section{Disjoint union}
+
+For topological spaces $X$ and $Y$, the disjoint union $X\amalg Y$ keeps the two spaces formally separate.  A subset $U\subseteq X\amalg Y$ is open iff
+\[
+  U\cap X \text{ is open in }X,
+  \qquad
+  U\cap Y \text{ is open in }Y.
+\]
+If $X$ and $Y$ are nonempty, then $X\amalg Y$ is disconnected.  Indeed, $X$ and $Y$ are both open in the disjoint union topology, disjoint, nonempty, and their union is the whole space.  This proof is more precise than the vague statement that the spaces are simply “side by side”.  The topology, not only the picture, gives the separation.
+
+\section{Wedge sum}
+
+The wedge sum is obtained from a disjoint union by identifying chosen basepoints:
+\[
+  X\vee Y=(X\amalg Y)/(x_0\sim y_0).
+\]
+Thus disjoint union places spaces side by side, while wedge sum fuses them at one point.  The prototype is $S^1\vee S^1$, the figure-eight space.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.80\linewidth]{figures/N-20221229/02-wedge-figure-eight.png}
+\caption{The wedge sum $S^1\vee S^1$ as two circles fused at one point.}
+\end{figure}
+
+This construction matters because loops in the two circles remain visibly independent.  Algebraically, the fundamental group of the figure eight is the free group on two generators.  So the picture is not a toy: it is one of the first spaces where topology produces noncommutative algebra.
+
+\section{CW complexes: building spaces by cells}
+
+A CW complex is built inductively.  Start with a set of $0$-cells.  Attach $1$-cells by gluing endpoints to the $0$-skeleton.  Attach $2$-cells by gluing the boundary circle of a disk to the $1$-skeleton.  Continue dimension by dimension:
+\[
+  X^0\subseteq X^1\subseteq X^2\subseteq\cdots.
+\]
+A $k$-cell is a copy of $D^k$ attached along $S^{k-1}$ by an attaching map
+\[
+  \varphi_\alpha:S^{k-1}_\alpha\to X^{k-1}.
+\]
+Informally: attach disks along their boundaries.
+
+The note compares two CW structures on $D^2$.  One uses two $0$-cells, two $1$-cells, and one $2$-cell.  The other uses one $0$-cell, one $1$-cell whose two endpoints are glued to that point, and one $2$-cell.  Both build a disk, but the second is more economical.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.84\linewidth]{figures/N-20221229/03-d2-cw-cells.png}
+\caption{Two CW descriptions of $D^2$: one more literal, one more economical.}
+\end{figure}
+
+The lesson is that a CW decomposition is not unique.  It is chosen because it makes later topology and algebra computable.
+
+\section{The torus as a quotient of a square}
+
+The torus can be formed from a square by identifying opposite edges in the same direction.  Walking off the right edge returns one at the corresponding point on the left edge; walking off the top returns one at the bottom.  Algebraically,
+\[
+  T^2 \cong (\mathbb R/\mathbb Z)^2 \cong S^1\times S^1.
+\]
+The quotient square viewpoint treats $[0,1]\times[0,1]$ as a fundamental domain for $(\mathbb R/\mathbb Z)^2$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.82\linewidth]{figures/N-20221229/04-torus-gluing-inm.png}
+\caption{The quotient square/cylinder/torus picture: $(\mathbb R/\mathbb Z)^2$ as a glued square.}
+\end{figure}
+
+As a CW complex, the torus has one $0$-cell, two $1$-cells $a,b$, and one $2$-cell.  The boundary of the $2$-cell is attached along the word
+\[
+  aba^{-1}b^{-1}.
+\]
+This gives the familiar presentation
+\[
+  \pi_1(T^2)=\langle a,b\mid aba^{-1}b^{-1}=1\rangle\cong \mathbb Z^2.
+\]
+The commutativity of $\mathbb Z^2$ is encoded by the boundary word of the square.
+
+\section{Cosets as algebraic quotients}
+
+Cosets are the algebraic analogue of quotienting.  If $H$ is a subgroup of $G$, right congruence modulo $H$ is
+\[
+  a\equiv_r b \pmod H
+  \quad\Longleftrightarrow\quad
+  ab^{-1}\in H.
+\]
+It is an equivalence relation.  Reflexivity uses $aa^{-1}=e\in H$; symmetry uses $(ab^{-1})^{-1}=ba^{-1}$; transitivity uses
+\[
+  ac^{-1}=(ab^{-1})(bc^{-1}).
+\]
+The equivalence class of $a$ is the right coset
+\[
+  Ha=\{ha:h\in H\}.
+\]
+The map $H\to Ha$, $h\mapsto ha$, is a bijection, so $|Ha|=|H|$.  The group $G$ is partitioned into cosets, and two cosets are either equal or disjoint.  This is exactly the algebraic version of cutting a space into equivalence classes.
+
+This is why the note can return from cosets to $(\mathbb R/\mathbb Z)$ naturally.  Both are quotient constructions: identify things differing by a subgroup.
+
+\section{The Klein bottle}
+
+The Klein bottle is built like the torus, except one pair of edges is identified in the opposite direction.  If one first glues a pair of edges, one gets a cylinder.  But gluing the resulting boundary circles in opposite directions cannot be embedded in ordinary three-dimensional space without self-intersection.  The usual picture in $\mathbb R^3$ is therefore an immersion, not a faithful embedding.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.86\linewidth]{figures/N-20221229/05-klein-bottle-gluing.png}
+\caption{The Klein bottle: one edge identification is reversed, so the usual 3D picture self-intersects.}
+\end{figure}
+
+As a CW complex, the Klein bottle again has one $0$-cell, two $1$-cells, and one $2$-cell, but the attaching word changes.  A common presentation is
+\[
+  \pi_1(K)=\langle a,b\mid aba^{-1}=b^{-1}\rangle.
+\]
+The relation says that going around one direction reverses the other.  Thus the torus and Klein bottle have the same cell counts but different attaching words, and this difference controls orientability and fundamental group.
+
+\section{Polygon schemata for surfaces}
+
+The last figure records polygon schemata for surfaces.  A polygon with labelled, oriented boundary edges can be glued according to those labels.  The resulting quotient is a surface.  For example, the torus corresponds to
+\[
+  aba^{-1}b^{-1},
+\]
+while an orientable surface of genus $g$ has a boundary word of the form
+\[
+  a_1b_1a_1^{-1}b_1^{-1}\cdots a_gb_ga_g^{-1}b_g^{-1}.
+\]
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.70\linewidth]{figures/N-20221229/06-surface-polygon-schema.png}
+\caption{Polygon schemata and surface gluings: topology encoded by labelled boundary words.}
+\end{figure}
+
+The picture compresses several ideas at once: cut a surface into a polygon, label the boundary, glue equal labels, and read those labels as algebraic generators and relations.
+
+\section{Projective spaces as quotient spaces}
+
+The section title also mentions real and complex projective spaces.  They fit the same quotient philosophy.  Real projective space is
+\[
+  \mathbb{RP}^n=S^n/(x\sim -x),
+\]
+the space of lines through the origin in $\mathbb R^{n+1}$.  Complex projective space is the space of complex lines through the origin in $\mathbb C^{n+1}$, equivalently
+\[
+  \mathbb{CP}^n=S^{2n+1}/S^1.
+\]
+A useful CW fact is that $\mathbb{RP}^n$ has one cell in each dimension $0,1,\ldots,n$, while $\mathbb{CP}^n$ has one cell in each even real dimension $0,2,4,\ldots,2n$.
+
+
+\section{Cellular boundary words and fundamental groups}
+
+The attaching word of the two-cell is not a decorative label.  For the torus, the word
+\[
+  aba^{-1}b^{-1}
+\]
+becomes the relation saying that \(a\) and \(b\) commute.  For the Klein bottle, the twist changes the relation to one of the form
+\[
+  aba^{-1}=b^{-1}.
+\]
+Thus two spaces can have the same numbers of cells but different topology because the attaching maps differ.
+
+\section{Why polygon schemata are efficient}
+
+A labelled polygon schema compresses a surface into boundary data.  The labels record which edges are glued, and the arrows record orientation.  Once this is understood, the diagram becomes an algebraic object: reading around the boundary gives a word in generators and inverses.
+
+This is the reason algebraic topology can turn pictures into group presentations and chain complexes.
+
+\section{Further context}
+
+The constructions form one continuous story.  The product $S^1\times S^1$ parametrizes the torus; opposite-side identification realizes it as a quotient; disjoint union and wedge sum combine spaces before quotienting; CW complexes systematize attachment; cosets supply the algebraic analogue; and polygon schemata encode whole surfaces by boundary words.
+
+The central lesson is that algebraic topology is not simply topology plus algebra added later.  The topology is already algebraic as soon as we record how pieces are glued: arrows, labels, words, equivalence classes, and quotient maps are the bridge.
+
+\section{Cellular chain complex of the torus}
+
+The torus CW structure with one \(0\)-cell, two \(1\)-cells \(a,b\), and one \(2\)-cell gives a cellular chain complex
+\[
+  0\to C_2\cong\mathbb Z
+  \xrightarrow{\partial_2}
+  C_1\cong\mathbb Z^2
+  \xrightarrow{\partial_1}
+  C_0\cong\mathbb Z\to0.
+\]
+Since both ends of each one-cell attach to the single zero-cell, \(\partial_1=0\).  The two-cell is attached by the commutator word
+\[
+  aba^{-1}b^{-1}.
+\]
+In cellular homology, the total exponent of \(a\) is \(1-1=0\), and the total exponent of \(b\) is \(1-1=0\), so \(\partial_2=0\).  Therefore
+\[
+  H_0(T^2)\cong\mathbb Z,\qquad
+  H_1(T^2)\cong\mathbb Z^2,\qquad
+  H_2(T^2)\cong\mathbb Z.
+\]
+The same square diagram that gives the fundamental group also gives homology by linearizing the boundary word.
+
+\section{Klein bottle: same cells, different boundary}
+
+The Klein bottle has the same cell counts as the torus: one \(0\)-cell, two \(1\)-cells, and one \(2\)-cell.  But the attaching word is different.  With a common convention, it is
+\[
+  aba^{-1}b.
+\]
+The total exponent of \(a\) is \(0\), while the total exponent of \(b\) is \(2\).  Hence the cellular boundary has the form
+\[
+  \partial_2(1)=2b.
+\]
+So
+\[
+  H_1(K)\cong \mathbb Z\oplus \mathbb Z/2\mathbb Z,\qquad
+  H_2(K)=0.
+\]
+The absence of \(H_2\cong\mathbb Z\) is the homological shadow of non-orientability.
+
+\section{Euler characteristic as cell bookkeeping}
+
+For a finite CW complex,
+\[
+  \chi(X)=\sum_k(-1)^k c_k,
+\]
+where \(c_k\) is the number of \(k\)-cells.  The torus and Klein bottle both have
+\[
+  \chi=1-2+1=0.
+\]
+Thus Euler characteristic cannot distinguish them.  Their difference lies not in the number of cells but in the attaching map of the two-cell.  This is the core lesson of CW complexes: cell counts are only the first approximation; attaching maps carry the topology.
+
+\section{Orientability from polygon words}
+
+In polygon schemata, orientability can be read from edge orientations.  For an orientable surface, each label appears once in each direction, as in
+\[
+  aba^{-1}b^{-1}.
+\]
+For a non-orientable surface, some label appears twice with the same direction after normalizing the word, as in projective-plane-type words.
+
+This explains why the torus is orientable and the Klein bottle is not.  The twist in the edge gluing reverses local orientation after going around a loop.
+
+\section{Van Kampen and presentations from gluing}
+
+The one-skeleton of the torus is \(S^1\vee S^1\), whose fundamental group is the free group \(F(a,b)\).  Attaching the two-cell along \(aba^{-1}b^{-1}\) imposes the relation
+\[
+  aba^{-1}b^{-1}=1.
+\]
+Thus
+\[
+  \pi_1(T^2)=\langle a,b\mid aba^{-1}b^{-1}=1\rangle\cong\mathbb Z^2.
+\]
+For the Klein bottle, the attaching word imposes a different relation, giving
+\[
+  \pi_1(K)=\langle a,b\mid aba^{-1}=b^{-1}\rangle.
+\]
+This is the precise algebraic meaning of the arrows on the edge-identification diagram.
+
+\section{Projective spaces through cells}
+
+The quotient descriptions
+\[
+  \mathbb{RP}^n=S^n/(x\sim -x),\qquad
+  \mathbb{CP}^n=S^{2n+1}/S^1
+\]
+are not just definitions.  They explain the CW structures:
+\[
+  \mathbb{RP}^n: \text{one cell in every dimension }0,
+  1,
+  \ldots,n,
+\]
+while
+\[
+  \mathbb{CP}^n: \text{one cell in every even dimension }0,2,
+  \ldots,2n.
+\]
+For \(\mathbb{CP}^n\), this leads to homology groups \(\mathbb Z\) in even degrees and \(0\) in odd degrees.  Thus a quotient construction immediately produces computable algebraic invariants.
+
+\section{Cellular surfaces through homology and presentations}
+
+Pictures become algebra through structure-preserving translations.  A product picture gives \(S^1\times S^1\), a gluing picture gives a quotient, a CW picture gives chain groups and boundary maps, and a labelled boundary word gives a fundamental-group presentation and homology after abelianization.  Algebraic topology is already encoded in arrows, labels, and attaching maps.

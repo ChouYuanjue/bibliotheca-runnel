@@ -1,14 +1,202 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220720}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220720}
-\end{document}
+\notechapter{N-20220720}{Counting Principles, Binomial Identities, and Mixed Problem Solving}
+
+\section{Counting principles}
+
+The standard counting principles are:
+\begin{description}
+  \item[Addition principle.] If a task can be done in disjoint cases with \(m_1,m_2,\ldots,m_n\) possibilities, then the total number is \(m_1+\cdots+m_n\).
+  \item[Multiplication principle.] If a task is done in stages with \(m_1,m_2,\ldots,m_n\) choices at each stage, then the total number is \(m_1m_2\cdots m_n\).
+  \item[Inclusion--exclusion.] For sets \(A_1,\ldots,A_n\), one adds single sizes, subtracts pairwise intersections, adds triple intersections, and so on.
+
+\end{description}
+
+A Venn diagram in the note reviews the three-set formula:
+\[
+\begin{aligned}
+|A\cup B\cup C|&=|A|+|B|+|C|\\
+&\quad-|A\cap B|-|A\cap C|-|B\cap C|+|A\cap B\cap C|.
+\end{aligned}
+\]
+
+\section{A divisibility example}
+
+One problem asks how many positive integers not exceeding \(2021\) are neither multiples of \(6\) nor multiples of \(8\).  The excluded set is
+\[
+  A\cup B,
+\]
+where \(A\) is the set of multiples of \(6\), and \(B\) is the set of multiples of \(8\).  Since
+\[
+  \operatorname{lcm}(6,8)=24,
+\]
+we have
+\[
+  |A|=336,\qquad |B|=252,\qquad |A\cap B|=84.
+\]
+Thus the number excluded is
+\[
+  336+252-84=504,
+\]
+and the answer is
+\[
+  2021-504=1517.
+\]
+This is exactly what inclusion--exclusion is for: avoid double-counting the common multiples.
+
+\section{Permutations and combinations}
+
+The page distinguishes arrangements and selections:
+\[
+  A_n^m=\frac{n!}{(n-m)!},\qquad
+  C_n^m=\frac{n!}{m!(n-m)!}.
+\]
+A sequence problem asks for the number of \(10\)-term sequences with \(x+y=10\) and \(x-y=4\), giving \(x=7,y=3\).  Therefore the number of sequences is
+\[
+  \binom{10}{3}=120.
+\]
+The thought process is: once the number of one kind of symbol is fixed, the sequence is determined by choosing its positions.
+
+\section{Binomial theorem}
+
+The binomial theorem is
+\[
+  (a+b)^n=\sum_{k=0}^n\binom nk a^{n-k}b^k.
+\]
+Several standard identities follow immediately:
+\[
+  \sum_{k=0}^n\binom nk=2^n,
+\]
+\[
+  \sum_{k=0}^n(-1)^k\binom nk=0,
+\]
+and by differentiating
+\[
+  (1+x)^n
+\]
+and setting \(x=1\),
+\[
+  \sum_{k=0}^n k\binom nk=n2^{n-1}.
+\]
+The page writes these identities as examples of how a coefficient formula becomes a counting tool.
+
+\section{Polynomial coefficients}
+
+A worked example asks for the constant term or a particular coefficient in an expansion such as
+\[
+  (2x-2y)^5.
+\]
+The term involving \(x^{5-k}y^k\) is
+\[
+  \binom5k(2x)^{5-k}(-2y)^k.
+\]
+Thus the coefficient of \(x^2y^3\) comes from \(k=3\):
+\[
+  \binom53 2^2(-2)^3=-320.
+\]
+The note's point is that coefficient problems become simple once the target exponent determines \(k\).
+
+\section{Further contest examples}
+
+Counting problems involving subject choices, sign-chart inequalities, and similar-triangle configurations share one skill: case management.  One must decide whether the structure is a sum of cases, a product of stages, or a coefficient extraction.
+
+
+\section{Binomial identities by stories}
+
+The identity
+\[
+  \binom n k=\binom{n-1}k+\binom{n-1}{k-1}
+\]
+comes from choosing a committee of size \(k\) from \(n\) people.  Either a distinguished person is not chosen, or that person is chosen.  This kind of proof is often clearer than algebraic manipulation because it explains what the two terms mean.
+
+\section{When to use multiplication and when to use addition}
+
+The addition principle applies to disjoint alternatives.  The multiplication principle applies to successive independent choices.  Many counting mistakes come from using multiplication when cases overlap, or using addition when a task has stages.  A good habit is to write a sentence: ``first choose ..., then choose ...'' for multiplication, and ``either ..., or ...'' for addition.
+
+\section{A broader reading}
+
+Elementary counting is a first meeting with combinatorial species and generating functions.  Addition corresponds to disjoint union, multiplication corresponds to Cartesian product, and binomial coefficients are the coefficients of a generating function.  This is why the binomial theorem is not just algebra: it is also a counting machine.
+
+\section{Counting principles as operations on combinatorial classes}
+
+The addition and multiplication principles are not merely classroom rules.  They are the first operations on combinatorial classes.  If \(\mathcal A\) and \(\mathcal B\) are disjoint classes, then
+\[
+  |\mathcal A\sqcup\mathcal B|=|\mathcal A|+|\mathcal B|.
+\]
+If an object is built by choosing one object from \(\mathcal A\) and one from \(\mathcal B\), then
+\[
+  |\mathcal A\times\mathcal B|=|\mathcal A||\mathcal B|.
+\]
+Thus addition corresponds to disjoint union, and multiplication corresponds to Cartesian product.
+
+This viewpoint is useful because it explains why formulas should follow from constructions.  Before computing a number, identify whether the object is a disjoint alternative, a staged product, a quotient by symmetry, or a coefficient in a generating function.
+
+\section{Inclusion--exclusion as Möbius inversion}
+
+The formula
+\[
+  |A\cup B|=|A|+|B|-|A\cap B|
+\]
+is a small instance of Möbius inversion on the Boolean lattice.  For a finite family \(A_1,\ldots,A_n\), the number of elements lying in at least one \(A_i\) is
+\[
+  \left|\bigcup_{i=1}^n A_i\right|
+  =\sum_{\varnothing\ne S\subseteq[n]}(-1)^{|S|+1}
+  \left|\bigcap_{i\in S}A_i\right|.
+\]
+The alternating signs are the Möbius function of the subset poset:
+\[
+  \mu(S,T)=(-1)^{|T|-|S|}.
+\]
+So inclusion--exclusion is not a trick for Venn diagrams; it is inversion of the operation that replaces exact membership data by cumulative membership data.
+
+\section{Indicator functions and probability language}
+
+For a finite universe \(U\), a set \(A\subseteq U\) has indicator function
+\[
+  \mathbf 1_A(x)=
+  \begin{cases}
+  1,&x\in A,\\
+  0,&x\notin A.
+  \end{cases}
+\]
+Then
+\[
+  |A|=\sum_{x\in U}\mathbf 1_A(x).
+\]
+The two-set inclusion--exclusion identity is the pointwise identity
+\[
+  \mathbf 1_{A\cup B}=\mathbf 1_A+\mathbf 1_B-\mathbf 1_A\mathbf 1_B.
+\]
+Summing over \(U\) gives the cardinality formula.
+
+This is also the beginning of probability.  If \(X\) is uniformly chosen from \(U\), then
+\[
+  \mathbb P(X\in A)=\frac{|A|}{|U|}=\mathbb E[\mathbf 1_A(X)].
+\]
+Counting and expectation become the same operation after normalization.
+
+\section{Generating functions for binomial identities}
+
+The binomial theorem says
+\[
+  (1+x)^n=\sum_{k=0}^n\binom nkx^k.
+\]
+The coefficient of \(x^k\) counts subsets of size \(k\).  Differentiating and setting \(x=1\) gives
+\[
+  \sum_{k=0}^n k\binom nk=n2^{n-1},
+\]
+which counts pairs \((S,s)\) where \(S\subseteq[n]\) and \(s\in S\): choose \(s\) first, then choose the rest of \(S\).
+
+This illustrates the right use of generating functions: algebraic operations on series encode operations on counted objects.
+
+\section{Counting up to symmetry: Burnside's lemma}
+
+If a finite group \(G\) acts on a finite set \(X\), the number of orbits is
+\[
+  |X/G|=\frac1{|G|}\sum_{g\in G}|\operatorname{Fix}(g)|.
+\]
+This is Burnside's lemma.  It explains why one cannot always divide by the number of symmetries: objects with nontrivial stabilizers have smaller orbits.
+
+Elementary examples include necklaces, colorings of polygons, and arrangements considered up to rotation or reflection.  The advanced lesson is that symmetry changes the unit of counting from elements to orbits.
+
+\section{Counting through structure and symmetry}
+
+The counting principles become powerful when read structurally.  Addition is disjoint union, multiplication is product, inclusion--exclusion is Möbius inversion, binomial coefficients are generating-function coefficients, and symmetry counting is orbit counting.  The elementary skill is to decide which structure the problem is really using before doing arithmetic.

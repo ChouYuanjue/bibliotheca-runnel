@@ -1,14 +1,217 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220810}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220810}
-\end{document}
+\notechapter{N-20220810}{Basic Inequalities, Cauchy, Triangle Inequality, and Coordinate Geometry}
+
+\section{Basic inequalities}
+
+Every square is nonnegative.  For real numbers,
+\[
+  (a-b)^2\ge0,
+\]
+so
+\[
+  a^2+b^2\ge2ab,
+\]
+with equality iff $a=b$.  For three variables,
+\[
+  a^2+b^2+c^2\ge ab+bc+ca,
+\]
+because
+\[
+  2(a^2+b^2+c^2-ab-bc-ca)=(a-b)^2+(b-c)^2+(c-a)^2\ge0.
+\]
+Equality occurs exactly when all variables involved in the squared differences coincide.
+
+\section{AM--GM}
+
+For $a,b\ge0$,
+\[
+  \frac{a+b}{2}\ge\sqrt{ab},
+\]
+with equality iff $a=b$.  Equivalently,
+\[
+  a+b\ge2\sqrt{ab}.
+\]
+The note also records the three-variable form
+\[
+  \frac{a+b+c}{3}\ge\sqrt[3]{abc},\qquad a,b,c\ge0,
+\]
+and uses it repeatedly in examples.
+
+A typical application is to expressions such as
+\[
+  \frac{a+b+c}{3}\ge\sqrt[3]{abc}
+  \quad\Longrightarrow\quad
+  a+b+c\ge3\sqrt[3]{abc}.
+\]
+The useful habit is to look for terms whose product is fixed.  AM--GM then turns a fixed product into a lower bound for a sum.
+
+\section{Cauchy's inequality}
+
+Cauchy's inequality has two useful forms.  The vector form is
+\[
+  (a_1b_1+\cdots+a_nb_n)^2
+  \le
+  (a_1^2+\cdots+a_n^2)(b_1^2+\cdots+b_n^2).
+\]
+The Engel or Titu Andreescu form is
+\[
+  \frac{x_1^2}{a_1}+\cdots+\frac{x_n^2}{a_n}
+  \ge
+  \frac{(x_1+\cdots+x_n)^2}{a_1+\cdots+a_n},\qquad a_i>0.
+\]
+This second form follows by applying Cauchy to
+\[
+  \left(\sum_i \frac{x_i^2}{a_i}\right)
+  \left(\sum_i a_i\right)
+  \ge
+  \left(\sum_i x_i\right)^2.
+\]
+
+\section{Triangle inequality and its variants}
+
+The page then discusses absolute values:
+\[
+  |a+b|\le |a|+|b|,\qquad
+  |a-b|\le |a-c|+|c-b|.
+\]
+The second formula is the triangle inequality with an intermediate point $c$.  The note also uses the reverse triangle inequality
+\[
+  ||a|-|b||\le |a-b|.
+\]
+A useful proof is
+\[
+  |a|=|a-b+b|\le |a-b|+|b|,\qquad
+  |b|=|b-a+a|\le |a-b|+|a|.
+\]
+Together these imply the reverse inequality.
+
+Absolute-value inequalities are not merely algebraic sign manipulations; they encode distances on the real line.
+
+\section{Worked AM--GM examples}
+
+One example asks for a lower bound of expressions of the form
+\[
+  x+\frac1x,\qquad x>0.
+\]
+By AM--GM,
+\[
+  x+\frac1x\ge2.
+\]
+Similarly,
+\[
+  x+y+z\ge3\sqrt[3]{xyz}
+\]
+when $x,y,z>0$.  If a problem fixes $xyz$, this gives a direct lower bound for the sum.
+
+Another common pattern is
+\[
+  \frac{x}{y}+\frac{y}{z}+\frac{z}{x}\ge3,\qquad x,y,z>0,
+\]
+because the product of the three terms is $1$.
+
+\section{A Cauchy example}
+
+For positive $a,b,c$, a typical inequality is
+\[
+  \frac{a^2}{b+c}+\frac{b^2}{c+a}+\frac{c^2}{a+b}
+  \ge
+  \frac{(a+b+c)^2}{2(a+b+c)}
+  =\frac{a+b+c}{2}.
+\]
+This is exactly Engel form of Cauchy.  It turns a sum of fractions into one square divided by one denominator.
+
+\section{Coordinate geometry at the end of the note}
+
+The last page shifts to coordinate geometry.  The diagrams show points, vectors, and lines, with formulas for distances and slopes.  The essential formulas are:
+\[
+  AB=\sqrt{(x_A-x_B)^2+(y_A-y_B)^2},
+\]
+\[
+  m=\frac{y_2-y_1}{x_2-x_1},
+\]
+and the point-slope form of a line
+\[
+  y-y_0=m(x-x_0).
+\]
+
+A recurring idea is that geometric claims can be turned into algebraic equalities.  For example, perpendicularity of two nonvertical lines is
+\[
+  m_1m_2=-1,
+\]
+while parallelism is
+\[
+  m_1=m_2.
+\]
+Distance and slope are the coordinate versions of length and direction.
+
+
+\section{What the examples reveal: three structures}
+
+Choosing the right inequality language is the main skill.  Squares prove elementary inequalities, AM--GM handles fixed products, Cauchy handles dot products and sums of fractions, and triangle inequalities handle distances.  The advanced form of the same habit is to identify the structure before calculating.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+Elementary inequality & Higher structure & Equality meaning\\
+\midrule
+Cauchy--Schwarz & inner product / projection / Gram matrix & vectors are dependent\\
+Triangle inequality & normed vector space & same direction in strictly convex cases\\
+AM--GM & convexity or concavity of \(\log\) & all variables equal\\
+Positive square & positive semidefinite cone & quadratic form degenerates\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Cauchy--Schwarz and Gram determinants}
+
+Cauchy--Schwarz says
+\[
+  |\langle x,y\rangle|\le \|x\|\|y\|.
+\]
+It follows from the nonnegativity of
+\[
+  \|x-ty\|^2\ge0
+\]
+or, equivalently, from positivity of the Gram matrix
+\[
+  G(x,y)=
+  \begin{pmatrix}
+  \langle x,x\rangle&\langle x,y\rangle\\
+  \langle y,x\rangle&\langle y,y\rangle
+  \end{pmatrix}.
+\]
+The inequality \(\det G(x,y)\ge0\) is exactly Cauchy--Schwarz.  Equality means \(G\) has rank one, i.e. the two vectors are linearly dependent.
+
+In Hilbert spaces, the same inequality controls Fourier coefficients:
+\[
+  |\langle f,e_n\rangle|\le \|f\|_2\|e_n\|_2.
+\]
+This is why an inequality first met in finite sums becomes indispensable in functional analysis.
+
+\section{Triangle inequality and normed spaces}
+
+The triangle inequality
+\[
+  \|x+y\|\le \|x\|+\|y\|
+\]
+defines the geometry of a normed vector space.  The usual absolute value, Euclidean length, sup norm, and \(L^p\) norms are all instances.  Minkowski's inequality is precisely the triangle inequality in \(L^p\):
+\[
+  \|f+g\|_p\le \|f\|_p+\|g\|_p,
+  \qquad
+  \|f\|_p=\left(\int |f|^p\right)^{1/p}.
+\]
+Thus a contest-level inequality about square roots and sums is structurally the same statement as the triangle inequality for functions.
+
+\section{AM--GM, convexity, and cones}
+
+For positive variables, AM--GM follows from concavity of \(\log\):
+\[
+  \log\left(\frac1n\sum_i x_i\right)\ge \frac1n\sum_i\log x_i.
+\]
+The equality condition says all variables are equal, meaning there is no spread.
+
+Many inequalities also describe membership in a convex cone.  For instance,
+\[
+  A\succeq0\quad\Longleftrightarrow\quad x^TAx\ge0\text{ for all }x
+\]
+defines the cone of positive semidefinite matrices.  Basic ``square is nonnegative'' arguments are the one-dimensional shadow of this cone viewpoint.

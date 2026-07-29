@@ -1,14 +1,200 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220715}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220715}
-\end{document}
+\notechapter{N-20220715}{Conics and the Dedekind Construction of Addition}
+
+\section{Conic sections}
+
+A cone cut by a plane produces the classical conics:
+\[
+  \text{circle},\quad \text{ellipse},\quad \text{parabola},\quad \text{hyperbola}.
+\]
+An ellipse can be defined as the locus of points \(P\) for which the sum of distances to two foci is constant:
+\[
+  PF_1+PF_2=2a.
+\]
+With foci \(F_1=(-c,0)\), \(F_2=(c,0)\), this gives the standard equation
+\[
+  \frac{x^2}{a^2}+\frac{y^2}{b^2}=1,\qquad c^2=a^2-b^2.
+\]
+The eccentricity is
+\[
+  e=\frac ca,\qquad 0<e<1.
+\]
+
+A hyperbola is defined by a constant difference of distances to the two foci:
+\[
+  |PF_1-PF_2|=2a,
+\]
+with standard equations
+\[
+  \frac{x^2}{a^2}-\frac{y^2}{b^2}=1
+\]
+or
+\[
+  \frac{y^2}{a^2}-\frac{x^2}{b^2}=1,
+\]
+depending on the transverse axis.
+
+A parabola is the locus of points equidistant from a focus and a directrix.  Its standard equations are
+\[
+  y^2=2px,\qquad y^2=-2px,\qquad x^2=2py,\qquad x^2=-2py.
+\]
+For \(y^2=2px\), the focus is \((p/2,0)\), the directrix is \(x=-p/2\), and the eccentricity is \(1\).
+
+\section{Latus rectum and tangent geometry}
+
+For an ellipse, a vertical line through a focus intersects the ellipse in endpoints of a latus rectum.  The length is
+\[
+  \frac{2b^2}{a}.
+\]
+The tangent at \(P=(x_0,y_0)\) to
+\[
+  \frac{x^2}{a^2}+\frac{y^2}{b^2}=1
+\]
+is
+\[
+  \frac{xx_0}{a^2}+\frac{yy_0}{b^2}=1.
+\]
+The note also records the focus-directrix relation.  For an ellipse with eccentricity \(e=c/a\), the directrices are
+\[
+  x=\pm\frac{a^2}{c}.
+\]
+The ratio
+\[
+  \frac{PF}{\operatorname{dist}(P,\text{directrix})}=e
+\]
+characterizes the conic.
+
+\section{Rational and irrational density}
+
+The page then shifts to real analysis and proves that rational and irrational numbers are dense in \(\mathbb R\).  For rationals, given \(x\in\mathbb R\) and \(\varepsilon>0\), choose \(q\in\mathbb N\) with
+\[
+  \frac1q<\varepsilon.
+\]
+Then choose an integer \(p\) such that
+\[
+  p\le qx<p+1.
+\]
+Thus
+\[
+  \left|x-\frac pq\right|<\frac1q<\varepsilon.
+\]
+For irrationals, take a rational approximation \(r\) to \(x-\sqrt2/N\), then
+\[
+  r+\frac{\sqrt2}{N}
+\]
+is irrational and can be made arbitrarily close to \(x\).
+
+\section{Vector spaces}
+
+The note includes the vector space axioms.  Let \(F\) be a field and \(V\) a set equipped with addition and scalar multiplication:
+\[
+  +:V\times V\to V,\qquad \cdot:F\times V\to V.
+\]
+The axioms are associativity and commutativity of addition, existence of \(0\), additive inverses, compatibility of scalar multiplication, distributivity, and \(1v=v\).  With the usual coordinate operations,
+\[
+  \mathbb R^n
+\]
+is an \(\mathbb R\)-linear space.
+
+\section{Dedekind cuts and order}
+
+The note returns to Dedekind cuts.  We denote by \(\mathbb R\) the set of Dedekind cuts.  For cuts \(X,Y\), define an order by
+\[
+  X<Y\quad\Longleftrightarrow\quad X\subset Y,\quad X\neq Y.
+\]
+This order is total because if \(X\not\subseteq Y\), choose \(x\in X\setminus Y\); the downward-closed property of cuts forces \(Y\subset X\).
+
+\section{Addition of Dedekind cuts}
+
+Define
+\[
+  X+Y=\{x+y:x\in X,\ y\in Y\}.
+\]
+The zero cut is
+\[
+  \overline0=\{x\in\mathbb Q:x<0\}.
+\]
+One must check that \(X+Y\) is again a Dedekind cut:
+\begin{enumerate}[(i)]
+  \item it is nonempty and not all of \(\mathbb Q\);
+  \item it is downward closed;
+  \item it has no greatest element.
+
+\end{enumerate}
+The page gives the standard proof.  For downward closure, if \(z<x+y\), then \(z=x+(z-x)\) and \(z-x<y\), so \(z-x\in Y\).  For no greatest element, choose larger elements \(x'>x\) in \(X\) and \(y'>y\) in \(Y\); then \(x'+y'>x+y\).
+
+Associativity and commutativity follow directly:
+\[
+  (X+Y)+Z=X+(Y+Z),\qquad X+Y=Y+X.
+\]
+Order compatibility is subtler.  One needs the lemma: if \(X\) is a cut and \(n\in\mathbb N\), then there exist \(x\in X\) and \(x'\in X'\) such that
+\[
+  0<x'-x<\frac1n.
+\]
+This approximation lemma lets one prove
+\[
+  X<Y\quad\Rightarrow\quad X+Z<Y+Z.
+\]
+
+\section{Additive inverses}
+
+For a cut \(X\), define
+\[
+  -X=\{y-x':y\in\overline0,\ x'\in X'\}.
+\]
+Then \(-X\) is the unique cut \(Z\) such that
+\[
+  X+Z=\overline0.
+\]
+This reproduces the usual negative of a real number.  In particular, if \(p/q\in\mathbb Q\), then
+\[
+  -X_{p/q}=X_{-p/q}.
+\]
+
+
+\section{Conics through focus and directrix}
+
+A conic can be defined by the ratio
+\[
+  e=\frac{\text{distance to focus}}{\text{distance to directrix}}.
+\]
+If \(e<1\), the conic is an ellipse.  If \(e=1\), it is a parabola.  If \(e>1\), it is a hyperbola.  This unifies the three classical curves by one parameter: eccentricity.
+
+\section{Dedekind cuts and addition}
+
+The Dedekind construction treats a real number as a cut of rational numbers.  Addition is then defined by adding representatives from cuts:
+\[
+  A+B=\{a+b:a\in A,\ b\in B\}.
+\]
+The hard part is not writing the formula, but proving that it again satisfies the properties of a cut.  This illustrates how arithmetic operations must be reconstructed after the real numbers are built.
+
+\section{A compact bridge}
+
+This note is a striking mixture: classical conics and the construction of real addition by Dedekind cuts.  The hidden connection is that both topics turn geometry into algebra.  A conic becomes an equation and a focus-directrix ratio; a real number becomes a cut with algebraic operations.
+
+\section{Conics through affine and projective lenses}
+
+A conic can be represented by a quadratic equation
+\[
+  ax^2+bxy+cy^2+dx+ey+f=0.
+\]
+Affine transformations preserve conic type up to degeneracy, while projective transformations unify ellipses, parabolas, and hyperbolas as sections of a cone.
+
+The elementary focus-directrix and latus-rectum formulas are metric shadows of a more invariant projective object.
+
+\section{Density and completion}
+
+The density of \(\mathbb Q\) in \(\mathbb R\) says every real interval contains rationals.  Dedekind cuts use order rather than decimal expansions to construct real numbers.  Addition of cuts must be defined so that order and completeness are preserved.
+
+This is the structural reason the note can move from conics to real-number construction: analytic geometry needs a complete ordered field.
+
+\section{Dedekind addition as forced operation}
+
+If \(A\) and \(B\) are lower cuts, their sum is
+\[
+  A+B=\{a+b:a\in A,\ b\in B\}.
+\]
+The definition is not arbitrary.  It is forced by wanting the embedding of rationals into cuts to preserve addition and order.
+
+\section{Coordinates, conics, and the completed line}
+
+Conic geometry depends on the coordinate field.  Dedekind cuts explain what the real line is, and projective/affine transformations explain which features of conics survive coordinate changes.

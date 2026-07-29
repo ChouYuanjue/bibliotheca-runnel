@@ -1,14 +1,302 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260617}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260617}
-\end{document}
+\notechapter{N-20260617}{Fourier Series and Orthogonal Expansion of Functions}
+
+\section{Why Fourier series is a separate theme}
+
+The Fourier part of the original long note deserves its own chapter.  It is not merely another convergence test.  It is the beginning of representing functions by an orthogonal basis, which is the infinite-dimensional analogue of decomposing a vector in an orthonormal basis.
+
+\section{Orthogonality of trigonometric functions}
+
+On $[-\pi,\pi]$,
+\[
+  \int_{-\pi}^{\pi}\cos mx\cos nx\,dx=0\quad(m\ne n),
+\]
+\[
+  \int_{-\pi}^{\pi}\sin mx\sin nx\,dx=0\quad(m\ne n),\qquad
+  \int_{-\pi}^{\pi}\sin mx\cos nx\,dx=0.
+\]
+Also,
+\[
+  \int_{-\pi}^{\pi}\cos^2 nx\,dx=\int_{-\pi}^{\pi}\sin^2 nx\,dx=\pi.
+\]
+This is why the Fourier coefficients are projections.
+
+\section{Fourier coefficients}
+
+For a $2\pi$-periodic function,
+\[
+  f(x)\sim \frac{a_0}{2}+\sum_{n=1}^{\infty}(a_n\cos nx+b_n\sin nx),
+\]
+where
+\[
+  a_n=\frac1\pi\int_{-\pi}^{\pi}f(x)\cos nx\,dx,\qquad
+  b_n=\frac1\pi\int_{-\pi}^{\pi}f(x)\sin nx\,dx.
+\]
+For $a_0$,
+\[
+  a_0=\frac1\pi\int_{-\pi}^{\pi}f(x)\,dx.
+\]
+
+\section{Dirichlet convergence theorem}
+
+\begin{theorem}[Dirichlet convergence theorem]
+If a periodic function is piecewise smooth, its Fourier series converges at each point to the average of the left and right limits.
+\end{theorem}
+
+
+Under standard piecewise smooth hypotheses, the Fourier series converges at $x$ to
+\[
+  \frac{f(x+0)+f(x-0)}2.
+\]
+At a point of continuity, this equals $f(x)$.  At a jump, it equals the midpoint of the jump.  This is why Fourier series may represent a function correctly except at discontinuities while still showing endpoint averaging.
+
+\section{Even and odd functions}
+
+If $f$ is even, then all sine coefficients vanish and the Fourier series is a cosine series.  If $f$ is odd, all cosine coefficients vanish and the series is a sine series.  This is not just a computational shortcut; it says symmetry determines which basis vectors can appear.
+
+For example, $f(x)=x$ on $[-\pi,\pi]$ is odd, so only sine terms occur.  The standard result is
+\[
+  x\sim 2\sum_{n=1}^{\infty}(-1)^{n+1}\frac{\sin nx}{n}.
+\]
+For $f(x)=|x|$, only cosine terms occur, and evaluating the series at special points gives sums of reciprocal squares over odd integers.
+
+\section{Half-range expansions}
+
+On $[0,l]$, a function may be extended oddly or evenly to $[-l,l]$.  Odd extension gives a sine series; even extension gives a cosine series.  The choice should match the boundary behavior one wants.  In boundary-value problems for PDEs, sine series naturally encode zero boundary values, while cosine series encode even reflection or Neumann-type behavior.
+
+For period $2l$, the basis becomes
+\[
+  \cos \frac{n\pi x}{l},\qquad \sin \frac{n\pi x}{l}.
+\]
+The coefficients are
+\[
+  a_n=\frac1l\int_{-l}^{l}f(x)\cos\frac{n\pi x}{l}\,dx,\qquad
+  b_n=\frac1l\int_{-l}^{l}f(x)\sin\frac{n\pi x}{l}\,dx.
+\]
+
+
+\section{Concrete coefficient models}
+
+The standard examples are valuable only when they are computed, not merely named.
+
+\subsection{The sawtooth function \texorpdfstring{$f(x)=x$}{f(x)=x}}
+
+On \([-\pi,\pi]\), the function \(f(x)=x\) is odd, so only sine terms occur.  The coefficient is
+\[
+  b_n=\frac{1}{\pi}\int_{-\pi}^{\pi}x\sin nx\,dx
+  =\frac{2}{\pi}\int_0^{\pi}x\sin nx\,dx.
+\]
+Integration by parts gives
+\[
+  \int_0^{\pi}x\sin nx\,dx
+  =-\frac{\pi(-1)^n}{n},
+\]
+so
+\[
+  b_n=2\frac{(-1)^{n+1}}{n}.
+\]
+Hence
+\[
+  x\sim 2\sum_{n=1}^{\infty}(-1)^{n+1}\frac{\sin nx}{n}.
+\]
+At \(x=\pi\), the periodic extension jumps from \(\pi\) to \(-\pi\), so the Fourier series converges to \(0\), not to \(\pi\).
+
+\subsection{The even function \texorpdfstring{$f(x)=|x|$}{f(x)=|x|}}
+
+Since \(|x|\) is even, only cosine terms occur.  One has
+\[
+  a_0=\frac{1}{\pi}\int_{-\pi}^{\pi}|x|\,dx=\pi,
+\]
+and for \(n\ge1\),
+\[
+  a_n=\frac{2}{\pi}\int_0^{\pi}x\cos nx\,dx
+  =\frac{2}{\pi}\frac{(-1)^n-1}{n^2}.
+\]
+Thus only odd \(n\) contribute:
+\[
+  |x|\sim \frac{\pi}{2}-\frac{4}{\pi}\sum_{k=0}^{\infty}\frac{\cos(2k+1)x}{(2k+1)^2}.
+\]
+Putting \(x=0\) gives
+\[
+  0=\frac{\pi}{2}-\frac{4}{\pi}\sum_{k=0}^{\infty}\frac{1}{(2k+1)^2},
+\]
+so
+\[
+  \sum_{k=0}^{\infty}\frac{1}{(2k+1)^2}=\frac{\pi^2}{8}.
+\]
+This is a typical Fourier-series trick: evaluate a function expansion at a point where the convergence value is known.
+
+\subsection{A square wave}
+
+For the \(2\pi\)-periodic square wave equal to \(1\) on \((0,\pi)\) and \(-1\) on \((-\pi,0)\), the function is odd, so
+\[
+  b_n=\frac{2}{\pi}\int_0^{\pi}\sin nx\,dx
+  =\frac{2}{\pi}\frac{1-(-1)^n}{n}.
+\]
+Thus
+\[
+  f(x)\sim \frac{4}{\pi}\left(\sin x+\frac{\sin3x}{3}+\frac{\sin5x}{5}+\cdots\right).
+\]
+At the jump points the series converges to \(0\), the midpoint of the jump.
+
+
+\section{Dirichlet kernel: what partial sums really do}
+
+The \(N\)-th Fourier partial sum is not a vague approximation; it is convolution with the Dirichlet kernel:
+\[
+  S_Nf(x)=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x-t)D_N(t)\,dt,
+\]
+where
+\[
+  D_N(t)=\sum_{n=-N}^{N}e^{int}=\frac{\sin((N+1/2)t)}{\sin(t/2)}.
+\]
+The kernel has total mass \(2\pi\), but its \(L^1\)-norm grows.  This growth is one reason Fourier partial sums can behave badly near discontinuities.
+
+The Dirichlet convergence theorem is therefore not magic: near a point \(x\), the oscillatory kernel samples values of \(f\) from both sides.  At a jump, the symmetric sampling yields the midpoint \((f(x+0)+f(x-0))/2\).
+
+\section{Fejer means: averaging partial sums improves convergence}
+
+The Cesaro average of Fourier partial sums is
+\[
+  \sigma_Nf=\frac{1}{N+1}\sum_{k=0}^{N}S_kf.
+\]
+It is convolution with the Fejer kernel
+\[
+  F_N(t)=\frac{1}{N+1}\left(\frac{\sin((N+1)t/2)}{\sin(t/2)}\right)^2.
+\]
+Unlike the Dirichlet kernel, \(F_N\ge0\) and has total mass \(2\pi\).  This positivity makes Fejer's theorem work: for continuous periodic \(f\), \(\sigma_Nf\) converges uniformly to \(f\).
+
+This is a concrete lesson about convergence methods.  The same Fourier coefficients can be summed by raw partial sums or by averaged partial sums, and averaging changes the analytic behavior without changing the underlying frequency data.
+\section{Hilbert-space viewpoint}
+
+The conceptual endpoint is that Fourier series is linear algebra in the Hilbert space $L^2[-\pi,\pi]$.  The inner product is
+\[
+  \langle f,g\rangle=\int_{-\pi}^{\pi}f(x)g(x)\,dx.
+\]
+The trigonometric system is an orthogonal basis in an appropriate sense.  Fourier coefficients are coordinates, Parseval's identity is the Pythagorean theorem, and convergence questions ask which topology of function space is being used.
+
+\section{Fourier series in Hilbert space}
+
+Let
+\[
+  L^2[-\pi,\pi]
+\]
+be the space of square-integrable functions with inner product
+\[
+  \langle f,g\rangle=\int_{-\pi}^{\pi}f(x)\overline{g(x)}\,dx.
+\]
+The functions
+\[
+  e_n(x)=\frac1{\sqrt{2\pi}}e^{inx},\qquad n\in\mathbb Z,
+\]
+form an orthonormal basis in the Hilbert-space sense.  The Fourier coefficient is
+\[
+  \widehat f(n)=\langle f,e_n\rangle.
+\]
+Thus Fourier series is orthogonal projection onto an infinite orthonormal basis.
+
+\section{Parseval identity}
+
+For $f\in L^2[-\pi,\pi]$, Parseval's identity says
+\[
+  \|f\|_2^2=\sum_{n\in\mathbb Z}|\widehat f(n)|^2.
+\]
+This is the Pythagorean theorem in infinite dimensions.  In real sine-cosine notation, it becomes a statement relating integrals of $f^2$ to sums of squares of Fourier coefficients.
+
+The elementary coefficient computations in the note are therefore coordinates of a vector in Hilbert space.
+
+\section{Gibbs phenomenon}
+
+At jump discontinuities, Fourier series converges to the midpoint of the jump, but partial sums overshoot near the discontinuity.  The overshoot does not vanish in height as the number of terms grows; it only concentrates closer to the jump.  This is the Gibbs phenomenon.
+
+This explains why Fourier series can converge correctly pointwise while still showing visible oscillations near discontinuities.  It is a warning that convergence mode matters: pointwise, uniform, and $L^2$ convergence behave differently.
+
+\section{Sturm--Liouville and Fourier bases}
+
+The functions $\sin nx$ and $\cos nx$ are eigenfunctions of
+\[
+  -\frac{d^2}{dx^2}.
+\]
+For example,
+\[
+  -\frac{d^2}{dx^2}\sin nx=n^2\sin nx.
+\]
+With suitable boundary conditions, this operator is self-adjoint, and its eigenfunctions form an orthogonal basis.
+
+Fourier series is therefore one example of Sturm--Liouville expansion.  Other boundary conditions and intervals produce other orthogonal systems.
+
+\section{Heat and wave equations}
+
+For the heat equation on an interval,
+\[
+  u_t=u_{xx},
+\]
+expand
+\[
+  u(x,t)=\sum_{n} a_n(t)\sin nx.
+\]
+Then each coefficient satisfies
+\[
+  a_n'(t)=-n^2a_n(t),\qquad a_n(t)=a_n(0)e^{-n^2t}.
+\]
+High-frequency modes decay faster.  For the wave equation,
+\[
+  u_{tt}=u_{xx},
+\]
+Fourier modes oscillate in time.
+
+Thus Fourier series is not only a representation of functions; it diagonalizes differential operators and solves PDEs.
+
+% Concrete advanced extension
+\section{Convergence modes of Fourier series}
+
+Fourier series can converge in different senses.  For $f\in L^2$, partial sums converge to $f$ in the $L^2$ norm:
+\[
+  \|S_Nf-f\|_2\to0.
+\]
+For smoother functions, convergence may be pointwise or uniform.  At jumps, Dirichlet's theorem gives midpoint convergence, while Gibbs oscillation persists near the discontinuity.
+
+This distinction is essential.  A Fourier series may be excellent for energy approximation while not uniformly accurate near jumps.  Thus the elementary endpoint rules and half-range expansions should always be paired with a statement of the convergence mode.
+
+
+\section{Smoothness is decay of coefficients}
+
+Fourier coefficients measure regularity.  If \(f\) is smooth, repeated integration by parts gives decay.  For example, in complex notation,
+\[
+  \widehat f(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{-inx}\,dx.
+\]
+If \(f\) is \(C^1\) and periodic with matching endpoint values, then
+\[
+  \widehat f(n)=\frac{1}{in}\frac{1}{2\pi}\int_{-\pi}^{\pi}f'(x)e^{-inx}\,dx,
+\]
+so \(|\widehat f(n)|=O(1/|n|)\) if \(f'\) is integrable.  More derivatives give faster decay.
+
+This explains the difference between the examples above.  The square wave has jumps, so coefficients decay like \(1/n\).  The function \(|x|\) is continuous but has a corner, so its nonzero coefficients decay like \(1/n^2\).  Smoothness in physical space becomes decay in frequency space.
+
+\section{Sobolev norm from Fourier coefficients}
+
+On the circle, Sobolev spaces can be described by Fourier coefficients:
+\[
+  \norm{f}_{H^s}^2=\sum_{n\in\mathbb Z}(1+n^2)^s|\widehat f(n)|^2.
+\]
+Large positive \(s\) demands fast coefficient decay and therefore smoothness.  Negative \(s\) permits rough objects, even distributions.
+
+This is the precise functional-analytic version of the heuristic: high frequencies measure oscillation and roughness.  Fourier series turns differential regularity into weighted square summability.
+\section{Fourier transform as the non-periodic limit}
+
+Fourier series decomposes periodic functions into discrete frequencies.  On the real line, the Fourier transform decomposes non-periodic functions into a continuum of frequencies:
+\[
+  \widehat f(\xi)=\int_{-\infty}^{\infty}f(x)e^{-ix\xi}\,dx.
+\]
+The inverse transform reconstructs $f$ under suitable hypotheses.  The derivative becomes multiplication by frequency:
+\[
+  \widehat{f'}(\xi)=i\xi\widehat f(\xi).
+\]
+This is why Fourier methods solve constant-coefficient differential equations: they diagonalize differentiation.
+
+\section{Distributions and weak Fourier series}
+
+Some important objects, such as the Dirac comb
+\[
+  \sum_{k\in\mathbb Z}\delta(x-2\pi k),
+\]
+are not ordinary functions but distributions.  Fourier analysis extends to them by duality against test functions.  This viewpoint explains why formal series sometimes work beyond classical convergence: they are meaningful in a weak or distributional sense.

@@ -1,14 +1,272 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221222}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221222}
-\end{document}
+\notechapter{N-20221222}{Open-Set Calculus: Continuity, Closure, Nets, and Connected Components}
+
+\section{Continuity is the stability of tests under preimage}
+
+Let \(f:X\to Y\) be a map between topological spaces.  The definition
+\[
+  V\subseteq Y\text{ open}
+  \quad\Longrightarrow\quad
+  f^{-1}(V)\subseteq X\text{ open}
+\]
+uses preimages because preimages preserve all Boolean operations:
+\[
+  f^{-1}\!\left(\bigcup_\alpha V_\alpha\right)
+  =\bigcup_\alpha f^{-1}(V_\alpha),
+  \qquad
+  f^{-1}(V\cap W)=f^{-1}(V)\cap f^{-1}(W).
+\]
+Consequently continuous maps compose without an additional theorem:
+\[
+  (g\circ f)^{-1}(U)=f^{-1}(g^{-1}(U)).
+\]
+
+The open-set definition has equivalent closed-set and neighborhood forms.
+
+\begin{proposition}
+For a map \(f:X\to Y\), the following are equivalent.
+\begin{enumerate}[(i)]
+  \item \(f\) is continuous.
+  \item The preimage of every closed set is closed.
+  \item For every \(x\in X\) and every neighborhood \(V\) of \(f(x)\), there is a neighborhood \(U\) of \(x\) such that \(f(U)\subseteq V\).
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The equivalence of (i) and (ii) follows from
+\[
+  f^{-1}(Y\setminus C)=X\setminus f^{-1}(C).
+\]
+Assume (i).  If \(V\) is a neighborhood of \(f(x)\), choose an open set \(W\) with
+\[
+  f(x)\in W\subseteq V.
+\]
+Then \(U=f^{-1}(W)\) is a neighborhood of \(x\) and \(f(U)\subseteq V\).  Conversely, apply (iii) to an open set \(V\) and every point of \(f^{-1}(V)\).  The resulting neighborhoods show that \(f^{-1}(V)\) is open.
+\end{proof}
+
+Images do not enjoy this stability.  The continuous map \(x\mapsto x^2\) sends \((-1,1)\) to \([0,1)\), which is not open in \(\mathbb R\).
+
+\section{The Sierpiński space classifies open subsets}
+
+Let
+\[
+  \Sigma=\{0,1\},
+  \qquad
+  \tau_\Sigma=\{\varnothing,\{1\},\Sigma\}.
+\]
+This is the Sierpiński space.  For a subset \(U\subseteq X\), define
+\[
+  \chi_U(x)=
+  \begin{cases}
+  1,&x\in U,\\
+  0,&x\notin U.
+  \end{cases}
+\]
+Then
+\[
+  \chi_U^{-1}(\{1\})=U.
+\]
+Since \(\{1\}\) is the only nontrivial open test in \(\Sigma\), one obtains
+\[
+  \boxed{
+  U\text{ is open in }X
+  \quad\Longleftrightarrow\quad
+  \chi_U:X\to\Sigma\text{ is continuous}.}
+\]
+Thus open subsets of \(X\) are in bijection with continuous maps \(X\to\Sigma\).  The preimage operation is literally composition:
+\[
+  \chi_{f^{-1}(U)}=\chi_U\circ f.
+\]
+This gives a concrete meaning to the contravariance of topology: a map of spaces pulls open tests backward.
+
+\section{Closure is an operator from which the topology can be recovered}
+
+For \(A\subseteq X\), the closure is
+\[
+  \overline A
+  =\bigcap\{C\subseteq X:C\text{ closed and }A\subseteq C\}.
+\]
+Equivalently,
+\[
+  x\in\overline A
+  \quad\Longleftrightarrow\quad
+  U\cap A\ne\varnothing
+  \text{ for every open neighborhood }U\ni x.
+\]
+The closure operator satisfies the Kuratowski rules
+\[
+  \overline\varnothing=\varnothing,
+  \qquad
+  A\subseteq\overline A,
+  \qquad
+  \overline{\overline A}=\overline A,
+  \qquad
+  \overline{A\cup B}=\overline A\cup\overline B.
+\]
+Monotonicity follows: \(A\subseteq B\) implies \(\overline A\subseteq\overline B\).
+
+Conversely, suppose an operation \(c:\mathcal P(X)\to\mathcal P(X)\) satisfies these four rules.  Declare \(C\) closed exactly when \(c(C)=C\).  Arbitrary intersections of such fixed points are fixed, because if \(C=\bigcap_i C_i\), then monotonicity gives
+\[
+  c(C)\subseteq\bigcap_i c(C_i)=C,
+\]
+while extensivity gives the reverse inclusion.  Finite unions are fixed by the fourth rule.  Hence the fixed points define the closed sets of a topology, and \(c\) is its closure operation.
+
+Closure is therefore not merely derived notation; it contains the same information as the topology.
+
+\section{Subspace topology is the weakest topology making inclusion continuous}
+
+For \(Y\subseteq X\), the subspace topology is
+\[
+  \tau_Y=\{Y\cap U:U\in\tau_X\}.
+\]
+It is the weakest topology on \(Y\) for which the inclusion
+\[
+  \iota:Y\hookrightarrow X
+\]
+is continuous.  More precisely, for any space \(Z\) and map \(g:Z\to Y\),
+\[
+  g:Z\to Y\text{ is continuous}
+  \quad\Longleftrightarrow\quad
+  \iota\circ g:Z\to X\text{ is continuous}.
+\]
+
+Closure behaves exactly as expected.
+
+\begin{proposition}
+If \(A\subseteq Y\subseteq X\), then
+\[
+  \boxed{\overline A^{\,Y}=Y\cap\overline A^{\,X}.}
+\]
+\end{proposition}
+
+\begin{proof}
+A point \(y\in Y\) lies in \(\overline A^{\,Y}\) iff every subspace neighborhood \(Y\cap U\) of \(y\) meets \(A\).  This is equivalent to saying that every neighborhood \(U\) of \(y\) in \(X\) meets \(A\), hence \(y\in\overline A^{\,X}\).
+\end{proof}
+
+For example, \([0,1)\) is open in \([0,2]\) because
+\[
+  [0,1)=[0,2]\cap(-1,1),
+\]
+even though it is not open in \(\mathbb R\).
+
+\section{Nets recover closure in every topological space}
+
+A directed set is a preorder \((D,\le)\) such that every two elements have a common upper bound.  A net in \(X\) is a function
+\[
+  x_\bullet:D\to X.
+\]
+It converges to \(x\) if for every neighborhood \(U\ni x\), there exists \(d_0\in D\) such that
+\[
+  d\ge d_0\quad\Longrightarrow\quad x_d\in U.
+\]
+Sequences are the special case \(D=\mathbb N\).
+
+\begin{theorem}[Net characterization of closure]
+For \(A\subseteq X\),
+\[
+  x\in\overline A
+  \quad\Longleftrightarrow\quad
+  \text{some net in }A\text{ converges to }x.
+\]
+\end{theorem}
+
+\begin{proof}
+If a net \((a_d)\) in \(A\) converges to \(x\), every neighborhood of \(x\) eventually contains some \(a_d\), so it meets \(A\).
+
+Conversely, suppose \(x\in\overline A\).  Direct the set \(\mathcal N(x)\) of neighborhoods of \(x\) by reverse inclusion:
+\[
+  U\preceq V\quad\Longleftrightarrow\quad V\subseteq U.
+\]
+For each \(U\in\mathcal N(x)\), choose \(a_U\in A\cap U\).  Given a neighborhood \(W\ni x\), whenever \(U\succeq W\) one has \(U\subseteq W\), hence \(a_U\in W\).  Therefore \((a_U)\) converges to \(x\).
+\end{proof}
+
+Sequences may fail to detect closure.  Let \([0,\omega_1]\) carry the order topology, where \(\omega_1\) is the first uncountable ordinal, and set
+\[
+  A=[0,\omega_1).
+\]
+Every neighborhood of \(\omega_1\) contains a tail \((\alpha,\omega_1]\), so \(\omega_1\in\overline A\).  But a sequence \((\alpha_n)\subset A\) has countable supremum
+\[
+  \alpha=\sup_n\alpha_n<\omega_1,
+\]
+and therefore cannot converge to \(\omega_1\).  The net indexed by ordinals \(\alpha<\omega_1\), ordered in the usual way, does converge to \(\omega_1\).
+
+\section{Connectedness is the absence of a discrete-valued separator}
+
+A separation of \(X\) is a decomposition
+\[
+  X=U\sqcup V
+\]
+into nonempty open sets.  A space is connected when no separation exists.  Equivalently, the only clopen subsets are \(\varnothing\) and \(X\).
+
+Let \(D=\{0,1\}\) have the discrete topology.
+
+\begin{proposition}
+A space \(X\) is connected iff every continuous map
+\[
+  f:X\to D
+\]
+is constant.
+\end{proposition}
+
+\begin{proof}
+If \(f\) is nonconstant, then \(f^{-1}(0)\) and \(f^{-1}(1)\) are nonempty disjoint open sets covering \(X\).  Conversely, a separation \(X=U\sqcup V\) defines a nonconstant continuous characteristic map taking \(U\) to \(0\) and \(V\) to \(1\).
+\end{proof}
+
+Continuous images preserve connectedness.  If \(f(X)=A\sqcup B\) were separated, then \(f^{-1}(A)\) and \(f^{-1}(B)\) would separate \(X\).
+
+This gives the intermediate value theorem in topological form.  Since an interval \(I\subseteq\mathbb R\) is connected, the image \(f(I)\) of a continuous real-valued function is connected, hence an interval.  Therefore every value between \(f(a)\) and \(f(b)\) is attained.
+
+\section{Paths give connectedness, but not every connected space is path-connected}
+
+A path from \(x\) to \(y\) is a continuous map
+\[
+  \gamma:[0,1]\to X,
+  \qquad
+  \gamma(0)=x,
+  \quad
+  \gamma(1)=y.
+\]
+Since \([0,1]\) is connected, its image is connected.  If a path-connected space had a separation, no path could join points in the two pieces.  Hence
+\[
+  \text{path-connected}\quad\Longrightarrow\quad\text{connected}.
+\]
+
+The converse fails for the topologist's sine curve
+\[
+  T=
+  \{(x,\sin(1/x)):x>0\}
+  \cup
+  (\{0\}\times[-1,1]).
+\]
+The graph
+\[
+  G=\{(x,\sin(1/x)):x>0\}
+\]
+is the continuous image of \((0,\infty)\), so it is connected.  Its closure is \(T\), and the closure of a connected set is connected; thus \(T\) is connected.
+
+It is not path-connected.  Suppose a path \(\gamma(t)=(x(t),y(t))\) joined a point of the vertical segment to a point of \(G\).  Let
+\[
+  t_0=\sup\{t:x(t)=0\}.
+\]
+Immediately after \(t_0\), the coordinate \(x(t)>0\) and tends to zero, while
+\[
+  y(t)=\sin(1/x(t)).
+\]
+By the intermediate value property of \(x\), the quantity \(1/x(t)\) crosses arbitrarily large intervals, forcing \(y(t)\) to oscillate between values near \(1\) and \(-1\) arbitrarily close to \(t_0\).  This contradicts continuity of \(y\) at \(t_0\).
+
+\section{Local path-connectedness repairs the gap between components}
+
+The connected component of \(x\) is the union of all connected subsets containing \(x\).  The path component of \(x\) is the set of points joined to \(x\) by paths.  Every path component lies inside a connected component.
+
+A space is locally path-connected if every point has a neighborhood basis of path-connected open sets.
+
+\begin{theorem}
+In a locally path-connected space, path components are open and coincide with connected components.
+\end{theorem}
+
+\begin{proof}
+Let \(P\) be a path component and let \(x\in P\).  Choose a path-connected open neighborhood \(U\ni x\).  Every point of \(U\) can be joined to \(x\), and \(x\) can be joined to the chosen basepoint of \(P\).  Hence \(U\subseteq P\).  Thus \(P\) is open.
+
+Path components partition \(X\), so the complement of \(P\) is a union of other open path components.  Therefore \(P\) is also closed.  A connected component cannot meet two disjoint clopen path components, so it is contained in one path component.  The reverse containment always holds, giving equality.
+\end{proof}
+
+Open subsets of \(\mathbb R^n\), manifolds, and CW complexes are locally path-connected.  The topologist's sine curve fails precisely at the limiting vertical segment, where arbitrarily small neighborhoods inherit infinitely many oscillating pieces.  Local hypotheses explain why ordinary geometric spaces obey the simpler intuition while general topology does not.

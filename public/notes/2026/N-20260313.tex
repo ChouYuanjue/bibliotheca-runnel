@@ -1,14 +1,231 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260313}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260313}
-\end{document}
+\notechapter{N-20260313}{Multivariable Chain Rule, Total Differentials, and Implicit Differentiation}
+
+\section{The chain rule is composition of linear maps}
+
+The chain rule is not a collection of unrelated formulas.  It says that first-order approximations compose.
+
+\begin{theorem}[Chain rule]
+Let \(F:\mathbb R^n\to\mathbb R^m\) be differentiable at \(x\), and let \(G:\mathbb R^m\to\mathbb R^k\) be differentiable at \(F(x)\).  Then \(G\circ F\) is differentiable at \(x\), and
+\[
+  D(G\circ F)(x)=DG(F(x))\,DF(x).
+\]
+\end{theorem}
+
+\begin{proof}[Proof skeleton]
+Write
+\[
+  F(x+h)=F(x)+DF(x)h+r(h),\qquad \norm{r(h)}=o(\norm h).
+\]
+Then apply the differentiability expansion for \(G\) at \(F(x)\):
+\[
+  G(F(x)+u)=G(F(x))+DG(F(x))u+s(u),
+  \qquad \norm{s(u)}=o(\norm u).
+\]
+Substitute \(u=DF(x)h+r(h)\).  Since \(u=O(\norm h)\), the remainder is still \(o(\norm h)\).  The linear part is \(DG(F(x))DF(x)h\).
+\end{proof}
+
+This theorem is the source of all ordinary partial-derivative chain rules.
+
+\section{One input variable, two intermediate variables}
+
+Suppose
+\[
+  z=f(u,v),\qquad u=u(x),\qquad v=v(x).
+\]
+Then
+\[
+  \frac{dz}{dx}=f_u\frac{du}{dx}+f_v\frac{dv}{dx}.
+\]
+In matrix form, this is
+\[
+  \frac{dz}{dx}
+  =
+  \begin{pmatrix}f_u&f_v\end{pmatrix}
+  \begin{pmatrix}u_x\\ v_x\end{pmatrix}.
+\]
+The row vector is \(Df\), the column vector is the derivative of \((u,v)\), and their product is the derivative of the composite.
+
+\begin{example}
+Let \(z=u^2+uv\), \(u=x^2\), and \(v=\sin x\).  Then
+\[
+  z_u=2u+v,\qquad z_v=u,\qquad u'=2x,\qquad v'=\cos x.
+\]
+Hence
+\[
+  \frac{dz}{dx}=(2u+v)2x+u\cos x.
+\]
+Substituting \(u=x^2\), \(v=\sin x\) gives
+\[
+  \frac{dz}{dx}=2x(2x^2+\sin x)+x^2\cos x.
+\]
+\end{example}
+
+\section{Two input variables}
+
+Suppose
+\[
+  z=f(u,v),\qquad u=u(x,y),\qquad v=v(x,y).
+\]
+Then
+\[
+  \begin{pmatrix}z_x&z_y\end{pmatrix}
+  =
+  \begin{pmatrix}f_u&f_v\end{pmatrix}
+  \begin{pmatrix}
+    u_x&u_y\\
+    v_x&v_y
+  \end{pmatrix}.
+\]
+Equivalently,
+\[
+  z_x=f_u u_x+f_v v_x,\qquad
+  z_y=f_u u_y+f_v v_y.
+\]
+
+\begin{example}
+Let \(z=e^u\cos v\), where \(u=x^2+y^2\) and \(v=x-y\).  Then
+\[
+  f_u=e^u\cos v,\qquad f_v=-e^u\sin v,
+\]
+and
+\[
+  \begin{pmatrix}
+    u_x&u_y\\ v_x&v_y
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    2x&2y\\ 1&-1
+  \end{pmatrix}.
+\]
+Thus
+\[
+  z_x=e^u\cos v\cdot2x-e^u\sin v,
+  \qquad
+  z_y=e^u\cos v\cdot2y+e^u\sin v.
+\]
+\end{example}
+
+\section{Total differentials}
+
+The notation
+\[
+  dz=f_x\,dx+f_y\,dy
+\]
+is best read as a compact way to write a linear approximation.  If \((x,y)\) changes by \((dx,dy)\), then the first-order change in \(z=f(x,y)\) is
+\[
+  dz\approx f_x\,dx+f_y\,dy.
+\]
+For a vector-valued map \(F\), the same statement is
+\[
+  dF=J_F\,dx.
+\]
+The differential notation is safe when one remembers that it represents a linear map, not ordinary fraction arithmetic.
+
+\section{Implicit differentiation in one equation}
+
+Suppose a relation
+\[
+  F(x,y)=0
+\]
+defines \(y\) locally as a differentiable function of \(x\).  Differentiating the identity \(F(x,y(x))=0\) gives
+\[
+  F_x+F_y\frac{dy}{dx}=0.
+\]
+If \(F_y\ne0\), then
+\[
+  \frac{dy}{dx}=-\frac{F_x}{F_y}.
+\]
+
+\begin{example}
+For the circle \(F(x,y)=x^2+y^2-1=0\), where \(y\ne0\),
+\[
+  \frac{dy}{dx}=-\frac{2x}{2y}=-\frac{x}{y}.
+\]
+This is the slope of the tangent line to the circle.
+\end{example}
+
+\section{Implicit differentiation for systems}
+
+The same idea becomes matrix algebra.  Suppose
+\[
+  F(x,u)=0,\qquad
+  F:\mathbb R^p\times\mathbb R^q\to\mathbb R^q,
+\]
+and \(u\) is locally a function of \(x\).  Differentiating gives
+\[
+  F_x\,dx+F_u\,du=0.
+\]
+If \(F_u\) is invertible, then
+\[
+  du=-F_u^{-1}F_x\,dx,
+\]
+so
+\[
+  Du(x)=-F_u^{-1}F_x.
+\]
+
+\begin{theorem}[Implicit function theorem, working form]
+Let \(F:\mathbb R^p\times\mathbb R^q\to\mathbb R^q\) be \(C^1\), and suppose
+\[
+  F(a,b)=0,\qquad \det F_u(a,b)\ne0.
+\]
+Then near \((a,b)\), the equation \(F(x,u)=0\) determines \(u\) as a \(C^1\) function of \(x\), and
+\[
+  Du(a)=-F_u(a,b)^{-1}F_x(a,b).
+\]
+\end{theorem}
+
+The theorem says when the formal linearized computation is legitimate.  The condition \(\det F_u\ne0\) means the constraint can be solved in the \(u\)-directions.
+
+\section{A shape table}
+
+Keeping track of shapes prevents many mistakes:
+\[
+\begin{array}{c|c|c}
+\text{map} & \text{derivative shape} & \text{meaning}\\
+\hline
+f:\mathbb R^n\to\mathbb R & 1\times n & \text{row gradient}\\
+F:\mathbb R^n\to\mathbb R^m & m\times n & \text{Jacobian}\\
+G\circ F & k\times n & (k\times m)(m\times n)\\
+F(x,u)=0 & q\times p,\ q\times q & F_x,F_u
+\end{array}
+\]
+The formulas work because the linear maps have compatible domains and codomains.
+
+\section{Singular linearization marks the boundary of implicit solvability}
+
+The invertibility condition in the implicit function theorem cannot simply be omitted.  Consider
+\[
+  F(x,y)=y^2-x.
+\]
+At the origin,
+\[
+  F(0,0)=0,
+  \qquad
+  F_y(0,0)=0.
+\]
+The zero set is
+\[
+  x=y^2,
+\]
+or, for \(x\ge0\), the two branches
+\[
+  y=\sqrt{x},
+  \qquad
+  y=-\sqrt{x}.
+\]
+No neighborhood of the origin in the zero set is the graph of a single function \(y=u(x)\), and the two branch derivatives become unbounded as \(x\downarrow0\).  The formal formula
+\[
+  u'(x)=-\frac{F_x}{F_y}=\frac1{2y}
+\]
+therefore signals its own breakdown at \(y=0\).
+
+The same zero set can be solved smoothly in the other direction:
+\[
+  x=y^2,
+\]
+because
+\[
+  F_x(0,0)=-1\ne0.
+\]
+Implicit solvability is directional.  The Jacobian block that is invertible determines which variables may be expressed as functions of the others.

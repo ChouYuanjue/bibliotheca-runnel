@@ -1,14 +1,392 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221205}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221205}
-\end{document}
+\notechapter{N-20221205}{Counting by Logic, Projection, Inversion, and Generating Series}
+
+\section{Set operations are logical operations written geometrically}
+
+For a finite universe \(U\), the indicator of a set \(A\subseteq U\) is
+\[
+  \mathbf1_A(x)=
+  \begin{cases}
+    1,&x\in A,\\
+    0,&x\notin A.
+  \end{cases}
+\]
+Then
+\[
+  |A|=\sum_{x\in U}\mathbf1_A(x).
+\]
+Union, intersection, and complement become pointwise arithmetic:
+\[
+  \mathbf1_{A\cap B}=\mathbf1_A\mathbf1_B,
+\]
+\[
+  \mathbf1_{A^c}=1-\mathbf1_A,
+\]
+\[
+  \mathbf1_{A\cup B}
+  =\mathbf1_A+\mathbf1_B-\mathbf1_A\mathbf1_B.
+\]
+De Morgan's law follows immediately:
+\[
+  1-\mathbf1_{A\cup B}
+  =(1-\mathbf1_A)(1-\mathbf1_B).
+\]
+The set identity
+\[
+  (A\cup B)^c=A^c\cap B^c
+\]
+is therefore the logical identity
+\[
+  \neg(P\lor Q)=(\neg P)\land(\neg Q).
+\]
+
+This translation is more than notation.  It allows a set identity to be verified pointwise and then summed to obtain a counting identity.  The same habit will later turn inclusion--exclusion into an algebraic inversion formula.
+
+\section{Addition counts disjoint cases; multiplication counts successive choices}
+
+If a finite collection is partitioned into disjoint cases \(C_i\), then
+\[
+  \left|\bigsqcup_i C_i\right|
+  =\sum_i|C_i|.
+\]
+If an object is built through successive independent choices, with \(m_i\) options at stage \(i\), then the number of constructions is
+\[
+  \prod_i m_i.
+\]
+The first principle counts alternatives; the second counts stages.
+
+Arranging \(r\) distinct objects chosen from \(n\) gives
+\[
+  n(n-1)\cdots(n-r+1)
+  =\frac{n!}{(n-r)!}.
+\]
+If order is forgotten, every \(r\)-element subset has \(r!\) internal orders, so
+\[
+  \binom nr
+  =\frac{n!}{r!(n-r)!}.
+\]
+The symmetry
+\[
+  \binom nr=\binom n{n-r}
+\]
+comes from the complement bijection: choosing the selected elements is equivalent to choosing the omitted ones.
+
+The pigeonhole principle is an averaging consequence of the same counting.  If \(N\) objects occupy \(r\) boxes, some box contains at least
+\[
+  \left\lceil\frac Nr\right\rceil
+\]
+objects; otherwise the total would be smaller than \(N\).
+
+\section{The binomial theorem counts choices inside a product}
+
+Expanding
+\[
+  (a+b)^n
+  =(a+b)\cdots(a+b)
+\]
+requires choosing either \(a\) or \(b\) from each factor.  A term \(a^{n-r}b^r\) occurs once for every choice of the \(r\) factors that contribute \(b\).  Hence
+\[
+  \boxed{
+  (a+b)^n
+  =\sum_{r=0}^n\binom nr a^{n-r}b^r.}
+\]
+Setting \(a=b=1\) gives
+\[
+  \sum_{r=0}^n\binom nr=2^n.
+\]
+This is also the count of all subsets of an \(n\)-element set: each element independently receives the decision “in” or “out.”
+
+Pascal's identity
+\[
+  \binom nr
+  =\binom{n-1}r+\binom{n-1}{r-1}
+\]
+comes from partitioning \(r\)-subsets according to whether they contain one distinguished element.  The identity is a decomposition of the counted set, not merely a factorial manipulation.
+
+\section{Double counting is counting one incidence set through two projections}
+
+Let \(X\) be a finite set of pairs.  The two coordinate projections partition \(X\) in different ways, and equality of the resulting totals produces an identity.
+
+For example, count pairs
+\[
+  (S,s),
+  \qquad
+  S\subseteq[n],
+  \quad
+  s\in S.
+\]
+Counting first by \(S\) gives
+\[
+  |X|=\sum_{k=0}^n k\binom nk.
+\]
+Counting first by \(s\), choose the distinguished element in \(n\) ways and then choose any subset of the remaining \(n-1\) elements:
+\[
+  |X|=n2^{n-1}.
+\]
+Thus
+\[
+  \boxed{
+  \sum_{k=0}^n k\binom nk=n2^{n-1}.}
+\]
+
+Vandermonde's identity is another projection count.  Split a population into disjoint groups of sizes \(r\) and \(s\).  Choosing \(n\) people altogether can be done directly in
+\[
+  \binom{r+s}{n}
+\]
+ways, or by choosing \(k\) from the first group and \(n-k\) from the second:
+\[
+  \boxed{
+  \sum_k\binom rk\binom s{n-k}
+  =\binom{r+s}{n}.}
+\]
+Naming the incidence object explains the summation index and the range automatically.
+
+\section{Inclusion--exclusion is a pointwise product expansion}
+
+For sets \(A_1,\ldots,A_m\), the indicator of the complement of their union is
+\[
+  \mathbf1_{(\cup_iA_i)^c}
+  =\prod_{i=1}^m(1-\mathbf1_{A_i}).
+\]
+Expanding and subtracting from one gives
+\[
+\begin{aligned}
+  \mathbf1_{\cup_iA_i}
+  ={}&\sum_i\mathbf1_{A_i}
+  -\sum_{i<j}\mathbf1_{A_i\cap A_j}\\
+  &+\sum_{i<j<k}\mathbf1_{A_i\cap A_j\cap A_k}
+  -\cdots.
+\end{aligned}
+\]
+Summing over \(U\) yields the full inclusion--exclusion formula
+\[
+  \left|\bigcup_{i=1}^mA_i\right|
+  =
+  \sum_{\varnothing\ne S\subseteq[m]}
+  (-1)^{|S|+1}
+  \left|\bigcap_{i\in S}A_i\right|.
+\]
+The alternating signs arise from expanding a product, and every element is checked locally according to how many sets contain it.
+
+As a quick application, the number of surjections from an \(n\)-element set onto an \(m\)-element set is
+\[
+  \sum_{j=0}^m(-1)^j
+  \binom mj(m-j)^n.
+\]
+Start with all \(m^n\) functions and exclude those missing at least one target value.  Intersections correspond to missing a specified set of \(j\) values, leaving \((m-j)^n\) functions.
+
+\section{Boolean Möbius inversion explains the alternating signs structurally}
+
+Let functions \(f,g\) be defined on subsets of \([m]\), with
+\[
+  g(S)=\sum_{T\subseteq S}f(T).
+\]
+This cumulative transform is the zeta transform of the Boolean lattice.  Möbius inversion recovers the exact data:
+\[
+  \boxed{
+  f(S)=
+  \sum_{T\subseteq S}
+  (-1)^{|S|-|T|}g(T).}
+\]
+The Boolean Möbius function is therefore
+\[
+  \mu(T,S)=(-1)^{|S|-|T|}
+  \qquad(T\subseteq S).
+\]
+
+For \(m=3\), the top value is
+\[
+\begin{aligned}
+  f(123)={}&g(123)
+  -g(12)-g(13)-g(23)\\
+  &+g(1)+g(2)+g(3)-g(\varnothing).
+\end{aligned}
+\]
+The familiar inclusion--exclusion signs are exactly the coefficients of the inverse transform.
+
+To verify the formula, substitute the definition of \(g\).  The coefficient of a fixed \(f(R)\) is
+\[
+  \sum_{R\subseteq T\subseteq S}
+  (-1)^{|S|-|T|}
+  =(1-1)^{|S|-|R|},
+\]
+which is \(1\) when \(R=S\) and \(0\) otherwise.  Inversion works because all unwanted lower-level contributions cancel.
+
+\section{Ordinary generating functions turn decomposition into multiplication}
+
+For a sequence \((a_n)_{n\ge0}\), its ordinary generating function is
+\[
+  A(x)=\sum_{n\ge0}a_nx^n.
+\]
+The notation
+\[
+  [x^n]A(x)=a_n
+\]
+extracts a coefficient.  If an object of size \(n\) splits into an object of size \(k\) and one of size \(n-k\), the number of pairs is the convolution
+\[
+  c_n=\sum_{k=0}^n a_kb_{n-k},
+\]
+and
+\[
+  C(x)=A(x)B(x).
+\]
+The multiplication principle has become multiplication of series.
+
+Vandermonde's identity follows algebraically from
+\[
+  (1+x)^r(1+x)^s=(1+x)^{r+s}.
+\]
+Extracting \([x^n]\) from the left gives
+\[
+  \sum_k\binom rk\binom s{n-k},
+\]
+while the right gives \(\binom{r+s}n\).  The same identity now has both an incidence-set proof and a coefficient proof.
+
+\section{Generating functions solve recurrences and coin-change problems}
+
+Let \(F_0=0\), \(F_1=1\), and
+\[
+  F_n=F_{n-1}+F_{n-2}.
+\]
+Set
+\[
+  F(x)=\sum_{n\ge0}F_nx^n.
+\]
+Multiplying the recurrence by \(x^n\) and summing for \(n\ge2\) gives
+\[
+  F(x)-x=xF(x)+x^2F(x).
+\]
+Therefore
+\[
+  \boxed{
+  F(x)=\frac{x}{1-x-x^2}.}
+\]
+Factoring the denominator recovers Binet's formula; alternatively, the rational function generates the sequence without solving each recurrence anew.
+
+For unlimited coins of values \(1,2,5\), choosing \(a,b,c\ge0\) coins contributes value
+\[
+  a+2b+5c.
+\]
+The generating function is
+\[
+  \frac1{(1-x)(1-x^2)(1-x^5)}.
+\]
+The coefficient of \(x^n\) counts solutions of
+\[
+  a+2b+5c=n.
+\]
+For \(n=5\), the four representations are
+\[
+  1+1+1+1+1,
+  \quad
+  2+1+1+1,
+  \quad
+  2+2+1,
+  \quad
+  5,
+\]
+so
+\[
+  [x^5]\frac1{(1-x)(1-x^2)(1-x^5)}=4.
+\]
+A product of geometric series encodes independent multiplicities of allowed parts.
+
+\section{Averaging and random choice can prove existence}
+
+The pigeonhole principle says that some box is at least as full as the average.  The probabilistic method applies the same idea to a random object: if the expected value of a statistic is \(M\), some object has value at least \(M\).
+
+Let a graph have \(m\) edges.  Place each vertex independently into one of two parts with probability \(1/2\).  An edge crosses the cut exactly when its endpoints land in different parts, which occurs with probability \(1/2\).  If \(X\) is the number of crossing edges, linearity of expectation gives
+\[
+  \mathbb E[X]
+  =\sum_{e}\mathbb P(e\text{ crosses})
+  =\frac m2.
+\]
+Therefore at least one cut satisfies
+\[
+  X\ge\frac m2.
+\]
+No independence between edge indicators is required for linearity of expectation.
+
+The argument is constructive in logic even when it does not exhibit the cut: if every cut had fewer than \(m/2\) crossing edges, the average could not equal \(m/2\).
+
+\section{Stirling's formula reveals the scale of the central binomial coefficient}
+
+The largest coefficient in the \(n\)-th row of Pascal's triangle lies near \(n/2\).  For even \(n=2m\), Stirling's approximation
+\[
+  m!\sim\sqrt{2\pi m}\left(\frac me\right)^m
+\]
+gives
+\[
+\begin{aligned}
+  \binom{2m}{m}
+  &=\frac{(2m)!}{(m!)^2}\\
+  &\sim
+  \frac{\sqrt{4\pi m}(2m/e)^{2m}}
+       {2\pi m(m/e)^{2m}}\\
+  &=\frac{4^m}{\sqrt{\pi m}}.
+\end{aligned}
+\]
+Equivalently,
+\[
+  \boxed{
+  \binom n{\lfloor n/2\rfloor}
+  \sim
+  2^n\sqrt{\frac{2}{\pi n}}.}
+\]
+Thus the largest layer of the Boolean lattice contains about \(2^n/\sqrt n\) subsets.  The exact identity
+\[
+  \sum_k\binom nk=2^n
+\]
+counts the whole lattice; the asymptotic formula describes how that mass concentrates around the middle ranks.
+
+\section{Species record how labelled structures move under relabelling}
+
+A combinatorial species \(F\) assigns to each finite label set \(U\) a set \(F[U]\) of structures, and every bijection
+\[
+  \sigma:U\to V
+\]
+transports structures through a bijection
+\[
+  F[\sigma]:F[U]\to F[V]
+\]
+compatible with composition.  The definition remembers not only how many structures exist, but how they behave under relabelling.
+
+The exponential generating function is
+\[
+  F(x)=
+  \sum_{n\ge0}
+  |F[n]|\frac{x^n}{n!}.
+\]
+For the species \(\mathrm{SET}\), there is one set structure on every label set, so
+\[
+  \mathrm{SET}(x)
+  =\sum_{n\ge0}\frac{x^n}{n!}
+  =e^x.
+\]
+For the species \(\mathrm{SEQ}\), a label set of size \(n\) has \(n!\) linear orders, so
+\[
+  \mathrm{SEQ}(x)
+  =\sum_{n\ge0}n!\frac{x^n}{n!}
+  =\frac1{1-x}.
+\]
+For \(n\ge1\), a labelled cycle has \((n-1)!\) cyclic orders, hence
+\[
+  \mathrm{CYC}(x)
+  =\sum_{n\ge1}(n-1)!\frac{x^n}{n!}
+  =\sum_{n\ge1}\frac{x^n}{n}
+  =-\log(1-x).
+\]
+
+Every permutation decomposes uniquely into an unordered set of disjoint cycles.  Species composition therefore gives
+\[
+  \mathrm{PERM}=\mathrm{SET}(\mathrm{CYC}).
+\]
+At the level of exponential generating functions,
+\[
+\begin{aligned}
+  \mathrm{PERM}(x)
+  &=\exp(\mathrm{CYC}(x))\\
+  &=\exp\bigl(-\log(1-x)\bigr)\\
+  &=\frac1{1-x}.
+\end{aligned}
+\]
+The coefficient of \(x^n/n!\) is \(n!\), recovering the number of permutations.  Addition, product, and composition of labelled structures have become algebraic operations on generating series because relabelling symmetry is built into the objects from the beginning.

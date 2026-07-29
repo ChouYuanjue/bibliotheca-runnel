@@ -1,14 +1,234 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220319}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220319}
-\end{document}
+\notechapter{N-20220319}{A Review of Calculus: Sequences, Limits, Derivatives, and Integrals}
+
+\section{Sequences and convergence}
+
+After defining real numbers, the first analytic object to understand is a sequence.  Intuitively,
+\[
+  1,\frac12,\frac13,\frac14,\dots
+\]
+should converge to \(0\), while
+\[
+  1,2,3,4,\dots
+\]
+should diverge.  The difficulty is to turn this intuition into a definition that is precise.
+
+\begin{definition}
+A sequence is a function
+\[
+  a:\mathbb N\to\mathbb R
+\]
+or more generally \(a:\mathbb N\to\mathbb C\).  We write \(a_n\) instead of \(a(n)\), and denote the sequence by \((a_n)\) or \((a_n)_{n=1}^\infty\).
+\end{definition}
+
+\begin{definition}
+Let \((a_n)\) be a real sequence and let \(\ell\in\mathbb R\).  We say \(a_n\to\ell\) if for every \(\varepsilon>0\) there exists \(N\in\mathbb N\) such that whenever \(n\ge N\),
+\[
+  |a_n-\ell|<\varepsilon.
+\]
+Equivalently,
+\[
+  (\forall\varepsilon>0)(\exists N)(\forall n\ge N)\ |a_n-\ell|<\varepsilon.
+\]
+\end{definition}
+
+\begin{example}
+Let
+\[
+  x_n=\frac{n}{n+1}.
+\]
+Then \(x_n\to1\).  Indeed,
+\[
+  |x_n-1|=\frac{1}{n+1}.
+\]
+Given \(\varepsilon>0\), choose \(N>1/\varepsilon-1\).  Then \(n>N\) implies \(|x_n-1|<\varepsilon\).
+\end{example}
+
+\section{Limits of functions}
+
+\begin{definition}
+Let \(A\subseteq\mathbb R\), \(f:A\to\mathbb R\), and \(a\) be a limit point of \(A\).  We write
+\[
+  \lim_{x\to a}f(x)=\ell
+\]
+if
+\[
+  (\forall\varepsilon>0)(\exists\delta>0)(\forall x\in A)
+  \bigl(0<|x-a|<\delta\Rightarrow |f(x)-\ell|<\varepsilon\bigr).
+\]
+\end{definition}
+
+The condition \(0<|x-a|\) is important: the value of \(f(a)\) is irrelevant, and \(f\) does not even have to be defined at \(a\).
+
+
+\section{Derivatives}
+
+\begin{definition}
+The derivative of \(f\) at \(x\) is
+\[
+  \frac{df}{dx}(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h},
+\]
+provided the limit exists.
+\end{definition}
+
+\begin{theorem}[Chain rule]
+If \(f(x)=F(g(x))\), then
+\[
+  \frac{df}{dx}=\frac{dF}{dg}\frac{dg}{dx}.
+\]
+\end{theorem}
+
+\begin{theorem}[Product rule]
+If \(f(x)=u(x)v(x)\), then
+\[
+  f'(x)=u'(x)v(x)+u(x)v'(x).
+\]
+\end{theorem}
+
+\begin{theorem}[Quotient rule]
+If \(f(x)=u(x)/v(x)\), then
+\[
+  f'(x)=\frac{u'(x)v(x)-u(x)v'(x)}{v(x)^2}.
+\]
+\end{theorem}
+
+\begin{theorem}[Leibniz rule]
+If \(f=uv\), then
+\[
+  f^{(n)}(x)=\sum_{r=0}^n \binom{n}{r}u^{(r)}(x)v^{(n-r)}(x).
+\]
+\end{theorem}
+
+\section{Small-o and big-O}
+
+\begin{definition}
+As \(x\to x_0\), write \(f(x)=o(g(x))\) if
+\[
+  \lim_{x\to x_0}\frac{f(x)}{g(x)}=0.
+\]
+Write \(f(x)=O(g(x))\) if \(f(x)/g(x)\) remains bounded near \(x_0\).
+\end{definition}
+
+Thus \(o(g)\) means much smaller than \(g\), while \(O(g)\) means no larger than a constant multiple of \(g\).  Clearly,
+\[
+  f=o(g)\Rightarrow f=O(g).
+\]
+
+\section{Integration}
+
+An integral is a limit of sums.  The usual Riemann integral is modeled by
+\[
+  \int_a^b f(x)\,dx=\lim_{\Delta x\to0}\sum_{n=0}^{N}f(x_n)\Delta x.
+\]
+For an interval partition with \(\Delta x=(b-a)/N\) and \(x_n=a+n\Delta x\), this approximates the area under the graph.
+
+If \(f\) is differentiable, then over a small interval the area is
+\[
+  f(x_n)\Delta x+O((\Delta x)^2).
+\]
+Summing and letting \(N\to\infty\) gives the usual integral.
+
+\begin{theorem}[Fundamental theorem of calculus]
+Let
+\[
+  F(x)=\int_a^x f(t)\,dt.
+\]
+Then, under the usual continuity hypothesis on \(f\),
+\[
+  F'(x)=f(x).
+\]
+\end{theorem}
+
+\begin{remark}
+This is a review note rather than a full proof-based analysis text.  The next revision should add precise hypotheses for every theorem, especially differentiability and continuity assumptions.
+\end{remark}
+
+
+\section{Why the epsilon definition is shaped this way}
+
+The definition of convergence has the order of quantifiers
+\[
+  \forall\varepsilon>0\ \exists N\ \forall n\ge N.
+\]
+This order is essential.  We are not allowed to choose one fixed tolerance; the sequence must eventually enter every tolerance window around the limit.  The number \(N\) may depend on \(\varepsilon\), because smaller error demands later terms.
+
+For example, to prove \(1/n\to0\), given \(\varepsilon>0\), choose \(N>1/\varepsilon\).  Then \(n\ge N\) implies
+\[
+  \left|\frac1n-0\right|<\varepsilon.
+\]
+The proof is not a calculation of the limit; it is a demonstration that every requested precision can eventually be met.
+
+\section{Continuity by sequences}
+
+A function \(f\) is continuous at \(a\) if
+\[
+  x_n\to a\quad\Longrightarrow\quad f(x_n)\to f(a)
+\]
+for every sequence \((x_n)\) in the domain.  This sequence criterion is often easier to use than epsilon-delta directly.  To prove discontinuity, it suffices to find one sequence \(x_n\to a\) such that \(f(x_n)\not\to f(a)\).
+
+For example, the Dirichlet function is discontinuous everywhere.  Near any \(a\), choose rational and irrational sequences both converging to \(a\).  Their function values approach different limits.
+
+\section{Derivative as best linear approximation}
+
+The derivative is often introduced as a slope:
+\[
+  f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}h.
+\]
+A more structural reading is that differentiability means
+\[
+  f(a+h)=f(a)+f'(a)h+o(h).
+\]
+Thus the derivative is the coefficient of the best linear approximation near \(a\).  This viewpoint generalizes directly to multivariable calculus, where the derivative becomes a linear map.
+
+\section{Integral as accumulation}
+
+The definite integral can be understood as the limit of accumulated small contributions.  For continuous \(f\), Riemann sums
+\[
+  \sum_i f(\xi_i)\Delta x_i
+\]
+converge to the area-signed accumulation.  The fundamental theorem of calculus says that differentiation and integration are inverse operations in the sense that
+\[
+  \frac{d}{dx}\int_a^x f(t)\,dt=f(x).
+\]
+This is not merely an area formula; it says local rate and global accumulation determine one another.
+
+\section{Convergence as topology}
+
+The elementary epsilon definition in this note is the first appearance of a topology.  On the real line, saying
+\[
+  x_n\to x
+\]
+means that every interval around $x$ eventually contains all $x_n$.  In a metric space $(X,d)$ the same sentence becomes
+\[
+  \forall \varepsilon>0,\quad \exists N,\quad n>N\Rightarrow d(x_n,x)<\varepsilon.
+\]
+Thus the elementary sequence definition is not a special trick for numbers; it is the definition of convergence once a notion of distance has been chosen.
+
+This immediately explains why different spaces have different convergence.  In $C[0,1]$ with the sup norm,
+\[
+  \|f_n-f\|_\infty=\max_{x\in[0,1]}|f_n(x)-f(x)|\to0
+\]
+means uniform convergence.  With the $L^1$ norm,
+\[
+  \|f_n-f\|_1=\int_0^1 |f_n(x)-f(x)|\,dx\to0,
+\]
+thin spikes may disappear in integral size while still being tall.  The same elementary sentence ``goes to zero'' therefore depends on the surrounding space.
+
+\section{Derivative as a linear map}
+
+In one-variable calculus, the derivative is introduced as a number:
+\[
+  f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}h.
+\]
+The higher-level meaning is that $f'(a)h$ is the best first-order linear approximation to the change in $f$:
+\[
+  f(a+h)=f(a)+f'(a)h+o(h).
+\]
+For a map $F:\mathbb R^n\to\mathbb R^m$, the derivative at $a$ is a linear map $DF(a)$ satisfying
+\[
+  F(a+h)=F(a)+DF(a)h+o(|h|).
+\]
+The Jacobian matrix is only the coordinate representation of this linear map.
+
+\section{Limits and derivatives test topology and linearization}
+
+Elementary limit and derivative computations operate on two layers.  At the calculation layer, they train epsilon estimates and algebraic simplification.  At the structural layer, they introduce topology and linearization.  A limit asks whether a function is continuous with respect to the chosen topology; a derivative asks whether the function is locally a linear map plus a smaller error.

@@ -1,14 +1,558 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260603}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260603}
-\end{document}
+\notechapter{N-20260603}{Generalized Inverses, Projections, and Least-Squares Geometry}
+
+\section{What an inverse was supposed to do}
+
+For a square nonsingular matrix, the inverse performs two jobs at once.  It solves every equation
+\[
+  Ax=b
+\]
+and it undoes the action of \(A\):
+\[
+  A^{-1}A=I,
+  \qquad
+  AA^{-1}=I.
+\]
+Once \(A\) is rectangular or rank deficient, these two jobs separate.  Some vectors \(b\) may not lie in the column space, so an exact solution does not exist.  If the null space is nontrivial, several vectors \(x\) may produce the same output, so an exact solution need not be unique.
+
+The Moore--Penrose inverse does not pretend that these failures have disappeared.  It makes two geometric choices:
+
+\begin{enumerate}[(i)]
+  \item replace an unreachable target by its orthogonal projection onto the column space;
+  \item among all inputs producing that projected target, choose the one orthogonal to the null space.
+\end{enumerate}
+
+The resulting vector
+\[
+  x^+=A^+b
+\]
+is therefore canonical even when ordinary inversion is impossible.
+
+The familiar cases are recovered as special formulas:
+\[
+\begin{array}{c|c|c}
+\text{matrix type} & \text{formula for }A^+ & \text{interpretation}\\
+\hline
+m=n=\operatorname{rank}A & A^{-1} & \text{ordinary inverse}\\
+ m>n,\ \operatorname{rank}A=n
+ & (A^*A)^{-1}A^* & \text{full-column-rank least squares}\\
+ m<n,\ \operatorname{rank}A=m
+ & A^*(AA^*)^{-1} & \text{full-row-rank minimum norm}\\
+ \operatorname{rank}A<\min(m,n)
+ & V\Sigma^+U^* & \text{rank-deficient case}
+\end{array}
+\]
+The last line is the real definition in computational practice; the first three are consequences of it.
+
+\section{The four fundamental subspaces reveal the answer}
+
+Let
+\[
+  A:\mathbb C^n\longrightarrow\mathbb C^m.
+\]
+The domain and codomain split orthogonally as
+\[
+  \mathbb C^n
+  =R(A^*)\oplus N(A),
+\]
+and
+\[
+  \mathbb C^m
+  =R(A)\oplus N(A^*).
+\]
+These are the four fundamental subspaces of the matrix.
+
+The restriction
+\[
+  A\big|_{R(A^*)}:R(A^*)\longrightarrow R(A)
+\]
+is a bijection.  It is injective because
+\[
+  R(A^*)\cap N(A)=\{0\},
+\]
+and the two spaces have the same dimension, namely \(\operatorname{rank}A\).  Thus \(A\) has a genuine inverse after we discard precisely the directions on which it vanishes and restrict the target to the vectors it can actually reach.
+
+This gives a coordinate-free description of the pseudoinverse.  Decompose
+\[
+  b=b_R+b_\perp,
+  \qquad
+  b_R\in R(A),
+  \quad
+  b_\perp\in N(A^*).
+\]
+Then \(A^+b\) is the unique vector in \(R(A^*)\) satisfying
+\[
+  A(A^+b)=b_R.
+\]
+The orthogonal component \(b_\perp\) is ignored because no input can produce it.
+
+The two central products are now transparent:
+\[
+  AA^+=P_{R(A)},
+  \qquad
+  A^+A=P_{R(A^*)}.
+\]
+The first projects targets onto the reachable output space.  The second projects inputs away from the null-space ambiguity.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.0,>=Stealth]
+  \draw[->] (-3.0,0)--(3.0,0) node[right] {$R(A)$};
+  \draw[->] (0,-1.9)--(0,2.3) node[above] {$N(A^*)$};
+  \draw[->,very thick] (0,0)--(2.1,1.35) node[right] {$b$};
+  \draw[->,very thick] (0,0)--(2.1,0) node[below right] {$AA^+b$};
+  \draw[dashed] (2.1,0)--(2.1,1.35);
+  \node[right] at (2.1,0.72) {$b-AA^+b$};
+\end{tikzpicture}
+\caption{The pseudoinverse first replaces \(b\) by the closest reachable vector \(AA^+b\).}
+\end{figure}
+
+\section{Why the four Penrose equations appear}
+
+The Moore--Penrose inverse is usually introduced as the unique matrix \(X\) satisfying
+\[
+  AXA=A,
+  \qquad
+  XAX=X,
+\]
+\[
+  (AX)^*=AX,
+  \qquad
+  (XA)^*=XA.
+\]
+Read without context, these equations look ceremonial.  The projection picture explains every one of them.
+
+If \(X=A^+\), then \(AX\) should be the orthogonal projection onto \(R(A)\).  An orthogonal projection is idempotent and self-adjoint.  The relation
+\[
+  AXA=A
+\]
+says that \(AX\) fixes every vector already in \(R(A)\), while
+\[
+  (AX)^*=AX
+\]
+forces the projection to be orthogonal rather than oblique.
+
+Similarly, \(XA\) should be the orthogonal projection onto \(R(A^*)\).  The equations
+\[
+  XAX=X,
+  \qquad
+  (XA)^*=XA
+\]
+encode that requirement on the input side.
+
+Dropping some of the four conditions produces broader families of generalized inverses.  There are \(15\) nonempty subsets of the four equations, which explains the traditional count of generalized-inverse classes.  The count itself is less important than the distinction: algebraic retraction conditions alone allow many choices, while the two adjoint conditions select the orthogonal geometry and make the answer unique.
+
+\begin{proposition}
+The Moore--Penrose inverse, if it exists, is unique.
+\end{proposition}
+
+One way to see uniqueness is to use the two projection identities.  Any matrix satisfying the four equations must act as the inverse of \(A\) from \(R(A)\) to \(R(A^*)\), must vanish on \(N(A^*)\), and must return values orthogonal to \(N(A)\).  Those requirements determine its value on the orthogonal decomposition
+\[
+  \mathbb C^m=R(A)\oplus N(A^*).
+\]
+
+\section{SVD turns the definition into a calculation}
+
+Suppose
+\[
+  A=U\Sigma V^*
+\]
+is a singular value decomposition, with positive singular values
+\[
+  \sigma_1\ge\cdots\ge\sigma_r>0.
+\]
+Write
+\[
+  \Sigma=
+  \begin{bmatrix}
+    \operatorname{diag}(\sigma_1,\ldots,\sigma_r)&0\\
+    0&0
+  \end{bmatrix}.
+\]
+Then
+\[
+  A^+=V\Sigma^+U^*,
+\]
+where
+\[
+  \Sigma^+=
+  \begin{bmatrix}
+    \operatorname{diag}(\sigma_1^{-1},\ldots,\sigma_r^{-1})&0\\
+    0&0
+  \end{bmatrix}^{\!T}.
+\]
+Only the nonzero singular values are inverted.
+
+The formula is easier to remember mode by mode.  Since
+\[
+  Av_i=\sigma_i u_i,
+\]
+the pseudoinverse must satisfy
+\[
+  A^+u_i=\frac1{\sigma_i}v_i
+  \qquad(i\le r),
+\]
+and
+\[
+  A^+u=0
+  \qquad(u\in N(A^*)).
+\]
+Thus \(A^+\) literally reverses the active singular directions and does nothing to unreachable directions.
+
+The projection formulas follow at once:
+\[
+  AA^+=U_rU_r^*,
+  \qquad
+  A^+A=V_rV_r^*.
+\]
+Here the columns of \(U_r\) form an orthonormal basis of \(R(A)\), and the columns of \(V_r\) form an orthonormal basis of \(R(A^*)\).
+
+A rank factorization also gives a useful formula.  If
+\[
+  A=FG,
+\]
+where \(F\in\mathbb C^{m\times r}\) has full column rank and \(G\in\mathbb C^{r\times n}\) has full row rank, then
+\[
+  A^+
+  =G^*(GG^*)^{-1}(F^*F)^{-1}F^*.
+\]
+The middle two inverses are only \(r\times r\).  This expression makes the factor-through-the-image viewpoint explicit, although SVD is usually the cleaner numerical language when rank is uncertain.
+
+\section{One rank-one matrix contains the whole geometry}
+
+Let
+\[
+  u=
+  \begin{bmatrix}1\\2\\0\end{bmatrix},
+  \qquad
+  v=
+  \begin{bmatrix}1\\1\end{bmatrix},
+  \qquad
+  A=uv^T=
+  \begin{bmatrix}
+    1&1\\
+    2&2\\
+    0&0
+  \end{bmatrix}.
+\]
+For a nonzero rank-one matrix \(uv^*\),
+\[
+  (uv^*)^+=\frac{vu^*}{\|u\|_2^2\|v\|_2^2}.
+\]
+Since
+\[
+  \|u\|_2^2=5,
+  \qquad
+  \|v\|_2^2=2,
+\]
+we obtain
+\[
+  A^+=\frac1{10}
+  \begin{bmatrix}
+    1&2&0\\
+    1&2&0
+  \end{bmatrix}.
+\]
+
+The two products are
+\[
+  AA^+=\frac15
+  \begin{bmatrix}
+    1&2&0\\
+    2&4&0\\
+    0&0&0
+  \end{bmatrix}
+  =\frac{uu^T}{u^Tu},
+\]
+and
+\[
+  A^+A=\frac12
+  \begin{bmatrix}
+    1&1\\
+    1&1
+  \end{bmatrix}
+  =\frac{vv^T}{v^Tv}.
+\]
+They are the orthogonal projections onto \(\operatorname{span}(u)\) and \(\operatorname{span}(v)\), respectively.
+
+Now take
+\[
+  b=
+  \begin{bmatrix}1\\0\\1\end{bmatrix}.
+\]
+The closest reachable vector is
+\[
+  \widehat b=AA^+b
+  =\frac15
+  \begin{bmatrix}1\\2\\0\end{bmatrix}.
+\]
+The residual is
+\[
+  r=b-\widehat b
+  =
+  \begin{bmatrix}
+    \frac45\\[2pt]
+    -\frac25\\[2pt]
+    1
+  \end{bmatrix},
+\]
+and indeed
+\[
+  u^Tr=0.
+\]
+The pseudoinverse solution is
+\[
+  x^+=A^+b
+  =
+  \begin{bmatrix}
+    \frac1{10}\\[2pt]
+    \frac1{10}
+  \end{bmatrix}.
+\]
+Every vector satisfying
+\[
+  x_1+x_2=\frac15
+\]
+produces \(\widehat b\), but \(x^+\) is the one with smallest Euclidean norm.  The equality of its two coordinates is not accidental: it is the orthogonal projection of the origin onto that affine line.
+
+This single example displays all four subspaces.  The column space is \(\operatorname{span}(u)\); the left null space is its orthogonal complement.  The row space is \(\operatorname{span}(v)\); the null space consists of vectors proportional to \((1,-1)^T\).  The pseudoinverse moves only between the two one-dimensional active spaces.
+
+\section{Exact solutions, least squares, and minimum norm}
+
+For an arbitrary \(b\), the vector
+\[
+  x^+=A^+b
+\]
+minimizes
+\[
+  \|Ax-b\|_2.
+\]
+Indeed,
+\[
+  Ax^+=AA^+b=P_{R(A)}b,
+\]
+which is the closest point in the column space to \(b\).
+
+All least-squares minimizers have the form
+\[
+  x=A^+b+(I-A^+A)z,
+  \qquad z\in\mathbb C^n.
+\]
+The second term lies in \(N(A)\), so it does not change \(Ax\).  Since
+\[
+  A^+b\in R(A^*)=N(A)^\perp,
+\]
+the two terms are orthogonal.  Therefore
+\[
+  \|x\|_2^2
+  =\|A^+b\|_2^2
+   +\|(I-A^+A)z\|_2^2.
+\]
+This proves that \(A^+b\) is the unique minimum-norm least-squares solution.
+
+Exact solvability is detected by
+\[
+  AA^+b=b.
+\]
+If this holds, the same formula describes every exact solution:
+\[
+  x=A^+b+(I-A^+A)z.
+\]
+Thus one expression covers the overdetermined, underdetermined, and rank-deficient cases.  What changes is only whether the projection \(AA^+b\) equals \(b\) and whether the null-space term is present.
+
+The common identities
+\[
+  (A^+)^+=A,
+  \qquad
+  (A^*)^+=(A^+)^*,
+  \qquad
+  \operatorname{rank}A^+=\operatorname{rank}A
+\]
+are immediate from the SVD.  They are consequences of the singular-direction picture, not a separate collection of tricks.
+
+\section{Why inverse-like algebra can fail}
+
+Ordinary inverses reverse products:
+\[
+  (AB)^{-1}=B^{-1}A^{-1}.
+\]
+The corresponding pseudoinverse identity is false in general.  Let
+\[
+  A=
+  \begin{bmatrix}1&1\end{bmatrix},
+  \qquad
+  B=
+  \begin{bmatrix}
+    1&0\\
+    0&0
+  \end{bmatrix}.
+\]
+Then
+\[
+  AB=\begin{bmatrix}1&0\end{bmatrix},
+  \qquad
+  (AB)^+=
+  \begin{bmatrix}1\\0\end{bmatrix}.
+\]
+On the other hand,
+\[
+  A^+=\frac12
+  \begin{bmatrix}1\\1\end{bmatrix},
+  \qquad
+  B^+=B,
+\]
+so
+\[
+  B^+A^+=
+  \begin{bmatrix}\frac12\\0\end{bmatrix}
+  \ne
+  (AB)^+.
+\]
+
+The failure is geometric.  Each pseudoinverse inserts orthogonal projections onto row and column spaces.  In a product, the active output space of \(B\) need not align with the active input space of \(A\).  Reversing the two pseudoinverses introduces projections in the wrong places.  Reverse-order laws do hold under additional range and commutation hypotheses, but they should never be assumed from notation alone.
+
+This is a useful general warning: the pseudoinverse behaves like an inverse only on the active singular subspaces.  Algebraic identities that move through kernels or orthogonal complements require extra compatibility.
+
+\section{Updating a pseudoinverse one column at a time}
+
+Recomputing an SVD after every new data column may be wasteful.  Greville's recursion updates the pseudoinverse when
+\[
+  A_{k+1}=\begin{bmatrix}A_k&a\end{bmatrix}.
+\]
+Set
+\[
+  d=A_k^+a,
+  \qquad
+  c=a-A_kd=(I-A_kA_k^+)a.
+\]
+The vector \(c\) is the part of the new column orthogonal to the old column space.  If \(c\ne0\), define
+\[
+  b^*=\frac{c^*}{c^*c}.
+\]
+Then
+\[
+  A_{k+1}^+
+  =
+  \begin{bmatrix}
+    A_k^+-db^*\\
+    b^*
+  \end{bmatrix}.
+\]
+
+For a small example, begin with
+\[
+  A_1=
+  \begin{bmatrix}1\\0\end{bmatrix},
+  \qquad
+  A_1^+=\begin{bmatrix}1&0\end{bmatrix},
+\]
+and append
+\[
+  a=
+  \begin{bmatrix}1\\1\end{bmatrix}.
+\]
+Then
+\[
+  d=A_1^+a=1,
+  \qquad
+  c=a-A_1d=
+  \begin{bmatrix}0\\1\end{bmatrix},
+  \qquad
+  b^*=\begin{bmatrix}0&1\end{bmatrix}.
+\]
+Therefore
+\[
+  A_2^+
+  =
+  \begin{bmatrix}
+    1&-1\\
+    0&1
+  \end{bmatrix}.
+\]
+But
+\[
+  A_2=
+  \begin{bmatrix}
+    1&1\\
+    0&1
+  \end{bmatrix}
+\]
+is invertible, and the update has recovered its ordinary inverse exactly.
+
+If \(c=0\), the new column already lies in the old column space and a different scalar correction is used.  That branch is not a technical nuisance; it records whether the incoming data adds a genuinely new direction.
+
+\section{Iteration sees the pseudoinverse as a limit}
+
+The pseudoinverse need not be formed explicitly in a large problem.  Consider Landweber iteration
+\[
+  x_{k+1}
+  =x_k+\alpha A^*(b-Ax_k),
+\]
+with
+\[
+  0<\alpha<\frac{2}{\sigma_1^2}.
+\]
+This is gradient descent on
+\[
+  \frac12\|Ax-b\|_2^2.
+\]
+
+In singular-vector coordinates, each active component evolves independently.  If
+\[
+  x_k=\sum_i \xi_{i,k}v_i,
+\]
+then
+\[
+  \xi_{i,k+1}
+  =(1-\alpha\sigma_i^2)\xi_{i,k}
+   +\alpha\sigma_i u_i^*b.
+\]
+The step-size condition makes
+\[
+  |1-\alpha\sigma_i^2|<1
+\]
+for every nonzero singular value.  Hence
+\[
+  \xi_{i,k}\longrightarrow\frac{u_i^*b}{\sigma_i}.
+\]
+If the iteration starts from \(x_0=0\), the null-space components remain zero, so
+\[
+  x_k\longrightarrow A^+b.
+\]
+The minimum-norm choice is therefore encoded by the initialization: gradient descent never invents a component in a direction that the data cannot see.
+
+This observation is useful beyond numerical linear algebra.  In an underdetermined linear model, the optimization dynamics themselves can impose an implicit bias toward the minimum-norm solution.
+
+\section{Small singular values and the need for regularization}
+
+The formula
+\[
+  A^+b
+  =\sum_{i=1}^r\frac{u_i^*b}{\sigma_i}v_i
+\]
+shows a danger.  If \(\sigma_i\) is tiny, even a small component of noise along \(u_i\) is magnified by \(1/\sigma_i\).  The pseudoinverse is canonical, but canonical does not mean numerically safe.
+
+Tikhonov regularization replaces exact least squares by
+\[
+  \min_x\bigl(\|Ax-b\|_2^2+\lambda\|x\|_2^2\bigr),
+  \qquad \lambda>0.
+\]
+The solution is
+\[
+  x_\lambda=(A^*A+\lambda I)^{-1}A^*b.
+\]
+Using the SVD,
+\[
+  x_\lambda
+  =\sum_{i=1}^r
+  \frac{\sigma_i}{\sigma_i^2+\lambda}
+  (u_i^*b)v_i.
+\]
+Compare the two spectral filters:
+\[
+  \frac1{\sigma_i}
+  \qquad\text{and}\qquad
+  \frac{\sigma_i}{\sigma_i^2+\lambda}.
+\]
+For large singular values they are close.  For small singular values the regularized factor remains controlled instead of exploding.
+
+The geometric story is now complete.  The pseudoinverse inverts \(A\) exactly on the active subspaces, projects away what cannot be reached, and removes null-space ambiguity.  Iterative methods approach the same object without forming it, while regularization deliberately softens the inversion when the smallest singular directions are dominated by noise.  These are not separate techniques attached to one symbol; they are different responses to the same geometry of range, kernel, and singular scale.

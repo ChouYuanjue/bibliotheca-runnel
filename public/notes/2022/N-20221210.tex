@@ -1,14 +1,241 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221210}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221210}
-\end{document}
+\notechapter{N-20221210}{Binomial Theorem, Absolute-Value Estimates, and Set Exercises}
+
+\section{Binomial theorem}
+
+The binomial theorem states:
+\[
+  (a+b)^n=\sum_{i=0}^n \binom ni a^i b^{n-i}.
+\]
+The binomial expansion is a selection process.  When expanding
+\[
+  (a+b)(a+b)\cdots(a+b),
+\]
+one chooses either $a$ or $b$ from each factor.  A term $a^ib^{n-i}$ occurs when $a$ is chosen from exactly $i$ of the $n$ factors, and this can be done in $\binom ni$ ways.
+
+The same idea proves the recurrence
+\[
+  \binom{n+1}{i}=\binom ni+\binom n{i-1},
+\]
+because in choosing $i$ objects from $n+1$, either the new object is not chosen or it is chosen.
+
+\section{Absolute value of binomial sums}
+
+The note then estimates expressions such as
+\[
+  |a+b|^n.
+\]
+Using the triangle inequality and the binomial theorem,
+\[
+  |a+b|^n
+  \le (|a|+|b|)^n
+  =\sum_{i=0}^n \binom ni |a|^i|b|^{n-i}.
+\]
+Absolute values may be moved inside a sum only through a legitimate inequality; here the justification is the triangle inequality.
+
+\section{A summation exercise}
+
+One exercise asks for a sum of the form
+\[
+  \sum_{i=0}^n \binom ni.
+\]
+Putting $a=b=1$ in the binomial theorem gives
+\[
+  2^n=\sum_{i=0}^n \binom ni.
+\]
+Similarly, putting $a=1,b=-1$ gives
+\[
+  0=(1-1)^n=\sum_{i=0}^n (-1)^{n-i}\binom ni,
+\]
+which shows that the sum of even-indexed binomial coefficients equals the sum of odd-indexed ones when $n>0$.
+
+\section{Set exercises}
+
+The printed pages list elementary set exercises.  The notes use standard notation:
+\[
+  A\cup B,\qquad A\cap B,\qquad A\setminus B,\qquad A^c.
+\]
+One recurring task is to translate a verbal condition into set operations.  For example,
+\[
+  A\setminus(B\cup C)=(A\setminus B)\cap(A\setminus C).
+\]
+This is proved elementwise:
+\[
+  x\in A\setminus(B\cup C)
+  \Longleftrightarrow
+  x\in A,\ x\notin B,\ x\notin C.
+\]
+
+The exercises also ask for necessary and sufficient conditions for equalities such as
+\[
+  A\cup B=A,\qquad A\cap B=B.
+\]
+Both are equivalent to
+\[
+  B\subseteq A.
+\]
+
+\section{Counting subsets with properties}
+
+For a finite set $X$ with $|X|=n$, the number of subsets is
+\[
+  2^n.
+\]
+If one imposes parity conditions, the count is often half of the total.  For example, the number of subsets of an $n$-element set with even cardinality is
+\[
+  2^{n-1},
+\]
+when $n\ge1$.  This follows from
+\[
+  \sum_{k\text{ even}}\binom nk
+  =
+  \sum_{k\text{ odd}}\binom nk
+  =2^{n-1}.
+\]
+
+The printed exercises include conditions involving positive and negative numbers, odd and even elements, and sums of elements.  The general method is to split the set into independent categories and multiply the numbers of choices.
+
+\section{Set-builder notation}
+
+The note also works with sets such as
+\[
+  U=\{x:x=2n,\ n\in\mathbb Z\},\qquad
+  V=\{x:x=3n,\ n\in\mathbb Z\}.
+\]
+Here $U$ is the set of even integers and $V$ is the set of multiples of $3$.  Then
+\[
+  U\cap V=\{x:x=6n,\ n\in\mathbb Z\}
+\]
+and
+\[
+  U\cup V
+\]
+is the set of integers divisible by $2$ or by $3$.
+
+The point is to read set-builder notation as a logical predicate.
+
+\section{Binomial coefficients count the same choices in two languages}
+
+The note links binomial coefficients with set counting.  The binomial theorem counts choices from factors; subset counting counts choices from elements.  The same coefficients $\binom nk$ appear in both languages.  Set identities should be proved elementwise, while counting identities should be proved by telling a story about what is being chosen.
+
+\section{Binomial identities as counting in two languages}
+
+The binomial theorem has two simultaneous meanings.  Algebraically, it is coefficient extraction:
+\[
+  (1+x)^n=\sum_{k=0}^{n}\binom nk x^k.
+\]
+Combinatorially, it counts subsets by size.  The coefficient of \(x^k\) is the number of ways to choose \(k\) marked factors, equivalently a \(k\)-element subset of an \(n\)-element set.
+
+This double meaning is why identities should be checked in two ways whenever possible.  For example, Vandermonde's identity
+\[
+  \sum_k \binom rk\binom s{n-k}=\binom{r+s}{n}
+\]
+is coefficient extraction from
+\[
+  (1+x)^r(1+x)^s=(1+x)^{r+s},
+\]
+but it also counts choosing \(n\) elements from a disjoint union of an \(r\)-set and an \(s\)-set: choose \(k\) from the first part and \(n-k\) from the second.
+
+\section{Binomial transform and Möbius inversion}
+
+The binomial transform of a sequence \((a_k)\) is
+\[
+  b_n=\sum_{k=0}^n \binom nk a_k.
+\]
+The inverse is
+\[
+  a_n=\sum_{k=0}^n(-1)^{n-k}\binom nk b_k.
+\]
+This is not a coincidence; it is Möbius inversion on the Boolean lattice of subsets.
+
+Indeed, if \(B(S)=\sum_{T\subseteq S}A(T)\), then
+\[
+  A(S)=\sum_{T\subseteq S}(-1)^{|S|-|T|}B(T).
+\]
+When \(A(T)\) only depends on \(|T|\), this collapses exactly to the binomial inversion formula above.  Thus inclusion--exclusion, binomial inversion, and subset counting are the same mechanism at different resolutions.
+
+\section{Finite differences and the binomial basis}
+
+The polynomials
+\[
+  \binom x0,\quad \binom x1,\quad \binom x2,\quad\ldots
+\]
+form a natural basis for polynomial functions on integers.  The finite-difference operator
+\[
+  \Delta f(x)=f(x+1)-f(x)
+\]
+acts especially simply:
+\[
+  \Delta \binom xk=\binom x{k-1}.
+\]
+This mirrors ordinary calculus, where differentiation lowers powers:
+\[
+  \frac{d}{dx}x^k=kx^{k-1}.
+\]
+The binomial basis is therefore the right coordinate system for discrete calculus.  Identities involving \(\binom nk\) often become transparent after applying \(\Delta\) or summing finite differences.
+
+\section{Probability distribution behind binomial coefficients}
+
+If \(X\sim\operatorname{Bin}(n,p)\), then
+\[
+  \mathbb P(X=k)=\binom nkp^k(1-p)^{n-k}.
+\]
+The binomial theorem says the probabilities sum to one:
+\[
+  \sum_{k=0}^n\binom nkp^k(1-p)^{n-k}=(p+1-p)^n=1.
+\]
+The probability generating function is
+\[
+  G_X(t)=\mathbb E[t^X]=(1-p+pt)^n.
+\]
+Differentiating gives
+\[
+  \mathbb E[X]=G_X'(1)=np,
+\]
+and a second derivative computation gives
+\[
+  \operatorname{Var}(X)=np(1-p).
+\]
+So the same binomial expansion that counts subsets also describes the sum of \(n\) independent Bernoulli trials.
+
+\section{Asymptotic shape: from binomial coefficients to Gaussians}
+
+For large \(n\), the row \(\binom n0,\binom n1,\ldots,\binom nn\) has a bell shape.  Probabilistically, this is the central limit theorem applied to
+\[
+  X=X_1+\cdots+X_n,\qquad X_i\sim\operatorname{Bernoulli}(p).
+\]
+After centering and scaling,
+\[
+  \frac{X-np}{\sqrt{np(1-p)}}
+\]
+approaches the standard normal distribution.
+
+For \(p=1/2\), the largest coefficient is near \(k=n/2\).  Stirling's formula gives the classical estimate
+\[
+  \binom n{\lfloor n/2\rfloor}
+  \sim \frac{2^n}{\sqrt{\pi n/2}}.
+\]
+Thus a finite algebraic row of Pascal's triangle already contains the first shadow of probability limit theory.
+
+\section{Generating functions and labelled structures}
+
+For labelled combinatorial structures, the exponential generating function is
+\[
+  A(x)=\sum_{n\ge0}a_n\frac{x^n}{n!}.
+\]
+The factor \(n!\) compensates for labels.  Products of exponential generating functions correspond to splitting a labelled set into parts.  The exponential formula says that if a structure is a set of connected components, then
+\[
+  A(x)=\exp(C(x)),
+\]
+where \(C(x)\) counts connected components.
+
+This is the advanced version of the elementary rule "split the set into independent choices and multiply."  The multiplication principle becomes a structural statement about labelled decomposition.
+
+\section{Combinatorial species and relabelling}
+
+A combinatorial species is a functor from finite sets and bijections to sets.  For each finite label set \(U\), a species \(F\) assigns a set \(F[U]\) of structures on \(U\).  A bijection \(U\to V\) transports structures from \(F[U]\) to \(F[V]\).
+
+The species of subsets sends \(U\) to \(\mathcal P(U)\).  Choosing a subset is functorial under relabelling: if labels are renamed, chosen elements are renamed with them.  The binomial theorem is the decategorified counting shadow of this functorial behavior.
+
+\section{Binomial algebra from sets to species}
+
+The binomial theorem is not merely an expansion formula.  It is a meeting point of algebra, subset counting, probability, finite differences, generating functions, and functorial relabelling.  The elementary exercises train the same habit in many forms: translate a formula into choices, translate a set identity into element logic, and translate a sum into a structural decomposition.

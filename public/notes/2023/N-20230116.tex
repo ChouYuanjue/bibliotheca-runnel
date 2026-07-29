@@ -1,14 +1,466 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20230116}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20230116}
-\end{document}
+\notechapter{N-20230116}{Functions through Fibers, Iteration, and Functional Equations}
+
+\section{A function includes its source and target}
+
+A function is data
+\[
+  f:X\to Y
+\]
+consisting of a domain \(X\), a codomain \(Y\), and a rule assigning to every \(x\in X\) exactly one value \(f(x)\in Y\).  A formula by itself is not enough.  The same expression
+\[
+  x\longmapsto x^2
+\]
+defines different functions when its domain or codomain changes.  For example,
+\[
+  \mathbb R\to\mathbb R,
+  \qquad
+  \mathbb R\to[0,\infty),
+  \qquad
+  \mathbb C\to\mathbb C
+\]
+have different surjectivity and inverse-image behavior even though the displayed formula is identical.
+
+Two functions are equal when they have the same domain, the same codomain, and the same value at every input.  This convention prevents hidden changes of target from being treated as harmless notation.
+
+If \(X=\{1,\ldots,n\}\) and \(Y=\{1,\ldots,m\}\), then a function \(f:X\to Y\) is completely recorded by the list
+\[
+  (f(1),\ldots,f(n)).
+\]
+Each of the \(n\) entries has \(m\) choices, so the number of such functions is
+\[
+  m^n.
+\]
+This simple count is the starting point for more refined counts of injections, surjections, and functions satisfying iteration equations.
+
+\section{Images and preimages obey different algebraic laws}
+
+For \(A\subseteq X\), the direct image is
+\[
+  f(A)=\{f(a):a\in A\}.
+\]
+For \(B\subseteq Y\), the inverse image is
+\[
+  f^{-1}(B)=\{x\in X:f(x)\in B\}.
+\]
+The notation \(f^{-1}(B)\) does not require \(f\) to be invertible; it denotes a subset of the domain.
+
+Inverse image preserves all ordinary set operations.  For any family \((B_i)_{i\in I}\) of subsets of \(Y\),
+\[
+  f^{-1}\left(\bigcup_{i\in I}B_i\right)
+  =\bigcup_{i\in I}f^{-1}(B_i),
+\]
+\[
+  f^{-1}\left(\bigcap_{i\in I}B_i\right)
+  =\bigcap_{i\in I}f^{-1}(B_i),
+\]
+and
+\[
+  f^{-1}(Y\setminus B)=X\setminus f^{-1}(B).
+\]
+Each identity follows by checking membership.  For example,
+\[
+\begin{aligned}
+x\in f^{-1}(Y\setminus B)
+&\Longleftrightarrow f(x)\notin B\\
+&\Longleftrightarrow x\notin f^{-1}(B).
+\end{aligned}
+\]
+Thus inverse image is a Boolean-algebra homomorphism between power sets.
+
+Direct image preserves arbitrary unions,
+\[
+  f\left(\bigcup_i A_i\right)=\bigcup_i f(A_i),
+\]
+but for intersections one only has
+\[
+  f(A\cap C)\subseteq f(A)\cap f(C).
+\]
+The inclusion can be strict.  Let \(f(x)=x^2\), \(A=\{-1\}\), and \(C=\{1\}\).  Then
+\[
+  A\cap C=\varnothing,
+\]
+while
+\[
+  f(A)\cap f(C)=\{1\}.
+\]
+Equality for all subsets \(A,C\subseteq X\) holds precisely when \(f\) is injective.
+
+\section{Direct and inverse image form a Galois connection}
+
+Order the power sets \(\mathcal P(X)\) and \(\mathcal P(Y)\) by inclusion.  Both direct image and inverse image are monotone:
+\[
+  A_1\subseteq A_2
+  \Longrightarrow
+  f(A_1)\subseteq f(A_2),
+\]
+\[
+  B_1\subseteq B_2
+  \Longrightarrow
+  f^{-1}(B_1)\subseteq f^{-1}(B_2).
+\]
+Their deeper relation is
+\[
+  \boxed{
+  f(A)\subseteq B
+  \quad\Longleftrightarrow\quad
+  A\subseteq f^{-1}(B).}
+\]
+The two statements say the same thing element by element: every point of \(A\) is sent into \(B\).  In the language of ordered sets, this equivalence is a Galois connection, or adjunction,
+\[
+  f(-)\dashv f^{-1}(-).
+\]
+
+The formula has a useful extremal interpretation.  Among all subsets \(B\subseteq Y\) whose inverse image contains \(A\), the direct image \(f(A)\) is the smallest.  Dually, among all subsets \(A\subseteq X\) whose direct image lies in \(B\), the inverse image \(f^{-1}(B)\) is the largest.  Thus the two operations are not merely convenient notation: each solves an optimization problem in the inclusion order.
+
+Taking \(B=f(A)\) gives
+\[
+  A\subseteq f^{-1}(f(A)).
+\]
+The right-hand side adds every point lying in the same fiber as some point of \(A\).  Define
+\[
+  c(A)=f^{-1}(f(A)).
+\]
+Then \(c\) is a closure operator on \(\mathcal P(X)\): it is extensive,
+\[
+  A\subseteq c(A),
+\]
+monotone, and idempotent,
+\[
+  c(c(A))=c(A).
+\]
+Its fixed points are exactly the subsets that are unions of whole fibers of \(f\).  Such sets are often called \emph{saturated}.
+
+In the other direction,
+\[
+  f(f^{-1}(B))=B\cap f(X)\subseteq B.
+\]
+Define
+\[
+  i(B)=f(f^{-1}(B)).
+\]
+Then \(i\) is contractive, monotone, and idempotent.  Its fixed points are precisely the subsets of the actual image \(f(X)\).  The two composites therefore remove different kinds of irrelevant information: \(c\) forgets distinctions inside fibers, while \(i\) discards target points that the function never reaches.
+
+For a concrete example, take
+\[
+  f:\mathbb R\to\mathbb R,
+  \qquad
+  f(x)=x^2.
+\]
+For every \(A\subseteq\mathbb R\),
+\[
+  f^{-1}(f(A))=A\cup(-A).
+\]
+A set becomes saturated by adding the reflected point \(-a\) whenever it contains \(a\).  For every \(B\subseteq\mathbb R\),
+\[
+  f(f^{-1}(B))=B\cap[0,\infty).
+\]
+Negative target values disappear because no real number squares to them.  This example makes the two failures visible: noninjectivity enlarges \(A\) along fibers, while nonsurjectivity shrinks \(B\) to the image.
+
+The inclusion
+\[
+  A\subseteq f^{-1}(f(A))
+\]
+is an equality for every \(A\) exactly when \(f\) is injective.  The equality
+\[
+  f(f^{-1}(B))=B
+\]
+holds for every \(B\) exactly when \(f\) is surjective.  The same adjunction also explains why continuity and measurability are defined using inverse images: inverse images preserve all unions, intersections, and complements without requiring either injectivity or surjectivity.  The closure operator \(c\) now leads naturally to the next question: what are the fibers whose unions it is forcing us to take?
+
+\section{Fibers measure information loss}
+
+For \(y\in Y\), the fiber over \(y\) is
+\[
+  f^{-1}(y)=\{x\in X:f(x)=y\}.
+\]
+A function is injective exactly when every fiber has at most one element, and surjective exactly when every fiber is nonempty.
+
+The fibers partition the domain after empty fibers are discarded.  Define
+\[
+  x\sim_f x'
+  \quad\Longleftrightarrow\quad
+  f(x)=f(x').
+\]
+Then \(\sim_f\) is an equivalence relation, and \(f\) factors canonically as
+\[
+  X
+  \twoheadrightarrow
+  X/{\sim_f}
+  \xrightarrow{\cong}
+  f(X)
+  \hookrightarrow
+  Y.
+\]
+The first map collapses each fiber to one point.  The middle map sends a fiber class to its common value.  The last map includes the image into the declared codomain.
+
+This factorization separates two kinds of failure to be bijective.  Noninjectivity occurs in the quotient step, where distinct inputs are identified.  Nonsurjectivity occurs in the final inclusion, where some target points are missed.
+
+For finite \(X\), counting by fibers gives
+\[
+  |X|=\sum_{y\in f(X)}|f^{-1}(y)|.
+\]
+This elementary identity is the discrete prototype of decomposing a space or measure along fibers.
+
+\section{Counting injections, surjections, and bijections}
+
+Let \(|X|=n\) and \(|Y|=m\).  An injection \(X\to Y\) exists only when \(n\leq m\).  Its values can be chosen successively without repetition, so the number of injections is
+\[
+  m(m-1)\cdots(m-n+1)
+  =\frac{m!}{(m-n)!}.
+\]
+When \(n=m\), every injection is automatically surjective, and the number of bijections is
+\[
+  n!.
+\]
+
+Surjections can be counted by inclusion--exclusion.  There are \(m^n\) total functions.  For each target point \(y\), let \(E_y\) be the set of functions that miss \(y\).  If a specified set of \(j\) target points is missed, the function has only \(m-j\) possible values at each input.  Therefore the number of surjections is
+\[
+  \boxed{
+  \sum_{j=0}^{m}(-1)^j\binom{m}{j}(m-j)^n.}
+\]
+For example, the number of surjections from a four-element set onto a three-element set is
+\[
+  3^4-\binom31 2^4+\binom32 1^4
+  =81-48+3=36.
+\]
+The same number is \(3!S(4,3)\), where \(S(n,m)\) is a Stirling number of the second kind: first partition the domain into \(m\) nonempty fibers, then label those fibers by the target elements.
+
+\section{A finite function is a directed dynamical system}
+
+Let \(f:X\to X\) with \(X\) finite.  Draw one directed edge
+\[
+  x\longrightarrow f(x)
+\]
+from every vertex.  Each vertex has out-degree one, though its in-degree may be arbitrary.
+
+\begin{theorem}[Structure of a finite functional graph]
+Every connected component contains exactly one directed cycle, with directed rooted trees feeding into the vertices of that cycle.
+\end{theorem}
+
+\begin{proof}
+Starting at any \(x\in X\), the sequence
+\[
+  x,f(x),f^2(x),\ldots
+\]
+must repeat because \(X\) is finite.  Once a value repeats, the subsequent orbit is periodic and therefore enters a directed cycle.
+
+A connected component cannot contain two disjoint directed cycles.  Since every vertex has exactly one outgoing edge, a forward orbit can enter only one cycle.  If two cycles lay in one weakly connected component, any undirected path between them would force some vertex to have two different forward destinations, contradicting the uniqueness of its outgoing edge.
+\end{proof}
+
+The nonperiodic vertices form trees oriented toward the cycle.  Thus every finite orbit has a transient part followed by a periodic part.
+
+A finite self-map is injective exactly when every vertex has in-degree one.  In that case there are no attached trees, and every component is a pure cycle.  This proves again that, for finite sets of equal size,
+\[
+  \text{injective}
+  \Longleftrightarrow
+  \text{surjective}
+  \Longleftrightarrow
+  \text{permutation}.
+\]
+
+\section{Iteration equations become restrictions on cycle lengths}
+
+Suppose
+\[
+  f^r=\operatorname{id}_X.
+\]
+Then \(f\) has the inverse \(f^{r-1}\), so it is a permutation.  On a cycle of length \(d\), the map \(f^r\) is the identity exactly when
+\[
+  d\mid r.
+\]
+Hence the equation \(f^r=\operatorname{id}\) means that every cycle length divides \(r\).
+
+For an involution,
+\[
+  f^2=\operatorname{id},
+\]
+all cycles have length one or two.  To count involutions on an \(n\)-element set, choose \(2k\) elements to belong to transpositions and pair them.  This gives
+\[
+  \boxed{
+  \sum_{k=0}^{\lfloor n/2\rfloor}
+  \frac{n!}{2^k k!(n-2k)!}.}
+\]
+For \(n=4\), the count is
+\[
+  1+6+3=10:
+\]
+one identity, six permutations with one transposition, and three products of two disjoint transpositions.
+
+Now consider the idempotent equation
+\[
+  f^2=f.
+\]
+Every point in the image is fixed, because if \(y=f(x)\), then
+\[
+  f(y)=f(f(x))=f(x)=y.
+\]
+Conversely, any function that fixes every point of its image is idempotent.  Its functional graph consists of fixed points with depth-one trees feeding into them.
+
+If the image has size \(r\), first choose its \(r\) fixed points and then send each of the remaining \(n-r\) elements to any image point.  Therefore the number of idempotent self-maps on a nonempty \(n\)-element set is
+\[
+  \boxed{
+  \sum_{r=1}^{n}\binom{n}{r}r^{n-r}.}
+\]
+For \(n=3\), this gives
+\[
+  \binom31 1^2+\binom32 2^1+\binom33 3^0
+  =3+6+1=10.
+\]
+The equation is thus not merely an algebraic string; it specifies an exact graph shape and leads to an exact enumeration.
+
+\section{Left inverses, right inverses, and what they prove}
+
+Let \(f:X\to Y\).  If there is a map \(g:Y\to X\) with
+\[
+  g\circ f=\operatorname{id}_X,
+\]
+then \(f\) is injective.  Indeed,
+\[
+  f(x)=f(x')
+  \Longrightarrow
+  g(f(x))=g(f(x'))
+  \Longrightarrow
+  x=x'.
+\]
+Such a \(g\) is a left inverse of \(f\).
+
+If there is a map \(h:Y\to X\) with
+\[
+  f\circ h=\operatorname{id}_Y,
+\]
+then \(f\) is surjective, because every \(y\in Y\) equals \(f(h(y))\).  Such an \(h\) is a right inverse.
+
+Conversely, an injective function with nonempty domain admits a left inverse after assigning arbitrary values away from its image.  A surjective function admits a right inverse only after choosing one element from every fiber; for arbitrary families this assertion is equivalent to a form of the axiom of choice.  In finite sets the choices can always be made directly.
+
+A map with both a left and a right inverse is bijective, and the two inverses coincide.  If
+\[
+  g\circ f=\operatorname{id}_X,
+  \qquad
+  f\circ h=\operatorname{id}_Y,
+\]
+then
+\[
+  g=g\circ(f\circ h)=(g\circ f)\circ h=h.
+\]
+
+\section{Functional equations transport values along orbits}
+
+Many functional equations involve a transformation \(T:X\to X\) of the input.  An equation such as
+\[
+  F(Tx)=\Phi(F(x))
+\]
+propagates values along the orbit
+\[
+  x,Tx,T^2x,\ldots.
+\]
+If the orbit closes after \(r\) steps, consistency requires
+\[
+  F(x)=F(T^r x)=\Phi^r(F(x)).
+\]
+Thus cycles in the input action impose algebraic constraints on possible values.
+
+For example, solve
+\[
+  f(x+1)=f(x)+2
+\]
+on \(\mathbb R\).  Subtract the particular solution \(2x\) and define
+\[
+  p(x)=f(x)-2x.
+\]
+Then
+\[
+  p(x+1)=f(x+1)-2x-2=f(x)-2x=p(x).
+\]
+Hence every solution has the form
+\[
+  \boxed{f(x)=2x+p(x),}
+\]
+where \(p\) is an arbitrary one-periodic function.  The equation determines the change along each translation orbit but leaves one period of initial data free.
+
+By contrast, suppose a transformation satisfies \(T^r=\operatorname{id}\) and one asks for
+\[
+  f(Tx)=f(x)+c
+\]
+with real-valued \(f\).  Iterating around the cycle gives
+\[
+  f(x)=f(T^r x)=f(x)+rc,
+\]
+so necessarily \(c=0\).  The obstruction comes from consistency around a closed orbit.
+
+\section{The additive Cauchy equation is rigid only with regularity}
+
+Consider
+\[
+  f(x+y)=f(x)+f(y)
+  \qquad(x,y\in\mathbb R).
+\]
+Without any regularity assumption, this equation does not force the familiar form \(f(x)=cx\).  It first forces only \(\mathbb Q\)-linearity.
+
+Set \(y=0\) to get \(f(0)=0\).  Then
+\[
+  0=f(x+(-x))=f(x)+f(-x),
+\]
+so \(f(-x)=-f(x)\).  Repeated addition gives
+\[
+  f(nx)=nf(x)
+  \qquad(n\in\mathbb Z).
+\]
+For a positive integer \(q\),
+\[
+  q f(x/q)=f(x),
+\]
+so
+\[
+  f(rx)=rf(x)
+  \qquad(r\in\mathbb Q).
+\]
+In particular,
+\[
+  f(q)=qf(1)
+  \qquad(q\in\mathbb Q).
+\]
+
+Now assume \(f\) is continuous at one point \(a\).  Since
+\[
+  f(h)=f(a+h)-f(a),
+\]
+continuity at \(a\) implies continuity at \(0\), and additivity then implies continuity everywhere.  Choose rationals \(q_n\to x\).  We obtain
+\[
+  f(x)=\lim_{n\to\infty}f(q_n)
+      =\lim_{n\to\infty}q_n f(1)
+      =xf(1).
+\]
+Thus
+\[
+  \boxed{f(x)=cx}
+\]
+with \(c=f(1)\).
+
+The same conclusion follows from several weaker regularity hypotheses, including measurability or boundedness on a sufficiently large set.  Without regularity, choose a Hamel basis of \(\mathbb R\) over \(\mathbb Q\), prescribe values arbitrarily on the basis, and extend \(\mathbb Q\)-linearly.  The resulting additive functions are generally discontinuous everywhere.  The lesson is that an algebraic functional equation and an analytic regularity condition play distinct roles.
+
+\section{Cancellation gives the categorical meaning of injection and surjection}
+
+In the category \(\mathbf{Set}\), a function \(f:X\to Y\) is injective exactly when it is left-cancellable:
+\[
+  f\circ g_1=f\circ g_2
+  \quad\Longrightarrow\quad
+  g_1=g_2
+\]
+for all maps \(g_1,g_2:Z\to X\).  This is the definition of a monomorphism.
+
+To see the converse, suppose \(f\) is not injective and choose distinct \(x,x'\in X\) with \(f(x)=f(x')\).  Taking \(Z\) to be a one-point set and sending its point to \(x\) or \(x'\) gives two different maps whose composites with \(f\) agree.  Hence \(f\) is not monic.
+
+Similarly, a function in \(\mathbf{Set}\) is surjective exactly when it is right-cancellable:
+\[
+  h_1\circ f=h_2\circ f
+  \quad\Longrightarrow\quad
+  h_1=h_2.
+\]
+This is the definition of an epimorphism.  If \(f\) misses a point \(y\in Y\), two maps out of \(Y\) can agree on \(f(X)\) but differ at \(y\), so \(f\) is not epic.
+
+These identifications depend on the category.  In the category of commutative rings with identity, the inclusion
+\[
+  \mathbb Z\hookrightarrow\mathbb Q
+\]
+is an epimorphism although it is not surjective.  Any two ring homomorphisms out of \(\mathbb Q\) that agree on \(\mathbb Z\) must agree on every fraction.  The set-theoretic notions are therefore prototypes of categorical cancellation, not universal descriptions of it.
+
+In \(\mathbf{Set}\), however, the preceding viewpoints now fit together exactly.  The fiber relation records which inputs a map identifies; the quotient--image factorization separates that information loss from the target points that are missed; monomorphism and epimorphism express the same two phenomena through cancellation.  Finite iteration and real functional equations then study what happens when such maps are composed repeatedly, but the basic structural data remain the fibers, the image, and the way composition preserves or destroys distinguishability.

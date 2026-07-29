@@ -1,14 +1,277 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220806}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220806}
-\end{document}
+\notechapter{N-20220806}{Set Theory Exercises, Closures, Functions, and Algebraic Side Notes}
+
+\section{Images, preimages, and finite set examples}
+
+Consider the following set-theoretic exercise.  Let
+\[
+  A=\{2,0,1,3\}
+\]
+and define
+\[
+  B=\{x:x\in A,\ 2-x^2\notin A\}.
+\]
+Checking each element:
+\[
+  x=-2\Rightarrow 2-x^2=-2\notin A,
+\]
+\[
+  x=0\Rightarrow 2-x^2=2\in A,
+\]
+\[
+  x=-1\Rightarrow 2-x^2=1\in A,
+\]
+\[
+  x=-3\Rightarrow 2-x^2=-7\notin A.
+\]
+Direct inspection yields a finite set \(B\).  A condition-defined set is not mysterious when the universe is small: test the condition element by element.
+
+\section{Closure under addition}
+
+The next exercise asks for a subset \(S\subseteq\mathbb R\) closed under addition:
+\[
+  x,y\in S\quad\Rightarrow\quad x+y\in S.
+\]
+Examples include:
+\[
+  \mathbb Z,\qquad \mathbb Q,\qquad \mathbb R,\qquad [0,\infty).
+\]
+A finite example such as \(\mathbb Z/6\mathbb Z\) also works if addition is understood modulo \(6\).  The note correctly distinguishes ordinary addition from addition modulo an equivalence relation.
+
+A related problem says: if \(S_1,S_2\subseteq\mathbb R\) are closed under addition and are proper in a suitable sense, prove there is an element \(c\) outside their union.  This resembles the Dedekind-cut intuition: two proper additive-closed pieces cannot cover the entire real line unless one of them already absorbs too much structure.
+
+\section{A combinatorial maximal-set problem}
+
+Another problem considers
+\[
+  M\subseteq\{1,2,\ldots,2011\}
+\]
+with the property that for any two elements \(a,b\in M\), at least one of
+\[
+  a\mid b,\qquad b\mid a,\qquad |a-b|=\max M
+\]
+holds.  The note first explores powers of \(2\):
+\[
+  1,2,2^2,\ldots,2^{10},
+\]
+since divisibility is automatic along a chain.  It then observes that if one tries to add a number not on the same divisibility chain, the condition quickly fails.
+
+The key structural idea is that divisibility partially orders the integers.  A set in which every pair is comparable under divisibility is a chain.  Powers of a fixed prime give the cleanest example of a long chain.  This is an early encounter with posets and extremal combinatorics.
+
+\section{Functional and algebraic exercises}
+
+Several algebraic problems share the method of rewriting equations into factored or symmetric forms.  For instance, equations involving
+\[
+  x^2+y^2,\qquad xy,\qquad x+y
+\]
+are usually better handled through substitutions like
+\[
+  u=x+y,\qquad v=xy.
+\]
+This is the elementary symmetric-polynomial viewpoint.
+
+Another page discusses functions and constraints of the form
+\[
+  f(A\cap B),\quad f(A\cup B),\quad f^{-1}(C).
+\]
+The essential warning is that images and preimages behave differently:
+\[
+  f^{-1}(C\cap D)=f^{-1}(C)\cap f^{-1}(D)
+\]
+always, while
+\[
+  f(A\cap B)=f(A)\cap f(B)
+\]
+need not hold unless \(f\) is injective on the relevant sets.
+
+\section{Matrix and coordinate side computations}
+
+Several pages contain coordinate computations and small matrix reductions.  These are not central enough to deserve separate chapters, but they reinforce a common habit: reduce a system to normal form.  Whether one is checking membership in a set, solving a function equation, or reducing a matrix, the practical goal is to isolate independent parameters.
+
+
+\section{Images and preimages behave differently}
+
+For a function \(f:X\to Y\), the image of a set \(A\subseteq X\) is
+\[
+  f(A)=\{f(a):a\in A\},
+\]
+while the preimage of \(B\subseteq Y\) is
+\[
+  f^{-1}(B)=\{x\in X:f(x)\in B\}.
+\]
+Preimages preserve unions, intersections, and complements exactly.  Images preserve unions but not intersections in general.  This asymmetry is why topology defines continuity using preimages of open sets.
+
+\section{Closure operations}
+
+Many set exercises secretly ask whether an operation is a closure operator.  A closure operator should be extensive, monotone, and idempotent:
+\[
+  A\subseteq \overline A,\qquad
+  A\subseteq B\Rightarrow \overline A\subseteq \overline B,\qquad
+  \overline{\overline A}=\overline A.
+\]
+Recognizing these three properties helps organize otherwise scattered set-manipulation problems.
+
+\section{The reusable pattern}
+
+The central idea is closure.  A set may be closed under addition, a family under a divisibility relation, a function preimage under Boolean operations, and a solution set under linear combinations.  Recognizing closure is one of the first steps toward algebraic structure.
+
+\section{Closure operators}
+
+Many exercises in this note ask whether a set is stable under an operation.  The abstract pattern is a closure operator.  On a partially ordered set \(P\), a closure operator is a map
+\[
+  c:P\to P
+\]
+satisfying
+\[
+  x\le c(x),\qquad
+  x\le y\Rightarrow c(x)\le c(y),\qquad
+  c(c(x))=c(x).
+\]
+These are extensivity, monotonicity, and idempotence.
+
+Examples include topological closure \(A\mapsto\overline A\), linear span \(S\mapsto\operatorname{span}(S)\), subgroup generation \(S\mapsto\langle S\rangle\), and logical consequence from assumptions.
+
+\section{Generated objects as intersections}
+
+When a problem asks for the smallest object containing \(S\) and closed under some rule, the general construction is
+\[
+  \langle S\rangle=\bigcap\{C:S\subseteq C,\ C\text{ is closed under the rule}\}.
+\]
+This works because intersections of closed objects are closed in many common settings: intersections of subgroups are subgroups, intersections of subspaces are subspaces, and arbitrary intersections of closed sets are closed.
+
+Thus "generated by" is not a vague phrase.  It means minimality under inclusion plus closure under specified operations.
+
+\section{Fixed points of closure}
+
+An object is closed when it is a fixed point of the closure operator:
+\[
+  c(x)=x.
+\]
+The closed objects form a structured family.  For example, topologically closed subsets are exactly fixed points of the topological closure operator; subspaces are fixed points of span; subgroups are fixed points of subgroup generation.
+
+This viewpoint also explains iterative procedures.  Start with a set, repeatedly add everything forced by the rule, and stop when no new elements appear.  In finite settings this must stabilize; in infinite settings one may need transfinite or lattice-theoretic methods.
+
+\section{Images, preimages, and logic}
+
+For \(f:X\to Y\), preimage preserves all Boolean operations, while image only preserves unions in general.  The failure
+\[
+  f(A\cap B)\subseteq f(A)\cap f(B)
+\]
+can be strict: two different points may have the same image.  Equality for all subsets is closely related to injectivity.
+
+This is the set-theoretic reason that preimages are central in topology, measure theory, and logic.  A predicate on \(Y\) pulls back to a predicate on \(X\), and logical connectives are preserved exactly.
+
+\section{Posets and extremal chains}
+
+The maximal-set problem based on divisibility is naturally a problem in a partially ordered set.  Write
+\[
+  a\preceq b\quad\Longleftrightarrow\quad a\mid b.
+\]
+A family in which every pair is comparable is a chain.  Powers of a fixed prime form a chain:
+\[
+  1,p,p^2,p^3,\ldots.
+\]
+Extremal questions about such families lead toward Dilworth-type and Sperner-type theorems, where one bounds the size of chains or antichains in a poset.
+
+\section{Galois connections}
+
+A Galois connection translates order conditions between two posets.  One common form is
+\[
+  f(p)\le q\quad\Longleftrightarrow\quad p\le g(q).
+\]
+Composites of adjoint maps often produce closure operators.  In linear algebra, taking annihilators reverses inclusion and double annihilators produce closure-like operations.
+
+This explains why constraints and solution sets are dual.  A set of equations determines a solution set; a solution set determines equations vanishing on it.  Applying both directions gives a closure operation.
+
+\section{Tarski fixed-point theorem}
+
+On a complete lattice, every monotone map has fixed points.  Tarski's theorem says the set of fixed points is itself a complete lattice.  This is the abstract version of repeatedly applying a monotone rule until it stabilizes.
+
+The elementary finite-set exercises show the finite shadow of this theorem: if a process only adds elements inside a finite universe, it eventually reaches a fixed point.
+
+\section{Closure, order, and fixed-point thinking}
+
+The scattered exercises are unified by closure and order.  Sets closed under addition, divisibility chains, preimage stability, generated substructures, and repeated operations that stabilize are all examples of order-theoretic thinking.  The advanced structure is not decoration; it explains why the same proof patterns appear across algebra, topology, logic, and combinatorics.
+
+\section{Closure operators across mathematics}
+
+Closure-style exercises are organized by the notion of a closure operator.  On a partially ordered set $P$, a closure operator is a map
+\[
+  c:P\to P
+\]
+satisfying
+\[
+  x\le c(x),\qquad x\le y\Rightarrow c(x)\le c(y),\qquad c(c(x))=c(x).
+\]
+These are called extensivity, monotonicity, and idempotence.
+
+Many familiar constructions have this form:
+\[
+\begin{aligned}
+  A&\mapsto \overline A &&\text{in topology},\\
+  S&\mapsto \operatorname{span}(S) &&\text{in linear algebra},\\
+  S&\mapsto \langle S\rangle &&\text{in group theory}.
+\end{aligned}
+\]
+The elementary operation ``generate the smallest object containing a given set'' is exactly closure.
+
+\section{Closed sets as fixed points}
+
+An element $x$ is closed if
+\[
+  c(x)=x.
+\]
+Thus closed sets are fixed points of the closure operator.  The family of closed elements is closed under arbitrary meets.  In set language, topologically closed sets are stable under arbitrary intersections; subspaces generated by vector sets are stable under intersections; subgroups generated by sets are stable under intersections.
+
+This explains a standard construction:
+\[
+  c(S)=\bigcap\{C:\ S\subseteq C,\ C\text{ closed}\}.
+\]
+The closure of $S$ is the intersection of all closed objects containing it.
+
+\section{Galois connections and closure}
+
+A Galois connection between posets $P$ and $Q$ is a pair of order-reversing or order-preserving maps that translate inequalities in one side into inequalities on the other.  A common form is
+\[
+  f(p)\le q\quad\Longleftrightarrow\quad p\le g(q).
+\]
+The composite $g\circ f$ is then a closure operator.
+
+In linear algebra, for a subset $S$ of vectors, one can define the annihilator
+\[
+  S^\perp=\{\varphi\in V^*:\ \varphi(s)=0\text{ for all }s\in S\}.
+\]
+Taking annihilators reverses inclusion and creates closure-like double-perp operations.
+
+Thus the elementary habit of taking complements, generated sets, or common solution sets points toward a deep pattern: objects can be studied through the constraints they impose, and closure is often a double-constraint operation.
+
+\section{Tarski fixed points and monotone iteration}
+
+On a complete lattice, every monotone map has a fixed point.  This is Tarski's fixed-point theorem.  A complete lattice is a partially ordered set in which every subset has a supremum and an infimum.
+
+For a monotone map $F:L\to L$, the set of fixed points
+\[
+  \{x\in L:\ F(x)=x\}
+\]
+is itself a complete lattice.  This theorem appears in logic, semantics of programming languages, and inductive definitions.
+
+The elementary idea of repeatedly applying a closure process until nothing changes is therefore a finite visible version of a fixed-point theorem for ordered structures.
+
+\section{Closure operators organize repeated stabilization}
+
+Whenever a problem asks for a smallest set satisfying a property, an invariant collection, or a repeated operation that stabilizes, the governing structure is closure.  The same pattern appears in topology, algebra, logic, and theoretical computer science.  The elementary set manipulations are the computational entrance to closure operators and fixed-point mathematics.
+
+\section{Generation as an intersection construction}
+
+Many elementary problems ask for the smallest set satisfying a property.  The general construction is:
+\[
+  \langle S\rangle=\bigcap\{C:S\subseteq C,\ C\text{ has the desired closure property}\}.
+\]
+This works because the intersection of closed objects is closed.  For subspaces, intersections of subspaces are subspaces.  For subgroups, intersections of subgroups are subgroups.  For topological closed sets, arbitrary intersections are closed.
+
+This explains why ``generated by'' is such a stable phrase across mathematics.  The generated object is not guessed; it is forced by closure under operations and minimality under inclusion.
+
+\section{Closure and logic of consequences}
+
+A closure operator can also be interpreted as logical consequence.  If $S$ is a set of assumptions, $c(S)$ is the set of all consequences of $S$.  Extensivity says assumptions are consequences of themselves.  Monotonicity says more assumptions give more consequences.  Idempotence says taking consequences twice adds nothing new.
+
+This logic viewpoint connects the original set exercises to algebraic logic and model theory.  In algebra, closure under operations generates structures; in logic, closure under inference generates theories.

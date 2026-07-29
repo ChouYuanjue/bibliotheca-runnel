@@ -1,14 +1,632 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220409}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220409}
-\end{document}
+\notechapter{N-20220409}{Composition and Elimination: Higher Derivatives, Determinants, and Schur Complements}
+
+\section{Two bookkeeping problems that should not be confused}
+
+Two mathematical case studies reveal a common role for combinatorial organization.  Repeated differentiation under products and composition is indexed by binomial coefficients, integer partitions, and Bell polynomials.  Composition and elimination in block linear systems are indexed by contracted matrix indices and Schur complements.
+
+These subjects are not instances of one theorem.  Their genuine common feature is methodological: an apparently unmanageable expression becomes transparent after identifying what is being composed, what is being summed over, and what data remain after internal choices have been removed.  Keeping the two cases separate prevents a vague analogy from replacing a proof.
+
+\section{Repeated derivations produce the higher Leibniz rule}
+
+Let \(D\) be a derivation on a commutative algebra, so
+\[
+  D(ab)=D(a)b+aD(b).
+\]
+Applying \(D\) repeatedly gives
+\[
+  D^2(ab)=D^2(a)b+2D(a)D(b)+aD^2(b),
+\]
+and
+\[
+  D^3(ab)
+  =D^3(a)b+3D^2(a)D(b)+3D(a)D^2(b)+aD^3(b).
+\]
+The coefficients are not accidental.
+
+\begin{theorem}[Higher Leibniz rule]
+For every integer \(n\geq 0\),
+\[
+  D^n(ab)
+  =\sum_{k=0}^{n}\binom{n}{k}D^k(a)D^{n-k}(b).
+\]
+\end{theorem}
+
+\begin{proof}
+The result is clear for \(n=0\).  Assume it holds for \(n\).  Differentiating once more gives
+\[
+\begin{aligned}
+D^{n+1}(ab)
+&=\sum_{k=0}^{n}\binom{n}{k}
+ \bigl(D^{k+1}(a)D^{n-k}(b)+D^k(a)D^{n-k+1}(b)\bigr).
+\end{aligned}
+\]
+After shifting the index in the first sum, the coefficient of
+\(D^k(a)D^{n+1-k}(b)\) becomes
+\[
+  \binom{n}{k-1}+\binom{n}{k}=\binom{n+1}{k}.
+\]
+This proves the induction step.
+\end{proof}
+
+There is also a combinatorial reading.  During \(n\) differentiations, each derivative must land on either the first factor or the second.  Choosing the \(k\) stages that land on \(a\) gives \(\binom{n}{k}\).  The formula is therefore a count of derivative-placement histories.
+
+For a product of \(r\) factors, the same argument gives the multinomial rule
+\[
+  D^n(a_1\cdots a_r)
+  =\sum_{\alpha_1+\cdots+\alpha_r=n}
+   \frac{n!}{\alpha_1!\cdots\alpha_r!}
+   \prod_{j=1}^{r}D^{\alpha_j}(a_j).
+\]
+This form will reappear when differentiating a determinant row by row.
+
+\section{Faà di Bruno records partitions of derivative labels}
+
+The ordinary chain rule has one outer derivative and one inner derivative:
+\[
+  (f\circ g)'=f'(g)g'.
+\]
+At second and third order,
+\[
+  (f\circ g)''=f''(g)(g')^2+f'(g)g'',
+\]
+\[
+  (f\circ g)'''
+  =f'''(g)(g')^3+3f''(g)g'g''+f'(g)g'''.
+\]
+The coefficients and monomials are controlled by set partitions.  Think of the \(n\) derivative operations as carrying labels \(1,\ldots,n\).  Labels in the same block ultimately combine into one derivative of \(g\); the number of blocks tells us which derivative of \(f\) appears.
+
+For nonnegative integers \(k_1,\ldots,k_n\), impose
+\[
+  k_1+2k_2+\cdots+nk_n=n.
+\]
+Here \(k_j\) is the number of blocks of size \(j\).  The total number of blocks is
+\[
+  m=k_1+\cdots+k_n.
+\]
+The number of set partitions with these block sizes is
+\[
+  \frac{n!}{k_1!\cdots k_n!(1!)^{k_1}\cdots(n!)^{k_n}}.
+\]
+This gives the one-variable Faà di Bruno formula.
+
+\begin{theorem}[Faà di Bruno]
+For sufficiently differentiable functions \(f\) and \(g\),
+\[
+  \frac{d^n}{dx^n}f(g(x))
+  =\sum_{\substack{k_1,\ldots,k_n\geq0\\
+                    k_1+2k_2+\cdots+nk_n=n}}
+  \frac{n!}{k_1!\cdots k_n!}
+  f^{(k_1+\cdots+k_n)}(g(x))
+  \prod_{j=1}^{n}
+  \left(\frac{g^{(j)}(x)}{j!}\right)^{k_j}.
+\]
+\end{theorem}
+
+The same information is often compressed using the partial exponential Bell polynomials
+\[
+  B_{n,m}(x_1,\ldots,x_{n-m+1})
+  =\sum
+  \frac{n!}{k_1!\cdots k_{n-m+1}!}
+  \prod_{j=1}^{n-m+1}\left(\frac{x_j}{j!}\right)^{k_j},
+\]
+where the sum satisfies
+\[
+  \sum_j k_j=m,
+  \qquad
+  \sum_j j k_j=n.
+\]
+Then
+\[
+  (f\circ g)^{(n)}
+  =\sum_{m=1}^{n}f^{(m)}(g)
+   B_{n,m}(g',g'',\ldots,g^{(n-m+1)}).
+\]
+Bell polynomials separate the combinatorics of composition from the particular functions being composed.
+
+\section{The fourth derivative as a complete partition calculation}
+
+The integer partitions of \(4\) are
+\[
+  1+1+1+1,\qquad
+  2+1+1,\qquad
+  2+2,\qquad
+  3+1,\qquad
+  4.
+\]
+They correspond respectively to the block-size data
+\[
+  (k_1,k_2,k_3,k_4)
+  =(4,0,0,0),(2,1,0,0),(0,2,0,0),(1,0,1,0),(0,0,0,1).
+\]
+Substitution into Faà di Bruno gives
+\[
+\begin{aligned}
+(f\circ g)^{(4)}={}&
+ f^{(4)}(g)(g')^4
+ +6f^{(3)}(g)(g')^2g''
+ +3f''(g)(g'')^2\\
+&+4f''(g)g'g'''
+ +f'(g)g^{(4)}.
+\end{aligned}
+\]
+The coefficients \(1,6,3,4,1\) count set partitions of the five displayed block types.  For example, the type \(2+1+1\) has
+\[
+  \frac{4!}{1!2!(2!)^1}=6
+\]
+partitions, while the type \(2+2\) has
+\[
+  \frac{4!}{2!(2!)^2}=3.
+\]
+
+Take
+\[
+  h(x)=e^{\sin x}.
+\]
+Since every derivative of \(f(u)=e^u\) equals \(e^u\),
+\[
+\begin{aligned}
+h^{(4)}(x)=e^{\sin x}\bigl(&
+(\cos x)^4
++6(\cos x)^2(-\sin x)
++3(-\sin x)^2\\
+&+4(\cos x)(-\cos x)
++\sin x\bigr).
+\end{aligned}
+\]
+At \(x=0\), this reduces to
+\[
+  h^{(4)}(0)=1-4=-3.
+\]
+The Taylor series confirms the calculation:
+\[
+  e^{\sin x}
+  =1+x+\frac{x^2}{2}-\frac{x^4}{8}+O(x^5),
+\]
+so the fourth derivative at the origin is
+\[
+  4!\left(-\frac18\right)=-3.
+\]
+This check is useful because a missing block type in Faà di Bruno usually appears as an incorrect Taylor coefficient.
+
+\section{Jets turn higher differentials into truncated Taylor algebra}
+
+Leibniz notation becomes subtle beyond first order because the symbols \(dx,d^2x,\ldots\) do not behave like ordinary powers of one number.  The clean way to see what they encode is to work with Taylor polynomials modulo terms that are too small to matter at the chosen order.
+
+Fix a point \(a\).  Two smooth functions have the same \(n\)-jet at \(a\) when their derivatives through order \(n\) agree there.  The jet can be represented by the truncated Taylor polynomial
+\[
+  j_a^n f(h)
+  =f(a)+f'(a)h+\frac{f''(a)}{2!}h^2+\cdots+
+   \frac{f^{(n)}(a)}{n!}h^n,
+\]
+where calculations are performed modulo \(h^{n+1}\).  In other words, one works in the truncated polynomial algebra
+\[
+  \mathbb R[h]/(h^{n+1}).
+\]
+Terms of degree greater than \(n\) are discarded because they cannot affect derivatives of order at most \(n\).
+
+This makes composition completely explicit.  Suppose \(g(a)=b\), and write the second-order jets as
+\[
+  j_a^2g(h)=b+b_1h+\frac{b_2}{2}h^2,
+\]
+\[
+  j_b^2f(u)=c+c_1u+\frac{c_2}{2}u^2.
+\]
+Here
+\[
+  b_1=g'(a),\qquad b_2=g''(a),
+  \qquad
+  c_1=f'(b),\qquad c_2=f''(b).
+\]
+Set
+\[
+  u=b_1h+\frac{b_2}{2}h^2.
+\]
+Since
+\[
+  u^2=b_1^2h^2\pmod{h^3},
+\]
+substitution gives
+\[
+\begin{aligned}
+  j_a^2(f\circ g)(h)
+  &\equiv c+c_1u+\frac{c_2}{2}u^2\pmod{h^3}\\
+  &=c+c_1b_1h+
+  \frac{c_2b_1^2+c_1b_2}{2}h^2.
+\end{aligned}
+\]
+Reading off coefficients recovers
+\[
+  (f\circ g)'(a)=f'(b)g'(a)
+\]
+and
+\[
+  (f\circ g)''(a)
+  =f''(b)(g'(a))^2+f'(b)g''(a).
+\]
+The second-order chain rule is therefore ordinary polynomial substitution followed by truncation.
+
+At third order, write
+\[
+  j_a^3g(h)
+  =b+b_1h+\frac{b_2}{2}h^2+\frac{b_3}{6}h^3
+\]
+and
+\[
+  j_b^3f(u)
+  =c+c_1u+\frac{c_2}{2}u^2+\frac{c_3}{6}u^3.
+\]
+Modulo \(h^4\),
+\[
+  u^2=b_1^2h^2+b_1b_2h^3,
+  \qquad
+  u^3=b_1^3h^3.
+\]
+Hence the cubic coefficient of the composition is
+\[
+  \frac{c_3b_1^3+3c_2b_1b_2+c_1b_3}{6},
+\]
+so
+\[
+  (f\circ g)'''(a)
+  =f'''(b)(g'(a))^3
+  +3f''(b)g'(a)g''(a)
+  +f'(b)g'''(a).
+\]
+The coefficient \(3\) is no longer mysterious: it comes from the two cross terms in \(u^2\) together with the factorial normalization in the Taylor coefficients.
+
+For a concrete check, take \(f(u)=e^u\), \(g(x)=\sin x\), and expand at \(0\).  The relevant jets are
+\[
+  j_0^3\sin(h)=h-\frac{h^3}{6}
+\]
+and
+\[
+  j_0^3e^u=1+u+\frac{u^2}{2}+\frac{u^3}{6}.
+\]
+Substitution gives
+\[
+  j_0^3(e^{\sin x})(h)
+  =1+h+\frac{h^2}{2},
+\]
+because the cubic contributions \(-h^3/6\) and \(+h^3/6\) cancel.  Thus
+\[
+  (e^{\sin x})'''\big|_{x=0}=0,
+\]
+which agrees with the third-order chain rule.
+
+The differential notation is a compressed version of this bookkeeping.  If \(y=f(x)\), then
+\[
+  dy=f'(x)\,dx
+\]
+and
+\[
+  d^2y=f''(x)(dx)^2+f'(x)d^2x.
+\]
+When \(x\) itself depends on a parameter \(t\), the first two pieces of its jet are
+\[
+  dx=x'(t)dt,
+  \qquad
+  d^2x=x''(t)(dt)^2.
+\]
+Therefore
+\[
+  d^2y
+  =\bigl(f''(x)(x')^2+f'(x)x''\bigr)(dt)^2.
+\]
+Only when \(x\) is chosen as an affine coordinate in the parameter does \(d^2x\) vanish.  Under a nonlinear reparametrization it carries genuine second-order information.  Jets explain precisely why treating \(d^2x\) as though it were merely \((dx)^2\) loses part of the chain rule.
+
+\section{Parametric differentiation is repeated application of one operator}
+
+Let a regular plane curve be given by
+\[
+  x=x(t),\qquad y=y(t),
+\]
+with \(x'(t)\neq0\).  Differentiation with respect to \(x\) means applying
+\[
+  \frac{d}{dx}=\frac1{x'(t)}\frac{d}{dt}.
+\]
+Hence
+\[
+  \frac{dy}{dx}=\frac{y'}{x'},
+\]
+and
+\[
+  \frac{d^2y}{dx^2}
+  =\frac{x'y''-y'x''}{(x')^3}.
+\]
+The numerator is a determinant:
+\[
+  x'y''-y'x''
+  =\det\begin{pmatrix}x'&y'\\x''&y''\end{pmatrix}.
+\]
+Applying the operator once more gives
+\[
+  \frac{d^3y}{dx^3}
+  =\frac{(x')^2y'''-3x'x''y''+\bigl(3(x'')^2-x'x'''\bigr)y'}{(x')^5}.
+\]
+The growing expression is another composition problem: one repeatedly composes multiplication by \(1/x'\) with \(d/dt\).
+
+For the semicubical parabola
+\[
+  x=t^2,\qquad y=t^3,
+  \qquad t>0,
+\]
+we obtain
+\[
+  \frac{dy}{dx}=\frac{3t}{2},
+  \qquad
+  \frac{d^2y}{dx^2}=\frac{3}{4t},
+  \qquad
+  \frac{d^3y}{dx^3}=-\frac{3}{8t^3}.
+\]
+Since \(y=x^{3/2}\) on this branch, direct differentiation gives exactly the same values.  The singular behavior as \(t\to0\) records the failure of \(x\) to be a valid local coordinate at the cusp.
+
+\section{Determinants inherit a multinomial Leibniz rule}
+
+Write an \(m\times m\) matrix-valued function by rows:
+\[
+  A(t)=
+  \begin{pmatrix}
+    r_1(t)\\ \vdots\\ r_m(t)
+  \end{pmatrix}.
+\]
+Because the determinant is multilinear in its rows,
+\[
+  \frac{d}{dt}\det A(t)
+  =\sum_{i=1}^{m}
+   \det(r_1,\ldots,r_i',\ldots,r_m).
+\]
+Repeated differentiation and the multinomial Leibniz rule give
+\[
+  \frac{d^n}{dt^n}\det A(t)
+  =\sum_{\alpha_1+\cdots+\alpha_m=n}
+   \frac{n!}{\alpha_1!\cdots\alpha_m!}
+   \det\bigl(r_1^{(\alpha_1)},\ldots,r_m^{(\alpha_m)}\bigr).
+\]
+Thus the higher derivative of a determinant is organized by distributing \(n\) derivative operations among \(m\) rows.
+
+At first order there is also a basis-independent formula.  Let \(\operatorname{adj}(A)\) denote the adjugate matrix.  Cofactor expansion gives
+\[
+  \frac{d}{dt}\det A(t)
+  =\operatorname{tr}\bigl(\operatorname{adj}(A(t))A'(t)\bigr).
+\]
+If \(A(t)\) is invertible, then
+\[
+  \operatorname{adj}(A)=\det(A)A^{-1},
+\]
+so
+\[
+  \boxed{
+  \frac{d}{dt}\det A(t)
+  =\det A(t)\operatorname{tr}\bigl(A(t)^{-1}A'(t)\bigr).}
+\]
+This is Jacobi's formula.  Equivalently,
+\[
+  \frac{d}{dt}\log\det A(t)
+  =\operatorname{tr}\bigl(A(t)^{-1}A'(t)\bigr)
+\]
+whenever the logarithm is defined.
+
+For
+\[
+  A(t)=
+  \begin{pmatrix}
+    e^t&t\\
+    0&1+t
+  \end{pmatrix},
+\]
+we have
+\[
+  \det A(t)=e^t(1+t),
+\]
+and therefore
+\[
+  \frac{d}{dt}\det A(t)=e^t(2+t).
+\]
+Jacobi's formula gives the same result because
+\[
+  \operatorname{tr}(A^{-1}A')=1+\frac1{1+t}.
+\]
+Multiplication by \(\det A=e^t(1+t)\) yields \(e^t(2+t)\).
+
+\section{Matrix multiplication is composition with one index hidden}
+
+Let
+\[
+  B:U\to V,
+  \qquad
+  A:V\to W
+\]
+be linear maps.  After bases are chosen, their composition is represented by the product \(AB\).  Its entries are
+\[
+  (AB)_{ij}=\sum_k A_{ik}B_{kj}.
+\]
+The index \(k\) is internal: it labels the intermediate coordinate in \(V\), and summation removes it from the final answer.  This is a contraction between the input index of \(A\) and the output index of \(B\).
+
+Associativity follows because finite sums may be regrouped:
+\[
+\begin{aligned}
+((AB)C)_{ij}
+&=\sum_{k}\left(\sum_{\ell}A_{i\ell}B_{\ell k}\right)C_{kj}\\
+&=\sum_{\ell}A_{i\ell}\left(\sum_k B_{\ell k}C_{kj}\right)\\
+&=(A(BC))_{ij}.
+\end{aligned}
+\]
+Commutativity fails because reversing the order reverses the composition.  Even when both products exist, \(AB\) and \(BA\) generally represent maps on different spaces or different operations on the same space.
+
+Block multiplication is the same rule with each scalar entry replaced by a compatible linear map.  For example,
+\[
+\begin{pmatrix}A&B\\C&D\end{pmatrix}
+\begin{pmatrix}x\\z\end{pmatrix}
+=
+\begin{pmatrix}Ax+Bz\\Cx+Dz\end{pmatrix}.
+\]
+This notation becomes powerful when one block of variables is to be eliminated.
+
+\section{Schur complements are exact block elimination}
+
+Consider
+\[
+  M=
+  \begin{pmatrix}
+    A&B\\
+    C&D
+  \end{pmatrix},
+\]
+where \(A\) is invertible.  Multiplying on the left by a block elimination matrix gives
+\[
+  \begin{pmatrix}
+    I&0\\
+    -CA^{-1}&I
+  \end{pmatrix}
+  \begin{pmatrix}
+    A&B\\
+    C&D
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    A&B\\
+    0&S
+  \end{pmatrix},
+\]
+where
+\[
+  \boxed{S=D-CA^{-1}B}
+\]
+is the Schur complement of \(A\) in \(M\).
+
+This identity immediately gives
+\[
+  \det M=\det A\,\det S.
+\]
+It also gives a block solve.  For
+\[
+  Ax+Bz=b,
+  \qquad
+  Cx+Dz=c,
+\]
+the first equation gives
+\[
+  x=A^{-1}(b-Bz).
+\]
+Substitution into the second equation produces the reduced system
+\[
+  Sz=c-CA^{-1}b.
+\]
+After solving for \(z\), one recovers \(x\) by back-substitution.  The Schur complement is exactly what remains after the variable \(x\) has been eliminated.
+
+\section{A complete block-elimination example}
+
+Take
+\[
+  M=
+  \begin{pmatrix}
+    2&1&1\\
+    1&2&0\\
+    1&0&3
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    A&B\\C&D
+  \end{pmatrix},
+\]
+with
+\[
+  A=\begin{pmatrix}2&1\\1&2\end{pmatrix},
+  \qquad
+  B=\begin{pmatrix}1\\0\end{pmatrix},
+  \qquad
+  C=\begin{pmatrix}1&0\end{pmatrix},
+  \qquad
+  D=(3).
+\]
+Since
+\[
+  A^{-1}=\frac13
+  \begin{pmatrix}2&-1\\-1&2\end{pmatrix},
+\]
+we obtain
+\[
+  CA^{-1}B=\frac23,
+  \qquad
+  S=3-\frac23=\frac73.
+\]
+Therefore
+\[
+  \det M=\det A\,S=3\cdot\frac73=7.
+\]
+
+Now solve
+\[
+  M
+  \begin{pmatrix}x_1\\x_2\\z\end{pmatrix}
+  =
+  \begin{pmatrix}1\\0\\2\end{pmatrix}.
+\]
+The reduced right-hand side is
+\[
+  2-CA^{-1}\begin{pmatrix}1\\0\end{pmatrix}
+  =2-\frac23=\frac43.
+\]
+Hence
+\[
+  \frac73 z=\frac43,
+  \qquad
+  z=\frac47.
+\]
+Back-substitution gives
+\[
+  \begin{pmatrix}x_1\\x_2\end{pmatrix}
+  =A^{-1}\left(
+    \begin{pmatrix}1\\0\end{pmatrix}
+    -\begin{pmatrix}1\\0\end{pmatrix}\frac47
+  \right)
+  =A^{-1}\begin{pmatrix}3/7\\0\end{pmatrix}
+  =\begin{pmatrix}2/7\\-1/7\end{pmatrix}.
+\]
+A direct multiplication verifies
+\[
+  M
+  \begin{pmatrix}2/7\\-1/7\\4/7\end{pmatrix}
+  =
+  \begin{pmatrix}1\\0\\2\end{pmatrix}.
+\]
+The calculation shows concretely that the reduced scalar \(7/3\) contains the full effect of the eliminated two-dimensional block.
+
+\section{Block inverse and positive definiteness}
+
+If both \(A\) and \(S\) are invertible, block factorization gives
+\[
+M^{-1}=
+\begin{pmatrix}
+A^{-1}+A^{-1}BS^{-1}CA^{-1}&-A^{-1}BS^{-1}\\
+-S^{-1}CA^{-1}&S^{-1}
+\end{pmatrix}.
+\]
+The formula is best remembered as elimination followed by back-substitution, not as four unrelated blocks.
+
+For a symmetric block matrix
+\[
+  M=\begin{pmatrix}A&B\\B^T&D\end{pmatrix}
+\]
+with \(A\) positive definite, completing the square gives
+\[
+\begin{aligned}
+\begin{pmatrix}x\\z\end{pmatrix}^{T}
+M
+\begin{pmatrix}x\\z\end{pmatrix}
+={}&
+(x+A^{-1}Bz)^TA(x+A^{-1}Bz)\\
+&+z^T(D-B^TA^{-1}B)z.
+\end{aligned}
+\]
+Consequently,
+\[
+  M\succ0
+  \quad\Longleftrightarrow\quad
+  A\succ0
+  \text{ and }
+  D-B^TA^{-1}B\succ0.
+\]
+Thus the same Schur complement controls elimination, determinants, inverses, and positivity.  In statistics it also appears as a conditional covariance; in constrained optimization it appears after eliminating primal or dual variables.
+
+This block calculation also clarifies the limited but useful comparison with the first half of the note.  Repeated differentiation exposes hidden partitions of derivative labels; matrix composition sums over an intermediate coordinate; block elimination removes internal variables and records their net influence in a Schur complement.  The operations are not instances of one theorem, but each becomes manageable only after the internal choices are represented exactly.  For Faà di Bruno the surviving data are derivatives indexed by partitions, for matrix multiplication they are the external row and column indices, and for block elimination they form the reduced operator \(D-CA^{-1}B\).  The common method is precise bookkeeping, not a claim that calculus and matrix algebra are secretly the same subject.

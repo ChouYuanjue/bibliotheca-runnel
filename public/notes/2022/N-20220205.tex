@@ -1,14 +1,129 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220205}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220205}
-\end{document}
+\notechapter{N-20220205}{A First Comparison of ZFC, NBG, KM, and New Foundations}
+
+\section{Why there are several axiomatizations of set theory}
+
+This note compares several axiomatic systems for set theory: ZFC, NBG, Kelley--Morse set theory, and Quine's New Foundations.  The underlying question is not merely historical.  Different systems express different compromises between intuition, rigor, large collections, and self-reference.
+
+\section{The main systems}
+
+The main systems in this note are:
+\begin{description}
+  \item[ZFC.] Zermelo--Fraenkel set theory with Choice, the standard foundation for most modern mathematics.
+  \item[NBG.] Von Neumann--Bernays--Goedel set theory, which distinguishes sets from classes.
+  \item[KM.] Kelley--Morse set theory, a stronger class theory than NBG.
+  \item[NF.] Quine's New Foundations, which uses stratification to control comprehension.
+\end{description}
+
+\section{ZFC}
+
+ZFC is built from several familiar axioms: extensionality, empty set, pairing, union, power set, foundation, replacement, infinity, and choice.
+
+\begin{remark}
+ZFC's strength is that it is compact, standard, and sufficient for almost all ordinary mathematics.  Replacement and Infinity allow one to build complicated structures such as ordinals, cardinals, and the continuum.
+\end{remark}
+
+\begin{caution}
+ZFC does not directly treat proper classes as objects of the theory.  This is often fine, but it becomes awkward when discussing objects such as the class of all sets, large categories, or global constructions in category theory.
+\end{caution}
+
+\section{NBG}
+
+NBG introduces classes as first-class objects while still distinguishing sets from proper classes.
+
+\begin{definition}
+In NBG, every set is a class, but not every class is a set.  A proper class is a class that is too large to be a set.
+\end{definition}
+
+This makes it possible to speak about the universe of all sets as a proper class.  It also makes certain category-theoretic discussions feel more natural, since large categories can be treated using classes.
+
+\begin{remark}
+NBG is conservative over ZFC for statements purely about sets.  In ordinary set-level mathematics, it usually proves the same theorems as ZFC.  Its advantage is expressive convenience when classes are involved.
+\end{remark}
+
+
+\section{Kelley--Morse set theory}
+
+KM extends the class-theoretic viewpoint further.  It allows stronger comprehension principles for classes and therefore gives a richer theory of proper classes.
+
+\begin{remark}
+KM can be thought of as a stronger language for discussing global class-sized structures.  It is useful when NBG's class comprehension is too weak for the intended argument.
+\end{remark}
+
+The tradeoff is that KM is logically stronger and less minimal.  It may be more expressive, but it also introduces more foundational weight.
+
+\begin{question}
+Is there a clean presentation of KM that remains beginner-friendly while preserving its extra expressive power?  This is still unclear in the note, and it is worth returning to after learning more model theory and class theory.
+\end{question}
+
+\section{New Foundations}
+
+Quine's New Foundations takes a more radical route.  It uses a stratification condition on formulas to control paradoxes while allowing constructions that look very different from ZFC.
+
+\begin{caution}
+The original wording describes NF as allowing self-reference in a loose way.  More precisely, NF restricts comprehension to stratified formulas.  The point is not that arbitrary self-reference is allowed, but that the theory draws the safety boundary differently from ZFC.
+\end{caution}
+
+NF differs from ZFC in several ways:
+\begin{enumerate}[(i)]
+  \item ZFC uses Foundation to rule out membership cycles; NF uses stratification.
+  \item ZFC builds sets through iterative hierarchy intuition; NF modifies the logic of allowable comprehension.
+  \item NF has subtle consistency questions, and variants such as NFU are often easier to handle.
+\end{enumerate}
+
+\section{How to compare the systems}
+
+The comparison can be organized along three axes.
+
+\subsection{Expressive power}
+
+ZFC is clean for ordinary set-level mathematics.  NBG and KM are better suited for talking about proper classes and large structures.  NF explores a different response to self-reference.
+
+\subsection{Logical strength}
+
+NBG is conservative over ZFC for set statements.  KM is stronger than NBG.  NF and its variants sit in a different part of the foundational landscape and should not be casually compared by intuition alone.
+
+\subsection{Use in practice}
+
+For most everyday mathematics, ZFC is enough.  For category theory or discussions involving universes and proper classes, NBG-style language is often more comfortable.  KM becomes relevant when one truly needs stronger class principles.
+
+\section{What remains unclear}
+
+\begin{gap}
+Several broad claims about conservativity and consistency require precise model-theoretic formulation.  In particular, KM should not be described as conservative over ZFC in the same way NBG is; any comparison must state the exact relative-consistency and conservativity results being used.
+\end{gap}
+
+\begin{question}
+Which foundation is best for actual mathematical practice: a minimal set theory such as ZFC, a class theory such as NBG, a stronger class theory such as KM, or a category-inspired system such as ETCS?  The answer probably depends on what one wants to do.
+\end{question}
+
+\section{Where the idea leads}
+
+ZFC is the mainstream baseline.  NBG keeps the same set-level mathematics while adding proper classes.  KM strengthens the class theory.  NF changes the handling of comprehension and self-reference.  The deeper lesson is that foundations are not only about avoiding paradoxes; they also shape what kinds of mathematical objects feel natural to discuss.
+
+
+\section{Why classes are introduced}
+
+The main pressure on ZFC is that some collections are too large to be sets.  The collection of all sets, the collection of all groups, or the collection of all ordinals cannot be sets without recreating paradoxes.  Class theories introduce a formal distinction:
+\[
+\begin{gathered}
+  \text{sets are classes that can be elements of other classes},\\
+  \text{proper classes are too large to be elements}.
+\end{gathered}
+\]
+In NBG, classes are first-class objects of the language, but quantification over classes is restricted in a way that keeps the theory conservative over ZFC for set-level statements.  KM allows stronger class comprehension and is therefore stronger.
+
+This explains the practical difference.  ZFC can simulate classes by formulas, but NBG and KM allow one to talk about classes directly.  For category theory this is convenient: the category of all sets is not small, but it can be treated as a class-sized category.
+
+\section{New Foundations and stratification}
+
+Quine's NF tries a different repair of naive comprehension.  Instead of restricting comprehension to subsets of already existing sets, it allows comprehension only for stratified formulas.  A formula is stratified if one can assign type levels to variables so that membership \(x\in y\) raises type by one, while equality \(x=y\) keeps type the same.
+
+For example, \(x\notin x\) is not stratified, because it would require the type of \(x\) to be one higher than itself.  Thus Russell's paradox is blocked.  But a formula like \(x=x\) is stratified, so NF has a universal set.
+
+This is philosophically striking: ZFC avoids a universal set; NF permits one by controlling the syntax of comprehension.
+
+\section{Comparing foundational choices}
+
+The systems differ not only in strength but in taste.  ZFC is minimal enough to serve as a common background for ordinary mathematics.  NBG is convenient when large classes are used explicitly.  KM is stronger and supports more class-level reasoning.  NF preserves a universal-set intuition but pays for it with syntactic restrictions.
+
+The useful conclusion is not that one system is simply correct and the others wrong.  A foundation is a formal environment.  Different environments make different constructions easy or hard.

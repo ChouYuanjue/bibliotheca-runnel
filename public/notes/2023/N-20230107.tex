@@ -1,14 +1,185 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20230107}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20230107}
-\end{document}
+\notechapter{N-20230107}{Function Graphs, Symmetry Centers, and Transformations}
+
+\section{A note on graph problems}
+
+Function graphs and transformations---centers of symmetry, vertical reflection, absolute values, and graph-based zero counting---all rely on translating visual symmetry into an algebraic identity.
+
+\section{Centers of symmetry}
+
+A graph \(y=f(x)\) has center of symmetry \((a,b)\) if
+\[
+  f(a+t)+f(a-t)=2b
+\]
+whenever both sides are defined.  Thus for a rational function like
+\[
+  f(x)=\frac{1}{x+1}+\frac{1}{x+2},
+\]
+one shifts \(x=a+t\) and looks for cancellation between \(t\) and \(-t\).  The vertical asymptotes also help: the center of symmetry often lies halfway between paired asymptotes.
+
+\section{Symmetry about a line}
+
+A graph is symmetric about the vertical line \(x=c\) iff
+\[
+  f(c+t)=f(c-t).
+\]
+This applies to functions such as
+\[
+  f(x)=(1-x^2)(x^2+ax+b).
+\]
+If the graph is symmetric about \(x=-2\), substitute \(x=-2+t\) and \(x=-2-t\), then equate the two expressions.  This is safer than trying to see the answer from the expanded graph.
+
+\section{Absolute value transformations}
+
+Expressions involving
+\[
+  |x-a|,\qquad ||x|-2|,\qquad |f(x)|
+\]
+should be read as folding operations.  The graph of \(y=|f(x)|\) reflects the part of \(f\) below the \(x\)-axis upward.  The graph of \(y=f(|x|)\) copies the right half of the graph to the left symmetrically.
+
+The problem involving
+\[
+  |||x|-2|-1|+|||y|-2|-1|=1
+\]
+is best attacked by symmetry.  First solve in the first quadrant, then reflect across the coordinate axes.  The curve is made of translated line segments, so the required string length is a sum of segment lengths rather than an area computation.
+
+\section{Zero counting by graphs}
+
+A later exercise combines a periodic/symmetric function \(f\) with
+\[
+  g(x)=|x\cos(\pi x)|.
+\]
+The number of zeros of \(g(x)-f(x)\) is the number of intersections of two graphs.  The correct method is to use symmetry and monotonicity on subintervals instead of solving a transcendental equation directly.
+
+
+\section{How to find a center of symmetry in practice}
+
+For a rational function, a center of symmetry is often hidden in the denominator structure.  Suppose two vertical asymptotes are paired around a point \(x=a\).  Then \(a\) is a natural candidate for the horizontal coordinate of the center.  After shifting \(x=a+t\), test whether
+\[
+  f(a+t)+f(a-t)
+\]
+is constant.  If it equals \(2b\), then the center is \((a,b)\).
+
+This method is better than expanding everything at once.  The shift recenters the graph so that symmetry becomes ordinary oddness or evenness around the origin.  In many problems, the algebra simplifies only after this recentering.
+
+\section{Absolute value as folding}
+
+Absolute-value transformations are best read visually.  The transformation
+\[
+  y=|f(x)|
+\]
+keeps the part of the graph above the \(x\)-axis and reflects the part below upward.  The transformation
+\[
+  y=f(|x|)
+\]
+copies the right half of the original graph to the left.  Nested absolute values such as
+\[
+  ||x|-2|
+\]
+are successive folds of the number line.  Each fold creates new symmetry and new corner points.
+
+For a curve such as
+\[
+  |||x|-2|-1|+|||y|-2|-1|=1,
+\]
+one should not immediately expand into many cases.  First locate the breakpoints \(x=0,\pm1,\pm2,\pm3\), solve the shape in one symmetric region, and reflect it.  The algebraic expression is complicated, but the geometry is a repeated folding of straight lines.
+
+\section{Parameter motion and intersection counting}
+
+Many graph problems ask for the number of roots of
+\[
+  f(x)-g(x)=0.
+\]
+This is the number of intersections of two graphs.  When a parameter moves one graph, the number of intersections is stable except at critical moments: tangency, passing through a corner, or passing through an endpoint of a piece.
+
+Thus parameter problems should be solved by first finding the exceptional parameter values.  Between two exceptional values, the number of intersections cannot change.  This converts an apparently algebraic zero-counting problem into a geometric classification problem.
+
+\section{Graph transformations as group actions}
+
+The higher viewpoint is that many graph tricks are actions on the plane.  Let \(G\) be a group of transformations of \(\mathbb R^2\).  If \(g\in G\) and \(\Gamma_f=\{(x,f(x)):x\in D\}\) is the graph of \(f\), then \(g\) sends \(\Gamma_f\) to another curve.  When the image is again a graph, it gives a transformed function.
+
+\begin{definition}[Symmetry of a graph]
+A transformation \(g:\mathbb R^2\to\mathbb R^2\) is a symmetry of the graph \(\Gamma_f\) if
+\[
+  g(\Gamma_f)=\Gamma_f.
+\]
+In this language, a graph property is an invariance property.
+\end{definition}
+
+For example, reflection across the vertical line \(x=c\) is
+\[
+  R_c(x,y)=(2c-x,y).
+\]
+The graph is invariant under \(R_c\) iff
+\[
+  f(c+t)=f(c-t).
+\]
+Thus vertical symmetry is evenness after translating the origin to \(c\).
+
+Similarly, the half-turn about \((a,b)\) is
+\[
+  H_{a,b}(x,y)=(2a-x,2b-y).
+\]
+The graph is invariant under this half-turn iff
+\[
+  f(a+t)+f(a-t)=2b.
+\]
+
+\begin{proposition}[Symmetry identities]
+Let \(f\) be defined on a domain symmetric about \(a\).  Then:
+\begin{enumerate}[(i)]
+  \item \(\Gamma_f\) is symmetric about \(x=a\) iff \(f(a+t)=f(a-t)\);
+  \item \(\Gamma_f\) has center \((a,b)\) iff \(f(a+t)+f(a-t)=2b\).
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+For (i), reflection sends \((a+t,f(a+t))\) to \((a-t,f(a+t))\).  This lies on the graph exactly when \(f(a-t)=f(a+t)\).  For (ii), the half-turn sends \((a+t,f(a+t))\) to \((a-t,2b-f(a+t))\).  This lies on the graph exactly when \(f(a-t)=2b-f(a+t)\).
+\end{proof}
+
+\section{Absolute value as folding, not algebraic noise}
+
+The transformation
+\[
+  y=|f(x)|
+\]
+keeps the part of the graph above the \(x\)-axis and reflects the lower part upward.  The transformation
+\[
+  y=f(|x|)
+\]
+forgets the left half of the original input and copies the right half across the \(y\)-axis.
+
+\begin{remark}[A quotient-like intuition]
+An absolute value identifies two points \(t\) and \(-t\).  Thus nested absolute values are repeated foldings of the line.  This is why expressions such as
+\[
+  |||x|-2|-1|
+\]
+are better studied by locating breakpoints and symmetries than by expanding all cases blindly.
+\end{remark}
+
+\section{Zero counting as a stability problem}
+
+Many problems ask for the number of roots of
+\[
+  f(x)-g_t(x)=0
+\]
+as a parameter \(t\) changes.  Geometrically, this is the number of intersections of two curves.  The number is stable under small changes of \(t\) unless a special event occurs.
+
+The common events are:
+\[
+  \text{tangency},\qquad
+  \text{endpoint contact},\qquad
+  \text{crossing a corner or discontinuity}.
+\]
+For a smooth one-parameter equation
+\[
+  F(x,t)=0,
+\]
+a tangency or repeated-root event is detected by
+\[
+  F(x,t)=0,\qquad F_x(x,t)=0.
+\]
+This is the calculus version of the geometric statement that two curves touch without crossing transversely.
+
+\begin{remark}[The conceptual payoff]
+A center of symmetry is a half-turn invariance.  A vertical axis of symmetry is reflection invariance.  An absolute value is a folding operation.  A zero-counting problem is an intersection-stability problem.  The advantage of this viewpoint is that it tells us what can change and what cannot change before any heavy algebra begins.
+\end{remark}

@@ -1,14 +1,537 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260312}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260312}
-\end{document}
+\notechapter{N-20260312}{Matrix Computation II: Spectral Radius, Stability, and Conditioning}
+
+\section{One step and many steps are different questions}
+
+A matrix norm asks how much a vector can be amplified in one application:
+\[
+  \|Ax\|\le\|A\|\|x\|.
+\]
+The spectral radius
+\[
+  \rho(A)=\max_{\lambda\in\sigma(A)}|\lambda|
+\]
+asks about the exponential rate that remains after the matrix is applied many times.
+
+These quantities agree for normal matrices in the Euclidean norm, but not in general.  A nonnormal matrix can produce enormous short-time growth even when all its eigenvalues lie well inside the unit disk.  Conversely, a large one-step norm does not by itself imply that powers grow forever.
+
+This chapter separates four issues that are often compressed into the word ``stability'':
+\[
+\begin{array}{ccl}
+\|A\| &:& \text{one-step amplification},\\
+\rho(A) &:& \text{asymptotic exponential growth},\\
+\kappa(A) &:& \text{sensitivity of solving or inversion},\\
+\text{backward stability} &:& \text{whether an algorithm solves a nearby problem}.
+\end{array}
+\]
+A stable algorithm cannot make an ill-conditioned problem well-conditioned, and a well-conditioned problem can still be mishandled by an unstable algorithm.
+
+\section{Spectral radius is not a norm}
+
+If \(Ax=\lambda x\) with \(x\ne0\), then every induced norm satisfies
+\[
+  |\lambda|\|x\|=\|Ax\|\le\|A\|\|x\|.
+\]
+Hence
+\[
+  \rho(A)\le\|A\|.
+\]
+The inequality is fundamental, but \(\rho\) itself is not a matrix norm.
+
+The nonzero nilpotent matrix
+\[
+  N=
+  \begin{bmatrix}
+    0&1\\
+    0&0
+  \end{bmatrix}
+\]
+has
+\[
+  \rho(N)=0.
+\]
+Thus positive definiteness fails.  Moreover, with
+\[
+  N_1=
+  \begin{bmatrix}0&1\\0&0\end{bmatrix},
+  \qquad
+  N_2=
+  \begin{bmatrix}0&0\\1&0\end{bmatrix},
+\]
+we have
+\[
+  \rho(N_1)=\rho(N_2)=0,
+  \qquad
+  \rho(N_1+N_2)=1.
+\]
+So the triangle inequality fails as well.
+
+The spectral radius is nevertheless the right asymptotic quantity.  If \(A\) is diagonalizable,
+\[
+  A=S\Lambda S^{-1},
+\]
+then
+\[
+  A^k=S\Lambda^kS^{-1}.
+\]
+The eigenvalues determine the exponential factors \(\lambda_i^k\), while the geometry of \(S\) determines how strongly the corresponding modes can interfere at finite times.
+
+\section{Gelfand's formula extracts the exponential rate}
+
+For every matrix norm,
+\[
+  \boxed{\rho(A)=\lim_{k\to\infty}\|A^k\|^{1/k}.}
+\]
+This is Gelfand's formula.
+
+The lower bound is immediate from
+\[
+  \rho(A^k)=\rho(A)^k\le\|A^k\|,
+\]
+which gives
+\[
+  \rho(A)\le\|A^k\|^{1/k}.
+\]
+
+For the opposite direction, put \(A\) into Jordan form.  On a Jordan block
+\[
+  J=\lambda I+N,
+  \qquad
+  N^m=0,
+\]
+we have
+\[
+  J^k
+  =\sum_{j=0}^{m-1}\binom{k}{j}\lambda^{k-j}N^j.
+\]
+The binomial factors grow only polynomially in \(k\), while \(|\lambda|^k\) carries the exponential rate.  Taking the \(k\)-th root makes every fixed polynomial factor tend to \(1\).  The largest \(|\lambda|\) therefore survives, yielding the formula.
+
+Gelfand's formula should not be confused with the power method.  The power method follows a particular vector
+\[
+  x,Ax,A^2x,\ldots
+\]
+and tries to isolate a dominant eigenvector.  It can fail if the starting vector misses the dominant invariant direction, if dominant eigenvalues tie in modulus, or if nonnormal transient behavior obscures the asymptotic regime.  Gelfand's formula is a statement about the norm of the whole operator power, not a promise about one trajectory.
+
+\section{Jordan blocks explain the boundary}
+
+For a \(2\times2\) Jordan block
+\[
+  J=
+  \begin{bmatrix}
+    \lambda&1\\
+    0&\lambda
+  \end{bmatrix},
+\]
+direct calculation gives
+\[
+  J^k=
+  \begin{bmatrix}
+    \lambda^k&k\lambda^{k-1}\\
+    0&\lambda^k
+  \end{bmatrix}.
+\]
+Three regimes are visible.
+
+If \(|\lambda|<1\), both \(\lambda^k\) and \(k\lambda^{k-1}\) tend to zero.  Exponential decay eventually defeats the polynomial factor.  If \(|\lambda|>1\), powers grow exponentially.  If \(|\lambda|=1\), the off-diagonal term grows like \(k\), even though every eigenvalue has modulus one.
+
+Consequently,
+\[
+  A^k\to0
+  \quad\Longleftrightarrow\quad
+  \rho(A)<1.
+\]
+The strict inequality matters.  Eigenvalues on the unit circle are harmless only when the associated Jordan blocks have size one and the remaining geometry is controlled.
+
+The same calculation explains why a matrix can look stable by eigenvalues and still exhibit large transient effects.  Let
+\[
+  B=
+  \begin{bmatrix}
+    0.9&10\\
+    0&0.9
+  \end{bmatrix}.
+\]
+Then
+\[
+  B^k=
+  \begin{bmatrix}
+    0.9^k&10k\,0.9^{k-1}\\
+    0&0.9^k
+  \end{bmatrix}.
+\]
+Compare it with the normal matrix \(C=0.9I\), which has the same eigenvalues.
+
+\begin{center}
+\small
+\begin{tabular}{@{}c|cc@{}}
+\toprule
+\(k\) & \(\|C^k\|_2\) & lower bound for \(\|B^k\|_2\)\\
+\midrule
+1 & 0.9000 & 10.0000\\
+5 & 0.5905 & 32.8050\\
+10 & 0.3487 & 38.7420\\
+20 & 0.1216 & 27.0170\\
+50 & 0.00515 & 2.8632\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The lower bound comes from applying \(B^k\) to \(e_2\).  Both matrices converge to zero, but only one does so monotonically in operator norm.  Eigenvalues describe the destination; nonnormality can make the route violently indirect.
+
+\section{Neumann series turns repeated feedback into an inverse}
+
+If \(\|A\|<1\), then
+\[
+  (I-A)^{-1}
+  =\sum_{k=0}^\infty A^k.
+\]
+Indeed,
+\[
+  (I-A)\sum_{k=0}^m A^k=I-A^{m+1},
+\]
+and \(A^{m+1}\to0\).
+
+The truncation error satisfies
+\[
+  (I-A)^{-1}-\sum_{k=0}^mA^k
+  =A^{m+1}(I-A)^{-1}.
+\]
+Therefore
+\[
+  \left\|(I-A)^{-1}-\sum_{k=0}^mA^k\right\|
+  \le
+  \frac{\|A\|^{m+1}}{1-\|A\|}.
+\]
+
+Take
+\[
+  A=
+  \begin{bmatrix}
+    0.2&0.1\\
+    0&0.2
+  \end{bmatrix}.
+\]
+Its induced \(\infty\)-norm is \(0.3\).  The exact inverse is
+\[
+  (I-A)^{-1}
+  =
+  \begin{bmatrix}
+    1.25&0.15625\\
+    0&1.25
+  \end{bmatrix}.
+\]
+The cubic truncation is
+\[
+  I+A+A^2+A^3
+  =
+  \begin{bmatrix}
+    1.248&0.152\\
+    0&1.248
+  \end{bmatrix}.
+\]
+Its actual \(\infty\)-norm error is
+\[
+  0.00625,
+\]
+while the general bound gives
+\[
+  \frac{0.3^4}{1-0.3}
+  \approx0.01157.
+\]
+The bound is not exact, but it is guaranteed without diagonalizing the matrix.
+
+The same idea defines the resolvent
+\[
+  R(z,A)=(zI-A)^{-1}.
+\]
+Whenever \(|z|>\|A\|\),
+\[
+  (zI-A)^{-1}
+  =\frac1z\sum_{k=0}^\infty\left(\frac{A}{z}\right)^k.
+\]
+The resolvent packages the behavior of all powers into one analytic matrix-valued function.
+
+\section{Condition number is the geometry of inversion}
+
+For an invertible matrix,
+\[
+  \kappa(A)=\|A\|\|A^{-1}\|.
+\]
+In the Euclidean norm,
+\[
+  \kappa_2(A)
+  =\frac{\sigma_{\max}(A)}{\sigma_{\min}(A)}.
+\]
+The image of the unit sphere under \(A\) is an ellipsoid.  The longest semiaxis has length \(\sigma_{\max}\), and the shortest has length \(\sigma_{\min}\).  Inversion must expand the shortest output direction by \(1/\sigma_{\min}\).  A highly elongated ellipsoid therefore corresponds to a sensitive inverse problem.
+
+Suppose only the right-hand side is perturbed:
+\[
+  Ax=b,
+  \qquad
+  A(x+\delta x)=b+\delta b.
+\]
+Then
+\[
+  A\delta x=\delta b,
+  \qquad
+  \delta x=A^{-1}\delta b.
+\]
+Using
+\[
+  \|b\|=\|Ax\|\le\|A\|\|x\|,
+\]
+we obtain the relative error bound
+\[
+  \boxed{
+  \frac{\|\delta x\|}{\|x\|}
+  \le
+  \kappa(A)
+  \frac{\|\delta b\|}{\|b\|}.}
+\]
+The condition number is a worst-case amplification factor.  It does not say that every perturbation is amplified maximally; the dangerous perturbations align with the smallest singular directions.
+
+\section{A tiny data change can reverse the solution}
+
+Let
+\[
+  A_\varepsilon=
+  \begin{bmatrix}
+    1&1\\
+    1&1+\varepsilon
+  \end{bmatrix},
+  \qquad
+  b=
+  \begin{bmatrix}
+    2\\
+    2+\varepsilon
+  \end{bmatrix}.
+\]
+The exact solution is
+\[
+  x=
+  \begin{bmatrix}1\\1\end{bmatrix}.
+\]
+Now perturb only the second observation by \(\varepsilon\):
+\[
+  \delta b=
+  \begin{bmatrix}0\\\varepsilon\end{bmatrix}.
+\]
+Since
+\[
+  A_\varepsilon^{-1}
+  =\frac1\varepsilon
+  \begin{bmatrix}
+    1+\varepsilon&-1\\
+    -1&1
+  \end{bmatrix},
+\]
+we get
+\[
+  \delta x=A_\varepsilon^{-1}\delta b
+  =
+  \begin{bmatrix}-1\\1\end{bmatrix}.
+\]
+For \(\varepsilon=10^{-4}\), the relative data perturbation is about
+\[
+  3.54\times10^{-5},
+\]
+while the relative solution perturbation is \(1\).  The amplification is roughly \(2.8\times10^4\).
+
+The matrix is not singular; it is nearly singular.  Its two columns are almost parallel, so the data barely distinguish the two parameters.  No algorithm can recover information that the model geometry has nearly erased.
+
+In this example,
+\[
+  \kappa_2(A_\varepsilon)\sim\frac4\varepsilon.
+\]
+For \(\varepsilon=10^{-4}\), the condition number is about \(4\times10^4\), consistent with the observed amplification.
+
+\section{Forward error, residual, and backward error}
+
+Given an approximate solution \(\widehat x\), the residual is
+\[
+  r=b-A\widehat x.
+\]
+The forward error is
+\[
+  x-\widehat x=A^{-1}r.
+\]
+Thus a small residual implies a small forward error only when \(A^{-1}\) is not too large.
+
+Backward error asks a different question: what is the smallest perturbation of the data for which \(\widehat x\) is exact?  If only the right-hand side is perturbed, then
+\[
+  A\widehat x=b-r,
+\]
+so \(-r\) is exactly the required perturbation.  A backward-stable algorithm produces the exact solution of a nearby problem.
+
+The distinction can be summarized as follows:
+\[
+\begin{array}{ccl}
+\text{small backward error} &\Rightarrow& \text{the algorithm behaved stably},\\
+\text{small condition number} &\Rightarrow& \text{nearby problems have nearby solutions},\\
+\text{both together} &\Rightarrow& \text{small forward error}.
+\end{array}
+\]
+If the condition number is enormous, a backward-stable computation may still have a large forward error.  That is not a contradiction; it is the correct response to an ill-conditioned problem.
+
+When both \(A\) and \(b\) are perturbed, a standard first-order estimate is
+\[
+  \frac{\|\delta x\|}{\|x\|}
+  \lesssim
+  \kappa(A)
+  \left(
+    \frac{\|\delta A\|}{\|A\|}
+    +
+    \frac{\|\delta b\|}{\|b\|}
+  \right).
+\]
+A rigorous finite-perturbation bound contains the denominator
+\[
+  1-\kappa(A)\frac{\|\delta A\|}{\|A\|},
+\]
+which must remain positive.  The denominator records the possibility that the perturbed matrix crosses into singularity.
+
+\section{Eigenvalues can be sensitive too}
+
+If \(A\) is normal, each eigenvalue of \(A+E\) lies within \(\|E\|_2\) of the spectrum of \(A\).  For a diagonalizable nonnormal matrix
+\[
+  A=S\Lambda S^{-1},
+\]
+the Bauer--Fike theorem gives the weaker bound
+\[
+  \min_{\lambda\in\sigma(A)}|\mu-\lambda|
+  \le
+  \kappa_2(S)\|E\|_2
+\]
+for every eigenvalue \(\mu\) of \(A+E\).
+
+The factor \(\kappa_2(S)\) measures how far the eigenvector basis is from orthonormal.  Nearly parallel eigenvectors make eigenvalues highly sensitive.
+
+Take
+\[
+  S=
+  \begin{bmatrix}
+    1&1\\
+    0&0.01
+  \end{bmatrix},
+  \qquad
+  \Lambda=
+  \begin{bmatrix}
+    1&0\\
+    0&2
+  \end{bmatrix}.
+\]
+Then
+\[
+  A=S\Lambda S^{-1}
+  =
+  \begin{bmatrix}
+    1&100\\
+    0&2
+  \end{bmatrix},
+\]
+and
+\[
+  \kappa_2(S)\approx200.
+\]
+Perturb by
+\[
+  E=
+  \begin{bmatrix}
+    0&0\\
+    10^{-4}&0
+  \end{bmatrix}.
+\]
+The characteristic polynomial of \(A+E\) is
+\[
+  (1-\mu)(2-\mu)-0.01,
+\]
+so the eigenvalues are approximately
+\[
+  0.9901,
+  \qquad
+  2.0099.
+\]
+A perturbation of norm \(10^{-4}\) has moved the eigenvalues by about \(10^{-2}\).  Bauer--Fike permits movement up to roughly
+\[
+  200\times10^{-4}=0.02.
+\]
+The sensitivity comes from the eigenvectors, not from the separation of the displayed diagonal entries alone.
+
+\section{Pseudospectrum records nearby spectra}
+
+For \(\varepsilon>0\), the \(\varepsilon\)-pseudospectrum can be defined by
+\[
+  \sigma_\varepsilon(A)
+  =\{z:\|(zI-A)^{-1}\|_2>\varepsilon^{-1}\}
+  \cup\sigma(A).
+\]
+Equivalently, it is the set of eigenvalues of matrices \(A+E\) with \(\|E\|_2<\varepsilon\).
+
+For a normal matrix, the resolvent norm is exactly
+\[
+  \|(zI-A)^{-1}\|_2
+  =\frac1{\operatorname{dist}(z,\sigma(A))}.
+\]
+Its pseudospectrum is simply a union of small disks around the eigenvalues.  For a nonnormal matrix, the resolvent can be much larger.
+
+Consider
+\[
+  B=
+  \begin{bmatrix}
+    0.8&10\\
+    0&0.8
+  \end{bmatrix}.
+\]
+For \(z\ne0.8\), write \(d=z-0.8\).  Then
+\[
+  (zI-B)^{-1}
+  =
+  \begin{bmatrix}
+    d^{-1}&10d^{-2}\\
+    0&d^{-1}
+  \end{bmatrix}.
+\]
+Therefore
+\[
+  \|(zI-B)^{-1}\|_2
+  \ge\frac{10}{|d|^2}.
+\]
+
+\begin{center}
+\small
+\begin{tabular}{@{}c|c|c@{}}
+\toprule
+\(z\) & \(|z-0.8|\) & resolvent lower bound\\
+\midrule
+1.0 & 0.2 & 250\\
+1.2 & 0.4 & 62.5\\
+1.6 & 0.8 & 15.625\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+With \(\varepsilon=0.02\), the threshold is \(1/\varepsilon=50\).  The point \(z=1.2\) therefore lies in the \(0.02\)-pseudospectrum, even though the only eigenvalue is \(0.8\).  The pseudospectrum has expanded far beyond a radius-\(0.02\) disk.
+
+This expansion is the frequency-domain counterpart of transient growth.  A large resolvent means that a small forcing or perturbation at a particular complex frequency can produce a large response.  It also warns that computed eigenvalues of a nonnormal matrix may be dominated by tiny perturbations.
+
+\section{A practical diagnostic order}
+
+When a computation involving powers, inverses, or eigenvalues looks unstable, several questions should be asked in order.
+
+First, identify the quantity of interest.  Powers \(A^k\), solutions \(A^{-1}b\), and eigenvalues have different condition theories.  Next, inspect structure: normality, symmetry, positive definiteness, sparsity, and rank can radically change the relevant bounds.  Then compare spectral radius with an operator norm.  A large gap suggests nonnormal transient behavior.  For solving, estimate \(\kappa(A)\) and report a residual or backward error rather than relying on residual size alone.  For eigenvalue sensitivity, inspect eigenvector conditioning or the resolvent; a pseudospectrum may be more informative than a list of eigenvalues.
+
+The conceptual map is
+\[
+  \text{powers}
+  \longleftrightarrow
+  \rho(A)\text{ and Jordan structure},
+\]
+\[
+  \text{inverse}
+  \longleftrightarrow
+  \sigma_{\min}(A)\text{ and }\kappa(A),
+\]
+\[
+  \text{nearby spectra}
+  \longleftrightarrow
+  \|(zI-A)^{-1}\|\text{ and pseudospectrum}.
+\]
+The same matrix may be harmless for one question and difficult for another.  Stability begins by deciding which question is actually being asked.

@@ -1,14 +1,248 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260618}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260618}
-\end{document}
+\notechapter{N-20260618}{First-Order and Higher-Order Differential Equations}
+
+\section{Why the differential-equation part is one note}
+
+The last part of the original long Markdown note covers first-order equations and higher-order linear equations.  These belong together because the central idea is the same: transform an equation for an unknown function into a form that can be integrated, linearized, or solved as an operator equation.
+
+\section{Basic concepts}
+
+A differential equation relates an unknown function to its derivatives.  The order is the highest derivative appearing.  A general first-order equation has the form
+\[
+  F(x,y,y')=0.
+\]
+A solution is a function $y(x)$ satisfying the equation on an interval.  A general solution contains arbitrary constants; an initial condition selects a particular solution.
+
+\section{Separable equations}
+
+A separable equation has
+\[
+  \frac{dy}{dx}=g(x)h(y).
+\]
+If $h(y)\ne0$, then
+\[
+  \frac{dy}{h(y)}=g(x)\,dx.
+\]
+Integrating gives an implicit solution.  One must also check equilibrium solutions coming from $h(y)=0$, because division by $h(y)$ can lose them.
+
+\section{Homogeneous first-order equations}
+
+A homogeneous first-order equation has the form
+\[
+  y'=F\left(\frac yx\right).
+\]
+Set $v=y/x$, so $y=vx$ and
+\[
+  y'=v+xv'.
+\]
+Then
+\[
+  v+x\frac{dv}{dx}=F(v),
+\]
+which is separable:
+\[
+  \frac{dv}{F(v)-v}=\frac{dx}{x}.
+\]
+
+Some equations become homogeneous after translating the origin.  If the linear expressions in $x,y$ meet at a point, shift that point to the origin.
+
+\section{First-order linear equations}
+
+A first-order linear equation is
+\[
+  y'+p(x)y=q(x).
+\]
+The integrating factor is
+\[
+  \mu(x)=e^{\int p(x)\,dx}.
+\]
+Multiplying the equation by $\mu$ gives
+\[
+  (\mu y)'=\mu q.
+\]
+Thus
+\[
+  y=e^{-\int p}
+  \left(\int q e^{\int p}\,dx+C\right).
+\]
+The integrating factor is not a trick; it conjugates the operator $D+p(x)$ into the ordinary derivative $D$.
+
+\section{Bernoulli equations}
+
+A Bernoulli equation has
+\[
+  y'+p(x)y=q(x)y^n.
+\]
+For $n\ne0,1$, set
+\[
+  u=y^{1-n}.
+\]
+Then
+\[
+  u'=(1-n)y^{-n}y',
+\]
+and the equation becomes linear in $u$.  Again, check special solutions lost by division.
+
+\section{Exact equations}
+
+An equation
+\[
+  M(x,y)\,dx+N(x,y)\,dy=0
+\]
+is exact if there is a potential $\Phi$ with
+\[
+  d\Phi=M\,dx+N\,dy.
+\]
+The test is
+\[
+  M_y=N_x
+\]
+on a suitable simply connected region.  Then the solution is
+\[
+  \Phi(x,y)=C.
+\]
+If the equation is not exact, one may look for an integrating factor, often depending only on $x$ or only on $y$.
+
+\section{Reducible higher-order equations}
+
+If a second-order equation does not explicitly contain $y$, set $p=y'$ and reduce the order.  If it does not explicitly contain $x$, set $p=p(y)=y'$, so
+\[
+  y''=\frac{dp}{dx}=\frac{dp}{dy}\frac{dy}{dx}=p\frac{dp}{dy}.
+\]
+These substitutions are not random: they use a missing variable as a symmetry.
+
+\section{Second-order linear equations}
+
+A second-order linear equation has
+\[
+  y''+p(x)y'+q(x)y=f(x).
+\]
+The associated homogeneous equation has a solution space.  If $y_1,y_2$ are independent homogeneous solutions, then
+\[
+  y_h=C_1y_1+C_2y_2.
+\]
+A general nonhomogeneous solution is
+\[
+  y=y_h+y_p.
+\]
+This is the affine-space principle: one particular solution plus the kernel of a linear operator.
+
+The Wronskian
+\[
+  W(y_1,y_2)=y_1y_2'-y_1'y_2
+\]
+measures independence.  If it is nonzero at one point for solutions of a linear homogeneous equation, the two solutions form a fundamental system.
+
+\section{Constant-coefficient homogeneous equations}
+
+For
+\[
+  y''+ay'+by=0,
+\]
+try $y=e^{rx}$.  The characteristic equation is
+\[
+  r^2+ar+b=0.
+\]
+Distinct real roots $r_1,r_2$ give
+\[
+  y=C_1e^{r_1x}+C_2e^{r_2x}.
+\]
+A repeated root $r$ gives
+\[
+  y=(C_1+C_2x)e^{rx}.
+\]
+Complex roots $\alpha\pm i\beta$ give
+\[
+  y=e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x).
+\]
+
+\section{Constant-coefficient nonhomogeneous equations}
+
+For
+\[
+  L[y]=f(x),\qquad L=D^2+aD+b,
+\]
+the method of undetermined coefficients works when $f$ is built from polynomials, exponentials, sines, and cosines.  If the trial function overlaps with a homogeneous solution, multiply by a sufficient power of $x$.
+
+Variation of parameters works more generally.  If $y_1,y_2$ are fundamental solutions, seek
+\[
+  y_p=u_1(x)y_1(x)+u_2(x)y_2(x).
+\]
+The auxiliary condition $u_1'y_1+u_2'y_2=0$ produces a solvable linear system for $u_1',u_2'$.
+
+\section{Initial-value problems}
+
+An initial-value problem specifies
+\[
+  y(x_0)=a,\qquad y'(x_0)=b.
+\]
+For regular linear equations, existence and uniqueness say that these data select exactly one solution.  This is conceptually important: a second-order equation needs two pieces of initial data because its solution space is two-dimensional.
+
+\section{Functional-analytic viewpoint}
+
+Let
+\[
+  L[y]=y''+p(x)y'+q(x)y.
+\]
+Then a differential equation is an operator equation
+\[
+  L[y]=f.
+\]
+The homogeneous solutions form $\ker L$.  A nonhomogeneous solution set, if nonempty, is an affine translate of $\ker L$.  Initial conditions are linear functionals that choose one element from that affine space.
+
+This viewpoint explains why linear differential equations behave like linear algebra in function space.  The derivative operator replaces a matrix; the Wronskian replaces a determinant; fundamental solutions replace a basis; Green functions, when introduced later, are kernels for inverse operators.
+
+\section{Differential equations as operators}
+
+The elementary note classifies equations by solvable forms: separable, homogeneous, linear, Bernoulli, exact, constant-coefficient.  The higher-level unity is that a differential equation is an equation in a function space.  For example,
+\[
+  L[y]=f,\qquad L=\frac{d^2}{dx^2}+p(x)\frac d{dx}+q(x).
+\]
+The homogeneous solutions form the kernel $\ker L$.  A nonhomogeneous solution set, when nonempty, is an affine translate
+\[
+  y_p+\ker L.
+\]
+This is the same algebraic structure as a linear system $Ax=b$.
+
+\section{Green functions}
+
+For a linear operator $L$, a Green function $G(x,\xi)$ is a kernel that represents the inverse problem.  Formally,
+\[
+  L_xG(x,\xi)=\delta(x-\xi),
+\]
+where $\delta$ is the Dirac delta distribution.  Then a solution of
+\[
+  L[y]=f
+\]
+can often be written as
+\[
+  y(x)=\int G(x,\xi)f(\xi)\,d\xi
+\]
+with boundary conditions built into $G$.
+
+This connects elementary particular-solution methods to integral operators.  Undetermined coefficients works for special forcing terms; Green functions describe the response to arbitrary forcing as a superposition of responses to point sources.
+
+\section{Semigroups and evolution}
+
+For first-order evolution equations, one often writes
+\[
+  \frac{du}{dt}=Au.
+\]
+If $A$ were a number, the solution would be $u(t)=e^{tA}u(0)$.  In a Banach or Hilbert space, $A$ may be an unbounded operator, and the solution is described by a semigroup
+\[
+  T(t)=e^{tA},\qquad T(t+s)=T(t)T(s).
+\]
+The heat equation is the model example: the Laplacian generates a smoothing semigroup.  The elementary exponential solution of constant-coefficient ODEs is the finite-dimensional shadow of this theory.
+
+\section{Sturm--Liouville and Fourier expansion}
+
+A second-order operator of the form
+\[
+  L[y]=-(p(x)y')'+q(x)y
+\]
+with suitable boundary conditions is often self-adjoint.  Its eigenvalue problem
+\[
+  L[y]=\lambda w(x)y
+\]
+produces orthogonal eigenfunctions.  Fourier sine and cosine series are special cases of this principle.
+
+Thus the elementary method of solving $y''+\lambda y=0$ under boundary conditions is not an isolated trick.  It is the beginning of spectral theory for differential operators.

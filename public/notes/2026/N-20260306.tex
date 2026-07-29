@@ -1,14 +1,203 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260306}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260306}
-\end{document}
+\notechapter{N-20260306}{Multivariable Limits, Continuity, Differentiability, and the Total Derivative}
+
+\section{What changes from one variable to many}
+
+In one variable, approaching a point means moving from the left or from the right.  In several variables, there are infinitely many ways to approach a point: lines, curves, spirals, parabolas, and irregular paths.  This is why multivariable limits are stricter than they first appear.
+
+\begin{definition}
+For \(f:D\subseteq\mathbb R^n\to\mathbb R^m\), the statement
+\[
+  \lim_{x\to a}f(x)=L
+\]
+means that for every \(\varepsilon>0\) there exists \(\delta>0\) such that
+\[
+  0<\norm{x-a}<\delta,\ x\in D
+  \quad\Longrightarrow\quad
+  \norm{f(x)-L}<\varepsilon.
+\]
+\end{definition}
+
+The definition requires all sufficiently close points, not only points on convenient lines.
+
+\section{How to prove and disprove limits}
+
+There are two basic strategies.
+
+To prove a limit, dominate the expression by a function of \(r=\norm{x-a}\) that tends to zero:
+\[
+  |f(x)-L|\le g(\norm{x-a}),\qquad g(r)\to0.
+\]
+To disprove a limit, find two paths approaching the same point that give different limiting values.
+
+\begin{example}[Two paths are enough to disprove]
+Let
+\[
+  f(x,y)=
+  \begin{cases}
+  \dfrac{xy}{x^2+y^2},&(x,y)\ne(0,0),\\[3pt]
+  0,&(x,y)=(0,0).
+  \end{cases}
+\]
+Along the \(x\)-axis, \(f(x,0)=0\).  Along the line \(y=x\),
+\[
+  f(x,x)=\frac{x^2}{2x^2}=\frac12.
+\]
+Thus the limit at the origin does not exist.
+\end{example}
+
+\begin{example}[Lines are not enough]
+Let
+\[
+  f(x,y)=
+  \begin{cases}
+  \dfrac{x^2y}{x^4+y^2},&(x,y)\ne(0,0),\\[3pt]
+  0,&(x,y)=(0,0).
+  \end{cases}
+\]
+Along every line \(y=mx\), the value tends to \(0\).  But along \(y=x^2\),
+\[
+  f(x,x^2)=\frac{x^4}{2x^4}=\frac12.
+\]
+So checking all straight lines still does not prove a two-variable limit.
+\end{example}
+
+\section{Continuity}
+
+\begin{definition}
+A map \(f:D\to\mathbb R^m\) is \vocab{continuous} at \(a\in D\) if
+\[
+  \lim_{x\to a}f(x)=f(a).
+\]
+It is continuous on \(D\) if it is continuous at every point of \(D\).
+\end{definition}
+
+Continuity is not just a pointwise property; it interacts strongly with compactness and connectedness.  A continuous real-valued function on a compact set attains maxima and minima; a continuous image of a connected set is connected.
+
+\section{Partial and directional derivatives}
+
+For \(f:\mathbb R^2\to\mathbb R\), the partial derivatives at \((x_0,y_0)\) are
+\[
+\begin{aligned}
+  f_x(x_0,y_0)&=\lim_{h\to0}\frac{f(x_0+h,y_0)-f(x_0,y_0)}h,\\
+  f_y(x_0,y_0)&=\lim_{h\to0}\frac{f(x_0,y_0+h)-f(x_0,y_0)}h.
+\end{aligned}
+\]
+For a unit vector \(u\), the directional derivative is
+\[
+  D_uf(a)=\lim_{t\to0}\frac{f(a+tu)-f(a)}t.
+\]
+
+Partial derivatives measure coordinate-direction changes.  Directional derivatives measure changes along chosen lines.  Neither, by itself, guarantees differentiability.
+
+\begin{example}
+For the function
+\[
+  f(x,y)=
+  \begin{cases}
+  \dfrac{xy}{x^2+y^2},&(x,y)\ne(0,0),\\
+  0,&(x,y)=(0,0),
+  \end{cases}
+\]
+both partial derivatives at the origin exist and equal \(0\), because the function is zero on both axes.  But the function is not continuous at the origin, hence cannot be differentiable there.
+\end{example}
+
+\section{Differentiability as linear approximation}
+
+The correct higher-dimensional analogue of differentiability is not "all partial derivatives exist."  It is "there is a good linear approximation."
+
+\begin{definition}
+A map \(F:\mathbb R^n\to\mathbb R^m\) is \vocab{differentiable} at \(a\) if there is a linear map \(L:\mathbb R^n\to\mathbb R^m\) such that
+\[
+  \lim_{h\to0}\frac{\norm{F(a+h)-F(a)-Lh}}{\norm{h}}=0.
+\]
+The linear map \(L\) is the \vocab{total derivative} or \vocab{Fr\'echet derivative}, denoted \(DF(a)\).
+\end{definition}
+
+In coordinates, \(DF(a)\) is the Jacobian matrix
+\[
+  DF(a)=\left(\frac{\partial F_i}{\partial x_j}(a)\right)_{i,j}.
+\]
+For scalar-valued \(f\), the derivative is represented by the row vector \(\nabla f(a)^T\), so
+\[
+  f(a+h)=f(a)+\nabla f(a)\cdot h+o(\norm h).
+\]
+
+\begin{proposition}
+If \(F\) is differentiable at \(a\), then \(F\) is continuous at \(a\).  Moreover, for every direction \(u\), the directional derivative exists and is
+\[
+  D_uF(a)=DF(a)u.
+\]
+\end{proposition}
+
+\begin{proof}
+Differentiability gives
+\[
+  F(a+h)-F(a)=DF(a)h+r(h),
+  \qquad \frac{\norm{r(h)}}{\norm h}\to0.
+\]
+Both \(DF(a)h\) and \(r(h)\) tend to \(0\), so continuity follows.  For the directional derivative, put \(h=tu\) and divide by \(t\).
+\end{proof}
+
+\begin{theorem}[A useful sufficient condition]
+If all first partial derivatives of \(F\) exist in a neighborhood of \(a\) and are continuous at \(a\), then \(F\) is differentiable at \(a\).
+\end{theorem}
+
+The safe hierarchy is therefore
+\[
+  C^1\Longrightarrow \text{differentiable}
+  \Longrightarrow \text{continuous}
+  \Longrightarrow \text{partial derivatives need not exist}.
+\]
+Existence of partial derivatives alone sits outside this chain.
+
+\section{Tangent planes and normal vectors}
+
+For a graph \(z=f(x,y)\), differentiability at \((x_0,y_0)\) gives the tangent plane
+\[
+  z-z_0=f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0),
+\]
+where \(z_0=f(x_0,y_0)\).  This is just the linear approximation written geometrically.
+
+For an implicit surface \(F(x,y,z)=0\), if \(\nabla F(P_0)\ne0\), the tangent plane is
+\[
+  \nabla F(P_0)\cdot(P-P_0)=0.
+\]
+The gradient is normal to the level surface.
+
+\begin{example}
+For the sphere \(F(x,y,z)=x^2+y^2+z^2-1=0\), at \(P_0=(0,0,1)\),
+\[
+  \nabla F(P_0)=(0,0,2).
+\]
+The tangent plane is therefore
+\[
+  (0,0,2)\cdot(x,y,z-1)=0,
+\]
+so \(z=1\).
+\end{example}
+
+\section{Mixed partial derivatives}
+
+For a surface \(z=f(x,y)\), the mixed partial derivative
+\[
+  f_{xy}=\partial_x(\partial_y f)
+\]
+asks how the \(y\)-direction slope changes when one moves in the \(x\)-direction.  Under the usual smoothness hypotheses, the order does not matter.
+
+\begin{theorem}[Clairaut]
+If \(f_{xy}\) and \(f_{yx}\) are continuous in a neighborhood of a point, then
+\[
+  f_{xy}=f_{yx}
+\]
+at that point.
+\end{theorem}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.88\textwidth,height=0.62\textheight,keepaspectratio]{figures/notes-md/N-20260306/N-20260306-fig-02-mixed-partial-derivative-geometric-interpretation.jpg}
+\caption{A mixed partial derivative measures how one coordinate slope changes as we move in the other coordinate direction.}
+\end{figure}
+
+\section{The main lesson}
+
+The word "derivative" in several variables means "linear map that captures first-order change."  Partial derivatives are entries of that map, directional derivatives are evaluations of that map, tangent planes are pictures of that map, and the Jacobian is its matrix representation.

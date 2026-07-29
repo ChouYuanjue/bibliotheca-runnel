@@ -1,14 +1,259 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20230316}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20230316}
-\end{document}
+\notechapter{N-20230316}{Fixed Points, Convergent Iteration, and Compactness Methods}
+
+\section{A fixed point does not by itself explain an iteration}
+
+A fixed point of a map \(T:X\to X\) is a point \(x^*\) satisfying
+\[
+  T(x^*)=x^*.
+\]
+If an iteration
+\[
+  x_{n+1}=T(x_n)
+\]
+converges to \(x\) and \(T\) is continuous, then
+\[
+  T(x)=T\left(\lim_{n\to\infty}x_n\right)
+  =\lim_{n\to\infty}T(x_n)
+  =\lim_{n\to\infty}x_{n+1}
+  =x.
+\]
+Thus every convergent orbit ends at a fixed point.  The converse is false: the existence of a fixed point says nothing by itself about whether an orbit converges to it.
+
+For example,
+\[
+  T(x)=-x
+\]
+has the fixed point \(0\), but an orbit starting from \(x_0\ne0\) alternates between \(x_0\) and \(-x_0\).  The map
+\[
+  T(x)=x
+\]
+has every point fixed, so there is no unique target for iteration.  A useful fixed-point theorem must therefore specify which mechanism supplies existence, uniqueness, and convergence.
+
+\section{Contractions make successive points geometrically closer}
+
+Let \((X,d)\) be a metric space.  A map \(T:X\to X\) is a contraction when there is a constant \(0<c<1\) such that
+\[
+  d(Tx,Ty)\le c\,d(x,y)
+\]
+for all \(x,y\in X\).
+
+Starting from \(x_0\), define
+\[
+  x_{n+1}=T(x_n).
+\]
+The contraction estimate gives
+\[
+  d(x_{n+1},x_n)
+  \le c\,d(x_n,x_{n-1})
+  \le\cdots\le c^n d(x_1,x_0).
+\]
+For \(m>n\), the triangle inequality then yields
+\[
+\begin{aligned}
+  d(x_m,x_n)
+  &\le\sum_{k=n}^{m-1}d(x_{k+1},x_k)\\
+  &\le d(x_1,x_0)\sum_{k=n}^{m-1}c^k\\
+  &\le\frac{c^n}{1-c}d(x_1,x_0).
+\end{aligned}
+\]
+The orbit is therefore Cauchy.  This is the key analytic fact; all later conclusions depend on where that Cauchy sequence is allowed to converge.
+
+\section{Completeness supplies the point that the estimates approach}
+
+A metric space is complete when every Cauchy sequence converges to a point of the space.
+
+\begin{theorem}[Banach contraction principle]
+Let \((X,d)\) be a nonempty complete metric space and let \(T:X\to X\) be a contraction.  Then \(T\) has a unique fixed point \(x^*\).  For every \(x_0\in X\), the iterates \(x_{n+1}=T(x_n)\) converge to \(x^*\).
+\end{theorem}
+
+\begin{proof}
+The previous estimate shows that \((x_n)\) is Cauchy, so completeness gives a limit \(x^*\in X\).  A contraction is Lipschitz and hence continuous, so
+\[
+  T(x^*)
+  =T\left(\lim x_n\right)
+  =\lim T(x_n)
+  =\lim x_{n+1}
+  =x^*.
+\]
+If \(x\) and \(y\) are fixed points, then
+\[
+  d(x,y)=d(Tx,Ty)\le c\,d(x,y).
+\]
+Since \(c<1\), this forces \(d(x,y)=0\), hence \(x=y\).
+\end{proof}
+
+Completeness cannot be omitted.  On the incomplete space \((0,1)\), the map
+\[
+  T(x)=\frac{x}{2}
+\]
+is a contraction with constant \(1/2\) and maps \((0,1)\) into itself.  Its iterates satisfy
+\[
+  x_n=2^{-n}x_0\longrightarrow0,
+\]
+but \(0\notin(0,1)\).  The contraction has no fixed point in the declared space.  The estimates have located a missing boundary point.
+
+\section{The proof gives two practical stopping bounds}
+
+Let \(x^*\) be the fixed point.  Passing \(m\to\infty\) in the Cauchy estimate gives the a priori bound
+\[
+  \boxed{
+  d(x_n,x^*)
+  \le\frac{c^n}{1-c}d(x_1,x_0).}
+\]
+It predicts in advance how many iterations are sufficient.
+
+There is also an a posteriori bound that uses the most recent step.  Since
+\[
+  d(x_{n+k+1},x_{n+k})
+  \le c^k d(x_{n+1},x_n),
+\]
+we obtain
+\[
+\begin{aligned}
+  d(x_n,x^*)
+  &\le\sum_{k=0}^{\infty}d(x_{n+k+1},x_{n+k})\\
+  &\le\frac{1}{1-c}d(x_{n+1},x_n).
+\end{aligned}
+\]
+Thus
+\[
+  \boxed{
+  d(x_n,x^*)
+  \le\frac{d(x_{n+1},x_n)}{1-c}.}
+\]
+This gives a rigorous stopping rule using quantities already computed by the iteration.
+
+\section{The equation \texorpdfstring{$x=\cos x$}{x=cos x} is a complete example}
+
+Consider
+\[
+  T(x)=\cos x
+\]
+on the interval \([0,1]\).  Since
+\[
+  \cos1\le\cos x\le1,
+\]
+the map sends \([0,1]\) into itself.  By the mean value theorem,
+\[
+  |\cos x-\cos y|
+  \le\sin1\,|x-y|
+\]
+for \(x,y\in[0,1]\).  Because \(\sin1<1\), the map is a contraction with
+\[
+  c=\sin1\approx0.84147.
+\]
+The interval is complete, so there is a unique solution
+\[
+  x^*=\cos x^*
+\]
+in \([0,1]\), and every initial value in the interval converges to it.
+
+Starting from \(x_0=1\),
+\[
+  x_1=\cos1,
+  \qquad
+  x_2=\cos(\cos1),
+  \qquad
+  \ldots
+\]
+The limit is
+\[
+  x^*\approx0.7390851332.
+\]
+If two successive iterates differ by less than \((1-c)10^{-6}\), the a posteriori estimate guarantees an absolute error below \(10^{-6}\).  The theorem therefore supplies not only existence and uniqueness but also a certified numerical algorithm.
+
+The choice of fixed-point formulation matters.  The equation \(f(x)=0\) can often be rewritten as \(x=T(x)\) in many ways.  One formulation may be contractive while another diverges.  Fixed-point iteration is therefore partly the art of choosing a map with a small Lipschitz constant on an invariant complete set.
+
+\section{Picard iteration moves the theorem to a function space}
+
+Consider the initial-value problem
+\[
+  y'(t)=f(t,y(t)),
+  \qquad
+  y(t_0)=y_0.
+\]
+Integrating gives the equivalent equation
+\[
+  y(t)=y_0+\int_{t_0}^{t}f(s,y(s))\,ds.
+\]
+On the Banach space \(C([t_0-h,t_0+h])\) with the supremum norm, define
+\[
+  (Ty)(t)
+  =y_0+\int_{t_0}^{t}f(s,y(s))\,ds.
+\]
+Assume that \(f\) is Lipschitz in its second variable:
+\[
+  |f(t,u)-f(t,v)|\le L|u-v|.
+\]
+Then
+\[
+\begin{aligned}
+  \|Ty-Tz\|_\infty
+  &\le\sup_t\int_{t_0}^{t}
+    |f(s,y(s))-f(s,z(s))|\,ds\\
+  &\le Lh\,\|y-z\|_\infty.
+\end{aligned}
+\]
+If \(h<1/L\), the operator is a contraction.  One also chooses a closed ball of functions on which \(T\) maps the ball into itself; this follows from a bound on \(|f|\) on a suitable rectangle around \((t_0,y_0)\).
+
+Banach's theorem now gives a unique fixed point of \(T\), hence a unique local solution of the differential equation.  The iterates
+\[
+  y_{n+1}(t)
+  =y_0+\int_{t_0}^{t}f(s,y_n(s))\,ds
+\]
+are the Picard approximations.  The same geometric contraction estimate that solved \(x=\cos x\) now proves existence and uniqueness in an infinite-dimensional space.
+
+\section{Topological existence does not provide Banach's algorithm}
+
+Banach's theorem is not the only route to a fixed point.  Brouwer's theorem says that every continuous map from a nonempty compact convex subset of \(\mathbb R^n\) to itself has a fixed point.  No metric contraction is required.
+
+The difference in conclusions is substantial.  The identity map on a closed ball satisfies Brouwer's hypotheses and has every point fixed.  A rotation of a disk fixes its center but preserves distances rather than shrinking them.  Brouwer gives existence, but not uniqueness, a convergence rate, or even a canonical iteration that approaches a fixed point.
+
+This distinction matters in applications.  If the goal is a certified numerical method, the Banach hypotheses are valuable precisely because they are stronger.  If the map is continuous on a compact convex region but cannot be made contractive, Brouwer may still prove that a solution exists, though a separate method is needed to locate it.
+
+\section{Schauder replaces finite-dimensional compactness by a compact map}
+
+Closed bounded sets in infinite-dimensional Banach spaces are usually not compact, so Brouwer cannot be applied directly.  Schauder's fixed-point theorem uses compactness of the operator instead.
+
+\begin{theorem}[Schauder fixed-point theorem]
+Let \(C\) be a nonempty closed convex subset of a Banach space.  If \(T:C\to C\) is continuous and \(T(C)\) is relatively compact, then \(T\) has a fixed point.
+\end{theorem}
+
+A typical source of compactness is an integral operator.  On \(C([0,1])\), let
+\[
+  (Tu)(x)=g(x)+\int_0^1K(x,s)F(s,u(s))\,ds,
+\]
+where \(K\), \(F\), and \(g\) are continuous and a closed ball \(C\) is chosen so that \(T(C)\subseteq C\).  Uniform bounds on \(Tu\) and uniform continuity of \(K\) give equicontinuity of \(T(C)\).  Arzelà--Ascoli then shows that \(T(C)\) is relatively compact.
+
+Schauder therefore yields a solution of the integral equation even when no Lipschitz estimate makes \(T\) contractive.  What is lost is uniqueness and convergence of the naive iteration.  Several fixed points may exist.
+
+\section{Krasnoselskii separates the shrinking and compact parts}
+
+Many nonlinear equations produce an operator that is neither contractive nor compact as a whole but decomposes as
+\[
+  T=A+B.
+\]
+Krasnoselskii's theorem applies on a closed bounded convex set \(C\) when \(A\) is a contraction, \(B\) is continuous and compact, and
+\[
+  Ax+By\in C
+\]
+for all \(x,y\in C\) under the relevant version of the theorem.
+
+The decomposition reflects two different mechanisms.  The map \(A\) controls metric instability; the map \(B\) supplies compactness.  One way to see the proof strategy is to fix \(y\in C\) and solve
+\[
+  x=Ax+By.
+\]
+For fixed \(y\), the right-hand side is contractive in \(x\), so Banach gives a unique solution \(x=R(y)\).  Compactness of \(B\) is then used to show that the induced map \(R\) has a fixed point by a Schauder-type argument.
+
+This theorem is not merely a longer list entry after Banach and Schauder.  It is designed for equations whose linear or dissipative part shrinks distances while an integral or smoothing term is compact.
+
+When an equation has been rewritten as \(x=T(x)\), the next step is to identify which of these mechanisms is actually available.
+
+If one can prove
+\[
+  d(Tx,Ty)\le c\,d(x,y),
+  \qquad c<1,
+\]
+then Banach gives existence, uniqueness, global convergence of iteration, and explicit error bounds.  If only continuity and finite-dimensional compact convex invariance are available, Brouwer gives existence.  In an infinite-dimensional problem, relative compactness of the image points toward Schauder.  A natural decomposition into a contraction plus a compact map points toward Krasnoselskii.
+
+The hypotheses are therefore not technical decorations around the same conclusion.  They encode different reasons a fixed point must exist, and those reasons determine what else one is entitled to claim about uniqueness, approximation, and stability.

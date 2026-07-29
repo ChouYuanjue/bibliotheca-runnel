@@ -1,14 +1,685 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221031}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221031}
-\end{document}
+\notechapter{N-20221031}{Congruences and Integer Linear Algebra: From Residue Classes to Smith Normal Form}
+
+\section{A remainder is a coordinate on a quotient}
+
+The division algorithm assigns to every integer \(a\) a unique remainder
+\[
+  r\in\{0,1,\ldots,n-1\}
+\]
+when divided by a positive integer \(n\).  Two integers have the same remainder exactly when their difference is divisible by \(n\):
+\[
+  a\equiv b\pmod n
+  \quad\Longleftrightarrow\quad
+  n\mid(a-b).
+\]
+
+Congruence is therefore not approximate equality.  It is equality in the quotient ring
+\[
+  \mathbb Z/n\mathbb Z.
+\]
+The remainder is a chosen representative, or normal form, for the residue class.
+
+Addition and multiplication descend to the quotient because replacing an integer by a congruent one does not change the resulting class:
+\[
+  a\equiv a',
+  \qquad
+  b\equiv b'\pmod n
+\]
+implies
+\[
+  a+b\equiv a'+b',
+  \qquad
+  ab\equiv a'b'\pmod n.
+\]
+The quotient remembers arithmetic while forgetting multiples of \(n\).
+
+Bézout identities and modular inverses are the starting tools, but the main questions are now different: which residue classes can a linear map reach, how do several moduli fit together, and what replaces row reduction when equations must be solved over the integers rather than over a field?
+
+\section{A linear congruence is an image problem}
+
+Consider
+\[
+  ax\equiv b\pmod n.
+\]
+Multiplication by \(a\) defines a group homomorphism
+\[
+  m_a:\mathbb Z/n\mathbb Z
+  \longrightarrow
+  \mathbb Z/n\mathbb Z,
+  \qquad
+  [x]\longmapsto[ax].
+\]
+The congruence asks whether \([b]\) lies in the image of this map.
+
+Let
+\[
+  d=\gcd(a,n).
+\]
+Every value \(ax\) is divisible by \(d\) modulo \(n\), so solvability requires
+\[
+  d\mid b.
+\]
+Conversely, suppose \(b=db'\), and write
+\[
+  a=da',
+  \qquad
+  n=dn'.
+\]
+Then \(\gcd(a',n')=1\), so \(a'\) has an inverse modulo \(n'\).  The reduced congruence
+\[
+  a'x\equiv b'\pmod{n'}
+\]
+has a solution, and hence so does the original one.
+
+Thus
+\[
+  \boxed{
+  ax\equiv b\pmod n
+  \text{ is solvable }
+  \Longleftrightarrow
+  \gcd(a,n)\mid b.}
+\]
+
+The kernel explains the number of solutions.  We have
+\[
+  ax\equiv0\pmod n
+\]
+exactly when
+\[
+  n'\mid x.
+\]
+Modulo \(n=dn'\), this gives the \(d\) classes
+\[
+  0,n',2n',\ldots,(d-1)n'.
+\]
+Therefore
+\[
+  |\ker m_a|=d.
+\]
+By the finite-group version of rank--nullity,
+\[
+  |\operatorname{im}m_a|=\frac nd.
+\]
+Whenever \([b]\) lies in the image, its fibre is a coset of the kernel and contains exactly \(d\) solutions modulo \(n\).
+
+This is the structural form of the elementary theorem: divisibility decides existence, and the kernel decides multiplicity.
+
+\section{A complete congruence calculation}
+
+Solve
+\[
+  14x\equiv8\pmod{30}.
+\]
+Since
+\[
+  \gcd(14,30)=2
+\]
+and \(2\mid8\), solutions exist.  Divide the entire congruence and modulus by \(2\):
+\[
+  7x\equiv4\pmod{15}.
+\]
+The inverse of \(7\) modulo \(15\) is \(13\), because
+\[
+  7\cdot13=91\equiv1\pmod{15}.
+\]
+Therefore
+\[
+  x\equiv13\cdot4
+  \equiv52
+  \equiv7\pmod{15}.
+\]
+
+This describes one class modulo \(15\), but the original modulus was \(30\).  Lifting back gives
+\[
+  x\equiv7
+  \qquad\text{or}\qquad
+  x\equiv22\pmod{30}.
+\]
+There are exactly two solutions, as predicted by
+\[
+  d=\gcd(14,30)=2.
+\]
+A direct check gives
+\[
+  14\cdot7=98\equiv8\pmod{30},
+\]
+\[
+  14\cdot22=308\equiv8\pmod{30}.
+\]
+
+The calculation illustrates the general procedure:
+
+\begin{enumerate}[(i)]
+  \item compute \(d=\gcd(a,n)\);
+  \item test whether \(d\mid b\);
+  \item divide by \(d\), producing a coefficient invertible modulo \(n/d\);
+  \item solve the reduced congruence;
+  \item lift its single class modulo \(n/d\) to \(d\) classes modulo \(n\).
+\end{enumerate}
+
+\section{The Chinese remainder theorem glues local coordinates}
+
+Suppose \(m,n\) are coprime.  The map
+\[
+  \Phi:\mathbb Z/mn\mathbb Z
+  \longrightarrow
+  \mathbb Z/m\mathbb Z
+  \times
+  \mathbb Z/n\mathbb Z,
+\]
+\[
+  [x]_{mn}\longmapsto([x]_m,[x]_n)
+\]
+is a ring homomorphism.
+
+Its kernel consists of classes divisible by both \(m\) and \(n\).  Coprimality implies that such an integer is divisible by \(mn\), so the kernel is zero.  Both rings contain \(mn\) elements, hence the injective map is also surjective.
+
+Therefore
+\[
+  \boxed{
+  \mathbb Z/mn\mathbb Z
+  \cong
+  \mathbb Z/m\mathbb Z
+  \times
+  \mathbb Z/n\mathbb Z.}
+\]
+
+This is the Chinese remainder theorem.  It does not merely promise a solution to simultaneous congruences; it says that arithmetic modulo a product of coprime moduli is equivalent to independent arithmetic in each factor.
+
+The isomorphism can be made constructive.  Choose Bézout coefficients
+\[
+  um+vn=1.
+\]
+Then
+\[
+  e_m=vn
+\]
+satisfies
+\[
+  e_m\equiv1\pmod m,
+  \qquad
+  e_m\equiv0\pmod n,
+\]
+while
+\[
+  e_n=um
+\]
+satisfies the opposite conditions.  The solution to
+\[
+  x\equiv a\pmod m,
+  \qquad
+  x\equiv b\pmod n
+\]
+is
+\[
+  x\equiv ae_m+be_n\pmod{mn}.
+\]
+The elements \(e_m,e_n\) are orthogonal idempotents:
+\[
+  e_m^2=e_m,
+  \qquad
+  e_n^2=e_n,
+  \qquad
+  e_me_n=0,
+  \qquad
+  e_m+e_n=1
+\]
+in \(\mathbb Z/mn\mathbb Z\).  They project onto the two ring factors.
+
+\section{A three-modulus reconstruction}
+
+Solve
+\[
+  x\equiv2\pmod3,
+  \qquad
+  x\equiv3\pmod5,
+  \qquad
+  x\equiv2\pmod7.
+\]
+The moduli are pairwise coprime, so there is a unique solution modulo
+\[
+  3\cdot5\cdot7=105.
+\]
+
+Set
+\[
+  N_1=35,
+  \qquad
+  N_2=21,
+  \qquad
+  N_3=15.
+\]
+We need inverses of these partial products in the corresponding moduli:
+\[
+  35\equiv2\pmod3,
+  \qquad
+  2^{-1}\equiv2\pmod3,
+\]
+\[
+  21\equiv1\pmod5,
+  \qquad
+  1^{-1}\equiv1\pmod5,
+\]
+\[
+  15\equiv1\pmod7,
+  \qquad
+  1^{-1}\equiv1\pmod7.
+\]
+Hence
+\[
+  x
+  \equiv
+  2\cdot35\cdot2
+  +3\cdot21\cdot1
+  +2\cdot15\cdot1
+  \pmod{105}.
+\]
+The right side is
+\[
+  140+63+30=233,
+\]
+so
+\[
+  \boxed{x\equiv23\pmod{105}.}
+\]
+Indeed,
+\[
+  23\equiv2\pmod3,
+  \qquad
+  23\equiv3\pmod5,
+  \qquad
+  23\equiv2\pmod7.
+\]
+
+The reconstruction is a weighted sum of local answers.  Each weight equals \(1\) in one component and \(0\) in all the others.
+
+\section{When moduli are not coprime}
+
+Consider
+\[
+  x\equiv a\pmod m,
+  \qquad
+  x\equiv b\pmod n.
+\]
+If a solution exists, then
+\[
+  a-b
+  =(a-x)+(x-b)
+\]
+is divisible by
+\[
+  d=\gcd(m,n).
+\]
+Thus a necessary condition is
+\[
+  a\equiv b\pmod d.
+\]
+It is also sufficient.  Write
+\[
+  a-b=dc,
+  \qquad
+  m=dm',
+  \qquad
+  n=dn'
+\]
+with \(\gcd(m',n')=1\).  Searching for \(x=a+mt\), the second congruence becomes
+\[
+  m't\equiv-c\pmod{n'},
+\]
+which is solvable because \(m'\) is invertible modulo \(n'\).
+
+Therefore
+\[
+  \boxed{
+  \begin{aligned}
+  x&\equiv a\pmod m,\\
+  x&\equiv b\pmod n
+  \end{aligned}
+  \text{ is solvable }
+  \Longleftrightarrow
+  a\equiv b\pmod{\gcd(m,n)}.}
+\]
+When solvable, the solution is unique modulo
+\[
+  \operatorname{lcm}(m,n).
+\]
+
+The coprime CRT is the clean product decomposition.  The general version is a compatibility-and-gluing theorem: local data must agree on the overlap measured by the gcd.
+
+\section{Integer row reduction needs a stricter notion of invertibility}
+
+Over \(\mathbb R\), Gaussian elimination allows multiplication of a row by any nonzero real number.  Over \(\mathbb Z\), this can destroy the integer lattice.  Dividing a row by \(2\), for example, is invertible over \(\mathbb Q\) but not as a map
+\[
+  \mathbb Z^m\longrightarrow\mathbb Z^m.
+\]
+
+The correct coordinate changes are unimodular matrices: integer matrices \(U\) with
+\[
+  \det U=\pm1.
+\]
+Their inverses also have integer entries.  The elementary unimodular operations are:
+
+\begin{enumerate}[(i)]
+  \item exchange two rows or two columns;
+  \item add an integer multiple of one row or column to another;
+  \item multiply a row or column by \(-1\).
+\end{enumerate}
+
+These operations change bases of the domain or codomain lattice without changing the underlying homomorphism up to integer coordinates.
+
+This is the essential difference between linear algebra over a field and linear algebra over \(\mathbb Z\).  Rank records the dimension after rational or real scalars are allowed, but it forgets divisibility information inside the lattice.
+
+For example, the maps
+\[
+  [2]:\mathbb Z\to\mathbb Z
+  \qquad\text{and}\qquad
+  [3]:\mathbb Z\to\mathbb Z
+\]
+both have rank \(1\), yet their images have indices \(2\) and \(3\), and their cokernels are
+\[
+  \mathbb Z/2\mathbb Z
+  \qquad\text{and}\qquad
+  \mathbb Z/3\mathbb Z.
+\]
+An integer normal form must remember these indices.
+
+\section{Smith normal form diagonalizes divisibility}
+
+\begin{theorem}[Smith normal form]
+For every integer matrix \(A\in\mathbb Z^{m\times n}\), there exist unimodular matrices
+\[
+  P\in GL_m(\mathbb Z),
+  \qquad
+  Q\in GL_n(\mathbb Z)
+\]
+such that
+\[
+  PAQ
+  =
+  \operatorname{diag}(d_1,\ldots,d_r,0,\ldots,0),
+\]
+where
+\[
+  d_i>0,
+  \qquad
+  d_1\mid d_2\mid\cdots\mid d_r.
+\]
+The nonzero numbers \(d_i\) are uniquely determined by \(A\).
+\end{theorem}
+
+The algorithm repeatedly uses gcd and Bézout operations on rows and columns.  A nonzero entry is moved to the upper-left corner.  Euclidean combinations reduce it until it divides every entry in its row and column.  One then clears that row and column and continues on the remaining submatrix.  If the divisibility chain fails, adjacent diagonal entries are adjusted by another Bézout step.
+
+Thus Smith reduction is the matrix-sized descendant of the Euclidean algorithm.  A single gcd becomes a sequence of invariant factors.
+
+The determinantal divisors provide an intrinsic description.  Let \(\Delta_k\) be the positive gcd of all \(k\times k\) minors, with \(\Delta_0=1\).  Then
+\[
+  d_k=\frac{\Delta_k}{\Delta_{k-1}}.
+\]
+In particular,
+\[
+  d_1=\gcd\{a_{ij}\},
+\]
+and for a full-rank square matrix,
+\[
+  d_1d_2\cdots d_n=|\det A|.
+\]
+The invariant factors are therefore encoded in the gcds of minors.
+
+\section{A complete Smith reduction}
+
+Take
+\[
+  A=
+  \begin{bmatrix}
+    2&4\\
+    6&8
+  \end{bmatrix}.
+\]
+Apply the integer row operation
+\[
+  R_2\leftarrow R_2-3R_1:
+\]
+\[
+  \begin{bmatrix}
+    2&4\\
+    6&8
+  \end{bmatrix}
+  \longrightarrow
+  \begin{bmatrix}
+    2&4\\
+    0&-4
+  \end{bmatrix}.
+\]
+Then
+\[
+  C_2\leftarrow C_2-2C_1
+\]
+gives
+\[
+  \begin{bmatrix}
+    2&0\\
+    0&-4
+  \end{bmatrix}.
+\]
+Finally change the sign of the second row:
+\[
+  \boxed{
+  PAQ=
+  \begin{bmatrix}
+    2&0\\
+    0&4
+  \end{bmatrix}.}
+\]
+One choice is
+\[
+  P=
+  \begin{bmatrix}
+    1&0\\
+    3&-1
+  \end{bmatrix},
+  \qquad
+  Q=
+  \begin{bmatrix}
+    1&-2\\
+    0&1
+  \end{bmatrix}.
+\]
+Both determinants are \(-1\) or \(1\), so both matrices are unimodular.
+
+The invariant factors are \(2,4\).  They also follow from minors:
+\[
+  \Delta_1=\gcd(2,4,6,8)=2,
+\]
+\[
+  \Delta_2=|\det A|=8,
+\]
+so
+\[
+  d_1=2,
+  \qquad
+  d_2=\frac82=4.
+\]
+
+Over \(\mathbb Q\), the matrix is simply invertible.  Over \(\mathbb Z\), the diagonal entries reveal exactly how its image sits inside \(\mathbb Z^2\).
+
+\section{Integer systems reduce to divisibility tests}
+
+Consider
+\[
+  Ax=b,
+  \qquad
+  A\in\mathbb Z^{m\times n},
+  \quad
+  x\in\mathbb Z^n.
+\]
+If
+\[
+  PAQ=D
+\]
+is Smith normal form, set
+\[
+  y=Q^{-1}x,
+  \qquad
+  c=Pb.
+\]
+Since \(P,Q\) are unimodular, \(x\) is integral exactly when \(y\) is integral.  The system becomes
+\[
+  Dy=c.
+\]
+For
+\[
+  D=\operatorname{diag}(d_1,\ldots,d_r,0,\ldots,0),
+\]
+integer solvability is equivalent to
+\[
+  d_i\mid c_i
+  \qquad(1\le i\le r)
+\]
+and
+\[
+  c_i=0
+  \qquad(i>r).
+\]
+
+The normal form separates the problem into independent one-dimensional divisibility conditions.  This is the matrix analogue of the criterion
+\[
+  ax\equiv b\pmod n
+  \quad\Longleftrightarrow\quad
+  \gcd(a,n)\mid b.
+\]
+
+For the example matrix, solving
+\[
+  Ax=b
+\]
+reduces after multiplication by \(P\) to
+\[
+  2y_1=c_1,
+  \qquad
+  4y_2=c_2.
+\]
+The right-hand side must therefore land in the sublattice
+\[
+  2\mathbb Z\oplus4\mathbb Z.
+\]
+Smith form does not merely decide solvability; it displays the obstruction.
+
+\section{The cokernel records what the map cannot reach}
+
+For an integer matrix
+\[
+  A:\mathbb Z^n\longrightarrow\mathbb Z^m,
+\]
+define the cokernel
+\[
+  \operatorname{coker}A
+  =\mathbb Z^m/A\mathbb Z^n.
+\]
+Two target vectors represent the same cokernel class when their difference lies in the image of \(A\).  The group measures the failure of surjectivity over the integer lattice.
+
+Smith normal form gives
+\[
+  \operatorname{coker}A
+  \cong
+  \mathbb Z/d_1\mathbb Z
+  \oplus\cdots\oplus
+  \mathbb Z/d_r\mathbb Z
+  \oplus
+  \mathbb Z^{m-r}.
+\]
+For
+\[
+  A=
+  \begin{bmatrix}
+    2&4\\
+    6&8
+  \end{bmatrix},
+\]
+we obtain
+\[
+  \operatorname{coker}A
+  \cong
+  \mathbb Z/2\mathbb Z
+  \oplus
+  \mathbb Z/4\mathbb Z.
+\]
+Its order is
+\[
+  2\cdot4=8=|\det A|.
+\]
+Geometrically, the image lattice has index \(8\) in \(\mathbb Z^2\).  A fundamental parallelogram for the image has area \(8\), matching the determinant.
+
+This is the finite-index lattice meaning of the determinant.  Over \(\mathbb R\), \(|\det A|\) is a volume-scaling factor.  Over \(\mathbb Z\), for a nonsingular integer matrix, it is also the number of residue classes left after quotienting by the image.
+
+\section{Finite abelian groups inherit the same normal form}
+
+Every finitely generated abelian group has a presentation
+\[
+  G\cong\mathbb Z^m/A\mathbb Z^n
+\]
+for some integer matrix \(A\).  Smith normal form yields
+\[
+  G
+  \cong
+  \mathbb Z^{m-r}
+  \oplus
+  \mathbb Z/d_1\mathbb Z
+  \oplus\cdots\oplus
+  \mathbb Z/d_r\mathbb Z,
+\]
+with
+\[
+  d_1\mid d_2\mid\cdots\mid d_r.
+\]
+This is the invariant-factor form of the classification theorem for finitely generated abelian groups.
+
+The CRT reappears inside this classification.  If \(a,b\) are coprime, then
+\[
+  \mathbb Z/ab\mathbb Z
+  \cong
+  \mathbb Z/a\mathbb Z
+  \oplus
+  \mathbb Z/b\mathbb Z.
+\]
+Factoring each invariant factor into prime powers gives the elementary-divisor form of the same group.
+
+Thus CRT and Smith normal form are not separate tricks.  Both decompose arithmetic objects into independent pieces, one by splitting coprime moduli and the other by diagonalizing an integer homomorphism.
+
+\section{Congruence systems are Smith problems in finite disguise}
+
+A system
+\[
+  Ax\equiv b\pmod n
+\]
+can be rewritten as an integer equation
+\[
+  Ax-ny=b
+\]
+with an auxiliary integer vector \(y\).  Equivalently,
+\[
+  \begin{bmatrix}A&-nI\end{bmatrix}
+  \begin{bmatrix}x\\y\end{bmatrix}
+  =b.
+\]
+Smith normal form of this enlarged integer matrix gives complete solvability conditions and parametrizes all solutions.
+
+Alternatively, reduce \(A\) by unimodular row and column operations and interpret those operations modulo \(n\).  The system becomes a collection of scalar congruences
+\[
+  d_i z_i\equiv c_i\pmod n.
+\]
+Each one is decided by
+\[
+  \gcd(d_i,n)\mid c_i.
+\]
+
+The one-variable congruence theorem is therefore not an isolated result.  It is the first diagonal component of a general normal-form theory for homomorphisms between finitely generated modules.
+
+Over a field, rank and reduced row echelon form answer most elementary questions about a linear map.  Over \(\mathbb Z\), division is restricted, so the lattice retains divisibility information that rank cannot see.  The scalar congruence theorem, CRT, unimodular reduction, Smith normal form, cokernels, and the classification of finitely generated abelian groups are therefore successive stages of one problem: deciding what an integer homomorphism can reach and what discrete obstruction remains.  The passage from
+\[
+  ax\equiv b\pmod n
+\]
+to
+\[
+  d_i z_i\equiv c_i\pmod n
+\]
+is the matrix form of the same image-and-kernel calculation, while the invariant factors record the obstruction permanently in the quotient group.

@@ -1,14 +1,486 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221030}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221030}
-\end{document}
+\notechapter{N-20221030}{Integer Arithmetic: Euclidean Descent, Bézout Identities, and the Euler Function}
+
+\section{Descent is the algorithmic form of well-ordering}
+
+Many arguments about integers begin with a simple impossibility: a strictly decreasing sequence of nonnegative integers cannot continue forever.  This is the computational face of the well-ordering principle.
+
+\begin{theorem}[Well-ordering principle]
+Every nonempty subset of \(\mathbb Z_{>0}\) has a least element.
+\end{theorem}
+
+Induction, minimal-counterexample arguments, and the Euclidean algorithm all use the same structure.  One assumes that some positive integer with a desired property exists, chooses the least such integer, and then produces a smaller one unless the process has already reached its terminal case.
+
+The division algorithm is the first important example.
+
+\begin{theorem}[Division algorithm]
+Let \(a,b\in\mathbb Z\) with \(b\ne0\).  There exist unique integers \(q,r\) such that
+\[
+  a=qb+r,
+  \qquad
+  0\le r<|b|.
+\]
+\end{theorem}
+
+To see existence, consider all nonnegative integers of the form
+\[
+  a-k|b|,
+  \qquad k\in\mathbb Z.
+\]
+This set is nonempty: for sufficiently negative \(k\), the number is positive.  Let \(r\) be its least element, so
+\[
+  r=a-q|b|
+\]
+for some integer \(q\).  If \(r\ge |b|\), then
+\[
+  r-|b|=a-(q+1)|b|
+\]
+would be a smaller nonnegative element of the same set, a contradiction.  Hence \(0\le r<|b|\).  A sign adjustment replaces \(|b|\) by \(b\).
+
+For uniqueness, suppose
+\[
+  a=qb+r=q'b+r'
+\]
+with both remainders in \([0,|b|)\).  Then
+\[
+  (q-q')b=r'-r.
+\]
+The right side has absolute value less than \(|b|\), while a nonzero multiple of \(b\) has absolute value at least \(|b|\).  Therefore both sides vanish.
+
+The theorem is more than a formal version of long division.  It supplies a remainder whose size is strictly smaller than the divisor, and that strict decrease is what makes Euclidean descent possible.
+
+\section{The gcd is preserved when a remainder replaces a number}
+
+For integers \(a,b\), not both zero, the greatest common divisor \(d=\gcd(a,b)\) is the unique positive integer satisfying
+\[
+  d\mid a,
+  \qquad
+  d\mid b,
+\]
+and every common divisor of \(a,b\) divides \(d\).
+
+If
+\[
+  a=qb+r,
+\]
+then
+\[
+  \gcd(a,b)=\gcd(b,r).
+\]
+Indeed, a number divides both \(a\) and \(b\) exactly when it divides both \(b\) and
+\[
+  r=a-qb.
+\]
+The set of common divisors has not changed.
+
+This invariant turns division into an algorithm.  Starting with \(a,b\), repeatedly replace the larger pair by the divisor and remainder:
+\[
+\begin{aligned}
+  a&=q_0b+r_0,\\
+  b&=q_1r_0+r_1,\\
+  r_0&=q_2r_1+r_2,\\
+  &\ \vdots
+\end{aligned}
+\]
+with
+\[
+  b>r_0>r_1>r_2>\cdots\ge0.
+\]
+Well-ordering forces the remainders to reach zero.  The last nonzero remainder is the gcd because the common-divisor invariant survives every step.
+
+The important object is not the displayed chain of divisions but the transformation
+\[
+  (a,b)\longmapsto(b,a-qb),
+\]
+which preserves the ideal of integer linear combinations as well as the gcd.
+
+\section{A complete Euclidean calculation}
+
+Take
+\[
+  a=57970,
+  \qquad
+  b=10353.
+\]
+Repeated division gives
+\[
+\begin{aligned}
+  57970&=5\cdot10353+6205,\\
+  10353&=1\cdot6205+4148,\\
+  6205&=1\cdot4148+2057,\\
+  4148&=2\cdot2057+34,\\
+  2057&=60\cdot34+17,\\
+  34&=2\cdot17.
+\end{aligned}
+\]
+Hence
+\[
+  \gcd(57970,10353)=17.
+\]
+
+The same computation contains more information than the gcd.  Reading the equations backward expresses \(17\) as an integer linear combination of the original numbers:
+\[
+  17=2057-60\cdot34.
+\]
+Since
+\[
+  34=4148-2\cdot2057,
+\]
+we obtain
+\[
+  17=121\cdot2057-60\cdot4148.
+\]
+Now use
+\[
+  2057=6205-4148
+\]
+to get
+\[
+  17=121\cdot6205-181\cdot4148.
+\]
+Then
+\[
+  4148=10353-6205
+\]
+gives
+\[
+  17=302\cdot6205-181\cdot10353.
+\]
+Finally,
+\[
+  6205=57970-5\cdot10353,
+\]
+so
+\[
+  \boxed{
+  17=302\cdot57970-1691\cdot10353.}
+\]
+
+This backward pass is the extended Euclidean algorithm.  It computes coefficients, not merely a divisor.
+
+\section{Bézout's identity is an ideal statement}
+
+For integers \(a,b\), consider the set
+\[
+  (a,b)
+  =\{ax+by:x,y\in\mathbb Z\}.
+\]
+This is an ideal of \(\mathbb Z\): it is closed under addition and under multiplication by arbitrary integers.
+
+Let \(d\) be the least positive element of this ideal.  Dividing \(a\) by \(d\), write
+\[
+  a=qd+r,
+  \qquad0\le r<d.
+\]
+Because both \(a\) and \(d\) lie in the ideal, so does
+\[
+  r=a-qd.
+\]
+Minimality of \(d\) forces \(r=0\), so \(d\mid a\).  Similarly, \(d\mid b\).  Conversely, every common divisor of \(a,b\) divides every linear combination \(ax+by\), hence divides \(d\).  Therefore
+\[
+  d=\gcd(a,b).
+\]
+
+We have proved Bézout's identity:
+\[
+  \boxed{
+  \gcd(a,b)=ax+by
+  }
+\]
+for suitable integers \(x,y\).
+
+In ideal notation,
+\[
+  (a)+(b)=(\gcd(a,b)).
+\]
+The gcd is the positive generator of the sum of the two principal ideals.
+
+This viewpoint explains why the extended Euclidean algorithm is so useful: it is a constructive proof that a particular ideal is principal.  More generally, a Euclidean domain is an integral domain equipped with a size function that permits division with smaller remainder.  Euclidean descent then produces gcds and Bézout identities.  The rings
+\[
+  \mathbb Z
+  \qquad\text{and}\qquad
+  k[x]
+\]
+for a field \(k\) are the standard examples.
+
+Every Euclidean domain is a principal ideal domain, and every principal ideal domain is a unique factorization domain.  The converses do not all hold.  The elementary integer algorithm is therefore the visible beginning of a hierarchy of algebraic properties.
+
+\section{Coprimality is exactly invertibility modulo \texorpdfstring{$n$}{n}}
+
+Suppose
+\[
+  \gcd(a,n)=1.
+\]
+Bézout gives integers \(x,y\) such that
+\[
+  ax+ny=1.
+\]
+Reducing modulo \(n\),
+\[
+  ax\equiv1\pmod n.
+\]
+Thus \(x\) is a multiplicative inverse of \(a\) modulo \(n\).
+
+Conversely, if \(a\) has an inverse modulo \(n\), then
+\[
+  ax\equiv1\pmod n
+\]
+for some \(x\), so
+\[
+  ax+ny=1
+\]
+for an integer \(y\).  Any common divisor of \(a,n\) must divide \(1\), and therefore
+\[
+  \gcd(a,n)=1.
+\]
+
+Hence
+\[
+  [a]\in(\mathbb Z/n\mathbb Z)^\times
+  \quad\Longleftrightarrow\quad
+  \gcd(a,n)=1.
+\]
+The extended Euclidean algorithm is the computational heart of inversion in the quotient ring.
+
+For example, the identity
+\[
+  17=302\cdot57970-1691\cdot10353
+\]
+can be divided by \(17\) after first reducing the numbers:
+\[
+  1=302\cdot3410-1691\cdot609.
+\]
+Thus
+\[
+  302\cdot3410\equiv1\pmod{609},
+\]
+so \(302\) is the inverse of \(3410\) modulo \(609\), or equivalently the inverse of its residue class \(365\).
+
+Modular inverses reveal the connection between Bézout identities and unit groups.  Linear congruences and simultaneous congruence systems require a separate treatment through residue-class maps and integer normal forms.
+
+\section{Prime divisibility makes factorization rigid}
+
+A prime \(p\) is an integer greater than \(1\) whose only positive divisors are \(1\) and \(p\).  The key lemma is not merely the definition but Euclid's divisibility property.
+
+\begin{proposition}[Euclid's lemma]
+If \(p\) is prime and
+\[
+  p\mid ab,
+\]
+then
+\[
+  p\mid a
+  \qquad\text{or}\qquad
+  p\mid b.
+\]
+\end{proposition}
+
+If \(p\nmid a\), then \(\gcd(p,a)=1\).  Bézout gives
+\[
+  px+ay=1.
+\]
+Multiplying by \(b\),
+\[
+  pbx+aby=b.
+\]
+Both terms on the left are divisible by \(p\), so \(p\mid b\).
+
+This short proof shows how uniqueness of prime factorization grows from Bézout's identity.
+
+\begin{theorem}[Fundamental theorem of arithmetic]
+Every integer \(n>1\) can be written as a product of primes, and the product is unique up to reordering.
+\end{theorem}
+
+Existence follows by minimal counterexample.  If the least integer without a prime factorization were composite, it would split into two smaller positive integers, both of which factor by minimality.
+
+For uniqueness, suppose
+\[
+  p_1p_2\cdots p_r=q_1q_2\cdots q_s.
+\]
+Then \(p_1\) divides the product on the right.  Euclid's lemma says it divides one \(q_j\), and since both are prime they are equal.  Cancel this factor and continue.
+
+Writing
+\[
+  n=\prod_p p^{v_p(n)},
+\]
+the exponent \(v_p(n)\) is the \(p\)-adic valuation of \(n\).  Gcd and lcm become coordinatewise minimum and maximum:
+\[
+  v_p(\gcd(a,b))
+  =\min\{v_p(a),v_p(b)\},
+\]
+\[
+  v_p(\operatorname{lcm}(a,b))
+  =\max\{v_p(a),v_p(b)\}.
+\]
+Therefore, for positive \(a,b\),
+\[
+  \gcd(a,b)\operatorname{lcm}(a,b)=ab.
+\]
+Prime factorization turns divisibility into arithmetic on exponent vectors.
+
+\section{Euler's function counts the unit group}
+
+Euler's totient function is
+\[
+  \varphi(n)
+  =\#\{1\le a\le n:\gcd(a,n)=1\}.
+\]
+The preceding section gives its structural meaning:
+\[
+  \boxed{
+  \varphi(n)=\left|(\mathbb Z/n\mathbb Z)^\times\right|.}
+\]
+
+For a prime power \(p^k\), the nonunits are exactly the multiples of \(p\).  Among the \(p^k\) residue classes, there are \(p^{k-1}\) such multiples.  Hence
+\[
+  \varphi(p^k)
+  =p^k-p^{k-1}
+  =p^k\left(1-\frac1p\right).
+\]
+
+If \(m,n\) are coprime, the Chinese remainder theorem gives a ring isomorphism
+\[
+  \mathbb Z/mn\mathbb Z
+  \cong
+  \mathbb Z/m\mathbb Z
+  \times
+  \mathbb Z/n\mathbb Z.
+\]
+An element of a product ring is a unit exactly when each component is a unit.  Therefore
+\[
+  (\mathbb Z/mn\mathbb Z)^\times
+  \cong
+  (\mathbb Z/m\mathbb Z)^\times
+  \times
+  (\mathbb Z/n\mathbb Z)^\times,
+\]
+and
+\[
+  \varphi(mn)=\varphi(m)\varphi(n)
+  \qquad
+  \text{when }\gcd(m,n)=1.
+\]
+
+Thus \(\varphi\) is a multiplicative arithmetic function.  If
+\[
+  n=\prod_{p\mid n}p^{v_p(n)},
+\]
+then
+\[
+  \boxed{
+  \varphi(n)
+  =n\prod_{p\mid n}
+  \left(1-\frac1p\right).}
+\]
+
+For example,
+\[
+  360=2^3\cdot3^2\cdot5,
+\]
+so
+\[
+  \varphi(360)
+  =360\left(1-\frac12\right)
+       \left(1-\frac13\right)
+       \left(1-\frac15\right)
+  =96.
+\]
+This is simultaneously an inclusion--exclusion count and the order of a finite group.
+
+\section{Euler's theorem is Lagrange's theorem in disguise}
+
+If \(\gcd(a,n)=1\), then \([a]\) belongs to the finite group
+\[
+  G=(\mathbb Z/n\mathbb Z)^\times,
+\]
+whose order is \(\varphi(n)\).  Lagrange's theorem implies that the order of \([a]\) divides \(|G|\), so
+\[
+  \boxed{
+  a^{\varphi(n)}\equiv1\pmod n.}
+\]
+
+There is also a proof that looks elementary but contains the same group action.  Let
+\[
+  r_1,\ldots,r_{\varphi(n)}
+\]
+be a reduced residue system modulo \(n\).  Multiplication by \(a\) permutes these residues because \([a]\) is a unit.  Hence
+\[
+  ar_1,\ldots,ar_{\varphi(n)}
+\]
+represent the same residue classes in a different order.  Taking products,
+\[
+  a^{\varphi(n)}r_1\cdots r_{\varphi(n)}
+  \equiv
+  r_1\cdots r_{\varphi(n)}\pmod n.
+\]
+The product of the \(r_i\) is a unit and can be cancelled, giving Euler's theorem.
+
+The group-theoretic proof explains both the exponent and the permutation.  The elementary proof displays the action concretely.
+
+The exponent \(\varphi(n)\) is always valid but is not usually minimal.  The least positive exponent \(m\) satisfying
+\[
+  a^m\equiv1\pmod n
+\]
+for every unit \(a\) is the exponent of the group, called the Carmichael function \(\lambda(n)\).  Group structure refines the coarse bound supplied by group order.
+
+\section{Counting elements by their exact order gives a divisor identity}
+
+A useful identity is
+\[
+  \boxed{
+  \sum_{d\mid n}\varphi(d)=n.}
+\]
+One proof counts the integers
+\[
+  1,2,\ldots,n
+\]
+according to their gcd with \(n\).
+
+Fix a divisor \(d\mid n\).  The integers \(k\) satisfying
+\[
+  \gcd(k,n)=\frac nd
+\]
+are exactly those of the form
+\[
+  k=\frac nd\,a
+\]
+with
+\[
+  1\le a\le d,
+  \qquad
+  \gcd(a,d)=1.
+\]
+There are \(\varphi(d)\) of them.  Summing over all divisors partitions the \(n\) integers and gives the identity.
+
+There is also a group-theoretic interpretation.  In a cyclic group of order \(n\), the number of elements of exact order \(d\) is \(\varphi(d)\) for every \(d\mid n\).  Counting all group elements by their order gives the same sum.
+
+The identity is an early example of arithmetic convolution.  For arithmetic functions \(f,g\), define the Dirichlet convolution
+\[
+  (f*g)(n)=\sum_{d\mid n}f(d)g(n/d).
+\]
+Let \(\mathbf 1(n)=1\) and \(\operatorname{id}(n)=n\).  Then
+\[
+  \mathbf 1*\varphi=\operatorname{id}.
+\]
+
+The convolution identity can be inverted using the Möbius function \(\mu\), which satisfies
+\[
+  \mu*\mathbf 1=\varepsilon,
+\]
+where \(\varepsilon(1)=1\) and \(\varepsilon(n)=0\) for \(n>1\).  Therefore
+\[
+  \varphi=\mu*\operatorname{id},
+\]
+or explicitly,
+\[
+  \varphi(n)
+  =\sum_{d\mid n}\mu(d)\frac nd.
+\]
+For squarefree \(d\), \(\mu(d)=(-1)^k\) when \(d\) has \(k\) prime factors, so this formula is inclusion--exclusion written as an algebraic inverse.
+
+This is the natural point where elementary counting begins to resemble analytic number theory: multiplicative functions form an algebra under Dirichlet convolution, and Euler products arise because prime-power data determine multiplicative functions.
+
+The route from Euclidean descent to arithmetic convolution is continuous rather than a stack of unrelated viewpoints.  The step
+\[
+  (a,b)\longmapsto(b,a-qb)
+\]
+preserves common divisors and the generated ideal; back-substitution turns it into a Bézout identity and computes modular inverses.  Euclid's lemma then converts coprimality into uniqueness of factorization, prime powers determine the unit count \(\varphi(n)\), the Chinese remainder theorem explains multiplicativity, and counting by exact divisors leads to Dirichlet convolution and Möbius inversion.  The later language does not replace the algorithm: it records the structures the same descent has been preserving from the beginning.

@@ -1,14 +1,181 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220725}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220725}
-\end{document}
+\notechapter{N-20220725}{Permutations, Inversions, and Determinants}
+
+\section{Inversions and signs}
+
+For a permutation
+\[
+  \sigma=(\sigma_1,\ldots,\sigma_n),
+\]
+an inversion is a pair \(i<j\) such that
+\[
+  \sigma_i>\sigma_j.
+\]
+The number of inversions is denoted \(\tau(\sigma)\).  The sign of the permutation is
+\[
+  \operatorname{sgn}(\sigma)=(-1)^{\tau(\sigma)}.
+\]
+For example, for \(426315\), the inversions are counted by checking how many later entries are smaller than each entry.  The note obtains
+\[
+  \tau(426315)=8.
+\]
+
+In determinant expansions, the sign of each term is exactly the sign of a permutation.  Thus a term like
+\[
+  a_{21}a_{53}a_{16}a_{42}a_{65}a_{34}
+\]
+corresponds to a row/column permutation, and its sign is determined by its inversion number.
+
+\section{Definition of determinant}
+
+\begin{definition}[Determinant]
+The determinant is the alternating multilinear function of the columns of a square matrix normalized by
+\[
+  \det I=1.
+\]
+It measures oriented volume scaling.
+\end{definition}
+
+
+The determinant of an \(n\times n\) matrix \(A=(a_{ij})\) is
+\[
+  \det A=\sum_{\sigma\in S_n}\operatorname{sgn}(\sigma)
+  a_{1\sigma(1)}a_{2\sigma(2)}\cdots a_{n\sigma(n)}.
+\]
+This formula is not meant for computation in large dimensions.  Its value is conceptual: it explains why row swaps change sign, why repeated rows give zero, and why the determinant is multilinear in rows and columns.
+
+\section{Basic determinant properties}
+
+The standard properties are:
+\begin{enumerate}[(i)]
+  \item Transposition does not change the determinant:
+  \[
+    \det A^T=\det A.
+  \]
+  \item Swapping two rows changes the sign.
+  \item Pulling a scalar out of one row pulls it out of the determinant.
+  \item The determinant is additive in each row separately.
+  \item Adding a multiple of one row to another row does not change the determinant.
+
+\end{enumerate}
+
+From these one immediately gets the zero properties:
+\begin{enumerate}[(i)]
+  \item if a row is zero, then the determinant is zero;
+  \item if two rows are proportional, then the determinant is zero.
+
+\end{enumerate}
+
+\section{Sarrus and triangular matrices}
+
+For a \(3\times3\) matrix, Sarrus' rule gives a convenient visual computation.  But the note also emphasizes that triangular matrices are easier: if \(A\) is upper or lower triangular, then
+\[
+  \det A=a_{11}a_{22}\cdots a_{nn}.
+\]
+This is why row reduction is so powerful.  We use row operations to simplify a determinant into triangular form while tracking sign changes and scalar factors.
+
+\section{Cofactor expansion}
+
+The cofactor of \(a_{ij}\) is
+\[
+  C_{ij}=(-1)^{i+j}M_{ij},
+\]
+where \(M_{ij}\) is the determinant obtained by deleting row \(i\) and column \(j\).  Expanding along row \(i\),
+\[
+  \det A=\sum_{j=1}^n a_{ij}C_{ij}.
+\]
+A page in the note works through determinant computations by choosing rows or columns with many zeros.  This is the main practical advice: do not expand randomly; expand where the determinant is sparse.
+
+\section{A structured determinant}
+
+A common determinant in the note has the form
+\[
+  D_n=\begin{vmatrix}
+  x&a&a&\cdots&a\\
+  a&x&a&\cdots&a\\
+  \vdots&\vdots&\vdots&&\vdots\\
+  a&a&a&\cdots&x
+  \end{vmatrix}.
+\]
+This matrix can be written
+\[
+  D_n=(x-a)I+aJ,
+\]
+where \(J\) is the all-one matrix.  The vector \((1,\ldots,1)\) is an eigenvector with eigenvalue
+\[
+  x+(n-1)a,
+\]
+and any vector whose coordinates sum to \(0\) has eigenvalue
+\[
+  x-a.
+\]
+Therefore
+\[
+  D_n=(x+(n-1)a)(x-a)^{n-1}.
+\]
+The note obtains this by row and column operations; the eigenvalue argument is the higher-level explanation.
+
+
+\section{The determinant line and exterior powers}
+
+The previous computational rules all point to one structure.  Let \(V\) be an \(n\)-dimensional vector space.  The top exterior power
+\[
+  \Lambda^n V
+\]
+is one-dimensional and is called the determinant line.  A nonzero element of this line is a volume form; a choice up to positive scalar is an orientation.
+
+\begin{definition}[Determinant via the top exterior power]
+For a linear map \(A:V\to V\), the induced map
+\[
+  \Lambda^n A:\Lambda^n V\to\Lambda^n V
+\]
+acts on a one-dimensional space, hence is multiplication by a scalar.  That scalar is \(\det A\).
+\end{definition}
+
+In a basis \(e_1,\ldots,e_n\), if the columns of \(A\) are \(v_1,\ldots,v_n\), then
+\[
+  v_1\wedge\cdots\wedge v_n
+  =(\det A)e_1\wedge\cdots\wedge e_n.
+\]
+This single identity explains the main determinant rules:
+\begin{enumerate}[(i)]
+  \item multilinearity comes from multilinearity of the wedge product;
+  \item repeated or dependent columns wedge to zero;
+  \item swapping two columns changes the sign;
+  \item multiplicativity follows from \(\Lambda^n(AB)=(\Lambda^n A)(\Lambda^n B)\).
+\end{enumerate}
+
+\section{Why permutation signs are forced}
+
+The sign of a permutation is not an arbitrary convention.  It is the unique homomorphism
+\[
+  S_n\longrightarrow \{\pm1\}
+\]
+that sends every transposition to \(-1\).  The inversion number gives a concrete formula:
+\[
+  \operatorname{sgn}(\sigma)=(-1)^{\#\text{ inversions of }\sigma}.
+\]
+Because the determinant is alternating, permuting the columns by \(\sigma\) must multiply the volume form by this sign.  This is why the Leibniz formula has exactly the sign pattern it has.
+
+\section{Minors as exterior coordinates}
+
+The same exterior-power viewpoint also explains minors.  If \(A:V\to W\), then
+\[
+  \Lambda^kA:\Lambda^kV\to\Lambda^kW
+\]
+is represented, in the induced exterior bases, by the \(k\times k\) minors of \(A\).  Therefore
+\[
+  \operatorname{rank}A<k
+  \quad\Longleftrightarrow\quad
+  \Lambda^kA=0
+  \quad\Longleftrightarrow\quad
+  \text{all }k\times k\text{ minors vanish}.
+\]
+Thus minors are not arbitrary subdeterminants; they are coordinates of an exterior-power map.
+
+\section{Cramer's rule from volume ratios}
+
+Cramer's rule replaces one column of \(A\) by \(b\).  Geometrically, solving \(Ax=b\) asks for the coordinates of \(b\) in the parallelepiped basis given by the columns of \(A\).  The coordinate \(x_i\) is the ratio of two oriented volumes:
+\[
+  x_i=\frac{\det A_i(b)}{\det A}.
+\]
+This interpretation makes the formula less mysterious: a coordinate is measured by replacing the corresponding basis vector and comparing volumes.

@@ -1,14 +1,594 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220802}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220802}
-\end{document}
+\notechapter{N-20220802}{Trigonometric Functions, Radians, Identities, and Triangle Formulas}
+
+\section{An angle is a motion before it is a number}
+
+An angle begins with two rays, but the most useful picture is a rotation.  Fix an initial ray and rotate it until it reaches a terminal ray.  Counterclockwise rotations are positive and clockwise rotations are negative.  A full turn changes the amount of rotation without changing the terminal direction, so
+\[
+  \theta\sim\theta+2k\pi,
+  \qquad k\in\mathbb Z.
+\]
+This is why an angle can be treated either as a real number recording a motion or as a point of the quotient
+\[
+  \mathbb R/2\pi\mathbb Z
+\]
+recording only the final direction.
+
+Radian measure is not chosen merely to replace degrees by another table of numbers.  On a circle of radius \(r\), an arc of length \(s\) subtends the angle
+\[
+  \theta=\frac{s}{r}.
+\]
+The quotient is independent of the size of the circle.  On the unit circle, the numerical value of the angle is exactly the signed arc length travelled.  One full revolution therefore has length and angle
+\[
+  2\pi.
+\]
+
+This normalization makes small rotations look linear.  For \(0<\theta<\pi/2\), the standard comparison of an inscribed triangle, a circular sector, and a tangent triangle gives
+\[
+  \sin\theta<\theta<\tan\theta.
+\]
+Dividing by \(\sin\theta\) yields
+\[
+  1<\frac{\theta}{\sin\theta}<\frac1{\cos\theta}.
+\]
+As \(\theta\to0\), the two outer quantities tend to \(1\), so
+\[
+  \lim_{\theta\to0}\frac{\sin\theta}{\theta}=1.
+\]
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2.15,>=Stealth]
+  \coordinate (O) at (0,0);
+  \coordinate (A) at (1,0);
+  \coordinate (B) at ({cos(35)},{sin(35)});
+  \coordinate (T) at (1,{tan(35)});
+  \draw[->] (-0.15,0)--(1.25,0);
+  \draw[->] (0,-0.15)--(0,1.1);
+  \draw[thick] (O) circle (1);
+  \draw[thick] (O)--(B)--(A)--cycle;
+  \draw[thick] (O)--(T)--(A);
+  \draw[thick] (A)--(T);
+  \draw (0.28,0) arc[start angle=0,end angle=35,radius=0.28];
+  \node at (0.34,0.11) {$\theta$};
+  \fill (O) circle (0.7pt) node[below left] {$O$};
+  \fill (A) circle (0.7pt) node[below right] {$A$};
+  \fill (B) circle (0.7pt) node[above left] {$B$};
+  \fill (T) circle (0.7pt) node[above right] {$T$};
+\end{tikzpicture}
+\caption{The areas of \(\triangle OAB\), sector \(OAB\), and \(\triangle OAT\) give \(\sin\theta<\theta<\tan\theta\).}
+\end{figure}
+
+The limit would contain a conversion constant if the variable were measured in degrees.  Radians are therefore the coordinate in which the circle has unit speed at the identity.  A later calculus chapter will use this limit to derive the trigonometric derivatives; here it already explains why the geometric and analytic normalizations coincide.
+
+\section{Coordinates on the unit circle}
+
+A point on the unit circle has the form
+\[
+  p(\theta)=(\cos\theta,\sin\theta).
+\]
+This is not merely notation for two unrelated functions.  Sine and cosine are the coordinate functions of one moving point.  The equation of the circle immediately gives
+\[
+  \cos^2\theta+\sin^2\theta=1.
+\]
+
+Several identities are visible before any algebra is done.  Reversing the direction of travel reflects the point across the horizontal axis:
+\[
+  \cos(-\theta)=\cos\theta,
+  \qquad
+  \sin(-\theta)=-\sin\theta.
+\]
+A half turn changes both coordinates:
+\[
+  \cos(\theta+\pi)=-\cos\theta,
+  \qquad
+  \sin(\theta+\pi)=-\sin\theta.
+\]
+A quarter turn exchanges the coordinates up to sign:
+\[
+  \cos\left(\theta+\frac\pi2\right)=-\sin\theta,
+  \qquad
+  \sin\left(\theta+\frac\pi2\right)=\cos\theta.
+\]
+The familiar quadrant signs are simply the signs of the two coordinates.
+
+The tangent function records the slope of the terminal direction:
+\[
+  \tan\theta=\frac{\sin\theta}{\cos\theta}.
+\]
+It is defined whenever the direction is not vertical.  Its poles at
+\[
+  \theta=\frac\pi2+k\pi
+\]
+are not defects of the circle; they are defects of using slope as a coordinate.  In the real projective line, the vertical direction is an ordinary point at infinity, and tangent becomes a local coordinate on directions rather than a globally defined real function.
+
+The graphs also come directly from the motion.  Sine and cosine have period \(2\pi\), while a direction and its opposite have the same slope, so tangent has period \(\pi\):
+\[
+  \sin(	heta+2\pi)=\sin\theta,
+  \qquad
+  \cos(	heta+2\pi)=\cos\theta,
+\]
+\[
+  \tan(	heta+\pi)=\tan\theta.
+\]
+Special-angle values should be reconstructed from symmetric points of the circle rather than memorized as isolated entries.  For example,
+\[
+  p\left(\frac{2\pi}{3}\right)
+  =\left(-\frac12,\frac{\sqrt3}{2}\right),
+\]
+so
+\[
+  \cos\frac{2\pi}{3}=-\frac12,
+  \qquad
+  \sin\frac{2\pi}{3}=\frac{\sqrt3}{2},
+  \qquad
+  \tan\frac{2\pi}{3}=-\sqrt3.
+\]
+
+\section{Rotations contain the addition formulas}
+
+The rotation through angle \(\theta\) is represented by
+\[
+  R(\theta)=
+  \begin{pmatrix}
+    \cos\theta&-\sin\theta\\
+    \sin\theta&\cos\theta
+  \end{pmatrix}.
+\]
+Its columns are the images of the coordinate basis vectors.  Performing a rotation by \(\beta\) and then one by \(\alpha\) is the same motion as rotating once by \(\alpha+\beta\):
+\[
+  R(\alpha)R(\beta)=R(\alpha+\beta).
+\]
+Multiplying the left-hand side gives
+\[
+  \begin{pmatrix}
+    \cos\alpha\cos\beta-\sin\alpha\sin\beta
+    &-\cos\alpha\sin\beta-\sin\alpha\cos\beta\\
+    \sin\alpha\cos\beta+\cos\alpha\sin\beta
+    &-\sin\alpha\sin\beta+\cos\alpha\cos\beta
+  \end{pmatrix}.
+\]
+Comparing entries with \(R(\alpha+\beta)\) yields
+\[
+  \cos(\alpha+\beta)
+  =\cos\alpha\cos\beta-\sin\alpha\sin\beta,
+\]
+\[
+  \sin(\alpha+\beta)
+  =\sin\alpha\cos\beta+\cos\alpha\sin\beta.
+\]
+Replacing \(\beta\) by \(-\beta\) and using parity gives the subtraction formulas.
+
+There is also a direct geometric proof of the cosine difference identity.  The dot product of two unit vectors is the cosine of the angle between them:
+\[
+  p(\alpha)\cdot p(\beta)=\cos(\alpha-\beta).
+\]
+Expanding the coordinates gives
+\[
+  \cos(\alpha-\beta)
+  =\cos\alpha\cos\beta+\sin\alpha\sin\beta.
+\]
+The matrix proof emphasizes composition; the dot-product proof emphasizes relative angle.  They prove the same formula for different reasons.
+
+Dividing the sine and cosine formulas gives
+\[
+  \tan(\alpha+\beta)
+  =\frac{\tan\alpha+\tan\beta}
+  {1-\tan\alpha\tan\beta},
+\]
+whenever both sides are defined.  The denominator condition matters.  If
+\[
+  1-\tan\alpha\tan\beta=0,
+\]
+then the sum direction is vertical and the tangent is not a finite real number.
+
+Setting \(\beta=\alpha\) gives
+\[
+  \sin2\alpha=2\sin\alpha\cos\alpha,
+\]
+\[
+  \cos2\alpha
+  =\cos^2\alpha-\sin^2\alpha
+  =2\cos^2\alpha-1
+  =1-2\sin^2\alpha.
+\]
+Solving the last two expressions for the squares gives
+\[
+  \cos^2\frac\theta2=\frac{1+\cos\theta}{2},
+  \qquad
+  \sin^2\frac\theta2=\frac{1-\cos\theta}{2}.
+\]
+The square-root versions require a sign chosen from the quadrant of \(\theta/2\).  Omitting that sign is one of the most common ways a correct identity becomes a false formula.
+
+\section{Complex multiplication and multiple angles}
+
+Identify \((x,y)\in\mathbb R^2\) with \(x+iy\in\mathbb C\).  The unit-circle point becomes
+\[
+  z(\theta)=\cos\theta+i\sin\theta.
+\]
+The addition formulas say exactly that
+\[
+  z(\alpha+\beta)=z(\alpha)z(\beta).
+\]
+With the exponential notation
+\[
+  z(\theta)=e^{i\theta},
+\]
+angle addition becomes ordinary multiplication.
+
+Repeated multiplication gives De Moivre's formula:
+\[
+  (\cos\theta+i\sin\theta)^n
+  =\cos(n\theta)+i\sin(n\theta),
+  \qquad n\in\mathbb Z.
+\]
+For \(n=3\), expanding the left-hand side and comparing real and imaginary parts gives
+\[
+  \cos3\theta=4\cos^3\theta-3\cos\theta,
+\]
+\[
+  \sin3\theta=3\sin\theta-4\sin^3\theta.
+\]
+Multiple-angle identities are therefore polynomial consequences of multiplication on the circle.
+
+The roots of unity are equally transparent.  Solving
+\[
+  z^n=1
+\]
+gives
+\[
+  z_k=e^{2\pi i k/n},
+  \qquad k=0,1,\ldots,n-1.
+\]
+They are the vertices of a regular \(n\)-gon.  Their sum is zero for \(n>1\), either by the geometric-series identity or because the centroid of a regular polygon is the origin.
+
+This chapter uses roots of unity only as the natural endpoint of multiple-angle geometry.  Their arithmetic and finite Fourier structure are developed in separate notes.
+
+\section{Chebyshev polynomials turn angles into algebra}
+
+Define \(T_n\) by
+\[
+  T_n(\cos\theta)=\cos(n\theta).
+\]
+The addition formula
+\[
+  \cos((n+1)\theta)+\cos((n-1)\theta)
+  =2\cos\theta\cos(n\theta)
+\]
+shows that
+\[
+  T_{n+1}(x)=2xT_n(x)-T_{n-1}(x),
+\]
+with
+\[
+  T_0(x)=1,
+  \qquad
+  T_1(x)=x.
+\]
+Thus
+\[
+  T_2(x)=2x^2-1,
+\]
+\[
+  T_3(x)=4x^3-3x,
+\]
+\[
+  T_4(x)=8x^4-8x^2+1.
+\]
+
+The roots are obtained without solving a general polynomial equation.  Since
+\[
+  T_n(\cos\theta)=0
+\]
+when
+\[
+  n\theta=\frac{(2k-1)\pi}{2},
+\]
+we have
+\[
+  x_k=\cos\frac{(2k-1)\pi}{2n},
+  \qquad k=1,\ldots,n.
+\]
+Because the leading coefficient of \(T_n\) is \(2^{n-1}\) for \(n\ge1\),
+\[
+  T_n(x)
+  =2^{n-1}
+  \prod_{k=1}^n
+  \left(
+    x-\cos\frac{(2k-1)\pi}{2n}
+  \right).
+\]
+A trigonometric zero set has become an exact polynomial factorization.
+
+Chebyshev polynomials also solve an extremal problem.  On \([-1,1]\),
+\[
+  |T_n(x)|\le1.
+\]
+After normalizing the leading coefficient, no monic polynomial of degree \(n\) has smaller maximum absolute value on this interval.  The alternating values
+\[
+  T_n\left(\cos\frac{k\pi}{n}\right)=(-1)^k
+\]
+force this minimax behavior.  This is why the same polynomials appear in interpolation nodes, approximation theory, and stable numerical algorithms.  Multiple-angle formulas are not merely simplification tricks; they encode an optimal oscillation pattern.
+
+\section{Triangle formulas are inner-product geometry}
+
+Let a Euclidean triangle have side lengths \(a,b,c\) opposite angles \(A,B,C\).  Place two side vectors \(u,v\) at the vertex with angle \(C\), with
+\[
+  \|u\|=a,
+  \qquad
+  \|v\|=b.
+\]
+The third side is \(u-v\), so
+\[
+  c^2=\|u-v\|^2
+  =\|u\|^2+\|v\|^2-2u\cdot v.
+\]
+Since
+\[
+  u\cdot v=ab\cos C,
+\]
+we obtain the law of cosines:
+\[
+  \boxed{c^2=a^2+b^2-2ab\cos C.}
+\]
+The Pythagorean theorem is the special case \(C=\pi/2\).
+
+The area \(K\) can be written using any included angle:
+\[
+  K=\frac12bc\sin A
+   =\frac12ca\sin B
+   =\frac12ab\sin C.
+\]
+Dividing these expressions gives
+\[
+  \frac{a}{\sin A}
+  =\frac{b}{\sin B}
+  =\frac{c}{\sin C}.
+\]
+To identify the common value, place the triangle on its circumcircle.  A chord of length \(a\) subtending inscribed angle \(A\) has length
+\[
+  a=2R\sin A,
+\]
+so
+\[
+  \boxed{
+  \frac{a}{\sin A}
+  =\frac{b}{\sin B}
+  =\frac{c}{\sin C}
+  =2R.}
+\]
+
+Heron's formula is also an inner-product identity.  Using the vectors \(u,v\) with lengths \(b,c\) and included angle \(A\), the Gram determinant is
+\[
+  \det
+  \begin{pmatrix}
+    u\cdot u&u\cdot v\\
+    v\cdot u&v\cdot v
+  \end{pmatrix}
+  =b^2c^2-(bc\cos A)^2
+  =4K^2.
+\]
+The law of cosines gives
+\[
+  bc\cos A=\frac{b^2+c^2-a^2}{2}.
+\]
+Therefore
+\[
+  16K^2
+  =4b^2c^2-(b^2+c^2-a^2)^2.
+\]
+Factoring the right-hand side yields
+\[
+  16K^2
+  =(a+b+c)(-a+b+c)(a-b+c)(a+b-c).
+\]
+With
+\[
+  s=\frac{a+b+c}{2},
+\]
+we recover
+\[
+  \boxed{K=\sqrt{s(s-a)(s-b)(s-c)}.}
+\]
+The four factors are not mysterious.  They are the triangle inequalities written symmetrically.
+
+\section{The ambiguous triangle is a real geometric bifurcation}
+
+Three sides determine a Euclidean triangle up to congruence, and two sides with the included angle do the same.  Two sides with a nonincluded angle can behave differently.
+
+Take
+\[
+  a=7,
+  \qquad
+  b=10,
+  \qquad
+  A=30^\circ.
+\]
+The sine law gives
+\[
+  \sin B
+  =\frac{b\sin A}{a}
+  =\frac57.
+\]
+There are two angles in \((0,\pi)\) with this sine:
+\[
+  B_1=\arcsin\frac57,
+  \qquad
+  B_2=\pi-B_1.
+\]
+Both satisfy
+\[
+  A+B_j<\pi,
+\]
+so both define triangles.  Their third angles are
+\[
+  C_1=\pi-A-B_1,
+  \qquad
+  C_2=B_1-A,
+\]
+and their third sides are
+\[
+  c_j=\frac{a\sin C_j}{\sin A}.
+\]
+Numerically,
+\[
+  B_1\approx45.58^\circ,
+  \qquad
+  B_2\approx134.42^\circ,
+\]
+producing one obtuse triangle and one narrow acute triangle.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.8,>=Stealth]
+  \coordinate (A) at (0,0);
+  \coordinate (C) at (8,0);
+  \draw[thick] (A)--(C);
+  \draw[dashed] (A) -- (30:11.5);
+  \draw[thick] (C) circle (4.2);
+  \coordinate (B1) at (7.08,4.10);
+  \coordinate (B2) at (4.89,2.82);
+  \draw[very thick] (A)--(B1)--(C);
+  \draw[very thick] (A)--(B2)--(C);
+  \fill (A) circle (1.5pt) node[below left] {$A$};
+  \fill (C) circle (1.5pt) node[below right] {$C$};
+  \fill (B1) circle (1.5pt) node[above right] {$B_1$};
+  \fill (B2) circle (1.5pt) node[above left] {$B_2$};
+  \draw (0.85,0) arc[start angle=0,end angle=30,radius=0.85];
+  \node at (1.08,0.28) {$30^\circ$};
+\end{tikzpicture}
+\caption{A ray from \(A\) can meet the circle centered at \(C\) twice.  The two intersections are the two SSA triangles.}
+\end{figure}
+
+The ambiguity is not caused by a defective formula.  It is the geometry of a circle intersecting a ray in two points.  The cases of zero, one, or two triangles correspond to no intersection, tangency, or two intersections.
+
+\section{The circle group explains why frequencies add}
+
+The rotation matrices form the group
+\[
+  SO(2)
+  =\{Q\in\mathbb R^{2\times2}:Q^TQ=I,\ \det Q=1\}.
+\]
+Let
+\[
+  J=
+  \begin{pmatrix}
+    0&-1\\
+    1&0
+  \end{pmatrix}.
+\]
+Since \(J^2=-I\), its exponential separates into even and odd powers:
+\[
+  e^{\theta J}
+  =I\cos\theta+J\sin\theta
+  =R(\theta).
+\]
+Thus
+\[
+  SO(2)=\{e^{\theta J}:\theta\in\mathbb R\}.
+\]
+The matrix \(J\) is the infinitesimal generator of rotations.  Differentiating this identity gives
+\[
+  R'(\theta)=JR(\theta)=R(\theta)J.
+\]
+This yields the coupled system
+\[
+  \cos'\theta=-\sin\theta,
+  \qquad
+  \sin'\theta=\cos\theta.
+\]
+Logically, this is an alternative analytic construction once the matrix exponential has been defined; it is not a substitute for the elementary limit proof used in an introductory calculus development.
+
+Under the identification \(SO(2)\cong S^1\), the continuous one-dimensional complex characters are
+\[
+  \chi_n(e^{i\theta})=e^{in\theta},
+  \qquad n\in\mathbb Z.
+\]
+A short reason is that a character lifted to \(\mathbb R\) must have the form \(e^{ic\theta}\), and periodicity at \(2\pi\) forces \(c\in\mathbb Z\).
+
+Multiplying characters adds their indices:
+\[
+  \chi_m\chi_n=\chi_{m+n}.
+\]
+Taking real and imaginary parts gives the product-to-sum identities.  For example,
+\[
+  \cos m\theta\cos n\theta
+  =\frac12\cos((m+n)\theta)
+   +\frac12\cos((m-n)\theta).
+\]
+A product of oscillations becomes a sum of two frequencies because multiplication in the character group adds frequency labels.
+
+The same characters are orthogonal on the circle:
+\[
+  \int_{-\pi}^{\pi}
+  e^{im\theta}\overline{e^{in\theta}}\,d\theta
+  =
+  \begin{cases}
+    2\pi,&m=n,\\
+    0,&m\ne n.
+  \end{cases}
+\]
+This is the minimal bridge from elementary trigonometry to Fourier analysis.  The deeper theory belongs elsewhere, but the reason trigonometric modes are natural is already visible: they are the irreducible characters of the circle group.
+
+\section{Changing curvature changes triangle trigonometry}
+
+Euclidean triangle formulas are not universal laws of all geometries.  On the unit sphere, triangle sides are great-circle arc lengths.  The spherical law of cosines is
+\[
+  \boxed{
+  \cos c
+  =\cos a\cos b
+   +\sin a\sin b\cos C.}
+\]
+For a right angle \(C=\pi/2\), this becomes
+\[
+  \cos c=\cos a\cos b,
+\]
+which is visibly different from the Euclidean Pythagorean theorem.
+
+A particularly clean example is the spherical octant triangle with vertices at the north pole and two equatorial points separated by \(90^\circ\).  Its three side lengths are all \(\pi/2\), and its three angles are also all \(\pi/2\).  Hence
+\[
+  A+B+C=\frac{3\pi}{2}.
+\]
+The angular excess is
+\[
+  A+B+C-\pi=\frac\pi2.
+\]
+The triangle occupies one eighth of the unit sphere, whose area is \(4\pi\), so its area is also \(\pi/2\).  This is a special case of the spherical excess formula
+\[
+  \operatorname{area}=A+B+C-\pi.
+\]
+It is the first visible shadow of Gauss--Bonnet: angle excess measures positive curvature.
+
+The Euclidean law of cosines reappears at small scale.  Replace \(a,b,c\) by \(\varepsilon a,\varepsilon b,\varepsilon c\) in the spherical formula.  Using
+\[
+  \cos(\varepsilon x)
+  =1-\frac{\varepsilon^2x^2}{2}+O(\varepsilon^4),
+\]
+\[
+  \sin(\varepsilon x)
+  =\varepsilon x+O(\varepsilon^3),
+\]
+we obtain
+\[
+  c^2=a^2+b^2-2ab\cos C+O(\varepsilon^2).
+\]
+After zooming in, curvature disappears to first order and the geometry becomes Euclidean.
+
+In hyperbolic geometry the corresponding formula is
+\[
+  \cosh c
+  =\cosh a\cosh b
+   -\sinh a\sinh b\cos C.
+\]
+Its small-scale expansion gives the same Euclidean law, but hyperbolic triangles have angle sum less than \(\pi\).  Spherical, Euclidean, and hyperbolic trigonometry are therefore the positive-, zero-, and negative-curvature versions of one question: how do distances and directions interact in the ambient geometry?
+
+\section{What holds the system together}
+
+The identities in this chapter arise from a small number of structures rather than from a long table.
+
+Arc length gives the radian coordinate and the local relation
+\[
+  \sin\theta\sim\theta.
+\]
+The unit circle gives sine, cosine, parity, periodicity, and the Pythagorean identity.  Composition in \(SO(2)\) gives the addition formulas.  Complex multiplication gives De Moivre's formula, roots of unity, and multiple angles.  Chebyshev polynomials translate those angles into algebra.  Dot products and Gram determinants give the laws of cosines, sines, and Heron's formula.  Characters of the circle explain why frequencies add and why Fourier modes are orthogonal.  Finally, spherical and hyperbolic laws show which parts of trigonometry depend on curvature.
+
+This organization also separates nearby topics.  A proof-comparison chapter can ask how many logically independent routes lead to the addition formulas.  A calculus chapter can build derivatives from the basic limit and analyze inverse branches.  A Fourier chapter can develop completeness and convergence.  The role of the present chapter is different: it presents trigonometry itself as a coherent geometry of rotations, triangles, polynomial recurrences, and constant curvature.

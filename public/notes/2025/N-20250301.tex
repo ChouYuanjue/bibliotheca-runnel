@@ -1,14 +1,181 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20250301}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20250301}
-\end{document}
+\notechapter{N-20250301}{Projective Schemes and Gluing: Building Projective Space from Affine Windows}
+
+\section{Projective geometry returns with functions attached}
+
+Earlier projective geometry used homogeneous coordinates to add points at infinity and remove affine exceptions. Scheme theory adds another layer: every affine window comes with a ring of functions, and the windows must be glued compatibly.
+
+The construction that does this is \(\operatorname{Proj}\). It is to graded rings what \(\operatorname{Spec}\) is to ordinary rings.
+
+\section{The projective line as the model}
+
+The best first example is \(\mathbb P^1\). Take two affine lines:
+\[
+  U_0=\operatorname{Spec}R[t],
+  \qquad
+  U_1=\operatorname{Spec}R[s].
+\]
+On the region where both coordinates are nonzero, glue them by
+\[
+  s=\frac1t.
+\]
+The result is the projective line. The point is not the formula itself, but the construction style:
+\[
+  \text{projective space is made by gluing affine charts.}
+\]
+
+\section{Graded rings and homogeneous data}
+
+Let
+\[
+  S=S_0\oplus S_1\oplus S_2\oplus\cdots
+\]
+be a graded ring. Projective geometry only respects homogeneous equations, because
+\[
+  [x_0:\cdots:x_n]=[\lambda x_0:\cdots:\lambda x_n].
+\]
+The construction \(\operatorname{Proj}S\) uses homogeneous prime ideals not containing the irrelevant ideal.
+
+This definition sounds heavier than the picture, but it encodes a familiar rule: equations in projective space must be homogeneous.
+
+\section{Projective space as Proj}
+
+The scheme-theoretic projective space is
+\[
+  \mathbb P^n_R=\operatorname{Proj}R[x_0,\ldots,x_n],
+\]
+where the variables have degree \(1\).
+
+The standard affine open where \(x_i\ne0\) is written
+\[
+  D_+(x_i).
+\]
+On it, the ratios
+\[
+  \frac{x_j}{x_i}
+\]
+serve as affine coordinates.
+
+Thus \(\mathbb P^n\) is covered by \(n+1\) affine schemes. Projective geometry is global, but it is computed through affine windows.
+
+\section{The projective plane through three windows}
+
+For \(\mathbb P^2\), the standard opens are
+\[
+  D_+(x),
+  \qquad
+  D_+(y),
+  \qquad
+  D_+(z).
+\]
+On \(D_+(z)\), use
+\[
+  X=\frac{x}{z},
+  \qquad
+  Y=\frac{y}{z}.
+\]
+On \(D_+(x)\), use
+\[
+  U=\frac{y}{x},
+  \qquad
+  V=\frac{z}{x}.
+\]
+Each chart is affine. The projective plane is the result of gluing these affine pieces by ratio changes on overlaps.
+
+This is the practical meaning of projective schemes: use affine algebra locally, then glue.
+
+\section{A conic across charts}
+
+Consider the projective conic
+\[
+  xz-y^2=0.
+\]
+On the chart \(z\ne0\), set \(X=x/z\) and \(Y=y/z\). The equation becomes
+\[
+  X=Y^2.
+\]
+On the chart \(x\ne0\), set \(U=y/x\) and \(V=z/x\). The equation becomes
+\[
+  V=U^2.
+\]
+The same projective curve has multiple affine faces. A single affine chart may hide what happens at infinity, but the projective object keeps all charts at once.
+
+\section{Projective closure with scheme memory}
+
+Given an affine equation \(f(x,y)=0\), homogenizing gives a projective equation
+\[
+  F(x,y,z)=0.
+\]
+Classically, this adds points at infinity. Scheme-theoretically, it also keeps track of nilpotent or embedded structure if such structure is present.
+
+So \(\operatorname{Proj}\) is not merely a notation for old projective varieties. It is the projective version of the local-function viewpoint developed in scheme theory.
+
+\section{What Proj adds}
+
+The earlier projective note emphasized incidence and transformations. The \(\operatorname{Proj}\) viewpoint emphasizes functions and gluing.
+
+\[
+\begin{array}{c|c}
+\text{homogeneous coordinates} & \text{homogeneous primes}\\
+\text{affine charts} & \text{standard affine opens}\\
+\text{projective equations} & \text{homogeneous ideals}\\
+\text{points at infinity} & \text{glued affine schemes}
+\end{array}
+\]
+These are not competing languages. They are layers of the same geometry.
+
+
+\section{Why the irrelevant ideal is excluded}
+
+For \(S=R[x_0,\ldots,x_n]\), the ideal
+\[
+  S_+=(x_0,\ldots,x_n)
+\]
+is called the irrelevant ideal.  It corresponds to the forbidden point where all homogeneous coordinates vanish at once:
+\[
+  [0:\cdots:0],
+\]
+which is not a projective point.
+
+Thus \(\operatorname{Proj}S\) uses homogeneous prime ideals that do not contain all positive-degree elements.  This technical-looking exclusion is simply the algebraic version of the rule that homogeneous coordinates cannot all be zero.
+
+\section{Standard opens as spectra}
+
+For a homogeneous element \(f\in S\), the standard open \(D_+(f)\) is affine.  Its coordinate ring is the degree-zero part of the localization:
+\[
+  \mathcal O(D_+(f))=(S_f)_0.
+\]
+This formula explains why ratios appear in projective coordinates.  Localizing at \(x_i\) allows division by powers of \(x_i\), and taking degree zero keeps only scale-invariant expressions such as
+\[
+  \frac{x_j}{x_i}.
+\]
+So affine coordinates on projective charts are not arbitrary.  They are degree-zero fractions.
+
+\section{A second conic chart calculation}
+
+For the conic
+\[
+  xz-y^2=0,
+\]
+the chart \(y\ne0\) uses coordinates
+\[
+  A=\frac{x}{y},
+  \qquad
+  B=\frac{z}{y}.
+\]
+The equation becomes
+\[
+  AB=1.
+\]
+So in this chart the conic looks like a hyperbola.  In another chart it looked like a parabola.  This is a concrete reminder that affine appearances depend on the chosen window.
+
+The projective curve is the object obtained by holding all these windows together.
+
+\section{Line bundles are already nearby}
+
+Projective geometry naturally leads to line bundles.  On \(\mathbb P^n\), the twisting sheaves \(\mathcal O(d)\) organize homogeneous polynomials of degree \(d\).  A homogeneous equation of degree \(d\) is better thought of as a section of \(\mathcal O(d)\) than as an ordinary global function.
+
+This explains why projective varieties have fewer global regular functions than affine varieties.  Projective geometry shifts attention from functions to sections of line bundles.
+
+This remark points back to divisors and Riemann--Roch: projective geometry, line bundles, and spaces of sections are parts of the same story.
+
+The twisting sheaves therefore complete the passage from homogeneous coordinates to projective schemes.  The same graded algebra that builds \(\operatorname{Proj}S\) also supplies its affine windows and its line bundles: projective geometry has been reconstructed from homogeneous algebra and gluing while retaining the local functions invisible in a purely incidence-based picture.

@@ -1,14 +1,339 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20230201}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20230201}
-\end{document}
+\notechapter{N-20230201}{Newton's Shell Theorem: Solid Angle, Potential, and Gauss Law}
+
+\section{First orientation}
+
+The elementary statement is familiar: the gravitational field produced by a uniform spherical shell is zero at every point inside the shell.  But this result is not a trivial symmetry statement.  If the field point is not the center, the near side of the shell is closer and should pull more strongly, while the far side has more area visible in the same direction.  The theorem says that these two effects cancel exactly.
+
+The problem admits three coherent languages:
+\[
+\begin{array}{c}
+  \text{solid-angle cancellation,}\\
+  \text{scalar potential computation,}\\
+  \text{Gauss law and harmonic potential.}
+\end{array}
+\]
+The point is not only to remember that the answer is zero.  The point is to understand why the inverse-square law, spherical geometry, and potential theory fit together so perfectly.
+
+\section{Statement of Newton's shell theorem}
+
+Let a spherical shell of radius \(R\) have uniform surface density \(\sigma\).  Its total mass is
+\[
+  M=4\pi R^2\sigma.
+\]
+Let \(\mathbf x\in\mathbb R^3\), and write \(r=|\mathbf x|\), with the shell centered at the origin.
+
+\begin{theorem}[Newton's shell theorem]
+The gravitational field of the shell is
+\[
+\mathbf g(\mathbf x)=
+\begin{cases}
+\mathbf 0,&0\le r<R,\\[0.4em]
+-\dfrac{GM}{r^2}\dfrac{\mathbf x}{r},&r>R.
+\end{cases}
+\]
+Equivalently, outside the shell the field is the same as if all mass were concentrated at the center, while inside the shell the field is zero.
+\end{theorem}
+
+The interior and exterior cases should be proved together because the same potential calculation gives both at once.
+
+\section{Why symmetry alone is not enough}
+
+At the center of the shell, cancellation is immediate: every mass element has an opposite mass element at the same distance.  Away from the center, this argument fails.  A point \(P\) inside the shell is closer to one side than the other.
+
+The correct local cancellation uses three facts at once:
+\[
+\begin{array}{c}
+  \text{the same narrow cone cuts two opposite surface patches,}\\
+  \text{patch area grows like distance squared,}\\
+  \text{gravity decays like distance squared.}
+\end{array}
+\]
+There is also a small geometric correction: the patch may be tilted relative to the cone.  This is the obliquity factor.  Omitting it makes the proof feel like a slogan rather than a proof.
+
+\section{Solid-angle proof in full detail}
+
+Let \(P\) be an interior point.  Draw a line through \(P\), meeting the shell at two points \(A\) and \(B\).  Around this line take a very narrow cone with vertex \(P\) and solid angle \(d\Omega\).  It cuts two small patches of the shell near \(A\) and \(B\).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/N-20230201/01-shell-geometric-method.png}
+\caption{The geometric cancellation proof: the same narrow cone from an interior point cuts two opposite shell patches, and the equal angle geometry supplies the common obliquity factor.}
+\end{figure}
+
+Let
+\[
+  s_A=PA,\qquad s_B=PB.
+\]
+Let \(\beta_A\) and \(\beta_B\) be the angles between the ray and the outward normal to the shell, taken with absolute cosine.  For a small surface patch, solid angle and area satisfy
+\[
+  d\Omega=\frac{|\cos\beta|}{s^2}\,dS,
+\]
+so
+\[
+  dS=\frac{s^2}{|\cos\beta|}\,d\Omega.
+\]
+Therefore
+\[
+  dS_A=\frac{s_A^2}{|\cos\beta_A|}\,d\Omega,
+  \qquad
+  dS_B=\frac{s_B^2}{|\cos\beta_B|}\,d\Omega.
+\]
+
+The missing geometric point is that the two obliquity factors are equal.  Since \(OA=OB=R\), the triangle \(OAB\) is isosceles.  Thus the base angles at \(A\) and \(B\) are equal.  Because \(P\) lies on the chord \(AB\), the angles between the chord direction and the radii at \(A\) and \(B\) have the same absolute cosine:
+\[
+  |\cos\beta_A|=|\cos\beta_B|.
+\]
+
+The mass of a patch is \(dm=\sigma dS\).  Its gravitational field magnitude at \(P\) is
+\[
+  |d\mathbf g|=G\frac{dm}{s^2}=G\sigma\frac{dS}{s^2}.
+\]
+Substituting the area formula gives
+\[
+  |d\mathbf g_A|=G\sigma\frac{d\Omega}{|\cos\beta_A|},
+  \qquad
+  |d\mathbf g_B|=G\sigma\frac{d\Omega}{|\cos\beta_B|}.
+\]
+These magnitudes are equal, and the directions are opposite along the same line through \(P\).  Hence the two contributions cancel.
+
+Pairing all such cones through \(P\) gives
+\[
+  \mathbf g(P)=\mathbf 0.
+\]
+The proof is now precise: the inverse-square law cancels the square growth of apparent area, and spherical geometry cancels the obliquity factor.
+
+\section{Potential proof: doing the integral}
+
+The force integral is a vector integral.  The potential is scalar, so it is cleaner.  Let the field point have distance \(r\) from the center, and put it on the positive \(z\)-axis.  A point of the shell at polar angle \(\theta\) has distance
+\[
+  \ell(\theta)=\sqrt{R^2+r^2-2Rr\cos\theta}
+\]
+from the field point.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{figures/N-20230201/02-shell-integral-method.png}
+\caption{Geometry of the shell integral: the distance $\ell$ from the field point to a surface element and the projection angle used when passing from scalar potential to radial force.}
+\end{figure}
+
+The gravitational potential is
+\[
+  V(r)=-G\int\frac{dm}{\ell}.
+\]
+For the shell,
+\[
+  dm=\sigma R^2\sin\theta\,d\theta\,d\phi.
+\]
+Hence
+\[
+  V(r)=-G\sigma R^2
+  \int_0^{2\pi}\int_0^\pi
+  \frac{\sin\theta\,d\theta\,d\phi}
+  {\sqrt{R^2+r^2-2Rr\cos\theta}}.
+\]
+Integrating over \(\phi\) and putting \(u=\cos\theta\), we obtain
+\[
+  V(r)=-2\pi G\sigma R^2
+  \int_{-1}^{1}
+  \frac{du}{\sqrt{R^2+r^2-2Rru}}.
+\]
+
+Now compute the elementary integral:
+\[
+\begin{aligned}
+\int_{-1}^{1}
+  \frac{du}{\sqrt{R^2+r^2-2Rru}}
+&=\left[-\frac{1}{Rr}\sqrt{R^2+r^2-2Rru}\right]_{-1}^{1}\\
+&=\frac{(R+r)-|R-r|}{Rr}.
+\end{aligned}
+\]
+Therefore
+\[
+  V(r)=-2\pi G\sigma R^2\cdot
+  \frac{(R+r)-|R-r|}{Rr}.
+\]
+Since \(M=4\pi R^2\sigma\), this becomes
+\[
+V(r)=
+\begin{cases}
+-\dfrac{GM}{R},&0\le r<R,\\[0.6em]
+-\dfrac{GM}{r},&r>R.
+\end{cases}
+\]
+
+Now recover the field by
+\[
+  \mathbf g=-\nabla V.
+\]
+For a radial potential, this means
+\[
+  \mathbf g(r)=-\frac{dV}{dr}\,\hat{\mathbf r}.
+\]
+Inside the shell, \(V(r)\) is constant, so
+\[
+  \mathbf g=\mathbf 0.
+\]
+Outside the shell,
+\[
+  V(r)=-\frac{GM}{r},
+\]
+so
+\[
+  \mathbf g(r)=-\frac{GM}{r^2}\hat{\mathbf r}.
+\]
+This proves both halves of Newton's shell theorem.
+
+\section{The direct force integral}
+
+The direct force calculation is possible, but it is less elegant.  By symmetry only the radial component survives.  The radial component from a ring at polar angle \(\theta\) is proportional to the projection of the force onto the radial axis.
+
+One obtains
+\[
+  g_r(r)=2\pi G\sigma R^2
+  \int_0^\pi
+  \frac{(R\cos\theta-r)\sin\theta}
+  {(R^2+r^2-2Rr\cos\theta)^{3/2}}\,d\theta.
+\]
+The sign convention here takes the positive direction away from the center.  This integral is exactly
+\[
+  -\frac{dV}{dr}.
+\]
+So the potential method does not avoid the physics; it packages the same computation in a scalar form and differentiates only at the end.
+
+This explains why potential theory is the natural language for shell problems.  Instead of separately tracking force directions, one integrates a scalar quantity whose gradient gives the field.
+
+\section{Gauss-law viewpoint}
+
+There is a still shorter proof once the field is known to be spherically symmetric.  The gravitational Gauss law is
+\[
+  \nabla\cdot\mathbf g=-4\pi G\rho,
+\]
+or, in integral form,
+\[
+  \oint_S \mathbf g\cdot d\mathbf S=-4\pi G M_{\mathrm{enc}}.
+\]
+For a spherical shell, symmetry implies that the field at radius \(r\) is radial and has constant magnitude on each sphere:
+\[
+  \mathbf g(r)=g(r)\hat{\mathbf r}.
+\]
+Taking \(S\) to be the sphere of radius \(r\), the flux is
+\[
+  \oint_S \mathbf g\cdot d\mathbf S=4\pi r^2 g(r).
+\]
+Thus
+\[
+  4\pi r^2 g(r)=-4\pi G M_{\mathrm{enc}}(r),
+\]
+so
+\[
+  g(r)=-\frac{G M_{\mathrm{enc}}(r)}{r^2}.
+\]
+
+Inside the shell, \(M_{\mathrm{enc}}(r)=0\), hence \(g(r)=0\).  Outside the shell, \(M_{\mathrm{enc}}(r)=M\), hence
+\[
+  g(r)=-\frac{GM}{r^2}.
+\]
+
+The nuance is important: Gauss law alone gives the result quickly only because spherical symmetry has already reduced the field to one radial function.  The uniform spherical shell provides that symmetry.
+
+\section{Harmonic potential}
+
+In an empty region, the gravitational potential satisfies Laplace's equation:
+\[
+  \Delta V=0.
+\]
+Inside the shell there is no mass.  Moreover the shell is spherically symmetric, so the interior potential must be radial:
+\[
+  V=V(r).
+\]
+For a radial function in \(\mathbb R^3\), Laplace's equation becomes
+\[
+  \frac1{r^2}\frac{d}{dr}\left(r^2\frac{dV}{dr}\right)=0.
+\]
+Integrating once gives
+\[
+  r^2V'(r)=C.
+\]
+If \(C\ne0\), then \(V'(r)=C/r^2\), which is singular at \(r=0\).  The potential inside the shell should be regular at the center, so \(C=0\).  Therefore
+\[
+  V'(r)=0,
+\]
+and the potential is constant inside.
+
+This is the PDE version of the theorem.  The absence of mass gives harmonicity; spherical symmetry reduces the harmonic equation to an ODE; regularity at the center forces the constant solution.
+
+\section{Why the inverse-square law is special}
+
+The solid-angle proof shows exactly why the exponent \(2\) matters.  For a patch cut out by a fixed solid angle,
+\[
+  dS\sim s^2\,d\Omega
+\]
+up to the common obliquity factor.  Gravity contributes a factor \(1/s^2\).  These cancel.
+
+If the force law were \(1/s^p\), the patch contribution would scale like
+\[
+  \frac{dS}{s^p}\sim s^{2-p}d\Omega.
+\]
+The near and far patches would have equal magnitudes for all distances only when
+\[
+  p=2.
+\]
+Thus the shell theorem is not a generic fact about attractive forces.  It is a special feature of inverse-square fields.
+
+The other hypotheses also matter.  If the shell is not uniform, the two paired patches do not have masses proportional only to area.  If the surface is not spherical, the obliquity factors do not match in the same way.  The theorem is the result of three matching structures:
+\[
+  \text{uniform density}+	ext{spherical geometry}+\text{inverse-square law}.
+\]
+
+\section{Application: a uniform solid sphere}
+
+A uniform solid sphere can be regarded as a stack of thin spherical shells.  At a point of radius \(r\), all shells outside radius \(r\) contribute zero field.  Only the mass enclosed inside radius \(r\) matters.
+
+If the solid sphere has volume density \(\rho\), then
+\[
+  M(r)=\frac{4\pi}{3}\rho r^3.
+\]
+Thus the interior field is
+\[
+  g(r)=-\frac{GM(r)}{r^2}
+  =-\frac{4\pi G\rho}{3}r.
+\]
+So the field inside a uniform ball grows linearly with distance from the center.
+
+This has a famous dynamical consequence.  If one imagines a straight tunnel through a uniform spherical planet and ignores friction and rotation, a particle moving along the tunnel satisfies
+\[
+  \ddot r=-\frac{4\pi G\rho}{3}r.
+\]
+This is simple harmonic motion.  The shell theorem turns a gravitational problem into the equation of a spring.
+
+\section{Multipole viewpoint}
+
+There is also a useful advanced memory aid.  The Newtonian kernel has the expansion
+\[
+  \frac1{|x-y|}
+  =\sum_{\ell=0}^{\infty}
+  \frac{r_<^\ell}{r_>^{\ell+1}}P_\ell(\cos\gamma),
+\]
+where
+\[
+  r_<=\min(|x|,|y|),\qquad r_>=\max(|x|,|y|).
+\]
+For a uniformly distributed spherical shell, integrating over the angles kills all higher spherical harmonics.  Only the monopole term survives outside.  That is why the exterior field sees only total mass.
+
+Inside the shell, the same expansion leaves a constant potential.  A constant potential has zero gradient, hence zero field.  This is the harmonic-analysis version of the same theorem.
+
+\section{A broader reading}
+
+The shell theorem should not be remembered as ``obvious by symmetry.''  For an off-center interior point, ordinary pairwise symmetry is not enough.  The real mechanism is:
+\[
+\begin{array}{c}
+  \text{spherical geometry controls apparent area and obliquity,}\\
+  \text{the inverse-square law cancels the distance-squared factor,}\\
+  \text{potential theory turns cancellation into harmonicity,}\\
+  \text{and Gauss law turns it into flux conservation.}
+\end{array}
+\]
+
+The geometric proof explains the local cancellation.  The potential proof computes the whole field.  Gauss law explains the flux structure.  Laplace's equation explains why the interior potential must be constant.
+
+Together these four views make Newton's shell theorem more than a trick: it is a meeting point of geometry, analysis, and field theory.

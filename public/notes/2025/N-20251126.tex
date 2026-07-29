@@ -1,14 +1,202 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20251126}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20251126}
-\end{document}
+\notechapter{N-20251126}{Self-Avoiding Walks I: Connective Constants, Bridges, Polygons, and Critical Exponents}
+
+\section{What the model is trying to measure}
+
+A self-avoiding walk is the simplest discrete model of a polymer chain with excluded volume.  The walk is allowed to move from one lattice point to a neighbouring lattice point, but it is not allowed to visit the same vertex twice.  Thus the model keeps the most basic feature of a real chain: two monomers cannot occupy the same place.
+
+Let \(\mathbb Z^d\) be the hypercubic lattice.  An \(n\)-step walk is a sequence
+\[
+  \omega=(\omega_0,\omega_1,\ldots,\omega_n),
+\]
+where \(\omega_i\in\mathbb Z^d\), \(\omega_0=0\), and
+\[
+  |\omega_{i+1}-\omega_i|=1.
+\]
+It is self-avoiding if
+\[
+  \omega_i\ne \omega_j \qquad (i\ne j).
+\]
+Write \(c_n\) for the number of \(n\)-step self-avoiding walks starting at the origin.
+
+The ordinary simple random walk has exactly \((2d)^n\) possible \(n\)-step paths.  For self-avoiding walks, there is no such closed formula, because each new step depends on the entire past of the path.  This is the first reason the subject is difficult: the model is local in its rule but non-local in its memory.
+
+\begin{remark}
+The phrase ``self-avoiding'' sounds like a small constraint, but it changes the problem qualitatively.  The number of walks is no longer obtained by multiplying independent choices, and the endpoint distribution is no longer governed by the usual central limit theorem in low dimensions.
+\end{remark}
+
+\section{Submultiplicativity and the connective constant}
+
+The first invariant is the exponential growth rate of \(c_n\).  Concatenation gives the basic inequality
+\[
+  c_{m+n}\le c_m c_n.
+\]
+Indeed, if an \((m+n)\)-step self-avoiding walk is cut after \(m\) steps, then the first part is an \(m\)-step self-avoiding walk, and the translated second part is an \(n\)-step self-avoiding walk.  Not every pair can be concatenated without intersection, so this gives an inequality rather than an equality.
+
+By Fekete's lemma, the limit
+\[
+  \mu=\lim_{n\to\infty} c_n^{1/n}
+\]
+exists.  This number is called the connective constant.  Equivalently,
+\[
+  \log \mu=\lim_{n\to\infty} \frac{1}{n}\log c_n.
+\]
+The rough meaning is
+\[
+  c_n\approx \mu^n\times \text{a subexponential correction}.
+\]
+
+\begin{definition}
+The connective constant \(\mu\) is the exponential growth rate of self-avoiding walks on the lattice.  It depends on the lattice, not only on the dimension.
+\end{definition}
+
+The reciprocal
+\[
+  z_c=\mu^{-1}
+\]
+is the critical point of the generating function
+\[
+  \chi(z)=\sum_{n\ge0} c_n z^n.
+\]
+For \(z<z_c\), the series converges.  For \(z>z_c\), it diverges.  Thus the connective constant is both a combinatorial growth constant and the location of a statistical-mechanical phase transition.
+
+\section{Bridges and why they help}
+
+Counting all self-avoiding walks directly is hard because a walk can wander in all directions.  A bridge is a self-avoiding walk with a preferred direction.  For example, in the first coordinate direction, a bridge is a walk whose first coordinate starts at its minimum and ends at its maximum:
+\[
+  \omega_0^{(1)} < \omega_i^{(1)} \le \omega_n^{(1)}
+  \qquad (1\le i\le n).
+\]
+The precise convention varies slightly, but the guiding idea is stable: a bridge progresses from left to right without going below its starting level in that coordinate.
+
+
+The following picture is the right mental picture for the Hammersley--Welsh argument.  A half-space walk is not yet a bridge, but it can be chopped into alternating bridge-like pieces.  The dotted reflected part indicates the trick: reflect suitable tails of the walk so that the pieces line up into one bridge.
+
+\Needspace{14\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.62\textwidth]{figures/N-20251126/HSWalkToBridge_pspdftex.pdf}
+  \caption{a half-space walk decomposed into bridges and reflected into a single bridge.}
+\end{figure}
+
+Let \(b_n\) denote the number of \(n\)-step bridges.  Bridges are useful because they concatenate better than arbitrary walks.  If one bridge is followed by another translated bridge, the result is still a bridge.  Hence
+\[
+  b_{m+n}\ge b_m b_n.
+\]
+This supermultiplicativity implies that the bridge growth rate exists:
+\[
+  \lim_{n\to\infty} b_n^{1/n}=\sup_n b_n^{1/n}.
+\]
+A central fact is that bridges have the same exponential growth rate as all self-avoiding walks:
+\[
+  \lim_{n\to\infty} b_n^{1/n}=\mu.
+\]
+
+The Hammersley--Welsh method gives a much sharper comparison.  Its philosophy is to decompose a general self-avoiding walk into bridge-like pieces by reflecting parts of the walk across suitable hyperplanes.  This does not give a bijection with bridges, but it controls the loss by a subexponential factor.  In a typical form one obtains a bound of the shape
+
+
+For a completely general self-avoiding walk, one first cuts it at a suitable extremal point.  The picture below shows this as a decomposition into two half-space walks.  This is why the proof goes through half-space walks before it reaches bridges.
+
+\Needspace{14\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.72\textwidth]{figures/N-20251126/HWcAndh_pspdftex.pdf}
+  \caption{decomposing a self-avoiding walk into two half-space walks.}
+\end{figure}
+\[
+  c_n\le \exp\{C\sqrt n\}\, b_{n+1}
+\]
+for a constant \(C\).  The exact constant is not the point here.  The point is that the correction is subexponential, so it does not affect \(\mu\).
+
+\begin{remark}
+This is a good example of the style of rigorous self-avoiding-walk arguments.  One rarely enumerates walks exactly.  Instead one reorganises them into classes that have better concatenation properties, and then proves that the reorganisation loses only subexponentially many choices.
+\end{remark}
+
+\section{Polygons}
+
+A self-avoiding polygon is a closed self-avoiding path, considered up to translation and often up to choice of starting point and orientation.  If \(p_n\) denotes the number of \(n\)-edge self-avoiding polygons, then \(p_n=0\) when \(n\) has the wrong parity on bipartite lattices such as \(\mathbb Z^d\).
+
+Polygons have the same connective constant:
+\[
+  \lim_{n\to\infty} p_n^{1/n}=\mu,
+\]
+with the usual convention of restricting to the allowed lengths.  Intuitively, a long polygon is like a long self-avoiding walk whose two ends happen to meet.  The closing condition changes the polynomial correction, not the exponential growth rate.
+
+The polygon viewpoint is important because it connects self-avoiding walks with loop models and planar statistical mechanics.  In two dimensions, loops are not just a counting device; they interact with conformal geometry.
+
+
+The bridge picture has an analogue for polygons.  The following construction turns two bridges into a longer self-avoiding walk closely related to a polygon-counting lower bound.  The useful point is again not exact enumeration.  It is a controlled way to build large objects out of smaller ones while keeping self-avoidance visible.
+
+\Needspace{17\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.70\textwidth]{figures/N-20251126/polygon-LBP_pspdftex.pdf}
+  \caption{bridge data used in a polygon lower-bound construction.}
+\end{figure}
+
+\section{Critical exponents}
+
+The connective constant describes only the exponential part of \(c_n\).  The more delicate question is the subexponential correction.  The expected form is
+\[
+  c_n \sim A \mu^n n^{\gamma-1},
+\]
+where \(\gamma\) is a critical exponent.  Another exponent \(\nu\) describes the typical size of an \(n\)-step walk:
+\[
+  \mathbb E\bigl(|\omega_n|^2\bigr)\approx D n^{2\nu}.
+\]
+The exponent \(\nu\) measures how swollen the polymer is.  For simple random walk one has \(\nu=1/2\).  Self-avoidance pushes the walk away from itself, so in low dimensions \(\nu\) is expected to be larger.
+
+There is also a two-point function
+\[
+  G_z(x)=\sum_{\omega:0\to x} z^{|\omega|},
+\]
+where the sum is over self-avoiding walks from \(0\) to \(x\).  Summing over endpoints gives the susceptibility
+\[
+  \chi(z)=\sum_{x\in\mathbb Z^d}G_z(x)=\sum_{n\ge0}c_n z^n.
+\]
+Near \(z_c\), one expects
+\[
+  \chi(z)\approx (z_c-z)^{-\gamma}.
+\]
+So the same exponent \(\gamma\) can be read from either the coefficient asymptotics of \(c_n\) or the singularity of the susceptibility.
+
+\section{How dimension changes the story}
+
+The dimension \(d\) controls how strongly a walk intersects itself.  This is why the self-avoiding walk behaves differently in different dimensions.
+
+In dimension \(1\), the model is trivial: after the first step, the walk cannot turn around without revisiting a vertex.  Thus there are only two \(n\)-step self-avoiding walks for \(n\ge1\).
+
+In dimension \(2\), self-avoidance is strong.  The expected scaling limit is related to Schramm--Loewner evolution with parameter \(8/3\).  The predicted exponents are
+\[
+  \nu=\frac34,
+  \qquad
+  \gamma=\frac{43}{32}.
+\]
+These values are part of the conformal-invariance picture, but the full square-lattice scaling limit remains a major open problem.
+
+In dimension \(3\), the model is physically central but mathematically difficult.  The exponents are not expected to be mean-field, and no exact solution is known.
+
+Dimension \(4\) is critical.  The leading power laws are mean-field-like, but logarithmic corrections appear.  This is the dimension where renormalisation group methods become essential.
+
+In dimensions \(d\ge5\), the model has mean-field behaviour.  The lace expansion proves, in suitable settings, that self-avoiding walks behave diffusively:
+\[
+  \nu=\frac12,
+  \qquad
+  \gamma=1.
+\]
+The walk is still self-avoiding, but high-dimensional space gives it enough room that self-intersections become perturbative rather than dominant.
+
+\section{The broader lesson}
+
+The first layer of the theory is the following dictionary:
+\[
+\begin{array}{c|c}
+\text{combinatorial object} & \text{analytic quantity}\\
+\hline
+c_n & \chi(z)=\sum c_nz^n\\
+\mu & z_c=1/\mu\\
+\text{bridges} & \text{controlled concatenation}\\
+\text{polygons} & \text{closed-loop version of the model}\\
+G_z(x) & \text{endpoint-resolved two-point function}
+\end{array}
+\]
+The connective constant is the exponential growth rate.  Critical exponents describe what remains after this exponential growth has been factored out.  Bridges and polygons are not side topics: they are the combinatorial tools that make the basic growth theory work.

@@ -1,14 +1,236 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260616}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260616}
-\end{document}
+\notechapter{N-20260616}{Numerical Series, Power Series, Taylor Series, and Improper Integrals}
+
+\section{Why these topics belong together}
+
+The long Markdown note moves from numerical series to function series, then to power series and improper integrals.  The common theme is convergence: when does an infinite summation or an infinite accumulation define a finite object, and when may we manipulate it like a finite expression?
+
+\section{Numerical series}
+
+A numerical series is
+\[
+  \sum_{n=1}^{\infty}a_n,\qquad s_N=\sum_{n=1}^N a_n.
+\]
+It converges if the partial sums $s_N$ converge.  The first necessary test is
+\[
+  a_n\to0.
+\]
+If this fails, the series diverges.  If it holds, nothing is decided.
+
+The geometric series is the base model:
+\[
+  \sum_{n=0}^{\infty} ar^n=\frac{a}{1-r},\qquad |r|<1.
+\]
+The harmonic series shows why terms tending to zero is insufficient:
+\[
+  \sum_{n=1}^{\infty}\frac1n=\infty.
+\]
+A standard proof groups terms:
+\[
+  1+\frac12+\left(\frac13+\frac14\right)+\left(\frac15+\cdots+\frac18\right)+\cdots.
+\]
+Each block after the first contributes at least $1/2$.
+
+\section{Positive-term series}
+
+For $a_n\ge0$, convergence is controlled by size.
+
+Comparison test: if $0\le a_n\le b_n$ and $\sum b_n$ converges, then $\sum a_n$ converges.  If $a_n\ge b_n\ge0$ and $\sum b_n$ diverges, then $\sum a_n$ diverges.
+
+Limit comparison: if
+\[
+  \lim_{n\to\infty}\frac{a_n}{b_n}=c,\qquad 0<c<\infty,
+\]
+then $\sum a_n$ and $\sum b_n$ have the same convergence behavior.
+
+The $p$-series is the main comparison model:
+\[
+  \sum_{n=1}^{\infty}\frac1{n^p}
+\]
+converges iff $p>1$.
+
+Representative examples include
+\[
+  \sum \sin\frac1n,\qquad
+  \sum \ln\left(1+\frac1{n^2}\right),\qquad
+  \sum \left(\sqrt{n+1}-\sqrt n\right).
+\]
+The first behaves like $\sum 1/n$ and diverges.  The second behaves like $\sum1/n^2$ and converges.  The third behaves like $\sum1/(2\sqrt n)$ and diverges.
+
+\section{Ratio and root tests}
+
+The ratio test is suited to factorials and exponentials:
+\[
+  L=\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|.
+\]
+If $L<1$, the series converges absolutely; if $L>1$, it diverges; if $L=1$, the test is inconclusive.
+
+The root test is suited to expressions of the form $(\cdots)^n$:
+\[
+  L=\limsup_{n\to\infty}\sqrt[n]{|a_n|}.
+\]
+Again $L<1$ gives absolute convergence, $L>1$ gives divergence, and $L=1$ is inconclusive.
+
+Typical original examples include $\sum a^n/n^s$, factorials in the numerator or denominator, and powers with variable bases.  The rule is not to memorize which test belongs to which problem, but to inspect which part of $a_n$ changes fastest.
+
+\section{Alternating and arbitrary-sign series}
+
+Absolute convergence means
+\[
+  \sum |a_n|<\infty.
+\]
+Conditional convergence means $\sum a_n$ converges but $\sum |a_n|$ diverges.
+
+The alternating-series test says that if $b_n\downarrow0$, then
+\[
+  \sum_{n=1}^{\infty}(-1)^{n-1}b_n
+\]
+converges.  The alternating harmonic series is the standard example.
+
+Dirichlet's test: if partial sums $A_N=\sum_{n=1}^N a_n$ are bounded and $b_n\downarrow0$, then $\sum a_nb_n$ converges.  This handles examples such as
+\[
+  \sum_{n=1}^{\infty}\frac{\cos n}{n}.
+\]
+Abel's test is a neighboring result where one factor has a convergent series and the other is monotone bounded.
+
+\section{Function series and uniform convergence}
+
+A function series is
+\[
+  \sum_{n=1}^{\infty}u_n(x).
+\]
+Pointwise convergence asks for each fixed $x$.  Uniform convergence asks whether the tail becomes small simultaneously for all $x$ in a set:
+\[
+  \sup_{x\in E}|s_N(x)-s(x)|\to0.
+\]
+Uniform convergence is what allows continuity and integration to pass to the limit.  Without it, a limit of continuous functions may fail to be continuous.
+
+The Weierstrass M-test says that if
+\[
+  |u_n(x)|\le M_n,\qquad \sum M_n<\infty,
+\]
+then $\sum u_n$ converges uniformly and absolutely.
+
+\section{Power series}
+
+A power series centered at $x_0$ is
+\[
+  \sum_{n=0}^{\infty}a_n(x-x_0)^n.
+\]
+There exists a radius of convergence $R$ such that the series converges absolutely for $|x-x_0|<R$ and diverges for $|x-x_0|>R$.  Endpoints require separate testing.
+
+A common formula is
+\[
+  R=\lim_{n\to\infty}\left|\frac{a_n}{a_{n+1}}\right|,
+\]
+when the limit exists.  Missing powers require care: if the series contains $(x-x_0)^{2n}$, one should apply the ratio/root test directly rather than blindly reading a coefficient sequence as though every power were present.
+
+Inside the interval of convergence, power series may be differentiated and integrated term by term:
+\[
+  \left(\sum a_n(x-x_0)^n\right)'=\sum n a_n(x-x_0)^{n-1}.
+\]
+The radius of convergence remains the same, though endpoints may change.
+
+\section{Taylor series}
+
+The Taylor series at $a$ is
+\[
+  \sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n.
+\]
+At $a=0$, it is a Maclaurin series.  Standard expansions include
+\[
+  e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!},\quad
+  \sin x=\sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{(2n+1)!},\quad
+  \cos x=\sum_{n=0}^{\infty}(-1)^n\frac{x^{2n}}{(2n)!},
+\]
+\[
+  \frac1{1-x}=\sum_{n=0}^{\infty}x^n,\qquad |x|<1.
+\]
+Many exam examples are indirect expansions: rewrite the function in terms of known series, substitute, integrate, differentiate, or multiply series.
+
+\section{Improper integrals}
+
+Improper integrals appear when the interval is infinite or the integrand is unbounded:
+\[
+  \int_a^{\infty}f(x)\,dx=\lim_{R\to\infty}\int_a^R f(x)\,dx,
+\]
+\[
+  \int_a^b f(x)\,dx=\lim_{t\to b^-}\int_a^t f(x)\,dx
+\]
+if $f$ is singular at $b$.
+
+The two fundamental $p$-templates are
+\[
+  \int_1^{\infty}\frac{dx}{x^p}
+  \quad\text{converges iff }p>1,
+\]
+\[
+  \int_0^1\frac{dx}{x^p}
+  \quad\text{converges iff }p<1.
+\]
+Logarithmic refinements include
+\[
+  \int_e^{\infty}\frac{dx}{x(\ln x)^p},
+\]
+which converges iff $p>1$.
+
+For sign-changing improper integrals, absolute convergence means $\int |f|<\infty$.  Conditional convergence often comes from oscillation, as in Dirichlet-type integrals.
+
+\section{Unified viewpoint}
+
+Series and improper integrals ask the same question: can infinitely many small contributions accumulate to a finite value?  Positive objects are controlled by size; sign-changing objects are controlled by cancellation plus size.  Power series add a new idea: convergence depends on the point $x$, producing a domain where infinite algebraic manipulation becomes legitimate.
+
+\section{Uniform convergence as norm convergence}
+
+For a function series $\sum u_n(x)$, uniform convergence on $E$ is convergence in the sup norm:
+\[
+  \|s_N-s\|_{\infty,E}=\sup_{x\in E}|s_N(x)-s(x)|\to0.
+\]
+The Weierstrass M-test is simply comparison in this norm.  If $|u_n(x)|\le M_n$ and $\sum M_n<\infty$, then the tails satisfy
+\[
+  \sup_x\left|\sum_{n=N}^{\infty}u_n(x)\right|\le \sum_{n=N}^{\infty}M_n\to0.
+\]
+Thus the elementary test is really completeness of a normed function space at work.
+
+\section{Analytic functions and convergence radius}
+
+A power series
+\[
+  \sum a_n(z-z_0)^n
+\]
+defines a holomorphic function inside its disk of convergence.  The radius is controlled by the nearest complex singularity, not merely by real-variable behavior.  This explains why real Taylor series sometimes stop converging at a point where the real function looks harmless: the obstruction may live off the real axis.
+
+For example,
+\[
+  \frac1{1+x^2}
+\]
+has real Taylor series at $0$
+\[
+  1-x^2+x^4-\cdots,
+\]
+with radius $1$, because the complex singularities are at $x=\pm i$.
+
+\section{Dominated convergence and improper integrals}
+
+Improper integrals and parameter-dependent integrals become cleaner in measure language.  If $f_n\to f$ pointwise and $|f_n|\le g$ with $g$ integrable, dominated convergence gives
+\[
+  \int f_n\to \int f.
+\]
+This justifies many limiting operations that elementary calculus handles case by case.
+
+A useful contrast is between absolute convergence and conditional cancellation.  The integral
+\[
+  \int_1^{\infty}\frac{\sin x}{x}\,dx
+\]
+converges conditionally by oscillation, but
+\[
+  \int_1^{\infty}\left|\frac{\sin x}{x}\right|\,dx
+\]
+diverges.  This is the integral analogue of conditional series.
+
+\section{Tauberian flavor}
+
+Power series also encode sequences.  Given $a_n$, define
+\[
+  F(r)=\sum_{n=0}^{\infty}a_nr^n,\qquad 0<r<1.
+\]
+Abelian theorems say that ordinary convergence of $\sum a_n$ often implies limiting behavior of $F(r)$ as $r\to1^-$.  Tauberian theorems ask for converses under additional hypotheses.  This is the research-level continuation of the elementary question: how does convergence of coefficients relate to behavior of the generating function near the boundary?

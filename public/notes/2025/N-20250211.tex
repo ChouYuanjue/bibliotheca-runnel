@@ -1,14 +1,351 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20250211}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20250211}
-\end{document}
+\notechapter{N-20250211}{Transformations of Conics and the Erlangen View of Geometry}
+
+\section{The organizing question}
+
+This chapter studies conic sections through transformations.  The guiding question is not only how an ellipse, parabola, or hyperbola is described by an equation, but what kind of geometry regards two such objects as the same.
+
+The hierarchy is:
+\[
+  \text{Euclidean}\subset \text{similarity}\subset \text{affine}\subset
+  \text{projective}\subset \text{conformal/inversive phenomena}.
+\]
+Each enlargement forgets some invariants and preserves others.  This is the spirit of Klein's Erlangen program: a geometry is the study of properties invariant under a chosen transformation group.
+
+\section{Affine transformations}
+
+\begin{definition}
+An affine transformation of \(\mathbb R^n\) is a map
+\[
+  T(x)=Ax+b,
+\]
+where \(A\) is a linear map and \(b\in\mathbb R^n\).  If \(A\in GL(n,\mathbb R)\), then \(T\) is an affine automorphism.
+\end{definition}
+
+Affine transformations preserve straight lines, parallelism, ratios along a line, convexity, and barycentric combinations.  They do not preserve lengths, angles, or circles.
+
+\begin{example}
+An ellipse can be sent to a circle by an affine transformation.  If
+\[
+  \frac{x^2}{a^2}+\frac{y^2}{b^2}=1,
+\]
+then the affine map
+\[
+  (x,y)\mapsto (x/a,y/b)
+\]
+sends it to the unit circle.
+\end{example}
+
+\section{Conics in matrix form}
+
+A plane conic may be written as
+\[
+  Ax^2+Bxy+Cy^2+Dx+Ey+F=0.
+\]
+In homogeneous coordinates \([x:y:z]\), this becomes
+\[
+  Ax^2+Bxy+Cy^2+Dxz+Eyz+Fz^2=0.
+\]
+Equivalently,
+\[
+  X^TQX=0,\qquad X=(x,y,z)^T,
+\]
+where \(Q\) is a symmetric \(3\times3\) matrix.
+
+Under a projective transformation \(X\mapsto MX\), the conic transforms by
+\[
+  Q\mapsto M^{-T}QM^{-1}.
+\]
+Thus projective classification of conics becomes a question about symmetric bilinear forms up to change of coordinates.
+
+A concrete matrix is the best antidote to the vague sentence that all nondegenerate conics are projectively equivalent.  The parabola
+\[
+  C_1:\quad y=x^2
+\]
+has homogeneous equation
+\[
+  X^2-YZ=0,
+\]
+so it is represented by
+\[
+  A_1=
+  \begin{pmatrix}
+  1&0&0\\
+  0&0&-\frac12\\
+  0&-\frac12&0
+  \end{pmatrix}.
+\]
+The unit circle
+\[
+  C_2:\quad X^2+Y^2=Z^2
+\]
+is represented by
+\[
+  A_2=
+  \begin{pmatrix}
+  1&0&0\\
+  0&1&0\\
+  0&0&-1
+  \end{pmatrix}.
+\]
+Now take
+\[
+  M=
+  \begin{pmatrix}
+  1&0&0\\
+  0&1&1\\
+  0&-1&1
+  \end{pmatrix}.
+\]
+A direct multiplication gives
+\[
+  M^TA_1M=A_2.
+\]
+Indeed, if \(U=(u,v,w)^T\) and \(X=MU=(u,v+w,-v+w)^T\), then
+\[
+  X^TA_1X
+  =
+  u^2-(v+w)(-v+w)
+  =
+  u^2+v^2-w^2
+  =
+  U^TA_2U.
+\]
+Thus the projective change of coordinates \(U=M^{-1}X\) sends the parabola equation to the circle equation.
+
+This is not an affine transformation.  The inverse matrix is
+\[
+  M^{-1}=
+  \begin{pmatrix}
+  1&0&0\\
+  0&\frac12&-\frac12\\
+  0&\frac12&\frac12
+  \end{pmatrix}.
+\]
+The unique real point at infinity of the parabola,
+\[
+  [0:1:0],
+\]
+is sent to
+\[
+  M^{-1}[0:1:0]=[0:1:1],
+\]
+a finite real point on the circle.  Meanwhile the usual circular points at infinity of the real circle are the complex points
+\[
+  [1:i:0],\qquad [1:-i:0].
+\]
+So the projective transformation has moved the affine line at infinity itself; this is exactly why a parabola and a circle can be the same projective conic while remaining different in affine geometry.  The difference between them is absolute for affine geometry, but only a coordinate choice for projective geometry.
+
+\section{Projective geometry}
+
+Projective geometry adds points at infinity.  In the real projective plane,
+\[
+  \mathbb P^2(\mathbb R)=\{[x:y:z]\mid (x,y,z)\neq0\}/\sim,
+\]
+where
+\[
+  [x:y:z]=[\lambda x:\lambda y:\lambda z],\qquad \lambda\neq0.
+\]
+The affine plane is the chart \(z\neq0\), and the line at infinity is \(z=0\).
+
+\begin{definition}
+A projective transformation of \(\mathbb P^2\) is induced by an invertible matrix
+\[
+  M\in GL(3,\mathbb R),
+\]
+acting by
+\[
+  [X]\mapsto [MX].
+\]
+Scalar multiples of \(M\) induce the same projective transformation.  Thus the transformation group is
+\[
+  PGL(3,\mathbb R).
+\]
+\end{definition}
+
+Projective transformations preserve incidence and cross-ratio, but not parallelism, distance, or angle.  In projective geometry, all nondegenerate conics over an algebraically closed field are projectively equivalent.
+
+
+\section{Cross-ratio}
+
+For four collinear points \(A,B,C,D\), the cross-ratio is denoted
+\[
+  (A,B;C,D).
+\]
+In an affine coordinate it has the form
+\[
+  (a,b;c,d)=\frac{(c-a)(d-b)}{(c-b)(d-a)}.
+\]
+
+\begin{theorem}
+Projective transformations preserve cross-ratio.
+\end{theorem}
+
+\begin{remark}
+The cross-ratio is the prototype of a projective invariant.  Once one understands it, projective geometry stops looking like distorted Euclidean geometry and becomes an invariant theory of incidence.
+\end{remark}
+
+\section{Projective duality and conics}
+
+Projective duality interchanges points and lines.  A nondegenerate conic defines a duality: to a point \(p\), one associates its polar line with respect to the conic.  In matrix form, if the conic is \(X^TQX=0\), then the polar line of \(p\) is
+\[
+  p^TQX=0.
+\]
+
+\begin{remark}
+The same quadratic form that defines the conic also turns points into lines.  The conic is therefore not just a curve; it is a device for dualizing projective geometry.
+\end{remark}
+
+\section{Inversion}
+
+\begin{definition}
+Inversion in the circle of radius \(r\) centered at the origin is the map
+\[
+  x\mapsto \frac{r^2}{\|x\|^2}x.
+\]
+In the complex plane, inversion in the unit circle is essentially
+\[
+  z\mapsto \frac{1}{\overline z}.
+\]
+\end{definition}
+
+Inversion sends lines and circles to lines and circles, with the convention that lines are circles through infinity.  It is conformal away from the center of inversion: it preserves angles but not distances.
+
+\section{Möbius transformations}
+
+A Möbius transformation has the form
+\[
+  z\mapsto \frac{az+b}{cz+d},\qquad ad-bc\neq0.
+\]
+It acts naturally on the Riemann sphere
+\[
+  \widehat{\mathbb C}=\mathbb C\cup\{\infty\}.
+\]
+The group of Möbius transformations is
+\[
+  PGL(2,\mathbb C).
+\]
+
+Möbius transformations send generalized circles to generalized circles and preserve cross-ratios.  They are simultaneously projective transformations of \(\mathbb P^1(\mathbb C)\) and conformal automorphisms of the Riemann sphere.
+
+\section{Conic sections}
+
+Classically, conics arise as plane sections of a cone.  Analytically, they are degree-two plane curves.  Projectively, a conic is a homogeneous quadratic equation in \(\mathbb P^2\).
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+Geometry & Transformations & Conic classification\\
+\midrule
+Euclidean & Rigid motions & Metric shape matters\\
+Similarity & Rotations, translations, scalings & Eccentricity-like shape remains\\
+Affine & Invertible affine maps & Ellipses are equivalent to circles\\
+Projective & \(PGL(3)\) & Nondegenerate conics are equivalent over algebraically closed fields\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+
+\section{The Erlangen program}
+
+Klein's Erlangen program says that geometry should be understood through a group of transformations and the invariants under that group.  Euclidean geometry studies invariants under Euclidean motions; affine geometry studies invariants under affine transformations; projective geometry studies invariants under projective transformations.
+
+\begin{remark}
+This viewpoint explains why the same object can look different in different geometries.  A circle is special in Euclidean geometry, but not in affine geometry.  Parallel lines are meaningful in affine geometry, but not in projective geometry.  Cross-ratio is invisible in elementary Euclidean geometry, but central in projective geometry.
+\end{remark}
+
+\section{A hierarchy of invariants}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+Transformation group & Preserved & Forgotten\\
+\midrule
+Euclidean & Distance, angle, incidence & Coordinates\\
+Similarity & Angle, ratios of lengths & Absolute scale\\
+Affine & Incidence, parallelism, ratios on a line & Angle and length\\
+Projective & Incidence, cross-ratio & Parallelism and affine ratio\\
+Möbius & Generalized circles, angles, cross-ratio on \(\widehat{\mathbb C}\) & Euclidean size\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+
+\section{Quadratic forms and matrix language}
+
+A conic in the projective plane can be written as
+\[
+  X^TQX=0,
+\]
+where \(X=(x:y:z)^T\) is a homogeneous coordinate vector and \(Q\) is a symmetric matrix.  Passing to homogeneous coordinates is not cosmetic.  It lets ellipses, parabolas, and hyperbolas be treated uniformly and allows points at infinity to participate in the geometry.
+
+Under a projective change of coordinates \(X=M X'\), the conic matrix transforms as
+\[
+  Q' = M^TQM
+\]
+or equivalently \(Q\mapsto M^{-T}QM^{-1}\), depending on whether one transforms coordinates or points.  The equation changes, but the geometric conic is the same object in new coordinates.
+
+\section{Affine classification versus projective classification}
+
+In affine geometry, ellipses, parabolas, and hyperbolas are genuinely different because the line at infinity is fixed.  The way a conic meets the line at infinity distinguishes the types: an ellipse has no real points at infinity, a parabola is tangent to the line at infinity, and a hyperbola meets it in two real points.
+
+In projective geometry over an algebraically closed field, all nonsingular conics are projectively equivalent.  Projective geometry forgets metric shape and focuses on incidence and cross-ratio-type data.
+
+\section{Polar lines}
+
+For a nonsingular conic \(X^TQX=0\), a point \(P\) has a polar line
+\[
+  P^TQX=0.
+\]
+If \(P\) lies on the conic, the polar line is the tangent line at \(P\).  If \(P\) lies outside, the polar encodes the chord of contact of tangents from \(P\).
+
+The pole-polar relation is one of the best examples of why projective conic theory is richer than coordinate classification.  It converts points to lines and lines to points in a way controlled by the conic.
+
+\section{Transformation groups determine the geometry being studied}
+
+The transformation-centered view naturally leads to modern geometry:
+\begin{enumerate}[(i)]
+  \item algebraic geometry studies varieties and morphisms, with projective space as a basic ambient object;
+  \item differential geometry studies invariants under diffeomorphisms or isometries;
+  \item complex geometry studies holomorphic maps;
+  \item representation theory studies symmetries through linear actions;
+  \item category theory abstracts the entire pattern by treating structure-preserving maps as primary.
+\end{enumerate}
+
+\section{How to choose the right geometry}
+
+The Erlangen viewpoint becomes useful only when it tells us which tools are allowed.  For conic problems, a practical guide is:
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+Question being asked & Natural geometry & Reason\\
+\midrule
+length, angle, focus, eccentricity & Euclidean/similarity & metric data is essential\\
+midpoints, parallelism, area ratios & affine & affine maps preserve barycentric structure\\
+incidence, tangency, conic equivalence & projective & the line at infinity may move\\
+cross-ratio or four points on a line & projective & cross-ratio is projectively invariant\\
+angle with generalized circles & conformal/inversive & inversion preserves angles and generalized circles\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{remark}[A common mistake]
+Saying that two conics are projectively equivalent does not mean they are the same in Euclidean or affine geometry.  A parabola and a circle may be projectively equivalent, but the projective map can move the line at infinity.  Once that happens, affine notions such as parallelism and the distinction between ellipse/parabola/hyperbola need not be preserved.
+\end{remark}
+
+\section{Using the transformation group in a conic problem}
+
+A conic in homogeneous coordinates is
+\[
+  X^TAX=0.
+\]
+If the problem asks only for incidence or tangency, one may use a projective change of coordinates; algebraically this replaces \(A\) by a congruent matrix \(P^TAP\).  The tangent at a point \(X\) is read from the bilinear form as
+\[
+  X^TAY=0,
+\]
+so the same matrix controls the conic, its tangent lines, and the pole--polar correspondence.
+
+The restrictions become important when the question contains metric words.  A projective map may send a circle to a parabola because it can move the line at infinity, so it does not preserve Euclidean length, angle, focus, or eccentricity.  An affine map keeps parallelism and ratios on parallel lines but may change angles.  Inversion and conformal maps preserve angles and generalized circles, but not distances.  Thus in an actual problem the first step is to mark which data must survive: cross-ratio and incidence suggest projective coordinates; parallelism suggests affine coordinates; angles with circles suggest inversive geometry; lengths force a Euclidean or similarity argument.

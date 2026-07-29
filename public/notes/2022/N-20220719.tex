@@ -1,14 +1,221 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220719}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220719}
-\end{document}
+\notechapter{N-20220719}{Solid Geometry: Points, Lines, Planes, Parallelism, and Perpendicularity}
+
+\section{Why solid geometry feels different}
+
+Solid geometry is not merely plane geometry with one more coordinate.  Objects can miss each other in space: two lines may be skew, and a line may be parallel to a plane without being parallel to every line in that plane.  These distinctions are exactly why the incidence axioms matter.
+
+\section{Basic axioms of incidence}
+
+\begin{axiom}[Plane incidence axioms]
+Two distinct points determine a unique line, and two distinct lines intersect in at most one point.  These axioms encode the basic incidence structure before metric notions such as distance and angle are introduced.
+\end{axiom}
+
+
+The fundamental incidence principles recorded in the note are:
+\begin{enumerate}[(i)]
+  \item Through three non-collinear points there is one and only one plane.
+  \item If two points of a line lie in a plane, then the whole line lies in that plane.
+  \item If two distinct planes have a common point, then their intersection is exactly one line through that point.
+\end{enumerate}
+
+From these one derives several useful consequences:
+\begin{enumerate}[(i)]
+  \item Through a line and a point not on that line, there is one and only one plane.
+  \item Through two intersecting lines, there is one and only one plane.
+  \item Through two parallel lines, there is one and only one plane.
+\end{enumerate}
+
+The proofs are good training in mathematical language.  One repeatedly shows existence by choosing suitable points, and uniqueness by reducing to the uniqueness of a plane through three non-collinear points.
+
+\section{Relations between two lines}
+
+In space, two distinct lines can be:
+\begin{enumerate}[(i)]
+  \item coplanar and intersecting;
+  \item coplanar and parallel;
+  \item non-coplanar, called skew lines.
+
+\end{enumerate}
+Skew lines are the genuinely new case in space.  Drawings can be misleading: two projected lines may cross on paper even when the actual spatial lines do not intersect.
+
+\section{A line and a plane}
+
+A line \(l\) and a plane \(\alpha\) have three possible relations:
+\begin{enumerate}[(i)]
+  \item \(l\subset\alpha\);
+  \item \(l\) intersects \(\alpha\) at exactly one point;
+  \item \(l\parallel\alpha\), meaning there is no common point.
+
+\end{enumerate}
+
+The note stresses a common mistake: a line parallel to a plane is not necessarily parallel to every line in the plane.  It is parallel to some line in the plane, but it may be skew to many others.
+
+\section{Parallel planes and parallel lines}
+
+Two planes are parallel if they have no common point.  The standard theorem is: if two intersecting lines in one plane are respectively parallel to two intersecting lines in another plane, then the two planes are parallel.  Conversely, if two parallel planes are cut by a third plane, the intersection lines are parallel.
+
+This explains many of the little diagrams in the note: the right move is to find the auxiliary plane that contains the relevant lines, then reduce the spatial statement to a planar one.
+
+\section{Perpendicularity}
+
+A line \(l\) is perpendicular to a plane \(\alpha\) if \(l\) is perpendicular to every line in \(\alpha\) through the foot point.  The useful test is stronger-looking but easier to check:
+\begin{theorem}
+If a line is perpendicular to two intersecting lines in a plane, then it is perpendicular to the plane.
+\end{theorem}
+
+Once a line is perpendicular to a plane, it is perpendicular to every line in that plane through the foot.  This is the basic tool behind many distance and projection problems.
+
+\section{Projection theorem}
+
+\begin{theorem}[Projection theorem]
+In an inner-product space, the closest point in a subspace \(W\) to a vector \(v\) is the vector \(p\in W\) such that
+\[
+  v-p\perp W.
+\]
+\end{theorem}
+
+
+The note also touches the three-perpendicular theorem.  In one common form: let \(PO\perp\alpha\), let \(AB\subset\alpha\), and let \(OQ\) be the projection of \(PQ\) onto \(\alpha\).  Then perpendicularity of \(PQ\) to a line in space can be detected by perpendicularity of its projection in the plane.  Informally, right angles survive projection when the projection is taken along a perpendicular direction.
+
+\section{A coordinate viewpoint}
+
+Although the note is synthetic, it is useful to connect it with vectors.  A plane in \(\mathbb R^3\) can be written
+\[
+  ax+by+cz=d,
+\]
+with normal vector
+\[
+  n=(a,b,c).
+\]
+A line with direction vector \(v\) is perpendicular to the plane iff
+\[
+  v\parallel n.
+\]
+A line lies in or is parallel to the plane iff
+\[
+  v\cdot n=0.
+\]
+Thus the synthetic tests are shadows of dot-product computations.
+
+
+\section{Skew lines}
+
+In space, two lines may be neither intersecting nor parallel.  Such lines are skew.  This is the first major difference from plane geometry.  A diagram can be misleading because a projection of skew lines may appear to intersect.
+
+To prove two lines are skew, one usually shows they are not parallel and that the system of equations for intersection has no solution.  In vector form, lines
+\[
+  p+tu,\qquad q+sv
+\]
+intersect iff there exist \(s,t\) such that \(p+tu=q+sv\).
+
+\section{Planes by normal vectors}
+
+A plane can be described by a point \(p_0\) and a normal vector \(n\):
+\[
+  n\cdot(x-p_0)=0.
+\]
+This equation is often more useful than a picture.  Parallelism of planes becomes parallelism of normal vectors.  Perpendicularity of a line and a plane becomes parallelism between the line direction and the plane normal.
+
+\section{The organizing idea}
+
+Solid geometry trains an important habit: always ask what ambient plane contains the objects you are comparing.  Many false arguments in space come from treating skew lines as if they were coplanar.  Later, vector algebra solves this with span and dot products; projective geometry solves it with incidence; linear algebra solves it with subspaces and dimensions.
+
+\section{Incidence geometry}
+
+Solid geometry begins with incidence: which points lie on which lines and planes.  Many theorems are consequences of dimension counting.  Two distinct points determine a line; three non-collinear points determine a plane.
+
+This is the three-dimensional analogue of affine geometry, where parallelism and intersection are primary relations.
+
+\section{Orthogonality as inner-product structure}
+
+Perpendicularity is not merely visual; it depends on an inner product.  In coordinates,
+\[
+  u\perp v\quad\Longleftrightarrow\quad u\cdot v=0.
+\]
+A line perpendicular to a plane is perpendicular to every direction vector in that plane.  This is why normal vectors encode planes efficiently.
+
+\section{Projection as least-distance decomposition}
+
+Orthogonal projection decomposes a vector into parallel and perpendicular parts:
+\[
+  v=\operatorname{proj}_W v+(v-\operatorname{proj}_W v).
+\]
+The perpendicular part is the shortest error.  This geometric fact later becomes least squares in linear algebra.
+
+\section{Affine incidence plus metric projection}
+
+Solid geometry has two layers: affine incidence/parallelism and metric orthogonality/projection.  Confusing the layers causes many errors.  Lines and planes are affine objects; perpendicularity and distance require inner-product structure.
+
+\section{Affine geometry of points, lines, and planes}
+
+Solid geometry often begins with points, lines, and planes.  In affine geometry, a line through points $p,q$ is
+\[
+  p+t(q-p),\qquad t\in k,
+\]
+and a plane through $p$ with independent directions $u,v$ is
+\[
+  p+su+tv.
+\]
+Incidence questions become linear-dependence questions among direction vectors.
+
+This explains the elementary tests: parallelism is dependence of direction vectors; coplanarity is rank at most two; intersection of planes is solving a linear system.
+
+\section{Projective completion}
+
+Parallel lines do not meet in affine geometry, but they meet at points at infinity in projective geometry.  Projective space $\mathbb P^n$ consists of one-dimensional subspaces of $k^{n+1}$.  A point is written in homogeneous coordinates
+\[
+  [x_0:x_1:\cdots:x_n].
+\]
+Affine space sits inside projective space as the chart $x_0\ne0$.
+
+Adding points at infinity makes many incidence theorems cleaner because parallel and intersecting cases become one case.
+
+\section{Grassmannians}
+
+The set of all $k$-dimensional linear subspaces of an $n$-dimensional vector space is the Grassmannian
+\[
+  Gr(k,n).
+\]
+Lines through the origin in $k^3$ form $Gr(1,3)=\mathbb P^2$.  Planes through the origin form $Gr(2,3)$.
+
+Thus the collection of all possible directions of lines and planes is itself a geometric space.  The elementary act of choosing a line direction is a point in a Grassmannian.
+
+\section{Exterior algebra and incidence}
+
+A line direction spanned by $u$ and a plane direction spanned by $v,w$ can be encoded by wedge products:
+\[
+  u,\qquad v\wedge w.
+\]
+Incidence conditions become wedge equations.  For example, $u$ lies in the plane spanned by $v,w$ iff
+\[
+  u\wedge v\wedge w=0.
+\]
+This gives a coordinate-free version of determinant tests for coplanarity.
+
+\section{Incidence tests become wedge and projective calculations}
+
+The original point-line-plane exercises are exactly the practical computations needed for affine and projective geometry.  Direction vectors become points in Grassmannians; determinant tests become wedge-product incidence; parallel cases become ordinary intersections after projective completion.
+
+\section{Incidence via ranks}
+
+In three-dimensional analytic geometry, incidence conditions are rank conditions.  Points $P_0,P_1,P_2,P_3$ are coplanar iff the direction vectors
+\[
+  P_1-P_0,\quad P_2-P_0,\quad P_3-P_0
+\]
+are linearly dependent.  Equivalently, the determinant formed by these three vectors is zero.
+
+A line intersects a plane when the linear system consisting of the line equation and plane equation is solvable.  A line is parallel to a plane when its direction vector lies in the kernel of the plane's normal functional.  These are all linear-algebraic conditions.
+
+\section{Projective duality of points and planes}
+
+In projective three-space, a plane is given by a linear equation
+\[
+  a_0X_0+a_1X_1+a_2X_2+a_3X_3=0.
+\]
+Thus planes correspond to covectors up to scale, i.e. points in the dual projective space.  Point-plane incidence is the pairing
+\[
+  \ell(P)=0.
+\]
+This duality explains why many theorems about points have dual theorems about planes.
+
+The elementary distinction between direction vectors and normal vectors is the affine shadow of vector-covector duality.

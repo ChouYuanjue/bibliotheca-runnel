@@ -1,14 +1,647 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20260602}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20260602}
-\end{document}
+\notechapter{N-20260602}{Matrix Decompositions: LU, Cholesky, Rank Factorization, and SVD}
+
+\section{One matrix, several kinds of hidden structure}
+
+A matrix is often presented as a rectangular array of numbers, but an algorithm rarely wants to work with that array in its original form.  It would rather expose a structure that the matrix is hiding.  A triangular matrix can be solved from one end to the other.  A positive definite matrix carries an inner-product geometry.  A low-rank matrix really passes through a smaller space.  An arbitrary linear map stretches some orthogonal directions more than others.
+
+These observations lead to four decompositions:
+\[
+  PA=LU,
+  \qquad
+  A=LL^*,
+  \qquad
+  A=FG,
+  \qquad
+  A=U\Sigma V^*.
+\]
+They are not four versions of the same trick.  Each answers a different question.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+Factorization & Question it answers & Structure it exposes\\
+\midrule
+\(PA=LU\) & How can elimination be reused? & successive triangular solves\\
+\(A=LL^*\) & What extra benefit comes from positivity? & a Gram-type square root\\
+\(A=FG\) & Through how many coordinates does the map really pass? & exact rank\\
+\(A=U\Sigma V^*\) & Which orthogonal directions are stretched most? & singular directions and scales\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The point of this chapter is therefore not to memorize four formulas.  It is to watch four different pieces of linear algebra become algorithms.
+
+\section{Elimination remembers its work}
+
+Consider a square system
+\[
+  Ax=b.
+\]
+Gaussian elimination replaces rows of \(A\) until the matrix becomes upper triangular.  Every elimination step is multiplication on the left by a lower triangular elementary matrix.  If
+\[
+  E_{n-1}\cdots E_2E_1A=U,
+\]
+then
+\[
+  A=E_1^{-1}E_2^{-1}\cdots E_{n-1}^{-1}U.
+\]
+The product of the inverse elimination matrices is lower triangular.  This is the origin of
+\[
+  A=LU.
+\]
+
+The factor \(L\) is therefore a record of what elimination did.  Its entries below the diagonal are the multipliers used to cancel entries of \(A\); \(U\) is the echelon-shaped matrix left behind.
+
+\begin{proposition}[Existence without row exchanges]
+Let \(A\in\mathbb C^{n\times n}\).  If every leading principal minor
+\[
+  \Delta_k=\det A_{1:k,1:k},\qquad k=1,\ldots,n,
+\]
+is nonzero, then there is a factorization
+\[
+  A=LU,
+\]
+where \(L\) is unit lower triangular and \(U\) is upper triangular.
+\end{proposition}
+
+The condition has a direct computational meaning: elimination reaches a nonzero pivot at every stage without exchanging rows.  It is not a mysterious determinant test added after the algorithm; it is the determinant form of saying that the algorithm never gets stuck.
+
+The factors are unique under this normalization.  Indeed, if
+\[
+  A=LU=\widetilde L\widetilde U,
+\]
+then
+\[
+  L^{-1}\widetilde L=U\widetilde U^{-1}.
+\]
+The left side is unit lower triangular and the right side is upper triangular.  A matrix of both kinds must be the identity, so \(L=\widetilde L\) and \(U=\widetilde U\).
+
+\section{A complete LU calculation}
+
+Take
+\[
+  A=
+  \begin{bmatrix}
+    2&1&1\\
+    4&-6&0\\
+    -2&7&2
+  \end{bmatrix}.
+\]
+The first pivot is \(2\).  To clear the first column, use the multipliers
+\[
+  m_{21}=2,
+  \qquad
+  m_{31}=-1.
+\]
+After
+\[
+  R_2\leftarrow R_2-2R_1,
+  \qquad
+  R_3\leftarrow R_3+R_1,
+\]
+we obtain
+\[
+  \begin{bmatrix}
+    2&1&1\\
+    0&-8&-2\\
+    0&8&3
+  \end{bmatrix}.
+\]
+The second multiplier is
+\[
+  m_{32}=\frac{8}{-8}=-1.
+\]
+Thus
+\[
+  R_3\leftarrow R_3+R_2
+\]
+produces
+\[
+  U=
+  \begin{bmatrix}
+    2&1&1\\
+    0&-8&-2\\
+    0&0&1
+  \end{bmatrix}.
+\]
+The multipliers, placed in the corresponding positions below a diagonal of ones, give
+\[
+  L=
+  \begin{bmatrix}
+    1&0&0\\
+    2&1&0\\
+    -1&-1&1
+  \end{bmatrix}.
+\]
+A direct multiplication confirms that \(A=LU\).
+
+Now solve
+\[
+  Ax=
+  \begin{bmatrix}5\\-2\\9\end{bmatrix}.
+\]
+Instead of eliminating again, first solve
+\[
+  Ly=b.
+\]
+Forward substitution gives
+\[
+  y_1=5,
+  \qquad
+  2y_1+y_2=-2,
+  \qquad
+  -y_1-y_2+y_3=9,
+\]
+so
+\[
+  y=
+  \begin{bmatrix}5\\-12\\2\end{bmatrix}.
+\]
+Then solve
+\[
+  Ux=y.
+\]
+Backward substitution gives
+\[
+  x_3=2,
+  \qquad
+  -8x_2-2x_3=-12,
+  \qquad
+  2x_1+x_2+x_3=5,
+\]
+and hence
+\[
+  x=
+  \begin{bmatrix}1\\1\\2\end{bmatrix}.
+\]
+
+This is why factorization matters when several right-hand sides are present.  The expensive elimination is performed once.  Each new vector \(b\) requires only one forward and one backward triangular solve.
+
+\section{When the first pivot betrays us}
+
+The matrix
+\[
+  A_0=
+  \begin{bmatrix}
+    0&2&1\\
+    1&-2&-3\\
+    2&3&1
+  \end{bmatrix}
+\]
+is invertible, but elimination cannot begin with its upper-left entry.  Swapping the first and third rows gives
+\[
+  PA_0=
+  \begin{bmatrix}
+    2&3&1\\
+    1&-2&-3\\
+    0&2&1
+  \end{bmatrix},
+\]
+where
+\[
+  P=
+  \begin{bmatrix}
+    0&0&1\\
+    0&1&0\\
+    1&0&0
+  \end{bmatrix}.
+\]
+Elimination now yields
+\[
+  PA_0=LU
+\]
+with
+\[
+  L=
+  \begin{bmatrix}
+    1&0&0\\
+    \frac12&1&0\\
+    0&-\frac47&1
+  \end{bmatrix},
+  \qquad
+  U=
+  \begin{bmatrix}
+    2&3&1\\
+    0&-\frac72&-\frac72\\
+    0&0&-1
+  \end{bmatrix}.
+\]
+
+Row exchanges are also useful when a pivot is nonzero but dangerously small.  For example,
+\[
+  B_\varepsilon=
+  \begin{bmatrix}
+    \varepsilon&1\\
+    1&1
+  \end{bmatrix},
+  \qquad 0<\varepsilon\ll1,
+\]
+would use the multiplier \(1/\varepsilon\) if elimination proceeded in the displayed order.  That large multiplier creates subtraction between large nearby numbers and can amplify rounding error.  Partial pivoting exchanges the rows and uses the entry \(1\) instead.
+
+Partial pivoting chooses the largest available entry in magnitude from the current column.  It keeps all elimination multipliers at most \(1\).  This is one reason Gaussian elimination with partial pivoting is reliable in ordinary numerical work.  The statement needs one caveat: specially constructed matrices can still exhibit a large growth factor.  Pivoting greatly improves stability, but it does not turn every matrix into a harmless one.
+
+There is also a distinction that should not be blurred:
+\[
+  \text{algorithmic stability}
+  \qquad\text{versus}\qquad
+  \text{conditioning of the problem}.
+\]
+Pivoting controls the computation.  It cannot repair a linear system whose solution is intrinsically extremely sensitive to perturbations.
+
+\section{Positive definiteness buys a square root}
+
+Suppose now that \(A\) is Hermitian positive definite:
+\[
+  A=A^*,
+  \qquad
+  x^*Ax>0\quad(x\ne0).
+\]
+Then no row exchange is needed, and symmetry allows us to use essentially one triangular factor instead of two.
+
+\begin{theorem}[Cholesky decomposition]
+Every Hermitian positive definite matrix has a unique factorization
+\[
+  A=LL^*,
+\]
+where \(L\) is lower triangular with positive diagonal entries.
+\end{theorem}
+
+The proof reveals more than the formula.  Write
+\[
+  A=
+  \begin{bmatrix}
+    a&c^*\\
+    c&B
+  \end{bmatrix}.
+\]
+Positive definiteness gives \(a>0\), so set
+\[
+  \ell_{11}=\sqrt a,
+  \qquad
+  w=\frac{c}{\sqrt a}.
+\]
+The trailing matrix that remains is the Schur complement
+\[
+  S=B-ww^*.
+\]
+It is again positive definite.  To see this, for any nonzero \(y\), choose
+\[
+  t=-\frac{c^*y}{a}.
+\]
+Then
+\[
+  \begin{bmatrix}t\\y\end{bmatrix}^*
+  A
+  \begin{bmatrix}t\\y\end{bmatrix}
+  =y^*Sy>0.
+\]
+The problem has therefore reduced to a smaller positive definite matrix.  Repeating the argument constructs \(L\) recursively.
+
+This induction explains why every square root appearing in Cholesky is real and positive.  Positive definiteness is exactly the hypothesis preventing the algorithm from taking the square root of a negative pivot.
+
+\section{A Cholesky solve from beginning to end}
+
+Consider
+\[
+  A=
+  \begin{bmatrix}
+    4&2&2\\
+    2&5&1\\
+    2&1&5
+  \end{bmatrix}.
+\]
+The first Cholesky entry is
+\[
+  \ell_{11}=\sqrt4=2.
+\]
+The entries below it are
+\[
+  \ell_{21}=\frac22=1,
+  \qquad
+  \ell_{31}=\frac22=1.
+\]
+The next diagonal entry is
+\[
+  \ell_{22}=\sqrt{5-1^2}=2,
+\]
+and
+\[
+  \ell_{32}=\frac{1-1\cdot1}{2}=0.
+\]
+Finally,
+\[
+  \ell_{33}=\sqrt{5-1^2-0^2}=2.
+\]
+Thus
+\[
+  L=
+  \begin{bmatrix}
+    2&0&0\\
+    1&2&0\\
+    1&0&2
+  \end{bmatrix},
+  \qquad
+  A=LL^T.
+\]
+
+For
+\[
+  Ax=
+  \begin{bmatrix}8\\8\\8\end{bmatrix},
+\]
+solve first
+\[
+  Ly=b.
+\]
+This gives
+\[
+  y=
+  \begin{bmatrix}4\\2\\2\end{bmatrix}.
+\]
+Then solve
+\[
+  L^Tx=y,
+\]
+which gives
+\[
+  x=
+  \begin{bmatrix}1\\1\\1\end{bmatrix}.
+\]
+
+Cholesky uses about half the leading-order arithmetic and half the off-diagonal storage of a general LU factorization.  The gain is not a clever coding accident; it comes from using symmetry instead of computing the same information twice.
+
+The hypothesis cannot be discarded.  For
+\[
+  C=
+  \begin{bmatrix}
+    1&2\\
+    2&1
+  \end{bmatrix},
+\]
+the first step would give \(\ell_{11}=1\) and \(\ell_{21}=2\), but then
+\[
+  \ell_{22}^2=1-2^2=-3.
+\]
+The failure reflects the negative eigenvalue of \(C\).  Cholesky is not merely an LU decomposition with matching factors; it is a certificate of positive definiteness.
+
+There is a geometric interpretation as well.  If \(A=LL^*\), then
+\[
+  x^*Ax=\|L^*x\|_2^2.
+\]
+Thus a positive definite quadratic form is Euclidean length after an invertible change of coordinates.  Equivalently, \(A\) is a Gram matrix of independent vectors.
+
+\section{Rank factorization removes redundant coordinates}
+
+A rectangular matrix may contain exact redundancy rather than a difficult pivot.  If
+\[
+  A\in\mathbb C^{m\times n},
+  \qquad
+  \operatorname{rank}A=r,
+\]
+then there are matrices
+\[
+  F\in\mathbb C^{m\times r},
+  \qquad
+  G\in\mathbb C^{r\times n}
+\]
+with
+\[
+  \operatorname{rank}F=\operatorname{rank}G=r
+\]
+such that
+\[
+  A=FG.
+\]
+This is a rank factorization.
+
+The map represented by \(A\) now visibly passes through an \(r\)-dimensional space:
+\[
+  \mathbb C^n
+  \xrightarrow{\ G\ }
+  \mathbb C^r
+  \xrightarrow{\ F\ }
+  \mathbb C^m.
+\]
+Because \(G\) has full row rank, it is onto.  Because \(F\) has full column rank, it is one-to-one.  Consequently,
+\[
+  \ker A=\ker G,
+  \qquad
+  \operatorname{im}A=\operatorname{im}F.
+\]
+The factorization separates two jobs: \(G\) discards the directions that carry no information, and \(F\) places the remaining coordinates into the output space.
+
+For example, let
+\[
+  A=
+  \begin{bmatrix}
+    1&2&3\\
+    2&4&6\\
+    1&1&1
+  \end{bmatrix}.
+\]
+The first two columns are independent, while the third satisfies
+\[
+  A_{:3}=-A_{:1}+2A_{:2}.
+\]
+Choose
+\[
+  F=
+  \begin{bmatrix}
+    1&2\\
+    2&4\\
+    1&1
+  \end{bmatrix},
+  \qquad
+  G=
+  \begin{bmatrix}
+    1&0&-1\\
+    0&1&2
+  \end{bmatrix}.
+\]
+Then \(A=FG\), and both factors have rank \(2\).
+
+The factors are not unique.  For every invertible \(S\in\mathbb C^{r\times r}\),
+\[
+  A=(FS)(S^{-1}G).
+\]
+This freedom is a change of coordinates in the intermediate space.  What is intrinsic is not a particular pair \((F,G)\), but the fact that the map factors through an \(r\)-dimensional object.  In coordinate-free language, this is the familiar passage
+\[
+  \mathbb C^n/\ker A
+  \cong
+  \operatorname{im}A.
+\]
+
+\section{SVD chooses orthogonal coordinates on both sides}
+
+Rank factorization exposes the correct dimension, but it does not say which coordinates in that dimension are geometrically best.  The singular value decomposition makes a special choice: it uses orthonormal coordinates in both the domain and codomain.
+
+\begin{theorem}[Singular value decomposition]
+For every \(A\in\mathbb C^{m\times n}\), there are unitary matrices \(U\) and \(V\) such that
+\[
+  A=U\Sigma V^*,
+\]
+where \(\Sigma\) is rectangular diagonal with entries
+\[
+  \sigma_1\ge\sigma_2\ge\cdots\ge\sigma_r>0
+\]
+and all remaining entries zero.  The number \(r\) is \(\operatorname{rank}A\).
+\end{theorem}
+
+The construction begins with the positive semidefinite matrix \(A^*A\).  Choose an orthonormal eigenbasis
+\[
+  A^*Av_i=\sigma_i^2v_i.
+\]
+For every nonzero singular value, define
+\[
+  u_i=\frac{Av_i}{\sigma_i}.
+\]
+Then
+\[
+  Av_i=\sigma_i u_i,
+\]
+and the vectors \(u_i\) are orthonormal because
+\[
+  u_i^*u_j
+  =\frac{v_i^*A^*Av_j}{\sigma_i\sigma_j}
+  =\delta_{ij}.
+\]
+Complete the two orthonormal families to bases.  This yields \(A=U\Sigma V^*\).
+
+The equation
+\[
+  Av_i=\sigma_i u_i
+\]
+is the most useful way to read the SVD.  The input direction \(v_i\) is sent to the output direction \(u_i\) and stretched by \(\sigma_i\).  Directions corresponding to zero singular values lie in the kernel.
+
+\section{A tilted ellipse and its best rank-one shadow}
+
+Let
+\[
+  A=\frac1{\sqrt2}
+  \begin{bmatrix}
+    3&-1\\
+    3&1
+  \end{bmatrix}.
+\]
+Its two columns are orthogonal.  The first has length \(3\), and the second has length \(1\).  Define
+\[
+  u_1=\frac1{\sqrt2}
+  \begin{bmatrix}1\\1\end{bmatrix},
+  \qquad
+  u_2=\frac1{\sqrt2}
+  \begin{bmatrix}-1\\1\end{bmatrix}.
+\]
+Then
+\[
+  Ae_1=3u_1,
+  \qquad
+  Ae_2=u_2.
+\]
+Therefore an SVD is
+\[
+  A=
+  \underbrace{\frac1{\sqrt2}
+  \begin{bmatrix}
+    1&-1\\
+    1&1
+  \end{bmatrix}}_{U}
+  \underbrace{
+  \begin{bmatrix}
+    3&0\\
+    0&1
+  \end{bmatrix}}_{\Sigma}
+  \underbrace{I}_{V^T}.
+\]
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.05,>=Stealth]
+  \draw[->] (-1.5,0)--(1.7,0) node[right] {$x_1$};
+  \draw[->] (0,-1.5)--(0,1.7) node[above] {$x_2$};
+  \draw[thick] (0,0) circle (1);
+  \draw[->,thick] (0,0)--(1,0) node[below right] {$v_1$};
+  \draw[->,thick] (0,0)--(0,1) node[above left] {$v_2$};
+  \node at (0,-1.9) {unit circle in the domain};
+
+  \begin{scope}[xshift=6.2cm]
+    \draw[->] (-2.5,0)--(2.7,0) node[right] {$y_1$};
+    \draw[->] (0,-2.2)--(0,2.4) node[above] {$y_2$};
+    \draw[rotate=45,thick] (0,0) ellipse (3 and 1);
+    \draw[->,thick] (0,0)--(45:3) node[above right] {$3u_1$};
+    \draw[->,thick] (0,0)--(135:1) node[above left] {$u_2$};
+    \node at (0,-2.6) {image ellipse};
+  \end{scope}
+
+  \draw[->,very thick] (1.9,0.3)--(3.7,0.3) node[midway,above] {$A$};
+\end{tikzpicture}
+\caption{The right singular vectors give orthogonal input directions; the left singular vectors give the principal axes of the image ellipse.}
+\end{figure}
+
+The compact SVD is also a rank factorization:
+\[
+  A=U_r\Sigma_rV_r^*
+   =(U_r\Sigma_r)V_r^*.
+\]
+Unlike an arbitrary rank factorization, it orders the intermediate coordinates by geometric importance.
+
+This ordering leads to a remarkable optimality statement.
+
+\begin{theorem}[Eckart--Young, spectral-norm form]
+If
+\[
+  A=\sum_{i=1}^r\sigma_i u_iv_i^*,
+  \qquad
+  \sigma_1\ge\cdots\ge\sigma_r>0,
+\]
+then among all matrices \(B\) of rank at most \(k\), the truncated SVD
+\[
+  A_k=\sum_{i=1}^k\sigma_i u_iv_i^*
+\]
+minimizes \(\|A-B\|_2\), and
+\[
+  \|A-A_k\|_2=\sigma_{k+1}.
+\]
+\end{theorem}
+
+For the matrix above, the best rank-one approximation is
+\[
+  A_1=3u_1e_1^T
+  =\frac3{\sqrt2}
+  \begin{bmatrix}
+    1&0\\
+    1&0
+  \end{bmatrix}.
+\]
+The discarded part is
+\[
+  A-A_1=u_2e_2^T,
+\]
+so
+\[
+  \|A-A_1\|_2=1.
+\]
+No other rank-one matrix can do better.  This is why singular values appear in compression, denoising, latent-factor models, and reduced-order simulation: truncation is not merely plausible; for these norms it is optimal.
+
+Small singular values carry a second message.  If \(A\) is invertible, then
+\[
+  \|A^{-1}\|_2=\frac1{\sigma_{\min}(A)}.
+\]
+A direction that is almost collapsed by \(A\) must be enormously expanded by \(A^{-1}\).  Thus the same SVD that provides a low-rank approximation also diagnoses instability in solving linear systems.
+
+\section{Choosing the factorization by the question}
+
+The four decompositions now fit together without becoming interchangeable.
+
+Use \(PA=LU\) when a general square system must be solved, especially for several right-hand sides.  The essential advantage is reusable elimination.  Use Cholesky when the matrix is Hermitian positive definite.  It is faster, stores less, and certifies a geometric property of the quadratic form.  Use a rank factorization when exact redundancy is the main issue and one wants an explicit passage through the image dimension.  Use the SVD when orthogonal geometry, conditioning, or optimal low-rank approximation matters enough to justify its greater cost.
+
+A decomposition should therefore be read as a mathematical answer to a computational question:
+\[
+\begin{array}{ccl}
+\text{elimination} &\leadsto& \text{triangular factors},\\
+\text{positive quadratic geometry} &\leadsto& \text{Cholesky},\\
+\text{quotient by the kernel} &\leadsto& \text{rank factorization},\\
+\text{orthogonal principal directions} &\leadsto& \text{SVD}.
+\end{array}
+\]
+The formulas are useful because each one exposes exactly the structure needed by the next calculation.  That is the sense in which a matrix decomposition is an algorithm rather than a decorative identity.

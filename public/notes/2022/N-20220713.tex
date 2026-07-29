@@ -1,14 +1,179 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220713}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220713}
-\end{document}
+\notechapter{N-20220713}{Completeness, Supremum, Dedekind Cuts, and Metric Spaces}
+
+\section{Large and small positive real numbers}
+
+A simple but important fact is that for every positive real \(A\), there is a positive real \(M>A\), and for every positive real \(a\), there is a positive real \(\varepsilon<a\).  For instance,
+\[
+  M=A+1,\qquad \varepsilon=\frac a2.
+\]
+This is the first appearance of the \(\varepsilon\)-language of analysis.
+
+\section{The geometric view of the real line}
+
+We think of \(\mathbb R\) as a line, where order is represented by left and right.  This picture is helpful, but the note emphasizes that all conclusions must ultimately come from axioms and rigorous reasoning, not from the drawing itself.
+
+A set \(X\subseteq\mathbb R\) is bounded above if there exists \(A\in\mathbb R\) such that
+\[
+  x\le A\quad\text{for all }x\in X.
+\]
+Such an \(A\) is an upper bound.  Similarly, \(X\) is bounded below if there exists \(a\) such that
+\[
+  a\le x\quad\text{for all }x\in X.
+\]
+
+\section{Supremum property}
+
+The least upper bound property says: if \(X\subseteq\mathbb R\) is nonempty and bounded above, then the set of upper bounds has a least element.  This least upper bound is denoted
+\[
+  \sup X.
+\]
+Equivalently, \(M=\sup X\) iff:
+\begin{enumerate}[(i)]
+  \item \(x\le M\) for all \(x\in X\);
+  \item for every \(\varepsilon>0\), there exists \(x\in X\) such that
+  \[
+    x>M-\varepsilon.
+  \]
+\end{enumerate}
+The note sketches a proof of the supremum property from the nested interval principle by bisecting intervals and selecting the half that still contains upper bounds or points of the set.
+
+The dual notion is the infimum:
+\[
+  \inf X.
+\]
+One always has
+\[
+  \inf X\le \sup X
+\]
+for a nonempty bounded set.
+
+\section{Nested intervals imply completeness}
+
+Let \(X\subseteq\mathbb R\) be nonempty and bounded above.  One can construct nested intervals
+\[
+  I_n=[a_n,b_n]
+\]
+so that \(a_n\) is not an upper bound of \(X\), while \(b_n\) is an upper bound, and
+\[
+  b_n-a_n\le 2^{-n}.
+\]
+The nested interval axiom gives a point
+\[
+  M\in\bigcap_{n=1}^{\infty}I_n.
+\]
+The shrinking length forces \(M\) to be the least upper bound of \(X\).  If \(M\) were not an upper bound, some \(x\in X\) would lie above it; for large \(n\), the right endpoint \(b_n\) would be too close to \(M\), contradiction.  If \(M\) were not least, a smaller upper bound would contradict the construction of the \(a_n\)'s.
+
+\section{Dedekind cuts}
+
+A Dedekind cut is a subset \(X\subset\mathbb Q\) such that:
+\begin{enumerate}[(i)]
+  \item \(X\neq\varnothing\) and \(\mathbb Q\setminus X\neq\varnothing\);
+  \item if \(x\in X\) and \(y<x\), then \(y\in X\);
+  \item \(X\) has no greatest element.
+\end{enumerate}
+A rational number \(p/q\) defines the cut
+\[
+  X_{p/q}=\{x\in\mathbb Q:x<p/q\}.
+\]
+An irrational such as \(\sqrt2\) is represented by
+\[
+  X_{\sqrt2}=\{x\in\mathbb Q_{>0}:x^2<2\}\cup\mathbb Q_{\le0}.
+\]
+Thus real numbers can be constructed from rational cuts.
+
+\section{Metric spaces}
+
+A metric space is a set \(X\) equipped with a function
+\[
+  d:X\times X\to\mathbb R_{\ge0}
+\]
+satisfying:
+\begin{enumerate}[(i)]
+  \item \(d(x,y)=0\) iff \(x=y\);
+  \item \(d(x,y)=d(y,x)\);
+  \item \(d(x,z)\le d(x,y)+d(y,z)\).
+\end{enumerate}
+
+The usual metric on \(\mathbb R\) is
+\[
+  d(x,y)=|x-y|.
+\]
+On \(\mathbb R^q\), common metrics are:
+\[
+  d_2(x,y)=\left(\sum_{n=1}^q |x_n-y_n|^2\right)^{1/2},
+\]
+\[
+  d_1(x,y)=\sum_{n=1}^q |x_n-y_n|,
+\]
+and
+\[
+  d_\infty(x,y)=\max_{1\le n\le q}|x_n-y_n|.
+\]
+The note remarks that \(d_2\) requires Cauchy--Schwarz for the triangle inequality, \(d_1\) is the Manhattan metric, and \(d_\infty\) is often called the Chebyshev metric.
+
+A final example is the discrete metric:
+\[
+  d(x,y)=
+  \begin{cases}
+  0,&x=y,\\
+  1,&x\neq y.
+  \end{cases}
+\]
+In the discrete metric, open balls are especially simple:
+\[
+  B_r(x)=
+  \begin{cases}
+  \{x\},&0<r\le1,\\
+  X,&r>1.
+  \end{cases}
+\]
+Boundary points are not included in an open ball, which explains why the case \(r=1\) gives \(\{x\}\), not all of \(X\).
+
+\section{Subspaces and density}
+
+If \(Y\subseteq X\) and \(X\) has metric \(d\), then \(Y\) inherits the subspace metric
+\[
+  d_Y(y_1,y_2)=d(y_1,y_2).
+\]
+A subset \(Y\subseteq X\) is dense if for every \(x\in X\) and every \(\varepsilon>0\), there exists \(y\in Y\) such that
+\[
+  d(x,y)<\varepsilon.
+\]
+This formalizes the idea that \(Y\) comes arbitrarily close to every point of \(X\).
+
+
+\section{Supremum as least upper bound}
+
+The supremum of a set \(A\subseteq\mathbb R\) is not merely a maximum.  It is the least number \(s\) such that every element of \(A\) is at most \(s\).  A maximum must belong to \(A\); a supremum need not.
+
+For example,
+\[
+  \sup(0,1)=1,
+\]
+but \((0,1)\) has no maximum.  This distinction is exactly what makes completeness subtle.
+
+\section{Dedekind cuts and completeness}
+
+A Dedekind cut separates rationals into a lower part and an upper part with no gap.  Irrational numbers appear as cuts not produced by a rational boundary.  Completeness says that every such cut corresponds to a real number.
+
+This is the philosophical point of constructing \(\mathbb R\): the real line is obtained by filling all rational gaps.
+
+\section{Looking ahead}
+
+The note moves from the order-completeness of \(\mathbb R\) to the metric-space language of distance and density.  Supremum, Dedekind cuts, nested intervals, and metrics are different ways of making precise the intuition that the real line has no holes.
+
+\section{Supremum as order-completeness}
+
+The supremum property says every nonempty bounded-above set has a least upper bound.  This is the order-theoretic heart of the real line.  It is what makes monotone convergence and intermediate-value reasoning possible.
+
+\section{Cauchy completion and metric completion}
+
+A metric space can be completed by adding equivalence classes of Cauchy sequences.  Two Cauchy sequences are equivalent if their distance tends to zero.  The real numbers can be constructed as the completion of \(\mathbb Q\) under the usual metric.
+
+\section{Dedekind cuts versus Cauchy sequences}
+
+Dedekind cuts construct reals by filling order gaps; Cauchy completion constructs reals by adding missing limits of Cauchy sequences.  The two constructions produce isomorphic complete ordered fields, but they emphasize different structures: order versus metric.
+
+\section{Completeness as the no-gap principle}
+
+Completeness is the bridge from algebraic number systems to analysis.  Supremum, nested intervals, Dedekind cuts, density, and metric completion are not separate facts; they are equivalent ways of ruling out gaps.

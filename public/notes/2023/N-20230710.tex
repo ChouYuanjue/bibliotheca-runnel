@@ -1,14 +1,245 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20230710}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20230710}
-\end{document}
+\notechapter{N-20230710}{Foundations of Mathematics: Set Theory, Category Theory, and Type Theory}
+
+\section{The question of foundations}
+
+Three major foundational languages---set theory, category theory, and type theory---answer the same basic questions in different ways.  The aim is not to declare a single winner, but to compare their answers:
+\begin{enumerate}[(i)]
+  \item What are mathematical objects?
+  \item What counts as equality?
+  \item What kind of reasoning is allowed?
+  \item How does computation enter mathematics?
+  \item How does one organize structures and transformations between them?
+\end{enumerate}
+
+Set theory emphasizes membership; category theory emphasizes morphisms and universal properties; type theory emphasizes construction, judgment, and computation.  The most interesting modern developments, especially univalent foundations and homotopy type theory, no longer keep these worlds separate.
+
+\section{Set theory}
+
+\subsection{From naive comprehension to axioms}
+
+Modern set theory begins with the intuition that mathematical objects can be collected into sets.  In naive set theory, one might try to form
+\[
+  \{x\mid P(x)\}
+\]
+for any property \(P\).  Russell's paradox shows that unrestricted comprehension is impossible: the class
+\[
+  R=\{x\mid x\notin x\}
+\]
+leads to contradiction if it is treated as a set.
+
+The response is axiomatization.  Zermelo--Fraenkel set theory with Choice, ZFC, restricts set formation and supplies a controlled universe in which ordinary mathematics can be developed.
+
+\subsection{ZFC as the standard background}
+
+The familiar axioms include extensionality, pairing, union, power set, infinity, replacement, foundation, separation, and choice.  Their roles may be summarized as follows:
+\begin{description}
+  \item[Extensionality.] A set is determined by its elements.
+  \item[Pairing, union, power set.] These build new sets from old ones.
+  \item[Infinity.] This guarantees an infinite set, usually giving the natural numbers.
+  \item[Replacement.] Definable images of sets are sets.
+  \item[Foundation.] Membership is well-founded and circular membership is excluded.
+  \item[Choice.] Products of nonempty families are nonempty; equivalently, every surjection has a right inverse.
+\end{description}
+
+\begin{remark}
+The strength of ZFC is not that it matches everyday mathematical language perfectly.  Its strength is that it gives a stable formal universe large enough for most mathematics and disciplined enough to avoid naive paradoxes.
+\end{remark}
+
+\subsection{Applications and limitations}
+
+Set theory supports analysis, algebra, topology, measure theory, model theory, and essentially all ordinary mathematical constructions.  It also enables transfinite methods: ordinals, cardinals, large cardinals, forcing, independence, and descriptive set theory.
+
+But ZFC has philosophical and practical limitations.  It represents everything as sets, even when this representation feels artificial.  A group is not experienced as a nested set; it is experienced as a structure with operations.  A topological space is not merely a set of ordered pairs defining open sets; it is a space with continuous maps.  This motivates category theory.
+
+\section{Category theory}
+
+\subsection{From objects to morphisms}
+
+Category theory changes the focus from internal membership to external relations.  A category consists of objects and morphisms, with associative composition and identities.  In this language, mathematical structures are understood by the maps they admit.
+
+\begin{definition}
+A category \(\mathcal C\) consists of objects, morphism sets \(\mathcal C(X,Y)\), identity morphisms \(\id_X\), and composition
+\[
+  \mathcal C(Y,Z)\times \mathcal C(X,Y)\to \mathcal C(X,Z),
+\]
+satisfying associativity and identity laws.
+\end{definition}
+
+\begin{example}
+\(\mathbf{Set}\), \(\mathbf{Grp}\), \(\mathbf{Top}\), \(\mathbf{Ring}\), and \(\mathbf{Vect}_k\) are standard categories.  Each has a different notion of structure-preserving map.
+\end{example}
+
+\subsection{Universal properties}
+
+The central categorical idea is the universal property.  Products, coproducts, pullbacks, pushouts, quotients, tensor products, free objects, and completions can all be characterized by mapping properties.
+
+For example, a product \(X\times Y\) is characterized by
+\[
+\begin{tikzcd}
+& Z \arrow[ddl,bend right=15,swap,"f"] \arrow[ddr,bend left=15,"g"] \arrow[d,dashed,"{\langle f,g\rangle}"] & \\
+& X\times Y \arrow[dl,"\pi_X"] \arrow[dr,swap,"\pi_Y"] & \\
+X && Y.
+\end{tikzcd}
+\]
+This diagram says that giving a map into a product is the same as giving compatible maps into its two factors.
+
+\begin{remark}
+Universal properties explain why the same construction appears in many different subjects.  They reveal that the construction is not about the elements of a particular model, but about a structural role.
+\end{remark}
+
+\subsection{Functors and natural transformations}
+
+\begin{definition}
+A functor \(F:\mathcal C\to\mathcal D\) sends objects to objects and morphisms to morphisms, preserving identities and composition.
+\end{definition}
+
+\begin{definition}
+A natural transformation \(\eta:F\Rightarrow G\) between functors \(F,G:\mathcal C\to\mathcal D\) assigns to each object \(X\) a morphism \(\eta_X:F(X)\to G(X)\) such that for every \(f:X\to Y\),
+\[
+\begin{tikzcd}
+F(X) \arrow[r,"F(f)"] \arrow[d,swap,"\eta_X"] & F(Y) \arrow[d,"\eta_Y"]\\
+G(X) \arrow[r,swap,"G(f)"] & G(Y)
+\end{tikzcd}
+\]
+commutes.
+\end{definition}
+
+This square is one of the simplest and most important categorical diagrams.  It encodes the idea that a construction is canonical, not dependent on arbitrary choices.
+
+\subsection{Categorical foundations}
+
+Category theory can function as a language for organizing mathematics, but it can also become foundational.  ETCS axiomatizes sets categorically.  Topos theory generalizes set-like universes.  Higher category theory and infinity-categories extend the categorical language to homotopical and derived contexts.
+
+\begin{remark}
+Category theory does not merely replace set theory.  It clarifies invariance.  It asks not only what an object is made of, but how it transforms and how it participates in universal constructions.
+\end{remark}
+
+\section{Type theory}
+
+\subsection{Judgments and types}
+
+Type theory begins from judgments such as
+\[
+  a:A,
+\]
+meaning that \(a\) is a term of type \(A\).  Instead of putting every object into one universe of sets, type theory stratifies objects by the types they inhabit.
+
+\begin{remark}
+The phrase ``\(a\in A\)'' in set theory and the judgment ``\(a:A\)'' in type theory look similar but behave differently.  Membership is a proposition; typing is a judgment of well-formedness.
+\end{remark}
+
+\subsection{Dependent types}
+
+Dependent type theory allows types to depend on terms.  If \(A\) is a type and \(B(x)\) is a type depending on \(x:A\), then one can form:
+\[
+  \prod_{x:A}B(x),
+  \qquad
+  \sum_{x:A}B(x).
+\]
+The product type corresponds to universal quantification, while the sum type corresponds to existential quantification.
+
+\subsection{Curry--Howard}
+
+The Curry--Howard correspondence identifies propositions with types and proofs with terms:
+\[
+  \text{proposition} \leftrightarrow \text{type},
+  \qquad
+  \text{proof} \leftrightarrow \text{term}.
+\]
+For example,
+\[
+  A\times B
+\]
+corresponds to conjunction, while
+\[
+  A\to B
+\]
+corresponds to implication.
+
+This makes type theory naturally computational.  A proof is not merely a static certificate; it may carry an algorithm.
+
+\subsection{Constructivity and computation}
+
+Classical set theory freely uses excluded middle and choice.  Type theory is often constructive: to prove existence, one should construct a witness.  This is not only a philosophical choice.  It is what makes type theory suitable for proof assistants such as Coq, Lean, Agda, and Isabelle/HOL.
+
+\section{Homotopy type theory and univalence}
+
+Homotopy type theory interprets types as spaces, terms as points, and identity proofs as paths.  Higher identity proofs become higher homotopies.  In this interpretation, equality is no longer merely a binary relation; it has structure.
+
+The univalence axiom says, roughly, that equivalent structures may be identified:
+\[
+  (A=B)\simeq(A\simeq B).
+\]
+This expresses a structuralist principle: isomorphic or equivalent objects should be interchangeable in mathematics.
+
+\begin{remark}
+Univalence is one of the most striking attempts to synthesize set-theoretic rigor, categorical invariance, and type-theoretic computation.  It turns the informal mathematical habit of identifying isomorphic objects into a formal principle.
+\end{remark}
+
+\section{Comparative analysis}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYYY@{}}
+\toprule
+Framework & Primitive emphasis & Equality & Strength\\
+\midrule
+Set theory & membership & extensional equality & universal coding power\\
+Category theory & morphisms & isomorphism\slash equivalence & structural invariance\\
+Type theory & judgments/terms & identity types & computation and construction\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Set theory is excellent as a common foundational background.  Category theory is excellent for organizing structures and transformations.  Type theory is excellent when proofs, programs, and constructions are meant to interact.
+
+\section{Modern applications}
+
+\subsection{Proof assistants}
+
+Proof assistants make foundations operational.  Lean's mathlib, Coq's constructive type theory, Agda's dependent types, and Isabelle's higher-order logic show that foundational choices affect how mathematics is formalized.
+
+\subsection{Computer science}
+
+Type theory underlies programming language theory, dependent types, formal verification, compiler correctness, and proof-carrying code.  Category theory appears in semantics, monads, functional programming, and compositional systems.  Set theory remains important in logic, model theory, semantics, and databases.
+
+\subsection{Geometry and higher structures}
+
+Modern geometry often uses categorical and type-theoretic ideas: stacks, sheaves, derived categories, infinity-categories, and higher topos theory.  Foundations are no longer merely a safety net beneath mathematics; they become active tools inside research.
+
+\section{Toward a unified perspective}
+
+A mature view should not treat the three foundations as enemies.  They answer different needs:
+\begin{enumerate}[(i)]
+  \item ZFC gives a robust global universe;
+  \item category theory reveals structural patterns and invariance;
+  \item type theory connects proof, construction, and computation;
+  \item HoTT and univalent foundations attempt to synthesize equivalence-based mathematics with formal computation.
+\end{enumerate}
+
+\section{Conclusion}
+
+The foundational landscape is plural.  Set theory gives a powerful ontology of membership.  Category theory gives a language of structure and transformation.  Type theory gives a constructive and computational account of mathematical reasoning.  The deepest modern lesson is not that one of them eliminates the others, but that mathematics becomes clearer when one understands which foundational lens is being used and why.
+
+
+\section{Equality in the three languages}
+
+The three foundations treat equality differently.  In set theory, equality is extensional:
+\[
+  A=B\quad\Longleftrightarrow\quad \forall x\,(x\in A\leftrightarrow x\in B).
+\]
+In category theory, sameness is usually replaced by isomorphism or equivalence.  Two groups may not be literally equal as sets, but if they are isomorphic, group theory treats them as the same structure.
+
+Type theory makes equality internal.  A statement \(a=b\) is itself a type, and a proof of equality is a term of that type.  Homotopy type theory then interprets such proofs as paths.  This explains why univalence is so conceptually strong: it aligns equality of types with equivalence of structures.
+
+\section{Universal properties versus encodings}
+
+A set-theoretic construction often gives a concrete encoding.  A categorical construction gives a role.  For example, a product is not fundamentally a set of ordered pairs; it is an object receiving projections and satisfying a universal mapping property.
+
+This matters foundationally because encodings are arbitrary but universal properties are invariant.  Kuratowski's ordered pair and other encodings are useful inside ZFC, but no working mathematician cares which coding was used once the universal property is available.
+
+\section{Computation and formal proof}
+
+Type theory is not only a philosophical alternative.  It is the foundation behind many formal proof systems.  A proof is a term, and checking a proof becomes type checking.  Dependent types allow mathematical statements to be expressed with high precision: a proof of existence contains a witness, and a proof of a universal statement behaves like a function.
+
+This computational character is one reason type theory feels different from classical set theory.  It is not only about what objects exist, but also about how they are constructed and verified.

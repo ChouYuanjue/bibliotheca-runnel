@@ -1,14 +1,339 @@
-﻿\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20221223}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20221223}
-\end{document}
+\notechapter{N-20221223}{Paths to Groups: Homotopy, Coverings, Fundamental Groups, and Presentations}
+
+\section{Path concatenation is reversible but not strictly associative}
+
+A path in a space \(X\) is a continuous map
+\[
+  \gamma:[0,1]\to X.
+\]
+Its initial and terminal points are
+\[
+  s(\gamma)=\gamma(0),
+  \qquad
+  t(\gamma)=\gamma(1).
+\]
+If \(t(\gamma)=s(\eta)\), define the concatenation
+\[
+  (\gamma*\eta)(u)=
+  \begin{cases}
+    \gamma(2u),&0\le u\le\frac12,\\
+    \eta(2u-1),&\frac12\le u\le1.
+  \end{cases}
+\]
+The reverse path is
+\[
+  \overline\gamma(u)=\gamma(1-u).
+\]
+
+At the level of parametrized paths, concatenation is not strictly associative.  The paths
+\[
+  (\alpha*\beta)*\gamma
+  \qquad\text{and}\qquad
+  \alpha*(\beta*\gamma)
+\]
+traverse the same geometric pieces but allocate different subintervals of \([0,1]\) to them.  Likewise, \(\gamma*\overline\gamma\) is not literally the constant path.  The desired algebra appears only after quotienting by a suitable deformation relation.
+
+\section{Homotopy relative endpoints is a congruence for concatenation}
+
+Two paths \(\gamma_0,\gamma_1:[0,1]\to X\) with the same endpoints are homotopic relative endpoints if there is a continuous map
+\[
+  H:[0,1]\times[0,1]\to X
+\]
+such that
+\[
+  H(u,0)=\gamma_0(u),
+  \qquad
+  H(u,1)=\gamma_1(u),
+\]
+and
+\[
+  H(0,v)=s(\gamma_0),
+  \qquad
+  H(1,v)=t(\gamma_0)
+\]
+for every \(v\).
+
+This is an equivalence relation.  It is also compatible with concatenation: if
+\[
+  \gamma_0\simeq\gamma_1\ \text{rel }\partial I,
+  \qquad
+  \eta_0\simeq\eta_1\ \text{rel }\partial I,
+\]
+then
+\[
+  \gamma_0*\eta_0\simeq\gamma_1*\eta_1\ \text{rel }\partial I.
+\]
+Indeed, concatenate the two homotopies at each time \(v\).  Thus homotopy relative endpoints is a congruence for path composition.
+
+Reparametrization through an increasing map \(r:[0,1]\to[0,1]\) with \(r(0)=0\), \(r(1)=1\) does not change the homotopy class.  A linear interpolation between \(r(u)\) and \(u\) gives the homotopy.  This removes the associativity defect:
+\[
+  [\alpha]*([\beta]*[\gamma])
+  =([\alpha]*[\beta])*[\gamma].
+\]
+Similarly,
+\[
+  [\gamma]*[\overline\gamma]=[c_{s(\gamma)}],
+  \qquad
+  [\overline\gamma]*[\gamma]=[c_{t(\gamma)}].
+\]
+
+\section{The fundamental groupoid remembers every basepoint at once}
+
+The fundamental groupoid \(\Pi_1(X)\) has
+\begin{itemize}
+  \item points of \(X\) as objects;
+  \item homotopy classes relative endpoints of paths as morphisms;
+  \item concatenation as composition.
+\end{itemize}
+Every morphism is invertible, with inverse represented by the reversed path.  This is why a groupoid, rather than a monoid, is the natural first algebraic object attached to a space.
+
+Fixing a basepoint \(x_0\) and taking endomorphisms gives the fundamental group
+\[
+  \pi_1(X,x_0)
+  =\operatorname{Aut}_{\Pi_1(X)}(x_0).
+\]
+Its elements are based loops modulo based homotopy.
+
+If \(\rho\) is a path from \(x_0\) to \(x_1\), basepoint change is
+\[
+  \rho_\#:\pi_1(X,x_0)\to\pi_1(X,x_1),
+  \qquad
+  [\gamma]\longmapsto
+  [\overline\rho*\gamma*\rho].
+\]
+A different choice of \(\rho\) changes this isomorphism by an inner automorphism.  The groupoid keeps this dependence visible instead of hiding it behind a noncanonical identification.
+
+\section{The exponential covering turns loops into integer endpoints}
+
+Consider
+\[
+  p:\mathbb R\to S^1,
+  \qquad
+  p(t)=e^{2\pi i t}.
+\]
+For each \(t_0\in\mathbb R\), restriction to
+\[
+  \left(t_0-\frac12,t_0+\frac12\right)
+\]
+is a homeomorphism onto \(S^1\setminus\{-p(t_0)\}\).  Thus \(p\) is a covering map.
+
+Let \(\gamma:[0,1]\to S^1\) and choose \(a\in\mathbb R\) with \(p(a)=\gamma(0)\).  Subdivide \([0,1]\) so that the image of each subinterval lies in one evenly covered arc.  On the first subinterval use the inverse branch whose value at \(0\) is \(a\); on each later subinterval choose the unique branch agreeing at the common endpoint.  This constructs a unique lift
+\[
+  \widetilde\gamma:[0,1]\to\mathbb R,
+  \qquad
+  p\circ\widetilde\gamma=\gamma,
+  \qquad
+  \widetilde\gamma(0)=a.
+\]
+
+If \(\gamma\) is a loop based at \(1\) and \(\widetilde\gamma(0)=0\), then
+\[
+  e^{2\pi i\widetilde\gamma(1)}=1,
+\]
+so
+\[
+  \widetilde\gamma(1)\in\mathbb Z.
+\]
+Define the winding number by
+\[
+  \operatorname{wind}(\gamma)=\widetilde\gamma(1).
+\]
+
+Concatenation adds endpoints of lifts:
+\[
+  \operatorname{wind}(\gamma*\eta)
+  =\operatorname{wind}(\gamma)+\operatorname{wind}(\eta).
+\]
+A based homotopy of loops lifts after fixing the initial lift.  The terminal lift is a continuous integer-valued function of the homotopy parameter, hence constant.  Therefore winding number depends only on the based homotopy class.
+
+\section{The covering computation gives \texorpdfstring{$\pi_1(S^1)\cong\mathbb Z$}{pi1(S1)=Z}}
+
+The map
+\[
+  W:\pi_1(S^1,1)\to\mathbb Z,
+  \qquad
+  W([\gamma])=\operatorname{wind}(\gamma)
+\]
+is a homomorphism.
+
+It is surjective because
+\[
+  \gamma_n(u)=e^{2\pi i n u}
+\]
+has lift \(\widetilde\gamma_n(u)=nu\) and winding number \(n\).
+
+It is injective.  Suppose \(W([\gamma])=0\).  The lift \(\widetilde\gamma\) is then a loop in \(\mathbb R\) based at \(0\).  The linear homotopy
+\[
+  \widetilde H(u,v)=(1-v)\widetilde\gamma(u)
+\]
+contracts it to the constant loop.  Projecting by \(p\) gives a based null-homotopy of \(\gamma\).  Hence
+\[
+  \ker W=0.
+\]
+Therefore
+\[
+  \boxed{\pi_1(S^1,1)\cong\mathbb Z.}
+\]
+The group operation is addition of winding numbers, and reversal changes the sign.
+
+\section{The punctured plane retracts onto the circle}
+
+Let
+\[
+  \mathbb C^*=\mathbb C\setminus\{0\}.
+\]
+The map
+\[
+  r:\mathbb C^*\to S^1,
+  \qquad
+  r(z)=\frac z{|z|}
+\]
+is a deformation retraction.  Define
+\[
+  H(z,v)=\left((1-v)+\frac v{|z|}\right)z.
+\]
+The scalar coefficient is positive, so \(H(z,v)\ne0\).  Moreover,
+\[
+  H(z,0)=z,
+  \qquad
+  H(z,1)=\frac z{|z|},
+\]
+and if \(|z|=1\), then \(H(z,v)=z\) for all \(v\).  Thus the inclusion \(S^1\hookrightarrow\mathbb C^*\) and \(r\) are homotopy inverses.
+
+Consequently,
+\[
+  \boxed{\pi_1(\mathbb C^*,1)\cong\mathbb Z.}
+\]
+The missing point is measured exactly by winding number.
+
+\section{Continuous maps induce homomorphisms}
+
+A based continuous map
+\[
+  f:(X,x_0)\to(Y,y_0)
+\]
+sends a loop \(\gamma\) to \(f\circ\gamma\).  It preserves homotopies and concatenation, hence induces
+\[
+  f_*:\pi_1(X,x_0)\to\pi_1(Y,y_0),
+  \qquad
+  f_*([\gamma])=[f\circ\gamma].
+\]
+Functoriality is immediate:
+\[
+  (g\circ f)_*=g_*\circ f_*,
+  \qquad
+  (\operatorname{id}_X)_*=\operatorname{id}_{\pi_1(X)}.
+\]
+
+For
+\[
+  f_m:S^1\to S^1,
+  \qquad
+  f_m(z)=z^m,
+\]
+one has
+\[
+  f_m\circ\gamma_n(u)=e^{2\pi i mn u}.
+\]
+Under \(\pi_1(S^1)\cong\mathbb Z\), the induced homomorphism is therefore
+\[
+  (f_m)_*:\mathbb Z\to\mathbb Z,
+  \qquad
+  n\longmapsto mn.
+\]
+This computation distinguishes the maps \(z\mapsto z^m\) up to based homotopy.
+
+\section{Van Kampen assembles groups from overlapping pieces}
+
+Let \(X=U\cup V\), where \(U,V,U\cap V\) are path-connected open sets containing a basepoint \(x_0\).  The Seifert--van Kampen theorem states that the diagram
+\[
+\begin{tikzcd}
+\pi_1(U\cap V,x_0) \arrow[r] \arrow[d]
+  & \pi_1(U,x_0) \arrow[d] \\
+\pi_1(V,x_0) \arrow[r]
+  & \pi_1(X,x_0)
+\end{tikzcd}
+\]
+is a pushout in the category of groups.  Concretely,
+\[
+  \pi_1(X,x_0)
+  \cong
+  \frac{\pi_1(U,x_0)*\pi_1(V,x_0)}
+  {\langle\!\langle i_{U*}(\omega)i_{V*}(\omega)^{-1}:\omega\in\pi_1(U\cap V,x_0)\rangle\!\rangle}.
+\]
+The free product records loops from the two pieces; the normal closure imposes the identifications already visible in the overlap.
+
+For the figure-eight
+\[
+  X=S^1\vee S^1,
+\]
+choose neighborhoods retracting onto the two circles whose intersection is contractible.  The overlap contributes no relation, so
+\[
+  \boxed{\pi_1(S^1\vee S^1)\cong\mathbb Z*\mathbb Z=F(a,b).}
+\]
+The words
+\[
+  ab,
+  \quad
+  ba,
+  \quad
+  aba^{-1}b^{-1}
+\]
+represent genuinely different loop classes; no commutativity relation is present.
+
+\section{Attaching a two-cell adds one normal relation}
+
+Let \(X\) be path-connected and attach a disk along a loop
+\[
+  \varphi:S^1\to X.
+\]
+The resulting space
+\[
+  X\cup_\varphi D^2
+\]
+contains a new disk across which the attaching loop can contract.  Van Kampen gives
+\[
+  \pi_1(X\cup_\varphi D^2)
+  \cong
+  \pi_1(X)/\langle\!\langle[\varphi]\rangle\!\rangle.
+\]
+Thus cell attachment translates directly into a group presentation.
+
+A torus has a CW structure with one vertex, two one-cells \(a,b\), and one two-cell attached along
+\[
+  aba^{-1}b^{-1}.
+\]
+Starting from the figure-eight gives
+\[
+  \pi_1(T^2)
+  \cong
+  \langle a,b\mid aba^{-1}b^{-1}=1\rangle
+  \cong\mathbb Z^2.
+\]
+The two basic loops commute because the square filling of the commutator becomes the two-cell of the torus.
+
+\section{Connected coverings of the circle are indexed by subgroups of \texorpdfstring{$\mathbb Z$}{Z}}
+
+For each \(n\ge1\), the map
+\[
+  p_n:S^1\to S^1,
+  \qquad
+  p_n(z)=z^n
+\]
+is an \(n\)-sheeted connected covering.  Its induced subgroup is
+\[
+  (p_n)_*\pi_1(S^1)=n\mathbb Z\subseteq\mathbb Z.
+\]
+Conversely, every subgroup of \(\mathbb Z\) is \(n\mathbb Z\) for a unique \(n\ge0\).  The general classification theorem for sufficiently well-behaved spaces says that connected based coverings correspond to subgroups of the fundamental group.  For the circle, the entire classification is already visible in the elementary maps \(z\mapsto z^n\).
+
+The progression is now concrete:
+\[
+  \text{paths}
+  \longrightarrow
+  \text{homotopy classes}
+  \longrightarrow
+  \text{groupoid and groups}
+  \longrightarrow
+  \text{coverings and presentations}.
+\]
+Algebra enters because deformation classes of reversible paths carry composition, and topology becomes computable because coverings and gluings turn that composition into integers, free words, and relations.

@@ -1,14 +1,244 @@
-\documentclass[11pt,twoside=semi,openany,numbers=noenddot,titlepage=false]{scrbook}
-\newcommand{\inmversion}{INM single-note draft \the\year-\twodigits\month-\twodigits\day}
-\input{tex/preamble}
-\input{tex/macros}
-\input{tex/Qcircuit.tex}
-\input{tex/note-style.tex}
-\title{Informal Notes on Mathematics}
-\subtitle{N-20220708}
-\author{Runnel Zhang}
-\date{\inmversion}
-\begin{document}
-\mainmatter
-\input{tex/notes/N-20220708}
-\end{document}
+\notechapter{N-20220708}{Directed Angles, Reflections, and the Miquel Point}
+
+\section{Reflecting the orthocenter}
+
+Let \(H\) be the orthocenter of triangle \(ABC\).  Let \(X\) be the reflection of \(H\) over \(BC\), and let \(Y\) be the reflection of \(H\) over the midpoint of \(BC\).  The lemma states:
+\begin{enumerate}[(i)]
+  \item \(X\) lies on the circumcircle \((ABC)\);
+  \item \(AY\) is a diameter of \((ABC)\).
+\end{enumerate}
+
+For the first claim, reflecting across \(BC\) preserves angles with \(BC\).  Since \(BH\perp AC\) and \(CH\perp AB\), angle chasing gives
+\[
+  \angle BXC=\angle BAC.
+\]
+Thus \(A,B,C,X\) are concyclic.
+
+For the second claim, the reflection of \(H\) through the midpoint of \(BC\) has the property that
+\[
+  \angle ABY=90^\circ,
+\]
+so \(AY\) is a diameter of the circumcircle by Thales' theorem.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.1,>=Stealth,every node/.style={fill=white,inner sep=1pt}]
+  \coordinate (B) at (0,0);
+  \coordinate (C) at (4,0);
+  \coordinate (A) at (1.3,3.0);
+  \coordinate (H) at (1.3,1.1);
+  \coordinate (X) at (1.3,-1.1);
+  \coordinate (Y) at (2.7,-1.1);
+  \draw (A)--(B)--(C)--cycle;
+  \draw[dashed] (B)--(H)--(C);
+  \draw[thick] (B)--(X)--(C);
+  \draw[thick] (A)--(Y);
+  \draw[dotted] (2,0.95) circle (2.3);
+  \fill (A) circle (0.035) node[above=2pt] {$A$};
+  \fill (B) circle (0.035) node[left=2pt] {$B$};
+  \fill (C) circle (0.035) node[right=2pt] {$C$};
+  \fill (H) circle (0.035) node[above right=2pt] {$H$};
+  \fill (X) circle (0.035) node[below=2pt] {$X$};
+  \fill (Y) circle (0.035) node[below right=2pt] {$Y$};
+\end{tikzpicture}
+\caption{Schematic reconstruction of the orthocenter reflection lemma.}
+\end{figure}
+
+\section{The incenter--excenter lemma}
+
+Let \(ABC\) have incenter \(I\).  Ray \(AI\) meets the circumcircle again at \(L\).  Let \(I_A\) be the reflection of \(I\) over \(L\).  Then:
+\begin{enumerate}[(i)]
+  \item \(I,B,C,I_A\) lie on a circle with diameter \(II_A\) and center \(L\);
+  \item in particular,
+  \[
+    LI=LB=LC=LI_A;
+  \]
+  \item the rays \(BI_A\) and \(CI_A\) bisect the exterior angles of triangle \(ABC\).
+\end{enumerate}
+
+The geometry is governed by the well-known fact that the midpoint of the arc \(BC\) not containing \(A\) is equidistant from \(B,C,I\).  Reflecting \(I\) across this point gives the corresponding excenter configuration.
+
+\section[Directed angles modulo 180\textasciicircum{}circ]{Directed angles modulo \(180^\circ\)}
+
+Ordinary angles create too many cases in cyclic geometry.  The cure is to use directed angles modulo \(180^\circ\), written
+\[
+  \measuredangle ABC
+\]
+for the directed angle from line \(BA\) to line \(BC\), modulo \(180^\circ\).
+
+The basic rules are:
+\begin{enumerate}[(i)]
+  \item Oblivion: \(\measuredangle APA=0\).
+  \item Anti-reflexivity: \(\measuredangle ABC=-\measuredangle CBA\).
+  \item Replacement: if \(A,B,C\) are collinear, then
+  \[
+    \measuredangle PBA=\measuredangle PBC.
+  \]
+  \item Right angles: if \(AP\perp BP\), then
+  \[
+    \measuredangle APB=90^\circ.
+  \]
+  \item Addition:
+  \[
+    \measuredangle APB+\measuredangle BPC=\measuredangle APC.
+  \]
+  \item Triangle sum:
+  \[
+    \measuredangle ABC+\measuredangle BCA+\measuredangle CAB=0.
+  \]
+  \item Isosceles triangles:
+  \[
+    AB=AC\quad\Longleftrightarrow\quad
+    \measuredangle ACB=\measuredangle CBA.
+  \]
+  \item Inscribed angle theorem:
+  
+  if \((ABC)\) has center \(P\), then
+  \[
+    \measuredangle APB=2\measuredangle ACB.
+  \]
+  \item Parallel lines:
+  if \(AB\parallel CD\), then
+  \[
+    \measuredangle ABC+\measuredangle BCD=0.
+  \]
+\end{enumerate}
+
+One warning is important: because angles are modulo \(180^\circ\), the statement
+\[
+  2\measuredangle ABC=2\measuredangle XYZ
+\]
+does not necessarily imply
+\[
+  \measuredangle ABC=\measuredangle XYZ.
+\]
+Therefore one should not casually divide a directed angle congruence by \(2\).
+
+\section{Miquel point of a triangle}
+
+Let \(D,E,F\) lie on the lines \(BC,CA,AB\), respectively.  The Miquel point theorem says that there is a point \(P\) lying on all three circles
+\[
+  (AEF),\qquad (BFD),\qquad (CDE).
+\]
+
+\begin{proof}[Directed-angle proof]
+Let \(P\) be the second intersection of \((AEF)\) and \((BFD)\).  Since \(A,E,F,P\) are concyclic,
+\[
+  \measuredangle EPF=\measuredangle EAF.
+\]
+Since \(B,F,D,P\) are concyclic,
+\[
+  \measuredangle FPD=\measuredangle FBD.
+\]
+Adding gives
+\[
+  \measuredangle EPD
+  =
+  \measuredangle EAF+\measuredangle FBD.
+\]
+Using the collinearities \(E,A,C\), \(F,A,B\), and \(D,B,C\), the right side becomes the angle condition for \(C,D,E,P\) to be cyclic.  Hence \(P\in(CDE)\).
+\end{proof}
+
+
+\section{Directed angles reduce case distinctions}
+
+Using directed angles modulo \(180^\circ\) allows one to avoid separating many configurations.  The cyclicity criterion becomes
+\[
+  A,B,C,D\text{ concyclic}\quad\Longleftrightarrow\quad
+  \angle ABC\equiv\angle ADC\pmod{180^\circ}.
+\]
+This remains valid even when points move to extensions of lines.  That is why olympiad geometry often uses directed angles once configurations become crowded.
+
+\section{Miquel point proof pattern}
+
+For a triangle with points on the three sides, one proves the existence of the Miquel point by showing that two circumcircles meet at a point and then checking that this point lies on the third circle.  The check is an angle chase: cyclicity in the first two circles gives angle equalities, and the directed-angle sum forces cyclicity in the third.
+
+The proof is not about guessing the point.  It is about showing that once two circles meet, the third circle is forced by angle consistency.
+
+\section{Further context}
+
+The page is an excellent example of why directed angles are not merely notation.  They turn many separate configuration cases into one proof.  The deeper geometric message is inversive: circles and lines should be treated as one family of generalized circles, and Miquel configurations are natural incidence phenomena in that family.
+
+\section{Directed angles as projective bookkeeping}
+
+Directed angles modulo \(180^\circ\) turn many cyclic and collinearity statements into algebraic angle sums.  A statement like
+\[
+  \angle(AB,AC)=\angle(DB,DC)
+\]
+encodes concyclicity without separating acute and obtuse cases.
+
+This is a first step toward projective thinking: incidence and cross-ratio-type data matter more than metric length.
+
+\section{Reflections and isogonal structure}
+
+Reflecting the orthocenter or a line across an angle bisector preserves angle data.  In triangle geometry, many constructions are isogonal: two lines are mirror images with respect to an angle bisector.  This explains why incenter/excenter lemmas naturally produce paired angle equalities.
+
+\section{Miquel point as a compatibility condition}
+
+The Miquel point appears when several cyclic conditions are compatible.  Each quadrilateral supplies a circle; directed angle chasing proves that the remaining circle passes through the same point.  The deeper structure is consistency of local cyclic constraints.
+
+\section{Angle invariants and cyclic compatibility}
+
+The geometry here is controlled by angle invariants.  Directed angles remove cases, reflections preserve angle data, and the Miquel point records when cyclic conditions glue into one global configuration.
+
+\section{Why directed angles are worth learning}
+
+The directed-angle pages are a turning point in geometry study.  Before directed angles, one often proves the same cyclic statement four times because points move across arcs or outside the triangle.  After directed angles modulo \(180^\circ\), all these cases collapse into one algebraic identity of angles.
+
+The Miquel point theorem is the perfect example.  The theorem is not mainly about a mysterious point; it is about converting three cyclicity conditions into a chain of directed-angle equalities.  Once the notation is accepted, the proof becomes almost linear.
+
+\section{Directed angles and invariants}
+
+Directed angles modulo $\pi$ are a way to make angle chasing stable under orientation and cyclic order.  In projective geometry, angles themselves are not generally preserved, but incidence and cross ratios are.  The bridge is inversive geometry: circles and angles are preserved by Möbius transformations.
+
+A Möbius transformation has the form
+\[
+  z\mapsto \frac{az+b}{cz+d},\qquad ad-bc\ne0.
+\]
+It maps generalized circles to generalized circles and preserves oriented angles.  Many Miquel-point and cyclic quadrilateral configurations simplify after a Möbius transformation sends one circle or line to a convenient position.
+
+\section{Circle pencils}
+
+A pencil of circles is a one-parameter family of circles passing through the same two points, tangent at a point, or sharing limiting points.  Algebraically, if two circles are given by equations $C_1=0$ and $C_2=0$, then the pencil is
+\[
+  C_1+\lambda C_2=0.
+\]
+Miquel configurations can often be interpreted as statements about intersecting pencils of circles.
+
+This replaces repeated angle chasing by a structural object: the family of all circles compatible with part of the configuration.
+
+\section{Cross ratio}
+
+For four points on a line or circle, the cross ratio is
+\[
+  [a,b;c,d]=\frac{(c-a)(d-b)}{(c-b)(d-a)}
+\]
+in affine coordinates.  It is invariant under projective transformations.  Many cyclicity and concurrence statements can be reformulated by equality or reality of cross ratios.
+
+The elementary theorem that equal angles imply concyclicity has a projective/inversive continuation: concyclicity and cross-ratio reality are two descriptions of the same configuration under suitable coordinates.
+
+\section{Moduli of configurations}
+
+A geometric configuration can be studied up to a symmetry group.  For instance, four distinct points on a projective line modulo projective transformations are classified by one parameter, the cross ratio.  This is a simple example of a moduli problem: classify objects up to equivalence.
+
+The Miquel point in the note is therefore not merely a special point.  It belongs to a broader practice of understanding which features of a configuration are invariant under allowed transformations.
+
+\section{Miquel configurations and spiral similarity}
+
+A Miquel point is often best understood through spiral similarity.  If two segments $AB$ and $CD$ are seen under equal oriented angles from a point $P$, then $P$ is the center of a spiral similarity sending one segment to the other.  This combines a rotation and a dilation.
+
+In complex coordinates, a direct similarity has the form
+\[
+  z\mapsto az+b,\qquad a\in\mathbb C^\times.
+\]
+A spiral similarity center can be solved algebraically from equations relating two pairs of points.  Thus angle chasing and complex affine transformations are two languages for the same configuration.
+
+\section{Inversion as normalization of circles}
+
+Inversion centered at $O$ with radius $r$ sends a point $P$ to $P'$ satisfying
+\[
+  OP\cdot OP'=r^2.
+\]
+It sends circles and lines to circles and lines, preserving angles.  If a configuration contains many circles through a common point, inversion at that point turns them into lines, often reducing Miquel-type statements to elementary parallel or intersection statements.
+
+This is why inversive geometry is not an optional decoration.  It is a normalization technique for circle configurations, just as choosing coordinates is a normalization technique for analytic geometry.
