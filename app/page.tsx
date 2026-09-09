@@ -35,8 +35,8 @@ export default function Home() {
         <ArchiveCard
           title="Archive"
           href="/archive"
-          description="Personal notes, engineering projects, literary and linguistic writing, fragments, and older material are kept here rather than presented as the main academic profile."
-          eyebrow="Personal and non-primary material"
+          description="Personal notes, engineering projects, literary and linguistic writing, fragments, and older material."
+          eyebrow="Notes and miscellaneous work"
           accent="bg-slate-900"
         />
       </section>

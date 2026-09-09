@@ -11,6 +11,15 @@
       ]
     },
     {
+      "title": "Posters",
+      "path": "/posters",
+      "tier": 1,
+      "children": [
+        { "title": "Published Work", "path": "/posters/published", "tier": 2 },
+        { "title": "Student Projects", "path": "/posters/student-projects", "tier": 2 }
+      ]
+    },
+    {
       "title": "Archive",
       "path": "/archive",
       "tier": 1,

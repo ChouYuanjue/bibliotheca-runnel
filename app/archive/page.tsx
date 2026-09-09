@@ -15,7 +15,7 @@ export default function ArchivePage() {
       <PageHero
         eyebrow="Archive"
         title="Personal archive"
-        description="Personal, technical, literary, and experimental material is retained here without placing it at the center of the academic profile."
+        description="Personal notes, technical work, literary material, and miscellaneous records collected across projects and periods."
       />
 
       <div className="grid gap-6 md:grid-cols-2">
