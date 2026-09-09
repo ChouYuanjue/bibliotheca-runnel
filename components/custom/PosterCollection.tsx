@@ -25,11 +25,10 @@ export default function PosterCollection({ items }: { items: PosterItem[] }) {
               )}
               {item.description && <p className="mt-1 text-sm leading-6 text-gray-500">{item.description}</p>}
             </div>
-            {item.pdf && (
-              <a href={item.pdf} download className="flex-none text-sm text-gray-400 underline decoration-gray-200 underline-offset-4 hover:text-gray-700 hover:decoration-gray-400">
-                PDF
-              </a>
-            )}
+            <div className="flex flex-none gap-4 text-sm">
+              {item.repository && <a href={item.repository} target="_blank" rel="noopener noreferrer" className="text-gray-400 underline decoration-gray-200 underline-offset-4 hover:text-gray-700 hover:decoration-gray-400">Repository</a>}
+              {item.pdf && <a href={item.pdf} download className="text-gray-400 underline decoration-gray-200 underline-offset-4 hover:text-gray-700 hover:decoration-gray-400">PDF</a>}
+            </div>
           </header>
 
           <PosterPreview src={item.preview} title={item.title} href={`/posters/${item.slug}`} eager={index === 0} />

@@ -1,1 +1,59 @@
-[]
+[
+  {
+    "slug": "doge-sage",
+    "title": "Doge-SAGE: Stateful Agent Governance and Execution for Scientific Communities",
+    "category": "student",
+    "date": "2026-09-09",
+    "preview": "/posters/doge-sage/poster.svg",
+    "pdf": "/posters/doge-sage/poster.pdf",
+    "repository": "https://github.com/ChouYuanjue/doge-repo"
+  },
+  {
+    "slug": "candidate-exchangeability",
+    "title": "When the Candidate Set Knows the Answer: Exchangeable Hard Negatives for Vision–Language Evaluation",
+    "category": "student",
+    "date": "2026-08-10",
+    "authors": "Runcheng Zhang",
+    "preview": "/posters/candidate-exchangeability/poster.svg",
+    "pdf": "/posters/candidate-exchangeability/poster.pdf"
+  },
+  {
+    "slug": "trace",
+    "title": "TRACE: Typed Reasoning with Attribution, Certificates, and Evidence",
+    "category": "student",
+    "date": "2026-07-30",
+    "authors": "Runnel Zhang",
+    "preview": "/posters/trace/poster.svg",
+    "pdf": "/posters/trace/poster.pdf"
+  },
+  {
+    "slug": "lean-attribution",
+    "title": "Attributing Inference-Time Gains in Lean Theorem Proving",
+    "category": "student",
+    "date": "2026-05-05",
+    "authors": "Runnel Zhang",
+    "preview": "/posters/lean-attribution/poster.svg",
+    "pdf": "/posters/lean-attribution/poster.pdf",
+    "repository": "https://github.com/ChouYuanjue/lean-portfolio-attribution"
+  },
+  {
+    "slug": "structural-transfer",
+    "title": "Structural Transfer in Low-Resource Autoformalization",
+    "category": "student",
+    "date": "2026-05-05",
+    "authors": "Runnel Zhang",
+    "preview": "/posters/structural-transfer/poster.svg",
+    "pdf": "/posters/structural-transfer/poster.pdf",
+    "repository": "https://github.com/ChouYuanjue/rzk-ai4math"
+  },
+  {
+    "slug": "proco-evidence",
+    "title": "ProCo: Verifiable Abstention through Missing-Support Supervision",
+    "category": "student",
+    "date": "2026-05-02",
+    "authors": "Runnel Zhang",
+    "preview": "/posters/proco-evidence/poster.svg",
+    "pdf": "/posters/proco-evidence/poster.pdf",
+    "repository": "https://github.com/ChouYuanjue/proof-countermodel-distill"
+  }
+]

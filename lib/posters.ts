@@ -13,6 +13,7 @@ export interface PosterItem {
   description?: string;
   preview: string;
   pdf?: string;
+  repository?: string;
 }
 
 const postersFile = path.join(process.cwd(), "data", "posters.json");

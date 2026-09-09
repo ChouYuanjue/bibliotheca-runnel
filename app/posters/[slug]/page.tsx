@@ -28,6 +28,7 @@ export default function PosterDetailPage({ params }: { params: { slug: string } 
           )}
           {item.description && <p className="mt-4 max-w-3xl text-sm leading-7 text-gray-600 md:text-base">{item.description}</p>}
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+            {item.repository && <a href={item.repository} target="_blank" rel="noopener noreferrer" className="underline decoration-gray-300 underline-offset-4 hover:decoration-gray-600">Repository</a>}
             {item.pdf && (
               <a href={item.pdf} download className="underline decoration-gray-300 underline-offset-4 hover:decoration-gray-600">Download PDF</a>
             )}
