@@ -4,6 +4,7 @@ role: "Part-time Employee"
 category: "employment"
 date: "2026-01"
 endDate: "Present"
+icon: "icon.jpg"
 description: "Part-time software engineering at Flux."
 ---
 # Experience

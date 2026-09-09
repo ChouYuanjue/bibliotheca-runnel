@@ -16,10 +16,21 @@ export default function FragmentsIndex() {
         eyebrow="Fragments"
         title="Fragments"
         description="Study records, correspondence, engineering notes, satire, and short pieces that do not fit the main library sections."
-        meta={<span>{sortedFragments.length} fragments · {categories.length} categories</span>}
+        meta={(
+          <>
+            <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{sortedFragments.length} fragments</span>
+            <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{categories.length} categories</span>
+          </>
+        )}
       />
 
-      <p className="text-xs leading-5 text-gray-400">{categories.join(" · ")}</p>
+      <div className="flex flex-wrap gap-2">
+        {categories.map((category) => (
+          <span key={category} className="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-medium text-gray-500">
+            {category}
+          </span>
+        ))}
+      </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {sortedFragments.map(([slug, item]) => (

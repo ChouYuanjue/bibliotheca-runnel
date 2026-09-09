@@ -12,28 +12,28 @@
     "content": "# Research Internship\r\n\r\nI am a Research Intern at **TsinghuaNLP**, working on **AI for Science** under **Prof. Zheni Zeng**. My work focuses on training and reasoning methods for language models in scientific tasks, together with the experimental infrastructure needed to evaluate them reliably."
   },
   {
-    "slug": "xijiu-agent",
-    "title": "Xijiu Intelligent Scenario Project",
-    "role": "Agent Development Engineer",
-    "category": "employment",
-    "date": "2026-08-30",
-    "endDate": "Present",
-    "icon": "/organizations/xijiu-agent/icon.png",
-    "website": "https://www.gzxijiu.com/",
-    "description": "Agent development for Xijiu’s intelligent-scenario project as a Volcano Engine-assigned external staff member.",
-    "content": "# Project Role\r\n\r\nSince August 30, 2026, I have worked as an **Agent Development Engineer** on Xijiu’s intelligent-scenario project as a **Volcano Engine-assigned external staff member**. My work covers agent orchestration, tool integration, and production-oriented engineering for enterprise scenarios."
-  },
-  {
     "slug": "nine-lab",
     "title": "NINE-Lab",
     "role": "Research Intern",
     "category": "research",
-    "date": "2026-08-28",
+    "date": "2026-08",
     "endDate": "Present",
     "icon": "/organizations/nine-lab/icon.png",
     "website": "https://ninelab.org.cn/",
     "description": "Research internship under Dr. Huihong Liang, focused on edge intelligence and AI infrastructure.",
     "content": "# Research Internship\r\n\r\nSince August 28, 2026, I have been a Research Intern at **NINE-Lab** under **Dr. Huihong Liang**. My work focuses on edge intelligence and AI infrastructure, particularly efficient inference and deployment under constrained compute."
+  },
+  {
+    "slug": "volcano-engine",
+    "title": "Beijing Volcano Engine Technology Co., Ltd.",
+    "role": "Agent Development Engineer",
+    "category": "employment",
+    "date": "2026-08",
+    "endDate": "Present",
+    "icon": "/organizations/volcano-engine/icon.png",
+    "website": "https://www.volcengine.com/",
+    "description": "Agent development at Volcano Engine, currently assigned to the intelligent-scenario project for Guizhou Xijiu Investment Holding Group Co., Ltd.",
+    "content": "# Employment and Project Assignment\n\nSince August 2026, I have worked as an **Agent Development Engineer** with **Beijing Volcano Engine Technology Co., Ltd.**, assigned to the intelligent-scenario development project for **Guizhou Xijiu Investment Holding Group Co., Ltd.** My work covers agent orchestration, tool integration, and production-oriented engineering for enterprise scenarios."
   },
   {
     "slug": "msra",
@@ -44,8 +44,8 @@
     "endDate": "2026-08",
     "icon": "/organizations/msra/icon.png",
     "website": "https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/",
-    "description": "Earlier AI4Math research collaboration with Ziyu Zhou, connected to formal proof, reasoning enhancement, and neuro-symbolic methods.",
-    "content": "# Earlier Research Collaboration\r\n\r\nFrom January to August 2026, I collaborated with **Ziyu Zhou** in an MSRA research context on AI for Mathematics. This period provided the research context for several projects involving formal proof, reasoning enhancement, and neuro-symbolic methods."
+    "description": "AI4Math research collaboration with Ziyu Zhou, connected to formal proof, reasoning enhancement, and neuro-symbolic methods.",
+    "content": "# Research Collaboration\r\n\r\nFrom January to August 2026, I collaborated with **Ziyu Zhou** in an MSRA research context on AI for Mathematics. This work provided the research context for several projects involving formal proof, reasoning enhancement, and neuro-symbolic methods."
   },
   {
     "slug": "nanjing-flux",
@@ -54,6 +54,7 @@
     "category": "employment",
     "date": "2026-01",
     "endDate": "Present",
+    "icon": "/organizations/nanjing-flux/icon.jpg",
     "description": "Part-time software engineering at Flux.",
     "content": "# Experience\r\n\r\nI work part-time at **Nanjing Flux Technology Co., Ltd.**, contributing to software engineering and product implementation."
   },

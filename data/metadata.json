@@ -1,9 +1,26 @@
 {
   "navigation": [
-    { "title": "Home", "path": "/", "tier": 1 },
-    { "title": "CV", "path": "/cv", "tier": 1 },
-    { "title": "Affiliations", "path": "/organizations", "tier": 1 },
-    { "title": "Mentors", "path": "/mentors", "tier": 1 },
-    { "title": "Archive", "path": "/archive", "tier": 1 }
+    {
+      "title": "Home",
+      "path": "/",
+      "tier": 1,
+      "children": [
+        { "title": "CV", "path": "/cv", "tier": 2 },
+        { "title": "Organizations", "path": "/organizations", "tier": 2 },
+        { "title": "Mentors", "path": "/mentors", "tier": 2 }
+      ]
+    },
+    {
+      "title": "Archive",
+      "path": "/archive",
+      "tier": 1,
+      "children": [
+        { "title": "Projects", "path": "/projects", "tier": 2 },
+        { "title": "Library", "path": "/library", "tier": 2 },
+        { "title": "Artifacts", "path": "/artifacts", "tier": 2 },
+        { "title": "Fragments", "path": "/fragments", "tier": 2 },
+        { "title": "Index", "path": "/worklist", "tier": 2 }
+      ]
+    }
   ]
 }

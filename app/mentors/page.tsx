@@ -27,7 +27,7 @@ const current: { title: string; people: Mentor[] }[] = [
       {
         name: "Ziyu Zhou",
         role: "Research collaborator in AI for Mathematics",
-        relation: "Earlier research collaborator and technical mentor",
+        relation: "Research collaborator and technical mentor",
         note: "Collaborated with me on formal proof, reasoning enhancement, and neuro-symbolic methods.",
       },
     ],
@@ -97,14 +97,21 @@ export default function MentorsPage() {
         description="People who have provided sustained research, mathematical, or technical guidance. Roles are described conservatively and only as they apply to my work."
       />
 
-      {current.map((group) => (
-        <section key={group.title} className="grid gap-5 md:grid-cols-[10rem_1fr] md:gap-10">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-gray-800">{group.title}</h2>
-          <div className="divide-y divide-gray-200 border-y border-gray-200">
-            {group.people.map((person) => <MentorRow key={person.name} person={person} />)}
-          </div>
-        </section>
-      ))}
+      <section className="grid gap-5 md:grid-cols-[10rem_1fr] md:gap-10">
+        <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-gray-800">{current[0].title}</h2>
+        <div className="divide-y divide-gray-200 border-y border-gray-200">
+          {current[0].people.map((person) => <MentorRow key={person.name} person={person} />)}
+        </div>
+      </section>
+
+      <details className="group border-y border-gray-200 py-4">
+        <summary className="cursor-pointer list-none text-sm font-medium text-gray-600 marker:hidden">
+          <span className="group-open:text-gray-950">Mathematical guidance <span className="ml-1 text-gray-400">(2)</span></span>
+        </summary>
+        <div className="mt-4 divide-y divide-gray-200 border-t border-gray-100 pt-4">
+          {current[1].people.map((person) => <MentorRow key={person.name} person={person} />)}
+        </div>
+      </details>
 
       <details className="group border-y border-gray-200 py-4">
         <summary className="cursor-pointer list-none text-sm font-medium text-gray-600 marker:hidden">

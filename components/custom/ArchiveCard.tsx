@@ -13,14 +13,15 @@ type ArchiveCardProps = {
   children?: React.ReactNode;
 };
 
-export default function ArchiveCard({ href, title, description, eyebrow, meta, className, children }: ArchiveCardProps) {
+export default function ArchiveCard({ href, title, description, eyebrow, meta, accent = "bg-gray-950", className, children }: ArchiveCardProps) {
   const body = (
-    <div className={cn("group flex h-full flex-col border border-gray-200 bg-white p-5 transition-colors hover:border-gray-400", className)}>
-      {eyebrow && <div className="mb-2 text-[11px] font-medium uppercase tracking-[0.16em] text-gray-400">{eyebrow}</div>}
-      <h2 className="font-serif text-xl font-semibold leading-tight text-gray-950 group-hover:underline group-hover:decoration-gray-300 group-hover:underline-offset-4">{title}</h2>
-      {description && <div className="mt-2 text-sm leading-6 text-gray-600">{description}</div>}
-      {children && <div className="mt-4">{children}</div>}
-      {meta && <div className="mt-auto pt-5 text-xs font-mono text-gray-400">{meta}</div>}
+    <div className={cn("group flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-md", className)}>
+      <div className={cn("mb-5 h-1.5 w-14 rounded-full", accent)} />
+      {eyebrow && <div className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-gray-400">{eyebrow}</div>}
+      <h2 className="font-serif text-2xl font-semibold leading-tight text-gray-950 transition-colors group-hover:text-gray-700">{title}</h2>
+      {description && <div className="mt-3 text-sm leading-6 text-gray-600">{description}</div>}
+      {children && <div className="mt-5">{children}</div>}
+      {meta && <div className="mt-auto pt-6 text-xs font-mono text-gray-400">{meta}</div>}
     </div>
   );
 

@@ -2,7 +2,6 @@ import fs from "fs";
 import path from "path";
 import Link from "next/link";
 import Image from "next/image";
-import PageHero from "@/components/custom/PageHero";
 
 interface Organization {
   slug: string;
@@ -59,11 +58,11 @@ export default async function OrganizationsIndex() {
 
   return (
     <div className="mx-auto max-w-4xl space-y-12">
-      <PageHero
-        eyebrow="Affiliations"
-        title="Organizations"
-        description="Research affiliations, professional work, student groups, and long-running community involvement, grouped by context rather than chronology."
-      />
+      <header className="max-w-4xl border-b border-gray-200 pb-8">
+        <div className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-gray-400">Affiliations</div>
+        <h1 className="font-serif text-3xl font-semibold tracking-tight text-gray-950 md:text-4xl">Organizations</h1>
+        <p className="mt-4 max-w-2xl text-sm leading-7 text-gray-600 md:text-base">Research affiliations, professional work, student groups, and long-running community involvement, grouped by context rather than chronology.</p>
+      </header>
 
       {sections.map((section) => {
         const items = organizations

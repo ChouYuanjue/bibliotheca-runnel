@@ -68,7 +68,13 @@ export default async function ProjectsIndex() {
         eyebrow="Projects"
         title="Projects"
         description="Research code, applied systems, bot frameworks, language tools, and TeX/OCR pipelines."
-        meta={<span>{researchProjects.length} research · {commercialProjects.length} applied · {personalProjects.length} personal</span>}
+        meta={(
+          <>
+            <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{researchProjects.length} research</span>
+            <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{commercialProjects.length} commercial</span>
+            <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{personalProjects.length} personal</span>
+          </>
+        )}
       />
       <ProjectSection title="Research Projects" description="AI4Math, theorem proving, low-resource NLP, and evaluation codebases." projects={researchProjects} accent="bg-indigo-600" />
       <ProjectSection title="Commercial / Applied Systems" description="Applied work for product delivery, multimodal systems, and deployment." projects={commercialProjects} accent="bg-blue-600" />

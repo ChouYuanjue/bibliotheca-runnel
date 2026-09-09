@@ -2,7 +2,7 @@
 title: "NINE-Lab"
 role: "Research Intern"
 category: "research"
-date: "2026-08-28"
+date: "2026-08"
 endDate: "Present"
 icon: "icon.png"
 website: "https://ninelab.org.cn/"

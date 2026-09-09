@@ -26,10 +26,10 @@
 
 ## Professional Experience
 
-**Agent Development Engineer** | Xijiu Intelligent Scenario Project
+**Agent Development Engineer** | Beijing Volcano Engine Technology Co., Ltd.
 
-*Volcano Engine-assigned external staff* | Aug 30, 2026 – Present
-* Develop and integrate agent workflows for enterprise intelligent scenarios for Xijiu, including orchestration, tool integration, and production-oriented engineering.
+*Assigned to Guizhou Xijiu Investment Holding Group Co., Ltd. — Intelligent Scenario Project* | Aug 30, 2026 – Present
+* Develop and integrate agent workflows for enterprise intelligent scenarios, including orchestration, tool integration, and production-oriented engineering.
 
 **Part-time Employee** | Nanjing Flux Technology Co., Ltd.
 
