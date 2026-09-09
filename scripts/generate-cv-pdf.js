@@ -50,21 +50,23 @@ const { mdToPdf } = require('md-to-pdf');
         stylesheet_encoding: 'utf-8',
         pdf_options: {
             format: 'A4',
-            margin: '20mm',
+            margin: '13mm',
             printBackground: true,
         },
         css: `
-            body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 12px; line-height: 1.6; color: #333; }
-            h1 { font-size: 28px; font-weight: bold; margin-bottom: 5px; color: #000; }
-            h2 { font-size: 18px; font-weight: bold; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 5px; color: #000; }
-            h3 { font-size: 14px; font-weight: bold; margin-top: 15px; margin-bottom: 5px; color: #000; }
-            p { margin: 0 0 10px 0; }
-            a { color: #2563eb; text-decoration: none; }
-            ul { margin: 0 0 10px 20px; padding: 0; }
-            li { margin-bottom: 5px; }
-            code { background-color: #f3f4f6; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+            body { font-family: "Times New Roman", "Songti SC", serif; font-size: 10.5px; line-height: 1.38; color: #222; }
+            h1 { font-size: 24px; font-weight: 700; margin: 0 0 4px 0; color: #111; }
+            h2 { font-size: 15px; font-weight: 700; margin: 13px 0 7px 0; border-bottom: 1px solid #d9d9d9; padding-bottom: 3px; color: #111; break-after: avoid; page-break-after: avoid; }
+            h3 { font-size: 12px; font-weight: 700; margin: 8px 0 3px 0; color: #111; break-after: avoid; page-break-after: avoid; }
+            p { margin: 0 0 5px 0; }
+            a { color: #222; text-decoration: none; }
+            ul { margin: 1px 0 5px 16px; padding: 0; }
+            li { margin-bottom: 2px; }
+            strong { font-weight: 700; }
+            code { background-color: #f3f4f6; padding: 1px 3px; border-radius: 2px; font-family: monospace; }
+            h2 + p, h3 + p { break-before: avoid; page-break-before: avoid; }
             /* KaTeX adjustments */
-            .katex { font-size: 1.1em; }
+            .katex { font-size: 1em; }
         `
     });
 

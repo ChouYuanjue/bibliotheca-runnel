@@ -82,8 +82,13 @@ function main() {
         }
     });
 
-    // Sort by date descending
-    organizations.sort((a, b) => new Date(b.date) - new Date(a.date));
+    // Keep the primary research affiliation first; sort the rest by recency.
+    const priority = { thunlp: 100 };
+    organizations.sort((a, b) => {
+        const priorityDiff = (priority[b.slug] || 0) - (priority[a.slug] || 0);
+        if (priorityDiff !== 0) return priorityDiff;
+        return new Date(b.date) - new Date(a.date);
+    });
 
     fs.writeFileSync(OUTPUT_FILE, JSON.stringify(organizations, null, 2));
     console.log(`Generated ${OUTPUT_FILE} with ${organizations.length} items.`);

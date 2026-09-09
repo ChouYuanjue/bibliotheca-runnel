@@ -3,20 +3,20 @@ import MarkdownRenderer from "@/components/custom/MarkdownRenderer";
 import ArchiveCard from "@/components/custom/ArchiveCard";
 
 const bioContent = `
-I’m **Runnel Zhang** (also Runcheng Zhang), an undergraduate at **Nanjing University’s School of Intelligent Science and Technology**. My journey has taken me from PKU’s summer and winter schools to NJU’s CS AI community (e.g. **NOVA** & **AIA**), where I have shared material on full-stack development and VAEs. I also work as a **full-stack engineer at FluxVerse**, contributing to product development. Through this collaboration, I have access to a workspace at Nanjing Alibaba Center — though I am not directly employed by Alibaba.
+I’m **Runnel Zhang** (also Runcheng Zhang), an undergraduate at **Nanjing University’s School of Intelligent Science and Technology**. At NJU, I am involved with the **Artificial Intelligence Association (AIA)**, where I contribute to technical sharing and introductory teaching.
 
-I am currently a Research Intern at **TsinghuaNLP**, working on **AI for Science** (AI4Sci) under Prof. Zheni Zeng, while also working on **AI for Mathematics** (AI4Math) with Ziyu Zhou at MSRA. I am interested in places where AI meets structured or symbolic material: mathematical reasoning, low-resource language problems such as Tangut translation, and tools for experiments, notes, and datasets. I am still building the background I need in **Computer Vision**, **NLP**, and **AI interpretability**.
+I am currently a Research Intern at **TsinghuaNLP**, working on **AI for Science** under Prof. Zheni Zeng, and an Intern at **NINE-Lab** under Dr. Huihong Liang, working on **edge intelligence and AI infrastructure**. My current research interests are deliberately focused on language-model training and reasoning for scientific tasks, together with efficient AI systems. Earlier collaboration with Ziyu Zhou in an **MSRA** research context informed several projects around formal proof, reasoning enhancement, and neuro-symbolic methods.
 
-Online, I also use the pseudonym **Yuanjue Chou** for satirical math and CS writing, typesetting experiments, and other unserious $\\LaTeX$-heavy pieces.
+Alongside research, I work part-time at **Nanjing Flux Technology Co., Ltd. (南京转点科技有限公司)**. Since August 30, 2026, I have also served as an **Agent Development Engineer** on Xijiu’s intelligent-scenario project as a **Volcano Engine-assigned external staff member**. In **NJU-China**, Nanjing University’s iGEM team, I serve as **Dry Lab Student Leader**.
 
-Feel free to reach out via email (Runnel.Zhang@smail.nju.edu.cn) or explore my work on **GitHub** (@ChouYuanjue) and **ORCID** (0009-0005-7611-3583)!
+I also use the name **Yuanjue Chou** for independent writing and technical notes. Feel free to reach out via email (Runnel.Zhang@smail.nju.edu.cn) or explore my work on **GitHub** (@ChouYuanjue) and **ORCID** (0009-0005-7611-3583).
 `;
 
 const entryCards = [
   { title: "INM Notes", href: "/library/notes", description: "Mathematical notes: 158 notes, 15 volumes, PDF and TeX sources.", accent: "bg-slate-900" },
-  { title: "Projects", href: "/projects", description: "Engineering systems, bot frameworks, low-resource language tools, and TeX/OCR pipelines.", accent: "bg-blue-600" },
-  { title: "Fragments", href: "/fragments", description: "Study records, correspondence, project diaries, satire, and short notes.", accent: "bg-amber-500" },
-  { title: "Index", href: "/worklist", description: "Site-wide list of projects, publications, artifacts, fragments, and notes.", accent: "bg-rose-500" },
+  { title: "Projects", href: "/projects", description: "Research code, engineering systems, and technical tools.", accent: "bg-blue-600" },
+  { title: "Fragments", href: "/fragments", description: "Study records, correspondence, project diaries, and short notes.", accent: "bg-amber-500" },
+  { title: "Index", href: "/worklist", description: "Site-wide index of projects, writings, artifacts, fragments, and notes.", accent: "bg-rose-500" },
 ];
 
 export default function Home() {

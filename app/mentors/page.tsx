@@ -20,10 +20,16 @@ const groups: { title: string; description: string; people: Mentor[] }[] = [
         note: "Provides formal academic guidance for my transition into AI for Science, scientific reasoning, and RAG-related research directions.",
       },
       {
+        name: "Huihong Liang",
+        role: "NINE-Lab",
+        relation: "Research advisor",
+        note: "Supervises my research internship in edge intelligence and AI infrastructure, with an emphasis on efficient inference and deployment.",
+      },
+      {
         name: "Ziyu Zhou",
-        role: "Research collaborator; MSRA intern; M.S., Czech Technical University",
-        relation: "Research collaborator and technical mentor",
-        note: "Collaborates with me on AI for Mathematics work and provides technical guidance at the interface of theorem-oriented reasoning, machine learning, and mathematical background knowledge.",
+        role: "Research collaborator in AI for Mathematics",
+        relation: "Earlier research collaborator and technical mentor",
+        note: "Collaborated with me on AI for Mathematics work involving formal proof, reasoning enhancement, and neuro-symbolic methods.",
       },
     ],
   },
@@ -36,7 +42,7 @@ const groups: { title: string; description: string; people: Mentor[] }[] = [
         role: "Ph.D. in Algebraic Geometry, Université Grenoble Alpes; postdoctoral researcher at University of Burgundy",
         relation: "Long-term mathematical mentor",
         link: "https://iamcxds.github.io/",
-        note: "Introduced me to a broad range of modern mathematical ideas, including category theory, topos theory, HoTT, linear logic, and related foundational viewpoints.",
+        note: "Introduced me to a broad range of modern mathematical ideas and provided long-term guidance in independent mathematical study and research reading.",
       },
       {
         name: "Tom Leinster",
