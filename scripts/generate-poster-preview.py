@@ -22,7 +22,7 @@ def main() -> None:
     if document.page_count < 1:
         raise SystemExit("PDF has no pages")
 
-    svg = document.load_page(0).get_svg_image(text_as_path=False)
+    svg = document.load_page(0).get_svg_image(text_as_path=True)
     svg_path.parent.mkdir(parents=True, exist_ok=True)
     svg_path.write_text(svg, encoding="utf-8")
     print(svg_path)
