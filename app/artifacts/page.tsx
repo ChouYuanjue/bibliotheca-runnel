@@ -28,14 +28,14 @@ export default async function AchievedIndex() {
         eyebrow="Artifacts"
         title="Experimental works, jokes, and odd outputs"
         description="A cabinet for fictional identities, failed experiments, satirical papers, and other non-standard academic artifacts."
-        meta={<span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{sortedEntries.length} artifacts</span>}
+        meta={<span>{sortedEntries.length} artifacts</span>}
       />
       <div className="grid gap-6 md:grid-cols-2">
         {sortedEntries.map(([slug, item]) => (
-          <div key={slug} className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-md">
+          <div key={slug} className="group border border-gray-200 bg-white p-5 transition-colors hover:border-gray-400">
             <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
               <h2 className="font-serif text-xl font-semibold text-gray-950 group-hover:text-gray-700"><Link href={`/artifacts/${slug}`}>{item.title}</Link></h2>
-              <span className={`rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-wider ${item.state === "FICTIONAL" ? "bg-purple-100 text-purple-700" : item.state === "FAILED" ? "bg-red-100 text-red-700" : "bg-gray-100 text-gray-600"}`}>{item.state}</span>
+              <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-gray-400">{item.state}</span>
             </div>
             <p className="line-clamp-3 text-sm leading-6 text-gray-600">{item.description}</p>
             <div className="mt-5 flex items-center justify-between border-t border-gray-100 pt-4 font-mono text-xs text-gray-400">

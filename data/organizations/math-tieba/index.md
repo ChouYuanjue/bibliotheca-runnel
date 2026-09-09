@@ -1,6 +1,7 @@
 ---
 title: "Mathematics Tieba"
 role: "Administrator"
+category: "community"
 date: "2020-07"
 endDate: "Present"
 icon: "icon.jpg"

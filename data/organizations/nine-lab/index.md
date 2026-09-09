@@ -1,8 +1,11 @@
 ---
 title: "NINE-Lab"
 role: "Research Intern"
+category: "research"
 date: "2026-08-28"
 endDate: "Present"
+icon: "icon.png"
+website: "https://ninelab.org.cn/"
 description: "Research internship under Dr. Huihong Liang, focused on edge intelligence and AI infrastructure."
 ---
 # Research Internship

@@ -1,107 +1,36 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
 import metadata from "@/data/metadata.json";
+import { cn } from "@/lib/utils";
 
 export default function MobileNav() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const [expandedItems, setExpandedItems] = useState<string[]>([]);
 
-  // Close menu when route changes
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-
-  const toggleExpand = (path: string) => {
-    setExpandedItems((prev) =>
-      prev.includes(path) ? prev.filter((p) => p !== path) : [...prev, path]
-    );
-  };
+  useEffect(() => setOpen(false), [pathname]);
 
   return (
     <div className="md:hidden">
-      {/* Mobile Header */}
-      <div className="fixed top-0 left-0 right-0 h-16 bg-white border-b border-gray-200 z-40 flex items-center justify-between px-4">
-        <span className="font-serif text-lg font-bold text-gray-900">Runnel Zhang</span>
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="p-2 text-gray-600 hover:bg-gray-100 rounded-md"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+      <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-gray-200 bg-white px-5">
+        <Link href="/" className="font-serif text-base font-semibold text-gray-950">Runnel Zhang</Link>
+        <button aria-label="Toggle navigation" onClick={() => setOpen(!open)} className="p-1.5 text-gray-500">
+          {open ? <X size={20} /> : <Menu size={20} />}
         </button>
-      </div>
-
-      {/* Spacer for fixed header */}
-      <div className="h-16" />
-
-      {/* Mobile Menu Overlay */}
-      {isOpen && (
-        <div className="fixed inset-0 top-16 z-30 bg-white overflow-y-auto pb-20 animate-in slide-in-from-top-5 duration-200">
-          <nav className="p-4 space-y-2">
-            {metadata.navigation.map((item) => {
-              const isActive =
-                pathname === item.path ||
-                (item.path !== "/" && pathname.startsWith(item.path + "/")) ||
-                item.children?.some(
-                  (child) => pathname === child.path || pathname.startsWith(child.path + "/")
-                );
-              const hasChildren = item.children && item.children.length > 0;
-              const isExpanded = expandedItems.includes(item.path);
-
-              return (
-                <div key={item.path} className="border-b border-gray-100 last:border-0 pb-2">
-                  <div className="flex items-center justify-between py-2">
-                    <Link
-                      href={item.path}
-                      className={cn(
-                        "text-lg font-medium",
-                        isActive ? "text-black" : "text-gray-600"
-                      )}
-                    >
-                      {item.title}
-                    </Link>
-                    {hasChildren && (
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          toggleExpand(item.path);
-                        }}
-                        className="p-2 text-gray-400"
-                      >
-                        {isExpanded ? <ChevronDown size={20} /> : <ChevronRight size={20} />}
-                      </button>
-                    )}
-                  </div>
-
-                  {hasChildren && isExpanded && (
-                    <div className="pl-4 space-y-2 mt-1 bg-gray-50 rounded-md p-3">
-                      {item.children?.map((child) => {
-                        const isChildActive = pathname === child.path;
-                        return (
-                          <Link
-                            key={child.path}
-                            href={child.path}
-                            className={cn(
-                              "block py-1 text-base",
-                              isChildActive ? "text-black font-medium" : "text-gray-500"
-                            )}
-                          >
-                            {child.title}
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </nav>
-        </div>
+      </header>
+      <div className="h-14" />
+      {open && (
+        <nav className="fixed inset-x-0 top-14 z-40 border-b border-gray-200 bg-white px-5 py-3 shadow-sm">
+          {metadata.navigation.map((item) => {
+            const active = item.path === "/" ? pathname === "/" : pathname === item.path || pathname.startsWith(item.path + "/");
+            return (
+              <Link key={item.path} href={item.path} className={cn("block border-b border-gray-100 py-3 text-sm last:border-0", active ? "font-medium text-gray-950" : "text-gray-600")}>{item.title}</Link>
+            );
+          })}
+        </nav>
       )}
     </div>
   );

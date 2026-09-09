@@ -1,6 +1,7 @@
 ---
 title: "NJU AIA"
 role: "Core Member & Teaching Assistant"
+category: "student"
 date: "2025-09"
 endDate: "Present"
 icon: "icon.jpg"

@@ -49,13 +49,7 @@ export default function LibraryIndex() {
         eyebrow="Library"
         title="Long-form archive"
         description="This page is for materials that need their own browsing context rather than a single chronological list: note volumes, text collections, and essay archives keep separate layouts and indices."
-        meta={(
-          <>
-            <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{notesData.project.noteCount} INM notes</span>
-            <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{notesData.project.volumeCount} math volumes</span>
-            <span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{criticismsData.length + linguisticsData.length} essays and miscellanea</span>
-          </>
-        )}
+        meta={<span>{notesData.project.noteCount} notes · {notesData.project.volumeCount} volumes · {criticismsData.length + linguisticsData.length} essays and miscellanea</span>}
       />
 
       <div className="grid gap-6 md:grid-cols-2">

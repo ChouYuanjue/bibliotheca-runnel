@@ -31,7 +31,7 @@
 *Volcano Engine-assigned external staff* | Aug 30, 2026 – Present
 * Develop and integrate agent workflows for enterprise intelligent scenarios for Xijiu, including orchestration, tool integration, and production-oriented engineering.
 
-**Part-time Employee** | Nanjing Flux Technology Co., Ltd. (南京转点科技有限公司)
+**Part-time Employee** | Nanjing Flux Technology Co., Ltd.
 
 *Part-time* | Jan 2026 – Present
 * Contribute to software engineering and product implementation across internal and client-facing systems.

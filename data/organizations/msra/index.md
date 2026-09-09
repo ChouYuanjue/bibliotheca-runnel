@@ -1,6 +1,7 @@
 ---
 title: "Microsoft Research Asia (MSRA)"
 role: "External Research Collaborator"
+category: "research"
 date: "2026-01"
 endDate: "2026-08"
 icon: "icon.png"

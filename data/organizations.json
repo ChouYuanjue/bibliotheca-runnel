@@ -3,67 +3,77 @@
     "slug": "thunlp",
     "title": "THUNLP / TsinghuaNLP",
     "role": "Research Intern",
+    "category": "research",
     "date": "2026-03",
     "endDate": "Present",
     "icon": "/organizations/thunlp/icon.png",
     "website": "https://github.com/thunlp",
     "description": "Research internship in the AI4S group, working on language-model training and reasoning for scientific tasks.",
-    "content": "# Research Internship\n\nI am a Research Intern at **TsinghuaNLP**, working on **AI for Science** under **Prof. Zheni Zeng**. My work focuses on training and reasoning methods for language models in scientific tasks, together with the experimental infrastructure needed to evaluate them reliably."
+    "content": "# Research Internship\r\n\r\nI am a Research Intern at **TsinghuaNLP**, working on **AI for Science** under **Prof. Zheni Zeng**. My work focuses on training and reasoning methods for language models in scientific tasks, together with the experimental infrastructure needed to evaluate them reliably."
   },
   {
     "slug": "xijiu-agent",
     "title": "Xijiu Intelligent Scenario Project",
     "role": "Agent Development Engineer",
+    "category": "employment",
     "date": "2026-08-30",
     "endDate": "Present",
+    "icon": "/organizations/xijiu-agent/icon.png",
+    "website": "https://www.gzxijiu.com/",
     "description": "Agent development for Xijiu’s intelligent-scenario project as a Volcano Engine-assigned external staff member.",
-    "content": "# Project Role\n\nSince August 30, 2026, I have worked as an **Agent Development Engineer** on Xijiu’s intelligent-scenario project as a **Volcano Engine-assigned external staff member**. My work covers agent orchestration, tool integration, and production-oriented engineering for enterprise scenarios."
+    "content": "# Project Role\r\n\r\nSince August 30, 2026, I have worked as an **Agent Development Engineer** on Xijiu’s intelligent-scenario project as a **Volcano Engine-assigned external staff member**. My work covers agent orchestration, tool integration, and production-oriented engineering for enterprise scenarios."
   },
   {
     "slug": "nine-lab",
     "title": "NINE-Lab",
     "role": "Research Intern",
+    "category": "research",
     "date": "2026-08-28",
     "endDate": "Present",
+    "icon": "/organizations/nine-lab/icon.png",
+    "website": "https://ninelab.org.cn/",
     "description": "Research internship under Dr. Huihong Liang, focused on edge intelligence and AI infrastructure.",
-    "content": "# Research Internship\n\nSince August 28, 2026, I have been a Research Intern at **NINE-Lab** under **Dr. Huihong Liang**. My work focuses on edge intelligence and AI infrastructure, particularly efficient inference and deployment under constrained compute."
+    "content": "# Research Internship\r\n\r\nSince August 28, 2026, I have been a Research Intern at **NINE-Lab** under **Dr. Huihong Liang**. My work focuses on edge intelligence and AI infrastructure, particularly efficient inference and deployment under constrained compute."
   },
   {
     "slug": "msra",
     "title": "Microsoft Research Asia (MSRA)",
     "role": "External Research Collaborator",
+    "category": "research",
     "date": "2026-01",
     "endDate": "2026-08",
     "icon": "/organizations/msra/icon.png",
     "website": "https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/",
     "description": "Earlier AI4Math research collaboration with Ziyu Zhou, connected to formal proof, reasoning enhancement, and neuro-symbolic methods.",
-    "content": "# Earlier Research Collaboration\n\nFrom January to August 2026, I collaborated with **Ziyu Zhou** in an MSRA research context on AI for Mathematics. This period provided the research context for several projects involving formal proof, reasoning enhancement, and neuro-symbolic methods."
+    "content": "# Earlier Research Collaboration\r\n\r\nFrom January to August 2026, I collaborated with **Ziyu Zhou** in an MSRA research context on AI for Mathematics. This period provided the research context for several projects involving formal proof, reasoning enhancement, and neuro-symbolic methods."
   },
   {
     "slug": "nanjing-flux",
     "title": "Nanjing Flux Technology Co., Ltd.",
     "role": "Part-time Employee",
+    "category": "employment",
     "date": "2026-01",
     "endDate": "Present",
-    "icon": "/organizations/nanjing-flux/icon.jpg",
-    "description": "Part-time software engineering at 南京转点科技有限公司 (Flux).",
-    "content": "# Experience\n\nI work part-time at **Nanjing Flux Technology Co., Ltd. (南京转点科技有限公司)**, contributing to software engineering and product implementation."
+    "description": "Part-time software engineering at Flux.",
+    "content": "# Experience\r\n\r\nI work part-time at **Nanjing Flux Technology Co., Ltd.**, contributing to software engineering and product implementation."
   },
   {
     "slug": "nju-china",
     "title": "NJU-China",
     "role": "Dry Lab Student Leader",
+    "category": "student",
     "date": "2026-01",
     "endDate": "Present",
     "icon": "/organizations/nju-china/icon.svg",
     "website": "https://igem.org/",
     "description": "Nanjing University’s iGEM team; I lead the student dry-lab work.",
-    "content": "# NJU-China iGEM\n\nI serve as **Dry Lab Student Leader** of NJU-China. My role centers on computational analysis, modeling, technical integration, and coordination between dry-lab work and the team’s experimental objectives."
+    "content": "# NJU-China iGEM\r\n\r\nI serve as **Dry Lab Student Leader** of NJU-China. My role centers on computational analysis, modeling, technical integration, and coordination between dry-lab work and the team’s experimental objectives."
   },
   {
     "slug": "nju-aia",
     "title": "NJU AIA",
     "role": "Core Member & Teaching Assistant",
+    "category": "student",
     "date": "2025-09",
     "endDate": "Present",
     "icon": "/organizations/nju-aia/icon.jpg",
@@ -75,6 +85,7 @@
     "slug": "nju-nova",
     "title": "NJU NOVA",
     "role": "Core Member",
+    "category": "student",
     "date": "2025-09",
     "endDate": "2026-01",
     "icon": "/organizations/nju-nova/icon.jpg",
@@ -86,6 +97,7 @@
     "slug": "chaoli-forum",
     "title": "Chaoli Forum",
     "role": "Mathematics Moderator",
+    "category": "community",
     "date": "2021-08",
     "endDate": "Present",
     "icon": "/organizations/chaoli-forum/icon.png",
@@ -97,6 +109,7 @@
     "slug": "geek-college",
     "title": "Geek College",
     "role": "Doyen & Former Organizer",
+    "category": "community",
     "date": "2020-07",
     "endDate": "2022-04",
     "icon": "/organizations/geek-college/icon.jpg",
@@ -108,6 +121,7 @@
     "slug": "math-tieba",
     "title": "Mathematics Tieba",
     "role": "Administrator",
+    "category": "community",
     "date": "2020-07",
     "endDate": "Present",
     "icon": "/organizations/math-tieba/icon.jpg",

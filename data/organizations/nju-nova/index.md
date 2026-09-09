@@ -1,6 +1,7 @@
 ---
 title: "NJU NOVA"
 role: "Core Member"
+category: "student"
 date: "2025-09"
 endDate: "2026-01"
 icon: "icon.jpg"

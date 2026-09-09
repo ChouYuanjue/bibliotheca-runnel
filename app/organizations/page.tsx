@@ -8,6 +8,7 @@ interface Organization {
   slug: string;
   title: string;
   role: string;
+  category?: "research" | "employment" | "student" | "community";
   date: string;
   endDate?: string;
   icon?: string;
@@ -20,23 +21,34 @@ async function getOrganizations(): Promise<Organization[]> {
   return JSON.parse(fs.readFileSync(filePath, "utf-8"));
 }
 
-function OrgCard({ org }: { org: Organization }) {
+const sections: { key: NonNullable<Organization["category"]>; title: string; note: string }[] = [
+  { key: "research", title: "Research", note: "Labs and research collaborations." },
+  { key: "employment", title: "Employment", note: "Part-time and externally assigned professional work." },
+  { key: "student", title: "Student Groups", note: "University teams and student organizations." },
+  { key: "community", title: "Communities", note: "Independent academic and technical communities." },
+];
+
+const priority: Record<string, number> = {
+  thunlp: 0,
+  "nine-lab": 1,
+  msra: 2,
+};
+
+function OrgRow({ org }: { org: Organization }) {
   return (
-    <Link href={`/organizations/${org.slug}`} className="group block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-md">
-      <div className="flex items-start gap-5">
-        {org.icon && (
-          <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-2xl border border-gray-100 bg-gray-50">
-            <Image src={org.icon} alt={org.title} fill className="object-cover" />
-          </div>
-        )}
-        <div className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-start justify-between gap-2">
-            <h2 className="font-serif text-xl font-semibold text-gray-950 group-hover:text-gray-700">{org.title}</h2>
-            <span className="whitespace-nowrap font-mono text-xs text-gray-400">{org.date} — {org.endDate || "Present"}</span>
-          </div>
-          <p className="mt-1 text-sm font-medium text-gray-700">{org.role}</p>
-          <p className="mt-3 text-sm leading-6 text-gray-600">{org.description}</p>
+    <Link href={`/organizations/${org.slug}`} className="group flex gap-4 py-5 first:pt-0 last:pb-0 sm:items-start">
+      {org.icon && (
+        <div className="relative mt-0.5 h-11 w-11 flex-none overflow-hidden rounded-sm border border-gray-200 bg-white p-1.5">
+          <Image src={org.icon} alt="" fill className="object-contain p-1" />
         </div>
+      )}
+      <div className="min-w-0 flex-1">
+        <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-5">
+          <h3 className="font-serif text-lg font-semibold text-gray-950 group-hover:underline group-hover:decoration-gray-300 group-hover:underline-offset-4">{org.title}</h3>
+          <span className="flex-none font-mono text-xs text-gray-400">{org.date} — {org.endDate || "Present"}</span>
+        </div>
+        <p className="mt-1 text-sm font-medium text-gray-700">{org.role}</p>
+        <p className="mt-1.5 max-w-3xl text-sm leading-6 text-gray-500">{org.description}</p>
       </div>
     </Link>
   );
@@ -44,20 +56,32 @@ function OrgCard({ org }: { org: Organization }) {
 
 export default async function OrganizationsIndex() {
   const organizations = await getOrganizations();
-  const current = organizations.filter((org) => org.endDate === "Present" || !org.endDate);
-  const past = organizations.filter((org) => org.endDate && org.endDate !== "Present");
 
   return (
-    <div className="mx-auto max-w-6xl space-y-10">
+    <div className="mx-auto max-w-4xl space-y-12">
       <PageHero
-        eyebrow="Organizations"
-        title="Communities, labs, and working groups"
-        description="Organizations where I have built projects, taught, moderated, collaborated, or joined research and technical work."
-        meta={<span className="rounded-full border border-gray-200 bg-white/70 px-4 py-2">{organizations.length} organizations</span>}
+        eyebrow="Affiliations"
+        title="Organizations"
+        description="Research affiliations, professional work, student groups, and long-running community involvement, grouped by context rather than chronology."
       />
 
-      {current.length > 0 && <section className="space-y-5"><h2 className="font-serif text-2xl font-semibold text-gray-900">Current</h2><div className="grid gap-6 md:grid-cols-2">{current.map((org) => <OrgCard key={org.slug} org={org} />)}</div></section>}
-      {past.length > 0 && <section className="space-y-5"><h2 className="font-serif text-2xl font-semibold text-gray-900">Earlier / Past</h2><div className="grid gap-6 md:grid-cols-2">{past.map((org) => <OrgCard key={org.slug} org={org} />)}</div></section>}
+      {sections.map((section) => {
+        const items = organizations
+          .filter((org) => org.category === section.key)
+          .sort((a, b) => (priority[a.slug] ?? 100) - (priority[b.slug] ?? 100) || b.date.localeCompare(a.date));
+        if (!items.length) return null;
+        return (
+          <section key={section.key} className="grid gap-5 md:grid-cols-[10rem_1fr] md:gap-10">
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-gray-800">{section.title}</h2>
+              <p className="mt-2 text-xs leading-5 text-gray-400">{section.note}</p>
+            </div>
+            <div className="divide-y divide-gray-200 border-y border-gray-200">
+              {items.map((org) => <OrgRow key={org.slug} org={org} />)}
+            </div>
+          </section>
+        );
+      })}
     </div>
   );
 }

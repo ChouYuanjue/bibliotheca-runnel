@@ -20,23 +20,19 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Runnel Zhang | Bibliotheca Runnel",
-  description: "Academic Portal and Personal Archive of Runnel Zhang",
+  title: "Runnel Zhang",
+  description: "Academic profile and personal archive of Runnel Zhang.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${notoSerifTangut.variable}`}>
-      <body className="font-sans bg-white text-gray-900 antialiased">
+      <body className="bg-white font-sans text-gray-900 antialiased">
         <div className="min-h-screen">
           <MobileNav />
           <Sidebar />
-          <main className="md:pl-72 w-full">
-            <div className="max-w-7xl mx-auto px-6 pb-6 pt-24 md:p-12 lg:p-16">
+          <main>
+            <div className="mx-auto max-w-6xl px-6 py-10 md:px-8 md:py-14 lg:py-16">
               {children}
             </div>
           </main>

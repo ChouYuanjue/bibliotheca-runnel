@@ -1,6 +1,7 @@
 ---
 title: "Geek College"
 role: "Doyen & Former Organizer"
+category: "community"
 date: "2020-07"
 endDate: "2022-04"
 icon: "icon.jpg"

@@ -1,6 +1,7 @@
 ---
 title: "THUNLP / TsinghuaNLP"
 role: "Research Intern"
+category: "research"
 date: "2026-03"
 endDate: "Present"
 icon: "icon.png"

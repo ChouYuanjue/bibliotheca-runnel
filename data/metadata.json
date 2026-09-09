@@ -1,73 +1,9 @@
 {
   "navigation": [
-    {
-      "title": "Home",
-      "path": "/",
-      "tier": 1,
-      "children": [
-        {
-          "title": "CV",
-          "path": "/cv",
-          "tier": 2
-        },
-        {
-          "title": "Organizations",
-          "path": "/organizations",
-          "tier": 2
-        },
-        {
-          "title": "Index",
-          "path": "/worklist",
-          "tier": 2
-        },
-        {
-          "title": "Mentors",
-          "path": "/mentors",
-          "tier": 2
-        }
-      ]
-    },
-    {
-      "title": "Library",
-      "path": "/library",
-      "tier": 1,
-      "children": [
-        {
-          "title": "Notes",
-          "path": "/library/notes",
-          "tier": 2
-        },
-        {
-          "title": "Classics",
-          "path": "/library/classics",
-          "tier": 2
-        },
-        {
-          "title": "Linguistics",
-          "path": "/library/linguistics",
-          "tier": 2
-        },
-        {
-          "title": "Criticisms",
-          "path": "/library/criticisms",
-          "tier": 2
-        }
-      ]
-    },
-    {
-      "title": "Projects",
-      "path": "/projects",
-      "tier": 1
-    },
-    {
-      "title": "Artifacts",
-      "path": "/artifacts",
-      "tier": 1
-    },
-    {
-      "title": "Fragments",
-      "path": "/fragments",
-      "tier": 1
-    }
+    { "title": "Home", "path": "/", "tier": 1 },
+    { "title": "CV", "path": "/cv", "tier": 1 },
+    { "title": "Affiliations", "path": "/organizations", "tier": 1 },
+    { "title": "Mentors", "path": "/mentors", "tier": 1 },
+    { "title": "Archive", "path": "/archive", "tier": 1 }
   ]
 }

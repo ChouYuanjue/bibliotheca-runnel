@@ -1,6 +1,7 @@
 ---
 title: "Chaoli Forum"
 role: "Mathematics Moderator"
+category: "community"
 date: "2021-08"
 endDate: "Present"
 icon: "icon.png"

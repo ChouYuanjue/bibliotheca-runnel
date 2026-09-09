@@ -1,6 +1,7 @@
 ---
 title: "NJU-China"
 role: "Dry Lab Student Leader"
+category: "student"
 date: "2026-01"
 endDate: "Present"
 icon: "icon.svg"
