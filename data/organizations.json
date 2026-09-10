@@ -1,7 +1,7 @@
 [
   {
     "slug": "thunlp",
-    "title": "THUNLP / TsinghuaNLP",
+    "title": "Natural Language Processing and Computational Social Science Lab, Tsinghua University (THUNLP)",
     "role": "Research Intern",
     "category": "research",
     "date": "2026-03",
@@ -9,11 +9,11 @@
     "icon": "/organizations/thunlp/icon.png",
     "website": "https://github.com/thunlp",
     "description": "Research internship in the AI4S group, working on language-model training and reasoning for scientific tasks.",
-    "content": "# Research Internship\r\n\r\nI am a Research Intern at **TsinghuaNLP**, working on **AI for Science** under **Prof. Zheni Zeng**. My work focuses on training and reasoning methods for language models in scientific tasks, together with the experimental infrastructure needed to evaluate them reliably."
+    "content": "# Research Internship\r\n\r\nI am a Research Intern at the **Natural Language Processing and Computational Social Science Lab, Tsinghua University (THUNLP)**, working on **AI for Science** under **Prof. Zheni Zeng**. My work focuses on training and reasoning methods for language models in scientific tasks, together with the experimental infrastructure needed to evaluate them reliably."
   },
   {
     "slug": "nine-lab",
-    "title": "NINE-Lab",
+    "title": "Institute of NJU Intelligent Networks and Communications (NINE-Lab)",
     "role": "Research Intern",
     "category": "research",
     "date": "2026-08",
@@ -21,7 +21,7 @@
     "icon": "/organizations/nine-lab/icon.png",
     "website": "https://ninelab.org.cn/",
     "description": "Research internship under Dr. Huihong Liang, focused on edge intelligence and AI infrastructure.",
-    "content": "# Research Internship\r\n\r\nSince August 28, 2026, I have been a Research Intern at **NINE-Lab** under **Dr. Huihong Liang**. My work focuses on edge intelligence and AI infrastructure, particularly efficient inference and deployment under constrained compute."
+    "content": "# Research Internship\r\n\r\nSince August 2026, I have been a Research Intern at the **Institute of NJU Intelligent Networks and Communications (NINE-Lab)** under **Dr. Huihong Liang**. My work focuses on edge intelligence and AI infrastructure, particularly efficient inference and deployment under constrained compute."
   },
   {
     "slug": "volcano-engine",

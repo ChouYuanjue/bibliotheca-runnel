@@ -1,5 +1,5 @@
 ---
-title: "NINE-Lab"
+title: "Institute of NJU Intelligent Networks and Communications (NINE-Lab)"
 role: "Research Intern"
 category: "research"
 date: "2026-08"
@@ -10,4 +10,4 @@ description: "Research internship under Dr. Huihong Liang, focused on edge intel
 ---
 # Research Internship
 
-Since August 28, 2026, I have been a Research Intern at **NINE-Lab** under **Dr. Huihong Liang**. My work focuses on edge intelligence and AI infrastructure, particularly efficient inference and deployment under constrained compute.
+Since August 2026, I have been a Research Intern at the **Institute of NJU Intelligent Networks and Communications (NINE-Lab)** under **Dr. Huihong Liang**. My work focuses on edge intelligence and AI infrastructure, particularly efficient inference and deployment under constrained compute.
