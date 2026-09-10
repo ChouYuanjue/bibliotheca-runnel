@@ -31,7 +31,14 @@ export default function Home() {
         <Link href="/mentors" className="inline-flex items-center justify-center px-2 py-3 text-base font-medium text-gray-500 transition-colors hover:text-gray-900">Mentors</Link>
       </div>
 
-      <section className="max-w-3xl">
+      <section className="grid max-w-3xl gap-5 md:grid-cols-2">
+        <ArchiveCard
+          title="Posters"
+          href="/posters"
+          description="Published work and project work presented in poster form."
+          eyebrow="Visual work"
+          accent="bg-slate-900"
+        />
         <ArchiveCard
           title="Archive"
           href="/archive"
