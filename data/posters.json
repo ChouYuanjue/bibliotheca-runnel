@@ -55,5 +55,25 @@
     "preview": "/posters/proco-evidence/poster-exact.svg",
     "pdf": "/posters/proco-evidence/poster.pdf",
     "repository": "https://github.com/ChouYuanjue/proof-countermodel-distill"
+  },
+  {
+    "slug": "mosaic",
+    "title": "MOSAIC: Reference-Grounded Compositional Synthesis for Multi-Source Emoji Fusion",
+    "category": "student",
+    "date": "2025-09-29",
+    "authors": "Runnel Zhang",
+    "repository": "https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab",
+    "preview": "/posters/mosaic/poster-exact.svg",
+    "pdf": "/posters/mosaic/poster.pdf"
+  },
+  {
+    "slug": "tangut-spar",
+    "title": "Tangut-SPAR: Structured Proxy Augmentation and Reliable Preference Tuning",
+    "category": "student",
+    "date": "2026-03-23",
+    "authors": "Runnel Zhang",
+    "repository": "https://github.com/ChouYuanjue/tangut-nlp",
+    "preview": "/posters/tangut-spar/poster-exact.svg",
+    "pdf": "/posters/tangut-spar/poster.pdf"
   }
 ]
