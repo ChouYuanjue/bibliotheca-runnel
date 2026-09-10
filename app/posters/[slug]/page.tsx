@@ -13,7 +13,7 @@ export default function PosterDetailPage({ params }: { params: { slug: string } 
   if (!item) notFound();
 
   const notes = getPosterNotes(item.slug);
-  const sectionHref = item.category === "published" ? "/posters/published" : "/posters/student-projects";
+  const sectionHref = item.category === "published" ? "/posters/published" : "/posters/projects";
 
   return (
     <div className="mx-auto max-w-5xl space-y-9">

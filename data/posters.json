@@ -2,7 +2,7 @@
   {
     "slug": "doge-sage",
     "title": "Doge-SAGE: Stateful Agent Governance and Execution for Scientific Communities",
-    "category": "student",
+    "category": "project",
     "date": "2026-09-09",
     "preview": "/posters/doge-sage/poster-exact.svg",
     "pdf": "/posters/doge-sage/poster.pdf",
@@ -11,7 +11,7 @@
   {
     "slug": "candidate-exchangeability",
     "title": "When the Candidate Set Knows the Answer: Exchangeable Hard Negatives for Vision–Language Evaluation",
-    "category": "student",
+    "category": "project",
     "date": "2026-08-10",
     "authors": "Runcheng Zhang",
     "preview": "/posters/candidate-exchangeability/poster-exact.svg",
@@ -20,7 +20,7 @@
   {
     "slug": "trace",
     "title": "TRACE: Typed Reasoning with Attribution, Certificates, and Evidence",
-    "category": "student",
+    "category": "project",
     "date": "2026-07-30",
     "authors": "Runnel Zhang",
     "preview": "/posters/trace/poster-exact.svg",
@@ -29,7 +29,7 @@
   {
     "slug": "lean-attribution",
     "title": "Attributing Inference-Time Gains in Lean Theorem Proving",
-    "category": "student",
+    "category": "project",
     "date": "2026-04-28",
     "authors": "Runnel Zhang",
     "preview": "/posters/lean-attribution/poster-exact.svg",
@@ -39,7 +39,7 @@
   {
     "slug": "structural-transfer",
     "title": "Structural Transfer in Low-Resource Autoformalization",
-    "category": "student",
+    "category": "project",
     "date": "2026-05-05",
     "authors": "Runnel Zhang",
     "preview": "/posters/structural-transfer/poster-exact.svg",
@@ -49,7 +49,7 @@
   {
     "slug": "proco-evidence",
     "title": "ProCo: Verifiable Abstention through Missing-Support Supervision",
-    "category": "student",
+    "category": "project",
     "date": "2026-05-02",
     "authors": "Runnel Zhang",
     "preview": "/posters/proco-evidence/poster-exact.svg",
@@ -59,7 +59,7 @@
   {
     "slug": "mosaic",
     "title": "MOSAIC: Reference-Grounded Compositional Synthesis for Multi-Source Emoji Fusion",
-    "category": "student",
+    "category": "project",
     "date": "2025-09-29",
     "authors": "Runnel Zhang",
     "repository": "https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab",
@@ -69,7 +69,7 @@
   {
     "slug": "tangut-spar",
     "title": "Tangut-SPAR: Structured Proxy Augmentation and Reliable Preference Tuning",
-    "category": "student",
+    "category": "project",
     "date": "2026-03-23",
     "authors": "Runnel Zhang",
     "repository": "https://github.com/ChouYuanjue/tangut-nlp",

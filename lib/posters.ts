@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-export type PosterCategory = "published" | "student";
+export type PosterCategory = "published" | "project";
 
 export interface PosterItem {
   slug: string;
@@ -40,5 +40,5 @@ export function getPosterNotes(slug: string): string {
 
 export const posterCategoryLabels: Record<PosterCategory, string> = {
   published: "Published Work",
-  student: "Student Projects",
+  project: "Project Work",
 };

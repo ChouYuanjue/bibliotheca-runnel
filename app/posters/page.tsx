@@ -4,7 +4,7 @@ import { getPosters, posterCategoryLabels, type PosterCategory } from "@/lib/pos
 
 const sections: { key: PosterCategory; href: string; note: string }[] = [
   { key: "published", href: "/posters/published", note: "Posters associated with formally published work." },
-  { key: "student", href: "/posters/student-projects", note: "Posters from student and independent practice projects." },
+  { key: "project", href: "/posters/projects", note: "Technical, exploratory, and independent projects presented in poster form." },
 ];
 
 export default function PostersPage() {
