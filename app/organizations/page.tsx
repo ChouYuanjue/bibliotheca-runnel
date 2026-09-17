@@ -30,7 +30,8 @@ const sections: { key: NonNullable<Organization["category"]>; title: string; not
 const priority: Record<string, number> = {
   thunlp: 0,
   "nine-lab": 1,
-  msra: 2,
+  "xishan-biotech": 2,
+  msra: 3,
 };
 
 function OrgRow({ org }: { org: Organization }) {

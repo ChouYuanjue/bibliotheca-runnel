@@ -19,6 +19,11 @@
 *Advisor: Dr. Huihong Liang* | Aug 28, 2026 – Present
 * Work on edge intelligence and AI infrastructure, with an emphasis on efficient inference and deployment under constrained compute.
 
+**Research Intern** | Wuxi Xishan NJU Institute of Applied Biotechnology
+
+*Sep 2026 - Dec 2026*
+* Research internship in applied biotechnology.
+
 **External Research Collaborator** | Microsoft Research Asia (MSRA)
 
 *Collaborator: Ziyu Zhou* | Jan 2026 – Aug 2026

@@ -12,6 +12,18 @@
     "content": "# Research Internship\r\n\r\nI am a Research Intern at the **Natural Language Processing and Computational Social Science Lab, Tsinghua University (THUNLP)**, working on **AI for Science** under **Prof. Zheni Zeng**. My work focuses on training and reasoning methods for language models in scientific tasks, together with the experimental infrastructure needed to evaluate them reliably."
   },
   {
+    "slug": "xishan-biotech",
+    "title": "Wuxi Xishan NJU Institute of Applied Biotechnology",
+    "role": "Research Intern",
+    "category": "research",
+    "date": "2026-09",
+    "endDate": "2026-12",
+    "icon": "/organizations/xishan-biotech/icon.png",
+    "website": "http://njuwxiab.cn/",
+    "description": "Research internship at the Wuxi Xishan NJU Institute of Applied Biotechnology.",
+    "content": "# Research Internship\n\nResearch Intern at the **Wuxi Xishan NJU Institute of Applied Biotechnology** from September to December 2026."
+  },
+  {
     "slug": "nine-lab",
     "title": "Institute of NJU Intelligent Networks and Communications (NINE-Lab)",
     "role": "Research Intern",
