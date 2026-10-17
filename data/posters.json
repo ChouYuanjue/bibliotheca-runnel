@@ -1,5 +1,25 @@
 [
   {
+    "slug": "bisem-edge",
+    "title": "BiSem-Edge: Compute-Efficient Semantic Video with Complementary Reconstruction",
+    "category": "project",
+    "date": "2026-10-16",
+    "authors": "Runcheng Zhang",
+    "description": "Temporal efficiency, complementary reconstruction evidence, and native low-bit execution for semantic video.",
+    "preview": "/posters/bisem-edge/poster-exact.svg",
+    "pdf": "/posters/bisem-edge/poster.pdf"
+  },
+  {
+    "slug": "igem-atlas",
+    "title": "Evidence-Grounded Enzyme-Reaction Discovery",
+    "category": "project",
+    "date": "2026-09-31",
+    "authors": "NJU-China Dry Lab",
+    "description": "Atlas BRIDGE, COMPASS, and EDGE: enzyme-reaction ranking, verified scientific tools, and graph-linked evidence.",
+    "preview": "/posters/igem-atlas/poster-exact.svg",
+    "pdf": "/posters/igem-atlas/poster.pdf"
+  },
+  {
     "slug": "doge-sage",
     "title": "Doge-SAGE: Stateful Agent Governance and Execution for Scientific Communities",
     "category": "project",
