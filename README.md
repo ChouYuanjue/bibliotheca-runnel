@@ -69,7 +69,19 @@ To create a production build:
 npm run build
 ```
 
-> **Note**: The build command (`npm run generate-cv && next build`) automatically triggers the CV PDF generation script. Ensure you have the necessary environment dependencies for Puppeteer if deploying to a minimal Linux environment (or see Deployment notes below).
+> **Note**: The build validates poster assets before compiling the Next.js site. Regenerate the CV PDF separately with `npm run generate-cv` when needed.
+
+### Publishing posters
+
+Register each poster in `data/posters.json` and store only `poster.svg` and `poster.pdf` in `public/posters/<slug>/`. The `preview` field points to `/posters/<slug>/poster.svg`; the PDF remains available for download.
+
+To export a browser-independent vector preview from a PDF, run:
+
+```bash
+python scripts/generate-poster-preview.py public/posters/<slug>/poster.pdf
+```
+
+All SVG typography must be outlined into vector paths, preserving the original font appearance without relying on installed or remotely loaded fonts. Any raster images must be embedded inside the SVG. The production build enforces this convention; run `npm run verify:posters` to check it independently.
 
 ## Scripts
 
@@ -83,10 +95,7 @@ npm run build
 This project is optimized for deployment on **Vercel**.
 
 ### Vercel Deployment Note
-If you encounter issues with Puppeteer (`md-to-pdf`) during the Vercel build process due to missing Linux libraries, you can:
-1. Generate the PDF locally (`npm run generate-cv`).
-2. Commit the generated `public/cv.pdf` to the repository.
-3. Change the build command in Vercel settings to just `next build`.
+Keep the build command as `npm run build` so the poster SVG validation runs on deployment. Generate `public/cv.pdf` locally with `npm run generate-cv` and commit it if the deployment environment cannot run Puppeteer.
 
 ## Author
 

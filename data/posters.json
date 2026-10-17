@@ -5,7 +5,7 @@
     "category": "project",
     "date": "2026-10-16",
     "authors": "Runcheng Zhang",
-    "preview": "/posters/bisem-edge/poster-exact.svg",
+    "preview": "/posters/bisem-edge/poster.svg",
     "pdf": "/posters/bisem-edge/poster.pdf"
   },
   {
@@ -14,7 +14,7 @@
     "category": "project",
     "date": "2026-09-30",
     "authors": "NJU-China Dry Lab",
-    "preview": "/posters/igem-atlas/poster-exact.svg",
+    "preview": "/posters/igem-atlas/poster.svg",
     "pdf": "/posters/igem-atlas/poster.pdf"
   },
   {
@@ -22,7 +22,7 @@
     "title": "Doge-SAGE: Stateful Agent Governance and Execution for Scientific Communities",
     "category": "project",
     "date": "2026-09-09",
-    "preview": "/posters/doge-sage/poster-exact.svg",
+    "preview": "/posters/doge-sage/poster.svg",
     "pdf": "/posters/doge-sage/poster.pdf",
     "repository": "https://github.com/ChouYuanjue/doge-repo"
   },
@@ -32,7 +32,7 @@
     "category": "project",
     "date": "2026-08-10",
     "authors": "Runcheng Zhang",
-    "preview": "/posters/candidate-exchangeability/poster-exact.svg",
+    "preview": "/posters/candidate-exchangeability/poster.svg",
     "pdf": "/posters/candidate-exchangeability/poster.pdf"
   },
   {
@@ -41,7 +41,7 @@
     "category": "project",
     "date": "2026-07-30",
     "authors": "Runnel Zhang",
-    "preview": "/posters/trace/poster-exact.svg",
+    "preview": "/posters/trace/poster.svg",
     "pdf": "/posters/trace/poster.pdf"
   },
   {
@@ -50,7 +50,7 @@
     "category": "project",
     "date": "2026-04-28",
     "authors": "Runnel Zhang",
-    "preview": "/posters/lean-attribution/poster-exact.svg",
+    "preview": "/posters/lean-attribution/poster.svg",
     "pdf": "/posters/lean-attribution/poster.pdf",
     "repository": "https://github.com/ChouYuanjue/lean-portfolio-attribution"
   },
@@ -60,7 +60,7 @@
     "category": "project",
     "date": "2026-05-05",
     "authors": "Runnel Zhang",
-    "preview": "/posters/structural-transfer/poster-exact.svg",
+    "preview": "/posters/structural-transfer/poster.svg",
     "pdf": "/posters/structural-transfer/poster.pdf",
     "repository": "https://github.com/ChouYuanjue/rzk-ai4math"
   },
@@ -70,7 +70,7 @@
     "category": "project",
     "date": "2026-05-02",
     "authors": "Runnel Zhang",
-    "preview": "/posters/proco-evidence/poster-exact.svg",
+    "preview": "/posters/proco-evidence/poster.svg",
     "pdf": "/posters/proco-evidence/poster.pdf",
     "repository": "https://github.com/ChouYuanjue/proof-countermodel-distill"
   },
@@ -81,7 +81,7 @@
     "date": "2025-09-29",
     "authors": "Runnel Zhang",
     "repository": "https://github.com/ChouYuanjue/AI_Emoji_Kitchen_Lab",
-    "preview": "/posters/mosaic/poster-exact.svg",
+    "preview": "/posters/mosaic/poster.svg",
     "pdf": "/posters/mosaic/poster.pdf"
   },
   {
@@ -91,7 +91,7 @@
     "date": "2026-03-23",
     "authors": "Runnel Zhang",
     "repository": "https://github.com/ChouYuanjue/tangut-nlp",
-    "preview": "/posters/tangut-spar/poster-exact.svg",
+    "preview": "/posters/tangut-spar/poster.svg",
     "pdf": "/posters/tangut-spar/poster.pdf"
   }
 ]

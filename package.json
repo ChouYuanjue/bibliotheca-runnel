@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "node scripts/dev-next.js",
-    "build": "next build",
+    "build": "npm run verify:posters && next build",
+    "verify:posters": "node scripts/verify-posters.js",
     "start": "next start",
     "lint": "next lint",
     "update-data": "node scripts/update-data.js",
