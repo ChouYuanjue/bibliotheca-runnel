@@ -9,7 +9,7 @@ A double integral is the two-dimensional version of adding many small contributi
 Adding all cells and refining the partition gives the integral.
 
 \begin{definition}[Riemann double integral]
-Let \(D\subseteq \mathbb R^2\) be a bounded region and let \(f:D\to\mathbb R\) be bounded.  Partition \(D\) into small subregions \(\Delta D_i\), choose sample points \((\xi_i,\eta_i)\in \Delta D_i\), and form
+Let \(D\subseteq \mathbb R^2\) be a bounded Jordan-measurable region and let \(f:D\to\mathbb R\) be bounded.  Partition \(D\) into small subregions \(\Delta D_i\), choose sample points \((\xi_i,\eta_i)\in \Delta D_i\), and form
 \[
   S(P,f)=\sum_i f(\xi_i,\eta_i)\Delta A_i.
 \]
@@ -118,7 +118,7 @@ The integrand is odd in \(x\), while the region is unchanged by reflecting acros
 \section{Mean value theorem for double integrals}
 
 \begin{theorem}[Mean value theorem]
-Let \(D\) be compact and connected, and let \(f:D\to\mathbb R\) be continuous.  Then there exists a point \(P_0\in D\) such that
+Let \(D\) be compact, connected, Jordan-measurable, and have strictly positive area, and let \(f:D\to\mathbb R\) be continuous.  Then there exists a point \(P_0\in D\) such that
 \[
   \iint_D f\,dA=f(P_0)\operatorname{area}(D).
 \]
@@ -134,7 +134,7 @@ By compactness, \(f\) attains a minimum \(m\) and maximum \(M\) on \(D\).  The e
 \[
   m\le f_{\mathrm{avg}}\le M.
 \]
-Since \(D\) is connected and \(f\) is continuous, the image \(f(D)\) is an interval.  Therefore the intermediate value theorem gives a point \(P_0\) where \(f(P_0)=f_{\mathrm{avg}}\).
+Since \(D\) is connected and \(f\) is continuous, the image \(f(D)\) is an interval. Therefore the intermediate value theorem gives a point \(P_0\) where \(f(P_0)=f_{\mathrm{avg}}\). The positive-area hypothesis is essential for dividing by \(\operatorname{area}(D)\). Connectedness cannot simply be omitted: take two disjoint equal-area squares and the continuous function which is zero on one and two on the other. Its average equals one, a value the function never attains.
 \end{proof}
 
 \section{A worked average-value example}
@@ -148,6 +148,89 @@ Let \(D=[0,1]\times[0,2]\) and \(f(x,y)=x+y\).  Then
 \]
 Since \(\operatorname{area}(D)=2\), the average value is \(3/2\).  The mean-value theorem says there is a point in the rectangle with \(x+y=3/2\), for example \((1/2,1)\).
 \end{example}
+
+\section{The region decides the order of integration}
+
+Now take a region that is deliberately \emph{not} a rectangle:
+\[
+ D=\{(x,y):0\le x\le1,\quad x^2\le y\le x\}.
+\]
+It is the strip between the parabola $y=x^2$ and the line $y=x$. Drawing it first is the essential step: for a fixed $x$, the lower and upper heights are $x^2$ and $x$; for a fixed $y$, the left and right endpoints are $y$ and $\sqrt y$. Both descriptions name the same set:
+\[
+ \begin{aligned}
+ D&=\{0\le x\le1,\;x^2\le y\le x\}\\
+  &=\{0\le y\le1,\;y\le x\le\sqrt y\}.
+ \end{aligned}
+\]
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=3.5cm,y=3.3cm,>=Stealth]
+ \fill[teal!11] (0,0)
+   plot[domain=0:1,samples=80] (\x,\x)
+   plot[domain=1:0,samples=80] (\x,{\x*\x}) -- cycle;
+ \draw[->,gray!70] (-.08,0)--(1.17,0) node[right] {$x$};
+ \draw[->,gray!70] (0,-.08)--(0,1.17) node[above] {$y$};
+ \draw[blue!75!black,very thick] plot[domain=0:1,samples=70] (\x,\x);
+ \draw[orange!85!black,very thick]
+   plot[domain=0:1,samples=80] (\x,{\x*\x});
+ \draw[<->,thin,teal!75!black] (.62,{.62*.62})--(.62,.62);
+ \draw[densely dashed,gray!65] (.62,0)--(.62,{.62*.62});
+ \node[font=\footnotesize,anchor=west,blue!75!black] at (.81,.93) {$y=x$};
+ \node[font=\footnotesize,anchor=west,orange!85!black] at (.84,.67) {$y=x^2$};
+ \node[font=\footnotesize,teal!75!black] at (.43,.35) {$D$};
+ \node[font=\footnotesize] at (.72,.48) {vertical slice};
+\end{tikzpicture}
+\caption{One region, two slicing directions. On vertical slices, $x^2\le y\le x$; on horizontal slices, $y\le x\le\sqrt y$. Both boundaries must change together when reversing the integrals.}
+\end{figure}
+
+For the density $f(x,y)=x+2y$, compute with vertical slices:
+\[
+ \begin{aligned}
+ I&=\iint_D(x+2y)\,dA
+  =\int_0^1\!\int_{x^2}^{x}(x+2y)\,dy\,dx\\
+  &=\int_0^1\left[x y+y^2\right]_{x^2}^{x}\,dx\\
+  &=\int_0^1(2x^2-x^3-x^4)\,dx\\
+  &=\frac23-\frac14-\frac15=\boxed{\frac{13}{60}}.
+ \end{aligned}
+\]
+Reversing the order is a useful independent check:
+\[
+ \begin{aligned}
+ I&=\int_0^1\!\int_y^{\sqrt y}(x+2y)\,dx\,dy\\
+  &=\int_0^1\left[
+        \frac{x^2}{2}+2yx\right]_{y}^{\sqrt y}\,dy\\
+  &=\int_0^1\left(\frac y2-\frac{5y^2}{2}
+                  +2y^{3/2}\right)\,dy
+   =\frac14-\frac56+\frac45=\frac{13}{60}.
+ \end{aligned}
+\]
+These are two evaluations of the \emph{same} absolutely integrable function on the \emph{same} region, exactly the setting in which Fubini's theorem licenses the exchange. Nothing analogous would justify an arbitrary exchange in the singular, non-absolutely-integrable example below.\footnote{For the geometric mechanics of changing order, see MIT OpenCourseWare, \href{https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/pages/3.-double-integrals-and-line-integrals-in-the-plane/part-a-double-integrals/session-49-exchanging-the-order-of-integration/}{\emph{Multivariable Calculus}, Session 49}.}
+
+The area and average are just as concrete:
+\[
+ \operatorname{area}(D)=\int_0^1(x-x^2)\,dx=\frac16,
+ \qquad
+ f_{\mathrm{avg}}=\frac{I}{\operatorname{area}(D)}
+                 =\boxed{\frac{13}{10}}.
+\]
+The point $(\tfrac12,\tfrac25)$ really lies in $D$, since
+$\tfrac14\le\tfrac25\le\tfrac12$, and its value
+$\tfrac12+2\cdot\tfrac25=13/10$ realizes the average predicted by the mean-value theorem.
+
+There is a small probabilistic bonus. If $(X,Y)$ is chosen uniformly in $D$, the density of $X$ is proportional to the vertical slice length:
+\[
+ p_X(x)=6(x-x^2),\qquad0\le x\le1.
+\]
+Conditional on $X=x$ in the interior, $Y$ is uniform between $x^2$ and $x$. Therefore
+\[
+ \mathbb E[X]=\frac12,\qquad
+ \mathbb E[Y\mid X=x]=\frac{x+x^2}{2},
+ \qquad \mathbb E[Y]=\frac25.
+\]
+The tower property now reproduces
+$\mathbb E[X+2Y]=\frac12+2\cdot\frac25=\frac{13}{10}$
+without setting up a new double integral. Describing a region by its slices is also describing the marginal and conditional laws of a uniform random point in that region.
 
 \section{Relation with product measure}
 
@@ -164,7 +247,7 @@ This viewpoint separates two choices:
 
 For nonnegative measurable functions, Tonelli's theorem justifies iterated integration even when the value may be infinite.  For sign-changing functions, Fubini's theorem requires integrability of \(|f|\).  The elementary rule "switch the order of integration" is therefore backed by real hypotheses.
 
-\section{A real Fubini warning: conditional two-dimensional accumulation}
+\section{Fubini without Absolute Convergence}
 
 It is tempting to treat order-switching as a harmless algebraic move.  The advanced point is sharper: for sign-changing functions, order-switching is licensed by absolute integrability.  Without that hypothesis, different limiting procedures can see different cancellations.
 

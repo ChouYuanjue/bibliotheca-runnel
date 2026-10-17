@@ -1,218 +1,98 @@
-\notechapter{N-20220407}{Exercises on \(\mathbb R^n\), \(\mathbb C^n\), Vector Spaces, and Subspaces}
+\notechapter{N-20220407}{Fields, Affine Fibers, and the Linear Algebra of Forgetting Directions}
 
-\section{Complex arithmetic}
+A vector space owes much of its simplicity to division by nonzero scalars. Over \(\mathbb C\) this is already visible in the identity
+\[
+ z^{-1}=\frac{\overline z}{|z|^2}\qquad(z\ne0).
+\]
+Yet the most useful distinction in early linear algebra concerns equations: a homogeneous equation defines a subspace, while an inhomogeneous equation defines either an empty set or a translate of a subspace. From that observation, quotient spaces and duality arise with surprisingly little extra machinery.\footnote{For the linear-algebraic setting, see Axler, \emph{Linear Algebra Done Right}, and MIT 18.700 lecture readings: \url{https://ocw.mit.edu/courses/18-700-linear-algebra-fall-2013/pages/readings/}.}
 
-The opening exercises treat \(\mathbb C\) as a field and develop the first linear-algebra constructions over it.
+\section{Complex multiplication is a real linear transformation}
 
-If \(a,b\in\mathbb R\) are not both zero, then
+Write \(z=a+bi\). Multiplication by \(z\) is an \(\mathbb R\)-linear map \(\mathbb C\to\mathbb C\), represented in the basis \(1,i\) by
 \[
-  \frac1{a+bi}=\frac{a-bi}{a^2+b^2}=\frac a{a^2+b^2}-\frac b{a^2+b^2}i.
+ M_z=\begin{pmatrix}a&-b\\b&a\end{pmatrix}.
 \]
-Thus the required real numbers \(c,d\) in
+The identity \(M_zM_w=M_{zw}\) follows from complex multiplication itself, while
 \[
-  \frac1{a+bi}=c+di
+ M_z^TM_z=(a^2+b^2)I,\qquad \det M_z=a^2+b^2.
 \]
-are
-\[
-  c=\frac a{a^2+b^2},\qquad d=-\frac b{a^2+b^2}.
-\]
+For \(z=re^{i\theta}\), the map is a rotation through \(\theta\) followed by dilation by \(r\). The algebraic inverse \(1/z=\overline z/|z|^2\) and the matrix inverse \(M_z^{-1}=M_{\overline z}/|z|^2\) are therefore two descriptions of the same operation.
 
-A cube root of \(1\) other than \(1\) is
+For example, \(\omega=e^{2\pi i/3}\) satisfies
 \[
-  \omega=\frac{-1+\sqrt3 i}{2},
+ 1+\omega+\omega^2=0,\qquad M_\omega^3=I.
 \]
-since
-\[
-  \omega^2+\omega+1=0,
-  \qquad
-  \omega^3=1.
-\]
-The two nontrivial cube roots are
-\[
-  \frac{-1+\sqrt3 i}{2},\qquad \frac{-1-\sqrt3 i}{2}.
-\]
-Two square roots of \(i\) are obtained from polar form:
-\[
-  i=e^{i\pi/2},\qquad
-  \sqrt i=e^{i\pi/4}=\frac{1+i}{\sqrt2},\qquad
-  -\sqrt i=-\frac{1+i}{\sqrt2}.
-\]
+The nontrivial cube roots of unity are rotations of order three. They provide an early example of a representation of the cyclic group \(C_3\) on a real vector space.
 
-\section[Field axioms in C]{Field axioms in \(\mathbb C\)}
+\section{What a linear equation actually determines}
 
-If
+Let \(T:V\to W\) be linear and consider \(T(v)=b\). If \(v_0\) is one solution, then
 \[
-  \alpha=a+bi,\qquad \beta=c+di,\qquad \lambda=x+yi,
+ T(v)=b\quad\Longleftrightarrow\quad T(v-v_0)=0,
 \]
-then commutativity and associativity of addition follow from those of real numbers.  For example,
+so the full solution set is
 \[
-  \alpha+\beta=(a+c)+(b+d)i=(c+a)+(d+b)i=\beta+\alpha.
+ \boxed{T^{-1}(b)=v_0+\ker T.}
 \]
-Similarly,
-\[
-  \lambda(\alpha+\beta)=\lambda\alpha+\lambda\beta
-\]
-follows by expanding both sides and using distributivity in \(\mathbb R\).
+The fiber is a translate of the kernel. It is a vector subspace precisely when \(b=0\), provided that the equation is solvable.
 
-Every \(\alpha\in\mathbb C\) has an additive inverse, namely \(-\alpha\).  If \(\alpha\neq0\), its multiplicative inverse is
+This viewpoint resolves a family of elementary tests at once. In \(F^4\), the condition
 \[
-  \alpha^{-1}=\frac{\overline\alpha}{|\alpha|^2}.
+ x_3-5x_4=b
 \]
+defines a nonempty affine hyperplane; it is a linear subspace only when \(b=0\). In the vector space \(C^1((0,3),\mathbb R)\), the condition \(f'(2)=b\) has the same structure: evaluation of the derivative at \(2\) is a linear functional, and its fibers are translates of its kernel.
 
-\section{Vector space identities}
+The equations need not involve finite coordinates. If \(T:C^1([0,1])\to\mathbb R\) sends \(f\) to \(\int_0^1f(t)\,dt\), the functions with integral \(1\) form an affine fiber of the same kind.
 
-In a vector space \(V\) over a field \(F\), one proves
-\[
-  -(-v)=v
-\]
-because \(-v+v=0\), so the additive inverse of \(-v\) is \(v\).
+\section{What Survives the Quotient}
 
-If \(a\in F\), \(v\in V\), and \(av=0\), then either \(a=0\) or \(v=0\).  Indeed, if \(a\neq0\), multiply by \(a^{-1}\):
-\[
-  v=a^{-1}(av)=a^{-1}0=0.
-\]
+For a subspace \(U\subseteq V\), two vectors are equivalent when \(v-w\in U\). Their equivalence classes form the quotient \(V/U\), with projection \(q(v)=v+U\).
 
-Given \(v,w\in V\), the equation
+\begin{proposition}[Factorization through a quotient]
+If \(T:V\to W\) is linear and \(U\subseteq\ker T\), there is a unique linear map \(\overline T:V/U\to W\) such that \(T=\overline T\circ q\).
+\end{proposition}
+\begin{proof}
+There is only one possible definition:
 \[
-  v+3x=w
+ \overline T(v+U)=T(v).
 \]
-has the unique solution
-\[
-  x=\frac13(w-v),
-\]
-provided \(3\neq0\) in the field.
+If \(v+U=w+U\), then \(v-w\in U\subseteq\ker T\), hence \(T(v)=T(w)\). The definition is therefore independent of the representative. Linearity and uniqueness follow from surjectivity of \(q\).
+\end{proof}
 
-\section{A non-example with infinity}
+Taking \(U=\ker T\) makes \(\overline T\) injective, with image equal to \(\operatorname{im}T\). Thus
+\[
+ \boxed{V/\ker T\cong\operatorname{im}T.}
+\]
+The first isomorphism theorem says that a linear map records exactly the information left after the directions invisible to it have been identified. For finite-dimensional spaces, taking dimensions recovers rank--nullity.
 
-Consider whether
-\[
-  \mathbb R\cup\{\infty\}\cup\{-\infty\}
-\]
-can be made into a real vector space with the suggested arithmetic.  It cannot.  One obstruction is associativity.  If one declares
-\[
-  \infty+(-\infty)=0,
-\]
-then
-\[
-  (\infty+\infty)+(-\infty)=\infty+(-\infty)=0,
-\]
-while
-\[
-  \infty+(\infty+(-\infty))=\infty+0=\infty.
-\]
-Thus associativity fails.
+\section{Annihilators and Quotients}
 
-\section{Subspaces}
+The dual \(V^*=\operatorname{Hom}_F(V,F)\) is the space of linear measurements on \(V\). A functional \(\lambda\in V^*\) descends to \(V/U\) precisely when it is constant on each coset, or equivalently when \(\lambda(u)=0\) for all \(u\in U\).
 
-A subset \(U\subseteq V\) is a subspace iff it is nonempty and closed under addition and scalar multiplication.  Equivalently,
+Define the annihilator
 \[
-  x,y\in U,\ a,b\in F\quad\Rightarrow\quad ax+by\in U.
+ U^\circ=\{\lambda\in V^*:\lambda|_U=0\}.
+\]
+Pullback along \(q\) gives the map
+\[
+ q^*:(V/U)^*\longrightarrow V^*,\qquad \varphi\longmapsto\varphi\circ q.
+\]
+It is injective because \(q\) is surjective, and its image is exactly \(U^\circ\), by the quotient factorization just proved. Hence
+\[
+ \boxed{(V/U)^*\cong U^\circ.}
 \]
 
-Examples from the page include:
-\begin{enumerate}[(i)]
-  \item \(\{(x_1,x_2,x_3,x_4)\in F^4:x_3=5x_4+b\}\) is a subspace iff \(b=0\).
-  \item The continuous real-valued functions on \([0,1]\) form a subspace of \(\mathbb R^{[0,1]}\).
-  \item The differentiable real-valued functions on \(\mathbb R\) form a subspace of \(\mathbb R^{\mathbb R}\).
-  \item The differentiable functions \(f\) on \((0,3)\) satisfying \(f'(2)=b\) form a subspace iff \(b=0\).
-  \item The complex sequences converging to \(0\) form a subspace of \(\mathbb C^\infty\).
-\end{enumerate}
+For \(V=\mathbb R^3\) and \(U=\operatorname{span}\{(1,1,0)\}\), a linear functional
+\(\lambda(x,y,z)=ax+by+cz\) lies in \(U^\circ\) exactly when \(a+b=0\). The two functionals \(x-y\) and \(z\) are independent measurements on the quotient; they distinguish its cosets and form a basis of its dual.
 
+This is a concrete reason to learn covectors. When one solves linear constraints, it is often easier to describe the surviving information as linear measurements than to choose arbitrary coordinates on the quotient.
 
-\section{Bridge to later ideas}
+\section{Why changing the scalars changes the theory}
 
-These exercises are elementary, but they encode several structural distinctions that reappear throughout algebra and geometry.
+A vector space over a field has bases, and every linearly independent list extends to a basis. The mechanism is that every nonzero pivot coefficient can be inverted. For a module over a ring this may fail.
 
-\begin{center}
-\small
-\begin{tabularx}{\textwidth}{@{}lY@{}}
-\toprule
-Elementary exercise & Later structure\\
-\midrule
-checking closure under linear combinations & subspaces and kernels\\
-conditions like \(x_3=5x_4+b\) & linear subspace versus affine translate\\
-real versus complex scalar multiplication & scalar restriction and complex linearity\\
-solving constraints with free variables & quotients and cosets of kernels\\
-coordinates of vectors & dual basis and linear functionals\\
-\bottomrule
-\end{tabularx}
-\end{center}
+For example, \(\mathbb Z/2\mathbb Z\) is a \(\mathbb Z\)-module but has no basis over \(\mathbb Z\): if a putative free generator \(e\) existed, the relation \(2e=0\) would contradict uniqueness of integer coordinates. This is torsion. More subtly, even a torsion-free module need not be free over an arbitrary ring.
 
-For example, multiplication by \(a+bi\) on \(\mathbb C\), viewed as a real vector space, is represented by
-\[
-  \begin{pmatrix}a&-b\\ b&a\end{pmatrix}.
-\]
-Its determinant is \(a^2+b^2\), the squared modulus.  Thus complex scalar multiplication already contains the geometry of rotation and scaling.
-\section{How to read basic vector-space exercises}
+The distinction points directly toward integral matrix reduction. Over \(\mathbb Q\), a nonzero integer pivot may be normalized to \(1\); over \(\mathbb Z\), only \(\pm1\) are units, and row and column operations preserve arithmetic divisibility information. Smith normal form is the corresponding normal form over \(\mathbb Z\).
 
-The purpose of these exercises is not to check axioms forever.  The real skill is to recognize when an object is already known to be a vector space and when a proposed subset passes the subspace test.  The fastest mental template is:
-\[
-  0\in U,\qquad u,v\in U\Rightarrow u+v\in U,\qquad \lambda u\in U.
-\]
-The examples \(f'(2)=b\), \(x_3=5x_4+b\), and sequences converging to zero are all testing the same issue: affine conditions usually fail to be subspaces unless the constant term is zero.  In later linear algebra this becomes the distinction between a linear subspace and an affine translate.
-
-\section{Beyond real and complex scalar structures}
-
-The elementary note introduces vector spaces through closure under addition and scalar multiplication.  The reason this structure is so rigid is that the scalars form a field.  A vector space over a field $k$ is a module over $k$, and field scalars make every linearly independent set extend to a basis.  This is why every finite-dimensional vector space has a dimension and why all bases have the same number of vectors.
-
-If the scalars are changed from a field to a ring, the same axioms define a module.  Modules over rings need not have bases.  For example, $\mathbb Z/2\mathbb Z$ is a module over $\mathbb Z$, but it is not a free module: no element can serve as an integer-basis vector because $2x=0$ for every $x$.
-
-This explains why elementary linear algebra is unusually clean.  It is not merely because the definitions are simple; it is because fields remove torsion and many divisibility obstacles.
-
-\section{Quotient spaces}
-
-If $U\subseteq V$ is a subspace, the quotient space $V/U$ consists of cosets
-\[
-  v+U=\{v+u:u\in U\}.
-\]
-Two vectors represent the same coset iff their difference lies in $U$.  The quotient forgets directions inside $U$ and keeps only the remaining information.
-
-The dimension formula is
-\[
-  \dim(V/U)=\dim V-\dim U.
-\]
-This is the structural version of ``free variables after constraints.''  Solving a linear system often means identifying a particular affine coset of the null space.  The quotient-space language makes this precise.
-
-\section{Dual spaces and coordinates}
-
-The dual space is
-\[
-  V^*=\operatorname{Hom}(V,k),
-\]
-the vector space of linear functionals $V\to k$.  If $e_1,\ldots,e_n$ is a basis of $V$, the dual basis $e^1,\ldots,e^n$ is defined by
-\[
-  e^i(e_j)=\delta^i_j.
-\]
-Coordinates are evaluations by dual basis vectors:
-\[
-  v=\sum_i x_i e_i,\qquad x_i=e^i(v).
-\]
-Thus a coordinate is not the vector itself; it is the value of a linear functional on the vector.
-
-This distinction becomes essential for tensors, differential forms, gradients, and coordinate changes.  The elementary row/column distinction is the first shadow of the distinction between vectors and covectors.
-
-\section{Vector-space exercises are module theory in a favorable case}
-
-Subspaces, bases, linear independence, and dimension are not merely bookkeeping.  They are the field-module case of a broader algebraic story.  Quotients explain constraints; duals explain coordinates; modules explain why vector spaces are the friendly special case.  The original exercises train the stable finite-dimensional core from which these advanced notions grow.
-
-\section{Why fields make linear algebra work}
-
-A useful way to reread the original vector-space exercises is to ask which steps secretly use division.  When we prove that a nonzero vector can be rescaled, that a pivot can be normalized to $1$, or that a linearly independent list can be extended to a basis, we use the fact that every nonzero scalar has an inverse.  This is exactly the field condition.
-
-Over a general ring, the same-looking statements may fail.  The equation $2x=1$ has no solution over $\mathbb Z$, so one cannot normalize a pivot $2$ by division.  The module $\mathbb Z/2\mathbb Z$ has torsion because $2x=0$ for every element.  This is why row reduction over fields is clean, while integer linear algebra needs Smith normal form.
-
-The elementary notion of a basis also becomes more delicate over rings.  A free module has a basis, but not every module is free.  Therefore the theorem
-\[
-  \dim V=\text{number of basis vectors}
-\]
-is not just a counting convenience; it is a privilege of vector spaces over fields.  This explains why linear algebra is often the first genuinely structural algebra course: it gives a setting where generation, independence, coordinates, and quotienting all behave perfectly.
-
-\section{The universal property of quotient spaces}
-
-The quotient $V/U$ is not merely a set of cosets.  It is characterized by a universal property.  Let $q:V\to V/U$ be the quotient map.  If a linear map $T:V\to W$ kills $U$, meaning $U\subseteq\ker T$, then there is a unique linear map $\bar T:V/U\to W$ such that
-\[
-  T=\bar T\circ q.
-\]
-This says that any linear map unable to distinguish vectors differing by elements of $U$ must factor through the quotient.
-
-This universal property is the conceptual reason quotient spaces appear in homology, representation theory, and functional analysis.  In homology, boundaries are declared trivial, so cycles differing by boundaries become the same class.  In linear algebra exercises, free variables often describe a coset of a kernel; quotient language explains what information survives after ignoring kernel directions.
+Quotients, annihilators, and affine fibers already make sense before any matrices are written down. Fields then guarantee that dimension and coordinates behave especially well, explaining both the efficiency and the limitations of elementary Gaussian elimination.

@@ -171,49 +171,48 @@ So far, this still only explains the value of \(1-1\).  It does not yet explain 
 \]
 can be interesting.  For that, we must remember not just the set of isomorphism classes, but the space of finite sets and isomorphisms.
 
-\section{The space of finite sets}
+\section{The space of finite sets remembers its symmetries}
 
-The slide deck asks us to consider the moduli space
+A set and its cardinality are different amounts of information. Let $\mathcal F$ be the \emph{groupoid} of finite sets and bijections. All finite sets of size $n$ are isomorphic, but each such set has an automorphism group $\Sigma_n$. Taking the classifying space (the realization of the nerve) gives
 \[
-  \mathcal F=\mathrm{FinSet}/\sim.
+ \boxed{B\mathcal F\simeq\coprod_{n\ge0}B\Sigma_n.}
 \]
-This is not merely a set of cardinalities.  It remembers automorphisms of finite sets.  A finite set with \(n\) elements has automorphism group \(S_n\), the symmetric group.
-
-\begin{remark}
-The slide at this point depicts the moduli space of finite sets as a space whose \(n\)-point component remembers \(S_n\).  In notebook language, the important formula is
+Here $B\Sigma_n$ has one connected component and fundamental group $\Sigma_n$. A loop in it remembers an automorphism---an actual permutation of $n$ points---rather than only the number $n$. In particular,
 \[
-  \mathcal F\simeq \bigsqcup_{n\ge0}BS_n.
+ \pi_0(B\mathcal F)\cong\mathbb N,\qquad
+ \pi_1(B\Sigma_2)\cong\Sigma_2\cong\mathbb Z/2.
 \]
-Thus the component remembers the number \(n\), while loops in that component remember permutations.
-\end{remark}
 
+The crucial distinction is that the empty set belongs to the $n=0$ component, whose automorphism group is trivial. The transposition loop initially lives in the component of a \emph{two-point} set, not at the empty set. Disjoint union gives $B\mathcal F$ the compatible, homotopy-commutative multiplication needed to pass from $\mathbb N$ to $\mathbb Z$ \emph{without forgetting those loops}. To obtain a loop based in the zero component, we must perform group completion \emph{at the level of spaces}, not merely take the Grothendieck group of the set of cardinalities.
 
-One can think of \(\mathcal F\) as a disjoint union of classifying spaces:
-\[
-  \mathcal F\simeq \bigsqcup_{n\ge0}BS_n.
-\]
-This formula is the first place where the hidden loops appear.  A point in \(BS_n\) remembers a finite set of size \(n\), but loops at that point remember permutations of the set.
-
-Thus the finite set with one positive and one negative point is not just a cardinality-zero object.  It can have a nontrivial path coming from swapping the two labelled positions before annihilation.
 
 \section[The K-space of finite signed sets]{The \(K\)-space of finite signed sets}
 
-To group-complete finite sets at the level of spaces, the slides introduce a space \(K(\mathcal F)\).  Its points are finite ordered configurations whose elements are marked by \(+\) or \(-\).  Adjacent opposite signs may cancel.
-
-\begin{remark}
-The slide introduces the \(K\)-space by replacing finite sets with signed finite configurations.  The picture is simple enough to state in words: points marked \(+\) and points marked \(-\) may be created and cancelled in opposite-signed pairs, and the empty configuration is used as the base point.
-\end{remark}
-
-
-The empty configuration \(\varnothing\) is the base point.  The configuration \(\{+,-\}\) has total signed cardinality zero, but it is not identical to the empty configuration before one performs cancellation.  This distinction is the seed of the whole example.
-
-The higher \(K\)-groups are defined by
+Let $K(\mathcal F)$ denote the $E_\infty$ group completion of
+$B\mathcal F=\coprod_{n\ge0}B\Sigma_n$ under disjoint union. Ordinary group completion of cardinalities gives only
 \[
-  K_i(\mathrm{FinSet})
-  =
-  \pi_i(K(\mathcal F),\varnothing).
+ \pi_0K(\mathcal F)\cong\mathbb Z.
 \]
-Thus \(K_0\) records components, while \(K_1\) records loops based at the empty configuration.
+The space-level construction retains homotopies and automorphisms as well. Its correct mathematical input is the groupoid of finite sets and bijections; a model made from signed point configurations visualizes the inverse objects but requires coherent rules for moving and cancelling points. Merely writing $\{+,-\}=\varnothing$ as a formal relation would not determine a homotopy type.
+
+In the signed-configuration picture used by the lecture, the empty configuration is a base point. A positive and a negative point can be created as a cancelling pair, exchanged, and annihilated. This provides a concrete representative of a loop in the zero component of the group-completed space.
+
+The Barratt--Priddy--Quillen theorem, in a precise infinite-loop-space form, identifies this group completion with the underlying infinite-loop space of the sphere spectrum:
+\[
+ \boxed{K(\mathcal F)\simeq Q(S^0)
+       =\operatorname*{colim}_{n}\Omega^n S^n.}
+\]
+One useful equivalent description is
+\[
+ Q(S^0)\simeq\mathbb Z\times(B\Sigma_\infty)^+,
+\]
+where the superscript $+$ denotes the plus construction. In particular,
+\[
+ \boxed{\pi_1 K(\mathcal F)\cong\pi_1^s(\mathbb S)
+             \cong\mathbb Z/2.}
+\]
+The group completion has gained negative \emph{components} and kept a nontrivial \emph{loop}. These are two different operations on different layers of information.\footnote{For the group-completion and plus-construction descriptions, see Stefan Schwede, \href{https://www.math.uni-bonn.de/~schwede/GlobalAlgebraicKtheory-JTopol.pdf}{\emph{Global Algebraic K-Theory}}, Section 8.}
+
 
 \section[The loop h]{The loop \(h\)}
 
@@ -262,81 +261,83 @@ The slides record the key computation:
 \]
 and the loop \(h\) gives the nontrivial element.  Doing the swap twice is null-homotopic, but doing it once is not.
 
-\section{Why the first reading was close but needed correction}
+\section{The parity of a swap is what survives}
 
-The analytic reading begins with the infinite alternating expression
+Why should the exchange of two points represent the nontrivial class? Before group completion there is already an elementary invariant that detects it. Every permutation can be expressed as a product of transpositions. Define
 \[
-  1-1+1-1+\cdots.
+ \operatorname{sgn}:\Sigma_n\to\{\pm1\},
+ \qquad
+ \operatorname{sgn}(\sigma)=(-1)^{\#\text{ transpositions}}.
 \]
-Ces\`aro summation replaces the partial sums
+Parity is independent of the chosen expression: for example, it equals the sign of the corresponding permutation matrix's determinant. Thus
 \[
-  1,\ 0,\ 1,\ 0,\ldots
+ \operatorname{sgn}(\sigma\tau)
+  =\operatorname{sgn}(\sigma)\operatorname{sgn}(\tau).
 \]
-by their averages, while Abel summation studies
-\[
-  1-r+r^2-r^3+\cdots=\frac{1}{1+r}
-\]
-and lets \(r\to1^-\).  Both produce \(1/2\), so regularization is a natural association with the displayed equation.
+A single swap has sign $-1$; two successive swaps have sign $+1$.
 
-The Eilenberg swindle transports the same instinct into algebra.  If a category admits countable direct sums and
-\[
-  S\cong A\oplus S,
-\]
-then an additive invariant gives
-\[
-  [S]=[A]+[S]
-\]
-and hence \([A]=0\).  Infinite structure absorbs a finite summand and produces a vanishing result.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth]
+ \node[font=\small,anchor=west] at (-.1,1.55) {one swap};
+ \draw[very thick,teal!75!black] (.15,1.0)--(2.55,0);
+ \draw[very thick,orange!85!black] (.15,0)--(2.55,1.0);
+ \foreach \x/\y in {.15/0,.15/1.0,2.55/0,2.55/1.0}
+   {\fill[gray!85] (\x,\y) circle (2.3pt);}
+ \node[font=\small,anchor=west] at (3.0,.48)
+      {$\operatorname{sgn}=-1$};
+ \node[font=\footnotesize,anchor=west] at (-.1,-.55)
+      {two swaps compose to an even permutation};
+ \draw[->,thick,gray!70] (1.02,-1.05)--(2.30,-1.05);
+ \node[font=\footnotesize,anchor=west] at (2.43,-1.05)
+      {$(-1)(-1)=+1$};
+\end{tikzpicture}
+\caption{A transposition has odd parity, while its square is even. In the stabilized finite-set construction this parity detects the first nontrivial homotopy class.}
+\end{figure}
 
-This mechanism is mathematically genuine and explains why the meme-based reading was not arbitrary: it uses the same vocabulary of addition, cancellation, group completion, and stability.  The lecture nevertheless corrects the direction of the construction.  The contrast is
+There is a clean group-theoretic check. For $n\ge2$, all transpositions in $\Sigma_n$ are conjugate. Consequently they have the same image in any \emph{abelian} quotient; that common image has order at most two because a transposition squares to the identity. Since transpositions generate $\Sigma_n$, its abelianization has at most two elements. The sign map is a surjection onto $\mathbb Z/2$, so
 \[
-\begin{array}{c|c}
-\text{meme-based reading} & \text{lecture explanation}\\
-\hline
-\text{infinite alternating series} & \text{finite signed configuration}\\
-\text{Ces\`aro/Abel regularization} & \text{creation--swap--annihilation path}\\
-\text{Eilenberg swindle} & K(\mathrm{FinSet})\\
-\text{absorption at infinity} & \text{nontrivial loop at the base point}\\
-\text{vanishing of invariants} & \text{generator of }K_1(\mathrm{FinSet})\cong\mathbb Z/2\\
-\text{triviality} & \text{stable Hopf nontriviality}
-\end{array}
+ \boxed{\Sigma_n^{\mathrm{ab}}\cong\mathbb Z/2\qquad(n\ge2).}
 \]
-The first reading makes distinctions disappear by passing to an infinite absorber.  The lecture instead remembers a finite path even though its two endpoints agree.  The correction is not merely a change of metaphor; it replaces a vanishing argument by a nontrivial element of \(K_1(\mathrm{FinSet})\).
+Adding an untouched extra point sends $\Sigma_n$ into $\Sigma_{n+1}$, and this stabilization preserves the sign.
+
+The sign calculation alone does not prove the Barratt--Priddy--Quillen theorem or identify \emph{every} higher homotopy group. It does make the first loop intelligible: the nontrivial permutation class survives stabilization and appears, via the theorem, as the nonzero element of
+\[
+ \pi_1K(\mathcal F)\cong\mathbb Z/2.
+\]
+The lecture's creation--swap--annihilation movie represents this class in a signed-configuration model. The identity movie gives zero; the one-swap movie does not; concatenating two copies gives zero again.
+
+There is a key difference from the Eilenberg swindle. An infinite absorber can make an additive Grothendieck class vanish, but group completion of a homotopy-coherent space remembers the automorphisms of its finite objects. The cancellation of cardinalities has not cancelled the parity of their permutations.
+
 
 \section{Finite sets and stable spheres}
 
-The surprising theorem behind the example is the Barratt--Priddy--Quillen theorem.  In the form used by the lecture, it says that the \(K\)-theory of finite sets is the sphere spectrum:
-\[
-  K_i(\mathrm{FinSet})
-  \cong
-  \pi_i^s(\mathbb S).
-\]
+The group-completion model above describes an \emph{infinite loop space}. The underlying theorem concerns the corresponding \emph{spectrum}, and this distinction is worth making explicit.
 
-\begin{theorem}[Barratt--Priddy--Quillen, lecture form]
-The \(K\)-theory of finite sets is the sphere spectrum.  Equivalently,
+\begin{theorem}[Barratt--Priddy--Quillen]
+The connective $K$-theory spectrum of the symmetric monoidal groupoid of finite sets and bijections (with disjoint union) is equivalent to the sphere spectrum $\mathbb S$. In particular,
 \[
-  K_i(\mathrm{FinSet})\cong \pi_i^s(\mathbb S).
+ K_i(\mathrm{FinSet})\cong\pi_i^s(\mathbb S)
+ \qquad(i\ge0).
 \]
 \end{theorem}
 
-In the slide deck this theorem is presented as the conceptual bridge: a finite-set loop can detect a stable homotopy class of spheres.
-
-
-This theorem explains why the finite-set loop \(h\) can be compared to the Hopf class.  Under BPQ, the nontrivial element of
+At the bottom of the spectrum we have
 \[
-  K_1(\mathrm{FinSet})\cong\mathbb Z/2
+ K_0(\mathrm{FinSet})\cong\mathbb Z,\qquad
+ K_1(\mathrm{FinSet})\cong\mathbb Z/2.
 \]
-corresponds to
+The first group keeps track of signed cardinality, while the second remembers the parity detected above. Under the equivalence, the nontrivial one-swap class becomes
 \[
-  \eta\in \pi_1^s(\mathbb S)\cong\mathbb Z/2.
+ \eta\in\pi_1^s(\mathbb S)\cong\mathbb Z/2,
 \]
-This is the stable Hopf class.
+the stable Hopf element.
 
-Another way to say this is that \(K(\mathcal F)\) can be seen as a stable configuration space of framed points:
+There is a further geometric interpretation, but one should state it at the correct level. By the Pontryagin--Thom theorem, stable homotopy groups of spheres are framed cobordism groups,
 \[
-  K(\mathcal F)\simeq \mathrm{Conf}^{\mathrm{fr}}(\mathbb R^\infty).
+ \pi_i^s(\mathbb S)\cong\Omega_i^{\mathrm{fr}}.
 \]
-The creation--swap--annihilation loop becomes a framed one-dimensional motion.  Its framing carries the \(\mathbb Z/2\)-twist.
+For $i=1$, a nonbounding stable framing on a circle represents the nontrivial class. The creation--swap--annihilation picture is a convenient representative of the corresponding finite-set loop; its passage to framed cobordism is justified by the stable homotopy equivalence, not by declaring the naive space of all signed configurations to be literally equal to a framed configuration space.
 
 \section{Relation with the classical Hopf map}
 
@@ -592,31 +593,3 @@ By Barratt--Priddy--Quillen, this group is
 and \(h\) corresponds to the stable Hopf class \(\eta\).
 
 This is why the Hopf fibration belongs in the same story as a signed finite-set calculation.  The shared object is not an ordinary number.  It is a stable homotopy class.
-
-\section{What the correction changes}
-
-The July 2024 note reconstructed an explanation from the meme; the present account follows the construction given in Keyao Peng's lecture.  They use related vocabulary, but they are not equally accurate descriptions of the equation.  The correction can be summarized as follows:
-\[
-\begin{array}{c|c}
-\text{meme-based reading} & \text{lecture explanation}\\
-\hline
-0=0 & \text{a loop from \(0\) to \(0\)}\\
-1-1+1-1+\cdots & \text{one created \(+\)/\(-\) pair}\\
-\text{Ces\`aro/Abel/eta} & \text{finite configuration space}\\
-\text{Eilenberg swindle} & \text{group completion of finite sets}\\
-\text{infinite absorption} & \text{creation--swap--annihilation movie}\\
-\text{vanishing of invariants} & K_1(\mathrm{FinSet})\cong\mathbb Z/2\\
-\text{triviality of the infinite} & \text{nontriviality of the finite}\\
-\text{regularization} & \text{stable Hopf class \(\eta\)}
-\end{array}
-\]
-
-The meme-based reading remains mathematically meaningful because \(K\)-theory genuinely interacts with group completion, stability, and swindle arguments.  What the lecture corrects is the mathematical object: the equation is not a vanishing statement produced by infinite flexibility, but a finite movie whose path survives after its endpoints have cancelled.
-
-The same philosophy continues beyond finite sets.  For a field \(k\), algebraic \(K\)-groups can be approached through vector-space-labelled lasagnas:
-\[
-  K_n(k)\cong \Omega_n^{\mathcal V_k,\oplus}.
-\]
-The advanced constructions are therefore not detached additions.  They extend the creation--motion--annihilation principle from finite signed configurations to geometric representatives of algebraic \(K\)-theory classes.
-
-The corrected lesson is precise: \(0\) is not secretly nonzero.  The space of ways for \(0\) to return to \(0\) contains a nontrivial loop, and the smallest finite signed configuration already detects the stable Hopf class.

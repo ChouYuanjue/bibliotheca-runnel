@@ -401,7 +401,7 @@ The final adjoint \(\bar x\) is \(F'(x)\), matching forward mode.
 
 Forward mode is efficient when there are few input directions and many outputs.  Reverse mode is efficient for a scalar output with many inputs, which is why it underlies backpropagation.  The two modes are not different chain rules.  They choose opposite orders for composing the same local linear maps and their duals.
 
-\section{Second-order automatic differentiation is jet composition}
+\section{Second-Order Automatic Differentiation}
 
 Forward mode used dual numbers
 \[
@@ -574,7 +574,7 @@ These examples separate three notions:
 \]
 Each additional level controls more than the existence of a tangent at one point.
 
-\section{Fr\'echet differentiability asks for one uniform linear model}
+\section{Fr\'echet Differentiability}
 
 The formula
 \[

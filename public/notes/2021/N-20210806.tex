@@ -1,8 +1,8 @@
-\notechapter{N-20210806}{Group Actions, Homotopy, and a Rough Road to the Hopf Fibration}
+\notechapter{N-20210806}{Group Actions, Homotopy, and the Hopf Fibration}
 
-\section{Purpose of the note}
+\section{The orbit geometry behind a nontrivial bundle}
 
-The goal is a compact route through the vocabulary needed for homotopy groups and the Hopf fibration: group actions, homotopy, cofibrations and fibrations, homotopy groups, and finally the Hopf map itself.
+The free circle action on a three-sphere leads to an unexpectedly nontrivial fibration over a two-sphere. Group actions describe the symmetry, homotopy controls deformation, and lifting properties reveal why the circle fibers fit together globally.\footnote{For the homotopy exact sequence and the Hopf fibration, see Hatcher, \emph{Algebraic Topology}, Chapter 4, especially the discussion of fiber bundles.}
 
 \section{Group actions}
 
@@ -391,37 +391,60 @@ This gives another description of a map \(S^3\to S^2\), equivalent to the Hopf f
 The main fact to remember is simple but powerful: the Hopf fibration has total space \(S^3\), base \(S^2\), and fibre \(S^1\).  A full understanding needs pictures, but the formula already shows why complex numbers, quaternions, and topology appear together.
 \end{remark}
 
-\section{Further reading and visual models}
+\section{Why distinct Hopf fibers are linked}
 
-Hatcher's \emph{Algebraic Topology}, Niles Johnson's visual material on the Hopf fibration, and interactive Hopf-fibration demonstrations provide natural continuations.  The extension and lifting diagrams above connect the abstract definitions with the literal operations ``extend'' and ``lift''.  The same visual habit is useful for the pinch map
+The Hopf map admits a useful explicit form:
 \[
-  S^n\to S^n\vee S^n
+ H:S^3\subset\mathbb C^2\longrightarrow S^2\subset\mathbb C\times\mathbb R,
+ \qquad
+ H(z_1,z_2)=
+ \bigl(2z_1\overline{z_2},\,|z_1|^2-|z_2|^2\bigr).
 \]
-and to the Hopf fibration itself.  The definitions and formulas are already in place, but the geometry becomes much more memorable when the pinch map, circle fibers, and linked fibers are kept visible.
-
-
-\section{Group actions as symmetry bookkeeping}
-
-A group action of \(G\) on \(X\) is a map
+Since \(|z_1|^2+|z_2|^2=1\), its image lies on \(S^2\):
 \[
-  G\times X\to X
+ |2z_1\overline{z_2}|^2+
+ (|z_1|^2-|z_2|^2)^2=1.
 \]
-satisfying \(e\cdot x=x\) and \((gh)\cdot x=g\cdot(h\cdot x)\).  The orbit of \(x\) is
+Multiplication by a common unit complex number does not change the image,
 \[
-  Gx=\{g\cdot x:g\in G\},
+ H(e^{it}z_1,e^{it}z_2)=H(z_1,z_2).
 \]
-and the stabilizer is
+Conversely, any two points of \(S^3\) with the same image lie on the same common-phase orbit. Thus each fiber is a circle.
+
+The fibers above the north and south poles are especially simple:
 \[
-  G_x=\{g:g\cdot x=x\}.
+ C_1=\{(e^{it},0):0\le t<2\pi\},\qquad
+ C_2=\{(0,e^{it}):0\le t<2\pi\}.
 \]
-The orbit-stabilizer relation says that symmetry and movement are complementary.  Large stabilizer means small orbit; small stabilizer means large orbit.
-
-\section{Hopf fibration intuition}
-
-The Hopf fibration is a map
+They are disjoint embedded circles in \(S^3\). To compute their linking number, regard \(S^3\) as the boundary of the unit ball \(B^4\subset\mathbb C^2\). The circles bound the two properly embedded complex disks
 \[
-  S^3	o S^2
+ D_1=\{(z,0):|z|\le1\},\qquad
+ D_2=\{(0,w):|w|\le1\}.
 \]
-whose fibers are circles.  One way to see it is through complex coordinates: points of \(S^3\subset\mathbb C^2\) are pairs \((z_1,z_2)\) with \(|z_1|^2+|z_2|^2=1\).  Multiplying both coordinates by the same unit complex number moves along a circle fiber.  The quotient by this circle action gives \(\mathbb{CP}^1\cong S^2\).
+Their interiors meet transversely at the origin, with positive intersection sign in the complex orientation. The intersection-number formula for linking in the boundary of a four-ball therefore gives
+\[
+ \boxed{\operatorname{lk}(C_1,C_2)=1}.
+\]
+The ordered configuration space of two distinct points of \(S^2\) is path connected. Moving the two base points continuously without letting them meet deforms their fibers through disjoint circles, so any two distinct Hopf fibers have the same linking number. What looks like a collection of ordinary circles is globally organized by a nontrivial linking invariant.
 
-The sentence to remember is concrete: the fibers are not merely many disjoint circles; any two of them are linked once.  This is why the formula \(S^3\to S^2\) is already a three-dimensional knot-theoretic picture.
+\section{The long exact sequence records the same twist}
+
+The Hopf map is a fiber bundle
+\[
+ S^1\longrightarrow S^3\xrightarrow{H}S^2.
+\]
+Its long exact sequence in homotopy contains
+\[
+ \pi_2(S^3)\longrightarrow
+ \pi_2(S^2)\xrightarrow{\ \partial\ }\pi_1(S^1)
+ \longrightarrow\pi_1(S^3).
+\]
+Since \(\pi_2(S^3)=\pi_1(S^3)=0\), exactness gives
+\[
+ \boxed{\partial:\pi_2(S^2)\xrightarrow{\ \sim\ }\pi_1(S^1)}.
+\]
+Both groups are isomorphic to \(\mathbb Z\). The connecting homomorphism measures how the fiber coordinate winds when local lifts of a sphere in the base are compared; it has degree \(1\) or \(-1\), depending on the orientation convention. In bundle terminology, its absolute value is the first Chern number of the Hopf line bundle.
+
+The fibration cannot be the trivial product \(S^2\times S^1\to S^2\), since that product has fundamental group \(\mathbb Z\), while \(S^3\) is simply connected. The local picture is unremarkable: over a small disk of the base, the total space is a disk times a circle. The obstruction only appears when the local trivializations are glued globally.
+
+Group actions supply the circle fibers, the lifting property gives the homotopy sequence, and the linking computation reveals the same nontriviality in a concrete geometric picture. The transition from group actions to homotopy and fiber bundles is thus driven by one object whose local and global descriptions disagree in a precise way.

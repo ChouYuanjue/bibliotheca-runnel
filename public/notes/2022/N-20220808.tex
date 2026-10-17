@@ -1,190 +1,160 @@
-\notechapter{N-20220808}{Set Counting, Modular Patterns, and Mathematical Induction}
+\notechapter{N-20220808}{Set Counting Through Residues, Recurrences, and Finite Fourier Analysis}
 
-\section{A set-counting problem}
+Residue classes turn arithmetic constraints on large sets of integers into small finite combinatorial problems. Sometimes this gives an extremal construction; sometimes it gives an exact count. A particularly effective method is to encode every subset by a monomial, then use roots of unity to select those subsets whose sums satisfy a prescribed congruence. The resulting formula can also be read as a diagonalization of a recurrence on residue classes.\footnote{For the root-of-unity filter and its discrete Fourier interpretation see the University of Illinois Chicago notes on discrete Fourier transforms: \url{https://homepages.math.uic.edu/~jan/mcs472/mcs472notes/lec09.html}; for generating-function methods see Stanley, \emph{Enumerative Combinatorics}, Volume 1.}
 
-Consider finite sets \(A_1,A_2,\ldots,A_{32}\) subject to prescribed intersection conditions.  A useful toy model gives each set a fixed size and controls every pairwise intersection explicitly.
+\section{An extremal construction becomes a graph on residues}
 
-The general strategy is inclusion--exclusion.  If every set has \(m\) elements and pairwise overlaps have controlled size, then the size of the union is not simply the sum of sizes: subtract pairwise overlaps and add back higher overlaps.  The construction yields a count of the form
+Consider integers \(1,\ldots,11m\). Choose a set \(A\) so that no two elements of \(A\) have residues differing by \(1\) or \(-1\) modulo \(11\). Elements with the same residue are allowed.
+
+The eleven residue classes can be arranged around a cycle:
 \[
-  31+28\cdot30=871.
+ 0\!-\!1\!-\!2\!-\!\cdots\!-\!10\!-\!0.
 \]
-The exact model is less important than the idea: when many sets overlap, one should count by layers, not by naive addition.
+If two adjacent vertices were occupied by residues of elements of \(A\), the condition would fail. Thus the occupied residue classes form an independent set in the cycle graph \(C_{11}\).
 
-\section{A modular arithmetic construction}
-
-Another problem constructs two sets:
+An independent set of \(k\) vertices in an odd cycle of length \(11\) leaves at least \(k\) unoccupied neighbors, so \(2k\le11\) and \(k\le5\). Equality is achieved, for instance, by the residues \(\{0,2,4,6,8\}\). Each residue appears exactly \(m\) times among \(1,\ldots,11m\), hence
 \[
-  A=\{1,4,6,7,9,\ldots,1998\},
-\]
-and a reversed or complementary set near \(2000\).  The note observes that the pattern is governed by residues modulo \(11\).  Since
-\[
-  2000=11\cdot181+9,
-\]
-one can write elements as
-\[
-  11t+r.
-\]
-The allowed residues are something like
-\[
-  r\in\{1,4,6,7,9\}.
+ \boxed{\max |A|=5m.}
 \]
 
-The real insight is that forbidden differences correspond to forbidden residue differences.  Instead of checking hundreds of numbers, one checks a small table modulo \(11\).  This is one of the most common olympiad uses of modular arithmetic.
+The extremal argument has two distinct pieces: a quotient of the integers identifies the finite constraint graph, and a sharp construction occupies every element in the five selected residue classes. The graph exposes the combinatorial obstruction without requiring a search over \(11m\) individual integers.
 
-\section{Why not every construction is finished}
+\section{Encode all subsets at once}
 
-The page explicitly says ``problem reserved'' in a few places.  That is an honest part of mathematical notes.  The important thing is to record what was tried and why it seemed plausible.  Here the attempt is to remove residues that conflict pairwise and leave a maximal collection.  Whether the construction is optimal requires a separate upper-bound argument.
-
-This distinction is crucial: constructing an example proves a lower bound, but proving maximality requires an upper bound.
-
-\section{Sequence exercises}
-
-Arithmetic and geometric sequences, partial sums, and recurrence-like identities provide a second family of examples.  One problem has
+For \(n\ge1\), let \(N_r(n)\) denote the number of subsets \(S\subseteq\{1,\ldots,n\}\) with
 \[
-  a_n=a_1+(n-1)d
+ \sum_{k\in S}k\equiv r\pmod3,\qquad r\in\{0,1,2\}.
 \]
-and conditions such as
+The empty subset is included, with sum zero.
+
+Introduce the polynomial
 \[
-  a_1+a_2+\cdots+a_n=S_n.
+ P_n(z)=\prod_{k=1}^n(1+z^k).
 \]
-The correct habit is to translate everything into \(a_1,d,n\), solve, and then check the requested value.
-
-Another problem uses a geometric progression and asks for a common ratio or a sum.  The formula
+In each factor, choosing \(1\) means omitting \(k\), while choosing \(z^k\) means including \(k\). Therefore
 \[
-  S_n=a_1\frac{q^n-1}{q-1}
+ P_n(z)=\sum_{S\subseteq\{1,\ldots,n\}}z^{\sum_{k\in S}k}.
 \]
-again appears, with the warning that \(q=1\) is a separate case.
+The coefficient of \(z^j\) counts the subsets whose sum is exactly \(j\). Evaluating at \(z=1\) gives the familiar count \(P_n(1)=2^n\).
 
-\section{Mathematical induction}
+Our problem requires grouping exponents modulo \(3\). It would be wasteful to calculate all coefficients and add one third of them. We need an operation that keeps precisely one residue class of exponents.
 
-Induction appears in several distinct forms:
-\begin{enumerate}[(i)]
-  \item ordinary induction: prove \(P(1)\), then prove \(P(n)\Rightarrow P(n+1)\);
-  \item strong induction: prove \(P(1),\ldots,P(n)\Rightarrow P(n+1)\);
-  \item induction with a shifted start: begin at \(n=m\) instead of \(1\).
+\section{The roots of unity are perfect residue detectors}
 
-\end{enumerate}
-
-The proof skeleton is:
-\begin{enumerate}[(i)]
-  \item base case;
-  \item induction hypothesis;
-  \item induction step;
-  \item conclusion.
-
-\end{enumerate}
-The induction hypothesis must be used precisely; one cannot simply assume the desired statement for \(n+1\).
-
-\section{Examples of induction}
-
-One exercise proves a formula for a sum, such as
+Let \(\omega=e^{2\pi i/3}\), so
 \[
-  1+2+\cdots+n=\frac{n(n+1)}2.
+ 1+\omega+\omega^2=0,\qquad \omega^3=1.
 \]
-The induction step is
+The geometric-sum identity gives
 \[
-  1+\cdots+n+(n+1)
-  =\frac{n(n+1)}2+(n+1)
-  =\frac{(n+1)(n+2)}2.
+ \frac13(1+\omega^j+\omega^{2j})=
+ \begin{cases}
+ 1,&j\equiv0\pmod3,\\
+ 0,&j\not\equiv0\pmod3.
+ \end{cases}
 \]
+This formula is the indicator function of a congruence condition, expressed using complex numbers.
 
-Another exercise proves a divisibility statement.  For such problems, the usual technique is to write the \(n+1\) case in terms of the \(n\) case plus a visibly divisible remainder.
-
-The page also contains a problem of the form
+Apply it term by term to \(P_n\):
 \[
-  4^{2k+1}+3^{k+1}
+\begin{aligned}
+ N_0(n)
+ &=\sum_{S\subseteq[n]}\frac13
+   \bigl(1+\omega^{\sum_{k\in S}k}
+           +\omega^{2\sum_{k\in S}k}\bigr)\\
+ &=\frac13\bigl(P_n(1)+P_n(\omega)+P_n(\omega^2)\bigr).
+\end{aligned}
 \]
-or similar, where the induction step uses modular or factorization identities.  The guiding rule is: when proving divisibility by induction, preserve a factor rather than expand everything.
-
-
-\section{Induction structure}
-
-A proof by induction has two parts: the base case and the inductive step.  The inductive step is not simply checking the next case; it is proving
+Thus
 \[
-  P(n)\Rightarrow P(n+1)
+ \boxed{N_0(n)=\frac{2^n+P_n(\omega)+P_n(\omega^2)}3.}
 \]
-for arbitrary \(n\).  This is why writing the induction hypothesis explicitly matters.
+The large combinatorial count has become a small number of special polynomial evaluations.
 
-Strong induction allows the step to use all previous cases:
+\section[Exact counting formula]{An exact formula for all \(n\)}
+
+Group consecutive integers into blocks of three. Since \(\omega^3=1\),
 \[
-  P(1),P(2),\ldots,P(n)\Rightarrow P(n+1).
+\begin{aligned}
+ (1+\omega^{3j+1})(1+\omega^{3j+2})(1+\omega^{3j+3})
+ &=(1+\omega)(1+\omega^2)\cdot2\\
+ &=2.
+\end{aligned}
 \]
-It is useful when the object of size \(n+1\) breaks into smaller pieces of varying sizes.
-
-\section{Modular patterns}
-
-When a problem depends on remainders, the natural universe is \(\mathbb Z/m\mathbb Z\).  Instead of listing many cases, one should identify the period.  If a sequence satisfies
+The same is true at \(\omega^2\). Consequently, for \(n=3m\),
 \[
-  a_{n+m}=a_n,
+ P_{3m}(\omega)=P_{3m}(\omega^2)=2^m,
+ \qquad
+ \boxed{N_0(3m)=\frac{2^{3m}+2^{m+1}}3.}
 \]
-then all behavior is determined by the first \(m\) terms.  This is the organizing idea behind many modular counting exercises.
 
-\section{A note on scope}
-
-Finite structure links set problems through inclusion--exclusion and modular residues, sequence problems through closed forms, and induction through persistence for all \(n\).  The conceptual chain is:
+For \(n=3m+1\), the extra factor has residue \(1\), and
 \[
-  \text{example}\quad\Rightarrow\quad\text{pattern}\quad\Rightarrow\quad\text{proof by induction or upper bound}.
+\begin{aligned}
+ P_n(\omega)+P_n(\omega^2)
+ &=2^m\bigl((1+\omega)+(1+\omega^2)\bigr)\\
+ &=2^m.
+\end{aligned}
 \]
-A mature solution must know which stage it is in.  Guessing a pattern is not proving it; constructing an example is not proving optimality; verifying a few cases is not induction.
-
-\section{Construction versus upper bound}
-
-A combinatorial extremal problem has two halves.  A construction proves a lower bound: it shows that at least \(N\) objects are possible.  An upper bound proves that no construction can exceed \(N\).  Only when the two match is the extremal value determined.
-
-Producing a residue-class construction is not the same as proving optimality.  The missing step is usually an invariant, counting argument, or compression method that forbids larger examples.
-
-\section{Residue classes as finite quotient spaces}
-
-When a construction is governed by residues modulo \(m\), the natural universe is
+Therefore
 \[
-  \mathbb Z/m\mathbb Z.
+ \boxed{N_0(3m+1)=\frac{2^{3m+1}+2^m}{3}.}
 \]
-A set of integers with forbidden differences becomes a subset of this finite cyclic group with forbidden difference set \(D\).  Equivalently, it is an independent set in the Cayley graph whose edges connect residues differing by elements of \(D\).
 
-This transforms a long integer-checking problem into a finite graph problem on residues.  The allowed residues are not a random pattern; they form a configuration avoiding forbidden differences in a quotient group.
-
-\section{Induction as well-founded recursion}
-
-Ordinary induction works because \(\mathbb N\) is well-ordered.  To prove \(P(n)\) for all \(n\), it is enough to prove a base case and a step \(P(n)\Rightarrow P(n+1)\).  Strong induction uses the stronger hypothesis that all smaller cases are known.
-
-The common generalization is well-founded induction.  If every nonempty set of objects has a minimal element under a relation \(<\), then one may prove \(P(x)\) by assuming \(P(y)\) for all \(y<x\).  This is why induction works on integers, trees, expressions, and recursively defined sets.
-
-\section{Finite differences in divisibility induction}
-
-Many divisibility inductions become cleaner with finite differences.  If
+For \(n=3m+2\), the two extra factors \((1+\omega)(1+\omega^2)\) have product \(1\), so
 \[
-  f(n+1)-f(n)
+ \boxed{N_0(3m+2)=\frac{2^{3m+2}+2^{m+1}}3.}
 \]
-is divisible by \(m\) for all \(n\), and \(f(n_0)\) is divisible by \(m\), then every later \(f(n)\) is divisible by \(m\).  This is the discrete fundamental theorem of calculus:
+These three formulas cover every nonnegative \(n\), taking \(N_0(0)=1\).
+
+For a quick check, the subsets of \(\{1,2,3\}\) whose sums are multiples of three are
 \[
-  f(n)=f(n_0)+\sum_{k=n_0}^{n-1}(f(k+1)-f(k)).
+ \varnothing,\quad \{3\},\quad\{1,2\},\quad\{1,2,3\}.
 \]
-So induction is often just summing a difference identity.
+There are four, in agreement with \((2^3+2^2)/3=4\).
 
-\section{Floor functions and lattice points}
+\section{Induction Meets Fourier Analysis}
 
-A floor expression records how many integer thresholds have been crossed.  Sums such as
+Every subset of \(\{1,\ldots,n\}\) either excludes \(n\) or includes it. Thus
 \[
-  \sum_{k=0}^{m-1}\left\lfloor \frac{ak+b}{m}\right\rfloor
+ \boxed{N_r(n)=N_r(n-1)+N_{r-n\bmod3}(n-1),}
 \]
-count lattice points under a rational-slope line.  This connects floor-function exercises to lattice-point enumeration.
-
-In higher dimensions, Ehrhart theory studies
+where residue indices are read modulo three. The initial vector is
 \[
-  L_P(n)=|nP\cap\mathbb Z^d|,
+ (N_0(0),N_1(0),N_2(0))=(1,0,0).
 \]
-the number of lattice points in dilates of a polytope.  For integral polytopes, \(L_P(n)\) is a polynomial in \(n\).  Thus one-variable floor sums are small shadows of a general theory.
+This recurrence could be used for a direct induction proof of the formulas above.
 
-\section{Pigeonhole and averaging}
-
-Many finite counting arguments are averaging arguments.  If \(N\) objects are distributed among \(r\) boxes, then some box has at least
+The deeper structure becomes visible in vector notation. Write
 \[
-  \left\lceil \frac Nr\right\rceil
+ v_n=\begin{pmatrix}N_0(n)\\N_1(n)\\N_2(n)\end{pmatrix},
+ \qquad
+ (Sv)_r=v_{r-1\bmod3}.
 \]
-objects.  This is the quantitative pigeonhole principle.
+Then
+\[
+ \boxed{v_n=(I+S^n)v_{n-1}.}
+\]
+The matrix \(S\) cyclically permutes residue classes. Its eigenvalues are \(1,\omega,\omega^2\). Passing to its eigenbasis, the discrete Fourier transform, diagonalizes every factor \(I+S^n\). The eigenvalue products are exactly
+\[
+ P_n(1),\quad P_n(\omega),\quad P_n(\omega^2).
+\]
+The roots-of-unity formula is therefore the closed-form solution of the induction recurrence in a better coordinate system.
 
-In extremal problems, one often defines boxes by residues, intervals, or local configurations, then proves that too many objects force a forbidden collision inside one box.
+\section{Why subset sums become nearly uniform}
 
-\section{Finite structure from quotients and induction}
+There are \(2^n\) subsets in total, so a perfectly uniform distribution of their sums modulo three would place \(2^n/3\) subsets in each class. The formulas show that the discrepancy for residue zero is only
+\[
+ N_0(n)-\frac{2^n}{3}
+ =
+ \begin{cases}
+ 2^{m+1}/3,&n=3m,\\
+ 2^m/3,&n=3m+1,\\
+ 2^{m+1}/3,&n=3m+2.
+ \end{cases}
+\]
+It grows like \(2^{n/3}\), while the total number of subsets grows like \(2^n\). The relative error therefore decays exponentially.
 
-The finite examples are unified by quotienting and persistence.  Modular constructions live in finite quotient groups, induction proves persistence, finite differences turn induction into summation, floor functions count lattice points, and extremal constructions require matching lower and upper bounds.
+In Fourier language, the constant mode \(P_n(1)=2^n\) determines the uniform component. The nontrivial modes \(P_n(\omega)\) and \(P_n(\omega^2)\) measure imbalance between residue classes, and their relative size shrinks rapidly.
+
+This example explains the value of the finite Fourier transform beyond a clever counting trick. A modular condition makes the problem finite, a generating function packages all subsets simultaneously, and the Fourier basis separates the uniform count from the oscillatory corrections. Induction then reappears as the same operation written in the original residue coordinates.

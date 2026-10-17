@@ -1,6 +1,6 @@
 \notechapter{N-20220710}{Vectors, Ordered Fields, and the First Axioms of Real Numbers}
 
-\section{Plane vectors}
+\section{Vectors express geometry using a field}
 
 A vector in the plane may be written
 \[
@@ -31,16 +31,18 @@ then
   \cos\theta=\cos\alpha\cos\beta+\sin\alpha\sin\beta
   =\cos(\alpha-\beta).
 \]
-This gives a vector proof of the cosine subtraction formula.
+This gives a vector proof of the cosine subtraction formula. The coordinate expressions depend on the field of scalars: the dot product and positive length require the ordered real-number setting, whereas the vector-space axioms themselves make sense over any field. This distinction motivates separating linear algebra from the extra order and completeness assumptions of Euclidean geometry.
 
-\section{Field axioms}
+A plane vector \((x,y)\) packages a displacement into two real numbers.  Vector addition corresponds to composing displacements; scalar multiplication corresponds to stretching.  The algebraic laws of vectors are therefore not arbitrary axioms.  They express basic geometric operations in coordinate form.
+
+\section{Field laws make coordinate calculations consistent}
 
 \begin{axiom}[Field axioms]
 A field is a set \(F\) with operations \(+\) and \(\cdot\) such that \((F,+)\) is an abelian group, \((F\setminus\{0\},\cdot)\) is an abelian group, and multiplication distributes over addition.
 \end{axiom}
 
 
-The real numbers form a field.  Its axioms are:
+The axioms below specify the algebraic rules shared by \(\mathbb Q\), \(\mathbb R\) and other fields; they do not yet imply that square roots exist or that Cauchy sequences converge. Their role here follows the structure of MIT 18.100A \emph{Real Analysis}, lectures on the characterization of the reals and the Archimedean property.\footnote{\href{https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/pages/lecture-notes-and-readings/}{MIT 18.100A, \emph{Real Analysis}, lecture notes}.} The real numbers form a field. Its axioms are:
 \begin{enumerate}[(F1)]
   \item \(x+(y+z)=(x+y)+z\);
   \item \(x+y=y+x\);
@@ -55,7 +57,7 @@ The real numbers form a field.  Its axioms are:
 
 The note emphasizes that a ``space'' in mathematics is usually a set equipped with extra structure.  A field is not merely a set; it is a set equipped with addition, multiplication, identities, inverses, and compatibility laws.
 
-\section{Ordered fields}
+\section{Ordered fields: what algebra and order can establish}
 
 The order axioms include:
 \begin{enumerate}[(O1)]
@@ -71,8 +73,6 @@ The Archimedean axiom says that for every \(x>0\) and every \(y\), there exists 
   nx\ge y.
 \]
 A typical consequence is that every interval \((0,a)\) with \(a>0\) is nonempty: choose \(n\) so large that \(n>a^{-1}\), then \(1/n<a\).
-
-\section{Elementary consequences of the order axioms}
 
 \begin{proposition}[Consequences of an ordered field]
 In an ordered field, addition preserves order and multiplication by a positive element preserves order.  In particular, squares are nonnegative:
@@ -97,7 +97,9 @@ Representative exercises include:
   \]
 \end{enumerate}
 
-\section[Embedding Q into R]{Embedding \(\mathbb Q\) into \(\mathbb R\)}
+The rationals satisfy the ordered-field axioms but lack the least-upper-bound property. A concrete witness is the set \(S=\{q\in\mathbb Q:q\ge0,\ q^2<2\}\). If it had a rational supremum \(r\), the order density of \(\mathbb Q\) and continuity of \(x\mapsto x^2\) over the reals would force \(r^2=2\), which is impossible for rational \(r\). Hence an ordered field supports algebra and order without necessarily supporting the analytic limits needed for completeness.
+
+\section{Embedding rational numbers into an Archimedean field}
 
 The note then proves that \(\mathbb R\) contains a copy of \(\mathbb Q\).  Define for integers \(n\)
 \[
@@ -117,7 +119,9 @@ and therefore
 \]
 This embedding preserves addition, multiplication, and order.
 
-\section{Nested intervals}
+In the real numbers, the Archimedean property says no positive infinitesimal exists inside \(\mathbb R\): for every \(x\), some integer \(n\) satisfies \(n>x\).  This leads to density of rationals and helps connect arithmetic approximations with the geometry of the line.
+
+\section{Completeness begins where rational arithmetic stops}
 
 The final part introduces the nested interval axiom.  If
 \[
@@ -131,40 +135,6 @@ implies
 \[
   \bigcap_{n\ge1}I_n\neq\varnothing.
 \]
-Together with the field, order, and Archimedean axioms, this is one way to characterize the real numbers.
-
-
-\section{Ordered fields and the real line}
-
-An ordered field is a field equipped with an order compatible with addition and multiplication.  Compatibility means
-\[
-  a<b\Rightarrow a+c<b+c,\qquad
-  0<a,\ 0<b\Rightarrow0<ab.
-\]
-The rational numbers form an ordered field, but they are not complete.  The real numbers are obtained by adding the missing limits, for example through Dedekind cuts or Cauchy sequences.
-
-This is why early vector and coordinate exercises naturally lead to axioms of the real numbers.  Geometry needs coordinates, coordinates need arithmetic, and analysis needs completeness.
-
-\section{Vectors as algebraicized geometry}
-
-A plane vector \((x,y)\) packages a displacement into two real numbers.  Vector addition corresponds to composing displacements; scalar multiplication corresponds to stretching.  The algebraic laws of vectors are therefore not arbitrary axioms.  They express basic geometric operations in coordinate form.
-
-\section{The conceptual payoff}
-
-The note moves from computational vector exercises to the axiomatic construction of the real line.  The important conceptual shift is that familiar formulas are only the visible part of an axiomatic structure.  A rigorous real-number theory must explain why rational numbers embed, why intervals contain points, and why irrational numbers such as \(\sqrt2\) can exist.
-
-\section{Ordered fields and what they cannot prove}
-
-An ordered field supports algebra and order, but not necessarily completeness.  The rationals satisfy the ordered-field axioms but have gaps.  Thus many analytic theorems need more than order and algebra.
-
-\section{Archimedean property and density}
-
-In the real numbers, the Archimedean property says no positive infinitesimal exists inside \(\mathbb R\): for every \(x\), some integer \(n\) satisfies \(n>x\).  This leads to density of rationals and helps connect arithmetic approximations with the geometry of the line.
-
-\section{Completeness as the real-number axiom}
+The real closed intervals are compact, so nested nonempty closed intervals have nonempty intersection. When the lengths shrink to zero, the intersection is a single point. In \(\mathbb Q\) with its inherited order and metric, there is a counterexample: take nested rational-endpoint brackets \([a_n,b_n]\cap\mathbb Q\) of \(\sqrt2\) whose lengths tend to zero. Every bracket contains rational points, yet their common intersection inside \(\mathbb Q\) is empty. This distinguishes the completeness property from the ordinary order axioms, rather than merely listing it as another axiom. The ordered field of reals can be characterized by this additional completeness principle.
 
 The supremum property, nested intervals, Cauchy completeness, and Dedekind completeness are equivalent ways of saying that the real line has no gaps.  This is the feature that turns ordered algebra into analysis.
-
-\section{From ordered algebra to the real line}
-
-Vectors need linear structure; ordered fields need compatibility between addition, multiplication, and order; the real numbers need completeness.  The early axioms are not formal decoration: each one supports a different layer of geometry and analysis.

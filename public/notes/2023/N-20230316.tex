@@ -1,6 +1,6 @@
 \notechapter{N-20230316}{Fixed Points, Convergent Iteration, and Compactness Methods}
 
-\section{A fixed point does not by itself explain an iteration}
+\section{Fixed Points versus Iterations}
 
 A fixed point of a map \(T:X\to X\) is a point \(x^*\) satisfying
 \[
@@ -29,7 +29,7 @@ has the fixed point \(0\), but an orbit starting from \(x_0\ne0\) alternates bet
 \]
 has every point fixed, so there is no unique target for iteration.  A useful fixed-point theorem must therefore specify which mechanism supplies existence, uniqueness, and convergence.
 
-\section{Contractions make successive points geometrically closer}
+\section{Geometry of Contractions}
 
 Let \((X,d)\) be a metric space.  A map \(T:X\to X\) is a contraction when there is a constant \(0<c<1\) such that
 \[
@@ -58,7 +58,7 @@ For \(m>n\), the triangle inequality then yields
 \]
 The orbit is therefore Cauchy.  This is the key analytic fact; all later conclusions depend on where that Cauchy sequence is allowed to converge.
 
-\section{Completeness supplies the point that the estimates approach}
+\section{The Role of Completeness}
 
 A metric space is complete when every Cauchy sequence converges to a point of the space.
 
@@ -185,15 +185,22 @@ Assume that \(f\) is Lipschitz in its second variable:
 \[
   |f(t,u)-f(t,v)|\le L|u-v|.
 \]
-Then
+For $t$ on \emph{either side} of $t_0$, the integral estimate must account for orientation:
 \[
 \begin{aligned}
-  \|Ty-Tz\|_\infty
-  &\le\sup_t\int_{t_0}^{t}
-    |f(s,y(s))-f(s,z(s))|\,ds\\
-  &\le Lh\,\|y-z\|_\infty.
+ |(Ty)(t)-(Tz)(t)|
+ &=\left|\int_{t_0}^{t}
+     [f(s,y(s))-f(s,z(s))]\,ds\right|\\
+ &\le\int_{\min(t,t_0)}^{\max(t,t_0)}
+        |f(s,y(s))-f(s,z(s))|\,ds\\
+ &\le L|t-t_0|\,\|y-z\|_\infty.
 \end{aligned}
 \]
+Taking the supremum over the symmetric interval gives
+\[
+ \boxed{\|Ty-Tz\|_\infty\le Lh\,\|y-z\|_\infty.}
+\]
+It would be incorrect to omit the absolute value on the integral when $t<t_0$: the oriented integral of a nonnegative function from $t_0$ down to $t$ is nonpositive, and cannot bound a norm from above.
 If \(h<1/L\), the operator is a contraction.  One also chooses a closed ball of functions on which \(T\) maps the ball into itself; this follows from a bound on \(|f|\) on a suitable rectangle around \((t_0,y_0)\).
 
 Banach's theorem now gives a unique fixed point of \(T\), hence a unique local solution of the differential equation.  The iterates
@@ -203,7 +210,41 @@ Banach's theorem now gives a unique fixed point of \(T\), hence a unique local s
 \]
 are the Picard approximations.  The same geometric contraction estimate that solved \(x=\cos x\) now proves existence and uniqueness in an infinite-dimensional space.
 
-\section{Topological existence does not provide Banach's algorithm}
+The operator also provides an explicit sequence of approximations. For the small initial-value problem
+\[
+ y'(t)=y(t),\qquad y(0)=1,
+\]
+the Picard map is
+\[
+ (Ty)(t)=1+\int_0^t y(s)\,ds.
+\]
+Start with the constant function $y_0(t)=1$. Repeated integration gives
+\[
+\begin{aligned}
+ y_1(t)&=1+t,\\
+ y_2(t)&=1+t+\frac{t^2}{2!},\\
+ y_3(t)&=1+t+\frac{t^2}{2!}+\frac{t^3}{3!}.
+\end{aligned}
+\]
+Inductively, if $y_n(t)=\sum_{k=0}^{n}t^k/k!$, then
+\[
+ y_{n+1}(t)
+ =1+\int_0^t\sum_{k=0}^{n}\frac{s^k}{k!}\,ds
+ =\sum_{k=0}^{n+1}\frac{t^k}{k!}.
+\]
+We have therefore discovered the exponential series by applying the fixed-point operator:
+\[
+ \boxed{y_n(t)=\sum_{k=0}^{n}\frac{t^k}{k!}
+       \xrightarrow[n\to\infty]{}e^t.}
+\]
+On a compact interval $[-h,h]$, the error is bounded by a factorial tail, for example
+\[
+ |e^t-y_n(t)|
+ \le e^h\frac{h^{n+1}}{(n+1)!}.
+\]
+The convergence is uniform for every fixed $h$. In the local Banach argument, choosing $h<1$ makes the Lipschitz constant $Lh=h<1$; the explicit factorial bound reveals even more about this particular equation. The infinite-dimensional contraction proof and the elementary Taylor series have converged on the same object.
+
+\section{Existence versus Banach Iteration}
 
 Banach's theorem is not the only route to a fixed point.  Brouwer's theorem says that every continuous map from a nonempty compact convex subset of \(\mathbb R^n\) to itself has a fixed point.  No metric contraction is required.
 
@@ -211,7 +252,7 @@ The difference in conclusions is substantial.  The identity map on a closed ball
 
 This distinction matters in applications.  If the goal is a certified numerical method, the Banach hypotheses are valuable precisely because they are stronger.  If the map is continuous on a compact convex region but cannot be made contractive, Brouwer may still prove that a solution exists, though a separate method is needed to locate it.
 
-\section{Schauder replaces finite-dimensional compactness by a compact map}
+\section{Schauder's Fixed-Point Theorem}
 
 Closed bounded sets in infinite-dimensional Banach spaces are usually not compact, so Brouwer cannot be applied directly.  Schauder's fixed-point theorem uses compactness of the operator instead.
 
@@ -227,7 +268,7 @@ where \(K\), \(F\), and \(g\) are continuous and a closed ball \(C\) is chosen s
 
 Schauder therefore yields a solution of the integral equation even when no Lipschitz estimate makes \(T\) contractive.  What is lost is uniqueness and convergence of the naive iteration.  Several fixed points may exist.
 
-\section{Krasnoselskii separates the shrinking and compact parts}
+\section{Krasnoselskii's Decomposition}
 
 Many nonlinear equations produce an operator that is neither contractive nor compact as a whole but decomposes as
 \[

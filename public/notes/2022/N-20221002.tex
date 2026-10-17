@@ -1,12 +1,10 @@
 \notechapter{N-20221002}{Finite Fields and Polynomial Factorization}
 
-\section{Why finite fields matter}
+\section{Constructing Finite Fields}
 
-The central question is: how do polynomials factor when the coefficients live in a finite field rather than in \(\mathbb Q\), \(\mathbb R\), or \(\mathbb C\)?
+The construction and factorization results follow the standard organization in Lidl and Niederreiter, \emph{Introduction to Finite Fields and their Applications}, Chapters 2--4, with small examples calculated explicitly below.\footnote{R. Lidl and H. Niederreiter, \emph{Introduction to Finite Fields and their Applications}, Cambridge University Press, Chapters 2--4.} The central question is: how do polynomials factor when the coefficients live in a finite field rather than in \(\mathbb Q\), \(\mathbb R\), or \(\mathbb C\)?
 
 The question is not only theoretical: it appears in coding theory, cryptography, computational algebra, and the construction of algebraic extensions.  The definition of a field comes first because factorization depends heavily on the coefficient domain.
-
-\section{Fields}
 
 A field \(F\) is a set with addition and multiplication such that:
 \begin{enumerate}[(i)]
@@ -31,8 +29,6 @@ The requirement that \(p\) be prime is crucial.  If \(p\) is composite, zero div
 \]
 even though neither factor is zero.
 
-\section{Field extensions}
-
 A field extension \(K/F\) means \(F\) is embedded in a larger field \(K\).  The point of passing to \(K\) is often to make more polynomial equations solvable.  For example,
 \[
   x^2+1
@@ -47,8 +43,6 @@ If \(K\) is finite-dimensional as a vector space over \(F\), its dimension is th
   [K:F]=\dim_F K.
 \]
 Finite extensions are tractable because linear algebra applies directly, whereas infinite extensions require substantially heavier tools.
-
-\section{Constructing finite fields}
 
 For a prime \(p\), \(\mathbb F_p\) is the simplest finite field.  To construct fields with \(p^n\) elements, use irreducible polynomials.  If
 \[
@@ -83,7 +77,47 @@ in characteristic \(2\).  Every element can be uniquely written as
   a+b\alpha+c\alpha^2,\qquad a,b,c\in\mathbb F_2.
 \]
 
-\section{Important properties of finite fields}
+\section{The first irreducibility test: degrees one and two}
+
+In \(\mathbb F_q[x]\), every nonzero polynomial factors uniquely into irreducible polynomials, up to order and multiplication by nonzero constants.  This is analogous to unique prime factorization of integers.
+
+However, a polynomial need not split into linear factors over its base finite field.  For example, a polynomial may be irreducible over \(\mathbb F_p\) but split over an extension field.  This is exactly like \(x^2+1\) over \(\mathbb R\), except that the extension fields are finite and highly structured.
+
+Consider
+\[
+  f(x)=x^4+x^2+2\in\mathbb F_3[x].
+\]
+First test roots:
+\[
+  f(0)=2\neq0,
+\]
+\[
+  f(1)=1+1+2=4\equiv1\pmod3,
+\]
+\[
+  f(2)=2^4+2^2+2=16+4+2=22\equiv1\pmod3.
+\]
+So \(f\) has no linear factor.  It might still factor as a product of two quadratics.  For a degree-four polynomial, root testing is insufficient: a reducible polynomial without roots must factor into two irreducible quadratics. Over \(\mathbb F_3\), the monic irreducible quadratics are exactly \(x^2+1\), \(x^2+x+2\), and \(x^2+2x+2\). Dividing \(f\) by these yields respective remainders
+\[
+ 2,\qquad 2x+2,\qquad x+2.
+\]
+None vanishes. Since \(f\) also has no linear factor, it is irreducible over \(\mathbb F_3\). This completes the omitted calculation rather than merely asserting that a check exists.
+
+This illustrates the basic workflow: root testing only detects linear factors.  For degree \(4\), one must also check quadratic factors.
+
+A polynomial can factor differently depending on the coefficient field.  For example, \(x^2+1\) is irreducible over \(\mathbb R\) only if one insists on real linear factors, but over \(\mathbb C\) it splits.  Over finite fields the same phenomenon becomes arithmetic.
+
+For odd \(p\), a quadratic polynomial
+\[
+  ax^2+bx+c,\qquad a\ne0,
+\]
+has a root (and hence factors) iff its discriminant
+\[
+  \Delta=b^2-4ac
+\]
+is a square in \(\mathbb F_p\), including zero. The restriction \(p\ne2\) matters: the quadratic formula divides by \(2a\), which is impossible in characteristic \(2\). In characteristic \(2\), the polynomial must instead be analyzed using its actual values or an appropriate Artin--Schreier form.  Thus irreducibility is controlled by quadratic residues.  This links polynomial factorization directly to modular arithmetic.
+
+\section{Frobenius is the field's intrinsic symmetry}
 
 The standard facts are:
 \begin{enumerate}[(i)]
@@ -100,95 +134,6 @@ The standard facts are:
 
 The cyclicity of the multiplicative group is surprisingly powerful.  It means every nonzero element is a power of one primitive element.  This is why finite field computations often become exponent arithmetic modulo \(p^n-1\).
 
-\section{Polynomial factorization over finite fields}
-
-In \(\mathbb F_q[x]\), every nonzero polynomial factors uniquely into irreducible polynomials, up to order and multiplication by nonzero constants.  This is analogous to unique prime factorization of integers.
-
-However, a polynomial need not split into linear factors over its base finite field.  For example, a polynomial may be irreducible over \(\mathbb F_p\) but split over an extension field.  This is exactly like \(x^2+1\) over \(\mathbb R\), except that the extension fields are finite and highly structured.
-
-\section[Example over F\_3]{Example over \(\mathbb F_3\)}
-
-Consider
-\[
-  f(x)=x^4+x^2+2\in\mathbb F_3[x].
-\]
-First test roots:
-\[
-  f(0)=2\neq0,
-\]
-\[
-  f(1)=1+1+2=4\equiv1\pmod3,
-\]
-\[
-  f(2)=2^4+2^2+2=16+4+2=22\equiv1\pmod3.
-\]
-So \(f\) has no linear factor.  It might still factor as a product of two quadratics.  A systematic check over \(\mathbb F_3\) shows that no such factorization exists, so \(f\) is irreducible over \(\mathbb F_3\).
-
-This illustrates the basic workflow: root testing only detects linear factors.  For degree \(4\), one must also check quadratic factors.
-
-\section{Algorithms}
-
-Several standard factorization algorithms are:
-\begin{enumerate}[(i)]
-  \item trial division, useful for very small degrees;
-  \item Berlekamp's algorithm, which converts factorization into linear algebra over finite fields;
-  \item Cantor--Zassenhaus, a randomized algorithm widely used in computer algebra systems.
-
-\end{enumerate}
-The high-level idea behind these algorithms is that finite fields make the Frobenius map computable.  Since every element of \(\mathbb F_q\) satisfies
-\[
-  a^q=a,
-\]
-the polynomial
-\[
-  x^q-x
-\]
-contains all elements of \(\mathbb F_q\) as roots.  This identity becomes a machine for detecting factors.
-
-\section{Applications}
-
-Finite-field factorization appears in:
-\begin{enumerate}[(i)]
-  \item error-correcting codes;
-  \item cryptographic protocols;
-  \item construction of extension fields;
-  \item computational number theory;
-  \item symbolic algebra systems.
-
-\end{enumerate}
-Finite fields are small enough for exhaustive computation yet structured enough to retain deep algebraic behavior.  That combination explains their central role.
-
-
-\section{Irreducibility over finite fields}
-
-A polynomial can factor differently depending on the coefficient field.  For example, \(x^2+1\) is irreducible over \(\mathbb R\) only if one insists on real linear factors, but over \(\mathbb C\) it splits.  Over finite fields the same phenomenon becomes arithmetic.
-
-For \(\mathbb F_p\), a quadratic polynomial
-\[
-  ax^2+bx+c
-\]
-factors iff its discriminant
-\[
-  \Delta=b^2-4ac
-\]
-is a square in \(\mathbb F_p\).  Thus irreducibility is controlled by quadratic residues.  This links polynomial factorization directly to modular arithmetic.
-
-\section{Constructing extensions}
-
-If \(f(x)\in F[x]\) is irreducible of degree \(n\), then
-\[
-  F[x]/(f(x))
-\]
-is a field extension of \(F\) of degree \(n\).  The class of \(x\) becomes an element \(\alpha\) satisfying \(f(\alpha)=0\).  This is the algebraic meaning of “adjoining a root.”
-
-For finite fields, this construction produces fields with \(p^n\) elements:
-\[
-  \mathbb F_{p^n}\cong \mathbb F_p[x]/(f(x))
-\]
-for any irreducible \(f\) of degree \(n\).  Every finite field has prime-power size, and for each prime power there is a unique finite field up to isomorphism.
-
-\section{Frobenius map}
-
 In characteristic \(p\), the Frobenius map is
 \[
   \varphi(a)=a^p.
@@ -204,27 +149,6 @@ The polynomial
   x^{p^n}-x
 \]
 has all elements of \(\mathbb F_{p^n}\) as roots, and it factors over \(\mathbb F_p\) as the product of all monic irreducible polynomials whose degrees divide \(n\).  This is a central organizing fact for finite-field factorization.
-
-\section{Structural consequences}
-
-Finite fields turn algebra into arithmetic.  Roots of polynomials become elements of finite extensions, irreducibility becomes a modular phenomenon, and Frobenius gives a canonical symmetry.  This is why finite fields appear in coding theory and cryptography: their algebra is rich but completely finite and computable.
-
-\section{How the pieces fit}
-
-A finite field is where group theory, ring theory, linear algebra, and number theory meet.  The additive group of \(\mathbb F_{p^n}\) is an \(n\)-dimensional vector space over \(\mathbb F_p\).  The nonzero elements form a cyclic multiplicative group of order \(p^n-1\).  Polynomial quotients construct the field, and Frobenius supplies a canonical symmetry.
-
-Thus a finite field computation often has three simultaneous readings:
-\[
-\begin{array}{c|c}
-\text{operation} & \text{structure being used}\\
-\hline
-\text{addition} & \mathbb F_p\text{-linear algebra}\\
-\text{multiplication} & \text{cyclic unit group and polynomial reduction}\\
-\text{Frobenius }x\mapsto x^p & \text{Galois symmetry}
-\end{array}
-\]
-
-\section{Frobenius and the first Galois group}
 
 In characteristic \(p\), the Frobenius map
 \[
@@ -245,8 +169,6 @@ The Galois group is cyclic:
 \]
 This is the cleanest first example of a Galois group: roots are moved by raising to powers of \(p\), and the fixed field of Frobenius is \(\mathbb F_p\).
 
-\section{Irreducible polynomials and orbit size}
-
 An element \(\alpha\in\mathbb F_{q^n}\) has conjugates
 \[
   \alpha,\quad \alpha^q,\quad \alpha^{q^2},\quad\ldots
@@ -259,7 +181,7 @@ where \(d\) is the size of the Frobenius orbit.  Thus irreducible polynomials ov
 
 This explains why the degrees of irreducible factors of a polynomial are controlled by Frobenius cycles.
 
-\section{Counting irreducible polynomials}
+\section{Factor Degrees and Möbius Inversion}
 
 Every element of \(\mathbb F_{q^n}\) is a root of
 \[
@@ -275,8 +197,6 @@ By Möbius inversion,
 \]
 This formula turns factorization into enumeration.  The factor \(d\) appears because each degree-\(d\) irreducible polynomial contributes \(d\) roots.
 
-\section{Square-free and distinct-degree factorization}
-
 Finite-field factorization algorithms exploit Frobenius.  The polynomial
 \[
   x^{q^m}-x
@@ -287,9 +207,7 @@ has as roots exactly the elements of \(\mathbb F_{q^m}\).  Therefore
 \]
 extracts from \(f\) the product of irreducible factors whose degrees divide \(m\).
 
-This is the idea behind distinct-degree factorization.  First remove repeated factors by checking \(\gcd(f,f')\).  Then use Frobenius powers to separate factors by degree.  Finally use algorithms such as Cantor--Zassenhaus to split equal-degree parts.
-
-\section{Berlekamp's algorithm as linear algebra}
+This is the idea behind distinct-degree factorization.  First analyze repeated factors by checking \(\gcd(f,f')\). If \(f'=0\) over a perfect finite field, this signals that \(f\) is a polynomial in \(x^p\); the square-free algorithm must take an appropriate \(p\)-th root before continuing, rather than dividing by the zero derivative.  Then use Frobenius powers to separate factors by degree.  Finally use algorithms such as Cantor--Zassenhaus to split equal-degree parts.
 
 Berlekamp's algorithm turns factorization into a nullspace computation.  Over \(\mathbb F_q\), consider the map on the quotient algebra \(A=\mathbb F_q[x]/(f)\)
 \[
@@ -299,17 +217,15 @@ Elements in the kernel satisfy \(g^q=g\), and this kernel contains information a
 
 Thus the algorithm uses the finite-dimensional \(\mathbb F_q\)-vector space structure of the quotient ring.  This is a concrete instance of a general computational theme: algebraic structure becomes linear algebra after passing to a finite quotient.
 
-\section{Coding theory connection}
+\section{Evaluation Codes from Polynomials}
 
 Finite fields are essential in coding theory because code symbols can be added, multiplied, and evaluated polynomially.  Reed--Solomon codes evaluate polynomials over \(\mathbb F_q\) at distinct field points:
 \[
   f\longmapsto (f(a_1),\ldots,f(a_m)).
 \]
-A nonzero polynomial of degree \(<k\) has at most \(k-1\) roots, so two different low-degree polynomials cannot agree at too many evaluation points.  This gives error detection and correction.
+A nonzero polynomial of degree \(<k\) has at most \(k-1\) roots. Thus two distinct polynomials of degree \(<k\) differ in at least \(m-k+1\) of the \(m\) evaluation coordinates, assuming \(m\le q\) distinct evaluation points. This proves the Reed--Solomon minimum-distance bound \(d_{\min}\ge m-k+1\), with equality for suitable polynomial differences; hence a codeword has enough separation to correct up to \(\lfloor(m-k)/2\rfloor\) symbol errors.
 
 Here the same polynomial-root principle used in factorization becomes a robustness principle for information transmission.
-
-\section{Algebraic geometry shadow}
 
 The identity
 \[
@@ -318,7 +234,3 @@ The identity
 and the polynomial \(x^q-x\) already hint at a larger story: equations over finite fields define finite sets of points, and Frobenius acts on their solutions.  In higher-dimensional algebraic geometry, counting points over \(\mathbb F_{q^n}\) reveals cohomological information.
 
 Thus elementary finite-field polynomial factorization is a first step toward modern arithmetic geometry: finite fields provide a world where algebraic equations, symmetries, and point counts interact exactly.
-
-\section{Frobenius structure behind finite fields}
-
-Finite fields are not just small fields.  They are finite vector spaces, cyclic multiplicative groups, quotient rings, Frobenius dynamical systems, and computational domains all at once.  Irreducible polynomials build extensions; Frobenius organizes roots; gcds with \(x^{q^m}-x\) detect factor degrees; and the same algebra supports coding theory and cryptography.

@@ -80,7 +80,45 @@ The word ``bubble'' is literal in the diagrammatic notation.  One sums over two 
 \[
   B(z)=\sum_{x\in\mathbb Z^d}G_z(x)^2.
 \]
-For simple random walk at criticality, this sum is finite exactly above the critical dimension \(4\).  This is the first signal that dimension \(4\) is the borderline.
+Here is a calculation that makes the number \emph{four} emerge rather than appear as a fact to memorize. Use the nearest-neighbor simple random walk on $\mathbb Z^d$, with
+\[
+ D(e_j)=D(-e_j)=\frac1{2d}
+ \quad(1\le j\le d),\qquad
+ \widehat D(k)=\frac1d\sum_{j=1}^d\cos k_j.
+\]
+For this \emph{probability-normalized} random walk, the critical step parameter is $z=1$. Its critical two-point function $C_1(x)$ has Fourier transform
+\[
+ \widehat C_1(k)=\frac1{1-\widehat D(k)}.
+\]
+When the bubble sum is finite, Parseval's identity identifies it with
+\[
+ \sum_{x\in\mathbb Z^d}C_1(x)^2
+ =\frac1{(2\pi)^d}
+   \int_{[-\pi,\pi]^d}
+       \frac{dk}{(1-\widehat D(k))^2}.
+\]
+The only possible singularity of this integral is at $k=0$. The ordinary Taylor expansion of cosine tells us how strong that singularity is:
+\[
+ \begin{aligned}
+ 1-\widehat D(k)
+ &=\frac1d\sum_{j=1}^d(1-\cos k_j)\\
+ &=\frac{|k|^2}{2d}+O(|k|^4).
+ \end{aligned}
+\]
+Thus the integrand behaves like $|k|^{-4}$ near the origin. In $d$ dimensions a thin radial shell of radius $r$ has volume proportional to $r^{d-1}dr$. The dangerous part of the integral is therefore comparable to
+\[
+ \boxed{\int_0^1 r^{d-1}\,r^{-4}\,dr
+             =\int_0^1r^{d-5}\,dr.}
+\]
+We can read the threshold directly:
+\[
+ \begin{array}{c|c}
+ d<4&\text{power-law divergence}\\
+ d=4&\int_0^1dr/r\text{ diverges logarithmically}\\
+ d>4&\text{the integral converges}.
+ \end{array}
+\]
+This is a calculation for \emph{simple random walk}; it identifies the dimension in which a self-avoidance perturbation can plausibly become small. Establishing a corresponding bubble bound for self-avoiding walk itself is a much deeper conclusion of lace-expansion analysis.\footnote{For the bubble condition and its Fourier interpretation, see Gordon Slade, \href{https://pmc.ncbi.nlm.nih.gov/articles/PMC6364616/}{\emph{Self-avoiding walk, spin systems and renormalization}}; compare the original lecture notes \emph{Lectures on Self-Avoiding Walks} by Bauerschmidt, Duminil-Copin, Goodman and Slade.}
 
 In dimensions \(d>4\), one can prove estimates of the following kind:
 \[

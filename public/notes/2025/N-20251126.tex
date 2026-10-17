@@ -24,6 +24,36 @@ The ordinary simple random walk has exactly \((2d)^n\) possible \(n\)-step paths
 The phrase ``self-avoiding'' sounds like a small constraint, but it changes the problem qualitatively.  The number of walks is no longer obtained by multiplying independent choices, and the endpoint distribution is no longer governed by the usual central limit theorem in low dimensions.
 \end{remark}
 
+\Needspace{22\baselineskip}
+
+The very first counts already show where the dependence on the whole past begins. On the square lattice $\mathbb Z^2$ there are four choices for the first step. As long as the path has fewer than four steps, forbidding \emph{immediate reversal} is enough to prevent every repeated vertex: the square is the shortest lattice cycle. Thus
+\[
+ c_1=4,\qquad c_2=4\cdot3=12,\qquad
+ c_3=4\cdot3^2=36.
+\]
+At step four, blindly allowing three directions gives $4\cdot3^3=108$ non-backtracking paths. But there are four unit squares incident to the origin, and two ways to traverse each square back to the starting vertex. Those eight paths revisit the origin, so
+\[
+ \boxed{c_4=108-8=100.}
+\]
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=2cm,y=2cm,>=Stealth]
+ \draw[gray!60,thick] (0,0) rectangle (1,1);
+ \draw[teal!75!black,very thick,->] (0,0)--(1,0)--(1,1)--(0,1);
+ \draw[orange!85!black,very thick,dashed,->] (0,1)--(0,0);
+ \fill[teal!75!black] (0,0) circle (1.6pt);
+ \node[font=\footnotesize,anchor=east] at (-.08,0) {start};
+ \node[font=\footnotesize,anchor=west,orange!85!black] at (.16,.55)
+   {forbidden fourth step};
+ \node[font=\footnotesize,anchor=south,teal!75!black] at (.55,1.12)
+   {three allowed steps};
+\end{tikzpicture}
+\caption{A three-step square-lattice walk is self-avoiding, but the dashed fourth edge returns to its first vertex. Local avoidance starts to depend on history at the first available cycle.}
+\end{figure}
+
+This tiny discrepancy, $108-100$, is the start of the large-scale difficulty: every later step has to remember \emph{all} visited vertices, not just the previous one. The eventual connective constant measures exactly the accumulated effect of those excluded returns.
+
 \section{Submultiplicativity and the connective constant}
 
 The first invariant is the exponential growth rate of \(c_n\).  Concatenation gives the basic inequality
@@ -91,25 +121,32 @@ A central fact is that bridges have the same exponential growth rate as all self
   \lim_{n\to\infty} b_n^{1/n}=\mu.
 \]
 
-The Hammersley--Welsh method gives a much sharper comparison.  Its philosophy is to decompose a general self-avoiding walk into bridge-like pieces by reflecting parts of the walk across suitable hyperplanes.  This does not give a bijection with bridges, but it controls the loss by a subexponential factor.  In a typical form one obtains a bound of the shape
-
-
-For a completely general self-avoiding walk, one first cuts it at a suitable extremal point.  The picture below shows this as a decomposition into two half-space walks.  This is why the proof goes through half-space walks before it reaches bridges.
+The Hammersley--Welsh method turns this bridge idea into a quantitative estimate. A general walk is first cut at a suitable extremal point into two half-space walks. Each of those is then \emph{unfolded}: reflecting certain pieces makes its successive widths strictly decreasing and produces bridge-like pieces. The original walk can be recovered when the unfolding choices are recorded.
 
 \Needspace{14\baselineskip}
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.72\textwidth]{figures/N-20251126/HWcAndh_pspdftex.pdf}
-  \caption{decomposing a self-avoiding walk into two half-space walks.}
+  \caption{Cutting a general walk into two half-space walks before unfolding their successive excursions into bridges.}
 \end{figure}
-\[
-  c_n\le \exp\{C\sqrt n\}\, b_{n+1}
-\]
-for a constant \(C\).  The exact constant is not the point here.  The point is that the correction is subexponential, so it does not affect \(\mu\).
 
-\begin{remark}
-This is a good example of the style of rigorous self-avoiding-walk arguments.  One rarely enumerates walks exactly.  Instead one reorganises them into classes that have better concatenation properties, and then proves that the reorganisation loses only subexponentially many choices.
-\end{remark}
+Why should the number of possible unfoldings grow only subexponentially? The sequence of distinct positive widths is constrained by the total length $n$: it is essentially an integer partition of a number no larger than $n$. The number $p(n)$ of integer partitions satisfies
+\[
+ p(n)\le\exp(C\sqrt n)
+\]
+for some constant $C$. Each set of bridge pieces can therefore be encoded with a multiplicity cost bounded at this scale. The resulting Hammersley--Welsh upper bound has the form
+\[
+ \boxed{c_n\le \exp(C'\sqrt n)\,\mu^n}
+ \qquad(n\ge1,\ d\ge2),
+\]
+with $C'$ depending on the lattice and dimension.\footnote{See Tom Hutchcroft, \href{https://arxiv.org/abs/1708.09460}{\emph{The Hammersley--Welsh Bound for Self-Avoiding Walk Revisited}}, for a modern proof and context.}
+
+Taking $n$-th roots shows immediately why this is useful:
+\[
+ \left(\exp(C'\sqrt n)\mu^n\right)^{1/n}
+ =\exp(C'/\sqrt n)\mu\longrightarrow\mu.
+\]
+The organizing information (a sequence of excursion widths) grows far more slowly than the walks themselves. This is a recurring technique in combinatorics: replace an enormous family by a structured family with a controlled multiplicity of encodings.
 
 \section{Polygons}
 

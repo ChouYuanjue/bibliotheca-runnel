@@ -17,6 +17,38 @@ This result is not an enumeration trick in the elementary sense.  It comes from 
 The number \(\sqrt{2+\sqrt2}\) should not be memorised as a miracle constant.  It is the value for which the parafermionic observable satisfies a local cancellation identity on the hexagonal lattice.
 \end{remark}
 
+\section{When does self-avoidance first change the count?}
+
+\Needspace{22\baselineskip}
+
+At very short lengths, the hexagonal lattice makes counting look almost trivial. From a fixed vertex there are three choices for the first step. After that, a walk that merely avoids immediately reversing direction has two possible next steps. A regular hexagon is the shortest cycle in this lattice. Consequently, for $1\le n\le5$, a non-backtracking $n$-step walk cannot revisit any earlier vertex, so
+\[
+ \boxed{c_1=3,\quad c_2=6,\quad c_3=12,\quad
+        c_4=24,\quad c_5=48.}
+\]
+
+At step six something genuinely new happens. There would be $3\cdot2^5=96$ non-backtracking paths if we kept ignoring the older part of the walk. But three hexagonal faces meet at the starting vertex, and each can be traversed in two directions to return to that vertex in six steps. Those six paths are forbidden. Hence
+\[
+ \boxed{c_6=96-3\cdot2=90.}
+\]
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.3,>=Stealth]
+ \draw[gray!55,thick] (0:1.15)--(60:1.15)--(120:1.15)--(180:1.15)--(240:1.15)--(300:1.15)--cycle;
+ \draw[teal!75!black,very thick,->] (0:1.15)--(60:1.15)--(120:1.15)--(180:1.15)--(240:1.15)--(300:1.15);
+ \draw[orange!85!black,very thick,dashed,->] (300:1.15)--(0:1.15);
+ \fill[teal!80!black] (0:1.15) circle (2pt);
+ \node[font=\footnotesize,anchor=west] at (1.25,.65) {start};
+ \node[font=\footnotesize,teal!75!black] at (-2.0,-.8) {five allowed steps};
+ \node[font=\footnotesize,orange!85!black,anchor=west] at (1.2,-.65)
+  {sixth step forbidden};
+\end{tikzpicture}
+\caption{A length-five walk around five sides of a hexagonal face visits six distinct vertices; the dashed sixth edge would return to its starting vertex. This is the earliest time that the honeycomb lattice remembers more than the previous step.}
+\end{figure}
+
+This is the difficulty in miniature: a local rule with two immediate choices becomes a history-dependent counting problem as soon as cycles become possible. Finding the exponential growth rate $\mu$ requires something stronger than any fixed-length enumeration. The parafermionic observable achieves that by using winding to make entire families of walks cancel.
+
 \section{A domain version of the counting problem}
 
 Instead of counting walks in the whole plane immediately, one works in a finite domain cut from the hexagonal lattice.  Fix a boundary point \(a\).  For another boundary point or mid-edge \(z\), consider self-avoiding walks \(\gamma\) starting at \(a\) and ending at \(z\), staying inside the domain.  Their weighted sum has the form
@@ -51,7 +83,29 @@ where \(W(\gamma)\) is the total winding and \(\sigma\) is a spin parameter.  Th
 \]
 At this value, the observable satisfies a discrete Cauchy--Riemann type relation around each vertex.
 
-The word ``holomorphic'' here should be read carefully.  The observable is defined on a lattice, so it is not holomorphic in the classical analytic sense.  Rather, it satisfies a local linear relation that becomes the Cauchy--Riemann equation in a scaling limit.  This is why the observable is often called discrete holomorphic or preholomorphic.
+To see where the exact constant comes from, let $p,q,r$ be the three mid-edges touching an interior vertex $v$, represented as complex points in the plane. The observable satisfies the local relation
+\[
+ \boxed{(p-v)F(p)+(q-v)F(q)+(r-v)F(r)=0.}
+\]
+Duminil-Copin and Smirnov prove it by grouping walks into pairs (that traverse a local loop in opposite directions) and triplets (one walk and its two possible one-step extensions). In a triplet, write
+\[
+ j=e^{2\pi i/3},\qquad
+ \lambda=e^{-5\pi i/24}.
+\]
+After the common length and winding weight is factored out, its contribution to the left-hand side is proportional to
+\[
+ 1+xj\overline\lambda+x\overline j\lambda
+ =1+2x\cos\frac{7\pi}{8}
+ =1-2x\cos\frac{\pi}{8}.
+\]
+This vanishes exactly when
+\[
+ x=x_c=\frac1{2\cos(\pi/8)}
+       =\frac1{\sqrt{2+\sqrt2}}.
+\]
+The other paired contributions cancel because of the chosen winding exponent $\sigma=5/8$. Thus the otherwise unexpected square root is forced by the angles of a hexagon and the cancellation of three possible local paths.\footnote{The derivation follows Duminil-Copin and Smirnov, \href{https://annals.math.princeton.edu/2012/175-3/p14}{\emph{The connective constant of the honeycomb lattice equals $\sqrt{2+\sqrt2}$}}, Sections 2--3.}
+
+The term \emph{holomorphic} needs a qualification. The displayed identity is a \emph{partial} discrete Cauchy--Riemann relation. It has the useful cancellation property, but by itself does not imply classical holomorphicity of a scaling limit, nor even the existence of that limit. This is exactly why the connective-constant theorem can be proved while convergence of self-avoiding walks to $\mathrm{SLE}_{8/3}$ remains a separate problem.
 
 \begin{remark}
 The observable is not merely a generating function.  The phase remembers geometry.  Without the winding phase, the local cancellation identity would not hold.
@@ -71,10 +125,7 @@ The cancellation is proved by grouping local contributions.  The picture below s
   \caption{pair and triplet cancellations in the proof of the local observable identity.}
 \end{figure}
 
-For a suitable trapezoidal domain on the hexagonal lattice, the resulting identity relates generating functions of walks ending on different parts of the boundary.  Very schematically it has the form
-
-
-Here is the actual domain picture used in the lecture notes.  The boundary pieces are labelled separately because the final identity distinguishes walks according to which part of the boundary they hit.
+In a finite trapezoidal strip $S_{T,L}$, partition the endpoints among the left boundary (excluding the start), the right boundary, and the upper and lower boundaries. Call their ordinary, \emph{positive} weighted walk sums $A_{T,L}(x)$, $B_{T,L}(x)$ and $E_{T,L}(x)$, respectively. The domain picture records which walks contribute to which sum.
 
 \Needspace{18\baselineskip}
 \begin{figure}[htbp]
@@ -82,38 +133,79 @@ Here is the actual domain picture used in the lecture notes.  The boundary piece
   \includegraphics[width=0.62\textwidth]{figures/N-20251127/domain.pdf}
   \caption{the trapezoidal domain \(S_{T,L}\) and its boundary pieces.}
 \end{figure}
+Summing the local relation over the strip cancels every interior mid-edge. The winding phase on each remaining boundary arc is known, so the complex identity becomes an exact positive real identity:
 \[
-  1 = A_T(x_c)+B_T(x_c)+E_T(x_c),
+ \boxed{1=\underbrace{\cos\frac{3\pi}{8}}_{c_\alpha}
+          A_{T,L}(x_c)
+        +B_{T,L}(x_c)
+        +\underbrace{\cos\frac{\pi}{4}}_{c_\varepsilon}
+          E_{T,L}(x_c).}
 \]
-where the terms count walks from the marked boundary edge to various boundary arcs, with explicit positive coefficients after taking the correct real part.
-
-The important structural fact is positivity.  Once the boundary identity has positive terms, it gives inequalities for ordinary generating functions.  Letting the size of the domain tend to infinity then produces information about convergence and divergence at the critical value.
-
-\section{The upper bound on the connective constant}
-
-To prove
+All three coefficients are positive. In particular,
 \[
-  \mu_{\mathrm{hex}}\le \sqrt{2+\sqrt2},
+ B_{T,L}(x_c)\le1,\qquad
+ A_{T,L}(x_c)\le\left(\cos\frac{3\pi}{8}\right)^{-1}.
 \]
-one shows that the self-avoiding-walk generating function cannot converge beyond
+The initial value $1$ on the left comes from the empty walk at the starting mid-edge; the trigonometric coefficients are the real parts of its boundary winding weights. The exact coefficients matter, because the same identity will provide both a bound for bridges and a mechanism forcing divergence at the critical point.
+
+As the strip height $L$ increases, the ordinary generating functions for walks reaching a fixed boundary arc have limits, allowing us to work with $A_T$, $B_T$ and $E_T$. Their positivity survives the limit.
+
+\section{Why divergence gives the lower bound}
+
+There is an easy logical trap here. The radius of convergence of the full walk-generating function
 \[
-  x_c=\frac1{\sqrt{2+\sqrt2}}.
+ Z(x)=\sum_{n\ge0}c_nx^n
 \]
-Equivalently, if \(x>x_c\), then the full generating function must diverge.  The boundary identity supplies enough positive mass at \(x_c\) to force criticality at or before this value.
-
-The proof is subtle because finite-domain identities do not immediately determine the infinite-volume connective constant.  One has to pass from boundary generating functions to walks in the full lattice.  The Hammersley--Welsh bridge technology from the previous note is part of the background that makes this passage possible.
-
-\section{The lower bound on the connective constant}
-
-The other inequality
+is $R=1/\mu_{\mathrm{hex}}$ by the root test. If $Z(x_c)$ diverges, the radius satisfies $R\le x_c$, and therefore
 \[
-  \mu_{\mathrm{hex}}\ge \sqrt{2+\sqrt2}
+ \boxed{\mu_{\mathrm{hex}}\ge x_c^{-1}=\sqrt{2+\sqrt2}.}
 \]
-amounts to showing that the generating function still converges below \(x_c\).  In practice one proves that for \(x<x_c\), the weighted sum of self-avoiding walks is finite.  This uses the same domain identities together with limiting arguments and standard consequences of submultiplicativity.
+The inequality points this way because taking positive reciprocals reverses order.
 
-Combining the two bounds gives the exact value
+The local identity provides a surprisingly concrete route to that divergence. Let $A_T,B_T,E_T$ be the limits of the positive boundary generating functions as the strip height tends to infinity. If $E_T>0$ for some width $T$, walks reaching arbitrarily high in that strip already force $Z(x_c)=\infty$: every sufficiently tall boundary contributes at least $E_T$ to disjoint classes of walks.
+
+What if $E_T=0$ for every width? Then the remaining identity is
 \[
-  \mu_{\mathrm{hex}}=\sqrt{2+\sqrt2}.
+ 1=c_\alpha A_T+B_T.
+\]
+In the original proof, cutting a walk counted by $A_{T+1}-A_T$ at the first visit to the farther edge bounds the difference by two crossing bridges:
+\[
+ A_{T+1}-A_T\le x_c B_{T+1}^2.
+\]
+Subtracting the two boundary identities gives
+\[
+ \boxed{c_\alpha x_c B_{T+1}^2+B_{T+1}\ge B_T.}
+\]
+An elementary induction then implies $B_T\ge c/T$ for some $c>0$ (one may take $c=\min(B_1,(c_\alpha x_c)^{-1})$). Walks crossing different strip widths form disjoint classes, so
+\[
+ Z(x_c)\ \ge\ \sum_{T\ge1}B_T
+ \ \ge\ c\sum_{T\ge1}\frac1T
+ \ =\ \infty.
+\]
+Either way, the generating function diverges at $x_c$. The harmonic-series bound is a rather beautiful place for a discrete holomorphic identity to end up: all those complex phases have led to a statement about \emph{positive counts}.
+
+\section{Why convergence gives the upper bound}
+
+For the reverse inequality, we must prove that $Z(x)$ converges at every $x<x_c$. This means $R\ge x_c$, or
+\[
+ \boxed{\mu_{\mathrm{hex}}\le x_c^{-1}.}
+\]
+
+The critical boundary identity bounds the bridge sum by $B_T(x_c)\le1$. A bridge crossing a strip of width $T$ takes at least $T$ steps, so for $0<x<x_c$,
+\[
+  B_T(x)
+  \le \left(\frac{x}{x_c}\right)^T B_T(x_c)
+  \le \left(\frac{x}{x_c}\right)^T.
+\]
+Consequently $\sum_{T\ge1}B_T(x)<\infty$. The bridge decomposition explained in the preceding note represents every walk by two ordered collections of bridges with strictly decreasing widths. This controls the complete partition function:
+\[
+ \boxed{Z(x)\le2\prod_{T\ge1}(1+B_T(x))^2<\infty.}
+\]
+The product converges because $\log(1+u)\le u$ for $u\ge0$ and the bridge weights have a convergent sum. Thus $R\ge x_c$, as desired.
+
+The two halves of the proof use the boundary identity in different ways: it creates \emph{enough} walks to force divergence at the boundary, while simultaneously placing \emph{strong enough} bounds on crossing bridges to guarantee convergence below it. Together they give
+\[
+ \boxed{\mu_{\mathrm{hex}}=\sqrt{2+\sqrt2}.}
 \]
 
 \begin{theorem}[Connective constant of the hexagonal lattice]

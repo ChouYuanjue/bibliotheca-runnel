@@ -67,7 +67,7 @@ For the closed disk \(\{x^2+y^2\le1\}\), the boundary is the same circle.  Bound
   \draw[->] (0,-2.0) -- (0,2.2) node[above] {$y$};
   \draw[thick] (0,0) circle (1.25);
   \coordinate (pint) at (-0.38,-0.28);
-  \coordinate (pbd) at (0.88,0.88);
+  \coordinate (pbd) at ({1.25*cos(45)},{1.25*sin(45)});
   \fill (pint) circle (2pt) node[below left] {interior};
   \fill (pbd) circle (2pt);
   \fill (1.8,1.2) circle (2pt);
@@ -97,7 +97,7 @@ In \(\mathbb R\), the interval \((0,1)\) is open but not closed, \([0,1]\) is cl
 A set \(E\subseteq\mathbb R^n\) is closed if and only if it contains all its boundary points.
 \end{proposition}
 
-\begin{proof}[Proof skeleton]
+\begin{proof}
 If \(E\) is closed, its complement is open, so no boundary point can lie in the complement; hence every boundary point lies in \(E\).  Conversely, if \(E\) contains all boundary points, then any point outside \(E\) is not an interior point of \(E\) and not a boundary point, so it is exterior.  Thus the complement is open.
 \end{proof}
 
@@ -115,8 +115,8 @@ contains a point of \(E\).  The \vocab{closure} of \(E\), denoted \(\overline E\
 For \(E\subseteq\mathbb R^n\), a point \(P\) lies in \(\overline E\) if and only if there is a sequence \((P_k)\) in \(E\) such that \(P_k\to P\).
 \end{proposition}
 
-\begin{proof}[Proof skeleton]
-If \(P\in\overline E\), choose \(P_k\in E\cap B_{1/k}(P)\), using \(P_k=P\) if \(P\in E\) and necessary.  Then \(P_k\to P\).  Conversely, if \(P_k\in E\) and \(P_k\to P\), then every ball around \(P\) contains some \(P_k\), so \(P\) is in the closure.
+\begin{proof}
+Suppose $P\in\overline E$. If $P\in E$, the constant sequence $P_k=P$ converges to $P$. Otherwise every ball around $P$ meets $E$, so choose $P_k\in E\cap B_{1/k}(P)$; then $P_k\to P$. Conversely, if $P_k\in E$ and $P_k\to P$, every ball around $P$ contains some $P_k$. Hence $P$ lies in the closure of $E$.
 \end{proof}
 
 This gives the most useful closed-set criterion:

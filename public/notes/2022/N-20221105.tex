@@ -1,124 +1,148 @@
-\notechapter{N-20221105}{Function Exercises and Inequality Estimates}
+\notechapter{N-20221105}{Functional Symmetry, Tangency, and Sharp Inequalities}
 
-\section{A short note about elementary methods}
+A functional equation can be inconsistent before one attempts to solve it. A polynomial can change the number of roots as a parameter moves. And an inequality may become sharp only when its constraint is used. These simple problems reward structural calculations that will later reappear as group actions, fold singularities, and convex geometry.\footnote{For the classical inequality methods see Hardy, Littlewood and P\'olya, \emph{Inequalities}; the parameter analysis below uses only standard calculus and the cubic discriminant.}
 
-A person who understands the structure of a problem sees more than someone who only imitates formulas.  The following exercise sheet develops that principle through periodicity, quadratic minima, logarithmic comparison, parameter ranges, and an inequality with \(abc=1\), with the reasoning made explicit.
+\section{A translation and a reflection need to be compatible}
 
-\section{Periodicity from a transformed argument}
-
-The first problem has a function \(f\) satisfying a relation of the form
+Consider the drift equation
 \[
-  f(x+4)=f(x),\qquad g(x+4)=g(x)+2,
+ f(x+4)=f(x)+2.
 \]
-and asks about the periodicity of a composite or transformed function.  The increment in \(x\) produces the same value of \(f\) and a controlled increment of \(g\).  The general principle is:
+Subtracting the linear function \(x/2\) makes the behavior periodic:
 \[
-  f(x+T)=f(x)\quad\Longrightarrow\quad f\text{ has period }T.
+ h(x)=f(x)-\frac x2,\qquad h(x+4)=h(x).
 \]
-If a formula contains \(x+8\), use the period twice.  For example,
+Thus every solution consists of a linear drift plus an arbitrary \(4\)-periodic function.
+
+What happens if we also demand the reflection symmetry
 \[
-  f(x+8)=f((x+4)+4)=f(x+4)=f(x).
+ f(2-x)=f(x)?
 \]
-
-The important point is that a period is not necessarily the least positive period.  A function with period \(4\) automatically has period \(8,12,\ldots\).  Many errors come from confusing ``a period'' with ``the fundamental period.''
-
-\section{A quadratic minimum}
-
-The second problem studies
+There are no solutions. The reflection condition at \(x-4\) gives
 \[
-  y=x^2+x+\frac53.
+ f(6-x)=f(x-4)=f(x)-2,
 \]
-Complete the square:
+while translation applied to \(2-x\) gives
 \[
-  y=\left(x+\frac12\right)^2+\frac{17}{12}.
+ f(6-x)=f(2-x)+2=f(x)+2.
+\]
+The same value cannot equal both \(f(x)-2\) and \(f(x)+2\).
+
+The structural reason is a relation in the infinite dihedral group. The translations \(T(x)=x+4\) and reflection \(R(x)=2-x\) satisfy
+\[
+ RTR=T^{-1}.
+\]
+A reflection reverses the translation, so their corresponding transformations of function values must also be compatible. Shifting the output by \(+2\) is not compatible with leaving the output unchanged under reflection.
+
+A point-reflection condition \emph{is} compatible:
+\[
+ f(x+4)=f(x)+2,\qquad f(2-x)=2-f(x).
+\]
+Its complete solution family is
+\[
+ \boxed{f(x)=\frac{x+1}{2}+h(x),}
+ \qquad h(x+4)=h(x),\quad h(2-x)=-h(x).
+\]
+For instance \(h(x)=A\sin(\pi(x-1)/2)\) works for every real \(A\). The computation has converted a functional equation into an invariance and anti-invariance problem under two generators.
+
+\section{A logarithm comparison is also an analytic expansion}
+
+For \(a>0\), \(a\ne1\), and \(-1<x<1\), consider
+\[
+ F_a(x)=\log_a(1+x)-\log_a(1-x)
+ =\frac{\log((1+x)/(1-x))}{\log a}.
+\]
+The numerator has the same sign as \(x\), so the sign of \(F_a(x)\) changes when \(a\) crosses \(1\). In particular, inequalities reverse when the base is between zero and one.
+
+The numerator has a useful expansion. Since
+\[
+ \frac d{dx}\log\frac{1+x}{1-x}=\frac2{1-x^2},
+\]
+integrate the geometric series to obtain, for \(|x|<1\),
+\[
+ \boxed{\log\frac{1+x}{1-x}
+ =2\sum_{n=0}^{\infty}\frac{x^{2n+1}}{2n+1}.}
+\]
+For \(0<x<1\), the truncation through \(n=m\) is a strict lower bound, and the remainder satisfies
+\[
+ 0<R_m(x)\le
+ \frac{2x^{2m+3}}{(2m+3)(1-x^2)}.
+\]
+Thus a simple sign problem naturally yields the Taylor series of \(2\operatorname{artanh}(x)\) and a rigorous approximation error.
+
+\section{Two roots merge at a tangent level}
+
+Consider the parameter-dependent cubic
+\[
+ F_p(x)=x^3-3px+2.
+\]
+A tangent zero satisfies both \(F_p(x)=0\) and \(F_p'(x)=0\). The second equation gives \(p=x^2\), and substitution into the first gives
+\[
+ -2x^3+2=0.
 \]
 Hence
 \[
-  y\ge\frac{17}{12},
+ \boxed{x=1,\qquad p=1,\qquad
+ F_1(x)=(x-1)^2(x+2).}
 \]
-with equality at
+The root at \(1\) is double; the root at \(-2\) is simple.
+
+The discriminant of \(x^3+bx+c\) is \(-4b^3-27c^2\). For this cubic,
 \[
-  x=-\frac12.
+ \Delta(p)=108(p^3-1).
 \]
-This is the cleanest form of a quadratic problem.  Differentiation gives the same result, but completing the square better reveals the geometry: a parabola shifted horizontally and vertically.
+The equation has one distinct real root if \(p<1\), two distinct roots when \(p=1\), and three distinct real roots if \(p>1\).
 
-\section{A logarithmic comparison}
-
-Another problem compares functions involving logarithms, for example
+Write \(x=1+y\) and \(p=1+\delta\). A direct expansion gives
 \[
-  f(x)=\log_a(x+1)
+ F_{1+\delta}(1+y)
+ =3y^2+y^3-3\delta(1+y).
 \]
-and a related expression \(g(x)-f(x)\).  Logarithm rules rewrite the difference as:
+When \(\delta>0\) is small, the two roots that meet at \(1\) obey
 \[
-  \log_a u-\log_a v=\log_a\frac uv.
+ y=\pm\sqrt\delta+O(\delta).
 \]
-Then the sign of the difference depends on whether the base \(a\) is greater than \(1\) or between \(0\) and \(1\).  This is the crucial trap:
+A polynomial exercise has exposed the local square-root geometry of a fold: solutions appear in pairs across a critical parameter.
+
+\section{The product constraint produces a sharp inequality}
+
+For \(a,b,c>0\) with \(abc=1\), prove
 \[
-  a>1\quad\Rightarrow\quad \log_a x\text{ is increasing},
+ \boxed{\frac{a^2}{b+c}+
+        \frac{b^2}{c+a}+
+        \frac{c^2}{a+b}\ge\frac32.}
 \]
-whereas
+Cauchy--Schwarz in Engel form yields
 \[
-  0<a<1\quad\Rightarrow\quad \log_a x\text{ is decreasing}.
+ \sum_{\mathrm{cyc}}\frac{a^2}{b+c}
+ \ge\frac{(a+b+c)^2}{2(a+b+c)}
+ =\frac{a+b+c}{2}.
 \]
-So a logarithmic inequality must always track the base.
+AM--GM and \(abc=1\) give \(a+b+c\ge3\), so the desired bound follows. Equality in both steps requires \(a=b=c=1\); the constant is sharp.
 
-\section{A parameterized polynomial}
-
-For a parameter \(p\) and a function with a specified zero or extremum, substitute the relevant value and reduce the condition to an equation in \(p\).  The broad template is:
-\begin{enumerate}[(i)]
-  \item if \(x_0\) is a zero, impose \(f(x_0)=0\);
-  \item if \(x_0\) is an extremum of a differentiable function, impose \(f'(x_0)=0\);
-  \item if a graph is tangent to a line, impose both value equality and slope equality.
-
-\end{enumerate}
-
-This page is mainly training the habit of translating a verbal condition into equations.
-
-\section[An inequality under abc=1]{An inequality under \(abc=1\)}
-
-The last problem states: for \(a,b,c>0\), \(abc=1\), prove an inequality of the form
+There is also a useful local geometric interpretation of the constraint. Put
 \[
-  \frac1{a^3(cb+c)}+\frac1{b^3(ca+c)}+\frac1{c^3(a+b)}\ge\frac32.
+ a=e^u,\qquad b=e^v,\qquad c=e^{-u-v}.
 \]
-Use the condition
+The condition \(abc=1\) is now automatic. By convexity of the exponential,
 \[
-  abc=1
+ e^u+e^v+e^{-u-v}\ge3.
 \]
-to replace reciprocal expressions by symmetric sums such as
+A second-order expansion around the equality point gives
 \[
-  \frac1a+\frac1b+\frac1c=ab+bc+ca.
+ a+b+c
+ =3+\frac12\bigl(u^2+v^2+(u+v)^2\bigr)
+  +O\bigl((|u|+|v|)^3\bigr).
 \]
-Then Cauchy--Schwarz or AM--GM gives a lower bound.
+The positive quadratic correction quantifies how the sum grows away from the equal-variable configuration. In logarithmic coordinates, the product constraint has become a linear plane and AM--GM is simply a Jensen inequality on that plane.
 
-The useful lesson is that the constraint \(abc=1\) should not sit unused.  It usually allows conversion between variables and reciprocals.  A standard move is also
+\section{Quadratics give the exact local model}
+
+For comparison, completing the square in a one-variable problem yields
 \[
-  a=\frac xy,\qquad b=\frac yz,\qquad c=\frac zx,
+ x^2+x+\frac53
+ =\left(x+\frac12\right)^2+\frac{17}{12}.
 \]
-which automatically enforces \(abc=1\).  Whether one uses this substitution or direct reciprocal rewriting depends on the shape of the expression.
+The excess above the minimum \(17/12\) is exactly a square. At the constrained exponential minimum the excess is only approximately a positive quadratic form, but it plays the same local role.
 
-\section{The conceptual turn}
-
-The exercises look miscellaneous, but the same strategy recurs: normalize the expression before attacking it.  Periodicity reduces arguments modulo a period; completing the square normalizes a quadratic; logarithm laws turn products into sums; parameter conditions become equations; \(abc=1\) turns reciprocal expressions into symmetric ones.  Elementary problem solving is often the art of finding the right normalization.
-
-\section{Periodicity from transformed arguments}
-
-A relation such as \(f(x+a)=f(x)\) is invariance under translation by \(a\).  More complicated relations, for example involving \(f(c-x)\), combine translation and reflection.  The group generated by these transformations controls the function's repeated values.
-
-Thus many functional-equation exercises are really symmetry problems on the domain.
-
-\section{Quadratic and logarithmic estimates}
-
-A quadratic minimum is controlled by completing the square:
-\[
-  ax^2+bx+c=a\left(x+\frac b{2a}\right)^2+c-\frac{b^2}{4a}.
-\]
-A logarithmic comparison often uses monotonicity or concavity of \(\log\).  In both cases, the point is to expose the structural feature: convexity for quadratics, monotone concavity for logarithms.
-
-\section{Functional equations and orbit reduction}
-
-If a functional equation lets one transform \(x\) into simpler inputs, then the domain splits into orbits under the generated transformations.  A fundamental domain is a set of representatives for these orbits.
-
-Solving the equation means assigning values on the fundamental domain and transporting them consistently along the orbit.
-
-\section{Functions through symmetry and normal form}
-
-Function exercises are unified by structure: periodicity is group invariance, quadratics are convex normal forms, logarithmic inequalities come from monotonicity and concavity, and functional equations reduce values along orbits.
+The method across these problems is to identify what cannot change. A functional equation respects the relations of its symmetry group, a critical root is marked by the simultaneous vanishing of a function and its derivative, and the equality case of an inequality identifies the point about which a convexity argument can be sharpened. Each is a useful route from elementary algebra to structural mathematics.

@@ -22,7 +22,7 @@ These are different levels of information:
 \]
 Trying to use one level as a substitute for another causes confusion.  Jordan form explains exact structure but is usually a poor numerical algorithm.  Gershgorin discs are robust and cheap but rarely exact.  Iteration computes selected eigenpairs but only under separation and stability assumptions.
 
-\section{The polynomial matrix \texorpdfstring{$\lambda I-A$}{lambda I minus A} contains more than the characteristic polynomial}
+\section{Polynomial Matrices and Invariant Factors}
 
 The characteristic polynomial
 \[
@@ -169,7 +169,7 @@ and the elementary divisors are
 \]
 They recover the block structure \(J_2(2)\oplus J_1(3)\).
 
-\section{Jordan chains turn algebraic multiplicity into dynamics}
+\section{Jordan Chains and Growth}
 
 A Jordan chain for eigenvalue \(\mu\) is a sequence
 \[
@@ -231,7 +231,7 @@ This also explains why Jordan form is mathematically revealing but numerically d
 \]
 where \(Q\) is unitary and \(T\) is upper triangular.  The diagonal of \(T\) gives the eigenvalues while unitary similarity avoids an ill-conditioned eigenvector basis.
 
-\section{Gershgorin reads spectral information directly from rows}
+\section{Gershgorin from Row Sums}
 
 Canonical forms describe exact similarity invariants, but they are not a cheap first diagnostic.  Gershgorin's theorem locates every eigenvalue using only row sums.
 
@@ -291,7 +291,7 @@ The chosen coordinate may depend on the eigenvector, so the theorem gives a unio
 \caption{A separated component containing exactly $m$ Gershgorin discs contains exactly $m$ eigenvalues, counted with algebraic multiplicity.}
 \end{figure}
 
-\section{Separated discs count eigenvalues, not merely contain them}
+\section{Counting Eigenvalues with Gershgorin}
 
 A stronger form of the theorem says that if a connected component of
 \[
@@ -326,7 +326,7 @@ This separated-component principle is particularly useful for proving that a mat
   |a_{ii}|>\sum_{j\ne i}|a_{ij}|.
 \]
 
-\section{Diagonal scaling can reveal localization hidden by coordinates}
+\section{Gershgorin after Diagonal Scaling}
 
 Gershgorin discs depend on the chosen basis even though eigenvalues do not.  This is not a defect; it is an opportunity.  A diagonal similarity
 \[
@@ -522,22 +522,44 @@ For Hermitian matrices, the Lanczos process constructs an orthonormal basis of t
 
 These methods are the large-scale descendants of power iteration.  They retain the same polynomial idea---vectors in \(\mathcal K_k\) have the form \(p_{k-1}(A)x_0\)---but optimize over many polynomials rather than repeatedly using only \(p(t)=t^k\).  This is why Krylov eigensolvers can resolve several eigenvalues and converge much faster than plain power iteration.
 
-\section{The three viewpoints should remain distinct}
+\section{A cubic improvement you can calculate by hand}
 
-Smith form and invariant factors answer what survives exact algebraic equivalence.  Jordan chains explain generalized eigenvectors, polynomial factors in powers, and the minimal polynomial.  Schur form is usually the numerically stable replacement when floating-point computation is required.
-
-Gershgorin discs answer a cheaper question: where can the spectrum lie, and can separated clusters be counted before computing them?  Diagonal scaling shows that localization may improve after a better choice of coordinates.
-
-Power iteration, shifted inverse iteration, and Rayleigh quotient iteration answer a computational question: how can a selected eigendirection be amplified?  Their success depends on spectral separation, a nonzero starting component, stable linear solves, and residual checks.  Krylov methods generalize the same idea from one direction to an adaptively constructed subspace.
-
-The natural workflow is therefore
+For the symmetric matrix already used above,
 \[
-\begin{gathered}
-  \text{understand invariant structure}\\
-  \big\downarrow\\
-  \text{localize the spectrum}\\
-  \big\downarrow\\
-  \text{choose and verify an iteration}.
-\end{gathered}
+ A=\begin{pmatrix}2&1\\1&2\end{pmatrix},
+ \qquad \sigma(A)=\{3,1\},
 \]
-Canonical forms tell us what the operator is.  Localization tells us where to look.  Iteration tells us how to reach the part we want.
+Rayleigh quotient iteration has an especially transparent calculation. Write a vector in the two eigenvector directions as
+\[
+ x\ \propto\
+ \begin{pmatrix}1\\1\end{pmatrix}
+ +\delta\begin{pmatrix}1\\-1\end{pmatrix}.
+\]
+The number $\delta$ measures the relative unwanted eigendirection. Since the two directions are orthogonal, the Rayleigh quotient is
+\[
+ \mu=\frac{3+\delta^2}{1+\delta^2}.
+\]
+One shifted inverse solve changes the ratio of the two eigencomponents to
+\[
+ \delta_{\mathrm{new}}
+   =\delta\frac{3-\mu}{1-\mu}
+   =\boxed{-\delta^3}.
+\]
+There is the cubic improvement: in this two-dimensional Hermitian example it is an \emph{exact identity}, provided the shifted linear system is nonsingular.
+
+Take $x_0=(2,1)^T/\sqrt5$, for which $\delta=(2-1)/(2+1)=1/3$. The original quotient is $14/5$. One step gives
+\[
+ \delta_1=-\frac1{27},\qquad
+ x_1=\frac1{\sqrt{365}}\begin{pmatrix}13\\14\end{pmatrix},
+ \qquad
+ \mu_1=\frac{1094}{365}\approx2.99726.
+\]
+The unwanted component has fallen from $1/3$ to $1/27$ in a single iteration. A second step cubes it again.
+
+There is also a simple certificate for any approximate Hermitian eigenpair. If $\|x\|_2=1$, $\mu=x^*Ax$, and $r=Ax-\mu x$, then expansion in an orthonormal eigenbasis gives
+\[
+ \|r\|_2^2
+   =\sum_j |c_j|^2|\lambda_j-\mu|^2
+   \ \ge\ \operatorname{dist}(\mu,\sigma(A))^2.
+\]
+Thus some eigenvalue lies within $\|r\|_2$ of the computed quotient. For our $x_1$, the residual norm is $27/365$, so the interval centered at $\mu_1$ with that radius contains the eigenvalue $3$. A rapid iteration and a reliable error check come from the same two-by-two calculation.

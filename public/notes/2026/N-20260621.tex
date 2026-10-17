@@ -1,264 +1,166 @@
-\notechapter{N-20260621}{The Heat Equation, Diffusion, and Similarity Solutions}
+\notechapter{N-20260621}{Heat Flow: Gaussian Scaling, Spectral Decay, and Entropy}
 
-\section{Diffusion versus wave motion}
+Why does a localized temperature profile become Gaussian, and why does the heat equation smooth irregular data so quickly? Both questions are answered by the same evolution operator. Conservation fixes the mass of the heat kernel, parabolic scaling fixes its characteristic width, and the Fourier transform explains its damping of high frequencies. When the evolving profile is regarded as a probability density, this same process has an exact entropy-dissipation law.\footnote{MIT 18.152, Lectures 2--5; K. Tang, \href{https://math.mit.edu/~tangkai/note/HE.pdf}{\emph{Topics in Heat Equations}}, \S9 (entropy and Fisher information).}
 
-The one-dimensional heat equation is
-\[
-  T_t=\kappa T_{xx},\qquad \kappa>0.
-\]
-Here \(T(x,t)\) is temperature and \(\kappa\) is the thermal diffusivity.  The equation says that the rate of change of temperature is proportional to curvature in the temperature profile.  Peaks have negative curvature and decay; troughs have positive curvature and rise.  Unlike the wave equation, diffusion is dissipative rather than oscillatory.
+\section{Conservation and Fick's law}
 
-The heat equation is parabolic.  One practical consequence is infinite propagation speed in the ideal model: a localized heat distribution immediately becomes nonzero everywhere, although it may be extremely small far away.
+For a temperature or concentration \(u(x,t)\) on a homogeneous one-dimensional medium, write the flux as \(J=-\kappa u_x\), with \(\kappa>0\). Conservation on an interval \([a,b]\) says
+\[
+ \frac d{dt}\int_a^b u(x,t)\,dx=J(a,t)-J(b,t).
+\]
+Since the interval is arbitrary, the local equation is
+\[
+ \boxed{u_t+\partial_xJ=0,\qquad u_t=\kappa u_{xx}.}
+\]
+Thus diffusion is conservation driven by a gradient-dependent constitutive law. At a local maximum \(u_{xx}\le0\), so the temperature there cannot increase through the diffusion term.
 
-\section{Heat kernel on the whole line}
+Integrating over the whole line, when the flux vanishes at infinity, gives
+\[
+ \frac d{dt}\int_{\mathbb R}u(x,t)\,dx=0.
+\]
+The profile can spread, but its total mass is fixed. A natural fundamental solution is therefore a family of nonnegative functions of mass one that approaches a point mass as \(t\downarrow0\).
 
-The fundamental solution on the real line is the heat kernel
-\[
-  G(x,t)=\frac{1}{\sqrt{4\pi\kappa t}}\exp\left(-\frac{x^2}{4\kappa t}\right),\qquad t>0.
-\]
-If \(T(x,0)=f(x)\), then the solution is the convolution
-\[
-  T(x,t)=(G(\cdot,t)*f)(x)
-  =\int_{-\infty}^{\infty}G(x-s,t)f(s)\,ds.
-\]
-The kernel has total mass one:
-\[
-  \int_{-\infty}^{\infty}G(x,t)\,dx=1,
-\]
-so heat is redistributed rather than created.  The width of the Gaussian is of order \(\sqrt{\kappa t}\), which is the natural diffusion length scale.
+\section{The Gaussian follows from parabolic scaling}
 
-\section{Similarity solution on a semi-infinite rod}
-
-Consider a semi-infinite rod \(x>0\) initially at temperature zero, with the end held at temperature one after \(t=0\):
+The equation is invariant under \(x\mapsto\lambda x\), \(t\mapsto\lambda^2t\). A mass-one similarity solution should have the form
 \[
-  T(x,0)=0,\qquad T(0,t)=1,\qquad T(x,t)\to0\quad(x\to\infty).
+ G(x,t)=\frac{1}{2\sqrt{\kappa t}}\Phi(\eta),
+ \qquad \eta=\frac{x}{2\sqrt{\kappa t}}.
 \]
-The heat equation is invariant under the scaling
+Substitution into \(G_t=\kappa G_{xx}\) yields
 \[
-  x\mapsto \lambda x,\qquad t\mapsto \lambda^2t.
+ \Phi''+2\eta\Phi'+2\Phi=0
+ \quad\Longleftrightarrow\quad
+ (\Phi'+2\eta\Phi)'=0.
 \]
-This suggests the similarity variable
+For a nonnegative integrable profile decaying at both ends, the integration constant must be zero. Hence
 \[
-  \eta=\frac{x}{2\sqrt{\kappa t}},\qquad T(x,t)=\theta(\eta).
+ \Phi'=-2\eta\Phi,\qquad
+ \Phi(\eta)=Ce^{-\eta^2}.
 \]
-The derivatives are
+The mass normalization \(\int_\mathbb R G\,dx=\int_\mathbb R\Phi(\eta)\,d\eta=1\) fixes \(C=1/\sqrt\pi\):
 \[
-  T_x=\frac{1}{2\sqrt{\kappa t}}\theta'(\eta),\qquad
-  T_{xx}=\frac{1}{4\kappa t}\theta''(\eta),\qquad
-  T_t=-\frac{\eta}{2t}\theta'(\eta).
+ \boxed{G(x,t)=\frac{1}{\sqrt{4\pi\kappa t}}
+              \exp\left(-\frac{x^2}{4\kappa t}\right).}
 \]
-Substitution into \(T_t=\kappa T_{xx}\) gives
+Its variance is \(2\kappa t\), so the diffusion length scale is \(\sqrt{2\kappa t}\). For sufficiently regular and integrable initial data \(f\), the solution on the line is
 \[
-  \theta''+2\eta\theta'=0.
-\]
-Let \(v=\theta'\).  Then
-\[
-  v'+2\eta v=0,\qquad (e^{\eta^2}v)'=0,
-\]
-so
-\[
-  \theta'=Ae^{-\eta^2},\qquad
-  \theta=A\int_0^\eta e^{-s^2}\,ds+B.
-\]
-Using
-\[
-  \operatorname{erf}(\eta)=\frac{2}{\sqrt\pi}\int_0^\eta e^{-s^2}\,ds,\qquad
-  \operatorname{erfc}(\eta)=1-\operatorname{erf}(\eta),
-\]
-the boundary conditions give
-\[
-  T(x,t)=\operatorname{erfc}\left(\frac{x}{2\sqrt{\kappa t}}\right).
+ u(x,t)=\int_{\mathbb R}G(x-y,t)f(y)\,dy.
 \]
 
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}[xscale=2.25,yscale=1.1,>=Stealth,every node/.style={fill=white,inner sep=1pt}]
-  \draw[->] (0,0) -- (2.35,0) node[right] {$x$};
-  \draw[->] (0,0) -- (0,1.35) node[above] {$T$};
-  \foreach \a/\lab/\shade in {0.65/{$t_1$}/45,0.95/{$t_2$}/65,1.30/{$t_3$}/85} {
-    \draw[blue!\shade!black,thick,domain=0:2.15,samples=100] plot (\x,{1/(1+(\x/\a)^4)});
-    \node[blue!\shade!black] at (1.85,{1/(1+(1.85/\a)^4)+0.08}) {\lab};
-  }
-  \node[anchor=west] at (0.55,1.12) {diffusion length $O(\sqrt{\kappa t})$};
-\end{tikzpicture}
-\caption{A qualitative picture of the semi-infinite rod solution.  As time grows, the transition layer spreads over length scale \(\sqrt{\kappa t}\).}
-\end{figure}
+\section{The same Gaussian is a probability transition kernel}
 
-\section{Fourier series for a finite rod}
+For \(s,t>0\), Gaussian convolution obeys
+\[
+ G_t*G_s=G_{t+s}.
+\]
+The convolution of two centered normal distributions with variances \(2\kappa t\) and \(2\kappa s\) has variance \(2\kappa(t+s)\); this proves the identity and also explains it probabilistically.
 
-For a finite rod \(0<x<L\) with fixed zero temperature at the endpoints,
+Let \(B_t\) be standard Brownian motion, with \(B_t\sim N(0,t)\). Then for bounded continuous \(f\),
 \[
-  T(0,t)=T(L,t)=0,
+ (S_tf)(x):=(G_t*f)(x)
+   =\mathbb E\bigl[f(x+\sqrt{2\kappa}B_t)\bigr].
 \]
-separation of variables gives
+Brownian motion has independent increments, so
 \[
-  T(x,t)=X(x)A(t).
+ S_tS_sf=S_{t+s}f.
 \]
-Substitution yields
+The operator family \(S_t\) is a Markov semigroup, and its infinitesimal generator is \(\kappa\partial_x^2\). Indeed, a Taylor expansion under the Gaussian expectation, for smooth \(f\) with bounded derivatives, gives
 \[
-  \frac{A'}{\kappa A}=\frac{X''}{X}=-\lambda.
+ \lim_{t\downarrow0}\frac{S_tf-f}{t}=\kappa f''.
 \]
-The boundary value problem
-\[
-  X''+\lambda X=0,\qquad X(0)=X(L)=0
-\]
-has eigenfunctions
-\[
-  X_n(x)=\sin\frac{n\pi x}{L},\qquad \lambda_n=\left(\frac{n\pi}{L}\right)^2.
-\]
-Thus each Fourier mode decays exponentially:
-\[
-  T(x,t)=\sum_{n=1}^\infty b_n e^{-\kappa(n\pi/L)^2t}\sin\frac{n\pi x}{L}.
-\]
-High-frequency modes have larger \(n^2\) and therefore decay faster.  This is the analytic meaning of smoothing by the heat equation.
+Heat diffusion and Brownian motion thus share one Gaussian transition rule: a deterministic PDE describes how the probability distribution of random motion evolves.
 
-\section{Maximum principle}
+\section{Fourier modes make smoothing quantitative}
 
-A basic qualitative theorem for the heat equation is the maximum principle.
+Write \(\widehat u(\xi,t)=\int_\mathbb R u(x,t)e^{-i\xi x}\,dx\). Fourier transformation of \(u_t=\kappa u_{xx}\) gives an ordinary differential equation at each frequency:
+\[
+ \partial_t\widehat u=-\kappa\xi^2\widehat u,\qquad
+ \boxed{\widehat u(\xi,t)=e^{-\kappa\xi^2t}\widehat f(\xi).}
+\]
+The multiplier rapidly suppresses large \(|\xi|\). For example, a Fourier mode of frequency \(10\) decays a hundred times faster in the exponent than one of frequency \(1\). This is the spectral explanation for instantaneous smoothness at positive times.
 
-\begin{theorem}[Maximum principle, informal form]
-For a smooth solution of \(T_t=\kappa T_{xx}\) on a closed space-time rectangle, the maximum and minimum occur either at the initial time or on the spatial boundary, unless the solution is constant.
-\end{theorem}
+The semigroup relation becomes multiplication of multipliers:
+\[
+ e^{-\kappa\xi^2t}e^{-\kappa\xi^2s}
+ =e^{-\kappa\xi^2(t+s)}.
+\]
+The Gaussian kernel, Brownian increments and Fourier damping are three exact realizations of the same operation.
 
-This theorem matches the physical intuition that heat does not create a new interior temperature peak.  It also explains why the heat equation behaves differently from the wave equation: diffusion forgets fine details, while waves transport and superpose them.
+\section{Boundary Heating and Error Functions}
 
-% Expanded PDE supplement: N-20260621
-\section{Energy decay on an interval}
+Consider the half-line \(x>0\), initially at temperature zero, with a boundary maintained at unit temperature:
+\[
+ u(x,0)=0\ (x>0),\quad u(0,t)=1\ (t>0),\quad
+ \lim_{x\to\infty}u(x,t)=0.
+\]
+The parabolic scaling suggests \(u(x,t)=\theta(\eta)\), where \(\eta=x/(2\sqrt{\kappa t})\). Substitution yields
+\[
+ \theta''+2\eta\theta'=0.
+\]
+Therefore \(\theta'(\eta)=Ce^{-\eta^2}\). The conditions
+\(\theta(0)=1\), \(\theta(\infty)=0\) give
+\[
+ \boxed{u(x,t)=\operatorname{erfc}
+       \left(\frac{x}{2\sqrt{\kappa t}}\right),\qquad
+ \operatorname{erfc}(z)=\frac2{\sqrt\pi}\int_z^\infty e^{-r^2}\,dr.}
+\]
+The same Gaussian integral that normalized the whole-line kernel now describes the moving transition layer next to a boundary. The profile is exact for \(x,t>0\); its incompatible values at the corner \((0,0)\) reflect the instantaneous change of boundary temperature.
 
-For the heat equation on \(0<x<L\) with zero boundary values, define the thermal energy norm
-\[
-  \|T(\cdot,t)\|_{L^2}^2=\int_0^L T(x,t)^2\,dx.
-\]
-Then
-\[
-  \frac{d}{dt}\frac12\int_0^L T^2\,dx
-  =\int_0^L T T_t\,dx
-  =\kappa\int_0^L T T_{xx}\,dx.
-\]
-Integrating by parts and using \(T(0,t)=T(L,t)=0\),
-\[
-  \frac{d}{dt}\frac12\int_0^L T^2\,dx
-  =-\kappa\int_0^L T_x^2\,dx\le0.
-\]
-Thus the \(L^2\)-size of the temperature distribution decreases in time.  This is the heat-equation analogue of the energy identity for the wave equation, but with a crucial difference: wave energy is conserved, while heat energy decays.
+\section{Finite intervals have a spectral gap}
 
-\section{The maximum principle with proof idea}
+For \(0<x<L\), impose the fixed-temperature conditions \(u(0,t)=u(L,t)=0\). Separation of variables and orthogonality of sines give
+\[
+ u(x,t)=\sum_{n\ge1}b_ne^{-\kappa(n\pi/L)^2t}
+                    \sin\frac{n\pi x}{L},\qquad
+ b_n=\frac2L\int_0^Lf(x)\sin\frac{n\pi x}{L}\,dx.
+\]
+The lowest spatial eigenvalue is \((\pi/L)^2\). Hence Parseval's identity implies
+\[
+ \boxed{\|u(\cdot,t)\|_{L^2(0,L)}
+       \le e^{-\kappa\pi^2t/L^2}\|f\|_{L^2(0,L)}.}
+\]
+This decay rate can also be obtained without solving explicitly. Multiplying the PDE by \(u\), integrating by parts, and applying the sharp Dirichlet Poincare inequality yields
+\[
+ \frac d{dt}\frac12\int_0^L u^2\,dx
+ =-\kappa\int_0^L u_x^2\,dx
+ \le-\kappa\frac{\pi^2}{L^2}\int_0^Lu^2\,dx.
+\]
+Gronwall's inequality reproduces the same exponential estimate. The PDE and its eigenfunction expansion express the same \emph{spectral gap}.
 
-The maximum principle says that heat cannot create a new interior maximum.  Here is the local calculation behind it.  Suppose \(T\) has a strict interior maximum at \((x_0,t_0)\) with \(t_0>0\).  At that point,
+For fixed nonzero endpoint temperatures \(A,B\), first subtract the steady profile
 \[
-  T_x(x_0,t_0)=0,\qquad T_{xx}(x_0,t_0)\le0.
+ h(x)=A+\frac{B-A}{L}x.
 \]
-The heat equation gives
-\[
-  T_t(x_0,t_0)=\kappa T_{xx}(x_0,t_0)\le0.
-\]
-Thus the value cannot be increasing at an interior spatial maximum.  A rigorous proof perturbs the function by a small term such as \(-\varepsilon t\) to rule out equality cases.
+Then \(v=u-h\) obeys homogeneous endpoint conditions and decays toward zero. For insulated endpoints \(u_x(0,t)=u_x(L,t)=0\), the total mass is conserved and the zero Fourier mode survives. The solution approaches its spatial mean rather than zero.
 
-\begin{theorem}[Uniqueness for the heat equation]
-For the heat equation on a bounded interval with fixed boundary and initial data, there is at most one smooth solution.
-\end{theorem}
+\section{Diffusion increases entropy and dissipates information}
 
-\begin{proof}
-Let \(T_1\) and \(T_2\) be two solutions and set \(w=T_1-T_2\).  Then \(w_t=\kappa w_{xx}\) with zero initial data and zero boundary data.  By the maximum principle, \(w\le0\).  Applying the same argument to \(-w\) gives \(w\ge0\).  Hence \(w=0\).
-\end{proof}
+Now assume \(u(x,t)>0\) is a smooth probability density on \(\mathbb R\), with sufficient decay to integrate by parts. Its differential Shannon entropy is
+\[
+ H(u_t)=-\int_{\mathbb R}u(x,t)\log u(x,t)\,dx.
+\]
+Using mass conservation, the heat equation, and integration by parts,
+\[
+\begin{aligned}
+ \frac d{dt}H(u_t)
+ &=-\int_{\mathbb R}(\partial_tu)(1+\log u)\,dx\\
+ &=-\kappa\int_{\mathbb R}u_{xx}\log u\,dx\\
+ &=\kappa\int_{\mathbb R}\frac{u_x^2}{u}\,dx\\
+ &=\kappa\int_{\mathbb R}u\,|\partial_x\log u|^2\,dx.
+\end{aligned}
+\]
+The last integral is the \emph{Fisher information} \(I(u_t)\), so
+\[
+ \boxed{\frac d{dt}H(u_t)=\kappa I(u_t)\ge0.}
+\]
+Entropy increases because the density becomes more spread out; the rate is precisely its Fisher information. This identity is a concrete bridge between heat flow and information geometry.
 
-\section{Smoothing and the heat semigroup}
+For the Gaussian kernel \(G_t=N(0,2\kappa t)\),
+\[
+ H(G_t)=\frac12\log(4\pi e\kappa t),\qquad
+ I(G_t)=\frac1{2\kappa t}.
+\]
+Direct differentiation gives \(H'(G_t)=1/(2t)=\kappa I(G_t)\), confirming the general identity on the fundamental solution.
 
-On the whole line, the solution operator is convolution with the heat kernel:
-\[
-  T(\cdot,t)=G_t*f.
-\]
-The family \(G_t\) satisfies the semigroup identity
-\[
-  G_t*G_s=G_{t+s}.
-\]
-Therefore the solution operators satisfy
-\[
-  S(t)S(s)=S(t+s),\qquad S(t)f=G_t*f.
-\]
-This is the infinite-dimensional analogue of the exponential law \(e^{tA}e^{sA}=e^{(t+s)A}\).  Formally,
-\[
-  S(t)=e^{t\kappa\partial_x^2}.
-\]
-The heat equation is the basic example of a smoothing semigroup: even if \(f\) is rough, convolution with a Gaussian produces a smooth function for every \(t>0\).
-
-\section{Fourier transform solution on the real line}
-
-Let
-\[
-  \widehat{T}(\xi,t)=\int_{-\infty}^{\infty}T(x,t)e^{-ix\xi}\,dx.
-\]
-Taking the Fourier transform of \(T_t=\kappa T_{xx}\) gives
-\[
-  \partial_t \widehat{T}(\xi,t)=-\kappa \xi^2 \widehat{T}(\xi,t).
-\]
-For each fixed frequency \(\xi\), this is an ordinary differential equation:
-\[
-  \widehat{T}(\xi,t)=e^{-\kappa \xi^2t}\widehat{f}(\xi).
-\]
-High frequencies are multiplied by a rapidly decaying factor.  This is the frequency-space explanation of smoothing.
-
-Inverting the Fourier transform gives the heat-kernel formula.  Thus the Gaussian kernel, the semigroup law, and the Fourier multiplier \(e^{-\kappa\xi^2t}\) are three descriptions of the same solution operator.
-
-\section{Boundary conditions and conservation}
-
-Boundary conditions change what is conserved.
-
-For insulated endpoints, one uses Neumann conditions:
-\[
-  T_x(0,t)=T_x(L,t)=0.
-\]
-Then the total heat is conserved:
-\[
-  \frac{d}{dt}\int_0^L T(x,t)\,dx
-  =\kappa\int_0^L T_{xx}\,dx
-  =\kappa[T_x]_0^L=0.
-\]
-For fixed-temperature endpoints, total heat may enter or leave through the boundary.  The PDE describes local diffusion; the boundary condition describes the external thermal reservoir.
-
-\section{Steady states and long-time behavior}
-
-A steady state satisfies \(T_t=0\), so
-\[
-  T_{xx}=0.
-\]
-On an interval, the steady states are linear functions
-\[
-  T_\infty(x)=Ax+B.
-\]
-If the endpoints are held at temperatures \(T(0,t)=A_0\) and \(T(L,t)=A_L\), then the steady state is
-\[
-  T_\infty(x)=A_0+\frac{A_L-A_0}{L}x.
-\]
-The transient part \(T-T_\infty\) satisfies zero boundary conditions and decays by the Fourier sine expansion.  This separates the problem into two pieces: first solve the static boundary problem, then solve a homogeneous heat equation for the decaying error.
-
-\begin{example}[Nonzero boundary temperatures]
-Let \(T(0,t)=0\), \(T(L,t)=1\), and \(T(x,0)=f(x)\).  The steady state is \(x/L\).  Set
-\[
-  v(x,t)=T(x,t)-\frac{x}{L}.
-\]
-Then \(v\) satisfies
-\[
-  v_t=\kappa v_{xx},\qquad v(0,t)=v(L,t)=0,
-\]
-with initial data \(v(x,0)=f(x)-x/L\).  Hence
-\[
-  v(x,t)=\sum_{n=1}^{\infty}b_n e^{-\kappa(n\pi/L)^2t}\sin\frac{n\pi x}{L},
-\]
-where
-\[
-  b_n=\frac{2}{L}\int_0^L \left(f(x)-\frac{x}{L}\right)\sin\frac{n\pi x}{L}\,dx.
-\]
-\end{example}
-
-\section{Comparison with the wave equation}
-
-The heat and wave equations both use the second spatial derivative, but they use it in different ways:
-\[
-  T_t=\kappa T_{xx},\qquad u_{tt}=c^2u_{xx}.
-\]
-For heat, curvature determines velocity; for waves, curvature determines acceleration.  This is why heat smooths and decays, while waves oscillate and propagate.  Fourier modes make the difference transparent:
-\[
-  e^{-\kappa n^2t}\quad \text{versus} \quad \cos(nct),\ \sin(nct).
-\]
-The same spatial eigenfunctions occur, but their time factors encode the qualitative nature of the PDE.
+The wave equation \(w_{tt}=c^2w_{xx}\) behaves differently. Its Fourier modes oscillate instead of acquiring the damping factor \(e^{-\kappa\xi^2t}\); appropriate wave energy is conserved instead of dissipated. This difference between first- and second-order time evolution explains why heat flow smooths and loses detail while wave motion preserves oscillatory information.

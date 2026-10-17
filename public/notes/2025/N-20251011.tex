@@ -48,6 +48,80 @@ Then
 \]
 Now the parameters appear inside an ordinary differentiable function.  Gradients can pass through \(g_\phi\).
 
+\section{Two Unbiased Gradient Estimators}
+
+Consider the one-dimensional problem
+\[
+ Z\sim\mathcal N(\mu,1),\qquad f(Z)=Z^2,\qquad
+ F(\mu)=\mathbb E[Z^2]=\mu^2+1.
+\]
+The correct derivative is $F'(\mu)=2\mu$. This tiny example exposes the two common ways of obtaining stochastic derivatives when the \emph{distribution}, rather than just the function, contains the parameter.
+
+The score identity comes from differentiating the density:
+\[
+ \frac{d}{d\mu}\mathbb E_{q_\mu}[f(Z)]
+ =\int f(z)\frac{\partial q_\mu(z)}{\partial\mu}\,dz
+ =\mathbb E_{q_\mu}\!\left[
+ f(Z)\frac{\partial\log q_\mu(Z)}{\partial\mu}\right].
+\]
+For the unit-variance Gaussian, $\partial_\mu\log q_\mu(z)=z-\mu$. The score-function estimate from one sample is therefore
+\[
+ G_{\mathrm{score}}=Z^2(Z-\mu).
+\]
+It is unbiased: write $Z=\mu+\epsilon$, $\epsilon\sim\mathcal N(0,1)$ and use the odd moments of $\epsilon$:
+\[
+ \mathbb E[Z^2(Z-\mu)]
+ =\mathbb E[(\mu+\epsilon)^2\epsilon]
+ =2\mu.
+\]
+
+The pathwise estimator uses $Z=\mu+\epsilon$ \emph{from the beginning}. The noise has a fixed distribution, so we differentiate the ordinary function $(\mu+\epsilon)^2$:
+\[
+ G_{\mathrm{path}}
+ =\frac{\partial}{\partial\mu}(\mu+\epsilon)^2
+ =2(\mu+\epsilon)=2Z,\qquad
+ \mathbb E[G_{\mathrm{path}}]=2\mu.
+\]
+At the transparent setting $\mu=0$, both estimators have mean zero, but their variances are
+\[
+ \begin{aligned}
+ \operatorname{Var}(G_{\mathrm{score}})
+ &=\mathbb E[Z^6]=15,\\
+ \operatorname{Var}(G_{\mathrm{path}})
+ &=4\mathbb E[Z^2]=4.
+ \end{aligned}
+\]
+Thus the pathwise estimator has lower variance \emph{in this example}. This is not a universal variance-ordering theorem; it explains why moving randomness into a parameter-independent noise source can be so effective for smooth continuous models. The score identity also works for discrete random variables, where a differentiable sample path may not exist.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=.91cm,y=1.02cm,>=Stealth]
+ \begin{scope}
+  \draw[->,gray!72] (-3.0,0)--(2.55,0) node[right,font=\footnotesize] {$z$};
+  \draw[blue!75!black,line width=1.2pt]
+   plot[domain=-3.0:2.3,samples=100] (\x,{1.8*exp(-((\x+1)*(\x+1))/2)});
+  \foreach \x in {-1.8,-1,-.3}{\fill[blue!75!black] (\x,0) circle (2pt);}
+  \node[font=\footnotesize,blue!75!black] at (-1.05,2.18) {$Z=-1+\epsilon$};
+  \node[font=\footnotesize,gray!75!black] at (-.8,-.43) {$\mu=-1$};
+ \end{scope}
+ \begin{scope}[xshift=6.5cm]
+  \draw[->,gray!72] (-2.55,0)--(3.0,0) node[right,font=\footnotesize] {$z$};
+  \draw[orange!85!black,line width=1.2pt]
+   plot[domain=-2.3:3.0,samples=100] (\x,{1.8*exp(-((\x-1)*(\x-1))/2)});
+  \foreach \x in {.2,1,1.7}{\fill[orange!85!black] (\x,0) circle (2pt);}
+  \node[font=\footnotesize,orange!85!black] at (1.05,2.18) {$Z=1+\epsilon$};
+  \node[font=\footnotesize,gray!75!black] at (1,-.43) {$\mu=+1$};
+ \end{scope}
+ \draw[->,thick,teal!75!black] (2.69,1.0)--(3.46,1.0);
+ \node[font=\footnotesize,teal!75!black] at (3.08,1.58) {$\Delta\mu=2$};
+ \node[font=\footnotesize,align=center] at (3.14,-1.02)
+  {The dots use the same three noise draws $\epsilon=-0.8,0,0.7$.};
+\end{tikzpicture}
+\caption{Pathwise differentiation moves individual samples along with their density. The same noise value $\epsilon$ produces $Z_\mu=\mu+\epsilon$; increasing $\mu$ by $2$ moves every sample by $2$, so $\partial Z_\mu/\partial\mu=1$. The fixed random seeds make the correspondence between the two densities visible.}
+\end{figure}
+
+Interchanging derivative and expectation requires suitable regularity, for instance differentiability together with an integrable dominating bound for the derivative. In a neural decoder this condition is often satisfied locally under standard assumptions, but it is still a mathematical assumption. The original AEVB construction uses the lower path to make stochastic optimization of continuous latent-variable models practical.\footnote{See Kingma and Welling, \href{https://arxiv.org/abs/1312.6114}{\emph{Auto-Encoding Variational Bayes}}, especially the reparameterized lower-bound estimator and amortized inference construction.}
+
 \section{Gaussian reparameterization}
 
 For the standard VAE encoder,
@@ -119,6 +193,31 @@ The Gaussian KL then becomes
   \right).
 \]
 This is the same formula as before, written in terms of log variance.
+
+A single numerical forward pass makes the symbols operational. Suppose a one-dimensional encoder returns
+\[
+ \mu_\phi(x)=\frac12,\qquad
+ \ell_\phi(x)=\log\sigma_\phi^2(x)=\log\frac14.
+\]
+Then $\sigma_\phi(x)=1/2$. If the fixed noise draw happens to be $\epsilon=-1$, the reparameterized latent sample is
+\[
+ z=\frac12+\frac12(-1)=0.
+\]
+The analytic KL penalty against $\mathcal N(0,1)$ is
+\[
+ \begin{aligned}
+ D_{\mathrm{KL}}(q_\phi(z\mid x)\Vert p(z))
+ &=\frac12\left(\frac14+\frac14-1-\log\frac14\right)\\
+ &=\boxed{\log2-\frac14\approx0.4431}.
+ \end{aligned}
+\]
+For a simple Gaussian decoder $p_\theta(x\mid z)=\mathcal N(x;z,1)$ and an observed $x=1$, this particular noise draw produces a stochastic negative ELBO estimate
+\[
+ -\widehat{\mathcal L}
+ =\frac12\log(2\pi)+\frac12(1-0)^2+
+  \left(\log2-\frac14\right).
+\]
+The sample-dependent reconstruction term changes from draw to draw, while the analytic Gaussian KL does not. A Monte Carlo estimate of the expectation is unbiased under independent sampling; a single random draw is not itself a deterministic lower bound on the evidence.
 
 \section{Training as ELBO maximization}
 

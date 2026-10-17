@@ -1,257 +1,195 @@
 \notechapter{N-20220628}{Techniques of Integration: Partial Fractions, Parts, and Substitution}
 
-\section{Linearity}
+\section{Integration methods are reversed differentiation rules}
 
-The indefinite integral is linear:
-\[
-  \int (f(x)+g(x)-h(x))\,dx
-  =\int f(x)\,dx+\int g(x)\,dx-\int h(x)\,dx.
-\]
-This is the integration analogue of the linearity of differentiation.
+Before selecting a method, it helps to ask what derivative could have produced the integrand.  Three common sources are the chain rule, product rule, and differentiation of logarithms or inverse trigonometric functions.  Their inverses are substitution, integration by parts, and integration of partial fractions.  The elementary organization here follows \emph{OpenStax, Calculus Volume 2}, Chapter 3 (Integration Techniques).\footnote{\url{https://openstax.org/books/calculus-volume-2/pages/3-introduction}}
 
-\section{Partial fractions}
+Linearity is the permission to deal with the resulting pieces independently. On any interval on which the functions have antiderivatives,
+\[
+ \int (f+g-h)\,dx=\int f\,dx+\int g\,dx-\int h\,dx.
+\]
+All equalities between \emph{indefinite} integrals are understood up to an additive constant on each connected interval of definition. This qualification matters when a denominator vanishes: crossing a pole need not preserve the same choice of constant.
 
-The first worked example is
-\[
-  \int\frac{dx}{x^2-a^2}.
-\]
-Since
-\[
-  \frac1{x^2-a^2}=\frac1{(x-a)(x+a)}
-  =\frac1{2a}\left(\frac1{x-a}-\frac1{x+a}\right),
-\]
-we get
-\[
-  \int\frac{dx}{x^2-a^2}
-  =\frac1{2a}\ln\left|\frac{x-a}{x+a}\right|+C.
-\]
+\section{Partial fractions begin with polynomial algebra}
 
-A general quadratic denominator is handled by completing the square.  For
+The first example is
 \[
-  \int\frac{mx+n}{x^2+px+q}\,dx,
+ I=\int\frac{dx}{x^2-a^2},\qquad a\ne0.
 \]
-put
+The factorization, rather than any rule of integration, determines the answer:
 \[
-  t=x+\frac p2,\qquad x^2+px+q=t^2+q-\frac{p^2}{4}.
+ \frac1{(x-a)(x+a)}
+ =\frac1{2a}\left(\frac1{x-a}-\frac1{x+a}\right).
 \]
-Then write \(mx+n=At+B\).  The integral splits into
+Consequently, on an interval avoiding the two poles,
 \[
-  A\int\frac{t}{t^2+a^2}\,dt+B\int\frac{dt}{t^2+a^2}
+ \boxed{I=\frac1{2a}\ln\left|\frac{x-a}{x+a}\right|+C.}
 \]
-or, if the constant term is negative,
-\[
-  A\int\frac{t}{t^2-a^2}\,dt+B\int\frac{dt}{t^2-a^2}.
-\]
-This produces logarithms and arctangents depending on the sign of \(q-p^2/4\).
+The signs in this formula can be checked by differentiating the logarithm, which returns \(1/(x^2-a^2)\). The factor \(1/(2a)\) is not a memorized integration constant: it comes from solving a polynomial identity.
 
-A page warns about a common partial-fraction mistake: repeated factors must be treated separately.  For example,
+In general, for a rational function \(P(x)/Q(x)\), first perform polynomial division if \(\deg P\ge\deg Q\). Factor \(Q\) over the field in which the decomposition is sought. A real quadratic irreducible factor requires a linear numerator; a repeated linear factor \((x-a)^m\) requires \emph{every} term
 \[
-  \int\frac{3x+5}{x^3-x^2-x+1}\,dx
+ \frac{c_1}{x-a}+\frac{c_2}{(x-a)^2}
+       +\cdots+\frac{c_m}{(x-a)^m}.
 \]
-has denominator
-\[
-  x^3-x^2-x+1=(x+1)(x-1)^2.
-\]
-Thus the decomposition must be
-\[
-  \frac{3x+5}{(x+1)(x-1)^2}
-  =
-  \frac{A}{x+1}+\frac{B}{x-1}+\frac{C}{(x-1)^2}.
-\]
-Solving gives
-\[
-  A=\frac12,\qquad B=-\frac12,\qquad C=4,
-\]
-so
-\[
-  \int\frac{3x+5}{x^3-x^2-x+1}\,dx
-  =
-  \frac12\ln|x+1|-
-rac12\ln|x-1|-\frac4{x-1}+C.
-\]
+This is forced by the algebra of rational functions, independently of the later integration.
 
-\section{Integration by parts}
+\begin{example}[A repeated pole really needs two coefficients]
+Consider the original problem
+\[
+ I=\int\frac{3x+5}{x^3-x^2-x+1}\,dx.
+\]
+The denominator factors as
+\[
+ x^3-x^2-x+1=(x+1)(x-1)^2.
+\]
+The correct ansatz is
+\[
+ \frac{3x+5}{(x+1)(x-1)^2}
+   =\frac{A}{x+1}+\frac{B}{x-1}+\frac{C}{(x-1)^2}.
+\]
+Multiplying through gives
+\[
+ 3x+5=A(x-1)^2+B(x+1)(x-1)+C(x+1).
+\]
+Putting \(x=-1\) and \(x=1\) yields \(A=\frac12\) and \(C=4\); comparing the remaining coefficient yields \(B=-\frac12\). Thus
+\[
+ \boxed{I=\tfrac12\ln|x+1|-\tfrac12\ln|x-1|
+                  -\frac4{x-1}+C.}
+\]
+Differentiating the three summands is a direct independent check. Omitting the square-pole term would make the polynomial identity unsolvable.
+\end{example}
 
-The integration-by-parts formula is
+For an irreducible quadratic, completing the square is the other algebraic step. Write
 \[
-  \int u\,dv=uv-\int v\,du.
+ t=x+\frac p2,\qquad
+ x^2+px+q=t^2+\Delta,\qquad \Delta=q-\frac{p^2}{4},
 \]
-For example,
+and \(mx+n=mt+(n-\frac{mp}{2})\). The term with numerator \(t\) is a logarithm; the constant numerator produces an arctangent if \(\Delta>0\), while \(\Delta<0\) reduces to real linear factors. For \(\Delta>0\),
 \[
-  \int \ln x\,dx=x\ln x-x+C.
+ \int\frac{mx+n}{x^2+px+q}\,dx
+ =\frac m2\ln(t^2+\Delta)
+ +\frac{n-mp/2}{\sqrt\Delta}
+       \arctan\frac{t}{\sqrt\Delta}+C.
 \]
-A higher-order version repeatedly integrates by parts:
-\[
-  \int u\,v^{(n+1)}\,dx
-  =
-  u v^{(n)}-u'v^{(n-1)}+\cdots+(-1)^n u^{(n)}v
-  +(-1)^{n+1}\int u^{(n+1)}v\,dx.
-\]
-This is especially useful for
-\[
-  \int P(x)e^x\,dx,\qquad
-  \int P(x)\sin x\,dx,\qquad
-  \int P(x)\cos x\,dx,
-\]
-where \(P\) is a polynomial.
+This also identifies precisely which denominator sign produces which type of antiderivative.
 
-One worked example is
-\[
-  \int(2x^3+3x^2+4x+5)e^x\,dx.
-\]
-Repeated integration by parts gives
-\[
-  e^x(2x^3-3x^2+10x-5)+C.
-\]
+\section{Substitution is the chain rule in reverse}
 
-\section{Substitution}
-
-The substitution rule is
+Suppose \(x=\rho(t)\) is differentiable. The chain rule says that if \(F'=f\), then
 \[
-  x=\rho(t),\qquad dx=\rho'(t)\,dt,\qquad
-  \int f(x)\,dx=\int f(\rho(t))\rho'(t)\,dt.
-\]
-
-For instance,
-\[
-  \int \sin^3x\cos x\,dx
-\]
-is solved by setting \(t=\sin x\), giving
-\[
-  \int t^3\,dt=\frac{t^4}{4}+C=\frac{\sin^4x}{4}+C.
-\]
-Similarly,
-\[
-  \int \sin^2x\,dx
-\]
-can be done by the trigonometric identity
-\[
-  \sin^2x=\frac{1-\cos2x}{2},
-\]
-so
-\[
-  \int \sin^2x\,dx=\frac x2-\frac{\sin2x}{4}+C.
-\]
-
-A trigonometric substitution example is
-\[
-  \int\sqrt{a^2-x^2}\,dx.
-\]
-Let \(x=a\sin t\).  Then \(dx=a\cos t\,dt\), and the integral becomes
-\[
-  a^2\int\cos^2t\,dt.
+ \frac d{dt}F(\rho(t))=f(\rho(t))\rho'(t).
 \]
 Hence
 \[
-  \int\sqrt{a^2-x^2}\,dx
-  =
-  \frac x2\sqrt{a^2-x^2}+\frac{a^2}{2}\arcsin\frac xa+C.
+ \int f(\rho(t))\rho'(t)\,dt=F(\rho(t))+C.
 \]
-
-The standard substitutions are:
+For a definite integral, the same argument gives
 \[
-  \sqrt{a^2-x^2}: x=a\sin t,\qquad
-  \sqrt{a^2+x^2}: x=a\tan t,\qquad
-  \sqrt{x^2-a^2}: x=a\sec t.
+ \int_{\rho(a)}^{\rho(b)}f(x)\,dx
+ =\int_a^b f(\rho(t))\rho'(t)\,dt
 \]
+under the usual regularity hypotheses; the signed derivative is intentional.
 
-
-\section{Partial fractions as algebra before calculus}
-
-Partial fractions are not an integration trick alone.  They first require algebraic decomposition.  For example, if
+For example, the inner derivative in
 \[
-  \frac{P(x)}{(x-a)(x-b)}=\frac{A}{x-a}+\frac{B}{x-b},
+ \int\sin^3x\cos x\,dx
 \]
-then multiplying by the denominator gives an identity of polynomials.  The coefficients \(A,B\) are determined before any integration happens.
-
-This is why one should factor the denominator and compare degrees first.  If the rational function is improper, divide polynomials before decomposing.
-
-\section{Integration by parts as product rule reversed}
-
-Integration by parts comes from
+is visible. Taking \(t=\sin x\) gives
 \[
-  (uv)'=u'v+uv'.
+ \int t^3\,dt=\frac{t^4}{4}+C
+             =\boxed{\frac{\sin^4x}{4}+C}.
 \]
-Integrating gives
+By contrast, \(\int\sin^2x\,dx\) is easier after a trigonometric identity:
 \[
-  \int u\,dv=uv-\int v\,du.
+ \sin^2x=\frac{1-\cos2x}{2},\qquad
+ \int\sin^2x\,dx=\frac x2-\frac{\sin2x}{4}+C.
 \]
-The choice of \(u\) and \(dv\) is guided by which part simplifies after differentiation and which part is easy to integrate.  Logarithms and inverse trigonometric functions often become simpler after differentiation.
+The preliminary algebraic transformation is as important as the substitution.
 
-\section{A second lens}
-
-The note is an inventory of the classical calculus toolkit.  Partial fractions exploit algebraic factorization; integration by parts exploits the product rule; substitution exploits the chain rule.  In a more advanced language, all three are ways of choosing coordinates and decompositions so that the differential form becomes elementary.
-
-\section{Partial fractions as algebra of poles}
-
-Partial fractions decompose a rational function according to its poles.  For example, a factor \((x-a)^m\) contributes terms
+\begin{example}[A square root becomes a trigonometric identity]
+For \(a>0\) and \(|x|<a\), put \(x=a\sin t\) with
+\(t\in(-\pi/2,\pi/2)\). Then
 \[
-  \frac{c_1}{x-a}+\frac{c_2}{(x-a)^2}+\cdots+\frac{c_m}{(x-a)^m}.
+ \sqrt{a^2-x^2}=a\cos t,\qquad dx=a\cos t\,dt,
 \]
-This is the real-variable shadow of meromorphic function theory, where principal parts record local behavior near poles.
-
-\section{Integration by parts as adjointness}
-
-The formula
+so
 \[
-  \int_a^b u\,v'=uv\big|_a^b-\int_a^b u'v
+ \int\sqrt{a^2-x^2}\,dx
+ =a^2\int\cos^2t\,dt
+ =\frac{a^2}{2}\left(t+\sin t\cos t\right)+C.
 \]
-transfers a derivative from one factor to another.  In operator language, differentiation is skew-adjoint up to boundary terms.  This viewpoint becomes central in Fourier analysis, weak derivatives, and PDE.
-
-\section{Substitution as pullback of one-forms}
-
-For \(x=\phi(t)\), substitution says
+Returning to \(x\) gives
 \[
-  \int f(x)\,dx=\int f(\phi(t))\phi'(t)\,dt.
+ \boxed{\int\sqrt{a^2-x^2}\,dx
+  =\frac x2\sqrt{a^2-x^2}+\frac{a^2}{2}\arcsin\frac xa+C.}
 \]
-The invariant object is the one-form \(f(x)\,dx\).  Under the map \(\phi\), it pulls back to \(f(\phi(t))\phi'(t)\,dt\).
-
-This explains why the derivative factor is necessary: integration is coordinate-independent only when the differential transforms correctly.
-
-\section{Integration techniques as structural transformations}
-
-The standard integration techniques are structural transformations.  Partial fractions isolate poles, integration by parts moves derivatives with boundary terms, and substitution pulls back differential forms.  The goal is not formula memorization but recognizing which structure simplifies the integrand.
-
-\section{Integration as reverse differentiation}
-
-The integration techniques in this note are best remembered as reversed differentiation rules.  Partial fractions reverse the derivative of logarithms and arctangents.  Integration by parts reverses the product rule.  Substitution reverses the chain rule.  Trigonometric substitution is a geometric way of replacing a radical by an identity such as \(1-\sin^2t=\cos^2t\).
-
-A good workflow is therefore: first simplify the algebraic shape of the integrand; next ask which differentiation rule could have produced it; only then choose a technique.  This prevents the common mistake of trying substitution, parts, and partial fractions randomly.
-
-\section{Substitution as pullback}
-
-The elementary substitution rule
+One obtains related substitutions
 \[
-  \int f(g(t))g'(t)\,dt=\int f(x)\,dx
+ \sqrt{a^2+x^2}: x=a\tan t,\qquad
+ \sqrt{x^2-a^2}: x=a\sec t
 \]
-is the one-dimensional form of pullback.  If $x=g(t)$, then $dx=g'(t)dt$, so the differential form $f(x)dx$ pulls back to
-\[
-  g^*(f(x)dx)=f(g(t))g'(t)dt.
-\]
-The derivative is not an artificial correction factor; it is how lengths are transformed by the map $g$.
+on intervals where the signs and inverse branches are chosen consistently.
+\end{example}
 
-In several variables the same principle becomes the Jacobian determinant:
-\[
-  dx\,dy=\left|\frac{\partial(x,y)}{\partial(u,v)}\right|du\,dv.
-\]
-Thus elementary substitution is the first instance of the change-of-variables theorem.
+\section{Integration by parts is the product rule in reverse}
 
-\section{Integration by parts and adjoints}
-
-Integration by parts comes from the product rule:
+For differentiable \(u,v\), integrate \((uv)'=u'v+uv'\) to obtain
 \[
-  \int_a^b u'v\,dx=[uv]_a^b-\int_a^b uv'\,dx.
+ \boxed{\int u\,dv=uv-\int v\,du.}
 \]
-This formula is also the origin of adjoint differential operators.  For $D=d/dx$,
+For \(\int\ln x\,dx\) on \(x>0\), choosing \(u=\ln x\) and \(dv=dx\) turns the logarithm into \(1/x\):
 \[
-  \int_a^b (Du)v\,dx=[uv]_a^b-\int_a^b u(Dv)\,dx.
+ \int\ln x\,dx=x\ln x-\int1\,dx=x\ln x-x+C.
 \]
-Ignoring boundary terms, $D$ is formally skew-adjoint.  This observation is central in Sturm--Liouville theory, Fourier analysis, and PDEs.
+The useful choice is the one that makes the \emph{new} integral simpler, not necessarily the one that makes one factor shorter.
 
-\section{Partial fractions and residues}
-
-Partial fractions decompose a rational function into simple local pieces around its poles.  In complex analysis, the coefficient of $(z-a)^{-1}$ is the residue, and the residue theorem says
+Repeated integration by parts yields a finite identity. If \(u\) has \(n+1\) derivatives and \(v^{(n+1)}\) is the other factor, then
 \[
-  \int_\gamma f(z)\,dz=2\pi i\sum_{a\ inside \gamma}\operatorname{Res}(f,a).
+\begin{aligned}
+ \int u\,v^{(n+1)}\,dx
+ ={}& u v^{(n)}-u'v^{(n-1)}+\cdots+(-1)^n u^{(n)}v\\
+    &+(-1)^{n+1}\int u^{(n+1)}v\,dx.
+\end{aligned}
 \]
-Thus the elementary partial-fraction method is a real-variable shadow of a deeper principle: rational functions are controlled by their singularities.
+For a polynomial \(u=P\) of degree \(n\), the last integral vanishes. Thus
+\[
+ \int P(x)e^x\,dx=e^x(P-P'+P''-\cdots+(-1)^nP^{(n)})+C.
+\]
+In particular, for \(P=2x^3+3x^2+4x+5\),
+\[
+ P'=6x^2+6x+4,\quad P''=12x+6,\quad P'''=12,
+\]
+and
+\[
+ \boxed{\int(2x^3+3x^2+4x+5)e^x\,dx
+       =e^x(2x^3-3x^2+10x-5)+C.}
+\]
+Differentiate this answer once to check every coefficient. Repeated parts with \(P(x)\sin x\) or \(P(x)\cos x\) works similarly, but the successive antiderivatives cycle through sines and cosines.
+
+\section{The same calculus rules survive in differential forms}
+
+Substitution is the one-dimensional instance of the pullback of a \(1\)-form:
+\[
+ \rho^*(f(x)\,dx)=f(\rho(t))\rho'(t)\,dt.
+\]
+This language records the derivative factor automatically. The higher-dimensional change-of-variables formula has an absolute Jacobian determinant for ordinary area,
+\[
+ \iint_{\rho(U)} f(x,y)\,dx\,dy
+ =\iint_U f(\rho(u,v))\,|\det D\rho(u,v)|\,du\,dv
+\]
+when \(\rho\) is a suitable one-to-one regular change of coordinates. Oriented differential forms use the \emph{signed} determinant instead. The distinction avoids confusing substitution with an arbitrary change of labels.
+
+The definite form of integration by parts also keeps track of boundary information:
+\[
+ \int_a^b (Du)v\,dx=[uv]_a^b-\int_a^b u(Dv)\,dx,
+ \qquad D=\frac d{dx}.
+\]
+If the boundary term vanishes on a chosen domain of functions, \(D\) is formally skew-adjoint with respect to the real \(L^2\) pairing. Without boundary conditions it would be misleading to write simply \(D^*=-D\). This is the first elementary example of a boundary term controlling an adjoint differential operator.
+
+Finally, partial fractions have their complex-analytic interpretation: the coefficient of \((z-a)^{-1}\) in the Laurent principal part is the residue. When \(f\) is meromorphic inside a positively oriented closed contour \(\gamma\) and has no poles on \(\gamma\),
+\[
+ \oint_\gamma f(z)\,dz
+ =2\pi i\sum_{a\text{ inside }\gamma}\operatorname{Res}(f,a).
+\]
+This gives the precise link from the algebra of rational denominators to complex integration. The three elementary methods have different mechanisms---factorization, the product rule, and the chain rule---and these mechanisms remain identifiable in more advanced mathematics.

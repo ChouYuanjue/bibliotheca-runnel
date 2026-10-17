@@ -1,223 +1,171 @@
-\notechapter{N-20251009}{Latent Variable Models: Priors, Decoders, and Intractable Posteriors}
+\notechapter{N-20251009}{From a Latent-Variable Model to a Trainable Generator}
 
-\section{From autoencoders to latent variable models}
+A latent-variable model has a simple forward recipe: sample a hidden code \(z\), and then sample an observation \(x\) given that code. Even a mixture of simple conditional Gaussian laws can produce several peaks after the hidden cause is forgotten; determining which cause explains an observation then requires Bayes' rule. With images, the remaining questions are practical: what exactly does a neural decoder output, how do we measure an entire dataset under the model, and why do we need a recognition network when we can sample from the model already?\footnote{The model architecture and approximate-inference viewpoint follow Kingma and Welling, \emph{An Introduction to Variational Autoencoders} (2019), and C. Doersch, \href{https://arxiv.org/abs/1606.05908}{\emph{Tutorial on Variational Autoencoders}}.}
 
-A deterministic autoencoder is a pair of maps
+\section{A decoder produces probabilities, not just pixels}
+
+For a latent code \(z\in\mathbb R^d\), the standard VAE starts with a simple prior such as
 \[
-  x\xrightarrow{\mathrm{encoder}}h\xrightarrow{\mathrm{decoder}}\widehat x.
+ p(z)=\mathcal N(z;0,I).
 \]
-The code \(h\) is a deterministic representation of \(x\).  A VAE keeps the encoder--decoder visual shape, but the mathematical object is different.  The hidden representation is a random variable \(Z\), and the decoder defines a conditional distribution, not merely a reconstruction function.
-
-The generative story is
+A neural decoder maps \(z\) to the parameters of a conditional distribution \(p_\theta(x\mid z)\). The model is
 \[
-  z\sim p(z),\qquad x\sim p_\theta(x\mid z).
+ \boxed{p_\theta(x,z)=p(z)\,p_\theta(x\mid z).}
 \]
-Thus a VAE is best understood as a latent variable model equipped with an efficient approximate inference model.
+The direction \(z\to x\) is the generative direction; unlike a reconstruction-only autoencoder, it can begin from a random latent draw without any observed image.
 
-The key distinction is:
+The observation distribution must match the data. If an image consists of binary pixels \(x_j\in\{0,1\}\), the decoder might output a number \(\pi_j(z)\in(0,1)\) for each pixel and define
 \[
-\begin{array}{c|c}
-\text{deterministic autoencoder} & \text{VAE / latent variable model}\\
-\hline
-h=f_\phi(x) & z\sim q_\phi(z\mid x)\\
-\widehat x=g_\theta(h) & x\sim p_\theta(x\mid z)\\
-\text{reconstruction map} & \text{probabilistic generative model}
-\end{array}
+ p_\theta(x\mid z)
+ =\prod_{j=1}^D
+ \pi_j(z)^{x_j}(1-\pi_j(z))^{1-x_j}.
 \]
+Each output is the probability that a pixel is on, not the pixel itself. The negative log-likelihood becomes
+\[
+ -\log p_\theta(x\mid z)
+ =-\sum_j[x_j\log\pi_j(z)+(1-x_j)\log(1-\pi_j(z))],
+\]
+which is binary cross-entropy.
 
-\section{The generative story}
+For a real-valued feature vector, a Gaussian decoder might be preferable:
+\[
+ p_\theta(x\mid z)=
+ \mathcal N(x;\mu_\theta(z),\sigma_x^2I).
+\]
+Up to terms independent of \(\theta\), the negative log-likelihood is
+\[
+ -\log p_\theta(x\mid z)
+ =\frac{\|x-\mu_\theta(z)\|^2}{2\sigma_x^2}
+   +\text{constant}.
+\]
+So the familiar squared reconstruction error is a probabilistic modeling choice, with the noise variance determining its scale. The likelihood specification matters as much as the neural-network architecture.
 
-The model begins with a prior distribution on the latent variable:
-\[
-  p(z).
-\]
-In the basic VAE,
-\[
-  p(z)=\mathcal N(0,I).
-\]
-This prior says that latent variables should live in a simple, continuous, isotropic space.
+\section{Conditional Independence and Correlation}
 
-Given \(z\), the decoder defines the likelihood of an observation:
-\[
-  p_\theta(x\mid z).
-\]
-The joint density is then
-\[
-  p_\theta(x,z)=p(z)p_\theta(x\mid z).
-\]
-This formula is the mathematical core of the generative model.
+The product over pixels assumes that the pixels are independent \emph{given \(z\)}. That is a computational simplification. It does not imply that pixels are independent in the generated dataset, because the same latent variable affects every pixel.
 
-The decoder network does not directly output a final sample.  It outputs parameters of a distribution.  For binary data, one often writes
+A tiny example makes the distinction sharp. Let \(Z\) be a fair bit. Given \(Z=z\), set \(X_1=z\) and \(X_2=z\) deterministically. The two observations are trivially independent conditional on \(Z\), but marginally
 \[
-  p_\theta(x\mid z)=\operatorname{Bernoulli}(x;\pi_\theta(z)).
+ \Pr(X_1=1)=\Pr(X_2=1)=\frac12,\qquad
+ \Pr(X_1=1,X_2=1)=\frac12
+ \ne\frac14.
 \]
-Here \(\pi_\theta(z)\) gives the success probabilities of the Bernoulli coordinates.  For real-valued data, one may use
+Thus the shared latent cause has created dependence between the observed variables. This is why even a decoder using a factorized pixel likelihood can model correlated images after latent codes are marginalized out.
+
+The price of a simple factorized decoder is also visible. Conditioned on a \emph{fixed} code \(z\), it cannot represent unexplained correlations between pixels beyond those already encoded by \(z\). A better latent representation or a richer likelihood may be needed when the data exhibit residual structure.
+
+\section{A dataset means many hidden causes}
+
+For observations \(x^{(1)},\ldots,x^{(N)}\), assume independent examples and give each example its own latent variable \(z^{(i)}\). The joint law is
 \[
-  p_\theta(x\mid z)=\mathcal N(x;\mu_\theta(z),\sigma^2 I).
+ p_\theta(x^{(1:N)},z^{(1:N)})
+ =\prod_{i=1}^{N}
+ p(z^{(i)})p_\theta(x^{(i)}\mid z^{(i)}).
 \]
-Here the decoder outputs a mean \(\mu_\theta(z)\), and the variance is either fixed or parameterized separately.
+The same prior and decoder are used for every observation, while each observation has its own latent code. A small continuous example also reveals the geometry of the marginal distribution produced by a shared latent cause.
 
-\section{Graphical model notation}
-
-The generative model has one directed probabilistic arrow:
-\[
-  z\longrightarrow x.
-\]
-A small diagram is:
-
-\begin{center}
-\begin{tikzpicture}[>=stealth,node distance=2.4cm]
-  \node[draw,circle,minimum size=0.9cm] (z) {$z$};
-  \node[draw,circle,minimum size=0.9cm,right of=z] (x) {$x$};
-  \draw[->,thick] (z) -- (x);
-  \node[above of=z,node distance=0.8cm] {$p(z)$};
-  \node[above of=x,node distance=0.8cm] {$p_\theta(x\mid z)$};
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=1.16cm,y=1.16cm]
+ \draw[->,gray!75] (-3.0,0)--(3.0,0) node[right] {$x_1$};
+ \draw[->,gray!75] (0,-2.72)--(0,2.75) node[above] {$x_2$};
+ \begin{scope}[rotate=45]
+  \fill[teal!7] (0,0) ellipse (2.20 and .60);
+  \draw[teal!78!black,line width=1.3pt] (0,0) ellipse (2.20 and .60);
+ \end{scope}
+ \draw[blue!76!black,line width=1.1pt] (-1,-1) circle (.60);
+ \draw[orange!85!black,line width=1.1pt] (1,1) circle (.60);
+ \fill[blue!76!black] (-1,-1) circle (1.8pt);
+ \fill[orange!85!black] (1,1) circle (1.8pt);
+ \node[font=\footnotesize,anchor=east,blue!76!black,fill=white,inner sep=1pt] at (-2.35,-1.95) {$z=-1$};
+ \node[font=\footnotesize,anchor=west,orange!85!black,fill=white,inner sep=1pt] at (1.95,1.99) {$z=+1$};
+ \node[font=\footnotesize,teal!78!black,anchor=west,fill=white,inner sep=1pt]
+   at (-2.85,2.42) {$p(x_1,x_2)$: correlated ellipse};
+ \node[font=\footnotesize,anchor=west,blue!76!black] at (-2.8,-3.13)
+   {small circles: $p(x\mid z)$};
 \end{tikzpicture}
-\end{center}
+\caption{A one-dimensional latent $Z\sim\mathcal N(0,1)$ generates $X_1=Z+\varepsilon_1$ and $X_2=Z+\varepsilon_2$, where the independent noises have variance $0.4^2$. Each conditional distribution $p(x\mid z)$ is a circular Gaussian (two examples are outlined). After forgetting $z$, $p(x)$ has covariance $\left(\begin{smallmatrix}1.16&1\\1&1.16\end{smallmatrix}\right)$ and elongated elliptical contours. Conditional independence has produced strong marginal correlation. Ellipses mark equal Mahalanobis radii.}
+\end{figure}
 
-For a dataset \(x^{(1)},\ldots,x^{(N)}\), the story repeats independently:
+Learning by marginal maximum likelihood would maximize
 \[
-  z^{(i)}\sim p(z),\qquad x^{(i)}\sim p_\theta(x\mid z^{(i)}).
+ \begin{aligned}
+ \log p_\theta(x^{(1:N)})
+ &=\sum_{i=1}^N\log p_\theta(x^{(i)}),\\
+ p_\theta(x)
+ &=\int p(z)p_\theta(x\mid z)\,dz.
+ \end{aligned}
 \]
-The parameters \(\theta\) are shared across all observations.
+The integral is the obstacle. Even if the decoder evaluates quickly for one \(z\), integrating its output over all plausible latent codes can be very expensive.
 
-\section{Marginal likelihood}
+\section{When Prior Sampling Fails}
 
-The model likelihood of one observation is obtained by integrating out the latent variable:
+The identity
 \[
-  p_\theta(x)=\int p_\theta(x,z)\,dz
-  =\int p(z)p_\theta(x\mid z)\,dz.
+ p_\theta(x)=\mathbb E_{z\sim p(z)}[p_\theta(x\mid z)]
 \]
-For a dataset, maximum likelihood would choose \(\theta\) by maximizing
+suggests a Monte Carlo approximation by averaging \(p_\theta(x\mid z)\) over prior samples. This works in principle as an unbiased estimator of the likelihood, but it can be practically useless when the observation is explained by only a tiny part of latent space.
+
+Here is an exact discrete example. Take \(K\) independent fair latent bits, \(Z=(Z_1,\ldots,Z_K)\). Let the observed bit \(X\) equal one exactly when every hidden bit equals one:
 \[
-  \sum_{i=1}^N \log p_\theta(x^{(i)}).
+ \Pr(X=1\mid Z=z)=
+ \begin{cases}
+ 1,&z=(1,\ldots,1),\\
+ 0,&\text{otherwise}.
+ \end{cases}
 \]
-Equivalently, one wants the model distribution \(p_\theta(x)\) to assign high probability density to the observed data.
-
-The problem is that the integral
+Generating a sample is trivial. Yet
 \[
-  \int p(z)p_\theta(x\mid z)\,dz
+ \boxed{\Pr(X=1)=2^{-K}.}
 \]
-is usually intractable.  If \(p_\theta(x\mid z)\) is parameterized by a nonlinear neural network, there is no closed-form expression for the integral over \(z\).
-
-This is the first reason variational methods enter.
-
-\section{The posterior problem}
-
-The posterior distribution of the latent variable is
+If we draw \(M\) latent samples from the prior and average their likelihoods for the observed event \(X=1\), the estimate is exactly zero unless at least one sample hits the all-ones configuration. The probability of never hitting it is
 \[
-  p_\theta(z\mid x)=\frac{p_\theta(x,z)}{p_\theta(x)}
-  =\frac{p(z)p_\theta(x\mid z)}{\int p(z')p_\theta(x\mid z')\,dz'}.
+ \boxed{\left(1-2^{-K}\right)^M.}
 \]
-The numerator is easy to evaluate up to normalization.  The denominator is the marginal likelihood, which is the same difficult integral.
+For \(K=20\), even ten thousand prior samples miss the relevant latent state with probability about \(0.9905\). To obtain a reasonable probability of observing even one relevant sample, \(M\) must be of order \(2^K\).
 
-Therefore the model has a basic asymmetry:
+Once \(X=1\) is known, however, the posterior is concentrated on the all-ones code. The difficulty was not evaluating the decoder; it was sampling latent states without regard to the observed data. This is the basic reason approximate posterior inference is so valuable.
+
+\section{Recognition is a fast approximate inverse}
+
+The recognition network supplies
 \[
-\begin{array}{c|c}
-\text{sampling direction} & \text{inference direction}\\
-\hline
-z\sim p(z),\;x\sim p_\theta(x\mid z) & p_\theta(z\mid x)\text{ is hard}
-\end{array}
+ q_\phi(z\mid x)\approx p_\theta(z\mid x).
 \]
-
-This is the central probabilistic problem behind VAEs:
+For a continuous latent code, a common choice is a diagonal Gaussian,
 \[
-\begin{array}{c}
-  \text{to train the model, we want }\log p_\theta(x),\\
-  \text{to understand }\log p_\theta(x),\text{ we need to reason about }z,\\
-  \text{but the true posterior }p_\theta(z\mid x)\text{ is intractable.}
-\end{array}
+ q_\phi(z\mid x)
+ =\mathcal N\bigl(z;
+      \mu_\phi(x),\operatorname{diag}(\sigma_\phi^2(x))\bigr).
 \]
-
-\section{Why naive Monte Carlo is not enough}
-
-One might try to estimate the marginal likelihood by drawing samples from the prior:
+The neural encoder computes \(\mu_\phi(x)\) and \(\sigma_\phi(x)\) from the input image, describing a whole distribution of plausible codes. The decoder and encoder answer different conditional questions:
 \[
-  z^{(\ell)}\sim p(z),\qquad
-  p_\theta(x)\approx\frac1L\sum_{\ell=1}^L p_\theta(x\mid z^{(\ell)}).
+ \underbrace{p_\theta(x\mid z)}_{\text{what could this cause generate?}}
+ \qquad\text{and}\qquad
+ \underbrace{q_\phi(z\mid x)}_{\text{what might have caused this observation?}}.
 \]
-This is formally reasonable, but in high dimension it is usually inefficient.  Most prior samples \(z\) do not explain a fixed observation \(x\) well.  The average is then dominated by rare samples that land in useful regions of latent space.
 
-For inference about a particular \(x\), we would rather sample \(z\) values that are already plausible explanations of \(x\).  That is the motivation for introducing an approximate posterior.
-
-\section{The recognition model}
-
-A VAE introduces a family
-\[
-  q_\phi(z\mid x)
-\]
-to approximate the true posterior \(p_\theta(z\mid x)\).  This is often called the recognition model or encoder.
-
-The standard Gaussian encoder has the form
-\[
-  q_\phi(z\mid x)=\mathcal N(z;\mu_\phi(x),\operatorname{diag}(\sigma_\phi^2(x))).
-\]
-The functions \(\mu_\phi(x)\) and \(\sigma_\phi(x)\) are outputs of a neural network.  Mathematically, they parameterize a distribution over latent variables.
-
-It is important not to confuse the two conditional distributions:
-\[
-\begin{array}{c|c|c}
-\text{symbol} & \text{name} & \text{direction}\\
-\hline
-p_\theta(x\mid z) & \text{decoder likelihood} & z\to x\\
-q_\phi(z\mid x) & \text{approximate posterior / encoder} & x\to z
-\end{array}
-\]
-Only \(p_\theta(x\mid z)\) belongs to the generative model.  The encoder \(q_\phi(z\mid x)\) is introduced to make inference and training feasible.
-
-\section{Amortized inference}
-
-Classical variational inference might introduce separate variational parameters for each data point.  For example, for every observation \(x^{(i)}\), one could choose its own mean and variance:
-\[
-  q_i(z)=\mathcal N(z;\mu_i,\operatorname{diag}(\sigma_i^2)).
-\]
-A VAE instead uses one shared inference network:
-\[
-  x\longmapsto \mu_\phi(x),\qquad x\longmapsto \sigma_\phi(x).
-\]
-This is called amortized inference.  The cost of inference is amortized across the dataset: after learning \(\phi\), the model can quickly produce an approximate posterior for a new \(x\).
-
-The mathematical tradeoff is that the family is restricted.  We do not choose arbitrary variational parameters for each observation; we require them to be outputs of the same function.
-
-\section{The VAE model diagram}
-
-The two directions can be displayed together:
-
-\begin{center}
-\begin{tikzpicture}[>=stealth,node distance=3.0cm]
-  \node[draw,circle,minimum size=0.9cm] (z) {$z$};
-  \node[draw,circle,minimum size=0.9cm,right of=z] (x) {$x$};
-  \draw[->,thick] (z) -- node[fill=white,inner sep=1pt,above] {$p_\theta(x\mid z)$} (x);
-  \draw[->,thick,bend left=38] (x) to
-    node[fill=white,inner sep=1pt,below=2pt] {$q_\phi(z\mid x)$} (z);
-  \node at ($(z)+(0,-1.35)$) {latent};
-  \node at ($(x)+(0,-1.35)$) {observed};
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=.92,
+ box/.style={draw,rounded corners=4pt,minimum height=.8cm,
+             align=center,inner xsep=6pt,font=\small}]
+ \node[box,fill=orange!10] (p) at (-3.65,.45) {prior\\\(z\sim p(z)\)};
+ \node[box,fill=teal!9] (dec) at (0,.45) {decoder\\\(p_\theta(x\mid z)\)};
+ \node[box,fill=gray!12] (obs) at (3.75,.45) {sample /\\observation \(x\)};
+ \draw[->,thick,teal!75!black] (p)--(dec);
+ \draw[->,thick,teal!75!black] (dec)--(obs);
+ \node[box,fill=blue!9] (enc) at (0,-1.5) {encoder\\\(q_\phi(z\mid x)\)};
+ \draw[->,thick,blue!75!black] (obs.south)
+  |- (enc.east);
+ \draw[->,thick,blue!75!black] (enc.west)
+  -| (p.south);
+ \node[font=\footnotesize,teal!75!black] at (0,1.5) {generate};
+ \node[font=\footnotesize,blue!75!black] at (0,-2.3) {infer a likely cause};
 \end{tikzpicture}
-\end{center}
+\caption{The probabilistic decoder defines the forward model. The recognition network approximates the reverse conditional distribution without computing its exact normalizing integral.}
+\end{figure}
 
-The upper arrow is the probabilistic generative story.  The lower arrow is the learned inference shortcut.  The VAE objective will force these two directions to be compatible, but they play different roles.
+An ordinary variational method could optimize a separate approximate posterior for every training example. A VAE amortizes that computation: the same encoder parameters \(\phi\) map every new input to posterior parameters in a single forward pass. This makes large-dataset inference fast, but it constrains all approximations to come from one shared learned function.
 
-\section{Remaining derivation}
-
-At this point, the problem is clear.  We want to maximize
-\[
-  \log p_\theta(x),
-\]
-but
-\[
-  p_\theta(x)=\int p(z)p_\theta(x\mid z)\,dz
-\]
-is hard.  We also want to use
-\[
-  p_\theta(z\mid x),
-\]
-but it contains the same intractable marginal likelihood.
-
-The solution is to introduce \(q_\phi(z\mid x)\), then build a lower bound on \(\log p_\theta(x)\) that can be optimized.  That lower bound is the evidence lower bound, or ELBO.
-
-The next note derives it from two facts:
-\[
-  D_{\mathrm{KL}}(q\Vert p)\ge0,
-  \qquad
-  \log\mathbb E[Y]\ge\mathbb E[\log Y].
-\]
+There are now two distinct approximation errors to keep in mind. A diagonal Gaussian family may be unable to represent a multimodal posterior, and even within that family a learned encoder may not output the best variational parameters for every example. The evidence lower bound addresses the training objective and quantifies the discrepancy with the true posterior; the next mathematical step is to optimize that bound with gradients.

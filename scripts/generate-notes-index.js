@@ -196,6 +196,17 @@ function buildArchive() {
     throw new Error(`INM notes directory not found: ${notesDir}`);
   }
 
+  const availableNotes = fs.readdirSync(notesDir).filter((name) => /^N-\d{8}\.tex$/.test(name));
+  const missingPdfIds = availableNotes
+    .map((filename) => path.basename(filename, '.tex'))
+    .filter((id) => !fs.existsSync(path.join(singlePdfDir, `${id}.pdf`)));
+  if (missingPdfIds.length > 0) {
+    throw new Error(`Rebuild per-note PDFs before regenerating the archive: ${missingPdfIds.join(', ')}`);
+  }
+
+  const volumeIndexFile = path.join(INM_ROOT, 'volumes-index.tex');
+  const canonicalVolumes = allCommandArguments(readText(volumeIndexFile), 'part').map((s) => texDisplayText(s));
+
   fs.rmSync(PUBLIC_NOTES_DIR, { recursive: true, force: true });
   ensureDir(PUBLIC_NOTES_DIR);
 
@@ -243,6 +254,14 @@ function buildArchive() {
     })
     .sort((a, b) => b.date.localeCompare(a.date));
 
+  const archiveVolumes = new Set(notes.map((note) => note.volume));
+  if (archiveVolumes.has('Unsorted')) {
+    throw new Error('Every INM note must be assigned to a book volume.');
+  }
+  if (archiveVolumes.size !== canonicalVolumes.length || canonicalVolumes.some((name) => !archiveVolumes.has(name))) {
+    throw new Error('Archive volume names do not match the TeX book volume index.');
+  }
+
   const data = {
     project: {
       title: 'INM: Informal Notes on Mathematics',
@@ -253,7 +272,7 @@ function buildArchive() {
       volumeCount: new Set(notes.map((note) => note.volume).filter((volume) => volume !== 'Unsorted')).size,
       source: INM_ROOT,
     },
-    volumes: [...new Set(notes.map((note) => note.volume))].sort(),
+    volumes: canonicalVolumes,
     years: [...new Set(notes.map((note) => note.year))].sort((a, b) => b.localeCompare(a)),
     notes,
   };

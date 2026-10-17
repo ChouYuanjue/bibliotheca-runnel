@@ -1,8 +1,6 @@
 \notechapter{N-20251210}{Calculus Review II: Monotonicity, Integration Methods, Applications, and More}
 
-
-
-\section{Strict monotonicity from the derivative}
+\section{Derivative signs, extrema, and the mean value theorem}
 
 If $f$ is differentiable on an interval $I$ and
 \[
@@ -14,13 +12,11 @@ then $f$ is strictly increasing on $I$.  If
 \]
 then $f$ is strictly decreasing.
 
-The proof uses the Lagrange mean value theorem.  For $x_2>x_1$,
+We follow the standard presentation of differentiation and integration from OpenStax, \emph{Calculus}, Volumes 1 and 2, with the assumptions and error estimates made explicit below.\footnote{OpenStax, \href{https://openstax.org/books/calculus-volume-1/pages/4-introduction}{\emph{Calculus}, Vol.~1, Chapter 4}, together with Vol.~2, Chapter 3.} The proof uses the Lagrange mean value theorem.  For $x_2>x_1$,
 \[
   f(x_2)-f(x_1)=f'(\xi)(x_2-x_1)
 \]
 for some $\xi\in(x_1,x_2)$.  If $f'(\xi)>0$, then the difference is positive.
-
-\section{First derivative test for extrema}
 
 Suppose $f$ is continuous near $x_0$ and differentiable in the punctured neighborhood.  If the sign of $f'$ changes from negative to positive at $x_0$, then $f(x_0)$ is a local minimum.  If the sign changes from positive to negative, then $f(x_0)$ is a local maximum.
 
@@ -36,8 +32,6 @@ The compact criterion is:
   f(x_0)\text{ is a local maximum}.
 \]
 
-\section{Second derivative test}
-
 If
 \[
   f'(x_0)=0,\qquad f''(x_0)\ne0,
@@ -51,7 +45,15 @@ then
 \]
 A useful mnemonic is that $f''>0$ looks like a smile and $f''<0$ looks like a frown.
 
-\section{Concavity and inflection points}
+If \(f'\ge0\) on an interval, the mean value theorem gives
+\[
+  f(y)-f(x)=f'(c)(y-x)\ge0\qquad (x<y).
+\]
+So monotonicity is not a separate rule; it is a global consequence of local derivative sign.
+
+Strict monotonicity needs care: \(f'>0\) everywhere is sufficient, not necessary. For \(f(x)=x^3\), we have \(f'(x)=3x^2\ge0\) and \(f'(0)=0\), yet \(f\) is strictly increasing on all of \(\mathbb R\). Similarly \(f(x)=x^4\) has a strict local minimum at zero even though \(f''(0)=0\), so the second-derivative test is inconclusive in the zero case.
+
+\section{Concavity, asymptotes, and a global curve sketch}
 
 A curve segment is concave up if it lies above its tangent lines, and concave down if it lies below its tangent lines.  In the usual calculus language,
 \[
@@ -67,13 +69,11 @@ An inflection point is a point where the concavity changes.  A necessary conditi
 \[
   f''(x_0)=0.
 \]
-But this is not sufficient.  The note highlights that $f''(x_0)=0$ or nonexistence of $f''(x_0)$ only gives candidates; one must check whether the sign of $f''$ changes across $x_0$.
+This condition alone is insufficient: vanishing or nonexistence of $f''(x_0)$ merely identifies a possible inflection point. The actual criterion is a change of concavity across the point.
 
-The scanned page distinguishes several types: smooth horizontal inflection, smooth non-horizontal inflection, and sharp or vertical tangent behavior.  The visual test is concavity change, not merely whether the tangent exists.
+An inflection point may have a horizontal or non-horizontal tangent, and in some examples the tangent is vertical or absent. What all cases share is a reversal of concavity, independent of the tangent's existence.
 
-\section{Asymptotes}
-
-The notes classify asymptotes.
+The asymptotic geometry of a graph has several distinct forms.
 
 A vertical asymptote occurs when
 \[
@@ -106,11 +106,9 @@ and then
 \[
   b=\lim_{x\to\infty}(f(x)-ax).
 \]
-These formulas are highlighted in the source.
+Both formulas follow from the defining limit after isolating the slope and intercept.
 
-\section{General procedure for sketching a curve}
-
-The pages give a curve-sketching checklist:
+A systematic curve study proceeds through:
 
 \begin{enumerate}[(i)]
   \item determine the domain;
@@ -125,7 +123,13 @@ The pages give a curve-sketching checklist:
 
 This is not a mechanical ritual.  The derivative table tells how the curve moves; the second derivative table tells how it bends; asymptotes determine the large-scale shape.
 
-\section{Basic antiderivative table}
+Convexity can be read geometrically: the graph lies below chords and above supporting tangent lines.  If \(f\) is differentiable and convex, then
+\[
+  f(y)\ge f(x)+f'(x)(y-x).
+\]
+For \(f(x)=x^2\), the tangent-line inequality reads \(y^2\ge x^2+2x(y-x)\), equivalently \((y-x)^2\ge0\). Thus the supporting-line property is a concrete algebraic consequence of convexity rather than a geometric slogan.
+
+\section{Integration techniques as reverse differentiation}
 
 The integration section records standard formulas:
 \[
@@ -156,36 +160,27 @@ Trigonometric formulas include
   \int
 \frac{dx}{1+x^2}=\arctan x+C.
 \]
-The page also lists logarithmic forms such as
+These antiderivative identities are valid only on intervals where their integrands and the chosen logarithm or inverse-trigonometric branches are defined; in particular the exponential formula requires \(a>0\), \(a\ne1\). The page also lists logarithmic forms such as
 \[
   \int
 \frac{dx}{\sqrt{x^2+a^2}}
   =\ln|x+\sqrt{x^2+a^2}|+C.
 \]
 
-\section{Substitution}
-
 For a composite function, the substitution rule is
 \[
-  \int f(
-arphi(v))
-arphi'(v)\,dv
+  \int f(\varphi(v))\varphi'(v)\,dv
   =
   \int f(u)\,du,
-  \qquad u=
-arphi(v).
+  \qquad u=\varphi(v).
 \]
 Equivalently,
 \[
   \int f(u)\,du
   =
-  \int f(
-arphi(v))
-arphi'(v)\,dv.
+  \int f(\varphi(v))\varphi'(v)\,dv.
 \]
-The scanned page calls the two directions the first and second substitution methods.  The first recognizes a derivative already present; the second introduces a new variable to simplify the integral.
-
-\section{Integration by parts}
+One direction recognizes a derivative already present, while the other introduces a variable that simplifies the integrand.  The first recognizes a derivative already present; the second introduces a new variable to simplify the integral.
 
 From
 \[
@@ -195,9 +190,7 @@ one obtains
 \[
   \int u\,dv=uv-\int v\,du.
 \]
-The page presents integration by parts as the other major method after substitution.  Its use depends on choosing $u$ so that differentiating it simplifies the expression and choosing $dv$ so that it can be integrated.
-
-\section{Rational functions and partial fractions}
+Integration by parts complements substitution.  Its use depends on choosing $u$ so that differentiating it simplifies the expression and choosing $dv$ so that it can be integrated.
 
 A rational function is
 \[
@@ -225,8 +218,6 @@ Thus integration of rational functions reduces to two basic integral types:
   \int
 \frac{Mx+N}{(x^2+px+q)^k}\,dx.
 \]
-
-\section{Quadratic denominator reduction}
 
 For the second type, split the numerator as a derivative part plus a remainder:
 \[
@@ -280,8 +271,6 @@ For higher $k$, the recurrence shown on the page is
 \right).
 \]
 
-\section{Trigonometric rational functions}
-
 The notes next handle rational functions of $\sin x$ and $\cos x$.  Use the tangent half-angle substitution
 \[
   t=	an
@@ -313,7 +302,7 @@ Thus
 \]
 which becomes a rational integral in $t$.
 
-\section{Definite integrals and Riemann sums}
+\section{Definite Integrals and Averages}
 
 The page defines the definite integral.  Divide $[a,b]$ by
 \[
@@ -339,8 +328,6 @@ is the definite integral.
 
 The pages list sufficient conditions for integrability: continuous functions, monotone bounded functions, and bounded functions with finitely many discontinuities are integrable on closed intervals.
 
-\section{Basic properties of definite integrals}
-
 The standard properties are:
 \[
   \int_a^b [\alpha f(x)+\beta g(x)]\,dx
@@ -363,8 +350,6 @@ If $f\le g$, then
   \int_a^b f(x)\,dx\le\int_a^b g(x)\,dx.
 \]
 
-\section{Integral mean value theorem}
-
 \begin{theorem}[Integral mean value theorem]
 If \(f\) is continuous on \([a,b]\), then there exists \(c\in[a,b]\) such that
 \[
@@ -383,9 +368,7 @@ If $g$ does not change sign, the weighted form is
   =
   f(\xi)\int_a^b g(x)\,dx.
 \]
-This interprets integrals as average values.
-
-\section{Applications: area, volume, and arc length}
+For a continuous \(f\), let \(m=\min_{[a,b]}f\), \(M=\max_{[a,b]}f\). Then \(m(b-a)\le\int_a^b f\le M(b-a)\) when \(a<b\). Dividing by \(b-a\) places the average inside \([m,M]\), and the intermediate value theorem supplies \(f(c)\) equal to that average. This proves the integral mean value theorem; the weighted variant also needs \(g\) integrable with constant sign.
 
 Area between curves is computed by
 \[
@@ -416,7 +399,7 @@ For a parametric curve $x=x(t),y=y(t)$,
   \sqrt{(x'(t))^2+(y'(t))^2}\,dt.
 \]
 
-\section{Improper integrals}
+\section{Improper integration and quadrature error}
 
 The last pages include reminders about improper integrals.  If the interval is unbounded,
 \[
@@ -444,36 +427,13 @@ converges iff $p>1$, while
 \]
 converges iff $p<1$.
 
-\section{Broader perspective}
-
-This note connects derivative information with the global shape of a curve, then connects antiderivatives with accumulation.  Derivatives decide monotonicity, extrema, concavity, inflection points, and asymptotes.  Integration methods reduce complicated antiderivatives to known forms.  Definite integrals turn limits of sums into area, volume, length, and average value.  The same calculus ideas are being used both for qualitative geometry and quantitative computation.
-
-\section{Monotonicity and derivative sign}
-
-If \(f'\ge0\) on an interval, the mean value theorem gives
+For \(f\in C^2([a,b])\), the one-panel midpoint and trapezoid approximations satisfy the error bounds
 \[
-  f(y)-f(x)=f'(c)(y-x)\ge0\qquad (x<y).
+ \left|\int_a^b f(x)\,dx-(b-a)f\left(\frac{a+b}2\right)\right|
+ \le\frac{(b-a)^3}{24}\|f''\|_\infty,
 \]
-So monotonicity is not a separate rule; it is a global consequence of local derivative sign.
-
-Strict monotonicity needs care: \(f'>0\) everywhere is sufficient, but not necessary.  Functions can be strictly increasing even when the derivative vanishes at isolated or many points.
-
-\section{Convexity and supporting lines}
-
-Convexity can be read geometrically: the graph lies below chords and above supporting tangent lines.  If \(f\) is differentiable and convex, then
 \[
-  f(y)\ge f(x)+f'(x)(y-x).
+ \left|\int_a^b f(x)\,dx-\frac{b-a}2(f(a)+f(b))\right|
+ \le\frac{(b-a)^3}{12}\|f''\|_\infty.
 \]
-This inequality is the foundation of many optimization methods.
-
-\section{Integration methods as inverse rules}
-
-Substitution reverses the chain rule, integration by parts reverses the product rule, and partial fractions use algebraic decomposition before integration.  These methods are not unrelated tricks; each integration technique recognizes which differentiation rule produced the integrand.
-
-\section{Error terms and numerical integration}
-
-Midpoint and trapezoidal error formulas depend on second derivatives.  They express how curvature controls the difference between an integral and a simple area approximation.  In numerical analysis, this becomes a systematic study of quadrature rules and convergence rates.
-
-\section{Local derivative data and global shape}
-
-Curve sketching, monotonicity, extrema, concavity, asymptotes, integration methods, and numerical errors all use derivatives to convert local information into global shape or accumulated quantity.
+For \(f(x)=x^2\) on \([0,1]\), the exact integral is \(1/3\); the midpoint estimate \(1/4\) errs by \(1/12\), and the trapezoidal estimate \(1/2\) errs by \(1/6\). The sign of each error is consistent with the graph's convexity. These computations expose the actual role of the second derivative in quadrature.

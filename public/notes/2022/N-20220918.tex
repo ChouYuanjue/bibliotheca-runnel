@@ -1,182 +1,118 @@
-\notechapter{N-20220918}{Divisibility by Finite Differences and Pairing}
+\notechapter{N-20220918}{Divisibility by Pairing, Finite Differences, and Harmonic Reflection}
 
-\section{A general odd-power divisibility principle}
+Three problems in this note appear unrelated: sums of odd powers, an exponential congruence modulo \(512\), and an alternating rational sum whose numerator is divisible by \(1979\). Their solutions become shorter once the expressions are organized by symmetry, telescoping and modular inverses. The number-theoretic conventions follow MIT 18.781 \emph{Theory of Numbers}; for finite differences, see also Graham, Knuth and Patashnik, \emph{Concrete Mathematics}.\footnote{\url{https://ocw.mit.edu/courses/18-781-theory-of-numbers-spring-2012/pages/lecture-notes/}}
 
-For odd \(r\), the sum
-\[
-  1^r+2^r+\cdots+k^r
-\]
-has a strong divisibility property by the triangular number
-\[
-  1+2+\cdots+k=\frac{k(k+1)}2.
-\]
-The natural proof idea is pairing.  Pair \(j\) with \(k+1-j\).  Since \(r\) is odd,
-\[
-  j^r+(k+1-j)^r
-\]
-is divisible by \(k+1\), because
-\[
-  k+1-j\equiv -j\pmod{k+1}.
-\]
-A second argument handles the factor \(k\) or the remaining factor according to parity.  The high-level method is pairing, exploiting oddness, and treating the whole expression rather than each term separately.
+\section{Odd Powers and Triangular Numbers}
 
-\section[A divisibility problem with 512]{A divisibility problem with \(512\)}
+\begin{theorem}
+For every integer \(k\ge1\) and odd positive integer \(r\),
+\[
+ \boxed{\frac{k(k+1)}2\;\Big|\;\sum_{j=1}^k j^r.}
+\]
+\end{theorem}
 
-The main worked example is:
+\begin{proof}
+Write \(S=\sum_{j=1}^k j^r\). Since \(r\) is odd,
 \[
-  \text{prove that }512\mid 3^{2n}-32n^2+24n-1,\qquad n\in\mathbb N_+.
+ (m-j)^r\equiv-j^r\pmod m.
 \]
-Set
+If \(k\) is even, pairing \(j\) with \(k+1-j\) has no fixed point, giving \(k+1\mid S\). Modulo \(k\), the terms \(1,\ldots,k-1\) are paired by \(j\mapsto k-j\); the only possible fixed point is \(k/2\). Hence \(k/2\mid S\). As \(\gcd(k/2,k+1)=1\),
 \[
-  f(n)=3^{2n}-32n^2+24n-1.
+ (k/2)(k+1)\mid S.
 \]
-Finite differences are effective here.  Since \(512\mid f(1)\), it is enough to show
+
+If \(k\) is odd, instead pair \(1,\ldots,k-1\) modulo \(k\), with no fixed point, and note \(k^r\equiv0\pmod{k}\). Thus \(k\mid S\). Pair the terms \(1,\ldots,k\) under \(j\mapsto k+1-j\); the unique fixed point \((k+1)/2\) contributes a multiple of \((k+1)/2\). So \((k+1)/2\mid S\). Since \(\gcd(k,(k+1)/2)=1\), their product divides \(S\).
+\end{proof}
+
+The parity cases matter. For \(k=3,r=1\), the sum is \(6\), divisible by \(k(k+1)/2=6\), but not by \(k+1=4\). A proof that claims all terms can simply be paired modulo \(k+1\) overlooks the central fixed point.
+
+\section{The discrete fundamental theorem of calculus}
+
+For an integer-valued sequence \(f\), define the finite difference \(\Delta f(n)=f(n+1)-f(n)\). Telescoping yields
 \[
-  512\mid f(n+1)-f(n)
+ f(n)=f(1)+\sum_{j=1}^{n-1}\Delta f(j).
 \]
-for all \(n\).  Compute
+Thus if \(m\mid f(1)\) and \(m\mid\Delta f(j)\) for every \(j\ge1\), then \(m\mid f(n)\) for every \(n\ge1\). This is induction expressed in a form that separates the initial value from the repeated increment.
+
+The operator also reduces polynomial degree:
 \[
-\begin{aligned}
- f(n+1)-f(n)
- &=3^{2n+2}-32(n+1)^2+24(n+1)-1\\
- &\quad -3^{2n}+32n^2-24n+1\\
- &=8\cdot3^{2n}-64n-8\\
- &=8(3^{2n}-8n-1).
-\end{aligned}
+ \Delta n^2=2n+1,\qquad
+ \Delta \binom nk=\binom n{k-1}.
 \]
-Thus it remains to prove
+The binomial basis is especially convenient because taking a difference simply lowers the index. For a polynomial \(P\) of degree \(d\), \(\Delta^{d+1}P=0\).
+
+\section{A congruence modulo 512 in two steps}
+
+We wish to prove
 \[
-  64\mid 3^{2n}-8n-1.
+ \boxed{512\mid 3^{2n}-32n^2+24n-1\qquad(n\ge1).}
 \]
-Define
-\[
-  h(n)=3^{2n}-8n-1.
-\]
-Then
+Let \(F(n)=9^n-32n^2+24n-1\). The base case is \(F(1)=9-32+24-1=0\). Its finite difference simplifies to
 \[
 \begin{aligned}
- h(n+1)-h(n)
- &=3^{2n+2}-8(n+1)-1-3^{2n}+8n+1\\
- &=8\cdot3^{2n}-8\\
- &=8(3^{2n}-1).
+ \Delta F(n)
+ &=9^{n+1}-9^n-32((n+1)^2-n^2)+24\\
+ &=8(9^n-8n-1).
 \end{aligned}
 \]
-So it is enough to know
+Set \(H(n)=9^n-8n-1\), so \(H(1)=9-8-1=0\). Another difference gives
 \[
-  8\mid 3^{2n}-1.
+ \Delta H(n)=8(9^n-1).
 \]
-But \(3^2=9\equiv1\pmod8\), so
+Since \(9\equiv1\pmod8\), the bracket is divisible by \(8\) for every \(n\); hence \(\Delta H(n)\) is divisible by \(64\). Telescoping and \(H(1)=0\) show \(64\mid H(n)\), and consequently \(512\mid\Delta F(n)\). Another telescoping step and \(F(1)=0\) prove the claim.
+
+The two differences were chosen to peel away the polynomial terms and expose increasing powers of \(2\); no long binomial expansion of \(9^n\) was required.
+
+\section{Harmonic reflection modulo a prime}
+
+The rational-sum exercise asks us to write
 \[
-  3^{2n}\equiv1\pmod8.
+ S=1-\frac12+\frac13-\frac14+\cdots-\frac1{1318}+\frac1{1319}
+ =\frac pq
 \]
-Therefore \(64\mid h(n)\), and hence \(512\mid f(n)\).
-
-\section{Why finite differences work}
-
-The solution is essentially induction, but written in a more structural way.  If \(m\mid f(1)\) and \(m\mid f(n+1)-f(n)\) for every \(n\), then
+in lowest terms and prove \(1979\mid p\). The central observation is that
 \[
-  f(n)=f(1)+\sum_{j=1}^{n-1}(f(j+1)-f(j))
+ 1979-1=1319+659.
 \]
-is divisible by \(m\).  This is the discrete analogue of recovering a function from its derivative.
 
-The page is valuable because it shows a common trick for expressions involving \(n\) both in an exponent and a polynomial.  Direct induction may be messy, but finite differences reduce the polynomial part and often reveal a smaller congruence.
-
-\section{An alternating harmonic numerator}
-
-The second problem is:
+Let \(H_n=\sum_{j=1}^n1/j\) with \(H_0=0\). Separating odd and even denominators gives
 \[
-  \frac pq=1-\frac12+\frac13-\frac14+\cdots-\frac1{1318}+\frac1{1319},
+ S=H_{1319}-2\sum_{j=1}^{659}\frac1{2j}
+ =H_{1319}-H_{659}.
 \]
-where \(p,q\) are coprime positive integers, and one must prove
+The integer \(1979\) is prime (trial division by primes at most \(\sqrt{1979}<45\) confirms this). Therefore every denominator from \(1\) to \(1978\) has an inverse modulo \(1979\); rational sums with these denominators make sense in the finite field \(\mathbb F_{1979}\).
+
+For any odd prime \(\ell\), pair \(j\) with \(\ell-j\):
 \[
-  1979\mid p.
+ \frac1{\ell-j}\equiv-\frac1j\pmod\ell.
 \]
-Separate the odd and even denominators in the alternating sum:
+Summing over \(1\le j\le\ell-1\) yields
 \[
-  1+\frac13+\cdots+\frac1{1319}
-  -2\left(\frac12+\frac14+\cdots+\frac1{1318}\right).
+ H_{\ell-1}\equiv0\pmod\ell.
 \]
-After simplification, this becomes a sum of paired fractions in which a factor \(1979\) appears in the numerator.  The important observation is that \(1979\) is prime and is coprime to the denominators appearing after cancellation, so if the rational number is written in lowest terms, the factor \(1979\) cannot disappear into the denominator.  Hence it must divide \(p\).
-
-\section{The next abstraction}
-
-Both problems use the same philosophy: do not expand everything.  For power sums, pair symmetric terms.  For congruence sequences, take finite differences.  For rational sums, reorganize the denominator structure so that a prime factor becomes visible.  These are all examples of choosing the right invariant before calculating.
-
-\section{Finite differences as discrete derivatives}
-
-The finite difference operator
+More precisely,
 \[
-  \Delta f(n)=f(n+1)-f(n)
+\begin{aligned}
+ H_{\ell-1-m}
+ &=H_{\ell-1}-\sum_{j=\ell-m}^{\ell-1}\frac1j\\
+ &\equiv -\sum_{j=1}^{m}\frac1{\ell-j}
+ \equiv H_m\pmod\ell.
+\end{aligned}
 \]
-is the discrete analogue of differentiation.  If \(m\mid f(1)\) and \(m\mid \Delta f(n)\) for every \(n\), then
+Choose \(\ell=1979\), \(m=659\). Then \(\ell-1-m=1319\), so \(H_{1319}\equiv H_{659}\pmod{1979}\) and hence
 \[
-  f(n)=f(1)+\sum_{j=1}^{n-1}\Delta f(j)
+ \boxed{S\equiv0\pmod{1979}.}
 \]
-is divisible by \(m\).  This is induction written as a discrete fundamental theorem of calculus.
+No denominator of \(S\) is divisible by \(1979\), and this property survives when the fraction is reduced to lowest terms. Consequently the reduced numerator \(p\) is divisible by \(1979\), as required.
 
-For a polynomial of degree \(d\),
+The proof does not require constructing the astronomically large common denominator. The complementary harmonic intervals were deliberately chosen so that modular reflection pairs them.
+
+\section{Prime-power valuations clarify the method}
+
+For a prime \(p\), write \(v_p(N)\) for the exponent of \(p\) in a nonzero integer \(N\). Then
 \[
-  \Delta^{d+1}f=0.
+ p^k\mid N\quad\Longleftrightarrow\quad v_p(N)\ge k.
 \]
-So finite differences lower polynomial complexity in exactly the way derivatives do.
+The modulus \(512=2^9\) is a valuation condition: after two finite-difference reductions, we extract three factors of \(8\), providing nine factors of \(2\). The harmonic problem instead uses a prime \(\ell\) that is invertible in all denominators, so it is naturally solved by arithmetic in \(\mathbb F_\ell\).
 
-\section{The binomial basis and integer-valued polynomials}
-
-The binomial polynomials
-\[
-  \binom x0,\quad \binom x1,\quad \binom x2,\quad\ldots
-\]
-are adapted to finite differences:
-\[
-  \Delta\binom xk=\binom x{k-1}.
-\]
-A classical theorem says that every integer-valued polynomial has a unique expansion
-\[
-  f(x)=\sum_k c_k\binom xk,\qquad c_k\in\mathbb Z.
-\]
-This basis is often better than the monomial basis \(1,x,x^2,\ldots\) when proving divisibility for all integers.
-
-The reason is simple: \(\binom nk\) is automatically integral for integer \(n\), and finite differences act on it cleanly.
-
-\section{Pairing as group symmetry}
-
-In odd-power sums, the pairing
-\[
-  j\longleftrightarrow m-j
-\]
-is an action of a two-element symmetry group on residue classes modulo \(m\).  If \(r\) is odd, then
-\[
-  (m-j)^r\equiv -j^r\pmod m,
-\]
-so each orbit contributes zero modulo \(m\), except possibly fixed points.
-
-Thus the cancellation is not a lucky trick.  It is orbit cancellation under the involution \(j\mapsto m-j\).  Similar symmetry arguments appear in character sums and finite group actions.
-
-\section{P-adic valuation and lifting intuition}
-
-For a prime \(p\), \(v_p(N)\) records the exponent of \(p\) dividing \(N\).  Divisibility by \(p^k\) becomes the inequality
-\[
-  v_p(N)\ge k.
-\]
-In problems such as proving divisibility by \(512=2^9\), the real task is to track how many factors of \(2\) are gained at each finite-difference step.
-
-The deeper principle is lifting.  A congruence modulo \(p\) may sometimes be lifted to a congruence modulo higher powers \(p^k\).  Hensel lifting is the systematic version of this idea.  Even when the theorem is not invoked, the intuition is valuable: prime-power divisibility is controlled locally and incrementally.
-
-\section{Alternating harmonic sums and denominator control}
-
-For rational sums, the numerator after reduction depends on which prime factors can survive cancellation with the denominator.  If a prime \(p\) appears in the numerator of a common-denominator expression and is coprime to the denominator after simplification, then \(p\) must remain in the reduced numerator.
-
-This is a valuation statement.  Writing a rational number as \(A/B\), one compares \(v_p(A)\) and \(v_p(B)\).  Reduction cancels the smaller valuation from both sides.  If \(v_p(B)=0\) and \(v_p(A)>0\), then the reduced numerator is still divisible by \(p\).
-
-\section{Discrete summation by parts}
-
-There is also a discrete analogue of integration by parts.  For sequences \(a_n,b_n\), one form is
-\[
-  \sum_{n=m}^{N-1}a_n\Delta b_n
-  =a_Nb_N-a_mb_m-\sum_{n=m}^{N-1}b_{n+1}\Delta a_n.
-\]
-This technique turns products inside sums into boundary terms plus a simpler sum.  It is the natural extension of telescoping and finite differences.
-
-\section{Discrete calculus and local divisibility}
-
-These divisibility methods are forms of discrete calculus and local arithmetic.  Finite differences lower complexity, telescoping keeps boundary terms, pairing exploits symmetry, valuations measure prime-power divisibility, and rational-sum arguments track which primes can cancel.  The useful invariant is often a difference, orbit pairing, or valuation rather than the whole expression.
+These two cases explain why modular arithmetic changes shape with the modulus. At a prime, inverses and field symmetries can be used; at a prime power, tracking the number of factors of the prime is often the right invariant.

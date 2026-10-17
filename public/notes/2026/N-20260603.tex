@@ -522,37 +522,50 @@ The minimum-norm choice is therefore encoded by the initialization: gradient des
 
 This observation is useful beyond numerical linear algebra.  In an underdetermined linear model, the optimization dynamics themselves can impose an implicit bias toward the minimum-norm solution.
 
-\section{Small singular values and the need for regularization}
+\section{A tiny noisy direction: three spectral filters}
 
-The formula
+Take a matrix which almost erases its second coordinate:
 \[
-  A^+b
-  =\sum_{i=1}^r\frac{u_i^*b}{\sigma_i}v_i
+ A=\begin{pmatrix}1&0\\0&10^{-2}\end{pmatrix}.
 \]
-shows a danger.  If \(\sigma_i\) is tiny, even a small component of noise along \(u_i\) is magnified by \(1/\sigma_i\).  The pseudoinverse is canonical, but canonical does not mean numerically safe.
+Suppose the exact signal is $x_*=(1,0)^T$, so $Ax_*=(1,0)^T$, but we observe
+\[
+ b=\begin{pmatrix}1\\ 0.02\end{pmatrix}.
+\]
+The perturbation of the data is only $0.02$ in norm. Exact pseudoinversion turns it into
+\[
+ \boxed{A^+b=(1,2)^T,}
+\]
+an error of size $2$ in the recovered vector. The small singular direction has amplified the noise a hundredfold.
 
-Tikhonov regularization replaces exact least squares by
+A Tikhonov penalty with $\lambda=10^{-3}$ changes the answer to
 \[
-  \min_x\bigl(\|Ax-b\|_2^2+\lambda\|x\|_2^2\bigr),
-  \qquad \lambda>0.
+ x_\lambda
+ =\begin{pmatrix}
+      \dfrac{1}{1+10^{-3}}\\[6pt]
+      \dfrac{10^{-2}}{10^{-4}+10^{-3}}\,0.02
+    \end{pmatrix}
+ =\begin{pmatrix}\dfrac{1000}{1001}\\[3pt]\dfrac2{11}\end{pmatrix}.
 \]
-The solution is
-\[
-  x_\lambda=(A^*A+\lambda I)^{-1}A^*b.
-\]
-Using the SVD,
-\[
-  x_\lambda
-  =\sum_{i=1}^r
-  \frac{\sigma_i}{\sigma_i^2+\lambda}
-  (u_i^*b)v_i.
-\]
-Compare the two spectral filters:
-\[
-  \frac1{\sigma_i}
-  \qquad\text{and}\qquad
-  \frac{\sigma_i}{\sigma_i^2+\lambda}.
-\]
-For large singular values they are close.  For small singular values the regularized factor remains controlled instead of exploding.
+It suppresses the nearly invisible coordinate, but at a cost: if the true signal \emph{had} a large component in that direction, regularization would erase part of it. There is no universally correct cutoff without an assumption about signal and noise.
 
-The geometric story is now complete.  The pseudoinverse inverts \(A\) exactly on the active subspaces, projects away what cannot be reached, and removes null-space ambiguity.  Iterative methods approach the same object without forming it, while regularization deliberately softens the inversion when the smallest singular directions are dominated by noise.  These are not separate techniques attached to one symbol; they are different responses to the same geometry of range, kernel, and singular scale.
+The preceding Landweber iteration hides a related kind of regularization. Starting at $x_0=0$, solving its scalar recurrence in each singular direction gives an exact finite-step formula:
+\[
+ \boxed{
+ x_k=\sum_{\sigma_i>0}
+  \frac{1-(1-\alpha\sigma_i^2)^k}{\sigma_i}
+  (u_i^*b)v_i .}
+\]
+For $\alpha=1$ and $k=1000$ in our example, the first coordinate is $1$, while the second is
+\[
+ 2\left(1-\left(1-10^{-4}\right)^{1000}\right)
+ \approx0.1903.
+\]
+The iterative solver has not yet amplified that direction all the way to $2$. Near $\sigma=0$, the finite-step filter behaves as
+\[
+ \frac{1-(1-\alpha\sigma^2)^k}{\sigma}
+    \sim k\alpha\sigma;
+\]
+Tikhonov's filter behaves as $\sigma/\lambda$. They are different functions with the same useful feature: both attenuate the tiniest singular directions.
+
+In this example, running the iteration \emph{to convergence} would recover the noisy pseudoinverse $(1,2)^T$. Stopping early is therefore a meaningful part of the inverse problem, not simply an unfinished numerical computation.

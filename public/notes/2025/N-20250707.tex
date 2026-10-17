@@ -60,7 +60,7 @@ This is the most important mental shift.  In the diagram, a region looks passive
 
 For a quick analogy, imagine the knot as a collection of wires suspended in a slab of transparent jelly.  A region probe is a thin needle pushed from the bottom of the jelly to the top without touching any wire.  Moving the knot deforms the possible needle paths.  The algebra of regions is really an algebra of these possible needle paths.
 
-\section{At a crossing, four regions want to talk to each other}
+\section{Four Regions around a Crossing}
 
 A tribracket is a ternary operation.  Instead of combining two inputs, it combines three:
 \[
@@ -234,12 +234,32 @@ This leads toward crossoids, which generalize parity-type structures on knots.  
 \]
 The partial tribracket is simply the region case of this general machine.
 
-\section{The paper in one playful sentence}
+\section{One crossing, one allowed computation}
 
-A knot diagram looks like a flat picture, but Nikonov treats its arcs, regions, and crossings as little test paths sent through a three-dimensional slab.  Once those test paths are allowed to move, their homotopy classes begin to carry algebra.  Arc probes lead toward quandles; region probes lead toward partial tribrackets; semiarc probes lead toward biquandloids; crossing probes lead toward crossoids.
-
-So the paper is not merely saying ``here is another coloring invariant.''  It is saying something more structural:
+The small Alexander-numbering model from above is enough to put the word \emph{partial} to work. Recall the exact rule
 \[
-  \text{the algebraic coloring gadgets are shadows of topological probe spaces.}
+ X=\mathbb Z,\qquad
+ a\uparrow b\ \Longleftrightarrow\ b=a-1,\qquad
+ [a,b,c]=a+2,
 \]
-At this point the seminar's main mechanism becomes concrete.  The rest of the paper builds a much larger machine, but this one crossing already explains why the machine is interesting.
+where $[a,b,c]$ is defined when $b\uparrow a$ and $c\uparrow a$. In other words, given a first input $a$, the other two inputs must each equal $a+1$.
+
+For instance, the triple $(a,b,c)=(0,1,1)$ is admissible because
+\[
+ 1\uparrow0,\qquad1\uparrow0,
+ \qquad\text{and then}\qquad
+ \boxed{[0,1,1]=2.}
+\]
+The superficially similar expression $[0,2,1]$ has no value: $2\not\uparrow0$. It is important \emph{not} to write an arbitrary number on its right-hand side.
+
+\[
+\begin{array}{c|c|c}
+ \text{three inputs}&\text{compatibility}&\text{fourth color}\\ \hline
+ (0,1,1)&1\uparrow0,\ 1\uparrow0&2\\
+ (0,2,1)&2\not\uparrow0&\text{undefined}
+\end{array}
+\]
+
+The local rule is deliberately simple. In the topological construction, the compatibility condition records whether three region probes can really be arranged around a crossing in the required way. When they can, the fourth class is determined; when they cannot, the operation has no business pretending otherwise.
+
+Nikonov's \href{https://arxiv.org/abs/2504.18836}{\emph{The Crossing and the Arc from the Topological Viewpoint}} gives the larger context: homotopy classes of probes also lead to quandles for arcs, biquandloids for semiarcs, and crossoids for crossings. The concrete distinction between $[0,1,1]$ and $[0,2,1]$ is already enough to remember what a \emph{partial} algebra is doing here.

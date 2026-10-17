@@ -1,150 +1,159 @@
-\notechapter{N-20230223}{Trigonometric Systems, Multiple-Angle Formulas, and a Determinant Recurrence}
+\notechapter{N-20230223}{Trigonometric Systems, Chebyshev Polynomials, and Tridiagonal Determinants}
 
-\section{Correcting a trigonometric mistake}
+\section{Constraints in Trigonometric Systems}
 
-A tempting determinant manipulation with vectors built from angles $\alpha$ and $\beta$ introduces a factor such as $\tan(\alpha-\beta)$, but the argument is invalid.  The failure comes from treating angle-dependent vector identities as though the relevant coordinates and orientations were interchangeable; the correct derivation must track the chosen basis and the domain of every tangent factor.
+Consider the original problem
+\[
+ \sin\alpha+\sin\beta=\frac12,\qquad
+ \cos\alpha-\cos\beta=\frac13.
+\]
+The desired quantity is \(\cos\alpha\cos\beta\). Introducing four unknowns \(a=\sin\alpha\), \(b=\sin\beta\), \(c=\cos\alpha\), \(d=\cos\beta\) gives the two linear equations
+\[
+ a+b=\frac12,\qquad c-d=\frac13,
+\]
+but they cannot be solved independently: one must retain the circle equations
+\[
+ a^2+c^2=1,\qquad b^2+d^2=1.
+\]
+A determinant argument treating \(a,b,c,d\) as free coordinates would introduce spurious solutions. The trigonometric variables must instead be linked through the same pair of angles; their circle constraints are part of the algebraic system.
 
-This is worth preserving.  A failed determinant manipulation is not useless; it tells us that the problem probably has hidden dependencies among the trigonometric variables.  Before choosing a linear algebra method, one must check whether the equations are genuinely linear in the chosen unknowns.
+The right substitution uses the shared geometry of the angles:
+\[
+ S=\frac{\alpha+\beta}{2},\qquad D=\frac{\alpha-\beta}{2}.
+\]
+Sum-to-product identities give
+\[
+ 2\sin S\cos D=\frac12,\qquad
+ -2\sin S\sin D=\frac13.
+\]
+Thus
+\[
+ \sin S\cos D=\frac14,\qquad
+ \sin S\sin D=-\frac16.
+\]
+Without dividing by any potentially zero factor, square and add to obtain
+\[
+ \sin^2S=\frac1{16}+\frac1{36}=\frac{13}{144}.
+\]
+Consequently
+\[
+ \cos(\alpha+\beta)=\cos2S=1-2\sin^2S=\frac{59}{72}.
+\]
+To find the difference angle, use
+\[
+ \cos2D
+ =\frac{(\sin S\cos D)^2-(\sin S\sin D)^2}{\sin^2S}
+ =\frac{1/16-1/36}{13/144}=\frac5{13}.
+\]
+Now the product-to-sum identity completes the problem:
+\[
+ \boxed{\cos\alpha\cos\beta
+  =\frac{\cos(\alpha+\beta)+\cos(\alpha-\beta)}2
+  =\frac12\left(\frac{59}{72}+\frac5{13}\right)
+  =\frac{1127}{1872}.}
+\]
+In contrast, dividing the original equations to get
+\(-\tan D=2/3\) is legitimate here only after proving that the common factor \(\sin S\cos D\) is nonzero; the first displayed equation supplies exactly that proof.
 
-\section{A trigonometric system}
+\section{Rational parametrization and multiple-angle formulas}
 
-The main problem asks for $\cos\alpha\cos\beta$ under conditions of the form
+An alternative solution method for some circle equations is
 \[
-  \sin\alpha+\sin\beta=\frac12,
-  \qquad
-  \cos\alpha-\cos\beta=\frac13.
+ t=\tan\frac{x}{2},\qquad
+ \cos x=\frac{1-t^2}{1+t^2},\qquad
+ \sin x=\frac{2t}{1+t^2}.
 \]
-Introduce
-\[
-  a=\sin\alpha,\qquad b=\sin\beta,\qquad
-  c=\cos\alpha,\qquad d=\cos\beta.
-\]
-Then the equations become
-\[
-  a+b=\frac12,\qquad c-d=\frac13,\qquad
-  a^2+c^2=1,\qquad b^2+d^2=1.
-\]
-This transforms a trigonometric problem into an algebraic system.
+It comes from the standard stereographic parametrization of the unit circle. The point \((-1,0)\) is missing for finite real \(t\), so a rationally transformed equation must either handle it separately or impose the appropriate domain. This matters when clearing denominators.
 
-\section{A rational-parametrization idea}
-
-Express the four variables as sums of rational parts and radicals:
+The same circle structure produces multiple-angle identities. De Moivre's formula is
 \[
-  a=q_1+r_1,\qquad b=q_2-r_1,\qquad
-  c=q_3+r_2,\qquad d=q_4+r_2,
+ (\cos x+i\sin x)^n=\cos nx+i\sin nx.
 \]
-with
+Taking real and imaginary parts of the binomial expansion yields
 \[
-  q_1+q_2=\frac12,\qquad q_3-q_4=\frac13.
-\]
-The two circle equations become quadratic equations in the radical parts.  Comparing rational and irrational parts can force relations among the $q_i$ and $r_i$.
-
-The note finds relations such as
-\[
-  q_1^2+q_3^2=q_2^2+q_4^2,
-\]
-and a linear relation between $r_1$ and $r_2$.  One conclusion written on the page is that the signs may be controlled by introducing one radical and then solving back for $c,d$.  The method is experimental, and the note explicitly says that another method was not successful.
-
-\section{A direct algebraic route}
-
-A cleaner derivation is to use sum-to-product formulas.  We have
-\[
-  \sin\alpha+\sin\beta
-  =2\sin\frac{\alpha+\beta}{2}\cos\frac{\alpha-\beta}{2}=\frac12,
-\]
-and
-\[
-  \cos\alpha-\cos\beta
-  =-2\sin\frac{\alpha+\beta}{2}\sin\frac{\alpha-\beta}{2}=\frac13.
-\]
-Dividing gives
-\[
-  -\tan\frac{\alpha-\beta}{2}=\frac{2}{3},
-\]
-provided the common factor is nonzero.  This determines the half-difference angle.  Then one can recover products such as
-\[
-  \cos\alpha\cos\beta
-  =\frac{\cos(\alpha+\beta)+\cos(\alpha-\beta)}2.
-\]
-The direct method shows why the algebraic system has hidden trigonometric structure.
-
-\section{Multiple-angle formulas}
-
-A standard multiple-angle formula is
-\[
-  \sin(nx)=\sum_{k=0}^n \binom nk
-  \cos^k x\,\sin^{n-k}x\;
-  \sin\left(\frac{(n-k)\pi}{2}\right),
-\]
-and
-\[
-  \cos(nx)=\sum_{k=0}^n \binom nk
-  \cos^k x\,\sin^{n-k}x\;
-  \cos\left(\frac{(n-k)\pi}{2}\right).
-\]
-These come from expanding
-\[
-  (\cos x+i\sin x)^n=\cos(nx)+i\sin(nx).
-\]
-Thus De Moivre's formula is the conceptual source of the binomial-looking expressions.
-
-The recurrence formulas are
-\[
-  \sin(nx)=2\sin((n-1)x)\cos x-\sin((n-2)x),
+ \cos nx=\sum_{j=0}^{\lfloor n/2\rfloor}
+ (-1)^j\binom{n}{2j}\cos^{n-2j}x\sin^{2j}x,
 \]
 \[
-  \cos(nx)=2\cos((n-1)x)\cos x-\cos((n-2)x),
+ \sin nx=\sum_{j=0}^{\lfloor(n-1)/2\rfloor}
+ (-1)^j\binom{n}{2j+1}\cos^{n-2j-1}x\sin^{2j+1}x.
 \]
-and
+These formulas answer the original question about the alternating signs and binomial coefficients: both are forced by powers of \(i\).
+
+The addition identities also give second-order recurrences:
 \[
-  \tan(nx)=\frac{\tan((n-1)x)+\tan x}{1-\tan((n-1)x)\tan x}.
+ \cos nx=2\cos x\cos((n-1)x)-\cos((n-2)x),
 \]
-The sine and cosine recurrences are Chebyshev-type recurrences.
-
-\section{The determinant recurrence}
-
-The final page asks one to prove a determinant formula.  The displayed matrix is tridiagonal, with diagonal entries involving $2\cos\theta$ and off-diagonal entries equal to $1$, with a modified first entry involving $\cos\theta$.  The intended proof is expansion along the last row or last column.
-
-If $D_n$ denotes the determinant of the $n\times n$ tridiagonal matrix with diagonal $2\cos\theta$ and off-diagonal $1$, then it satisfies
 \[
-  D_n=2\cos\theta\,D_{n-1}-D_{n-2}.
+ \sin nx=2\cos x\sin((n-1)x)-\sin((n-2)x).
 \]
-This is the same recurrence as the multiple-angle formulas.  Therefore $D_n$ can be expressed in terms of $\sin((n+1)\theta)/\sin\theta$ or a related Chebyshev polynomial, depending on the exact boundary convention.
-
-The determinant is a cosine expression because the matrix determinant and the trigonometric formula satisfy the same recurrence with the same initial values.
-
-\section{From technique to structure}
-
-Choosing between trigonometry, algebra, and linear algebra is part of the problem.  A failed determinant trick reveals hidden constraints; sum-to-product formulas solve the angle system; De Moivre produces multiple-angle identities; and tridiagonal determinants share Chebyshev recurrences.  Recurrence relations are the bridge between trigonometry and matrices.
-
-\section{Trigonometric systems as algebraic systems}
-
-A trigonometric system can often be converted into algebra by setting
+The tangent recurrence
 \[
-  u=\cos x,\qquad v=\sin x,\qquad u^2+v^2=1.
+ \tan nx=\frac{\tan((n-1)x)+\tan x}
+ {1-\tan((n-1)x)\tan x}
 \]
-This turns identities into polynomial relations on the unit circle.  The constraint must always be kept; otherwise extraneous algebraic solutions appear.
+holds only where all displayed tangent expressions and the quotient are defined. It is often better to work with sine and cosine when the denominator may vanish.
 
-\section{Rational parametrization of the circle}
+\section{Determinants and Trigonometric Recurrences}
 
-The substitution
+Let \(A_n(\theta)\) be the \(n\times n\) tridiagonal matrix with
+\(2\cos\theta\) on its diagonal and \(1\) on the two adjacent diagonals:
 \[
-  t=\tan\frac x2,\qquad \cos x=\frac{1-t^2}{1+t^2},\qquad \sin x=\frac{2t}{1+t^2}
+ A_n(\theta)=
+ \begin{pmatrix}
+ 2\cos\theta&1&&\\
+ 1&2\cos\theta&\ddots&\\
+ &\ddots&\ddots&1\\
+ &&1&2\cos\theta
+ \end{pmatrix}.
 \]
-rationally parametrizes the unit circle except one point.  It turns many trigonometric equations into rational equations.
-
-\section{Multiple-angle formulas and Chebyshev polynomials}
-
-The identity
+With \(D_n=\det A_n\) and the empty determinant \(D_0=1\), expansion along the last row gives
 \[
-  \cos(nx)=T_n(\cos x)
+ D_n=2\cos\theta\,D_{n-1}-D_{n-2},
+ \qquad D_1=2\cos\theta.
 \]
-defines the Chebyshev polynomial \(T_n\).  Thus multiple-angle formulas are polynomial dynamics on the interval \([-1,1]\).
+Define \(U_0(x)=1\), \(U_1(x)=2x\) and
+\[
+ U_n(x)=2xU_{n-1}(x)-U_{n-2}(x).
+\]
+By matching both initial values and the recurrence,
+\[
+ \boxed{D_n(\theta)=U_n(\cos\theta)
+     =\frac{\sin((n+1)\theta)}{\sin\theta}}
+ \qquad(\sin\theta\ne0).
+\]
+The trigonometric quotient extends to \(\sin\theta=0\) by continuity, whereas \(U_n\) is a polynomial valid for all \(x\). For example,
+\[
+ D_2=4\cos^2\theta-1,\qquad
+ D_3=8\cos^3\theta-4\cos\theta.
+\]
+The recurrence and the two initial values determine the determinant uniquely. It is also easy to incorporate a modified first diagonal entry. Let \(A_n(\delta,t)\) have off-diagonal entries \(1\), diagonal entries \(2t\) except for the first entry \(\delta\), and write \(E_n=\det A_n(\delta,t)\). Cofactor expansion yields
+\[
+ E_0=1,\quad E_1=\delta,\qquad
+ E_n=2tE_{n-1}-E_{n-2}.
+\]
+With the convention \(U_{-1}(t)=0\), the unique solution is
+\[
+ \boxed{E_n=\delta U_{n-1}(t)-U_{n-2}(t)}
+ \qquad(n\ge1).
+\]
+For \(n=1\) this gives \(\delta\), and for \(n=2\) it gives \(2t\delta-1\). Changing the boundary entry changes the initial conditions, while the same Chebyshev recurrence governs the interior.
 
-\section{Determinant recurrences}
+The recurrence and special-function formulas above follow the NIST \emph{Digital Library of Mathematical Functions}, Sections 18.5 and 18.9.\footnote{\href{https://dlmf.nist.gov/18}{NIST Digital Library of Mathematical Functions}, Chapter 18, especially \S\S18.5 and 18.9.}
 
-A determinant recurrence often comes from expanding along a row or column.  The resulting sequence is commonly governed by a second-order linear recurrence, whose characteristic roots explain closed forms.
+\section{Why the algebra and trigonometry agree}
 
-\section{Trigonometry through algebraic parametrization}
+The common ingredient is a linear recurrence with fixed coefficients. The sequences \(\cos nx\), \(\sin nx\), and the tridiagonal determinants \(D_n\) all satisfy
+\[
+ u_n=2c\,u_{n-1}-u_{n-2},\qquad c=\cos x.
+\]
+A second-order recurrence is determined by two initial values, and differences between the sequences come from those values rather than a different governing law.
 
-The note joins trigonometry and algebra: systems become polynomial constraints, half-angle substitution gives rational parametrization, multiple angles give Chebyshev polynomials, and determinant recurrences reveal linear recurrence structure.
+One can make this structural connection explicit with the companion matrix
+\[
+ \begin{pmatrix}u_n\\u_{n-1}\end{pmatrix}
+ =
+ \begin{pmatrix}2c&-1\\1&0\end{pmatrix}
+ \begin{pmatrix}u_{n-1}\\u_{n-2}\end{pmatrix}.
+\]
+Its eigenvalues are \(e^{\pm ix}\) when \(c=\cos x\). Powers of these eigenvalues explain the appearance of \(\sin nx\) and \(\cos nx\), while the determinant recurrence arises from Laplace expansion. This is the precise bridge between the seemingly unrelated pages of trigonometry and linear algebra.

@@ -1,10 +1,13 @@
 \notechapter{N-20260302}{Pure Mathematics as a Language for Machine Learning and Data Analysis}
 
-An AI-assisted attempt to map pure-mathematical languages onto machine learning kept returning to the same phenomenon: coordinates are useful until the data begin to carry geometry, symmetry, topology, or distributions of their own.  Backpropagation is the first place where this structural language becomes completely concrete.
+
+Suppose a neural network turns a million parameters into one loss. Computing its full derivative sounds like a million separate experiments, yet one backward pass gives all million partial derivatives. Suppose four data points lie at the corners of a square. A loop in their neighborhood graph exists at one spatial scale and vanishes at another. Or suppose two probability distributions have the same variance but different centers: there is a way to transport one into the other that is visibly optimal, without solving a huge optimization problem.
+
+These puzzles look unrelated until we ask what is being \emph{carried across a map}. A perturbation can be pushed forward, a covector pulled backward, a topological cycle followed through an inclusion, a unit of probability mass coupled to its destination, and a symmetry carried through a predictor. Each operation has a precise compatibility law. The pleasure comes from discovering that the compatibility law often does the hard calculation for us.\footnote{The differential viewpoint follows MIT OCW's \href{https://ocw.mit.edu/courses/18-s096-matrix-calculus-for-machine-learning-and-beyond-january-iap-2023/pages/lecture-notes-and-readings/}{\emph{Matrix Calculus for Machine Learning and Beyond}}. For persistence see Edelsbrunner and Harer, \emph{Computational Topology}; for transport see Peyr\'e and Cuturi, \href{https://optimaltransport.github.io/book/}{\emph{Computational Optimal Transport}}.}
 
 \section{Backpropagation as cotangent pullback}
 
-The previous backpropagation calculation can be read in a categorical way without making it mystical.  A forward neural network is a composite of maps between parameter spaces, activation spaces, and finally the one-dimensional loss space.  If
+A gradient is usually displayed as a column of numbers. The more useful geometric object is the differential: a linear functional that evaluates the first-order effect of any perturbation.  A forward neural network is a composite of maps between parameter spaces, activation spaces, and finally the one-dimensional loss space.  If
 \[
   L:Y\to \mathbb R
 \]
@@ -16,7 +19,7 @@ Backpropagation pulls this covector backward along the forward computational gra
 \[
   f:X\to Y
   \quad\Longrightarrow\quad
-  f^*:T^*Y\to T^*X.
+  f_x^*:T_{f(x)}^*Y\to T_x^*X.
 \]
 Forward maps push tangent perturbations forward; reverse-mode automatic differentiation pulls covectors backward.
 
@@ -65,6 +68,90 @@ If one stores weights in the column convention \(W_{\mathrm{col}}\in\mathbb R^{d
 \]
 The categorical phrase ``pull back the covector'' is exactly this matrix multiplication: the high-order Jacobian collapses because it is being paired with a covector from the scalar loss.
 
+\subsection*{Why reverse differentiation reverses arrows}
+
+Let $f:X\to Y$ and $g:Y\to Z$ be smooth maps. The differential moves a tiny displacement forward:
+\[
+ D(g\circ f)_x=Dg_{f(x)}\,Df_x.
+\]
+A covector at $g(f(x))$ is a linear rule for evaluating such displacements. Applying it after the composite is the same as first pulling it through $Dg$ and then through $Df$:
+\[
+ \boxed{(g\circ f)^*_x=f_x^*\circ g^*_{f(x)}.}
+\]
+The order reverses automatically. This identity is the precise meaning of reverse-mode differentiation; it is a property of dual maps.
+
+For a small calculation, define
+\[
+ u_1=x_1+x_2,\qquad u_2=x_1x_2,\qquad
+ L=u_1^2+\tfrac12u_2^2.
+\]
+At $(x_1,x_2)=(1,2)$, the forward pass gives $(u_1,u_2)=(3,2)$ and $L=11$. The loss first supplies the covector $(2u_1,u_2)=(6,2)$. Pull it through
+\[
+ Du=\begin{pmatrix}1&1\\x_2&x_1\end{pmatrix}
+    =\begin{pmatrix}1&1\\2&1\end{pmatrix}
+\]
+to obtain
+\[
+ \boxed{\nabla_x L=(Du)^T
+ \begin{pmatrix}6\\2\end{pmatrix}
+ =\begin{pmatrix}10\\8\end{pmatrix}.}
+\]
+We could expand $L=(x_1+x_2)^2+\frac12x_1^2x_2^2$ and differentiate directly; it gives the same answer. The two computations differ in what they remember: the backward calculation reuses the intermediate values of the forward computation.
+
+There is also a useful pairing identity behind every implementation. If a forward perturbation is $\delta x$, then
+\[
+ \big\langle dL_y,Df_x(\delta x)\big\rangle
+   =\big\langle(Df_x)^*dL_y,\delta x\big\rangle.
+\]
+Both sides are the same first-order change in the loss. When $Df$ is too large to write as a matrix, this identity defines the operation that the backward pass must compute. It also makes a finite-difference sanity check possible: replacing $x$ by $x+h\delta x$ should change $L$ by
+$h\,\langle(Df_x)^*dL,\delta x\rangle+O(h^2)$.
+
+\subsection*{The Adjoint-State Method}
+
+Reverse-mode differentiation is even more striking when the layer is the solution of an equation. Suppose a parameter vector $\theta$ determines an invertible matrix and a right-hand side, and define $u(\theta)$ implicitly by
+\[
+ A(\theta)u(\theta)=b(\theta).
+\]
+We care about one scalar objective $J(\theta)=\ell(u(\theta),\theta)$. Differentiating the linear system in a direction $\delta\theta$ yields
+\[
+ A\,\delta u=\delta b-(\delta A)u.
+\]
+It looks as though we must solve another system for $\delta u$ for \emph{every} parameter. But the differential of the objective is only
+\[
+ \delta J=\nabla_u\ell^{\,T}\delta u
+             +D_\theta\ell[\delta\theta].
+\]
+Solve instead the single \emph{adjoint system}
+\[
+ \boxed{A^T\lambda=\nabla_u\ell.}
+\]
+Then the unwanted $\delta u$ disappears:
+\[
+\begin{aligned}
+ \delta J
+ &=\lambda^T A\,\delta u+D_\theta\ell[\delta\theta]\\
+ &=\boxed{\lambda^T\bigl(\delta b-(\delta A)u\bigr)
+                       +D_\theta\ell[\delta\theta].}
+\end{aligned}
+\]
+One forward solve for $u$ and one backward solve for $\lambda$ give directional derivatives with respect to arbitrarily many parameters. This is the adjoint method used in differentiable physics and PDE-constrained optimization; backpropagation through a feedforward network is its finite computational-graph counterpart.
+
+Here is a two-by-two check:
+\[
+ A(t)=\begin{pmatrix}1&t\\0&1\end{pmatrix},
+ \qquad b=\begin{pmatrix}1\\1\end{pmatrix},
+ \qquad J(t)=\frac12\|u(t)\|^2.
+\]
+Solving directly gives $u(t)=(1-t,1)^T$, so
+\[
+ J'(t)=-(1-t).
+\]
+For the adjoint method, $A(t)^T\lambda=u(t)$ implies $\lambda_1=1-t$. Since
+\[
+ A'(t)u(t)=\begin{pmatrix}1\\0\end{pmatrix},
+\]
+the boxed formula gives $J'(t)=-\lambda_1=-(1-t)$ again. The little example demonstrates the point of a large theory: it is the \emph{adjoint variable}, not a gigantic derivative array, that answers a scalar sensitivity question.
+
 \section{Geometric data analysis}
 
 The same question reappears in data analysis: which mathematical language becomes necessary when coordinates alone no longer describe the structure?
@@ -83,11 +170,125 @@ and homology is
 \]
 This quotient is the mathematical form of the phrase ``holes that are cycles but not boundaries.''
 
+\begin{example}[A square-shaped hole with a finite lifetime]
+Take the four vertices of the unit square with Euclidean distance. When $1\le\varepsilon<\sqrt2$, their Vietoris--Rips complex is a four-edge cycle without any filled triangles. Its first homology over a field has dimension one. When $\varepsilon\ge\sqrt2$, both diagonals appear, so the complex is the complete $3$-simplex and $H_1$ vanishes. The one-dimensional homology class therefore persists over $[1,\sqrt2)$ under this filtration convention.
+\end{example}
+
+\subsection*{Four points, one hole, and one diagonal}
+
+Why can a loop be visible at one resolution and disappear at another? Work with coefficients in $\mathbb F_2$, so that reversing the orientation of an edge makes no difference. Label the corners of the unit square $0,1,2,3$ in cyclic order. At scale $1\le\varepsilon<\sqrt2$ the Rips complex contains the four edges but neither diagonal. Consider the $1$-chain
+\[
+ c=[01]+[12]+[23]+[30].
+\]
+The boundary of an edge is the sum of its two endpoints, hence
+\[
+ \partial_1c=(0+1)+(1+2)+(2+3)+(3+0)=0
+ \quad\text{in }\mathbb F_2.
+\]
+It is a cycle. But the complex has \emph{no triangles}, so $\operatorname{im}\partial_2=0$: there is no two-dimensional chain with boundary $c$. Consequently
+\[
+ \boxed{H_1(VR_\varepsilon(X);\mathbb F_2)
+       \cong\mathbb F_2,\qquad1\le\varepsilon<\sqrt2.}
+\]
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=1.26cm,y=1.26cm]
+ \begin{scope}[shift={(0,0)}]
+  \foreach \x/\y in {0/0,1/0,1/1,0/1}
+    {\fill[teal!78!black] (\x,\y) circle (2.8pt);}
+  \node[font=\footnotesize,align=center] at (.5,-.43) {$\varepsilon<1$\\four components};
+ \end{scope}
+ \begin{scope}[shift={(3.35,0)}]
+  \draw[teal!75!black,line width=1.2pt] (0,0) rectangle (1,1);
+  \foreach \x/\y in {0/0,1/0,1/1,0/1}
+    {\fill[teal!78!black] (\x,\y) circle (2.8pt);}
+  \node[font=\footnotesize,align=center] at (.5,-.43) {$1\le\varepsilon<\sqrt2$\\one loop};
+ \end{scope}
+ \begin{scope}[shift={(6.7,0)}]
+  \fill[orange!15] (0,0)--(1,0)--(1,1)--cycle;
+  \fill[orange!27] (0,0)--(0,1)--(1,1)--cycle;
+  \draw[teal!75!black,line width=1.1pt] (0,0) rectangle (1,1);
+  \draw[orange!82!black,thick] (0,0)--(1,1);
+  \draw[orange!82!black,thick] (0,1)--(1,0);
+  \foreach \x/\y in {0/0,1/0,1/1,0/1}
+    {\fill[teal!78!black] (\x,\y) circle (2.8pt);}
+  \node[font=\footnotesize,align=center] at (.5,-.43) {$\varepsilon\ge\sqrt2$\\hole filled};
+ \end{scope}
+\end{tikzpicture}
+\caption{The Vietoris--Rips filtration of four square corners. Edges appear at distance $1$; diagonals and all triangles appear at distance $\sqrt2$. The loop therefore survives for precisely the interval $[1,\sqrt2)$. The rightmost complex also includes the tetrahedral $3$-simplex, whose two-dimensional faces are represented by the filled regions.}
+\end{figure}
+
+When the diagonal $[02]$ appears, the two triangles $[012]$ and $[023]$ are present. Their boundaries add to
+\[
+ \partial_2\bigl([012]+[023]\bigr)
+   =[01]+[12]+[20]+[02]+[23]+[30]=c,
+\]
+because the diagonal occurs twice and cancels in $\mathbb F_2$. The same chain that was a nontrivial hole has become a boundary. Nothing about the four points changed; only the scale of the question did. A persistent barcode draws the resulting $H_1$ class as one horizontal interval with birth $1$ and death $\sqrt2$.
+
+\subsection*{Why this picture survives small measurement errors}
+
+Suppose the point $x_i$ moves to $y_i$ with $d(x_i,y_i)\le\delta$. For every pair,
+\[
+ \bigl|d(x_i,x_j)-d(y_i,y_j)\bigr|\le2\delta
+\]
+by the triangle inequality. Thus every edge, triangle, or higher simplex present at scale $\varepsilon$ in the first Rips complex is present at scale $\varepsilon+2\delta$ in the second:
+\[
+ VR_\varepsilon(X)\longrightarrow VR_{\varepsilon+2\delta}(Y).
+\]
+The reverse comparison has the same form. Such inclusions give a $2\delta$-interleaving of the two filtrations, so their persistence diagrams can be matched with bottleneck error at most $2\delta$ (under the standard finite-filtration conventions). In particular, a loop with a lifetime much longer than $4\delta$ cannot be matched to the diagonal by a perturbation of this size: its lifetime exceeds twice the bottleneck error.
+
+This is the practical reason to measure \emph{persistence} rather than count holes at one chosen resolution. One scale may be capricious; a long interval survives a quantified amount of noise. The general stability theorem of Cohen-Steiner, Edelsbrunner and Harer develops this idea for sublevel-set persistence. For finite point clouds, the simple edge-distance argument above already explains the stability mechanism.
+
 \section{Manifold hypothesis and embeddings}
 
-The manifold hypothesis says that high-dimensional data often concentrate near a lower-dimensional manifold $M\subseteq \mathbb R^N$.  If $M$ is a smooth $d$-manifold, Whitney's embedding theorem says that $M$ can be embedded in $\mathbb R^{2d}$, and generically in a slightly larger ambient space.  In machine learning this gives a conceptual reason why dimensionality reduction is not only compression: it tries to recover the intrinsic coordinates of $M$.
+The manifold hypothesis says that high-dimensional data often concentrate near a lower-dimensional manifold $M\subseteq \mathbb R^N$.  Whitney's embedding theorem guarantees a smooth embedding of a smooth $d$-manifold into $\mathbb R^{2d}$. This is an existence theorem for smooth coordinates; it does not imply that a finite noisy dataset lies on such a manifold, or that a learned representation will recover an embedding. These conclusions require separate assumptions on sampling, geometry, and the optimization objective.
 
 The practical warning is that an embedding preserves the manifold as a smooth object, but not necessarily distances, probability densities, or task-relevant semantics.  PCA preserves a linear subspace model; manifold learning tries to preserve local neighborhoods; representation learning tries to learn coordinates useful for a loss function.
+
+\subsection*{A Circle That Defeats PCA}
+
+Take points uniformly distributed on the unit circle,
+\[
+ X=(\cos\Theta,\sin\Theta),
+ \qquad\Theta\sim\operatorname{Unif}[0,2\pi).
+\]
+The support is a smooth one-dimensional manifold. Yet its mean is zero and its covariance is
+\[
+ \operatorname{Cov}(X)
+ =\begin{pmatrix}
+   \mathbb E\cos^2\Theta&\mathbb E\sin\Theta\cos\Theta\\
+   \mathbb E\sin\Theta\cos\Theta&\mathbb E\sin^2\Theta
+  \end{pmatrix}
+ =\tfrac12 I_2.
+\]
+Every line through the origin explains exactly the same variance. Therefore PCA has \emph{no preferred first principal direction}, even though the data are intrinsically one-dimensional. The dimension of a linear span and the dimension of a curved manifold answer different questions.
+
+There is a second difficulty. If we try to use the first coordinate $x=\cos\theta$ as a global parameter, it assigns the same value to $\theta$ and $-\theta$. At the leftmost and rightmost points, projection onto the horizontal axis has vanishing tangential derivative and fails to be a local coordinate. A single linear coordinate cannot traverse a circle once without identifying points.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.42,>=Stealth]
+ \draw[->,gray!75] (-1.43,0)--(1.53,0) node[right] {$x$};
+ \draw[->,gray!75] (0,-1.34)--(0,1.40) node[above] {$y$};
+ \draw[teal!75!black,very thick] (0,0) circle (1);
+ \fill[orange!85!black] (.5,.866) circle (2.5pt);
+ \fill[orange!85!black] (.5,-.866) circle (2.5pt);
+ \draw[densely dashed,orange!82!black] (.5,-.866)--(.5,.866);
+ \fill[gray!75] (.5,0) circle (2pt);
+ \node[font=\footnotesize,anchor=west] at (1.13,.65) {$\cos\theta=\frac12$};
+ \node[font=\footnotesize,orange!85!black] at (1.43,-.74) {two points};
+\end{tikzpicture}
+\caption{The circle has intrinsic dimension one but covariance $\tfrac12I_2$, so its PCA directions are tied. The two orange points are distinct, yet their projection onto the $x$-axis is identical.}
+\end{figure}
+
+A genuinely local coordinate can be obtained by the half-angle substitution
+\[
+ t=\tan\frac\theta2,\qquad
+ (\cos\theta,\sin\theta)
+ =\left(\frac{1-t^2}{1+t^2},\frac{2t}{1+t^2}\right).
+\]
+As $t$ runs through $\mathbb R$, this parametrizes the circle except the point $(-1,0)$, which is reached only as $|t|\to\infty$. A second chart handles that missing point. This illustrates exactly why differential geometry uses \emph{atlases} of charts, and why a globally continuous one-to-one latent coordinate can be topologically impossible for a circular data manifold.
 
 \section{Optimal transport and stochastic dynamics}
 
@@ -99,6 +300,31 @@ Here $\Pi(\mu,\nu)$ is the set of couplings with marginals $\mu$ and $\nu$.  The
 \[
   W_1(\mu,\nu)=\sup_{\|f\|_{\mathrm{Lip}}\le1}\left(\int f\,d\mu-\int f\,d\nu\right).
 \]
+
+\subsection*{The uncrossing trick}
+
+Let two equally weighted particles sit at $-1$ and $1$, with destinations $0$ and $2$:
+\[
+ \mu=\tfrac12\delta_{-1}+\tfrac12\delta_1,
+ \qquad\nu=\tfrac12\delta_0+\tfrac12\delta_2.
+\]
+Sending $-1$ to $0$ and $1$ to $2$ costs
+$\tfrac12(1^2+1^2)=1$; crossing the assignments costs
+$\tfrac12(3^2+1^2)=5$. The reason extends beyond this example. If $x_1<x_2$ and $y_1<y_2$,
+\[
+ (x_1-y_1)^2+(x_2-y_2)^2
+ -(x_1-y_2)^2-(x_2-y_1)^2
+ =-2(x_2-x_1)(y_2-y_1)\le0.
+\]
+Thus uncrossing any two matched pairs cannot raise quadratic transport cost.
+
+Write $F^{-1}(u)=\inf\{x:F(x)\ge u\}$ for a distribution's quantile function. Pairing the same uniform random number $U\in(0,1)$ across two distributions gives
+$X=F_\mu^{-1}(U)$ and $Y=F_\nu^{-1}(U)$. The no-crossing argument first proves optimality for finite ordered point clouds; approximating general one-dimensional distributions gives
+\[
+ \boxed{W_p^p(\mu,\nu)=
+   \int_0^1|F_\mu^{-1}(u)-F_\nu^{-1}(u)|^p\,du,\quad p\ge1,}
+\]
+when the $p$-th moments are finite. A minimization over every possible joint distribution has collapsed to one integral. Empirically, this says to sort both samples and pair their order statistics.
 
 For \(p=2\) there is a useful one-dimensional closed form.  Let
 \[
@@ -132,13 +358,132 @@ Thus
 \]
 This formula is small, but it explains a lot of geometric language around generative models: matching Gaussians means matching both their centers and their spreads.
 
+\subsection*{A curved-looking space of measures hides a flat plane}
+
+The Gaussian formula does something more surprising than calculate a distance. Fix two one-dimensional Gaussian laws with means $a,b$ and positive standard deviations $\sigma_0,\sigma_1$. Their optimal coupling uses the \emph{same} standard Gaussian $Z$:
+\[
+ X_0=a+\sigma_0Z,\qquad X_1=b+\sigma_1Z.
+\]
+Move each paired particle at constant speed:
+\[
+ X_s=(1-s)X_0+sX_1
+ =\bigl((1-s)a+sb\bigr)
+    +\bigl((1-s)\sigma_0+s\sigma_1\bigr)Z.
+\]
+The law $\mu_s$ is Gaussian for every $0\le s\le1$. Writing $a_s=(1-s)a+sb$ and $\sigma_s=(1-s)\sigma_0+s\sigma_1$, the one-dimensional transport formula gives
+\[
+\begin{aligned}
+ W_2^2(\mu_s,\mu_t)
+ &=(a_s-a_t)^2+(\sigma_s-\sigma_t)^2\\
+ &=|s-t|^2\bigl((a-b)^2+(\sigma_0-\sigma_1)^2\bigr).
+\end{aligned}
+\]
+Thus
+\[
+ \boxed{W_2(\mu_s,\mu_t)=|s-t|\,W_2(\mu_0,\mu_1).}
+\]
+We have constructed a constant-speed Wasserstein geodesic without invoking geodesic equations. In fact, the space of one-dimensional Gaussian distributions is isometric, under $W_2$, to the Euclidean half-plane with coordinates $(\text{mean},\text{standard deviation})$ and $\sigma>0$.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=1.04cm,y=1.16cm]
+ \draw[->,gray!75] (-3.9,0)--(4.0,0) node[right] {$x$};
+ \draw[->,gray!75] (-3.85,0)--(-3.85,2.0)
+    node[above,font=\footnotesize] {density};
+ \draw[blue!75!black,thick] plot[domain=-3.7:3.8,samples=150]
+  (\x,{1.7/(sqrt(2*pi)*.5)*exp(-((\x+1.6)*(\x+1.6))/(2*.5*.5))});
+ \draw[teal!75!black,thick,densely dashed] plot[domain=-3.7:3.8,samples=150]
+  (\x,{1.7/(sqrt(2*pi)*.75)*exp(-(\x*\x)/(2*.75*.75))});
+ \draw[orange!85!black,thick] plot[domain=-3.7:3.8,samples=150]
+  (\x,{1.7/(sqrt(2*pi)*1)*exp(-((\x-1.6)*(\x-1.6))/2)});
+ \node[font=\footnotesize,anchor=west,blue!75!black] at (-3.45,1.75)
+  {$s=0$};
+ \node[font=\footnotesize,anchor=west,teal!75!black] at (-.8,1.72)
+  {$s=\tfrac12$};
+ \node[font=\footnotesize,anchor=west,orange!85!black] at (1.75,1.72)
+  {$s=1$};
+\end{tikzpicture}
+\caption{Three points of a Wasserstein geodesic between $\mathcal N(-1.6,0.5^2)$ and $\mathcal N(1.6,1^2)$. The intermediate law is $\mathcal N(0,0.75^2)$: both the mean and the standard deviation interpolate linearly. This is the geometry of optimal coupling, distinct from merely adding Gaussian noise.}
+\end{figure}
+
 Diffusion models can be read through stochastic differential equations
 \[
   dX_t=b(t,X_t)\,dt+\sigma(t)\,dW_t.
 \]
 The density $p_t$ evolves according to a Fokker--Planck equation, and the reverse-time dynamics involve the score $\nabla_x\log p_t(x)$.  Thus score-based generative modeling is an attempt to learn the vector field that reverses a noisy transport of probability mass.
 
-For DDPMs the training objective is usually written as a variational lower bound, or in its simplified form as a denoising mean-square loss.  It is not literally a Wasserstein objective.  Still, each reverse step compares Gaussian conditional distributions, and for Gaussians the geometry above says that a squared displacement of means and a mismatch of variances are exactly the ingredients of \(W_2^2\).  The ELBO uses KL divergences between Gaussian conditionals; when the variance is fixed or separately prescribed, minimizing that KL has the same practical center-matching behavior as minimizing the corresponding Gaussian \(W_2\) term.  My preferred reading is therefore: optimal transport gives the geometric picture of local probability movement, while the DDPM ELBO gives the statistically convenient training objective.
+For DDPMs the training objective is usually written as a variational lower bound, or in its simplified form as a denoising mean-square loss.  It is not literally a Wasserstein objective.  Still, each reverse step compares Gaussian conditional distributions, and for Gaussians the geometry above says that a squared displacement of means and a mismatch of variances are exactly the ingredients of \(W_2^2\).  The ELBO uses KL divergences between Gaussian conditionals; when the variance is fixed or separately prescribed, minimizing that KL has the same practical center-matching behavior as minimizing the corresponding Gaussian \(W_2\) term.  The distinction matters: an optimal-transport cost minimizes over couplings, whereas the DDPM training objective comes from a likelihood-based variational construction. Similar quadratic penalties for fixed-variance Gaussian comparisons do not make the two optimization problems equivalent.
+
+\subsection*{Score as a Denoising Direction}
+
+Let $X_0$ be any random vector in $\mathbb R^d$ with finite first moment. Corrupt it with Gaussian noise:
+\[
+ Y=X_0+\sqrt t\,\epsilon,\qquad
+ \epsilon\sim\mathcal N(0,I),\quad t>0.
+\]
+Its density is the Gaussian convolution
+\[
+ p_t(y)=\int (2\pi t)^{-d/2}
+    e^{-\|y-x\|^2/(2t)}\,p_0(dx).
+\]
+Differentiate \emph{this} expression, using
+$\nabla_y e^{-\|y-x\|^2/(2t)}
+=-(y-x)e^{-\|y-x\|^2/(2t)}/t$:
+\[
+\begin{aligned}
+ t\nabla_y p_t(y)
+ &=\int(x-y)\,\varphi_t(y-x)\,p_0(dx),\\
+ t\nabla_y\log p_t(y)
+ &=\frac{\int x\varphi_t(y-x)\,p_0(dx)}
+         {\int\varphi_t(y-x)\,p_0(dx)}-y.
+\end{aligned}
+\]
+The quotient is just the conditional expectation of the clean signal given its noisy observation. Therefore
+\[
+ \boxed{\mathbb E[X_0\mid Y=y]
+       =y+t\,\nabla_y\log p_t(y).}
+\]
+This is Tweedie's formula. It explains the score as a geometrically meaningful vector field: $t$ times the score is the correction from a noisy point to its \emph{posterior mean} clean point. It is a theorem about conditional expectation, independent of any neural network.
+
+Here is a complete discrete example. Let $X_0$ be equally likely to be $-a$ or $+a$. After observing $Y=y$, the posterior odds are
+\[
+ \frac{\Pr(X_0=a\mid y)}{\Pr(X_0=-a\mid y)}
+ =\exp\left(\frac{2ay}{t}\right).
+\]
+Hence
+\[
+ \mathbb E[X_0\mid y]=a\tanh\frac{ay}{t},
+ \qquad
+ \boxed{\frac d{dy}\log p_t(y)
+       =\frac{a\tanh(ay/t)-y}{t}.}
+\]
+For small noise, positive observations are corrected toward $+a$ and negative ones toward $-a$; near $y=0$, the two explanations compete. As noise increases, the two peaks merge.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=1.15cm,y=1.55cm]
+ \draw[->,gray!75] (-4.35,0)--(4.35,0) node[right] {$y$};
+ \draw[->,gray!75] (-4.25,0)--(-4.25,1.62)
+    node[above,font=\footnotesize] {$p_t(y)$};
+ \draw[teal!78!black,line width=1.15pt]
+  plot[domain=-4.0:4.0,samples=150]
+   (\x,{2*(exp(-((\x-2)*(\x-2)))/(sqrt(pi))+
+           exp(-((\x+2)*(\x+2)))/(sqrt(pi)))});
+ \draw[orange!85!black,line width=1.15pt,densely dashed]
+  plot[domain=-4.0:4.0,samples=150]
+   (\x,{2*(exp(-((\x-2)*(\x-2))/10) +
+           exp(-((\x+2)*(\x+2))/10))/sqrt(10*pi)});
+ \node[teal!78!black,font=\footnotesize,anchor=west] at (-3.8,1.45)
+   {$t=\tfrac12$: two peaks};
+ \node[orange!85!black,font=\footnotesize,anchor=west] at (.65,1.45)
+   {$t=5$: merged peak};
+ \node[font=\footnotesize] at (-2,-.21) {$-a$};
+ \node[font=\footnotesize] at (2,-.21) {$a$};
+\end{tikzpicture}
+\caption{Two point masses at $\pm a$ with $a=2$, blurred by Gaussian noise. The colored curves are the exact Gaussian-mixture densities at $t=\tfrac12$ and $t=5$, plotted with the same vertical multiplier for legibility. The score field is the logarithmic derivative of these changing distributions.}
+\end{figure}
+
+Optimal transport and diffusion can both describe movement of probability mass, but their mechanisms differ: the former chooses a coupling to minimize displacement, while heat diffusion continually mixes in new noise. The denoising formula makes precise how the latter noisy evolution can still carry information about the original distribution.
 
 \section{Symmetry, equivariance, and category-like thinking}
 
@@ -182,74 +527,67 @@ where \(\sigma\) acts entrywise.  If the input features are rotated, then
 \]
 Equivariance is therefore not only a philosophical commitment to symmetry.  In this example it is the algebraic fact that the permutation matrix commutes with the graph operator.
 
-The original essay also speculates about topos-theoretic or categorical semantics for AI.  A cautious reconstruction is this: category theory is useful when one needs to track structure-preserving maps, functorial changes of representation, and compositional semantics.  It does not by itself explain intelligence.  Its honest role is to provide a disciplined language for invariance, abstraction, and transport of structure.
+Functoriality has a testable meaning. A continuous map $f:X\to Y$ induces a homomorphism $H_k(f):H_k(X)\to H_k(Y)$, and $H_k(g\circ f)=H_k(g)\circ H_k(f)$. This is a compatibility law between topological maps and homology, not an explanation of intelligence. Equivariance of a graph layer is likewise an explicit compatibility statement, expressed here by the commuting identity $F(PH)=PF(H)$.
 
-\section{Further direction}
+\subsection*{An equivariant map can be made by averaging}
 
-The note is best read as a map of mathematical languages for data: topology sees holes, geometry sees coordinates and curvature, measure theory sees distributions, dynamics sees evolution, algebra sees symmetry, and category theory sees structure-preserving translation.  The useful question is not which language is fashionable, but which structure is actually stable under the transformations used by the model.
-
-\section{Backpropagation and differential geometry}
-Backpropagation is reverse-mode differentiation.  Geometrically, forward computation pushes tangent vectors forward, while backpropagation pulls cotangent vectors backward through the computation graph.
-\section{Manifold hypothesis and representation learning}
-The manifold hypothesis says high-dimensional data may concentrate near lower-dimensional geometric structures.  Embeddings, charts, curvature, and local neighborhoods then become relevant to learning representations.
-\section{Symmetry and equivariance}
-If a task has a symmetry group \(G\), an equivariant model satisfies
+There is a pleasing construction when the symmetry group is finite. Suppose $G$ acts linearly on input and output spaces by representations $\rho_{\mathrm{in}}$ and $\rho_{\mathrm{out}}$. Take \emph{any} function $h$, possibly a function with no symmetry at all, and define
 \[
-f(gx)=g f(x).
+ \boxed{(\mathcal Rh)(x)=\frac1{|G|}
+  \sum_{g\in G}\rho_{\mathrm{out}}(g^{-1})
+             h\bigl(\rho_{\mathrm{in}}(g)x\bigr).}
 \]
-This reduces sample complexity by building the correct transformation law into the model.
-\section{Optimal transport and distributions}
-Optimal transport compares probability measures by the cost of moving mass.  It connects geometry, PDE, and machine learning through distances between distributions.
-\section{Mathematical structures for learning systems}
-Pure mathematics contributes language for structure: cotangent pullback for gradients, manifolds for data geometry, equivariance for symmetry, optimal transport for distributions, and category-like compositionality for architectures.
-
-\section{Rebuilt reading path: what pure mathematics contributes}
-
-
-There are several layers.
-
-\begin{enumerate}[(i)]
-  \item \textbf{Geometry} studies the shape of the representation space: distances, curvature, geodesics, embeddings, and coordinate charts.
-  \item \textbf{Topology} studies features stable under continuous deformation: connected components, loops, voids, and persistence across scales.
-  \item \textbf{Measure theory} studies data as distributions rather than isolated points.
-  \item \textbf{Dynamical systems} study learning or generation as evolution of states or densities.
-  \item \textbf{Algebra and category theory} study invariance, symmetry, and composition of structure-preserving maps.
-\end{enumerate}
-
-Pure mathematics does not magically explain AI.  It supplies languages in which different kinds of stability can be stated precisely.
-
-\section{Topological data analysis in usable form}
-
-Given a finite metric point cloud $X$, persistent homology constructs a family of complexes $K_\varepsilon$ indexed by a scale parameter.  For the Vietoris--Rips complex,
+Why should this be equivariant? Apply the definition to a transformed input $\rho_{\mathrm{in}}(k)x$, and rename the summation index $u=gk$:
 \[
-  \{x_0,\ldots,x_k\}\in VR_\varepsilon(X)
-  \quad\Longleftrightarrow\quad
-  d(x_i,x_j)\le \varepsilon\text{ for all }i,j.
+\begin{aligned}
+ (\mathcal Rh)(\rho_{\mathrm{in}}(k)x)
+ &=\frac1{|G|}\sum_g \rho_{\mathrm{out}}(g^{-1})
+     h(\rho_{\mathrm{in}}(gk)x)\\
+ &=\rho_{\mathrm{out}}(k)
+     \frac1{|G|}\sum_u\rho_{\mathrm{out}}(u^{-1})
+     h(\rho_{\mathrm{in}}(u)x)\\
+ &=\rho_{\mathrm{out}}(k)(\mathcal Rh)(x).
+\end{aligned}
 \]
-The homology group is
+The proof consists of one change of summation variables. The group operation guarantees that the average sees every transformed input exactly once.
+
+For example, let $G=\{e,s\}$ swap the coordinates of $\mathbb R^2$ and take
 \[
-  H_k(K_\varepsilon)=\ker \partial_k/\operatorname{im}\partial_{k+1}.
+ h(x_1,x_2)=(x_1^2+x_2,\,0).
 \]
-This quotient is the mathematical form of the phrase ``holes that are cycles but not boundaries.''
-
-\section{Wasserstein geometry and stochastic dynamics}
-
-For probability measures $\mu,\nu$ on a metric space,
+The raw function does not commute with the swap. Its symmetrization is
 \[
-  W_p(\mu,\nu)=\left(\inf_{\pi\in \Pi(\mu,\nu)}\int d(x,y)^p\,d\pi(x,y)\right)^{1/p}.
+ (\mathcal Rh)(x_1,x_2)
+ =\frac12\bigl(x_1^2+x_2,\ x_2^2+x_1\bigr),
 \]
-The coupling $\pi$ is the hidden plan.  In generative modeling, one often tries to construct a transport from a simple distribution to a complicated one.  Normalizing flows do this by invertible maps, diffusion models by stochastic dynamics, and optimal transport by variational minimization.
+which clearly swaps its two outputs whenever the inputs are swapped. This construction is often called \emph{group averaging} or a Reynolds-type operator. It is an explicit way to turn a desired symmetry law into an exact property of a model.
 
-A diffusion process has the schematic form
+There is a distinction worth keeping in the graph example. A \emph{graph automorphism} satisfies $PAP^T=A$, so it may act on the node features while the adjacency matrix stays fixed. An arbitrary relabeling $P$ usually changes the displayed adjacency matrix too. Under a simultaneous relabeling of graph and features, however,
 \[
-  dX_t=b(t,X_t)\,dt+\sigma(t)\,dW_t.
+ \widehat{PAP^T}=P\widehat A P^T,\qquad
+ \boxed{F(PAP^T,PH)=PF(A,H).}
 \]
-The reverse process depends on the score field $\nabla_x\log p_t(x)$.  Training a score network is therefore an attempt to approximate a time-dependent vector field on probability density.
+This is permutation equivariance as a statement about the \emph{representation of the same graph}, even when the permutation is not an automorphism of that graph.
 
-\section{Category language without exaggeration}
+\subsection*{A common law for maps of different kinds}
 
-A category consists of objects and morphisms, with associative composition and identity morphisms.  A functor preserves this structure.  Category theory is useful when the same construction can be performed across many spaces in a way compatible with maps.  For example, homology is functorial:
+The contravariance of backpropagation and the covariance of homology are different laws. A continuous map of spaces $f:X\to Y$ induces
 \[
-  f:X\to Y \quad\Longrightarrow\quad H_k(f):H_k(X)\to H_k(Y).
+ H_k(f):H_k(X)\to H_k(Y),
+ \qquad H_k(g\circ f)=H_k(g)\circ H_k(f).
 \]
-The honest categorical contribution is functoriality and compositionality, not a mystical explanation of intelligence.
+The directions here are \emph{forward}: a chain is sent to the image chain. For cotangent vectors, dualizing reverses composition. The distinction is concrete. If an inclusion of simplicial complexes fills a hole, a nonzero cycle class may be carried \emph{forward} to zero, whereas a sensitivity to an output is carried \emph{backward} to an input.
+
+The common principle is functoriality: what matters about a transformation is what it does to the structure under study, and a composite transformation must act compatibly with its two pieces. In machine learning this is useful only when the acting map and the preserved structure are named explicitly; otherwise the language has no computational content.
+
+\section{Maps that remember the right information}
+
+The group-averaging construction hides one last satisfying fact. If $h$ is already equivariant, every summand in $\mathcal Rh$ equals $h(x)$, and therefore $\mathcal Rh=h$. Because the first application of $\mathcal R$ makes \emph{any} function equivariant, applying it again changes nothing:
+\[
+ \boxed{\mathcal R^2=\mathcal R.}
+\]
+Thus averaging is a \emph{projection} in the space of functions, even when we have not chosen an inner product there. It takes an arbitrary predictor and projects it onto a class of predictors obeying an exact symmetry law. With a suitable invariant inner product, it becomes the familiar orthogonal projection onto the fixed subspace. A construction from group theory has become a geometric operation on models.
+
+The other calculations have a similarly concrete payoff. The differential does not ask us to store a huge Jacobian: the cotangent pullback tells us which contraction to perform. A loop around four points becomes a boundary at a precise scale, and stability turns that observation into a noise-tolerant feature. Pairing quantiles solves the one-dimensional transport problem by forbidding crossings. Differentiating a Gaussian convolution turns an intractable-looking posterior expectation into a derivative of an observable density.
+
+There is no need to treat these methods as interchangeable. Each has a different domain and a different invariant. What makes them powerful is that the difficult calculation is replaced by a structural identity whose assumptions can be checked and whose consequences can actually be computed.

@@ -102,7 +102,7 @@ and
 
 This formula looks more complicated than the one-dimensional version only because the basis vectors need not be orthogonal.  The Gram matrix records their mutual angles and corrects for the fact that the coordinate directions interfere with one another.
 
-\section{The projection matrix remembers the subspace, not the basis}
+\section{Projection Matrices and Subspaces}
 
 Define
 \[
@@ -139,7 +139,7 @@ It sends \(y\) to the residual \(r=y-Py\), which lies in \(W^\perp\).  Thus
   y=Py+(I-P)y.
 \]
 
-\section{Least squares is projection written as a fitting problem}
+\section{Least Squares as Projection}
 
 Now consider a system
 \[
@@ -322,7 +322,7 @@ The Moore--Penrose inverse, studied later in more detail, chooses the minimizer 
 \]
 Here the pseudoinverse is a canonical coordinate choice, while the geometric heart of the problem remains projection onto \(R(A)\).
 
-\section{Weighted least squares changes the notion of perpendicular}
+\section{Weighted Least Squares}
 
 Sometimes residual coordinates should not be treated equally.  If \(W\) is symmetric positive definite, define
 \[
@@ -363,14 +363,58 @@ The word ``closed'' matters.  Without it, an infimum distance may exist without 
 
 Fourier series are a central example.  Truncating a Fourier expansion is orthogonal projection onto a finite-dimensional space of trigonometric modes.  Polynomial approximation, finite elements, and Galerkin methods use the same principle with different trial spaces.  The matrix normal equations are therefore one coordinate shadow of a much broader approximation theorem.
 
-\section{What should remain after the formulas}
+\section{Projecting a curved function onto a straight line}
 
-Projection and least squares are one story.  A model can reproduce only vectors in its column space.  The best approximation is obtained by dropping a perpendicular to that space.  A basis converts the perpendicularity condition into normal equations; an orthonormal basis makes the coordinates transparent; QR turns that geometry into a stable algorithm.  Rank deficiency separates uniqueness of predictions from uniqueness of parameters, and weighted inner products alter what ``nearest'' means without changing the logical structure.
-
-The enduring test is simple:
+The same perpendicularity equation works when the vectors are \emph{functions}. In the Hilbert space $L^2([-1,1])$, use the inner product
 \[
-  \text{best approximation}
-  \quad\Longleftrightarrow\quad
-  \text{residual orthogonal to every allowed correction}.
+ \langle f,g\rangle=\int_{-1}^1f(t)g(t)\,dt.
 \]
-That sentence is the bridge from a diagram with a right angle to regression, Fourier analysis, numerical PDEs, and Hilbert-space approximation.
+What is the best linear polynomial $p(t)=a+bt$ approximating $f(t)=t^2$ in mean-square error? We are projecting onto the two-dimensional subspace $\operatorname{span}\{1,t\}$.
+
+The residual $r(t)=t^2-a-bt$ must be orthogonal to both basis functions. Thus
+\[
+ \begin{pmatrix}
+  \langle1,1\rangle &\langle1,t\rangle\\
+  \langle t,1\rangle&\langle t,t\rangle
+ \end{pmatrix}
+ \begin{pmatrix}a\\b\end{pmatrix}
+ =
+ \begin{pmatrix}\langle t^2,1\rangle\\
+                 \langle t^2,t\rangle\end{pmatrix}
+ \quad\Longleftrightarrow\quad
+ \begin{pmatrix}2&0\\0&2/3\end{pmatrix}
+ \begin{pmatrix}a\\b\end{pmatrix}
+ =\begin{pmatrix}2/3\\0\end{pmatrix}.
+\]
+Therefore
+\[
+ \boxed{p(t)=\frac13,\qquad r(t)=t^2-\frac13.}
+\]
+A line is allowed to tilt, but the optimal one is horizontal. The reason is symmetry: $t^2$ is even and $t$ is odd, so their inner product vanishes.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=2.15cm,y=1.75cm,>=Stealth]
+ \draw[->,gray!75] (-1.15,0)--(1.20,0) node[right] {$t$};
+ \draw[->,gray!75] (0,-.18)--(0,1.24) node[above] {$y$};
+ \draw[teal!75!black,very thick] plot[domain=-1:1,samples=85](\x,{\x*\x});
+ \draw[orange!85!black,very thick,densely dashed] (-1,.333333)--(1,.333333);
+ \node[font=\footnotesize,teal!75!black,anchor=west] at (.49,.92) {$t^2$};
+ \node[font=\footnotesize,orange!85!black,anchor=west] at (.50,.42) {$p(t)=1/3$};
+ \foreach \v in {-1,1}\node[font=\footnotesize,below] at (\v,0) {$\v$};
+\end{tikzpicture}
+\caption{The best linear least-squares approximation to the parabola on $[-1,1]$ is the horizontal line $1/3$. The signed residual integrates to zero, and so does its first moment.}
+\end{figure}
+
+Both normal equations can be checked directly:
+\[
+ \int_{-1}^1r(t)\,dt=0,\qquad
+ \int_{-1}^1t\,r(t)\,dt=0.
+\]
+The remaining squared error is
+\[
+ \boxed{\|r\|_{L^2}^2
+   =\int_{-1}^1\left(t^2-\frac13\right)^2dt
+   =\frac8{45}.}
+\]
+The familiar Legendre polynomial $P_2(t)=(3t^2-1)/2$ is exactly a rescaled version of this residual: it is the part of a quadratic function that cannot be represented by degree-one polynomials.

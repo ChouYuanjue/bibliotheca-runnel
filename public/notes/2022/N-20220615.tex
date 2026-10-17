@@ -1,194 +1,175 @@
-\notechapter{N-20220615}{A Russian-Style Early Olympiad Game: Coordinates, Packing, and Symmetry}
+\notechapter{N-20220615}{Geometry Under Constraints: Projections, Packing, and Symmetric Coordinates}
 
-\section{The main problem types}
+A geometric extremum depends as much on the feasible set as on the formula being optimized. Squared distances invite orthogonal projection; circle packing requires distance constraints between centers; symmetric rational equations become simpler after removing an irrelevant common scale. Each situation suggests a different set of coordinates.
 
-This note consists of a short mock or translated olympiad-style problem sheet.  The cover page imitates an elementary mathematics olympiad booklet and states the usual rules: a multiple-choice test, one correct answer per problem, no calculators, and figures not necessarily drawn to scale.  The mathematically relevant part is a collection of four problems about coordinate geometry, optimization, packing, and symmetric equations.
+\section{A distance problem is a projection problem}
 
-\section{Problem 1: two distances under a linear constraint}
-
-In the coordinate plane let
+Let \(A=(0,-2)\), \(B=(2,-2)\), and let \(M=(x,y)\) lie on \(x+y=1\). We want to minimize
 \[
-  A=(0,-2),\qquad B=(2,-2),\qquad M=(x,y),\qquad x+y=1.
+ |M-A|^2+|M-B|^2.
 \]
-The problem asks for the maximum and minimum of
+Put \(C=(A+B)/2=(1,-2)\). Expanding inner products gives the exact identity
 \[
-  AM^2+BM^2.
+ \boxed{|M-A|^2+|M-B|^2
+       =2|M-C|^2+\frac12|A-B|^2.}
 \]
-Since \(y=1-x\),
+It holds in any inner-product space, not just in the plane. The distance \(|A-B|=2\) is fixed, so minimizing the sum is equivalent to projecting \(C\) orthogonally onto the constraint line.
+
+The line has normal vector \(n=(1,1)\). Its signed equation is \(n\cdot M=1\), while \(n\cdot C=-1\). Therefore the projection is
 \[
-\begin{aligned}
-AM^2+BM^2
-&=x^2+(y+2)^2+(x-2)^2+(y+2)^2\\
-&=x^2+(3-x)^2+(x-2)^2+(3-x)^2\\
-&=4x^2-16x+22\\
-&=4(x-2)^2+6.
-\end{aligned}
+ M_*=C+\frac{1-n\cdot C}{\|n\|^2}n
+ =(1,-2)+(1,1)=(2,-1).
 \]
-Thus the minimum is \(6\), achieved at \(x=2,y=-1\).  There is no maximum on the whole line \(x+y=1\), because the expression tends to infinity as \(|x|\to\infty\).
-
-\begin{remark}
-Both maximum and minimum are requested.  This is a useful trap: on an unbounded line, a positive quadratic has a minimum but no maximum.
-\end{remark}
-
-\section{Problem 2: parabola and distance}
-
-Let \(M=(x,y)\) lie on the parabola
+The squared distance from \(C\) to the line equals \(2\). Hence
 \[
-  y=ax^2+bx,\qquad a<0,\quad b>0.
+ \min_{x+y=1}(|M-A|^2+|M-B|^2)=2\cdot2+2=6.
 \]
-The quantity to maximize is
+There is no maximum because the constraint line is unbounded and the squared distance grows quadratically along it.
+
+This same identity underlies least squares: minimizing sums of squared distances amounts to projecting onto an affine subspace, with the residual orthogonal to all allowed directions.
+
+\section{The Parabola's Farthest Point}
+
+Take a downward-opening parabola
 \[
-  OM^2=x^2+y^2=x^2+(ax^2+bx)^2.
+ y=ax^2+bx,\qquad a<0,\ b>0,
 \]
-The problem asks for the maximum on intervals such as
+restricted to the interval between its two \(x\)-intercepts, \(0\le x\le-b/a\). The squared distance to the origin is
 \[
-  0\le x\le -\frac ba
+ F(x)=x^2+(ax^2+bx)^2,
+ \qquad F'(x)=2x+2(ax^2+bx)(2ax+b).
 \]
-and a larger interval involving \(b\).  The first interval is exactly the interval between the two \(x\)-intercepts of the downward-opening parabola.  Hence the endpoints lie on the \(x\)-axis, while the vertex lies at
+Although the height of the parabola is maximal at \(x=-b/(2a)\), the distance to the origin also depends on \(x^2\). The vertex therefore need not maximize \(F\).
+
+For the concrete parabola \(y=2x-x^2\) on \([0,2]\),
 \[
-  x=-\frac b{2a},\qquad y=-\frac{b^2}{4a}>0.
+ F(x)=x^2+x^2(2-x)^2,\qquad
+ F'(x)=2x(2x^2-6x+5).
 \]
+The quadratic factor has discriminant \(36-40=-4\) and positive leading coefficient, so \(F'(x)>0\) for \(0<x\le2\). Thus the farthest point is \((2,0)\), at squared distance \(4\), while the vertex \((1,1)\) has squared distance only \(2\).
 
-The derivative method is direct.  Put
+An extremum of one coordinate is not generally an extremum of a nonlinear function of all coordinates. The correct objective must be differentiated on the actual feasible domain.
+
+\section{Packing circles becomes a configuration-space problem}
+
+Suppose \(n\) closed disks of radius \(1/2\) must fit inside a container \(C\subseteq\mathbb R^2\). Instead of manipulating the disks directly, represent each by its center \(c_i\). The conditions are
 \[
-  F(x)=x^2+(ax^2+bx)^2.
+ \|c_i-c_j\|\ge1\quad(i\ne j),\qquad
+ c_i\in C\ominus B_{1/2},
 \]
-Then
+where \(C\ominus B_{1/2}\) is the set of points whose radius-\(1/2\) disk is wholly contained in \(C\). This operation is called morphological erosion or Minkowski subtraction.
+
+For two unit-diameter disks inside a round container of radius \(R\), both centers must lie within radius \(R-\tfrac12\) of its center. Their greatest possible separation is \(2R-1\), which must be at least \(1\). Thus \(R\ge1\), and placing the disk centers at opposite ends of a diameter attains equality. The minimal container diameter is exactly \(2\).
+
+For two disks inside a square of side \(s\), each center must lie in the smaller square of side \(s-1\). The largest possible distance between two such centers is \(\sqrt2(s-1)\). Hence
 \[
-  F'(x)=2x+2(ax^2+bx)(2ax+b).
+ \sqrt2(s-1)\ge1
+ \quad\Longleftrightarrow\quad
+ \boxed{s\ge1+\frac1{\sqrt2}.}
 \]
-The maximum on a closed interval occurs at an endpoint or at a critical point of this derivative.
+Opposite corners of the allowed center square achieve the bound.
 
-\section{Problem 3: packing unit circles}
+Already for \(n=2\), the exact results are much stronger than the area comparison \(n\pi/4\le\operatorname{area}(C)\). For larger \(n\), the feasible configurations form a constrained subset of \(C^n\) from which all pairwise collision regions have been removed. This configuration-space geometry, rather than area alone, explains the difficulty of optimal packings.
 
-The third problem asks about packing \(n\) circles of unit diameter into a circle of smallest possible diameter, and into a square of smallest possible side length.  This is a circle-packing problem.  For small \(n\), the optimal configurations are concrete and geometric; for general \(n\), exact formulas are difficult and often unknown.
+\section{Three equal disks force an equilateral configuration}
 
-A few elementary bounds are immediate.  If \(n\) unit-diameter circles are packed into a container circle of diameter \(D\), then area gives
+The two-disk examples reveal the constraints, but a third disk makes the geometry more interesting. What is the smallest circular container that can hold three disks of radius $1/2$ without overlap? A naive area estimate would only give
 \[
-  n\cdot \pi\left(\frac12\right)^2\le \pi\left(\frac D2\right)^2,
+  \pi R^2\ge3\pi(1/2)^2,
+  \qquad R\ge\frac{\sqrt3}{2},
 \]
-so
+which is far from sharp because it ignores how centers are separated.
+
+Write $c_1,c_2,c_3$ for the disk centers, measured from the container center, and let
 \[
-  D\ge \sqrt n.
+ r=R-\frac12.
 \]
-This bound is not usually sharp because circles leave gaps.  For a square of side \(s\), the area bound gives
+Containment implies $\|c_i\|\le r$, while nonoverlap implies $\|c_i-c_j\|\ge1$ for each pair $i\ne j$. The key is a simple identity:
 \[
-  n\cdot\frac\pi4\le s^2,\qquad s\ge\frac{\sqrt{n\pi}}2.
+ \boxed{\sum_{i<j}\|c_i-c_j\|^2
+ =3\sum_{i=1}^3\|c_i\|^2-
+    \left\|\sum_{i=1}^3c_i\right\|^2.}
 \]
-Again, the actual packing problem is subtler.
+Expand the squares to verify it; each $\|c_i\|^2$ occurs twice on the left, and each pairwise dot product occurs with coefficient $-2$. The right-hand side rearranges exactly those terms.
 
-\section{Problem 4: a symmetric Diophantine equation}
-
-The final problem asks for the least integer solution of
+The three separation constraints give a lower bound of $3$ for the left side. For the right side,
 \[
-  \frac{a}{b+c}+\frac{b}{a+c}+\frac{c}{a+b}=4.
+ 3\le\sum_{i<j}\|c_i-c_j\|^2
+ \le3\sum_i\|c_i\|^2
+ \le9r^2.
 \]
-This is a symmetric rational equation.  A standard approach is to clear denominators:
+Therefore $r\ge1/\sqrt3$, or
 \[
-  a(a+c)(a+b)+b(b+c)(a+b)+c(b+c)(a+c)=4(a+b)(a+c)(b+c).
+ \boxed{R\ge\frac12+\frac1{\sqrt3}.}
 \]
-After expansion and symmetrization, one may search for integer solutions or reduce by substituting elementary symmetric polynomials
+This lower bound is achieved. Place the three centers at the vertices of an equilateral triangle of side $1$, centered at the origin. Each center lies at distance $1/\sqrt3$ from the origin, so the outer container of radius $1/2+1/\sqrt3$ touches all three disks while the disks touch one another.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2.1,>=Stealth]
+ \draw[thick,teal!75!black] (0,0) circle (1.07735);
+ \foreach \a in {90,210,330}{
+    \fill[orange!9] (\a:.57735) circle (.5);
+    \draw[orange!85!black,thick] (\a:.57735) circle (.5);
+    \fill[teal!80!black] (\a:.57735) circle (1.5pt);
+ }
+ \draw[densely dashed,teal!65] (90:.57735)--(210:.57735)--(330:.57735)--cycle;
+ \fill (0,0) circle (1pt);
+ \node[font=\footnotesize,anchor=west] at (1.20,.48) {$R=\frac12+\frac1{\sqrt3}$};
+ \draw[->,thin,gray!80] (1.18,.45)--(.88,.38);
+ \node[font=\footnotesize] at (.16,.12) {$r$};
+\end{tikzpicture}
+\caption{The sharp three-disk packing. The dashed equilateral triangle has side length $1$ and circumradius $1/\sqrt3$; the disks have radius $1/2$.}
+\end{figure}
+
+The inequality is stronger than an area bound because it keeps a \emph{pairwise distance invariant}. Equality in the algebra forces all centers onto the allowed circle, their vector sum to vanish, and all pairwise separations to equal one. Thus the symmetric arrangement is not merely a plausible picture; the calculation explains the rigidity of the optimizer.
+
+\section{Symmetric rational equations live on projective ratios}
+
+Consider positive \(a,b,c\) satisfying
 \[
-  s=a+b+c,\qquad p=ab+bc+ca,\qquad q=abc.
+ \frac a{b+c}+\frac b{c+a}+\frac c{a+b}=4.
 \]
-The problem belongs to the family of olympiad equations where symmetry is more important than direct expansion.
-
-\section{The larger pattern}
-
-This short problem sheet moves between three worlds: quadratic optimization, geometric packing, and symmetric algebra.  The common olympiad skill is to recognize the structure before calculating: a quadratic may have no maximum on an unbounded domain, a packing problem is governed first by area bounds and then by geometry, and a symmetric equation should be attacked through symmetric functions rather than arbitrary expansion.
-
-\section{Coordinate choice and invariants}
-
-The olympiad-style coordinate problems are not about coordinates for their own sake.  A good coordinate system preserves the invariant that matters and simplifies the constraint.  For distance problems, squared distance often removes radicals:
+If \((a,b,c)\) solves the equation, so does \((ta,tb,tc)\) for every \(t>0\). Hence the equation constrains only the ratios among \(a,b,c\). It is natural to introduce the elementary symmetric quantities
 \[
-  d^2=(x-a)^2+(y-b)^2.
+ s=a+b+c,\qquad p=ab+bc+ca,\qquad q=abc.
 \]
-For symmetry problems, placing the origin at the center makes odd terms cancel.
-
-\section{Packing and density}
-
-Packing unit circles is an elementary entrance to discrete geometry.  A packing argument usually has two sides: a construction giving a lower bound and an area or distance obstruction giving an upper bound.  In the plane, the optimal infinite equal-circle packing density is
+Because \(\tfrac a{b+c}=\tfrac{s}{s-a}-1\), the original equation becomes
 \[
-  \frac{\pi}{\sqrt{12}}.
+ s\left(\frac1{s-a}+\frac1{s-b}+\frac1{s-c}\right)=7.
 \]
-Even when this theorem is far beyond the exercise, the same local logic appears: disks cannot overlap, so centers must be separated.
-
-\section{Symmetric Diophantine equations}
-
-A symmetric equation in integers should first be rewritten in symmetric variables, such as
+The pairwise products of the denominators sum to \(s^2+p\), while their product equals \(sp-q\). Clearing the strictly positive denominator yields the homogeneous cubic
 \[
-  u=x+y,\qquad v=xy.
+ \boxed{s^3-6sp+7q=0.}
 \]
-This reduces the number of independent expressions and often exposes divisibility or parity obstructions.
 
-\section{Olympiad structure behind coordinates and symmetry}
-
-The sheet trains the olympiad habit of choosing structure before computation: coordinates for constraints, area/distance for packing, symmetry for Diophantine equations, and equality cases for sharpness.
-
-\section{What an olympiad sheet trains}
-
-This sheet looks elementary, but it trains several habits that reappear later.  The distance problem asks us to parametrize a line and reduce geometry to a quadratic.  The parabola problem asks us to decide whether a maximum exists on a specified interval.  The packing problem teaches the difference between lower bounds and exact solutions.  The symmetric equation teaches that expanding blindly is rarely the best first move.
-
-Thus the real notebook value is in the decision process: before computing, decide whether the domain is bounded, whether the object is symmetric, whether a crude bound is sharp, and whether a problem is actually asking for an exact classification.
-
-\section{Coordinate geometry as optimization}
-
-The original olympiad-style coordinate problems often reduce a geometric claim to an algebraic inequality or an extremum.  This is the beginning of optimization geometry.  For example, placing points in coordinates turns distances into quadratic functions:
+There is an actual family of positive solutions, not just a formal projective equation. Fix the overall scale by taking \(b=c=1\) and write \(a=t>0\). The original condition becomes
 \[
-  |x-y|^2=(x-y)\cdot(x-y).
+ \frac t2+\frac2{t+1}=4.
 \]
-Then many geometric constraints become quadratic inequalities.
-
-A modern viewpoint is to treat a geometric configuration as a feasible set and a desired length, angle, or area as an objective function.  Convexity, symmetry, and compactness then explain why extrema exist and why equality cases are structured.
-
-\section{Packing and convex bodies}
-
-Packing problems ask how many objects can fit without overlap.  In the plane, disk packing leads to density questions.  A convex body $K\subseteq \mathbb R^n$ is a compact convex set with nonempty interior.  A packing by translates of $K$ is a family
+Clearing the positive denominator gives
 \[
-  K+x_i
+ t(t+1)+4=8(t+1),
+ \qquad t^2-7t-4=0.
 \]
-with disjoint interiors.
-
-The density of a lattice packing is
+The unique positive solution on this symmetric ray is
 \[
-  \Delta=\frac{\operatorname{vol}(K)}{\operatorname{covol}(\Lambda)}
+ \boxed{t=\frac{7+\sqrt{65}}2.}
 \]
-when the translates are indexed by a lattice $\Lambda$.  Elementary circle or sphere packing problems are finite visible versions of questions about optimal densities.
-
-This connects school geometry to research-level topics such as lattice packing, sphere packing, and the geometry of numbers.
-
-\section{Group actions and symmetry reduction}
-
-Many coordinate solutions become shorter after using symmetry.  A group action formalizes this.  If a group $G$ acts on a set $X$, then points in the same orbit
+The other quadratic root is negative. Thus all positive triples proportional to
 \[
-  Gx=\{gx:g\in G\}
+ \left(\frac{7+\sqrt{65}}2,\ 1,\ 1\right)
 \]
-are equivalent under the symmetry.
+satisfy the rational equation. The cubic derived in \(s,p,q\) gives the same result: when \(s=t+2,\ p=2t+1,\ q=t\), its left side factors as
+\[
+ s^3-6sp+7q=(t+1)(t^2-7t-4).
+\]
+The factor \(t+1\) is never zero in the positive region. This explicit section of the projective solution set illustrates why removing scale helps: one homogeneous equation in three variables becomes a scalar quadratic after intersecting with a geometrically meaningful symmetry ray.
 
-For a symmetric geometric configuration, one can choose coordinates adapted to the group.  For example, rotational symmetry suggests polar coordinates; reflection symmetry suggests placing axes on symmetry lines.  The elementary trick of ``put the origin at the center'' is the coordinate form of quotienting by translations or rotations.
+This equation defines a projective cubic locus in the ratios \([a:b:c]\), restricted to the positive region. An elementary inequality still gives a useful geometric boundary: by Nesbitt's inequality,
+\[
+ \frac a{b+c}+\frac b{c+a}+\frac c{a+b}\ge\frac32,
+\]
+with equality at \(a=b=c\). The level \(4\) therefore lies well away from the balanced point.
 
-\section{Convexity and supporting hyperplanes}
-
-A line tangent to a convex curve or a plane tangent to a convex body is a supporting hyperplane.  A hyperplane $H$ supports a convex set $K$ if $K$ lies in one closed half-space determined by $H$ and $H\cap K\ne\varnothing$.
-
-Many olympiad inequalities about distances to lines or extreme points can be rephrased using supporting lines.  This is the finite Euclidean beginning of convex analysis.
-
-\section{Coordinate methods exploit symmetry and convexity}
-
-The elementary coordinate transformations, distance formulas, and symmetry placements should be kept exactly because they teach the practical side.  The advanced layer explains what they are doing: reducing a geometric problem by symmetry, encoding constraints algebraically, and optimizing over a convex or compact feasible region.
-
-\section{Coordinate choice as quotienting symmetry}
-
-When an olympiad solution places the origin at a center or aligns an axis with a symmetry line, it is not merely making the algebra shorter.  It is quotienting out irrelevant degrees of freedom.  Translations remove the absolute position of the configuration; rotations remove absolute direction; scaling removes absolute size when the problem is similarity-invariant.
-
-A clean coordinate setup therefore identifies the true moduli of the configuration.  For a triangle up to similarity, for instance, three vertex coordinates contain redundant information because translation, rotation, and scaling do not change the intrinsic shape.  The remaining parameters describe shape, not placement.
-
-\section{Packing bounds as volume plus local obstruction}
-
-Elementary packing arguments often begin with area or volume comparison.  But pure volume comparison is rarely sharp because local geometry imposes additional constraints.  In circle packing, density depends on how neighboring circles can touch; the hexagonal packing is optimal in the plane.
-
-The higher-dimensional sphere-packing problem asks for the maximal density of non-overlapping equal balls in $\mathbb R^n$.  In special dimensions, such as $8$ and $24$, exceptional lattices provide optimal packings.  Thus a simple finite packing exercise belongs to a long research line connecting geometry, lattices, modular forms, and optimization.
-
-\section{Equality cases as rigid configurations}
-
-In geometry problems, equality cases often correspond to symmetric or rigid configurations.  If a bound is proved by Cauchy, AM--GM, or convexity, equality conditions translate back into geometric constraints: equal lengths, parallel directions, tangency, or regularity.  The advanced habit is to track equality throughout the proof, because it reveals the extremal geometry.
+The projection calculation, the disk-center constraints, and the homogeneous cubic all remove irrelevant coordinates. For squared distances we eliminate translation using a midpoint; for packing we replace congruent disks by their centers; for a symmetric rational equation we quotient out overall scale. In each case the improved coordinates reveal the geometry of the feasible set before optimization begins.

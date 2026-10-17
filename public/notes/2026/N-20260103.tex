@@ -1,6 +1,6 @@
 \notechapter{N-20260103}{Rank, Projections, and Long-Term Matrix Dynamics}
 
-\section{The first useful question is often which relation the matrix satisfies}
+\section{Polynomial Relations of Matrices}
 
 A large matrix power or rank identity rarely becomes easier by multiplying entries.  The decisive information is often an algebraic relation:
 \[
@@ -16,7 +16,7 @@ Each relation compresses the matrix into a small algebra.  An idempotent splits 
 
 This chapter therefore organizes matrix problems by structure rather than by the surface form of an exercise.  Rank describes which directions survive, projections describe how the space splits, polynomial identities describe repeated iteration, and spectral projectors describe what remains after transient modes decay.
 
-\section{Rank factorization exposes the quotient--image structure}
+\section{Rank Factorization and Quotients}
 
 Let \(A:k^n\to k^m\) have rank \(r\).  Choose a basis \(c_1,\ldots,c_r\) of its column space and place these columns in
 \[
@@ -81,7 +81,7 @@ The factorization is not unique.  For any \(S\in GL_r(k)\),
 \]
 The ambiguity is exactly a change of coordinates in the intermediate \(r\)-dimensional image space.
 
-\section{The four fundamental subspaces are paired by orthogonality}
+\section{Four Fundamental Subspaces}
 
 For a real matrix \(A\in\mathbb R^{m\times n}\), the row space and null space are orthogonal complements:
 \[
@@ -131,7 +131,7 @@ If two homogeneous systems \(Ax=0\) and \(Bx=0\) have the same solution space, t
 \]
 Thus equality of solution sets and equality of row spaces are the same statement viewed from opposite sides.
 
-\section{At corank one, the adjugate becomes a rank-one null-space certificate}
+\section{Adjugates at Corank One}
 
 For every square matrix,
 \[
@@ -191,7 +191,7 @@ If \(\operatorname{rank}A\le n-2\), every \((n-1)\)-minor vanishes and
 \]
 The adjugate therefore distinguishes corank one from deeper singularity.
 
-\section{Idempotents are projections, but not always orthogonal projections}
+\section{Idempotents and Oblique Projections}
 
 Suppose
 \[
@@ -245,7 +245,7 @@ Indeed, expanding \((P+Q)^2=P+Q\) gives
 \]
 Multiplying on the left and right by \(P\) shows \(PQ=QP\); the displayed sum then gives \(2PQ=0\).  Geometrically, each image lies in the other's kernel, so the two projections occupy noninteracting components.
 
-\section{Nilpotence turns infinite-looking formulas into finite sums}
+\section{Finite Formulas from Nilpotence}
 
 If \(N^k=0\), then
 \[
@@ -331,7 +331,7 @@ and
 \]
 Even \(A^{100}\) is no harder than evaluating two scalar powers.
 
-\section{Polynomial Chinese remainders produce primary projectors}
+\section{Primary Projectors from CRT}
 
 Suppose
 \[
@@ -383,7 +383,7 @@ project onto the generalized \(1\)- and \(-2\)-primary subspaces.
 
 This is the structural source of generalized eigenspace decomposition.  The vector space becomes a module over \(k[t]\), with \(t\) acting as \(A\); coprime polynomial factors split that module into independent primary pieces.
 
-\section{Jordan asymptotics decide whether matrix powers converge}
+\section{Convergence of Matrix Powers}
 
 On a Jordan block
 \[
@@ -414,7 +414,7 @@ where \(P_1\) is the spectral projector onto \(\ker(A-I)\) along the direct sum 
 
 The phrase “only the eigenvalue \(1\) remains” is therefore incomplete.  What remains is a specific projection determined by the decomposition of the whole space.
 
-\section{A two-state Markov chain displays the limiting projector explicitly}
+\section{A Two-State Markov Projector}
 
 Let
 \[
@@ -468,7 +468,7 @@ Hence
 \]
 Every initial probability row converges to \(\pi\).  The Markov limit is a spectral projector, while the convergence rate is the magnitude of the subdominant eigenvalue.
 
-\section{Strict diagonal dominance is a fast invertibility certificate}
+\section{Diagonal Dominance and Invertibility}
 
 Suppose
 \[
@@ -500,7 +500,7 @@ The same argument is the zero-eigenvalue case of Gershgorin's theorem.  Every ei
 \]
 Strict diagonal dominance keeps all disks away from zero.  Before computing a determinant or inverse, the row geometry can already certify that no kernel direction exists.
 
-\section{The Drazin inverse separates invertible dynamics from nilpotent transients}
+\section{Drazin Inverses and Nilpotent Modes}
 
 A singular matrix has no ordinary inverse, but its primary decomposition separates the nonzero spectrum from the generalized zero eigenspace.  On the nonzero primary components, \(A\) is invertible; on the zero component, it is nilpotent.  The Drazin inverse \(A^D\) acts as the ordinary inverse on the first part and as zero on the second.
 

@@ -1,287 +1,224 @@
-\notechapter{N-20221217}{Function Exercises: Domains, Ranges, Dirichlet Function, Parameters, and Functional Equations}
+\notechapter{N-20221217}{Function Spaces: Domains, Orbit Symmetry, and Changing Numbers of Solutions}
 
-\section{Structure of the exercise sheet}
+The same function may be studied as a formula, as a map between topological spaces, or as an object carrying symmetry. A denominator determines where its formula makes sense; the image records attainable values; a functional equation can transport information across infinitely many inputs; a parameter can change the topology of a solution set. The following examples make these perspectives meet in actual calculations.
 
-The exercises cover domains, ranges, the Dirichlet function, parameters, graph-based zero counting, and functional equations.  Each problem isolates a specific method rather than contributing to one continuous theorem.
+\section{Domains from Constraints}
 
-\section{Domain problems}
-
-For a function domain, the first rule is to list all legality conditions.  Square roots require nonnegative radicands, logarithms require positive arguments and valid bases, denominators cannot be zero, and iterated functions require every intermediate input to lie in the next domain.
-
-For example,
+For the real-valued expression
 \[
-  y=\frac{\sqrt{x(3-x)}}{\lg (x-3)^2}
+ F(x)=\frac{\sqrt{x(3-x)}}{\log_{10}((x-3)^2)},
 \]
-requires
+the square root requires \(0\le x\le3\), the logarithm requires \(x\ne3\), and its value cannot be zero, excluding \((x-3)^2=1\). Hence
 \[
-  x(3-x)\ge0,
-  \qquad
-  (x-3)^2>0,
-  \qquad
-  \lg (x-3)^2\ne0.
+ \operatorname{dom}F=[0,2)\cup(2,3).
 \]
-The first gives $0\le x\le3$.  The second excludes $x=3$.  The third excludes $(x-3)^2=1$, so $x=2$ or $4$, but only $2$ lies in the current interval.  Hence
+The open and closed endpoints encode different facts: \(x=0\) is allowed, while \(x=2\) gives a zero denominator and \(x=3\) gives an undefined logarithm.
+
+A floor expression changes its form at integer thresholds:
 \[
-  D=[0,3)\setminus\{2\}.
+ \lfloor x\rfloor=k\quad\Longleftrightarrow\quad k\le x<k+1.
 \]
-The important step is not the answer; it is the intersection of all restrictions.
+It is therefore often best handled on intervals with fixed \(k\). The discontinuities of the floor function are a geometric record of that case split.
 
-For an expression such as
+\section{Ranges and Compactness}
+
+Consider
 \[
-  \sqrt{a^x-kb^x}
+ G(x)=\sqrt{x-4}+\sqrt{15-3x},\qquad 4\le x\le5.
 \]
-in a denominator, the condition is strict:
+With \(u=x-4\), this becomes
 \[
-  a^x-kb^x>0.
+ G=\sqrt u+\sqrt{3(1-u)},\qquad 0\le u\le1.
 \]
-Since $b^x>0$, divide by $b^x$:
+Cauchy--Schwarz gives \(G^2\le(1+3)(u+1-u)=4\), and equality holds at \(u=1/4\), where \(G=2\). The only interior critical point is this maximum; the endpoint values are \(G(0)=\sqrt3\), \(G(1)=1\). Thus
 \[
-  \left(\frac ab\right)^x>k.
+ \boxed{G([4,5])=[1,2].}
 \]
-Now the inequality depends on whether $a/b>1$ or $0<a/b<1$.  This is a recurring trap in exponential and logarithmic domain problems.
 
-\section{Floor functions}
+There is a topological step hidden in the final interval. A continuous image of a compact interval is compact and connected, so once the extremal values are known the entire range between them is attained. On a noncompact or punctured domain, endpoint values might be approached without being attained.
 
-The exercise sheet also uses the Gauss or floor function $[x]$.  The correct method is interval splitting:
+\section{Absolute values are shadows of switching branches}
+
+Knowing a range requires knowing where a function changes its formula. An especially useful example is the upper envelope
 \[
-  [x]=m \quad\Longleftrightarrow\quad m\le x<m+1.
+ M(x)=\max\{(x-1)^2,(x+1)^2\}.
 \]
-A floor-function domain problem is therefore a finite or countable case split.  One should not treat $[x]$ as a smooth algebraic expression.
-
-\section{Range problems}
-
-For
+Subtract the candidates: $(x+1)^2-(x-1)^2=4x$. Thus the second branch is active for $x\ge0$, the first for $x\le0$, and
 \[
-  y=\sqrt{x-4}+\sqrt{15-3x},
+ \boxed{M(x)=x^2+1+2|x|.}
 \]
-the domain is $4\le x\le5$.  Put $u=x-4$, so $0\le u\le1$ and
+The identity $\max\{u,v\}=(u+v+|u-v|)/2$ is a reliable way to derive such a formula, with no guesswork about the active branch.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=2.0cm,y=.72cm,>=Stealth]
+ \draw[->,gray!65] (-1.55,0)--(1.55,0) node[right] {$x$};
+ \draw[->,gray!65] (0,-.1)--(0,5) node[above] {$y$};
+ \draw[gray!60,densely dashed] plot[domain=-1.23:1.23,samples=55] (\x,{(\x-1)^2});
+ \draw[gray!60,densely dashed] plot[domain=-1.23:1.23,samples=55] (\x,{(\x+1)^2});
+ \draw[teal!75!black,very thick] plot[domain=-1.23:0,samples=50] (\x,{(\x-1)^2});
+ \draw[teal!75!black,very thick] plot[domain=0:1.23,samples=50] (\x,{(\x+1)^2});
+ \fill[orange!85!black] (0,1) circle (1.8pt);
+ \node[font=\footnotesize,anchor=south west] at (.07,1.15) {$M(0)=1$};
+ \node[font=\footnotesize,teal!75!black,anchor=west] at (.66,3.86) {$M(x)$};
+\end{tikzpicture}
+\caption{The solid upper envelope switches quadratic branches at $x=0$. The minimum is a corner, so it cannot be found by solving the ordinary equation $M'(0)=0$.}
+\end{figure}
+
+For $x<0$ the derivative is $2x-2$, and for $x>0$ it is $2x+2$. At the minimum $x=0$, the one-sided derivatives are $-2$ and $2$: the ordinary derivative does not exist. Yet convexity provides a better replacement. A number $s$ is a \emph{subgradient} of $M$ at zero if
 \[
-  y=\sqrt u+\sqrt{3(1-u)}.
+ M(y)\ge M(0)+sy\quad\text{for every }y.
 \]
-By Cauchy--Schwarz,
+Since $M(y)-M(0)=y^2+2|y|$, every $s\in[-2,2]$ satisfies the condition. If $|s|>2$, a sufficiently small $y$ with the same sign as $s$ violates it. Hence
 \[
-  y^2\le (1+3)(u+1-u)=4,
+ \boxed{\partial M(0)=[-2,2].}
 \]
-so $y\le2$.  At the endpoints the smaller value is $1$, and the maximum is achieved when the Cauchy equality condition holds.  Thus the range is $[1,2]$.
+The familiar smooth necessary condition $M'(x_*)=0$ becomes $0\in\partial M(x_*)$ for convex nonsmooth functions. Here the subgradient interval describes \emph{all} supporting slopes at the corner.\footnote{For maxima of differentiable convex functions and subgradients of active branches, see Boyd and Vandenberghe, \href{https://see.stanford.edu/materials/lsocoee364b/01-subgradients_notes.pdf}{\emph{Subgradients}, EE364b notes}.}
 
-For
+Switching can also change the number of solutions at one parameter value. The simpler function
 \[
-  y=x+\sqrt{1-2x},
+ H(x)=|x-1|+|x+1|=
+ \begin{cases}
+ -2x,&x<-1,\\
+ 2,&-1\le x\le1,\\
+ 2x,&x>1
+ \end{cases}
 \]
-let $t=\sqrt{1-2x}\ge0$.  Then
+has no solutions to $H(x)=c$ for $c<2$, a whole \emph{interval} of solutions for $c=2$, and precisely two solutions $x=\pm c/2$ for $c>2$. A critical value can create an entire plateau, in contrast to the pair of roots created at the smooth tangency in the logarithmic example below.
+
+\section{Dense Sets and Integrability}
+
+Let \(D(x)=\mathbf1_{\mathbb Q}(x)\). Rationals and irrationals are dense in every interval, so \(D\) is discontinuous at every point. On any nontrivial closed interval, each subinterval has supremum \(1\) and infimum \(0\); its upper and lower Riemann sums differ by the whole interval length. Hence \(D\) is nowhere Riemann integrable on a nontrivial interval.
+
+Yet \(\mathbb Q\) has Lebesgue measure zero, so its Lebesgue integral is zero:
 \[
-  x=\frac{1-t^2}{2},\qquad
-  y=-\frac12(t-1)^2+1.
+ \int_a^bD(x)\,dx=0
+ \quad\text{in the Lebesgue sense}.
 \]
-Hence the range is
+This is a structural distinction between two integrals. Riemann sums examine the oscillation on every subinterval, while Lebesgue integration can disregard a measure-zero set.
+
+Thomae's function makes the boundary sharper:
 \[
-  (-\infty,1].
+ T(x)=
+ \begin{cases}
+ 1/q,&x=p/q\text{ in lowest terms},\ q>0,\\
+ 0,&x\notin\mathbb Q.
+ \end{cases}
 \]
-This substitution method is the natural way to remove a radical while preserving the domain.
+It is discontinuous exactly at the rational points and continuous at every irrational point. To see continuity at an irrational \(x_0\), fix \(\varepsilon>0\) and choose \(N\) with \(1/N<\varepsilon\). A bounded neighborhood contains only finitely many rationals with denominator \(q\le N\). Shrink the neighborhood to avoid them. All remaining values of \(T\) are less than \(\varepsilon\). Since the discontinuity set is countable, the Lebesgue criterion for Riemann integrability shows \(T\) is Riemann integrable with integral \(0\).
 
-\section{Dirichlet function}
+\section{A functional equation is transport along an orbit}
 
-The Dirichlet function is
+Suppose \(f:\mathbb R\to\mathbb R\) satisfies
 \[
-  D(x)=\begin{cases}
-  1,&x\in\mathbb Q,\\
-  0,&x\in\mathbb R\setminus\mathbb Q.
-  \end{cases}
+ f(x+1)=1-f(x).
 \]
-It is bounded, because $0\le D(x)\le1$.  It is not monotone on any interval, because every interval contains both rational and irrational numbers.  It has every nonzero rational period $T$, since
+Applying the shift twice gives \(f(x+2)=f(x)\). Every \(x\) has a unique decomposition \(x=t+n\) with \(0\le t<1\) and \(n\in\mathbb Z\). If \(h=f|_{[0,1)}\), then
 \[
-  x\in\mathbb Q \Longleftrightarrow x+T\in\mathbb Q
+ f(t+n)=
+ \begin{cases}
+ h(t),&n\text{ even},\\
+ 1-h(t),&n\text{ odd}.
+ \end{cases}
 \]
-for $T\in\mathbb Q$.  It has no irrational period, because adding an irrational changes rationality.
+Thus all solutions are determined by arbitrary data on a fundamental interval, transported by the integer translation action.
 
-This exercise is included because it teaches that functions can be extremely discontinuous while still having simple algebraic properties.
-
-\section{Graph transformations and zero counting}
-
-The problem involving $f$ and
+Continuity is an additional constraint. If \(h\) is continuous on \([0,1)\) and has a limit as \(t\uparrow1\), the extension is continuous on \(\mathbb R\) precisely when
 \[
-  g(x)=b-f(2-x)
+ \lim_{t\uparrow1}h(t)=1-h(0).
 \]
-asks for the values of $b$ for which $f(x)-g(x)$ has four zeros.  The transformation $x\mapsto2-x$ reflects the graph across the vertical line $x=1$; then $b-$ reflects vertically and shifts.  The number of zeros of $f-g$ is the number of intersections of two transformed graphs.
+For \(h(t)=2t-t^2\), both sides are \(1\), so the resulting period-two function is continuous.
 
-The method is graphical but not vague.  The number of intersections changes only when a moving graph becomes tangent, passes through a vertex/corner, or crosses an endpoint.  Thus parameter intervals are found by checking these critical positions.
+Write \(g=f-\tfrac12\). Then \(g(x+1)=-g(x)\), an \emph{antiperiodicity} relation. If \(g\) is square-integrable on one period and expanded in the \(2\)-periodic Fourier basis \(e^{\pi ikx}\), the shift multiplies the \(k\)-th mode by \((-1)^k\). Antiperiodicity therefore forces the even Fourier coefficients to vanish. The alternating-value functional equation has become a spectral selection rule.
 
-\section{Logarithmic parameter equation}
+\section{A quadratic recurrence hides a circle-doubling map}
 
-For an equation such as
+An iteration problem looks quite different from an ordinary range problem, but it becomes manageable when the coordinates expose the repeated operation. Consider
 \[
-  \ln(ax)=2\ln(x+1),
+ x_{n+1}=x_n^2-2,\qquad x_0\in[-2,2].
 \]
-first impose the domain:
+Expanding $x_2=(x_0^2-2)^2-2$ is easy, but expanding $x_{10}$ is a hopeless way to understand its behavior. Instead write $x_0=2\cos\theta$, which is possible for every $x_0\in[-2,2]$. The double-angle identity gives
 \[
-  ax>0,
-  \qquad x+1>0.
+ (2\cos\theta)^2-2
+ =4\cos^2\theta-2
+ =2\cos(2\theta).
 \]
-Then combine logarithms:
+Applying the same calculation repeatedly proves by induction that
 \[
-  \ln(ax)=\ln((x+1)^2)
+ \boxed{x_n=2\cos(2^n\theta).}
 \]
-so
+The quadratic recurrence has become the doubling of an angle on the circle. This is a \emph{semiconjugacy}
 \[
-  ax=(x+1)^2.
+ h(2\theta)=F(h(\theta)),\qquad
+ h(\theta)=2\cos\theta,\quad F(x)=x^2-2.
 \]
-This becomes a quadratic in $x$.  Having exactly one real solution means a discriminant or tangency condition, but the domain must still be checked.  The sheet is training this two-step habit: algebraic transformation plus domain verification.
+It is not a conjugacy: $\theta$ and $-\theta$ generally represent distinct angles but have the same image under $h$.
 
-\section{Functional equations with period-like recurrence}
-
-Suppose $f$ is defined on $[0,1)$ by
+The trigonometric coordinate gives exact periodic orbits. Take
 \[
-  f(x)=2x-x^2
+ x_0=2\cos\frac{2\pi}{5}
+ =\frac{\sqrt5-1}{2}.
 \]
-or another explicit expression, and for all real $x$ satisfies
+Then
 \[
-  f(x)+f(x+1)=1.
+ x_1=2\cos\frac{4\pi}{5}
+ =-\frac{\sqrt5+1}{2},
+ \qquad
+ x_2=2\cos\frac{8\pi}{5}=x_0.
 \]
-Then values outside $[0,1)$ are reduced by repeatedly using
+This is an exact two-cycle. The angle is multiplied by two each time, but taking the cosine forgets reflection of the angle; that is precisely why $8\pi/5$ and $2\pi/5$ give the same $x$.
+
+The interval $[-2,2]$ is invariant because the cosine formula always stays inside it. Outside it, the behavior is completely different. If $x_0>2$, then
 \[
-  f(x+1)=1-f(x).
+ x_{n+1}-x_n=(x_n-2)(x_n+1)>0;
 \]
-If $a=\log_2 3$, to compute $f(a)+f(2a)+f(3a)$, first determine the integer intervals containing $a,2a,3a$, reduce their fractional parts into $[0,1)$, and then apply the recurrence each time.
+a bounded increasing orbit would converge to a fixed point of $F$, but its only fixed points are $2$ and $-1$. Since every iterate is greater than two, the orbit must diverge to $+\infty$. If $x_0<-2$, the first iterate exceeds $2$, and the same conclusion follows.
 
-This is the same idea as reducing modulo a period, except that shifting by $1$ may flip the value rather than preserve it.
+This is a good example of a natural substitution doing more work than brute force. The algebraic recurrence, the geometry of the circle, and the distinction between bounded and escaping orbits all become explicit from a single identity. The relation with the doubling map is a standard example in one-dimensional dynamics; compare the discussion of the Chebyshev quadratic in \href{https://marksmath.org/classes/Fall2017ChaosAndFractals/chaos_and_fractals/section-chaos_and_doubling.html}{\emph{The Doubling Map and Chaos}}.
 
-\section{A reciprocal functional equation}
+\section{Solving a reciprocal functional equation completely}
 
-The sheet also has a functional equation of the form
+Suppose on \(\mathbb R\setminus\{0\}\) a function satisfies
 \[
-  f(x)=f(1)x+f(2)\frac1x-1
+ f(x)=f(1)x+\frac{f(2)}x-1.
 \]
-for nonzero $x$.  On $(0,+\infty)$, this becomes a problem about minimizing
+Set \(A=f(1)\), \(B=f(2)\). Substituting \(x=1\) gives \(B=1\); substituting \(x=2\) then gives
 \[
-  Ax+\frac Bx-1.
+ 1=2A+\frac12-1,\qquad A=\frac34.
 \]
-The AM--GM inequality gives
+Consequently the function is uniquely determined:
 \[
-  Ax+\frac Bx\ge2\sqrt{AB}
+ \boxed{f(x)=\frac{3x}{4}+\frac1x-1.}
 \]
-when $A,B>0$.  The equality condition determines the point where the minimum occurs.  This is a typical example where a functional equation reduces to a standard inequality.
-
-\section{Quadratic iteration problem}
-
-For a quadratic
+On \(x>0\), AM--GM gives
 \[
-  f(x)=x^2+2ax+8,
+ f(x)\ge2\sqrt{\frac34}-1=\sqrt3-1,
 \]
-conditions involving both $f(x)\le0$ and $f(f(x))\le8$ should be treated by introducing the image variable $u=f(x)$.  Then the second condition becomes $f(u)\le8$.  The problem is about how the range of the first inequality is mapped by the quadratic again.  Completing the square and tracking intervals is safer than expanding $f(f(x))$ blindly.
+with equality when \(3x/4=1/x\), at \(x=2/\sqrt3\). A relation that initially seems to involve two unknown function values has reduced to two algebraic consistency equations.
 
-\section{Max and absolute value}
+\section{Tangency Changes Solution Counts}
 
-The exercise about
+For \(a>0\), consider
 \[
-  M(x)=\max\{f(x),g(x)\}
+ \log(ax)=2\log(x+1).
 \]
-uses the identity
+The real domain is \(x>0\). Exponentiating yields
 \[
-  \max\{u,v\}=\frac{u+v+|u-v|}{2}.
+ ax=(x+1)^2
+ \quad\Longleftrightarrow\quad
+ a=x+2+\frac1x.
 \]
-Thus maximum and minimum operations can be encoded using absolute value.  This is useful when deciding whether a function built by max/min remains elementary.
+The last expression is at least \(4\), with equality only at \(x=1\). Therefore there are no solutions when \(0<a<4\), exactly one when \(a=4\), and two when \(a>4\).
 
-
-\section{Parameter problems and critical values}
-
-When a parameter changes the number of solutions, the change usually happens at a critical value: a tangent contact, an endpoint contact, or a collision of two roots.  This is why discriminants and graph tangencies appear so often.
-
-For a quadratic equation depending on a parameter, the condition for exactly one real root is usually
+The same conclusion arises from the discriminant of \(x^2+(2-a)x+1\):
 \[
-  \Delta=0.
+ \Delta=a(a-4).
 \]
-For a graphical equation, the same condition appears geometrically as tangency.  The algebraic and geometric languages are two versions of the same idea.
-
-\section{Functional equations as reduction rules}
-
-A functional equation such as
+But the function \(a(x)=x+2+1/x\) adds geometric information: the two branches coalesce at the nondegenerate minimum \(x=1\). Near the critical point,
 \[
-  f(x+1)=1-f(x)
+ a(x)=4+(x-1)^2+O((x-1)^3),
 \]
-should be used as a reduction rule.  It tells us how to move an input back to a fundamental interval.  After two shifts,
-\[
-  f(x+2)=1-f(x+1)=f(x),
-\]
-so the function becomes periodic with period \(2\).  This kind of hidden periodicity is easy to miss if one treats the equation only algebraically.
+so if \(a=4+\varepsilon\) with \(\varepsilon>0\) small, the two solutions satisfy
+\(x=1\pm\sqrt\varepsilon+O(\varepsilon)\). A discriminant-zero event is a simple fold bifurcation in the geometry of the zero set.
 
-\section{What the pattern suggests}
-
-The page is not just a set of answers.  It teaches a toolbox: domains are legality intersections; ranges use substitution and inequalities; floor functions require interval splitting; Dirichlet's function uses density of rationals and irrationals; parameter problems are tangency/discriminant problems; functional equations reduce values to a fundamental interval; max and min can be represented by absolute values.  The common theme is that a function is not merely a formula but a domain, graph, transformation rule, and set of constraints.
-
-\section{Domains as constraint intersections}
-
-A domain problem is a constraint-satisfaction problem.  Each operation contributes a legality condition: square roots impose inequalities, logarithms impose positivity, denominators impose nonvanishing, and compositions impose intermediate-domain conditions.  The domain is the intersection of all these constraints.
-
-This viewpoint prevents a common error: simplifying an expression before recording its original restrictions.  For example, an expression with a denominator may algebraically simplify, but the excluded zeros of the original denominator still matter unless the problem explicitly defines the simplified expression as a new function.
-
-\section{Dirichlet function through density and measure}
-
-The Dirichlet function
-\[
-  D(x)=\mathbf 1_{\mathbb Q}(x)
-\]
-is discontinuous at every real number.  At any point \(a\), every neighborhood contains rationals and irrationals, so along rational sequences \(D\) tends to \(1\), while along irrational sequences it tends to \(0\).
-
-It is not Riemann integrable on any interval, because every subinterval has supremum \(1\) and infimum \(0\).  But it is Lebesgue integrable, and its integral is \(0\), since \(\mathbb Q\) has measure zero:
-\[
-  \int_0^1 \mathbf 1_{\mathbb Q}(x)\,dx=0.
-\]
-Thus the same function separates two integration theories: Riemann integration sees oscillation on every interval; Lebesgue integration sees that the exceptional set is small in measure.
-
-\section{Thomae's function as a nearby comparison}
-
-A useful comparison is Thomae's function
-\[
-  T(x)=
-  \begin{cases}
-  \frac1q,&x=\frac pq\text{ in lowest terms},\\
-  0,&x\notin\mathbb Q.
-  \end{cases}
-\]
-It is continuous at every irrational point and discontinuous at every rational point.  Unlike the Dirichlet function, it is Riemann integrable with integral \(0\).
-
-This comparison shows that dense discontinuities alone do not determine integrability.  The size and height distribution of the discontinuities matter.
-
-\section{Parameter problems as bifurcation diagrams}
-
-When a parameter changes the number of solutions, the change occurs at critical values.  Algebraically, these are discriminant-zero cases, endpoint hits, or degeneracies.  Geometrically, they are tangencies or changes in intersection pattern.
-
-For a family \(F(x,b)=0\), a typical critical point satisfies
-\[
-  F(x,b)=0,\qquad \frac{\partial F}{\partial x}(x,b)=0.
-\]
-The first equation says the graph intersects the axis; the second says the intersection is tangent, so two roots can merge or disappear.  This is the elementary version of a bifurcation diagram.
-
-\section{Functional equations as group actions on the domain}
-
-A relation such as
-\[
-  f(x+1)=1-f(x)
-\]
-should be read as an action of the translation group on the input line, together with an action on values.  Applying the shift twice gives
-\[
-  f(x+2)=f(x),
-\]
-so the function descends to a period-two structure after accounting for the value flip.
-
-The interval \([0,1)\) is a fundamental domain: every real input can be moved into it by integer shifts.  The functional equation tells how the value changes during that reduction.  This is the same logic behind periodic functions, modular arithmetic, and covering spaces.
-
-\section{Max, min, and nonsmooth points}
-
-The identity
-\[
-  \max\{u,v\}=\frac{u+v+|u-v|}{2}
-\]
-turns a maximum into an expression involving absolute value.  It also explains where nonsmoothness can occur: at points where \(u=v\), the absolute value has a corner unless the crossing is tangential in a compatible way.
-
-In optimization language, maximum functions are piecewise-smooth.  Their derivatives are governed by the active branch.  At a switching point, one may need one-sided derivatives or subgradients rather than an ordinary derivative.
-
-\section{Ranges as images and compactness}
-
-A range problem asks for the image \(f(D)\).  If \(D\) is compact and \(f\) is continuous, then \(f(D)\) is compact.  In \(\mathbb R\), that means closed and bounded.  This is why many range problems on closed intervals reduce to finding extrema.
-
-If the domain is not compact, endpoints may be missing or infinity may be approached.  Then the range must be described with open or half-open endpoints.  This is not a cosmetic detail: it records whether a value is achieved or only approached.
-
-\section{Function exercises through topology and dynamics}
-
-These function exercises are training a structural habit.  A function is not just a formula; it is a formula together with a domain, a range, transformations, constraints, and possible exceptional sets.  Domain questions are intersections of constraints, range questions are image problems, parameter questions track critical values, and functional equations reduce inputs by a symmetry or group action.
+Domains and ranges determine where a function exists and which values it attains; the density of exceptional sets determines regularity and integrability; group actions transport functional equations; and critical values explain how solutions appear and disappear. Each viewpoint becomes useful exactly when the corresponding calculation demands it.

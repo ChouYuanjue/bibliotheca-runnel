@@ -91,7 +91,7 @@ After choosing a Hermitian metric and writing \(\Phi^{*h}\) for the adjoint, the
 \]
 Different normalizations of \(z\), the metric, or the factor \(1/2\) move constants between the two terms, but the structure is invariant: a real curvature equation and a complex holomorphicity equation.
 
-\section{Gauge symmetry explains why the solution space is a quotient}
+\section{Gauge Symmetry and Quotients}
 
 A unitary gauge transformation \(g\) changes the pair by
 \[
@@ -131,7 +131,7 @@ while the complex moment map is
 \]
 Thus Hitchin's moduli space is an infinite-dimensional hyperkähler quotient.  The moment-map language does not replace the PDE; it explains why a metric equation, a holomorphic equation, and a quotient appear together.
 
-\section{The complex equation turns the pair into a Higgs bundle}
+\section{From Equations to Higgs Bundles}
 
 The operator \(\bar\partial_A\) defines a holomorphic structure on the underlying complex bundle \(E\).  The equation
 \[
@@ -163,7 +163,7 @@ The Hitchin--Kobayashi correspondence says, in the appropriate degree-zero setti
 \]
 The analytic quotient by unitary gauge and the algebraic quotient by complex gauge are therefore two descriptions of the same well-behaved moduli problem.  Stability is not an extra adjective attached after the equations; it is the algebraic condition that replaces the missing compactness of complex gauge orbits.
 
-\section{A local rank-two ansatz turns the matrix equation into one scalar PDE}
+\section{Rank-Two Reduction to a PDE}
 
 The real equation becomes concrete in rank two.  Choose a local holomorphic frame in which
 \[
@@ -199,20 +199,30 @@ Hence
     0&e^{2u}-|Q|^2e^{-2u}
   \end{pmatrix}dz\wedge d\bar z.
 \]
-The Chern curvature of the diagonal metric is
+The signs in the curvature calculation deserve care. In a holomorphic frame, the Chern connection has $(1,0)$-part $h^{-1}\partial h$, so
 \[
-  F_h=
-  \begin{pmatrix}
-    -\partial\bar\partial u&0\\
-    0&\partial\bar\partial u
-  \end{pmatrix}.
+ h^{-1}\partial h=
+ \begin{pmatrix}-\partial u&0\\0&\partial u\end{pmatrix},
+ \qquad
+ F_h=\bar\partial(h^{-1}\partial h).
 \]
-Therefore the first Hitchin equation reduces, with this convention, to the scalar equation
+Because $\bar\partial\partial u=-\partial\bar\partial u$ for a scalar function, the curvature is
 \[
-  \boxed{
-  u_{z\bar z}+e^{2u}-|Q|^2e^{-2u}=0.}
+ F_h=
+ \begin{pmatrix}
+  \partial\bar\partial u&0\\
+  0&-\partial\bar\partial u
+ \end{pmatrix}
+ =
+ \begin{pmatrix}
+  u_{z\bar z}&0\\0&-u_{z\bar z}
+ \end{pmatrix}dz\wedge d\bar z.
 \]
-An overall factor changes if the area form is normalized differently, but the competition between the two exponentials is intrinsic.  Away from zeros of \(Q\), a shift of \(u\) converts the equation into a sinh--Gordon type equation.  The abstract matrix PDE has become a nonlinear scalar equation whose singular behavior is tied to the zeros of the spectral data.
+The diagonal entries of $F_h+[\Phi,\Phi^{*h}]=0$ are negatives of one another, and either one now yields
+\[
+ \boxed{u_{z\bar z}+|Q|^2e^{-2u}-e^{2u}=0.}
+\]
+Equivalently, $u_{z\bar z}=e^{2u}-|Q|^2e^{-2u}$. The two exponential terms arise from the two off-diagonal entries of the Higgs field. Their competition produces a sinh--Gordon-type equation when $Q$ has no zeros and the holomorphic coordinate is adjusted appropriately. Different curvature, wedge-order, and area-form conventions may change the overall factors and signs, so the derivation above fixes them explicitly.\footnote{Compare the local rank-two reduction in R. S. Ward, \href{https://arxiv.org/abs/1507.07462}{\emph{Geometry of Solutions of Hitchin Equations on $\mathbb R^2$}}, Section 2.}  Away from zeros of \(Q\), a shift of \(u\) converts the equation into a sinh--Gordon type equation.  The abstract matrix PDE has become a nonlinear scalar equation whose singular behavior is tied to the zeros of the spectral data.
 
 \section{A solution also produces a family of flat connections}
 
@@ -281,7 +291,7 @@ defines a curve \(\widetilde\Sigma\) inside the total space of \(K\).  Here \(\e
 \]
 branches.  The spectral curve is therefore the global replacement for diagonalizing a matrix point by point.
 
-\section{A global rank-two model requires a theta characteristic}
+\section{Theta Characteristics in Rank Two}
 
 The local companion matrix contains entries of different bundle types, so it should not be placed globally on \(\mathcal O\oplus\mathcal O\).  Choose instead a theta characteristic
 \[
@@ -318,7 +328,7 @@ The determinant is trivial, the trace is zero, and
 \]
 This is the rank-two Hitchin section.  The bundle bookkeeping is not cosmetic: it is what turns a local matrix mnemonic into a global Higgs bundle.
 
-\section{A genus-two spectral curve can be calculated completely}
+\section{A Genus-Two Spectral Curve}
 
 Take the genus-two hyperelliptic curve
 \[
@@ -363,7 +373,7 @@ so
 \]
 The slogan “the spectral curve is a branched cover” has now produced a concrete genus.
 
-\section{Line bundles on the spectral curve reconstruct the Higgs field}
+\section{Higgs Bundles from Spectral Curves}
 
 Let \(\mathcal L\) be a line bundle on \(\widetilde\Sigma\).  Pushing forward gives a rank-two bundle
 \[

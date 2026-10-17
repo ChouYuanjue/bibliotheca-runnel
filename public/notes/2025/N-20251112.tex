@@ -1,6 +1,6 @@
 \notechapter{N-20251112}{Calculus Review I: Limits, Completeness, Asymptotic Scales, and Local Approximation}
 
-\section{Cauchy--Schwarz and Minkowski are error-control mechanisms}
+\section{Cauchy--Schwarz and Minkowski}
 
 For vectors \(x,y\in\mathbb R^n\), the Cauchy--Schwarz inequality is
 \[
@@ -42,7 +42,7 @@ These inequalities control accumulated errors.  If \(e_1,\ldots,e_m\) are pertur
 \]
 If an error is represented by an inner product, Cauchy--Schwarz converts it into a product of sizes.  The same two patterns survive in Hilbert and normed spaces.
 
-\section{Limits are statements about eventual membership in neighborhoods}
+\section{Limits through Neighborhoods}
 
 For \(a\in\mathbb R\), let
 \[
@@ -72,15 +72,27 @@ In epsilon--delta notation,
   |f(x)-L|<\varepsilon.
 \]
 
-The neighborhood families form filters: intersections of finitely many neighborhoods are neighborhoods, and larger sets remain neighborhoods.  This is why limits compose.  If
+The neighborhood families form filters: intersections of finitely many neighborhoods are neighborhoods, and larger sets remain neighborhoods. But a \emph{punctured} limit has a subtlety that an ordinary continuity statement does not. The tempting rule
 \[
-  f(x)\to L
-  \quad\text{and}\quad
-  g(y)\to M\text{ as }y\to L,
+ f(x)\longrightarrow L,\qquad
+ \lim_{y\to L}g(y)=M
+ \quad\Longrightarrow\quad
+ g(f(x))\longrightarrow M
 \]
-then the preimage under \(g\) of a neighborhood of \(M\) contains a neighborhood of \(L\), and the preimage under \(f\) of that neighborhood contains a punctured neighborhood of \(x_0\).
+is false without an extra assumption. For instance, set \(f(x)=0\) for every \(x\), and
+\[
+ g(y)=
+ \begin{cases}1,&y=0,\\0,&y\ne0.\end{cases}
+\]
+Then \(\lim_{x\to0}f(x)=0\) and \(\lim_{y\to0}g(y)=0\), but
+\(g(f(x))=1\) everywhere. The inner function lands exactly on the point that the outer limit \emph{excludes}.
 
-\section{Sequence limits are unique and respect algebraic operations}
+There are two common ways to repair the composition rule. If \(g\) is continuous at \(L\), then \(g(L)=M\), and the ordinary neighborhood definition proves \(g(f(x))\to M\). Alternatively, even if \(g\) is discontinuous at \(L\), it suffices that \(f(x)\ne L\) on some punctured neighborhood of \(x_0\): the image then stays in the punctured neighborhood where the outer limit estimate is valid. This is why one must pay attention to which point a limit quantifier allows us to visit.
+
+For example, the continuous outer function \(g(y)=y^2\) always satisfies the familiar rule
+\(\lim_{x\to x_0}g(f(x))=(\lim_{x\to x_0}f(x))^2\), with no restriction on whether \(f(x)=L\) along the way. In contrast, an outer function with an isolated removable discontinuity cannot be composed blindly. The filter language makes this distinction explicit: a neighborhood of \(L\) and a \emph{deleted} neighborhood of \(L\) are different kinds of test sets.
+
+\section{Uniqueness and Algebra of Limits}
 
 Suppose \(x_n\to a\) and \(x_n\to b\).  If \(a\ne b\), choose
 \[
@@ -121,7 +133,7 @@ The definition of \(x_n\to+\infty\) is also eventual:
 \]
 It is not convergence to a real number, but it becomes ordinary convergence after adjoining points at infinity or applying a compactifying coordinate such as \(x\mapsto\arctan x\).
 
-\section{Heine's criterion converts function limits into sequence limits}
+\section{Heine's Sequential Criterion}
 
 \begin{theorem}[Heine criterion]
 Let \(f\) be defined on a punctured neighborhood of \(x_0\).  Then
@@ -170,7 +182,7 @@ Both tend to zero, but
 \]
 Therefore \(\lim_{x\to0}f(x)\) does not exist.
 
-\section{Asymptotic notation compares scales, not fixed small numbers}
+\section{Asymptotic Scales}
 
 Let \(g(x)>0\) near a limiting point.  The notation
 \[
@@ -290,7 +302,7 @@ Thus \(|x_n-L|<\varepsilon\).
 
 The proof exposes the completeness input: without the least-upper-bound property, the candidate \(L\) may be missing from the number system.
 
-\section{The Cauchy criterion characterizes convergence in complete spaces}
+\section{The Cauchy Criterion}
 
 A sequence is Cauchy if
 \[
@@ -337,7 +349,7 @@ Then \((q_n)\) is Cauchy in the rational metric, but it has no limit in \(\mathb
 
 A Banach space is exactly a normed vector space in which every Cauchy sequence converges.  Completeness is therefore not a technical appendix; it is what turns internal error control into the existence of a limit.
 
-\section{Continuity at each point is weaker than uniform continuity}
+\section{Pointwise versus Uniform Continuity}
 
 A function \(f:X\to Y\) between metric spaces is uniformly continuous if
 \[
@@ -392,7 +404,7 @@ one also has \(y_{n_k}\to x\).  Continuity then forces both image subsequences t
 
 Uniform continuity preserves Cauchy sequences and is therefore the natural hypothesis for extending a map to a completion.
 
-\section{A derivative is a first-order approximation with a controlled remainder}
+\section{Derivatives as Linear Approximations}
 
 The derivative at \(a\) can be written as
 \[
@@ -434,7 +446,7 @@ Thus
   (f\circ g)'(a)=f'(g(a))g'(a).
 \]
 
-\section{Taylor's theorem is a finite jet plus a quantified remainder}
+\section{Taylor's Theorem with Remainder}
 
 If \(f\in C^{n+1}\) near \(a\), Taylor's theorem gives
 \[

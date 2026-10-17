@@ -141,7 +141,7 @@ For a tridiagonal matrix,
 \]
 elimination preserves the band.  The resulting Thomas algorithm needs only \(O(n)\) work and storage.  This is a first example of a general numerical principle: preserve sparsity whenever possible, because unnecessary fill-in can cost more than the original equations.
 
-\section{When a sequence of guesses is better than a factorization}
+\section{Iteration versus Factorization}
 
 For a very large sparse matrix, even storing the factors may be too expensive.  Iterative methods instead generate
 \[
@@ -263,7 +263,7 @@ Hence a small residual implies a small error only after the inverse is controlle
 \]
 For an ill-conditioned matrix, a visually tiny residual can still hide a noticeable solution error.  Stopping criteria should therefore be interpreted together with scaling and condition estimates, not as universal certificates.
 
-\section{Positive definite systems are convex optimization problems}
+\section{Positive Systems and Convexity}
 
 Suppose \(A=A^T\) is positive definite.  Define
 \[
@@ -370,7 +370,7 @@ For symmetric positive definite problems, a symmetric preconditioner can be unde
 \]
 Good preconditioning clusters the eigenvalues of the transformed matrix and reduces its condition number.  Diagonal scaling, incomplete Cholesky factors, and multigrid operators are increasingly sophisticated realizations of the same idea: solve an easier nearby problem to correct the hard one.
 
-\section{Choosing a method without turning the chapter into a menu}
+\section{Choosing a Numerical Method}
 
 The methods above are best remembered through the obstacle each one removes.
 

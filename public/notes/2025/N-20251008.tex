@@ -1,212 +1,309 @@
-\notechapter{N-20251008}{Probability Language for Variational Autoencoders}
+\notechapter{N-20251008}{Latent Variable Models: Why Inference Is Harder Than Generation}
 
-\section{Why probability enters generative modeling}
+A generative model describes how unobserved causes produce observations. The forward direction can be simple even when the reverse problem of inferring causes from observations is difficult. This asymmetry is what motivates variational inference. The encoder--decoder shape is shared with ordinary autoencoders, but probability distributions play a different role in the two architectures. A two-component Gaussian mixture already reveals Bayes' rule, marginalization, an exact variational objective and the meaning of its approximation gap.\footnote{The latent-variable perspective follows Bishop, \emph{Pattern Recognition and Machine Learning}, Chapter 9, and Kingma and Welling, \href{https://arxiv.org/abs/1312.6114}{\emph{Auto-Encoding Variational Bayes}}.}
 
-A deterministic autoencoder learns a pair of functions
+
+To picture the problem, imagine a drawing program trained on handwritten digits. A conventional autoencoder compresses an existing image and tries to reproduce it. A generative latent-variable model goes the other way: it first samples a hidden description \(z\), then uses a decoder to produce a new image. The decoder must represent \emph{uncertainty}; otherwise it merely outputs one deterministic reconstruction.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=.92,
+ mybox/.style={draw,rounded corners=3pt,minimum height=.74cm,
+              align=center,font=\small,inner xsep=5pt}]
+ \node[mybox,fill=gray!9] (x) at (-4.8,0) {image \(x\)};
+ \node[mybox,fill=blue!7] (enc) at (-2.6,0) {encoder};
+ \node[mybox,fill=orange!10] (code) at (-.6,0) {code \(z\)};
+ \node[mybox,fill=teal!8] (dec) at (1.5,0) {decoder};
+ \node[mybox,fill=gray!9] (rec) at (4.45,0) {reconstruction};
+ \draw[->] (x)--(enc);
+ \draw[->] (enc)--(code);
+ \draw[->] (code)--(dec);
+ \draw[->] (dec)--(rec);
+ \node[font=\footnotesize,blue!70!black,anchor=east] at (-5.55,.65) {A. reproduce};
+
+ \node[mybox,fill=orange!10] (prior) at (-3.5,-1.65) {random \(z\sim p(z)\)};
+ \node[mybox,fill=teal!8] (decoder) at (0,-1.65) {decoder \(p_\theta(x\mid z)\)};
+ \node[mybox,fill=gray!9] (new) at (3.8,-1.65) {new sample \(x\)};
+ \draw[->,thick,teal!75!black] (prior)--(decoder);
+ \draw[->,thick,teal!75!black] (decoder)--(new);
+ \node[font=\footnotesize,teal!70!black,anchor=east] at (-5.55,-1.02) {B. generate};
+\end{tikzpicture}
+\caption{Compression and generation are different tasks. For a latent generative model, the lower row is the probability model; the upper encoder-like direction will become an approximation to inference.}
+\end{figure}
+
+In a real image model, \(z\) might encode a digit's identity, stroke thickness, slant, and other hidden factors. These coordinates need not correspond to named human concepts, but they offer a compact set of variables from which the model can generate high-dimensional observations. The toy models below use one-dimensional \(x,z\), so every probability calculation remains visible.
+
+\section{A hidden bit generates an observed real number}
+
+Let \(Z\) take values \(-1,+1\) with equal probability, and fix \(\mu>0,\sigma>0\). Generate a real observation according to
 \[
-  x\longmapsto h\longmapsto \widehat x.
+ \Pr(Z=+1)=\Pr(Z=-1)=\frac12,\qquad
+ X\mid Z=z\sim\mathcal N(z\mu,\sigma^2).
 \]
-This is useful for compression and representation learning, but it is not yet a probabilistic generative model.  A generative model should tell us how likely different data points are and how to sample new ones.  Therefore the mathematical object is not merely a map, but a probability distribution.
-
-The VAE begins from the following change of viewpoint:
+Equivalently,
 \[
-\begin{array}{c}
-  \text{a data point is not only reconstructed;}\\
-  \text{it is regarded as a sample from an unknown distribution.}
-\end{array}
+ X=\mu Z+\varepsilon,\qquad
+ \varepsilon\sim\mathcal N(0,\sigma^2),
 \]
-If \(X\) denotes the random data point, then the ideal object is the data distribution \(p_{\mathrm{data}}(x)\).  A model tries to build a tractable family \(p_\theta(x)\) and choose \(\theta\) so that \(p_\theta\) resembles the data distribution.
+with \(Z\) and \(\varepsilon\) independent. Sampling is trivial: flip a fair coin and add Gaussian noise to one of the two possible means.
 
-The slogan for this chapter is:
+Write
 \[
-  \text{generation means sampling from a learned distribution.}
+ \varphi_\sigma(t)=\frac{1}{\sqrt{2\pi}\sigma}
+                   e^{-t^2/(2\sigma^2)}.
 \]
-Before discussing encoders, decoders, or neural networks, we first need the probability language in which the VAE objective is written.
-
-\section{Random variables, distributions, and densities}
-
-A random variable \(X\) is a measurable quantity whose value is uncertain.  Its distribution tells us the probability of events such as \(X\in A\).  When \(X\) has a density \(p(x)\) with respect to Lebesgue measure, probabilities are computed by integration:
+The joint density with respect to counting measure in \(z\) and Lebesgue measure in \(x\) is
 \[
-  \mathbb P(X\in A)=\int_A p(x)\,dx.
+ p(x,z)=\frac12\varphi_\sigma(x-z\mu).
 \]
-
-A density is not itself a probability.  The value \(p(x)\) may even be larger than \(1\).  What matters is the integral over a region.
-
-The expectation of a function \(f(X)\) is
+To obtain the marginal density of the observation we must sum over the hidden possibilities:
 \[
-  \mathbb E[f(X)]=\int f(x)p(x)\,dx.
+ \boxed{p(x)=\frac12\varphi_\sigma(x-\mu)
+                +\frac12\varphi_\sigma(x+\mu).}
 \]
-For a discrete variable, the corresponding formula is a sum:
+This sum is a genuine probability density: integrating either Gaussian contributes \(1/2\). The value \(p(x)\) itself need not be at most one; the probabilities of events are integrals of \(p(x)\).
+
+
+A plot is more revealing than the symbols alone. Take \(\mu=1.55\) and \(\sigma=0.8\). The two colored curves represent the possible observations given each hidden state. The black curve is the actual distribution after the hidden state has been forgotten.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=.96cm,y=1.22cm,>=Stealth]
+ \draw[->,gray!75] (-4.35,0)--(4.5,0) node[right] {$x$};
+ \draw[->,gray!75] (-4.1,0)--(-4.1,1.95) node[above,font=\footnotesize] {density};
+ \draw[blue!72!black,densely dashed,thick]
+  plot[domain=-4:4,samples=115]
+   (\x,{1.65*exp(-((\x+1.55)*(\x+1.55))/1.28)});
+ \draw[orange!82!black,densely dashed,thick]
+  plot[domain=-4:4,samples=115]
+   (\x,{1.65*exp(-((\x-1.55)*(\x-1.55))/1.28)});
+ \draw[black,very thick]
+  plot[domain=-4:4,samples=150]
+   (\x,{.825*(exp(-((\x+1.55)*(\x+1.55))/1.28)+exp(-((\x-1.55)*(\x-1.55))/1.28))});
+ \draw[dotted,gray] (0,0)--(0,1.7);
+ \node[font=\footnotesize,blue!70!black] at (-2.4,1.75) {$p(x\mid z=-1)$};
+ \node[font=\footnotesize,orange!80!black] at (2.35,1.75) {$p(x\mid z=+1)$};
+ \node[font=\footnotesize,fill=white,inner sep=2pt] at (0,1.12) {$p(x)$};
+ \node[font=\footnotesize,align=center] at (0,-.5)
+   {At \(x=0\), both explanations are equally plausible.};
+\end{tikzpicture}
+\caption{The mixture distribution (solid black) is the average of two conditional Gaussian densities (dashed). Two distinct hidden causes can generate overlapping observations. Curves are rescaled by a common factor for clarity.}
+\end{figure}
+
+The overlap is important. If we observe a value near the middle, a decoder tells us it \emph{could} have come from either component. To choose between those explanations requires an additional computation, the posterior.
+
+The model can produce a distribution with two peaks. Symmetry gives \(p'(0)=0\). Using
+\(\varphi_\sigma''(t)=(t^2-\sigma^2)\varphi_\sigma(t)/\sigma^4\), we obtain
 \[
-  \mathbb E[f(X)]=\sum_x f(x)p(x).
+ p''(0)=\frac{\mu^2-\sigma^2}{\sigma^4}\,p(0).
 \]
+If \(\mu>\sigma\), the origin is a strict local minimum. Since \(p(x)\to0\) as \(|x|\to\infty\), there must be a peak on each side of the origin. A mixture of individually unimodal Gaussians can therefore be bimodal.
 
-The formulas look similar, but the measure matters.  In VAEs, latent variables are usually continuous, so integrals over \(z\) appear everywhere.
+\section{Bayes' rule is a reverse generative computation}
 
-\section{Joint, marginal, and conditional distributions}
-
-VAEs use latent variables, so we need distributions involving both visible variables and hidden variables.  Let \(X\) be observed data and \(Z\) be a latent variable.  Their joint density is
+After observing \(X=x\), the two possible latent explanations have posterior weights
 \[
-  p(x,z).
+ \Pr(Z=z\mid X=x)=\frac{p(x,z)}{p(x)}.
 \]
-The joint density can be factored in two ways:
+The likelihood ratio cancels the common Gaussian normalizer:
 \[
-  p(x,z)=p(x\mid z)p(z)=p(z\mid x)p(x).
+ \begin{aligned}
+ \log\frac{\Pr(Z=+1\mid x)}{\Pr(Z=-1\mid x)}
+ &=\log\frac{\varphi_\sigma(x-\mu)}
+                {\varphi_\sigma(x+\mu)}\\
+ &=\frac{(x+\mu)^2-(x-\mu)^2}{2\sigma^2}
+ =\frac{2\mu x}{\sigma^2}.
+ \end{aligned}
 \]
-
-The marginal density of \(X\) is obtained by integrating out \(Z\):
+Therefore, writing \(\operatorname{sigmoid}(t)=1/(1+e^{-t})\),
 \[
-  p(x)=\int p(x,z)\,dz.
+ \boxed{\Pr(Z=+1\mid x)
+       =\operatorname{sigmoid}\left(\frac{2\mu x}{\sigma^2}\right).}
 \]
-This operation is called marginalization.  It means that all possible hidden explanations \(z\) are summed or integrated away.
+The posterior is most uncertain at \(x=0\); for large positive \(x\), the explanation \(Z=+1\) becomes strongly favored. At the same time, a positive observation is never \emph{proof} that the positive latent state occurred: both Gaussian likelihoods have nonzero tails.
 
-The conditional density is given by Bayes' rule:
+
+For example, at \(\mu=\sigma=1\),
 \[
-  p(z\mid x)=\frac{p(x,z)}{p(x)}
-  =\frac{p(x\mid z)p(z)}{\int p(x\mid z')p(z')\,dz'}.
+ \begin{array}{c|ccc}
+ \text{observation }x&-1&0&+1\\ \hline
+ \Pr(Z=+1\mid x)&0.119&0.500&0.881
+ \end{array}
 \]
+to three decimal places. This is a \emph{soft assignment}. It reports how much of the posterior probability belongs to each possible cause, rather than declaring one cause with certainty.
 
-The three words should be kept distinct:
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=1.09cm,y=1.25cm,>=Stealth]
+ \draw[->,gray!75] (-3.35,0)--(3.4,0) node[right] {$x$};
+ \draw[->,gray!75] (-3.2,-.04)--(-3.2,2.43)
+   node[above,font=\footnotesize] {posterior probability};
+ \draw[densely dashed,gray!70] (-3.2,1)--(3.2,1);
+ \draw[teal!75!black,line width=1.1pt]
+  plot[domain=-3.1:3.1,samples=105] (\x,{2/(1+exp(-2*\x))});
+ \foreach \xx/\yy in {-1/.2384,0/1,1/1.7616}
+  {\fill[teal!75!black] (\xx,\yy) circle (.06cm);}
+ \node[font=\footnotesize] at (-1.25,-.31) {\(-1\)};
+ \node[font=\footnotesize] at (0,-.31) {\(0\)};
+ \node[font=\footnotesize] at (1,-.31) {\(+1\)};
+ \node[font=\footnotesize,anchor=east] at (-3.25,1) {\(.5\)};
+ \node[font=\footnotesize,anchor=east] at (-3.25,2) {\(1\)};
+ \node[font=\footnotesize,teal!75!black] at (1.65,1.38)
+   {\(\Pr(Z=+1\mid x)\)};
+\end{tikzpicture}
+\caption{Bayesian inference reverses the model: after seeing \(x\), it assigns probabilities to the possible latent explanations. Near the overlap, that assignment is uncertain.}
+\end{figure}
+
+The general latent-variable model replaces this two-term sum by
 \[
-\begin{array}{c|c}
-\text{joint} & \text{describe }x\text{ and }z\text{ together}\\
-\text{marginal} & \text{hide one variable by integration}\\
-\text{conditional} & \text{update one variable after observing the other}
-\end{array}
+ p_\theta(x)=\int p_\theta(x\mid z)p(z)\,dz,\qquad
+ p_\theta(z\mid x)=\frac{p_\theta(x\mid z)p(z)}{p_\theta(x)}.
 \]
+Generation uses \(p(z)\) followed by \(p_\theta(x\mid z)\). Inference needs the normalizing integral \(p_\theta(x)\), which can become intractable when \(z\) is high-dimensional or the decoder is nonlinear.
 
-\section{Bayes' rule as inversion of a generative story}
+\section{A soluble continuous model shows what is lost}
 
-A latent variable model usually starts with a generative story:
+There is one continuous example in which the inverse computation is still exact. Let
 \[
-  z\sim p(z),\qquad x\sim p_\theta(x\mid z).
+ Z\sim\mathcal N(0,1),\qquad
+ X\mid Z=z\sim\mathcal N(z,\sigma^2).
 \]
-This is the easy direction: first choose a hidden cause \(z\), then generate an observation \(x\).
-
-Inference goes in the opposite direction.  Given an observation \(x\), we ask which latent values \(z\) could have produced it.  The posterior is
+Completing the square in the joint density gives
 \[
-  p_\theta(z\mid x)=\frac{p_\theta(x\mid z)p(z)}{p_\theta(x)}.
+ -\frac12z^2-\frac{(x-z)^2}{2\sigma^2}
+ =-\frac{1+\sigma^{-2}}2
+   \left(z-\frac{x}{1+\sigma^2}\right)^2
+   -\frac{x^2}{2(1+\sigma^2)}.
 \]
-The denominator
+Consequently,
 \[
-  p_\theta(x)=\int p_\theta(x\mid z)p(z)\,dz
+ \boxed{Z\mid X=x\sim
+ \mathcal N\left(\frac{x}{1+\sigma^2},
+                \frac{\sigma^2}{1+\sigma^2}\right),}
 \]
-is called the evidence or marginal likelihood.
-
-This is the first obstacle behind VAEs.  The generative direction is easy to write, but the inverse direction requires an integral that is usually not tractable.
-
-\section{Gaussian distributions}
-
-The standard VAE uses Gaussian latent variables.  The one-dimensional Gaussian density is
+and
 \[
-  \mathcal N(x;\mu,\sigma^2)
-  =\frac1{\sqrt{2\pi\sigma^2}}
-  \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right).
+ X\sim\mathcal N(0,1+\sigma^2).
 \]
-Here \(\mu\) is the mean and \(\sigma^2\) is the variance.
+The posterior mean is a shrinkage estimator: a noisy observation is pulled toward the prior mean zero. Its coefficient \(1/(1+\sigma^2)\) decreases as the observation noise grows.
 
-The multivariate Gaussian density is
+Now change only the decoder to
 \[
-  \mathcal N(z;\mu,\Sigma)
-  =\frac{1}{(2\pi)^{d/2}|\Sigma|^{1/2}}
-  \exp\left(-\frac12(z-\mu)^T\Sigma^{-1}(z-\mu)\right).
-\]
-The matrix \(\Sigma\) is the covariance matrix.  It measures not only the variance of each coordinate, but also how coordinates co-vary.
-
-The diagonal case is especially important:
-\[
-  \Sigma=\operatorname{diag}(\sigma_1^2,\ldots,\sigma_d^2).
-\]
-Then the coordinates are independent under the Gaussian, and the density factorizes:
-\[
-  \mathcal N(z;\mu,\operatorname{diag}(\sigma^2))
-  =\prod_{j=1}^d \mathcal N(z_j;\mu_j,\sigma_j^2).
-\]
-This is why VAE encoders often output a vector of means and a vector of variances rather than a full covariance matrix.
-
-\section{Expectation and Monte Carlo approximation}
-
-Many VAE formulas contain expectations that cannot be computed exactly.  If
-\[
-  z\sim q(z),
-\]
-then
-\[
-  \mathbb E_{z\sim q}[f(z)]
-  =\int f(z)q(z)\,dz.
-\]
-A Monte Carlo approximation uses samples \(z^{(1)},\ldots,z^{(L)}\sim q\):
-\[
-  \mathbb E_{z\sim q}[f(z)]
-  \approx \frac1L\sum_{\ell=1}^L f(z^{(\ell)}).
-\]
-
-This is not a deterministic quadrature rule.  It is a random approximation whose error decreases statistically.  The key benefit is that the dimension of \(z\) can be large: the same formula still makes sense, while grid integration becomes impossible.
-
-\section{KL divergence}
-
-The Kullback--Leibler divergence compares two distributions \(q\) and \(p\):
-\[
-  D_{\mathrm{KL}}(q\Vert p)
-  =\mathbb E_q\left[\log\frac{q(Z)}{p(Z)}\right].
-\]
-For continuous densities, this means
-\[
-  D_{\mathrm{KL}}(q\Vert p)
-  =\int q(z)\log\frac{q(z)}{p(z)}\,dz.
-\]
-For discrete distributions, replace the integral by a sum.
-
-The order matters.  Usually
-\[
-  D_{\mathrm{KL}}(q\Vert p)\ne D_{\mathrm{KL}}(p\Vert q).
-\]
-So KL divergence is not a metric distance.
-
-A useful interpretation is coding loss.  If data are really drawn from \(q\), but one uses a code optimized for \(p\), then KL measures the expected extra log-loss.  In variational inference, we use it to measure how expensive it is to replace the true posterior by an approximate posterior.
-
-The fundamental inequality is
-\[
-  D_{\mathrm{KL}}(q\Vert p)\ge0,
-\]
-with equality exactly when \(q=p\) almost everywhere.  This nonnegativity is what turns the ELBO into a lower bound.
-
-\section{Jensen's inequality}
-
-The other basic ingredient is Jensen's inequality.  Since \(\log\) is concave,
-\[
-  \log \mathbb E[Y]\ge \mathbb E[\log Y]
-\]
-for positive random variables \(Y\).
-
-This inequality is the analytic reason variational lower bounds exist.  In the VAE derivation, we will write a difficult likelihood as
-\[
-  \log \int q(z)\frac{p(x,z)}{q(z)}\,dz
-  =\log \mathbb E_q\left[\frac{p(x,Z)}{q(Z)}\right]
-\]
-and then move the logarithm inside the expectation:
-\[
-  \log \mathbb E_q\left[\frac{p(x,Z)}{q(Z)}\right]
-  \ge
-  \mathbb E_q\left[\log\frac{p(x,Z)}{q(Z)}\right].
-\]
-This is exactly the shape of the ELBO.
-
-\section{The next abstraction}
-
-The VAE is built from probability, not merely from neural network architecture.  The important vocabulary is:
-\[
-\begin{array}{c|c}
-\text{term} & \text{role in VAE}\\
-\hline
-p(z) & \text{prior over latent variables}\\
-p_\theta(x\mid z) & \text{decoder likelihood}\\
-p_\theta(x)=\int p_\theta(x\mid z)p(z)\,dz & \text{marginal likelihood}\\
-p_\theta(z\mid x) & \text{true posterior}\\
-q_\phi(z\mid x) & \text{approximate posterior / encoder}\\
-D_{\mathrm{KL}}(q\Vert p) & \text{penalty for replacing }p\text{ by }q\\
-\mathbb E_q[f] & \text{average under the approximate posterior}
-\end{array}
+ X=Z^2+\varepsilon,\qquad
+ \varepsilon\sim\mathcal N(0,\sigma^2).
 \]
 
-The next note will use this language to describe a latent variable model.  The main tension will be simple: the model is easy to sample from, but hard to invert.
+Here is the geometric reason the nonlinear case is harder. The decoder \(z\mapsto z^2\) \emph{folds} the latent line: two distant causes can produce the same observation.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=.96]
+ \draw[->,gray!75] (-4.6,.55)--(-.4,.55);
+ \node[font=\footnotesize,anchor=east] at (-4.6,.55) {latent \(z\)};
+ \fill[blue!70!black] (-3.3,.55) circle (2.5pt)
+   node[above,blue!70!black] {$-\sqrt 2$};
+ \fill[orange!85!black] (-1.35,.55) circle (2.5pt)
+   node[above,orange!85!black] {$+\sqrt 2$};
+ \draw[->,thick,blue!70!black] (-3.3,.25)
+   .. controls (-3,-1.05) and (.45,-1.05) .. (2.15,.48);
+ \draw[->,thick,orange!85!black] (-1.35,.25)
+   .. controls (-.5,-.35) and (1.0,-.45) .. (2.15,.48);
+ \draw[->,gray!75] (1.1,.55)--(4.2,.55);
+ \fill[teal!80!black] (2.15,.55) circle (3pt)
+   node[above,teal!80!black] {$x=2$};
+ \node[font=\footnotesize,align=center] at (-.4,-1.18)
+  {two plausible latent causes,\\one observed value};
+ \node[font=\footnotesize] at (3.6,.2) {observation};
+\end{tikzpicture}
+\caption{Nonlinear decoders can identify distant latent values. An inverse model must then represent multiple plausible explanations, not just one point.}
+\end{figure}
+
+For \(x>0\) and small noise, both \(z\approx+\sqrt x\) and \(z\approx-\sqrt x\) are plausible explanations, so the posterior is generally bimodal rather than Gaussian. Sampling from the generative model remains easy, but completing a single quadratic square no longer solves the inverse problem. A nonlinear neural decoder greatly increases this gap between forward sampling and posterior computation.
+
+\section{An Exactly Solvable Variational Example}
+
+Return to the hidden-bit mixture. Suppose we approximate the true posterior with an arbitrary Bernoulli distribution
+\[
+ q_r(+1)=r,\qquad q_r(-1)=1-r,\qquad 0<r<1.
+\]
+Define
+\[
+ \mathcal L(r;x)=
+ \sum_{z\in\{-1,+1\}}q_r(z)\log p(x,z)
+ -\sum_{z\in\{-1,+1\}}q_r(z)\log q_r(z).
+\]
+Writing \(p_\pm=p(x,\pm1)\), we have
+\[
+ \mathcal L(r;x)
+ =r\log p_+ +(1-r)\log p_-
+   -r\log r-(1-r)\log(1-r).
+\]
+Differentiation gives
+\[
+ \frac{\partial\mathcal L}{\partial r}
+ =\log\frac{p_+}{p_-}-\log\frac r{1-r},\qquad
+ \frac{\partial^2\mathcal L}{\partial r^2}
+ =-\frac1{r(1-r)}<0.
+\]
+The objective is strictly concave. Its unique maximizer satisfies
+\[
+ \frac{r_*}{1-r_*}=\frac{p_+}{p_-}
+ \quad\Longrightarrow\quad
+ \boxed{r_*=\Pr(Z=+1\mid X=x).}
+\]
+Thus optimizing this objective recovers Bayes' posterior exactly in a problem small enough to solve on paper.
+
+The value at the optimum is the marginal log-likelihood:
+\[
+ \mathcal L(r_*;x)=\log(p_++p_-)=\log p(x).
+\]
+For an arbitrary \(r\), direct subtraction gives the stronger identity
+\[
+ \boxed{\log p(x)-\mathcal L(r;x)
+ =D_{\mathrm{KL}}\bigl(q_r\,\|\,p(\cdot\mid x)\bigr)\ge0.}
+\]
+Here \(D_{\mathrm{KL}}(q\|p)=\sum_zq(z)\log(q(z)/p(z))\). The inequality follows from convexity of \(t\log t\), or from the log-sum inequality; equality holds if and only if the approximate posterior equals the true one.
+
+This finite example is the Gibbs variational principle in concrete form. It explains both the lower bound and its exact gap before we make either distribution an output of a neural network.
+
+\section{Why a neural encoder is useful}
+
+For a large nonlinear generative model, solving the optimal posterior for every \(x\) separately would be expensive. A recognition model \(q_\phi(z\mid x)\) instead learns a \emph{function of the observation} that produces an approximate posterior. This is amortized inference: computational effort is shared across many data points.
+
+A continuous VAE often chooses a diagonal Gaussian family
+\[
+ q_\phi(z\mid x)
+ =\mathcal N\bigl(z;\mu_\phi(x),
+           \operatorname{diag}(\sigma_\phi^2(x))\bigr).
+\]
+The parameters \(\mu_\phi(x)\) and \(\sigma_\phi(x)\) are functions computed by an encoder. A diagonal Gaussian is convenient to sample and evaluate, but it cannot faithfully represent the two separated modes of a strongly multimodal posterior. The restriction of the variational family introduces a real approximation error, distinct from optimization error.
+
+
+The encoder is useful because it learns to perform the approximate inverse operation \emph{quickly for each new observation}. It usually does not output a single latent coordinate. For a diagonal-Gaussian VAE it outputs a mean and a vector of standard deviations, describing a region of plausible latent codes.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=1.35cm,y=1.0cm]
+ \draw[->,gray!75] (-2.35,0)--(2.45,0) node[right] {$z$};
+ \draw[->,gray!75] (-2.25,0)--(-2.25,3.02) node[above,font=\footnotesize] {relative density};
+ \draw[teal!78!black,line width=1.2pt]
+   plot[domain=-2.0:2.0,samples=160]
+     (\x,{3.0*exp(-(\x*\x)/2-((1-\x*\x)*(1-\x*\x))/(2*.35*.35))});
+ \draw[orange!85!black,line width=1pt,dashed]
+   plot[domain=-2.0:2.0,samples=160]
+     (\x,{2.0*exp(-((\x-.95)*(\x-.95))/(2*.3*.3))});
+ \draw[densely dotted,gray!75] (-1,0)--(-1,1.85);
+ \draw[densely dotted,gray!75] (1,0)--(1,1.85);
+ \node[font=\footnotesize,anchor=west,teal!78!black] at (-2.0,2.63)
+  {posterior $p(z\mid x=1)$};
+ \node[font=\footnotesize,anchor=west,orange!85!black] at (-2.0,2.22)
+  {single Gaussian $q_\phi(z\mid x=1)$};
+ \node[font=\footnotesize] at (-1,-.28) {$-1$};
+ \node[font=\footnotesize] at (1,-.28) {$+1$};
+\end{tikzpicture}
+\caption{An inverse problem with two explanations: $Z\sim\mathcal N(0,1)$, $X\mid Z=z\sim\mathcal N(z^2,0.35^2)$, and $x=1$. The posterior has two peaks near $z=\pm1$, while one Gaussian approximation can cover only one peak narrowly or both peaks very broadly. Curves are rescaled vertically to compare their shapes; peak heights are not on a shared probability-density scale.}
+\end{figure}
+
+At generation time, the input image and inference network are not needed. Draw \(z\sim p(z)\) from the prior and then \(x\sim p_\theta(x\mid z)\) from the decoder. At inference time, start with an observed \(x\) and use \(q_\phi(z\mid x)\) to approximate where it may have come from. During training, both paths cooperate through a likelihood lower bound.
+
+The exact mixture and Gaussian calculations establish the core issue. A generative story determines a joint law, marginalization measures how likely an observation is, and Bayes' rule inverts the story. When that inversion is hard, a tractable family \(q_\phi(z\mid x)\) replaces it. The next mathematical task is to optimize the resulting lower bound and differentiate it through random sampling.

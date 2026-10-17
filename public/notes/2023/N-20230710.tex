@@ -207,39 +207,121 @@ Type theory underlies programming language theory, dependent types, formal verif
 
 Modern geometry often uses categorical and type-theoretic ideas: stacks, sheaves, derived categories, infinity-categories, and higher topos theory.  Foundations are no longer merely a safety net beneath mathematics; they become active tools inside research.
 
-\section{Toward a unified perspective}
+\section{Two points expose three notions of sameness}
 
-A mature view should not treat the three foundations as enemies.  They answer different needs:
-\begin{enumerate}[(i)]
-  \item ZFC gives a robust global universe;
-  \item category theory reveals structural patterns and invariance;
-  \item type theory connects proof, construction, and computation;
-  \item HoTT and univalent foundations attempt to synthesize equivalence-based mathematics with formal computation.
-\end{enumerate}
-
-\section{Conclusion}
-
-The foundational landscape is plural.  Set theory gives a powerful ontology of membership.  Category theory gives a language of structure and transformation.  Type theory gives a constructive and computational account of mathematical reasoning.  The deepest modern lesson is not that one of them eliminates the others, but that mathematics becomes clearer when one understands which foundational lens is being used and why.
-
-
-\section{Equality in the three languages}
-
-The three foundations treat equality differently.  In set theory, equality is extensional:
+Consider two sets
 \[
-  A=B\quad\Longleftrightarrow\quad \forall x\,(x\in A\leftrightarrow x\in B).
+ A=\{\mathrm{red},\mathrm{blue}\},\qquad B=\{0,1\}.
 \]
-In category theory, sameness is usually replaced by isomorphism or equivalence.  Two groups may not be literally equal as sets, but if they are isomorphic, group theory treats them as the same structure.
+Set-theoretically they are not equal: extensionality says that sets are equal precisely when their members coincide. Yet there are exactly two bijections $A\to B$:
+\[
+ \begin{array}{c|cc}
+ &\mathrm{red}&\mathrm{blue}\\\hline
+ f&0&1\\
+ g&1&0
+ \end{array}
+\]
+The fact that the sets have the same cardinality does not tell us which labeling to use. That freedom is information, not an annoying technicality.
 
-Type theory makes equality internal.  A statement \(a=b\) is itself a type, and a proof of equality is a term of that type.  Homotopy type theory then interprets such proofs as paths.  This explains why univalence is so conceptually strong: it aligns equality of types with equivalence of structures.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth]
+ \node (a0) at (0,1.25) {red};
+ \node (a1) at (0,0) {blue};
+ \node (b0) at (3,1.25) {$0$};
+ \node (b1) at (3,0) {$1$};
+ \draw[->,thick,teal!75!black] (a0.east) to[bend left=13] (b0.west);
+ \draw[->,thick,teal!75!black] (a1.east) to[bend right=13] (b1.west);
+ \draw[->,thick,orange!85!black,dashed] (a0.east) to[bend right=10] (b1.west);
+ \draw[->,thick,orange!85!black,dashed] (a1.east) to[bend left=10] (b0.west);
+ \node[font=\footnotesize,teal!75!black] at (1.5,1.78) {$f$};
+ \node[font=\footnotesize,orange!85!black] at (1.5,-.43) {$g$};
+\end{tikzpicture}
+\caption{Two equally valid bijections. Literal equality, existence of an isomorphism, and choice of a particular isomorphism are different assertions.}
+\end{figure}
 
-\section{Universal properties versus encodings}
+Category theory keeps both bijections as distinct morphisms. If one set is viewed as a pointed set, with its first element designated, then morphisms must preserve that point; only one of the two bijections remains. What counts as an isomorphism depends on the structure one has asked the morphisms to respect.
 
-A set-theoretic construction often gives a concrete encoding.  A categorical construction gives a role.  For example, a product is not fundamentally a set of ordered pairs; it is an object receiving projections and satisfying a universal mapping property.
+\section{Why a product has no favorite encoding}
 
-This matters foundationally because encodings are arbitrary but universal properties are invariant.  Kuratowski's ordered pair and other encodings are useful inside ZFC, but no working mathematician cares which coding was used once the universal property is available.
+In ZFC an ordered pair can be encoded by Kuratowski's formula
+\[
+ (a,b)=\{\{a\},\{a,b\}\}.
+\]
+Other encodings are possible. A categorical product instead has a role: for every pair of arrows $f:Z\to X$ and $g:Z\to Y$, there is exactly one arrow $\langle f,g\rangle:Z\to X\times Y$ whose projections are $f$ and $g$.
 
-\section{Computation and formal proof}
+The uniqueness clause has a concrete consequence. Suppose $(P,p_X,p_Y)$ and $(Q,q_X,q_Y)$ both satisfy the product property for $X,Y$. It supplies unique maps
+\[
+ u:P\to Q,\qquad v:Q\to P
+\]
+such that
+\[
+ q_Xu=p_X,\quad q_Yu=p_Y,\qquad
+ p_Xv=q_X,\quad p_Yv=q_Y.
+\]
+Then $vu$ and $1_P$ have the same composites with both projections of $P$. Since the defining property gives a \emph{unique} map with these composites, $vu=1_P$. Likewise $uv=1_Q$. Thus the two products are isomorphic by a uniquely determined \emph{projection-preserving} isomorphism.\footnote{For this exact proof, see \href{https://web.math.ku.dk/~larsh/teaching/S2023_PM/categories.pdf}{\emph{Five Lectures on Category Theory}}, Proposition 1.5.}
 
-Type theory is not only a philosophical alternative.  It is the foundation behind many formal proof systems.  A proof is a term, and checking a proof becomes type checking.  Dependent types allow mathematical statements to be expressed with high precision: a proof of existence contains a witness, and a proof of a universal statement behaves like a function.
+Without the qualifier about projections, the underlying product object may have other automorphisms. A universal property is powerful precisely because it tells us which comparisons are canonical once the required structure is fixed. This proof never had to inspect the set-theoretic implementation of an ordered pair.
 
-This computational character is one reason type theory feels different from classical set theory.  It is not only about what objects exist, but also about how they are constructed and verified.
+\section{A dependent type is an executable promise}
+
+Now use the two-element type
+\[
+ \mathsf{Bool}=\{\mathsf{false},\mathsf{true}\}.
+\]
+An inhabitant of the dependent product
+\[
+ \prod_{b:\mathsf{Bool}}\mathbb N
+\]
+must supply a natural number for \emph{every} Boolean input. Evaluating such a function at the two inputs yields the map
+\[
+ h\longmapsto\bigl(h(\mathsf{false}),h(\mathsf{true})\bigr).
+\]
+Conversely, a pair $(m,n)$ defines
+\[
+ h_{m,n}(b)=
+ \begin{cases}
+ m,&b=\mathsf{false},\\
+ n,&b=\mathsf{true}.
+ \end{cases}
+\]
+The two constructions are inverse up to function extensionality, so
+\[
+ \boxed{\left(\prod_{b:\mathsf{Bool}}\mathbb N\right)
+       \simeq\mathbb N\times\mathbb N.}
+\]
+This is the computational content of a universal statement: a proof that supplies an answer for each input acts as a program.
+
+By contrast,
+\[
+ \sum_{b:\mathsf{Bool}}\mathbb N
+ \simeq\mathbb N\sqcup\mathbb N
+\]
+records \emph{one chosen branch} and its number. Both fibers happen to be $\mathbb N$, yet choosing $\Pi$ or $\Sigma$ makes a decisive difference. The propositions-as-types interpretation similarly distinguishes a dependent sum $\sum_{x:A}P(x)$, containing a witness and evidence for $P(x)$, from its \emph{propositional truncation}, which asserts mere existence without exposing a particular witness. This distinction is essential if one hopes to extract an algorithm from a proof.
+
+\section{Univalence preserves the symmetries of an identity}
+
+The Boolean type has precisely two self-equivalences:
+\[
+ \mathrm{id}:\mathsf{Bool}\simeq\mathsf{Bool},
+ \qquad
+ \mathrm{swap}:\mathsf{Bool}\simeq\mathsf{Bool}.
+\]
+Intensional type theory represents an identification of two types $A,B$ in a universe $\mathcal U$ by the identity type $(A=_{\mathcal U}B)$. Every such identification induces an equivalence of types:
+\[
+ (A=_{\mathcal U}B)\longrightarrow\mathsf{Equiv}(A,B).
+\]
+The univalence axiom says that this canonical map is an equivalence. In a univalent universe,
+\[
+ \boxed{(A=_{\mathcal U}B)\simeq\mathsf{Equiv}(A,B).}
+\]
+Setting $A=B=\mathsf{Bool}$ makes the meaning surprisingly tangible:
+\[
+ (\mathsf{Bool}=_{\mathcal U}\mathsf{Bool})
+ \simeq\mathsf{Equiv}(\mathsf{Bool},\mathsf{Bool}).
+\]
+There are two distinguishable elements on the right, identity and swap; hence the \emph{universe-level identity type} of $\mathsf{Bool}$ with itself has two distinct paths under univalence. The nontrivial automorphism becomes a way of identifying the type with itself; it does not disappear into one anonymous equality.\footnote{See the Univalent Foundations Program, \href{https://homotopytypetheory.org/book/}{\emph{Homotopy Type Theory: Univalent Foundations of Mathematics}}, Section 2.10.}
+
+The qualification matters twice. This is an identity \emph{of types in a universe}, not a claim that $\mathsf{true}=\mathsf{false}$ inside $\mathsf{Bool}$. And an arbitrary bijection between underlying sets need not be an isomorphism of groups, topological spaces, or ordered sets: preserving the extra structure is part of the type of equivalence one is discussing.
+
+The same little two-point calculation has now exhibited three ways to ask a precise question. Set theory distinguishes membership and equality of sets; category theory distinguishes maps and universal characterizations; dependent type theory turns the existence of data into an explicit construction. Univalence then makes equivalences visible as possible identifications, including their nontrivial symmetries.

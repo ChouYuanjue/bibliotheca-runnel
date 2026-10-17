@@ -1,6 +1,6 @@
 \notechapter{N-20260311}{Matrix Computation I: Norms, Amplification, and Numerical Size}
 
-\section{A matrix can be small entrywise and large as an operator}
+\section{Entrywise versus Operator Norms}
 
 A matrix is not merely a rectangular table of numbers.  It is a map
 \[
@@ -259,7 +259,7 @@ The spectral norm asks for the single strongest direction.  The Frobenius norm c
 \]
 where \(r=\operatorname{rank}A\).
 
-\section{Schatten norms place spectral and Frobenius size in one family}
+\section{Schatten Norms}
 
 For \(1\le p<\infty\), define the Schatten \(p\)-norm by applying a vector \(p\)-norm to the singular values:
 \[
@@ -309,7 +309,7 @@ Norms also bound truncation and rounding errors.  If a computed matrix is \(A+E\
 \]
 The norm of the perturbation is meaningful only relative to the chosen geometry.  A small Frobenius perturbation controls average singular energy, while a small spectral perturbation controls every Euclidean input direction.
 
-\section{The distance to singularity appears in the smallest singular value}
+\section{Distance to Singularity}
 
 For an invertible square matrix,
 \[
@@ -340,14 +340,40 @@ for unit \(x\).
 
 Thus the smallest singular value is not merely one more number in an SVD table.  It measures how close invertibility is to failure.
 
-\section{A norm is useful only when its role is stated}
+\section{Two norm-one operators whose product can be zero}
 
-Several quantities called ``matrix size'' coexist because they serve different purposes.
-
-The maximum entry answers a local coordinate question.  The Frobenius norm records total entrywise or singular-value energy.  An induced norm controls worst-case amplification for a chosen notion of vector size.  The spectral norm is the Euclidean Lipschitz constant.  The nuclear norm measures total singular mass and is sensitive to low-rank structure.  The smallest singular value measures the weakest direction and the distance to singularity.
-
-The practical habit should therefore be to complete the sentence:
+Submultiplicativity says
 \[
-  \text{``This norm is being used to control \emph{what}?''}
+ \|AB\|_2\le\|A\|_2\|B\|_2,
 \]
-Without that clause, a numerical bound may be formally correct but conceptually irrelevant.  With it, norms become the language that connects geometry, perturbations, algorithms, and stability.
+but it gives no lower bound. To see precisely what is missing, take two unit vectors $u,v\in\mathbb R^2$ meeting at angle $\theta$, and let
+\[
+ P_u=uu^T,\qquad P_v=vv^T
+\]
+be the orthogonal projections onto their lines. Each has operator norm $1$. Their composition, however, is
+\[
+ P_uP_v=u(u^Tv)v^T,
+ \qquad
+ \boxed{\|P_uP_v\|_2=|u^Tv|=|\cos\theta|.}
+\]
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=1.15]
+ \draw[gray!65,thin] (-.5,0)--(3.05,0);
+ \draw[teal!65!black,thin] (-.5,-.28)--(2.80,1.59);
+ \draw[->,thick,blue!75!black] (0,0)--(2.4,0)
+   node[below right,font=\small] {$u$};
+ \draw[->,thick,teal!75!black] (0,0)--(2,1.13)
+   node[above right,font=\small] {$v$};
+ \draw[orange!80!black,thick]
+   (.6,0) arc[start angle=0,end angle=29.5,radius=.6];
+ \node[font=\small,orange!80!black] at (.88,.22) {$\theta$};
+ \fill (0,0) circle (1.5pt);
+\end{tikzpicture}
+\caption{Project first onto the $v$-line and then onto the $u$-line. Only the part aligned with $u$ survives the second projection.}
+\end{figure}
+
+If the lines coincide, $P_uP_v=P_u$ and equality holds in the norm bound. If they are perpendicular, $P_uP_v=0$ even though both factors have norm $1$. At intermediate angles the product norm is exactly the cosine loss.
+
+This calculation also shows why multiplying layerwise Lipschitz constants in a matrix product can be extremely pessimistic. Each separate layer may stretch some direction maximally, while the next layer may discard precisely that direction.

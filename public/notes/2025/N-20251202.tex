@@ -1,6 +1,6 @@
 \notechapter{N-20251202}{Inner-Product Geometry and Spectral Decomposition: From QR to Quadratic Forms}
 
-\section{Diagonalization asks whether the space splits into invariant lines}
+\section{Diagonalization and Invariant Lines}
 
 A matrix \(A\in k^{n\times n}\) is diagonalizable when there is an invertible matrix \(P\) such that
 \[
@@ -26,7 +26,7 @@ Several properties that are often confused are logically independent.  The zero 
 \]
 is invertible but not diagonalizable.  Repeated eigenvalues cause no difficulty for the identity matrix, whereas the same repeated eigenvalue leaves \(J\) with only one eigendirection.  Rank, invertibility, eigenvalue multiplicity, and diagonalizability answer different questions.
 
-\section{The minimal polynomial detects the missing eigendirections}
+\section{Minimal Polynomials and Eigenspaces}
 
 The minimal polynomial \(m_A(t)\) is the monic polynomial of least degree satisfying
 \[
@@ -74,7 +74,7 @@ For the Jordan block above,
 \]
 The repeated factor records the nilpotent motion along the generalized eigendirection.
 
-\section{An inner product turns decomposition into best approximation}
+\section{Projection as Best Approximation}
 
 An inner product adds lengths and angles to a vector space.  For a subspace \(W\subset\mathbb R^n\), the orthogonal projection of \(x\) onto \(W\) is the unique vector \(p\in W\) for which
 \[
@@ -111,7 +111,7 @@ is an orthogonal decomposition, so
 \]
 Projection is therefore the closest point in the subspace.  Least squares, Fourier approximation, and Gram--Schmidt all begin with this Pythagorean identity.
 
-\section{Gram--Schmidt factors a basis into orthogonal directions and coefficients}
+\section{Gram--Schmidt and QR}
 
 Given independent vectors \(a_1,\ldots,a_r\), define
 \[
@@ -164,60 +164,62 @@ and
 \]
 QR factorization is Gram--Schmidt written as a matrix identity: \(Q\) stores the orthonormal geometry, while \(R\) stores how the original columns were assembled from it.
 
-\section{Householder reflections reveal why stable QR avoids repeated subtraction}
+\section{Householder QR}
 
-Classical Gram--Schmidt can lose accuracy when columns are nearly dependent, because it subtracts nearly equal vectors.  Modified Gram--Schmidt reduces the damage by updating the residual after each projection.  Householder QR takes a different route: it reflects an entire column onto a coordinate axis.
+Classical Gram--Schmidt can lose accuracy when columns are nearly dependent, because it subtracts nearly equal vectors. Modified Gram--Schmidt reduces the damage by updating residuals after each projection. Householder QR takes a different route: reflect an entire column onto a coordinate axis, with a crucial choice of sign that prevents a small subtraction.
 
-For a nonzero vector \(x\), choose
+For a nonzero real vector \(x\), define
 \[
-  v=x-\alpha e_1,
-  \qquad
-  \alpha=\operatorname{sign}(x_1)\|x\|,
+ s=\begin{cases}1,&x_1\ge0,\\-1,&x_1<0,\end{cases}
+ \qquad
+ \alpha=-s\|x\|_2,
+ \qquad v=x-\alpha e_1=x+s\|x\|_2e_1.
 \]
-and define
-\[
-  H=I-2\frac{vv^T}{v^Tv}.
-\]
-Then
-\[
-  H^T=H,
-  \qquad
-  H^2=I,
-\]
-so \(H\) is an orthogonal reflection, and \(Hx=\alpha e_1\).
+The sign convention at \(x_1=0\) is intentional: the usual sign function with \(\operatorname{sign}(0)=0\) would make the proposed target \(\alpha e_1=0\), which no orthogonal map can produce from nonzero \(x\). Moreover \(|v_1|=|x_1|+\|x\|_2\), so the first component is formed by adding magnitudes rather than subtracting nearly equal numbers.
 
-Consider
+Now set
 \[
-  A=
-  \begin{pmatrix}
-    3&0\\
-    4&5
-  \end{pmatrix}.
+ \boxed{H=I-2\frac{vv^T}{v^Tv}.}
 \]
-For the first column \(x=(3,4)^T\), take \(\alpha=5\) and \(v=(-2,4)^T\).  Then
+Because \(vv^T\) is symmetric and \((vv^T)^2=(v^Tv)vv^T\),
 \[
-  H=
-  \begin{pmatrix}
-    3/5&4/5\\
-    4/5&-3/5
-  \end{pmatrix},
+ H^T=H,\qquad H^2=I.
 \]
-and
+It is therefore an orthogonal reflection. The choice \(\alpha^2=\|x\|_2^2\) also gives
 \[
-  HA=
-  \begin{pmatrix}
-    5&4\\
-    0&-3
-  \end{pmatrix}=R.
+ v^Tv=2\bigl(\|x\|_2^2-\alpha x_1\bigr),
+ \qquad
+ 2v^Tx=v^Tv.
 \]
-Since \(H^T=H\),
+Consequently
 \[
-  A=QR,
-  \qquad Q=H.
+ Hx=x-\frac{2v(v^Tx)}{v^Tv}=x-v
+     =\boxed{\alpha e_1}.
 \]
-The reflection zeros an entire subcolumn at once and preserves norms exactly in exact arithmetic.  This geometric operation is the basis of stable QR algorithms.
+So the first column is sent exactly to the coordinate axis without repeatedly subtracting projections.
 
-\section{Orthogonal maps preserve geometry, and reflections generate them}
+For a complete example, take
+\[
+ A=\begin{pmatrix}3&0\\4&5\end{pmatrix},\qquad
+ x=\begin{pmatrix}3\\4\end{pmatrix}.
+\]
+Our stable sign choice is \(\alpha=-5\) and \(v=(8,4)^T\). Thus
+\[
+ H=
+ \begin{pmatrix}-3/5&-4/5\\-4/5&3/5\end{pmatrix},
+ \qquad
+ HA=
+ \begin{pmatrix}-5&-4\\0&3\end{pmatrix}=R.
+\]
+Since \(H^T=H=H^{-1}\), putting \(Q=H\) gives the exact QR factorization
+\[
+ \boxed{A=QR,\qquad Q^TQ=I.}
+\]
+The upper-triangular factor need not have positive diagonal entries; if positive diagonals are preferred, multiplying a column of \(Q\) and the corresponding row of \(R\) by \(-1\) does not change their product.
+
+In exact arithmetic either target sign \(\alpha=\pm\|x\|_2\) can work when \(v\ne0\); the \emph{opposite} sign used here avoids cancellation in floating-point computation. This small choice helps explain why a numerically stable Householder implementation is more than the geometric formula for a reflection. The same mechanism underlies practical QR algorithms.\footnote{For Householder QR and the noncancelling sign convention, see Trefethen and Bau, \emph{Numerical Linear Algebra}, Lecture 10.}
+
+\section{Orthogonal Maps and Reflections}
 
 A real matrix \(U\) is orthogonal when
 \[
@@ -247,7 +249,7 @@ Over \(\mathbb C\), the corresponding maps are unitary:
 \]
 Complex conjugation in the Hermitian inner product is essential; without it, \(\langle x,x\rangle\) need not be positive.
 
-\section{The spectral theorem follows from one Rayleigh extremum and induction}
+\section{Spectral Theorem by Induction}
 
 Let \(A=A^T\) be real symmetric.  On the unit sphere, the Rayleigh quotient
 \[
@@ -286,7 +288,7 @@ The extreme Rayleigh values are the extreme eigenvalues:
 \]
 The spectral theorem is therefore also an optimization theorem.
 
-\section{Spectral projectors turn diagonalization into functional calculus}
+\section{Spectral Projectors and Functions}
 
 Suppose a diagonalizable matrix has distinct eigenvalues \(\lambda_1,\ldots,\lambda_s\).  The Lagrange polynomials from the minimal-polynomial argument give projectors
 \[
@@ -328,7 +330,7 @@ Therefore
 \]
 A matrix exponential has been computed without multiplying matrices repeatedly.  The projectors separate the invariant modes first, and the scalar function is then applied to each mode.
 
-\section{Similarity and congruence answer different classification questions}
+\section{Similarity versus Congruence}
 
 Similarity
 \[
@@ -373,7 +375,7 @@ of positive, negative, and zero squares is invariant under every invertible cong
 
 Orthogonal diagonalization is a special congruence that also happens to be a similarity for symmetric matrices.  It preserves Euclidean geometry as well as the quadratic form's spectral data; a general completing-square substitution preserves only the inertia classification.
 
-\section{Positive definiteness has spectral, minor, and factorization tests}
+\section{Tests for Positive Definiteness}
 
 For a symmetric matrix \(A\), the following are equivalent:
 \[
@@ -470,7 +472,7 @@ For \(\lambda_+\), an eigenvector can be chosen proportional to
 \]
 Projection onto this direction preserves the largest possible average squared variation.  PCA is therefore the Rayleigh-quotient extremum of the covariance quadratic form, not a separate algorithmic miracle.
 
-\section{The Hilbert-space extension keeps projection but may lose eigenbases}
+\section{Projection in Hilbert Spaces}
 
 In a Hilbert space \(H\), every closed subspace \(M\) still has an orthogonal projection.  To see why closedness matters, take a minimizing sequence \(m_n\in M\) for the distance from \(x\) to \(M\).  The parallelogram identity shows that \((m_n)\) is Cauchy; completeness of \(M\) gives a limit \(m\in M\), and the usual first-variation argument gives
 \[

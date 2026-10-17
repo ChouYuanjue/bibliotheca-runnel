@@ -1,6 +1,6 @@
 \notechapter{N-20220412}{Indices, Dual Maps, Adjoints, Trace, and Singular Values}
 
-\section{Indices carry type information before they abbreviate sums}
+\section{Indices as Type Information}
 
 Let \(V\) have basis \(e_1,\ldots,e_n\), with dual basis \(e^1,\ldots,e^n\).  The Kronecker delta is
 \[
@@ -31,7 +31,7 @@ An index that survives once in every term is free and determines the output type
 \]
 are ill typed if \(i\) is intended to be the output index, because it occurs twice while \(j\) remains unmatched.  Index notation is valuable precisely because many algebraic mistakes become visible as type errors.
 
-\section{Matrix multiplication is contraction of an output with an input}
+\section{Matrix Products as Contractions}
 
 Let
 \[
@@ -71,7 +71,7 @@ Trace is another contraction:
 \]
 Matrix multiplication and trace are therefore not unrelated recipes; both pair an output index with a compatible input index.
 
-\section{A change of basis transforms both indices and leaves contractions unchanged}
+\section{Basis Changes and Contractions}
 
 Let \(P\) be the change-of-basis matrix, so coordinate columns satisfy
 \[
@@ -156,7 +156,7 @@ In matrices,
 \]
 Transposition reverses order because a functional is pulled backward through a composite map.
 
-\section{An adjoint is a dual map returned to vectors by an inner product}
+\section{Adjoints from the Dual Space}
 
 The transpose needs only vector spaces and duality.  An adjoint additionally needs inner products.  Let
 \[
@@ -171,12 +171,46 @@ is characterized by
   \langle Ax,y\rangle_W
   =\langle x,A^\dagger y\rangle_V.
 \]
-Riesz representation identifies each covector with a unique vector, so the adjoint is the composite
+There is a subtlety over $\mathbb C$. In this note the inner product is \emph{conjugate-linear in the first slot} and linear in the second:
 \[
-  W\xrightarrow{\text{Riesz}}W^*
-  \xrightarrow{A^\vee}V^*
-  \xrightarrow{\text{Riesz}^{-1}}V.
+ \langle x,z\rangle=x^*Gz.
 \]
+The ordinary algebraic dual $V^*$ consists of \emph{complex-linear} functionals. Riesz representation therefore gives the map
+\[
+ R_V:V\longrightarrow V^*,
+ \qquad R_V(y)(x)=\langle y,x\rangle_V.
+\]
+It identifies covectors with unique vectors, but the map $R_V$ is \emph{conjugate-linear}:
+\[
+ R_V(cy)(x)=\langle cy,x\rangle
+ =\overline c\,\langle y,x\rangle
+ =\overline c\,R_V(y)(x).
+\]
+We may now express the adjoint precisely as
+\[
+ \boxed{A^\dagger=R_V^{-1}\circ A^\vee\circ R_W:
+ W\longrightarrow V.}
+\]
+Indeed, evaluating the right side at $y\in W$ gives the unique vector $z\in V$ with
+\[
+ \langle z,x\rangle_V
+ =(A^\vee R_W(y))(x)
+ =R_W(y)(Ax)
+ =\langle y,Ax\rangle_W
+\]
+for every $x\in V$. Taking conjugates yields
+$\langle x,z\rangle_V=\langle Ax,y\rangle_W$,
+so $z=A^\dagger y$.
+
+The two conjugate-linear Riesz maps cancel one another's conjugation, which is why $A^\dagger:W\to V$ is an ordinary \emph{complex-linear} map. This is easy to miss if one calls the dual map and adjoint the same operation. For the one-dimensional operator
+\[
+ A:\mathbb C\to\mathbb C,\qquad A(z)=iz,
+\]
+the dual map multiplies the coefficient of a linear functional by $i$, whereas the Hilbert adjoint is
+\[
+ \boxed{A^\dagger(z)=-iz.}
+\]
+For instance, $\langle i,1\rangle=-i=\langle1,-i\rangle$. Over $\mathbb R$, conjugation disappears and both Riesz maps are linear.\footnote{Compare Sergei Treil, \href{https://www.math.brown.edu/streil/papers/LADW/HTML_2026_08-31/Ch8.html}{\emph{Linear Algebra Done Wrong}}, Chapter 8, on complex duality and the Riesz map.}
 
 In orthonormal bases,
 \[
@@ -194,7 +228,7 @@ The operations should be kept distinct:
 \]
 Over \(\mathbb R\), conjugation disappears and the adjoint matrix in orthonormal bases is the transpose.
 
-\section{In nonorthonormal coordinates the Gram matrices enter the adjoint}
+\section{Adjoints in Nonorthogonal Frames}
 
 Suppose the chosen bases have Gram matrices
 \[
@@ -251,7 +285,7 @@ Although \(A^T=A\), its adjoint in this metric is
 \]
 The coordinate swap is not self-adjoint when the second coordinate has four times the metric weight.
 
-\section{Rank is the dimension of the image and the size of a minimal factorization}
+\section{Rank and Minimal Factorizations}
 
 For
 \[
@@ -304,7 +338,7 @@ so every row of \(C\) is a linear combination of rows of \(A\).  Thus
 \]
 and its dimension is \(r\), the same as the column rank.
 
-\section{Trace is contraction, and cyclicity is a legal index relabelling}
+\section{Trace and Cyclic Contraction}
 
 For endomorphisms \(A,B\),
 \[
@@ -352,7 +386,7 @@ More generally, an orthogonal projector has eigenvalues \(0,1\), hence
 \]
 Trace counts the dimension of a projected subspace because it sums the projector's surviving modes.
 
-\section{The Hilbert--Schmidt inner product leads to Schatten norms}
+\section{Hilbert--Schmidt and Schatten Norms}
 
 Matrices themselves form an inner-product space with
 \[
@@ -426,7 +460,7 @@ The Hilbert--Schmidt product also gives the estimate
 \]
 which is ordinary Cauchy--Schwarz applied in the matrix space.
 
-\section{Categorical trace closes an output wire into an input wire}
+\section{Categorical Trace as Wire Closure}
 
 Let \(V\) be finite dimensional with basis \(e_i\) and dual basis \(e^i\).  The coevaluation map is
 \[

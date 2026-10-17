@@ -1,165 +1,138 @@
 \notechapter{N-20220718}{Nonlinear Recurrences, Fixed Points, and Metric-Space Exercises}
 
-\section{Fixed-point iteration}
+\section{Finding a fixed point is only the beginning}
 
-An iterative sequence is organized around fixed points.  If a function \(f\) has a fixed point \(x_0\), meaning
+An iteration takes the form
 \[
-  f(x_0)=x_0,
+ a_{n+1}=f(a_n).
 \]
-then the recurrence
+If the sequence converges to \(L\) and \(f\) is continuous at \(L\), then
 \[
-  a_{n+1}=f(a_n)
+ L=\lim_{n\to\infty}a_{n+1}
+  =\lim_{n\to\infty}f(a_n)=f(L).
 \]
-may converge to \(x_0\), depending on the behavior of \(f\).  The graphical picture is the intersection of \(y=f(x)\) and \(y=x\).
+This necessary condition does not guarantee convergence. The map \(f(x)=-x\) fixes \(0\), yet almost every orbit alternates between \(a_1\) and \(-a_1\). The map \(f(x)=2x\) also fixes \(0\), but nonzero orbits move away from it.
 
-The elementary idea is this: if \(a_n\to L\) and \(f\) is continuous, then
+For a differentiable map near a fixed point \(L\), the derivative is the first local test. By continuity of \(f'\), if \(|f'(L)|<1\) then one can find an interval about \(L\) in which \(f\) is a contraction, so iterations sufficiently close to \(L\) converge geometrically. If \(|f'(L)|>1\), the fixed point is locally repelling. The boundary case \(|f'(L)|=1\) requires more analysis and is particularly relevant to the Möbius example below. This local stability viewpoint is standard in one-dimensional discrete dynamics; the linear-recursion method later in the note follows MIT's \emph{Mathematics for Computer Science}, Chapter 10.\footnote{For the recurrence calculation see \href{https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/resources/mit6_042jf10_chap10/}{MIT 6.042J, \emph{Mathematics for Computer Science}}, Chapter 10.}
+
+An independent elementary proof method is monotone convergence. If one proves by induction that the iterates stay in a closed interval and that \(a_{n+1}\ge a_n\), boundedness gives a limit by completeness of the real numbers. Continuity then identifies the limit with a fixed point. Finding the fixed point without first proving these hypotheses would reverse the logical argument.
+
+\section{Linearizing Möbius Recurrences}
+
+A fractional-linear map is
 \[
-  L=\lim a_{n+1}=\lim f(a_n)=f(L),
+ F(x)=\frac{px+q}{rx+t},
+ \qquad pt-qr\ne0.
 \]
-so any limit must be a fixed point.  But finding a fixed point is not the same as proving convergence.  A recurrence can have fixed points and still oscillate or diverge.
-
-\section{Möbius recurrences}
-
-The page considers recurrences of the form
+It is associated with the invertible matrix
 \[
-  a_{n+1}=\frac{pa_n+q}{ra_n+t}.
+ M=\begin{pmatrix}p&q\\r&t\end{pmatrix}
 \]
-These are fractional linear or Möbius transformations.  Their fixed points solve
+acting on the projective line. Iteration corresponds to the matrix powers \(M^n\) up to a common nonzero scalar. This gives an exact algebraic representation of a nonlinear-looking recurrence.
+
+Fixed points satisfy
 \[
-  x=\frac{px+q}{rx+t},
+ r x^2+(t-p)x-q=0.
 \]
-so
+When this equation has two distinct finite roots \(\alpha,\beta\), the coordinate
 \[
-  rx^2+(t-p)x-q=0.
+ h(x)=\frac{x-\alpha}{x-\beta}
 \]
-Suppose \(x_1,x_2\) are two distinct fixed points.  Then a standard calculation gives
+maps the fixed points to \(0\) and \(\infty\). The conjugate map \(h\circ F\circ h^{-1}\) fixes both \(0\) and \(\infty\), so it has the form \(u\mapsto\lambda u\). In particular,
 \[
-  \frac{a_{n+1}-x_1}{a_{n+1}-x_2}
-  =
-  \lambda\frac{a_n-x_1}{a_n-x_2}
+ \frac{a_{n+1}-\alpha}{a_{n+1}-\beta}
+ =\lambda\,\frac{a_n-\alpha}{a_n-\beta}
 \]
-for a constant \(\lambda\).  Thus the new sequence
+where the expressions are defined. The new sequence is geometric and its behavior can be read from \(|\lambda|\).
+
+\begin{example}[A repeated fixed point reveals a finite-domain obstruction]
+The original recurrence is
 \[
-  b_n=\frac{a_n-x_1}{a_n-x_2}
+ a_1=\frac12,\qquad a_{n+1}=\frac{5a_n-1}{a_n+3}.
 \]
-is geometric.
-
-This is the key idea in the note: convert a nonlinear recurrence into a geometric progression by using the fixed points as coordinates.  This is not accidental.  Möbius transformations act naturally on the projective line, and the cross-ratio-like expression above is the coordinate that linearizes the action.
-
-\section{Example}
-
-For
+Its fixed-point equation reduces to
 \[
-  a_1=\frac12,\qquad a_{n+1}=\frac{5a_n-1}{a_n+3},
+ x^2-2x+1=(x-1)^2=0.
 \]
-the fixed-point equation is
+The repeated fixed point is \(1\). The usual quotient
+\((x-\alpha)/(x-\beta)\) degenerates, but the reciprocal coordinate
 \[
-  x=\frac{5x-1}{x+3},
+ b_n=\frac1{a_n-1}
 \]
-so
+gives a translation:
 \[
-  x^2-2x+1=0,\qquad x=1.
+ a_{n+1}-1=\frac{4(a_n-1)}{a_n+3},
+ \qquad
+ b_{n+1}=\frac{a_n+3}{4(a_n-1)}=b_n+\frac14.
 \]
-Here the two fixed points coincide, so the previous method degenerates.  One then studies
+Since \(b_1=-2\), we obtain
 \[
-  a_{n+1}-1=\frac{4a_n-4}{a_n+3}=\frac{4(a_n-1)}{a_n+3}.
+ b_n=-2+\frac{n-1}{4}=\frac{n-9}{4},
+ \qquad
+ \boxed{a_n=1+\frac4{n-9}.}
 \]
-Taking reciprocals gives
+There is an important restriction: the displayed real recurrence is defined only while the denominators are nonzero. In fact,
 \[
-  \frac1{a_{n+1}-1}=\frac{a_n+3}{4(a_n-1)}
-  =\frac14+\frac1{a_n-1}.
+ a_8=-3,
 \]
-Thus
+so the rule for \(a_9\) requires division by \(0\). The original real-valued sequence stops at \(n=8\), and it would be incorrect to claim that the closed formula describes an infinite real sequence. On the projective line one can instead interpret \(a_9=\infty\) and continue with \(a_{10}=5\).
+
+The derivative
 \[
-  b_n=\frac1{a_n-1}
+ F'(x)=\frac{16}{(x+3)^2}
 \]
-is arithmetic, not geometric.  This is the repeated-root analogue of the fixed-point method.
+satisfies \(F'(1)=1\). The fixed point is therefore neutral at first order, which is precisely why the reciprocal coordinate and its additive drift are more informative than the elementary contraction test.
+\end{example}
 
-\section{Second-order linear recurrences}
+The single calculation brings together the two cases: distinct fixed points produce a multiplicative coordinate, while a repeated fixed point produces a translation in a suitable reciprocal coordinate. It also shows why the domain of iteration must be specified before asserting a limit.
 
-The next topic is
-\[
-  a_{n+2}=pa_{n+1}+qa_n.
-\]
-Try \(a_n=\lambda^n\).  The characteristic equation is
-\[
-  \lambda^2-p\lambda-q=0.
-\]
-If it has two distinct roots \(\lambda_1,\lambda_2\), then
-\[
-  a_n=A\lambda_1^n+B\lambda_2^n.
-\]
-If the root is repeated, then the second independent solution is \(n\lambda^n\), so
-\[
-  a_n=(A+Bn)\lambda^n.
-\]
-This is the recurrence analogue of solving a linear differential equation with constant coefficients.
-
-\section{Dedekind cuts and metric exercises}
-
-The uploaded pages also continue exercises on Dedekind cuts and metric spaces.  For Dedekind cuts \(X,Y\), the sum is
-\[
-  X+Y=\{x+y:x\in X,\ y\in Y\}.
-\]
-The notes check that this is again a cut: it is nonempty, not all of \(\mathbb Q\), downward closed, and has no largest rational.
-
-For a metric space \((X,d)\), if \(Y\subseteq X\), the subspace metric is
-\[
-  d_Y(y_1,y_2)=d(y_1,y_2).
-\]
-The note also checks that Euclidean distance on \(\mathbb R^n\)
-\[
-  d(x,y)=\sqrt{(x_1-y_1)^2+\cdots+(x_n-y_n)^2}
-\]
-is a metric.  The only nontrivial axiom is the triangle inequality, which ultimately follows from Cauchy--Schwarz.
-
-
-\section{Fixed points of recurrence maps}
-
-A recurrence \(x_{n+1}=f(x_n)\) is an iteration problem.  A possible limit \(L\) must satisfy
-\[
-  L=f(L).
-\]
-Thus the first step is to solve the fixed-point equation.  The second step is to decide whether the iteration actually converges to that fixed point.
-
-A common local test is \(|f'(L)|<1\).  Then nearby points are pulled toward \(L\).  If \(|f'(L)|>1\), nearby points are pushed away.  This explains why fixed points are not automatically limits.
-
-\section{Monotone bounded sequences}
-
-Many elementary recurrence proofs use the theorem: a monotone bounded real sequence converges.  The method is to prove by induction that the sequence stays in an interval, then prove monotonicity.  Completeness of \(\mathbb R\) is the hidden reason the limit exists.
-
-\section{After the examples}
-
-The important common thread is change of coordinates.  A Möbius recurrence becomes geometric after measuring position relative to fixed points.  A repeated fixed point becomes arithmetic after taking a reciprocal.  A Dedekind cut becomes a real number after using order-theoretic structure.  A subset becomes a metric space after inheriting distance.  The mathematical move is the same: choose the representation in which the structure becomes visible.
-
-\section{Fixed points and stability}
-
-For an iteration \(x_{n+1}=F(x_n)\), a fixed point satisfies \(F(x_*)=x_*\).  The behavior near \(x_*\) is controlled by \(F'(x_*)\) in one dimension: if \(|F'(x_*)|<1\), the fixed point is locally attracting.
-
-\section{Möbius recurrences and matrices}
-
-A recurrence of the form
-\[
-  x_{n+1}=\frac{ax_n+b}{cx_n+d}
-\]
-is a fractional-linear transformation.  It corresponds to the matrix
-\[
-  \begin{pmatrix}a&b\\c&d\end{pmatrix}
-\]
-acting on the projective line.  Iterating the recurrence corresponds to taking powers of this matrix.
-
-\section{Second-order recurrences}
+\section{Repeated Roots of Linear Recurrences}
 
 A linear recurrence
 \[
-  a_{n+2}=pa_{n+1}+qa_n
+ a_{n+2}=pa_{n+1}+qa_n
 \]
-is governed by the characteristic equation
+has characteristic polynomial \(P(\lambda)=\lambda^2-p\lambda-q\). Substituting \(a_n=\lambda^n\) verifies why each nonzero characteristic root yields a geometric solution. If the two roots \(\lambda_1,\lambda_2\) are distinct, every solution has the form
 \[
-  \lambda^2=p\lambda+q.
+ a_n=A\lambda_1^n+B\lambda_2^n,
 \]
-Distinct roots give combinations of geometric sequences.  This is diagonalization of the shift dynamics.
+with constants determined by two initial conditions.
 
-\section{Recurrences as one-dimensional dynamics}
+For a repeated root \(\lambda\ne0\), a second independent solution is \(n\lambda^n\), yielding
+\[
+ a_n=(A+Bn)\lambda^n.
+\]
+The factor \(n\) is the discrete counterpart of a generalized eigenvector: the companion matrix
+\[
+ \begin{pmatrix}p&q\\1&0\end{pmatrix}
+\]
+has a Jordan block when the characteristic root repeats. Thus repeated roots are not merely an exception in a formula; they are a test of whether diagonalization succeeds.
 
-Nonlinear and linear recurrences are dynamical systems.  Fixed points organize stability, Möbius recurrences are projective matrix dynamics, and second-order linear recurrences are solved by eigenvalue methods.
+The matrix picture also explains the Möbius case. Fractional-linear iteration uses a projective \(2\times2\) matrix, while a second-order linear recurrence uses a companion \(2\times2\) matrix. Both problems are governed by eigenvalues and invariant directions, but the transformation from a vector to its ratio changes the representation of the dynamics.
+
+\section{Two Constructions of Spaces}
+
+The original material also includes problems about Dedekind cuts and metric subspaces. These concern \emph{different} questions from recurrence linearization and deserve their own mathematical explanation rather than being forced into the recurrence story.
+
+For a Dedekind cut \(X\subset\mathbb Q\), use the usual convention that \(X\) is a nonempty proper downward-closed set without a greatest element. For two cuts \(X,Y\), define
+\[
+ X+Y=\{x+y:x\in X,\ y\in Y\}.
+\]
+Why is this again a cut? It is nonempty by choosing \(x\in X,y\in Y\). It is downward closed: if \(q<x+y\), then
+\(q=(q-y)+y\) with \(q-y<x\), hence \(q-y\in X\). It has no greatest element because \(X\) has none: for \(x+y\), choose \(x'>x\) still in \(X\). Finally, choose rational upper bounds \(B_X,B_Y\) of \(X,Y\); then every element of \(X+Y\) is less than \(B_X+B_Y\), proving it is proper. This checks the four cut axioms explicitly.
+
+For a metric space \((X,d)\) and a subset \(Y\subseteq X\), the restriction
+\[
+ d_Y(y_1,y_2)=d(y_1,y_2)
+\]
+is again a metric, since each metric axiom holds for all points in \(X\), hence in \(Y\). In Euclidean space,
+\[
+ d(x,y)=\sqrt{\sum_{i=1}^n(x_i-y_i)^2},
+\]
+and the triangle inequality follows from the inner-product Cauchy--Schwarz inequality:
+\[
+ \|u+v\|_2^2
+ =\|u\|_2^2+2\langle u,v\rangle+\|v\|_2^2
+ \le(\|u\|_2+\|v\|_2)^2.
+\]
+These exercises establish how an existing order or distance structure can be extended or restricted, without pretending that the resulting objects are instances of the same iteration theorem.

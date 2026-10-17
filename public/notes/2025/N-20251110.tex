@@ -30,7 +30,7 @@ Thus determinant computation and rank detection are not separate topics.  A nonz
 
 Elementary column operations now have conceptual explanations.  Adding a multiple of one column to another leaves the wedge volume unchanged.  Scaling one column scales the volume by the same factor.  Exchanging two columns reverses orientation.  Every safe determinant trick is an application of these three rules.
 
-\section{Cofactors and minors are coordinates of exterior powers}
+\section{Cofactors as Exterior Coordinates}
 
 A linear map \(A:V\to V\) induces maps
 \[
@@ -76,7 +76,7 @@ one has
 \]
 General Laplace expansion is a special case: selecting a group of rows and summing products of complementary minors is exactly composition on an exterior power.
 
-\section{Vandermonde determinants measure uniqueness of interpolation}
+\section{Vandermonde and Uniqueness}
 
 Let \(\mathcal P_{n-1}\) be the vector space of polynomials of degree at most \(n-1\).  Evaluation at points \(x_1,\ldots,x_n\) defines a linear map
 \[
@@ -206,7 +206,7 @@ The same object controls determinant, invertibility, and elimination of the \(x\
 
 The hypothesis that \(A\) is invertible cannot be silently discarded.  If \(A\) is singular, the displayed formula is not defined; one must pivot to another block, use a limiting argument only when justified, or return to rank and minors.
 
-\section{Low-rank updates reduce a large determinant to a small one}
+\section{Low-Rank Determinant Updates}
 
 Suppose \(A\) is invertible and the perturbation has rank one:
 \[
@@ -260,7 +260,7 @@ For a rank-\(r\) update,
 \]
 The computational gain is structural: only the coupled \(r\)-dimensional directions need a new determinant.
 
-\section{Recursive determinants are second-order dynamical systems}
+\section{Recurrences of Determinants}
 
 Let
 \[

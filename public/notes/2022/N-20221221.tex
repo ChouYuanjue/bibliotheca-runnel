@@ -1,6 +1,6 @@
 \notechapter{N-20221221}{Completion, Uniform Structure, and Quotient Topology}
 
-\section{A Cauchy sequence can describe a point missing from the space}
+\section{Cauchy Sequences and Missing Points}
 
 A sequence \((x_n)\) in a metric space \((X,d)\) is Cauchy when for every \(\varepsilon>0\) there is \(N\) such that
 \[
@@ -64,7 +64,7 @@ Nonnegativity and symmetry pass directly to the limit.  If \(\widehat d=0\), the
 \]
 passes to the limit and gives the triangle inequality.  Therefore \(\widehat d\) is a genuine metric.
 
-\section{The original space sits isometrically and densely inside its completion}
+\section{Embedding into the Completion}
 
 Send \(x\in X\) to the constant sequence:
 \[
@@ -97,7 +97,7 @@ For \(X=\mathbb Q\), the decimal truncations \((q_n)\) of \(\sqrt2\) define a cl
 \]
 forcing \(r=\sqrt2\).  The new class is exactly the missing irrational point described by rational approximations.
 
-\section{A diagonal approximation proves that the completed space is complete}
+\section{Completeness by a Diagonal Argument}
 
 Let \((\xi_r)\) be a Cauchy sequence in \(\widehat X\).  Passing to a subsequence if necessary, arrange that
 \[
@@ -131,7 +131,7 @@ along the chosen subsequence, and since the original sequence was Cauchy, the wh
 
 The argument exposes the mechanism: approximate each abstract completed point by an original point with rapidly shrinking error, then use one diagonal Cauchy sequence in \(X\) to encode the limit.
 
-\section{Uniformly continuous maps extend because they preserve Cauchy information}
+\section{Extending Uniformly Continuous Maps}
 
 Let \(Y\) be complete and let
 \[
@@ -182,6 +182,27 @@ Uniform continuity is essential.  The continuous map
   f(x)=\frac1x
 \]
 has no continuous extension to the completion \([0,1]\), because it diverges along \(x_n=1/n\to0\).
+
+\section{One topology, two different completions}
+
+A homeomorphism need not preserve Cauchy sequences. In fact, the same underlying set can carry two metrics with exactly the same open sets and different completions. On $\mathbb R$, compare
+\[
+ d_{\mathrm E}(x,y)=|x-y|,\qquad
+ d_{\mathrm A}(x,y)=|\arctan x-\arctan y|.
+\]
+The strictly increasing homeomorphism $\arctan:\mathbb R\to(-\pi/2,\pi/2)$ shows that $d_{\mathrm A}$ induces the usual topology on $\mathbb R$. Yet the sequence $x_n=n$ is not Cauchy for $d_{\mathrm E}$, while it is Cauchy for $d_{\mathrm A}$, because
+\[
+ |\arctan n-\arctan m|\longrightarrow0
+ \quad(n,m\to\infty).
+\]
+Similarly $-n$ is $d_{\mathrm A}$-Cauchy. The isometry furnished by arctangent identifies $(\mathbb R,d_{\mathrm A})$ with the open interval $(-\pi/2,\pi/2)$ with its usual metric. Thus
+\[
+ \widehat{(\mathbb R,d_{\mathrm A})}
+ \cong[-\pi/2,\pi/2],
+\]
+whereas $(\mathbb R,d_{\mathrm E})$ is already complete. The first completion adds two endpoints and the second adds nothing.
+
+The distinction does not come from pointwise convergence to existing points: the two metrics agree about that. It comes from whether \emph{pairs of points far out in the space} become mutually close. A homeomorphism preserves local neighborhoods but not uniform closeness. This is exactly the extra information encoded by a uniform structure.
 
 \section{The universal property makes completion unique}
 
@@ -241,7 +262,7 @@ and their difference grows on the order of \(n\).  No single \(\delta\) controls
 
 Topology records which sets are neighborhoods.  Uniform structure additionally records which pairs are uniformly close across the whole space.  Completion depends on the latter, because Cauchy sequences are uniform objects.
 
-\section{A continuous bijection needs extra hypotheses to be a homeomorphism}
+\section{When a Bijection Is a Homeomorphism}
 
 The map
 \[
@@ -267,7 +288,7 @@ is closed, so \(f^{-1}\) is continuous.
 
 The failed half-open-interval example lacks compactness.  The theorem identifies exactly which global hypotheses make inverse continuity automatic.
 
-\section{Quotient topology is designed to control maps out of a gluing}
+\section{Quotient Topology and Gluing}
 
 Let \(q:X\to Y\) be a surjection.  The quotient topology on \(Y\) is defined by
 \[
@@ -299,7 +320,42 @@ A quotient map need not send every open set to an open set.  On \([0,1]\), colla
 
 The quotient topology controls precisely the saturated information that survives the identification.
 
-\section{Endpoint gluing becomes the circle by quotient factorization}
+\section{A circle can be made by completing rational angles}
+
+Completion and quotient topology meet very naturally in the simplest periodic space. Consider the additive quotient group
+\[
+ X=\mathbb Q/\mathbb Z.
+\]
+Here $[q]$ means that $q$ and $q+k$ represent the same point for every integer $k$. The usual metric $|q-r|$ cannot simply be written on quotient classes, because it depends on which representatives we pick. The right metric is the circular distance
+\[
+ \boxed{d_X([q],[r])=\min_{k\in\mathbb Z}|q-r-k|.}
+\]
+Replacing either representative by an integer translate merely reindexes the minimum. Also $d_X=0$ exactly when $q-r\in\mathbb Z$, so it is a genuine metric. The triangle inequality follows by choosing integer translates for each of the two legs and adding their distances.
+
+The map
+\[
+ \iota:\mathbb Q/\mathbb Z\longrightarrow S^1,\qquad
+ [q]\longmapsto e^{2\pi iq}
+\]
+is well defined and injective. Equip $S^1$ with the angular metric
+\[
+ d_{S^1}(e^{2\pi ix},e^{2\pi iy})
+ =\min_{k\in\mathbb Z}|x-y-k|.
+\]
+By construction, $\iota$ is an \emph{isometry}. Rational angles are dense in all real angles, so its image is dense in $S^1$. The circle with its angular metric is compact and hence complete. By the uniqueness of metric completion,
+\[
+ \boxed{\widehat{\mathbb Q/\mathbb Z}\cong S^1.}
+\]
+
+An actual missing point is easy to exhibit. Let
+\[
+ q_n=\frac{\lfloor10^n\sqrt2\rfloor}{10^n}\in\mathbb Q.
+\]
+The residue classes $[q_n]$ form a Cauchy sequence in $\mathbb Q/\mathbb Z$ whose image on the circle approaches $e^{2\pi i\sqrt2}$. That limit cannot arise from a single rational class, since $e^{2\pi i\sqrt2}=e^{2\pi iq}$ would imply $\sqrt2-q\in\mathbb Z$.
+
+This construction differs from identifying the endpoints of $[0,1]$. The map $[0,1]\to S^1$, $t\mapsto e^{2\pi it}$, realizes a \emph{topological quotient} by gluing $0$ and $1$; the isometric embedding above realizes a \emph{metric completion} by adding all the missing irrational angle classes. Both routes lead to the same familiar circle, but they answer different universal problems. That is a satisfying concrete explanation of why completion and quotient both appear in the same chapter.
+
+\section{The Circle as an Endpoint Quotient}
 
 Let
 \[

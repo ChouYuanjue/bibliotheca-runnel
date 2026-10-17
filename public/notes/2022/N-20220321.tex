@@ -1,6 +1,6 @@
 \notechapter{N-20220321}{Motion on the Unit Circle, Roots of Unity, and Finite Fourier Analysis}
 
-\section{The differential equation \texorpdfstring{$Z'=iZ$}{Z'=iZ} produces uniform circular motion}
+\section{A Differential Equation for Rotation}
 
 Consider the complex-valued initial-value problem
 \[
@@ -101,7 +101,7 @@ The endpoint difference satisfies
 \]
 for an integer \(k\), the winding number of the loop.  The kernel of the exponential map is what makes this integer possible.
 
-\section{Taking an \texorpdfstring{$n$}{n}-th root means dividing angles and choosing a branch}
+\section{Roots and Branch Choices}
 
 Let
 \[
@@ -114,7 +114,7 @@ The equation
 \]
 has the \(n\) solutions
 \[
-  z_k=ho^{1/n}
+  z_k=\rho^{1/n}
   e^{i(\theta+2\pi k)/n},
   \qquad
   k=0,1,\ldots,n-1.
@@ -197,7 +197,7 @@ are the primitive roots:
 \]
 Exact rotational period has become an elementary gcd calculation.
 
-\section{Polynomial divisibility becomes evaluation on a finite subgroup}
+\section{Divisibility on Finite Subgroups}
 
 Let
 \[
@@ -307,7 +307,7 @@ matching
 \]
 The filter replaces a restricted coefficient sum by a short list of evaluations.
 
-\section{The discrete Fourier transform is the full set of character coordinates}
+\section{The DFT as Character Coordinates}
 
 For a function
 \[
@@ -361,7 +361,7 @@ Thus
 \]
 Applying the inverse formula recovers all four original entries.  The transform is not merely evaluation at roots of unity; orthogonality makes those evaluations a complete coordinate system.
 
-\section{Fourier characters diagonalize every circulant operator}
+\section{Fourier Characters and Circulants}
 
 Let \(S\) be the cyclic shift on \(\mathbb C^n\):
 \[
@@ -424,6 +424,71 @@ then
 \]
 Convolution in physical coordinates is multiplication in character coordinates.
 
+\section{Heat on a Four-Node Cycle}
+
+The Fourier basis earns its keep when we let an operator evolve rather than merely diagonalize it. Imagine four sites arranged on a circle, with heat (or a probability distribution) allowed to move between nearest neighbors. If $u_k(t)$ is the quantity at vertex $k\in\mathbb Z/4\mathbb Z$, the discrete heat equation is
+\[
+ \frac{d}{dt}u_k(t)=u_{k-1}(t)-2u_k(t)+u_{k+1}(t),
+ \qquad u_k(0)=\delta_{k0}.
+\]
+Indices are taken modulo four. In matrix form, $\dot u=-Lu$, where
+\[
+ L=2I-S-S^{-1}.
+\]
+The Fourier characters turn the \emph{coupled} system of four differential equations into independent scalar ones. Indeed, for
+$w_m(k)=\zeta_4^{mk}=i^{mk}$,
+\[
+ Lw_m
+ =\bigl(2-\zeta_4^m-\zeta_4^{-m}\bigr)w_m
+ =\left(2-2\cos\frac{2\pi m}{4}\right)w_m.
+\]
+Thus the four eigenvalues are
+\[
+ \lambda_0=0,\qquad \lambda_1=2,\qquad
+ \lambda_2=4,\qquad \lambda_3=2.
+\]
+The point source $\delta_{k0}$ has Fourier transform $\widehat u_0(m)=1$ for every $m$. Each coefficient solves
+$\dot{\widehat u}_t(m)=-\lambda_m\widehat u_t(m)$, giving
+\[
+ \boxed{u_k(t)=\frac14\sum_{m=0}^3
+ e^{-\lambda_m t}\,i^{mk}.}
+\]
+Returning to real coordinates and writing $a=e^{-2t}$, we get the exact four-site solution
+\[
+ \begin{aligned}
+ u_0(t)&=\frac{1+2a+a^2}{4},&
+ u_1(t)=u_3(t)&=\frac{1-a^2}{4},\\
+ u_2(t)&=\frac{1-2a+a^2}{4}.&&
+ \end{aligned}
+\]
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=1.1,
+ site/.style={circle,draw=teal!75!black,fill=teal!8,
+ minimum size=9mm,inner sep=1pt,font=\small}]
+ \node[site,fill=orange!20,draw=orange!85!black] (v0) at (1.55,0) {$0$};
+ \node[site] (v1) at (0,1.2) {$1$};
+ \node[site] (v2) at (-1.55,0) {$2$};
+ \node[site] (v3) at (0,-1.2) {$3$};
+ \draw[thick,teal!75!black] (v0)--(v1)--(v2)--(v3)--cycle;
+ \node[align=center,font=\footnotesize] at (4.0,.42)
+  {initial heat:\\$u(0)=(1,0,0,0)$};
+ \draw[->,thick,orange!75!black] (3.0,.35)--(2.0,.1);
+ \node[align=center,font=\footnotesize] at (4.0,-.69)
+  {$u(t)\to(\tfrac14,\tfrac14,\tfrac14,\tfrac14)$};
+\end{tikzpicture}
+\caption{The four-cycle has one constant Fourier mode and three decaying modes. Mass spreads from the highlighted vertex until the distribution becomes uniform.}
+\end{figure}
+
+These expressions are automatically nonnegative for $t\ge0$ because $0\le a\le1$, and they sum to one:
+\[
+ \sum_{k=0}^3u_k(t)=1.
+\]
+At $t=0$, $a=1$ and all heat starts at vertex zero. As $t\to\infty$, the nonconstant Fourier modes decay and each site approaches $1/4$. The surviving zero-eigenvalue mode represents conservation of total mass, while the first nonzero eigenvalue $2$ controls the slowest exponential relaxation. This is the spectral gap of the graph Laplacian.
+
+The computation has unified three pictures with no extra black box: roots of unity are characters of a cyclic group, characters diagonalize circulant matrices, and those same eigenvectors solve heat flow and continuous-time random walks on a periodic graph.\footnote{For the diagonalization of circulant matrices by the Fourier matrix, see Gilbert Strang, \href{https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/resources/lecture-31-eigenvectors-of-circulant-matrices-fourier-matrix/index.html}{MIT 18.065, Lecture 31}.}
+
 \section{Cyclotomic factors separate roots by exact period}
 
 The factorization
@@ -442,7 +507,7 @@ groups roots of unity according to exact order.  For \(n=12\),
 \]
 The last factor contains exactly the primitive twelfth roots.  This is enough for the present chapter: finite Fourier analysis uses all characters of the cyclic group, while cyclotomic factorization separates those characters by exact order.  The arithmetic of the factors themselves belongs to the dedicated cyclotomic chapter.
 
-\section{A primitive fifth root already explains the constructible pentagon}
+\section{Fifth Roots and the Pentagon}
 
 Let
 \[

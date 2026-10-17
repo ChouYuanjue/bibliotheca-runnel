@@ -191,6 +191,74 @@ This formula is worth seeing once because it makes the word ``chart'' concrete. 
 
 A second chart, obtained by projecting from the south pole, covers the missing point.  The transition map between the two charts is smooth away from the origin.  This is the atlas idea in its most visible form.
 
+\section{Angle-Preserving Charts}
+
+A coordinate chart gives a map from a flat page into a curved surface. But how much does a small square on that page stretch? The inverse stereographic map introduced above provides an exact calculation. Write
+\[
+ \sigma(u,v)=
+ \left(\frac{2u}{1+r^2},\,\frac{2v}{1+r^2},\,
+              \frac{r^2-1}{1+r^2}\right),
+ \qquad r^2=u^2+v^2.
+\]
+A small displacement $h=(a,b)$ in the drawing plane is carried to the tangent vector $D\sigma_{(u,v)}h$ on the sphere. Let $D=1+r^2$ and $t=ua+vb$. Differentiating the formula componentwise yields
+\[
+ D\sigma(h)=
+ \left(\frac{2a}{D}-\frac{4ut}{D^2},\,
+       \frac{2b}{D}-\frac{4vt}{D^2},\,
+       \frac{4t}{D^2}\right).
+\]
+Its squared Euclidean length simplifies in a rather satisfying way:
+\[
+ \begin{aligned}
+ \|D\sigma(h)\|^2
+ &=\frac{4(a^2+b^2)}{D^2}
+    -\frac{16t^2}{D^3}
+    +\frac{16t^2(r^2+1)}{D^4}\\
+ &=\frac{4}{(1+r^2)^2}\,(a^2+b^2).
+ \end{aligned}
+\]
+Polarization of this identity shows that \emph{all} tangent inner products are scaled by the same positive factor:
+\[
+ \boxed{(D\sigma)^T(D\sigma)
+  =\frac{4}{(1+u^2+v^2)^2}\,I_2.}
+\]
+Angles are therefore preserved, although lengths are multiplied locally by $2/(1+r^2)$. This is the meaning of a conformal coordinate chart. Near the origin, corresponding to the south pole, it magnifies lengths by a factor of two; at $r=1$, along the equator, the length factor equals one. Far from the origin, arbitrarily large planar distances can correspond to tiny movements close to the missing north pole.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.65,>=Stealth]
+ \draw[->,gray!70] (-1.45,0)--(2.6,0) node[right] {$u$};
+ \draw[->,gray!70] (0,-1.3)--(0,1.45) node[above] {$z$};
+ \draw[thick,teal!75!black] (0,0) circle (1);
+ \coordinate (N) at (0,1);
+ \coordinate (P) at (.8,.6);
+ \coordinate (Q) at (2,0);
+ \draw[thick,orange!80!black] (N)--(Q);
+ \fill (N) circle (1.6pt) node[above right] {$N$};
+ \fill[orange!85!black] (P) circle (1.8pt) node[above right] {$P$};
+ \fill (Q) circle (1.6pt) node[below] {$u=2$};
+ \node[font=\footnotesize,teal!75!black] at (-1.29,-.92) {$S^2$};
+\end{tikzpicture}
+\caption{Stereographic projection from the north pole. The line through $N=(0,1)$ and $P=(0.8,0.6)$ meets the horizontal coordinate plane at $u=2$, exactly as the projection formula predicts.}
+\end{figure}
+
+The metric factor also gives an area element on the sphere:
+\[
+ dS=\sqrt{\det((D\sigma)^TD\sigma)}\,du\,dv
+ =\frac{4}{(1+r^2)^2}\,du\,dv.
+\]
+As a useful check, integrating over the whole coordinate plane recovers the area of the unit sphere:
+\[
+ \begin{aligned}
+ \operatorname{Area}(S^2)
+ &=\int_0^{2\pi}\!\int_0^\infty
+   \frac{4r}{(1+r^2)^2}\,dr\,d\theta\\
+ &=2\pi\left[-\frac{2}{1+r^2}\right]_{0}^{\infty}
+ =4\pi.
+ \end{aligned}
+\]
+The missing north pole has area zero. This example joins the derivative, the tangent metric, conformality and integration without needing an abstract tensor formalism: the local linear map tells us exactly how much geometry survives a coordinate change.\footnote{A systematic treatment of stereographic coordinates and their first fundamental form appears in \href{https://scholarworks.iu.edu/dspace/bitstreams/d56d20ba-d997-499b-a2d0-7f1916d29048/download}{\emph{Differential Geometry}, Section 2.7}.}
+
 \section{Vector fields: tangent spaces glued along a space}
 
 A tangent vector lives at one point.  A vector field chooses a tangent vector at every point:

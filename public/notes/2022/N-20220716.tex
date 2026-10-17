@@ -1,239 +1,137 @@
-\notechapter{N-20220716}{Conic Exercises: Lines, Ellipses, Parabolas, and Tangents}
+\notechapter{N-20220716}{Conic Exercises: Tangency, Intersections at Infinity, and Polarity}
 
-\section{Line and ellipse}
+Substituting a line into a conic produces a quadratic equation, but a repeated root and a single \emph{finite} intersection are different statements. The distinction becomes clear in the projective description of conics, as developed in the Oxford projective geometry lectures.\footnote{\url{https://courses.maths.ox.ac.uk/course/section.php?id=10755}}
 
-The note continues the conic-section exercises.  A line and an ellipse can have three possible positional relationships:
-\[
-\begin{aligned}
-  \Delta>0&:\ \text{two intersections},\\
-  \Delta=0&:\ \text{tangent},\\
-  \Delta<0&:\ \text{no real intersection}.
-\end{aligned}
-\]
-This is obtained by substituting the line equation into the conic equation and examining the discriminant of the resulting quadratic.
+\section{A secant of an ellipse}
 
-For example, consider
+Consider the line \(y=2x-2\) and the ellipse
 \[
-  y=2x-2,\qquad
-  \frac{x^2}{5}+\frac{y^2}{4}=1.
+ \frac{x^2}{5}+\frac{y^2}{4}=1.
 \]
-Substitution gives
+After substitution,
 \[
-  \frac{x^2}{5}+\frac{(2x-2)^2}{4}=1,
+ \frac{x^2}{5}+\frac{(2x-2)^2}{4}=1
+ \quad\Longleftrightarrow\quad
+ \frac65x^2-2x=0.
 \]
-so
+The roots \(x=0\) and \(x=5/3\) give the intersection points
 \[
-  \frac65x^2-2x=0.
+ (0,-2),\qquad (5/3,4/3).
 \]
-Thus
-\[
-  x=0,\qquad x=\frac53,
-\]
-and the intersection points are
-\[
-  (0,-2),\qquad \left(\frac53,\frac43\right).
-\]
+Because the equation is genuinely quadratic, the discriminant distinguishes two real intersections, a repeated contact point, and no real intersection.
 
-\section{Tangents from a point to an ellipse}
+\section{Tangents to an ellipse from a specified point}
 
-Let
+Let \(E:x^2/a^2+y^2/b^2=1\) with \(a,b>0\). For the point \(P=(0,2)\), write a possible tangent as \(y=kx+2\). Substitution gives
 \[
-  C:\frac{x^2}{a^2}+\frac{y^2}{b^2}=1
+ \left(\frac1{a^2}+\frac{k^2}{b^2}\right)x^2
+ +\frac{4k}{b^2}x+\frac4{b^2}-1=0.
 \]
-and let \(P=(0,2)\).  A line through \(P\) has equation
+The discriminant vanishes exactly when
 \[
-  y=kx+2.
+ \boxed{k^2=\frac{4-b^2}{a^2}}.
 \]
-Substituting into the ellipse gives a quadratic in \(x\).  Tangency occurs exactly when the discriminant is zero.
+Consequently there are two real tangents when \(b<2\), one horizontal tangent when \(b=2\), and no real tangents when \(b>2\). The particular numerical slopes depend on \emph{both} semiaxes. A claimed pair of slopes without specifying \(a,b\) is insufficiently determined.
 
-For the example on the page, this produces
+The same result follows by using the tangent at \((x_0,y_0)\in E\),
 \[
-  k=\pm\frac{\sqrt6}{3},
+ \frac{x x_0}{a^2}+\frac{y y_0}{b^2}=1.
 \]
-so the two tangents are
-\[
-  y=\frac{\sqrt6}{3}x+2,\qquad
-  y=-\frac{\sqrt6}{3}x+2.
-\]
+It passes through \((0,2)\) precisely when \(y_0=b^2/2\). Substituting into the ellipse gives the same existence condition. This is a useful independent check of the discriminant calculation.
 
-\section{Line and hyperbola}
+\section{One Intersection without Tangency}
 
-For the hyperbola
+For \(x^2-y^2=2\) and \(y=x-1\), substitution gives
 \[
-  \frac{x^2}{2}-\frac{y^2}{2}=1,
+ x^2-(x-1)^2=2,\qquad x=\frac32,\quad y=\frac12.
 \]
-and the line
-\[
-  y=x-1,
-\]
-substitution gives
-\[
-  x^2-(x-1)^2=2.
-\]
-Hence
-\[
-  2x-1=2,\qquad x=\frac32,\qquad y=\frac12.
-\]
-The line is not tangent; it meets the hyperbola at one point because the equation degenerates to a linear equation after substitution.  This is a useful warning: for hyperbolas, ``one intersection'' need not mean tangency, because the line may be parallel to an asymptotic direction.
+The resulting equation is linear, so its unique affine solution is not a double root. The projective hyperbola is \(X^2-Y^2=2Z^2\), and the line is \(Y=X-Z\). At infinity \(Z=0\), these equations share the point \([1:1:0]\). The missing second projective intersection has moved to infinity, along an asymptotic direction. This explains why merely counting finite points is an unsafe test for tangency.
 
-\section{Parabola tangent through a point}
+\section{Correcting a parabola tangent calculation}
 
-For the parabola
+Take \(y=2x^2\) and \(P=(2,6)\). A line through \(P\) of slope \(k\) has equation \(y=kx+6-2k\). Contact requires a repeated root of
 \[
-  x^2=\frac12 y,
+ 2x^2-kx-6+2k=0.
 \]
-we have
+The discriminant equation is
 \[
-  y=2x^2.
+ k^2-8(-6+2k)=k^2-16k+48=(k-4)(k-12)=0.
 \]
-A line through \(P=(2,6)\) may be written
+Thus the actual tangents are
 \[
-  y=kx+6-2k.
+ \boxed{y=4x-2,\qquad y=12x-18.}
 \]
-Tangency means that
+The previously written negative slope does not satisfy the discriminant and is not a tangent through the stated point. We can verify the new answers by substitution: the first yields \(2(x-1)^2=0\); the second yields \(2(x-3)^2=0\).
+
+\section{A Focus-and-Circle Maximum}
+
+Consider \(x^2=2py\) with \(p>0\), focus \(F=(0,p/2)\), and the circle
 \[
-  2x^2=kx+6-2k
+ x^2+(y+4)^2=1.
 \]
-has a repeated root.  Thus
+Its center is \((0,-4)\); because \(F\) lies above the circle, the shortest focus-to-circle distance is \(p/2+3\). If this distance is \(4\), then \(p=2\), giving the parabola \(x^2=4y\).
+
+Parametrize tangent contact points by \(T(t)=(t,t^2/4)\). Its tangent equation is
 \[
-  2x^2-kx-6+2k=0,
+ y=\frac t2x-\frac{t^2}{4}.
 \]
-and the discriminant condition is
+For an intersection point \(P=(u,v)\), the two contact parameters \(t_1,t_2\) solve
 \[
-  k^2-4\cdot2(-6+2k)=0.
+ t^2-2ut+4v=0,\qquad
+ t_1+t_2=2u,\quad t_1t_2=4v.
 \]
-Solving gives
+They are real and distinct when \(u^2-4v>0\). Directly computing the determinant of the two vectors from \(P\) to \(T(t_1)\) and \(T(t_2)\) gives
 \[
-  k=12,\qquad k=-4.
+ [PT(t_1)T(t_2)]
+ =\frac{|t_1-t_2|^3}{16}
+ =\frac12(u^2-4v)^{3/2}.
 \]
-The tangent lines are therefore
+On the circle, \(u^2+(v+4)^2=1\), where \(-5\le v\le-3\). Therefore
 \[
-  y=12x-18,\qquad y=-4x+14.
+ u^2-4v=1-(v+4)^2-4v=21-(v+6)^2\le20.
+\]
+Equality is attained at \(P=(0,-5)\). Hence
+\[
+ \boxed{[PAB]_{\max}=\tfrac12 20^{3/2}=20\sqrt5.}
+\]
+The value comes from a verifiable extremum and explicit tangent geometry, not from an unexplained final number.
+
+
+\section{An ellipse area constraint requires specified vertices}
+
+Suppose the quadrilateral is formed by the four axis-intercepts
+\[
+ (\pm a,0),\qquad (0,\pm b)
+\]
+of \(x^2/a^2+y^2/b^2=1\). The quadrilateral is a rhombus with diagonals \(2a\) and \(2b\), so its area is \(2ab\). If it passes through \((0,-2)\) and the rhombus area is \(4\sqrt5\), then \(b=2\), \(a=\sqrt5\), and the ellipse is
+\[
+ \frac{x^2}{5}+\frac{y^2}{4}=1.
 \]
 
-\section{A parabola and a circle}
+\begin{caution}
+The condition that an unspecified quadrilateral inscribed in an ellipse has area \(4\sqrt5\) does not determine \(a\) from \(b=2\). The deduction \(2ab=4\sqrt5\) requires the stated axial vertices or an equivalent geometric condition.
+\end{caution}
 
-Consider the parabola
+For the line \(y=kx-3\) through \((0,-3)\), substituting into this ellipse produces
 \[
-  C:x^2=2py,\qquad p>0,
+ (4+5k^2)x^2-30kx+25=0.
 \]
-with focus \(F\), and a circle
+Its discriminant is
 \[
-  M:x^2+(y+4)^2=1.
+ (-30k)^2-100(4+5k^2)=400(k^2-1).
 \]
-The problem asks for \(p\) when the shortest distance between \(F\) and the circle is \(4\), and then asks for a maximal triangle area using two tangents from a point \(P\) on the circle.
+Thus two distinct real intersections occur exactly when \(|k|>1\), tangency when \(|k|=1\), and no real intersections when \(|k|<1\). Additional length constraints require the missing geometric definitions of their endpoints; no range for \(k\) should be quoted without them.
 
-Since the focus of \(x^2=2py\) is
-\[
-  F=\left(0,\frac p2\right),
-\]
-and the circle has center
-\[
-  O=(0,-4)
-\]
-and radius \(1\), the distance from \(F\) to the circle is
-\[
-  FO-1=\left(\frac p2+4\right)-1=\frac p2+3.
-\]
-Setting this equal to \(4\) gives
-\[
-  p=2.
-\]
-Hence the parabola is
-\[
-  x^2=4y.
-\]
+\section{Polarity packages tangent equations}
 
-For a tangent point \(A=(x_1,x_1^2/4)\) on \(x^2=4y\), the tangent has equation
+Over a field of characteristic different from two, let a nonsingular projective conic be \(X^TAX=0\), with \(A\) symmetric and invertible. At a point \(T\) of the conic, its tangent line is
 \[
-  xx_1=2(y+x_1^2/4),
+ T^TAX=0.
 \]
-or
+This follows by differentiating the quadratic equation:
 \[
-  y=\frac{x_1}{2}x-
-rac{x_1^2}{4}.
+ d(X^TAX)_T(H)=2T^TAH.
 \]
-Similarly for a second tangent point \(B=(x_2,x_2^2/4)\).  The two tangents meet at
-\[
-  P=\left(\frac{x_1+x_2}{2},\frac{x_1x_2}{4}\right).
-\]
-Using the condition that \(P\) lies on the circle gives an optimization problem for the area of triangle \(PAB\).  The computation in the page reduces it to a one-variable expression and obtains the maximum
-\[
-  [PAB]_{\max}=20\sqrt5.
-\]
+For an arbitrary projective point \(P\), the line \(P^TAX=0\) is its \emph{polar}. If \(P\) lies outside a real conic and has two real tangent-contact points \(T_1,T_2\), then those points both satisfy \(P^TAT_i=0\), so the polar is the chord joining them.
 
-\section{An ellipse with prescribed quadrilateral area}
-
-The final exercise considers an ellipse
-\[
-  E:\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,\qquad a>b>0,
-\]
-passing through \(A=(0,-2)\).  Four vertices form a quadrilateral of area \(4\sqrt5\).  Since \(A=(0,-2)\) lies on the ellipse, \(b=2\).  The area condition gives
-\[
-  2ab=4\sqrt5,
-\]
-so
-\[
-  a=\sqrt5.
-\]
-Therefore
-\[
-  E:\frac{x^2}{5}+\frac{y^2}{4}=1.
-\]
-
-For the line through \(P=(0,-3)\)
-\[
-  \ell:y=kx-3,
-\]
-intersecting the ellipse at \(B,C\), the equation is
-\[
-  \frac{x^2}{5}+\frac{(kx-3)^2}{4}=1.
-\]
-This gives a quadratic in \(x\).  The condition that the line meet the ellipse in two points is
-\[
-  k>1\quad\text{or}\quad k<-1.
-\]
-The problem then studies where the chords meet the line \(y=-3\) and imposes
-\[
-  |PM|+|PN|\le15.
-\]
-The computation on the page reduces this to
-\[
-  |k|\le3.
-\]
-Combining conditions gives
-\[
-  k\in[-3,-1)\cup(1,3].
-\]
-
-\section{Discriminants distinguish tangency from asymptotic intersection}
-
-The page is a concentrated exercise in the algebraic method for conics: substitute a line into a conic, read the discriminant, and interpret the result geometrically.  The only subtlety is that different conics behave differently: for ellipses, one intersection usually signals tangency; for hyperbolas, a line parallel to an asymptotic direction can produce a single finite intersection without being tangent.
-
-\section{Tangency via discriminants}
-
-A line intersecting a conic usually produces a quadratic equation in the line parameter.  Tangency occurs when the quadratic has a repeated root:
-\[
-  \Delta=0.
-\]
-This converts a geometric contact condition into algebra.  It is the same multiplicity idea that appears in polynomial factorization.
-
-\section{Polarity with respect to a conic}
-
-For a nondegenerate conic, a point outside the conic determines a polar line through its contact points with tangents.  In matrix form, if the conic is
-\[
-  X^TAX=0,
-\]
-then the polar of \(P\) is
-\[
-  P^TAX=0.
-\]
-This gives a projective explanation of many tangent-chord relations.
-
-\section{Area constraints and affine invariance}
-
-Some ellipse problems impose an area or quadrilateral condition.  Area changes by the determinant of an affine map.  Therefore one can often transform an ellipse to a circle, solve the symmetric problem, then transform back with the determinant factor.
-
-\section{Tangency, polarity, and affine normalization}
-
-Line-conic exercises are controlled by three ideas: intersection multiplicity, polar duality, and affine normalization.  The computations are coordinate expressions of these invariant geometric mechanisms.
+The projective argument clarifies why tangent-chord relations can be handled independently of Euclidean distances. The discriminant counts multiplicity on a line; the bilinear form describes tangency; and affine normalization can simplify ellipse calculations when an area factor is tracked by the determinant of the change of variables. None of these tools requires replacing an actual calculation with a slogan.

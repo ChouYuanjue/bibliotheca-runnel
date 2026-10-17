@@ -1,6 +1,6 @@
 \notechapter{N-20220813}{Contour Integrals: Parametrization, Exactness, Winding, and Residues}
 
-\section{A contour integral is a limit of transformed tangent increments}
+\section{Contour Integrals and Tangents}
 
 A contour is a piecewise \(C^1\) path
 \[
@@ -161,7 +161,7 @@ By continuity, the right-hand side tends to \(f(z)\).  Thus \(F'(z)=f(z)\).
 
 The topology of the domain enters in condition (iii): local primitives may exist while a global primitive fails because closed loops can carry nonzero periods.
 
-\section{Cauchy--Goursat turns holomorphicity into exactness on simple domains}
+\section{The Cauchy--Goursat Theorem}
 
 Suppose \(f=u+iv\) has continuous first partial derivatives on a region containing a positively oriented simple closed contour \(\gamma=\partial\Omega\).  Using the decomposition of \(f\,dz\) and Green's theorem,
 \[
@@ -297,7 +297,7 @@ The failure of a global logarithm on \(\mathbb C^*\) is the same phenomenon.  Lo
 \]
 but no single-valued logarithm exists around a loop of nonzero winding.
 
-\section{Cauchy's integral formula recovers interior values from the boundary}
+\section{Recovering Values from the Boundary}
 
 Let \(f\) be holomorphic on a neighborhood of a positively oriented simple closed contour \(\gamma\) and its interior, and let \(z\) lie inside.  Then
 \[
@@ -335,7 +335,7 @@ For example,
   =\pi i e.
 \]
 
-\section{Residues convert local Laurent coefficients into global integrals}
+\section{Residues and Global Integrals}
 
 If \(f\) has an isolated singularity at \(a\), its Laurent expansion is
 \[
@@ -383,3 +383,80 @@ For the smaller contour \(|z|=1/2\), only the pole at \(0\) is enclosed, so
 \]
 The integrand has not changed; the answer changes because the winding data relative to the poles has changed.
 
+\section{Counting zeros without solving a polynomial}
+
+Residues can count zeros, not only measure poles. Suppose $p$ is a polynomial with no zero on a counterclockwise simple closed contour $\gamma$. Near a zero $a$ of multiplicity $m$,
+\[
+ p(z)=(z-a)^m h(z),\qquad h(a)\ne0,
+ \qquad
+ \frac{p'(z)}{p(z)}=\frac{m}{z-a}+\frac{h'(z)}{h(z)}.
+\]
+The logarithmic derivative therefore has residue $m$ at this zero. Applying the residue theorem gives the \emph{argument principle}:
+\[
+ \boxed{\frac1{2\pi i}\int_\gamma\frac{p'(z)}{p(z)}\,dz
+ =\#\{\text{zeros inside }\gamma\},}
+\]
+counted with multiplicity. Equivalently, this number is the winding number of the \emph{image curve} $p\circ\gamma$ about the origin. The integral is well defined only if no zero lies on the contour.
+
+The striking step is that one can often count zeros without evaluating that integral. If $g$ and $h$ are holomorphic inside and on $\gamma$, and
+\[
+ \boxed{|h(z)|<|g(z)|\quad(z\in\gamma),}
+\]
+then the curves $g(\gamma(t))$ and $(g+h)(\gamma(t))$ have the same winding number around zero. To see why, consider the continuous deformation
+\[
+ H_s(z)=g(z)+s h(z),\qquad 0\le s\le1.
+\]
+On the boundary,
+\[
+ |H_s(z)|\ge|g(z)|-s|h(z)|>0.
+\]
+Throughout the deformation the image contour avoids zero, and winding number is integer-valued and cannot change continuously. The argument principle implies that $g$ and $g+h$ have the same number of zeros inside. This is Rouch\'e's theorem, derived directly from the homotopy invariance already used for contour integrals.
+
+For a worked problem, consider
+\[
+ p(z)=z^4+3z+1.
+\]
+On the smaller circle $|z|=1/2$, choose $g(z)=3z$ and $h(z)=z^4+1$. Then
+\[
+ |g(z)|=\frac32,\qquad
+ |h(z)|\le1+\frac1{16}=\frac{17}{16}<\frac32.
+\]
+The function $g$ has exactly one zero there, so $p$ has exactly \emph{one zero in $|z|<1/2$}. On $|z|=2$, choose $g(z)=z^4$ and $h(z)=3z+1$. This time
+\[
+ |g(z)|=16,\qquad |h(z)|\le7<16.
+\]
+Therefore $p$ has exactly \emph{four zeros in $|z|<2$}, namely all its zeros. Subtracting the counts proves that the intervening annulus
+\[
+ \boxed{\tfrac12<|z|<2}
+\]
+contains exactly three zeros. No quartic formula was needed.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.20,>=Stealth]
+ \draw[->,gray!65] (-2.35,0)--(2.42,0) node[right] {$\operatorname{Re}$};
+ \draw[->,gray!65] (0,-2.32)--(0,2.35) node[above] {$\operatorname{Im}$};
+ \draw[densely dashed,orange!90!black,thick] (0,0) circle (.5);
+ \draw[teal!75!black,thick] (0,0) circle (2);
+ \fill[orange!80!black] (-.33767,0) circle (2.8pt);
+ \fill[blue!80!black] (-1.30749,0) circle (2.8pt);
+ \fill[blue!80!black] (.82258,1.26032) circle (2.8pt);
+ \fill[blue!80!black] (.82258,-1.26032) circle (2.8pt);
+ \node[font=\footnotesize,orange!90!black,anchor=west] at (.41,-.39) {$r=\frac12$};
+ \node[font=\footnotesize,teal!75!black,anchor=west] at (1.54,1.51) {$r=2$};
+ \node[font=\footnotesize,align=center] at (-1.03,1.38) {three zeros\\in the annulus};
+ \node[font=\footnotesize,anchor=east] at (-.62,-.42) {one};
+\end{tikzpicture}
+\caption{Approximate positions of the four zeros of $z^4+3z+1$. The two root counts follow rigorously from boundary inequalities; the plotted positions are only a visual check.}
+\end{figure}
+
+We have followed a useful logical chain:
+\[
+ \begin{aligned}
+ \text{contour integrals}
+ &\longrightarrow\text{winding numbers}\\
+ &\longrightarrow\text{residues of }p'/p\\
+ &\longrightarrow\text{root counts stable under perturbation}.
+ \end{aligned}
+\]
+This is one reason analytic methods can tell us global facts about the solutions of algebraic equations without producing their individual roots.\footnote{For the argument principle and Rouch\'e's theorem with contour examples, see Jeremy Orloff, \href{https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/resources/mit18_04s18_topic11/}{MIT 18.04, Topic 11}.}

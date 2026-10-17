@@ -1,6 +1,6 @@
 \notechapter{N-20240323}{Combinatorics: Identities, Generating Functions, Catalan Numbers, and More}
 
-These exercises move from binomial identities and recurrences to convexity and graph walks.  What first looks like a mixed problem set gradually becomes a catalogue of ways to encode counting: by subsets, generating functions, recursive decompositions, convex combinations, and matrix powers.
+These exercises move from binomial identities and recurrences to convexity and graph walks.  What first looks like a mixed problem set gradually becomes a catalogue of ways to encode counting: by subsets, generating functions, recursive decompositions, convex combinations, and matrix powers. The Catalan-number derivations and their combinatorial models follow Alexander Postnikov's MIT 18.212 algebraic-combinatorics lectures.\footnote{\href{https://ocw.mit.edu/courses/18-212-algebraic-combinatorics-spring-2019/pages/lecture-notes/}{MIT 18.212, \emph{Algebraic Combinatorics}}, lecture notes.}
 
 \section{Binomial identities}
 
@@ -93,15 +93,23 @@ The notes also use generating functions to separate parity or color constraints.
 
 % N-20240323 overflow relief A
 \enlargethispage{4\baselineskip}
-\section{A probability example with repeated trials}
+\section{Independent Trials and Generating Functions}
 
-For repeated trials, a generating function rewrites nested binomial sums using exponentials.  The important method is not the final closed form alone but the transformation:
+For a nonnegative integer-valued random variable \(X\), its probability generating function is
 \[
-  \text{complicated convolution}
-  \quad\longrightarrow\quad
-  \text{product/composition of generating functions}.
+ G_X(t)=\mathbb E[t^X]=\sum_{k\ge0}\Pr(X=k)t^k.
 \]
-This is a standard way to turn repeated independent operations into algebra.  Binomial coefficients record choices; exponential series record independent counts; coefficient extraction recovers the desired probability.
+If \(X,Y\) are independent, then
+\[
+ G_{X+Y}(t)=\mathbb E[t^{X+Y}]
+ =\mathbb E[t^X]\mathbb E[t^Y]=G_X(t)G_Y(t).
+\]
+For example, one Bernoulli(\(p\)) trial has generating function \(1-p+pt\). Two independent batches of \(2\) and \(3\) such trials have respective generating functions \((1-p+pt)^2\) and \((1-p+pt)^3\). Their sum therefore has generating function
+\[
+ (1-p+pt)^5,\qquad
+ \Pr(X+Y=2)=\binom52p^2(1-p)^3.
+\]
+This is the probabilistic analogue of ordinary generating-function convolution: independence turns counting or probability of a sum into multiplication of series.
 
 \section{Catalan numbers}
 
@@ -145,15 +153,23 @@ For finitely many points $x_1,\ldots,x_k$, their convex hull is
 \]
 Induction on $k$ proves the claim: the case $k=2$ is the definition of a segment, and the induction step writes the convex combination as a combination of one point with a convex combination of the remaining points.
 
-\section{Separating convex sets}
+\section{Separating a point from a closed convex set}
 
-The note sketches a separation idea.  For two disjoint convex sets, one tries to find a point pair realizing minimal distance and then uses the perpendicular bisector of the segment between them as a separating line.  In symbols, if $u\in S_1$ and $v\in S_2$ are closest points, then the hyperplane perpendicular to $v-u$ near the midpoint separates the two sets.
-
-In finite-dimensional Euclidean geometry, this is the intuitive core of the separating hyperplane theorem.  Projection onto a line produces inequalities involving squared distances, and the algebra expands
+Let \(C\subset\mathbb R^n\) be nonempty, closed and convex, and let \(x\notin C\). Because squared distance to \(x\) is continuous and grows without bound at infinity, it attains a minimum at some \(y\in C\). For any \(z\in C\), convexity gives \(y+t(z-y)\in C\) for \(0\le t\le1\). The function
 \[
-  \|u+t(a-u)-v\|^2
+ \varphi(t)=\|x-y-t(z-y)\|^2
 \]
-for small $t$ and extracts a sign condition by letting $t\to0$.
+has its minimum at \(t=0\). Its right derivative therefore satisfies
+\[
+ 0\le \varphi'(0)=-2\langle x-y,z-y\rangle.
+\]
+Let \(\ell(v)=\langle x-y,v\rangle\). Then every \(z\in C\) obeys
+\[
+ \ell(z)\le\ell(y)<\ell(x),
+\]
+since \(\ell(x)-\ell(y)=\|x-y\|^2>0\). Thus an affine hyperplane strictly separates the point \(x\) from \(C\). The proof also explains the geometric role of projection onto a convex set.
+
+For two arbitrary disjoint convex sets, a closest pair need not exist; additional closedness, compactness or other hypotheses must be checked before applying this proof to both sets.
 
 \section{Planar graphs and Euler-type counting}
 
@@ -181,104 +197,41 @@ which counts all intermediate vertices $v_k$.  The general case follows by induc
 
 % N-20240323 overflow relief B
 \enlargethispage{4\baselineskip}
-\section{The deeper habit}
+\section{Catalan objects share a splitting rule}
 
-Several counting languages share one habit: replace a raw problem by a structure-preserving encoding.  Subsets become binomial coefficients, recursions become generating functions, triangulations become Catalan recurrences, convex hulls become linear combinations, and walks become matrix powers.
-
-\section{Generating functions as algebraic counting}
-A generating function packages a sequence into a formal series.  Products encode decomposition of objects, and coefficient extraction reads off counts:
+The parenthesizations of \(n+1\) ordered factors and the triangulations of a convex \((n+2)\)-gon are both counted by \(C_n\). Choosing the final binary operation or the triangle incident with a fixed edge splits the remaining object into independent left and right pieces. Both satisfy
 \[
-[x^n]A(x)B(x)=\sum_{k=0}^n a_kb_{n-k}.
+ C_0=1,\qquad
+ C_n=\sum_{i=0}^{n-1}C_iC_{n-1-i}.
 \]
-\section{Catalan structures}
-Catalan numbers count many recursively decomposable objects:
+A separate derivation uses Dyck paths. There are \(\binom{2n}{n}\) paths with \(n\) upward and \(n\) downward steps. The reflection principle bijects those that ever cross below the horizontal axis with paths containing \(n+1\) downward and \(n-1\) upward steps, giving
 \[
-C_n=\frac1{n+1}\binom{2n}{n}.
+ C_n=\binom{2n}{n}-\binom{2n}{n+1}
+ =\frac{1}{n+1}\binom{2n}{n}.
 \]
-Their generating function satisfies
+Recursion, generating functions and reflection now calculate the same number by distinct mechanisms; there is no need to restart the Catalan definition in several chapters of the same note.
+
+\section{Adjacency powers count walks}
+
+For a finite undirected graph with adjacency matrix \(A\), the entry
 \[
-C(x)=1+xC(x)^2.
+ (A^k)_{ij}
 \]
-The quadratic equation records the root-subtree decomposition.
-\section{Convex hulls and separation}
-The separating hyperplane theorem says disjoint convex sets can often be separated by a linear functional.  This is the geometric dual of optimization: a linear functional witnesses non-intersection.
-\section{Generating functions, Catalan recursion, and spectra}
-Binomial identities, generating functions, Catalan numbers, probability trials, and convex separation all share one habit: encode the structure so that algebraic or linear operations reveal the count or obstruction.
-
-\section{Catalan numbers as recursive geometry}
-
-Catalan numbers count many objects: correctly matched parentheses, triangulations of polygons, rooted binary trees, Dyck paths, and noncrossing partitions.  A standard formula is
+counts length-\(k\) walks from vertex \(i\) to vertex \(j\). For \(k=2\), this is
 \[
-  C_n=\frac1{n+1}\binom{2n}{n}.
+ (A^2)_{ij}=\sum_hA_{ih}A_{hj},
 \]
-The recursion
+which counts intermediate vertices. Inductively, a walk of length \(k+1\) consists of a length-\(k\) walk followed by one edge; matrix multiplication counts exactly these decompositions.
+
+If the graph is \(d\)-regular with \(d>0\), then \(P=A/d\) is the transition matrix for simple random walk. Because \(P\) is symmetric and each row sums to one, the uniform distribution is stationary. If the graph is also connected and non-bipartite, its remaining eigenvalues have modulus strictly less than one:
 \[
-  C_{n+1}=\sum_{i=0}^n C_iC_{n-i}
+ 1=\lambda_1(P),\qquad
+ \rho=\max_{2\le j\le n}|\lambda_j(P)|<1.
 \]
-comes from choosing the first return of a Dyck path or the root split of a binary tree.
+Expanding a probability vector in an orthonormal eigenbasis shows that its deviation from the uniform distribution decreases in Euclidean norm by at least the factor \(\rho^k\) after \(k\) steps. In a bipartite connected graph, the eigenvalue \(-1\) causes period-two oscillation, so convergence without averaging fails.
 
-The generating function $C(x)=\sum_{n\ge0}C_nx^n$ satisfies
-\[
-  C(x)=1+xC(x)^2.
-\]
-Solving gives
-\[
-  C(x)=\frac{1-\sqrt{1-4x}}{2x}.
-\]
-Thus an elementary recursion becomes an algebraic generating function.
+This distinction matters: the graph's second-largest signed eigenvalue is not enough; mixing is controlled by the largest \emph{absolute} nontrivial eigenvalue.
 
-\section{Lattice paths and reflection principle}
+\section{Which encoding should a problem use?}
 
-Many Catalan formulas are proved by the reflection principle.  The number of paths from $(0,0)$ to $(n,n)$ that never go above the diagonal is
-\[
-  \binom{2n}{n}-\binom{2n}{n+1}=\frac1{n+1}\binom{2n}{n}.
-\]
-The subtracted term counts bad paths by reflecting the part up to the first diagonal crossing.
-
-This is a model example of an involutive or bijective proof.  Rather than evaluating a sum, one constructs a symmetry pairing bad objects with easier objects.
-
-\section{Graph walks and adjacency matrices}
-
-If $G$ is a finite graph with adjacency matrix $A$, then
-\[
-  (A^k)_{ij}
-\]
-counts walks of length $k$ from vertex $i$ to vertex $j$.  This turns walk counting into matrix powers.
-
-If $A$ is diagonalizable with eigenvalues $\lambda_1,\ldots,\lambda_n$, the growth of walks is controlled by the largest eigenvalues.  In a regular connected graph, the largest eigenvalue is the degree, and the second-largest eigenvalue controls expansion and mixing.
-
-Thus an elementary graph-walk count leads directly to spectral graph theory.
-
-\section{Random walks and Markov chains}
-
-Normalize the adjacency matrix of a $d$-regular graph by
-\[
-  P=\frac1d A.
-\]
-Then $P$ is the transition matrix of a random walk.  The distribution after $k$ steps is
-\[
-  \pi_k=\pi_0P^k.
-\]
-Eigenvalues of $P$ determine convergence to stationarity.  If the graph is connected and non-bipartite, the walk converges to the uniform distribution.
-
-The same object has two readings: $A^k$ counts deterministic walks, while $P^k$ describes probabilities.  These finite graph-walk calculations are the beginning of Markov-chain theory.
-
-\section{Catalan recursion and parenthesization}
-
-Polygon triangulations and parenthesizations are the same combinatorial structure.  A triangulation of an $(n+2)$-gon corresponds to a way of multiplying $n+1$ factors with binary parentheses.  Choosing the triangle incident to a fixed edge splits the polygon into two smaller polygons, producing the Catalan recursion.
-
-This is the combinatorics behind the associahedron, a polytope whose vertices are parenthesizations and whose edges are single reassociations:
-\[
-  (ab)c\leftrightarrow a(bc).
-\]
-The elementary Catalan count therefore touches the geometry of moduli spaces of bracketings.
-
-\section{Adjacency spectra and expansion}
-
-The theorem that $(A^k)_{ij}$ counts walks becomes much stronger when combined with eigenvalues.  If a graph is $d$-regular with adjacency eigenvalues
-\[
-  d=\lambda_1\ge |\lambda_2|\ge\cdots,
-\]
-then $|\lambda_2|$ controls how quickly random walks mix and how well the graph expands.
-
-Expander graphs are sparse graphs that behave like highly connected graphs.  They are central in theoretical computer science, coding theory, and combinatorics.  The elementary walk-counting matrix is the first tool for studying them.
+Subsets and chains naturally invite binomial coefficients; independent decomposition produces products of generating functions; recursively split polygon triangulations produce Catalan numbers; convex hulls encode finite weighted averages; graph walks are encoded by powers of an adjacency matrix. The point of identifying the encoding is that it yields a calculable identity or a proof, with its conditions made explicit, rather than an analogy based on shared vocabulary.

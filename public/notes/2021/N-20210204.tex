@@ -166,12 +166,34 @@ For (ii), if \(h\) exists and \(f\circ h=1_B\), then every \(b\in B\) equals \(f
 The last choice of one element from each fibre is exactly where the Axiom of Choice may enter.  This point will reappear in the chapter on choice and cardinal numbers.
 \end{caution}
 
-\section{Set-level bookkeeping behind functions}
+\section{A right inverse hides a choice function}
 
-The calculations in this note are elementary only after the ambient set has been fixed.  Russell's class shows why the notation
+Consider a surjection
 \[
-  \{x\mid P(x)\}
+ f:\{a,b,c\}\longrightarrow\{r,s\},
+ \qquad f(a)=f(b)=r,\quad f(c)=s.
 \]
-cannot be used without asking whether the collection is actually a set.  Once a set \(A\) is available, the usual constructions are safe: subsets live in \(\mathcal P(A)\), indexed unions and intersections are formed from a family \((A_i)_{i\in I}\), and membership proofs reduce identities such as De Morgan's laws to quantifier manipulations.
+There are two possible right inverses: the image of $r$ may be either $a$ or $b$, while the image of $s$ must be $c$. A right inverse does exactly what its formula says: it chooses one representative from every nonempty fibre.
 
-For functions the same bookkeeping reappears in a more operational form.  The inverse image \(f^{-1}(T)\) is always defined for \(T\subseteq B\), while the image \(f(S)\) depends on the part of the domain actually hit.  Injectivity is detected by a left inverse \(g\circ f=1_A\); surjectivity is detected by a right inverse \(f\circ h=1_B\).  The construction of \(g\) for an injection uses only a single default element of \(A\), whereas the construction of \(h\) for a surjection asks for one chosen element from each fibre \(f^{-1}(b)\).  That fibre-by-fibre choice is the exact point to remember when the later notes discuss the Axiom of Choice and cardinal comparison.
+For a general surjection $f:A\to B$, those fibres form a family
+\[
+ \bigl(f^{-1}(\{b\})\bigr)_{b\in B}.
+\]
+A section $s:B\to A$ satisfying $f\circ s=1_B$ is precisely a simultaneous choice of one element from each member of that family. For a finite $B$, finitely many individual choices suffice. For an arbitrary family, this is where a set-theoretic axiom enters.
+
+\begin{theorem}[A useful equivalent form of Choice]
+Over ZF set theory, the Axiom of Choice is equivalent to the assertion that every surjection of sets admits a right inverse.
+\end{theorem}
+
+\begin{proof}
+If Choice holds and $f:A\to B$ is onto, choose $s(b)\in f^{-1}(\{b\})$ for every $b$. Then $f(s(b))=b$.
+
+Conversely, take any indexed family $(X_i)_{i\in I}$ of nonempty sets. Its disjoint union
+\[
+ E=\coprod_{i\in I}X_i
+   =\{(i,x):i\in I,\ x\in X_i\}
+\]
+has a natural surjection $\pi:E\to I$, $(i,x)\mapsto i$. By hypothesis it has a section $s:I\to E$. Writing $s(i)=(i,c(i))$ defines a choice function $c(i)\in X_i$. The assertion for all surjections therefore supplies a choice function for every such family.
+\end{proof}
+
+It is the same elementary fibre picture in both directions. The subtlety is that constructing a right inverse for one explicitly given finite function is easy, whereas asserting their existence for \emph{all} surjections is already the full Axiom of Choice.

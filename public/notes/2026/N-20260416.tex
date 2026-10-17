@@ -1,184 +1,140 @@
-\notechapter{N-20260416}{Line Integrals and Surface Integrals of the First and Second Kind}
+\notechapter{N-20260416}{Integrating Along Curves and Across Surfaces: Densities and Forms}
 
-\section{Two meanings of integration on curves}
+A wire carrying mass and a force acting along the same wire lead to different integrals. Mass accumulates according to length, while work is sensitive to the direction of motion. The analogous distinction on a surface is between accumulated scalar density and signed flux. The formulas become much easier to remember once we derive them from parametrizations and recognize that only the oriented integrals are differential forms.\footnote{\href{https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/surface_integrls/}{MIT 18.02, \emph{Surface Integrals}}, supplementary note V9.}
 
-There are two common line integrals, and they answer different questions.
+\section{Length versus Displacement Integrals}
 
-A first-kind line integral integrates a scalar density along length:
+Let \(\gamma:[a,b]\to\mathbb R^3\) be a continuously differentiable regular curve. A small parameter interval of length \(dt\) corresponds to arc length
 \[
-  \int_C f\,ds.
+ ds=\|\gamma'(t)\|\,dt.
 \]
-A second-kind line integral integrates a vector field along an oriented curve:
+Thus a scalar density \(\rho\) distributed along a wire has total mass
 \[
-  \int_C P\,dx+Q\,dy+R\,dz=\int_C F\cdot dr.
+ \boxed{\int_\gamma\rho\,ds
+       =\int_a^b\rho(\gamma(t))\|\gamma'(t)\|\,dt.}
 \]
-The first is about amount distributed along a curve.  The second is about work or circulation.
+The norm is essential: it makes the contribution nonnegative when the orientation is reversed.
 
-\section{Line integrals with respect to arc length}
-
-Let \(C\) be parametrized by \(r(t)=(x(t),y(t),z(t))\), \(a\le t\le b\).  Then
+A force field \(F\) performs signed work
 \[
-  ds=\norm{r'(t)}\,dt,
+ \boxed{\int_\gamma F\cdot d\mathbf r
+       =\int_a^b F(\gamma(t))\cdot\gamma'(t)\,dt.}
 \]
-and
+Its integrand is a signed projection onto the displacement direction. Traversing the path backward changes the sign.
+
+On a circle \(\gamma(t)=(R\cos t,R\sin t)\), \(0\le t\le2\pi\), a linear density \(\rho=x^2+y^2\) gives
 \[
-  \int_C f\,ds=\int_a^b f(r(t))\norm{r'(t)}\,dt.
+ \int_\gamma\rho\,ds=2\pi R^3.
 \]
-This integral does not depend on orientation.
-
-\begin{example}
-For the circle \(r(t)=(R\cos t,R\sin t)\), \(0\le t\le2\pi\), and \(f(x,y)=x^2+y^2\),
+For the tangential field \(F=(-y,x)\), however,
 \[
-  \int_C f\,ds=\int_0^{2\pi}R^2\cdot R\,dt=2\pi R^3.
+ F(\gamma(t))\cdot\gamma'(t)=R^2,\qquad
+ \int_\gamma F\cdot d\mathbf r=2\pi R^2.
 \]
-\end{example}
+The distinction can be observed physically: mass does not change when the wire is traversed in the opposite direction; work does.
 
-\section{Line integrals of vector fields}
+\section{Why Arc-Length Uses an Absolute Value}
 
-For \(F=(P,Q,R)\),
+Suppose \(\widetilde\gamma(s)=\gamma(\phi(s))\), where \(\phi\) is a smooth monotone bijection of parameter intervals. Then
 \[
-  \int_C F\cdot dr
-  =\int_a^b F(r(t))\cdot r'(t)\,dt.
+ \widetilde\gamma'(s)=\gamma'(\phi(s))\phi'(s).
 \]
-In coordinates,
+For length, the speed transforms with \(|\phi'(s)|\). The absolute value compensates for any reversal of parameter direction, leaving the mass integral unchanged.
+
+For work, the derivative \(\phi'(s)\) retains its sign. If \(\phi\) reverses the interval, the work integral changes sign. This difference between absolute and signed Jacobian factors is the local reason the two line-integral formulas have different orientation behavior.
+
+The work integral can be written using the differential one-form
 \[
-  \int_C P\,dx+Q\,dy+R\,dz
-  =\int_a^b(Px'(t)+Qy'(t)+Rz'(t))\,dt.
+ \alpha=F_1\,dx+F_2\,dy+F_3\,dz.
 \]
-Reversing orientation changes the sign.
-
-\begin{example}
-Let \(F=(-y,x)\) and let \(C\) be the unit circle traversed counterclockwise, \(r(t)=(\cos t,\sin t)\).  Then
+Along \(\gamma\), its pullback is
 \[
-  F(r(t))=(-\sin t,\cos t),\qquad r'(t)=(-\sin t,\cos t),
+ \gamma^*\alpha=
+ \bigl(F(\gamma(t))\cdot\gamma'(t)\bigr)\,dt.
 \]
-so
+Thus \(\int_\gamma\alpha=\int_{[a,b]}\gamma^*\alpha\). Pullback explains the whole calculation without requiring the parameter to have any intrinsic physical meaning.
+
+\section{Area is the Gram determinant of the tangent vectors}
+
+For a smooth parametrized surface \(r:D\subset\mathbb R^2\to\mathbb R^3\), the vectors \(r_u,r_v\) span a tangent parallelogram. Its area is
 \[
-  \int_C F\cdot dr=\int_0^{2\pi}1\,dt=2\pi.
+ \|r_u\times r_v\|\,du\,dv
+ =\sqrt{\langle r_u,r_u\rangle\langle r_v,r_v\rangle
+        -\langle r_u,r_v\rangle^2}\,du\,dv.
 \]
-This is circulation around the origin.
-\end{example}
-
-\section{Surface integrals of scalar fields}
-
-Let a surface \(S\) be parametrized by \(r(u,v)\), \((u,v)\in D\).  The surface area element is
+The square root is the Gram determinant of the induced metric on the parameter domain. Therefore the scalar surface integral is
 \[
-  dS=\norm{r_u\times r_v}\,du\,dv.
+ \boxed{\iint_S f\,dS
+       =\iint_D f(r(u,v))\|r_u\times r_v\|\,du\,dv.}
 \]
-The first-kind surface integral is
+Like arc length, area is insensitive to a reversal of orientation.
+
+For the lateral surface of a cylinder of radius \(R\) and height \(H\), take
 \[
-  \iint_S f\,dS
-  =\iint_D f(r(u,v))\norm{r_u\times r_v}\,du\,dv.
+ r(\theta,z)=(R\cos\theta,R\sin\theta,z),
+ \quad 0\le\theta\le2\pi,\quad0\le z\le H.
 \]
-It integrates scalar density over area and does not require an orientation.
-
-\begin{example}
-For the graph \(z=g(x,y)\), use \(r(x,y)=(x,y,g(x,y))\).  Then
+Since \(\|r_\theta\times r_z\|=R\), the integral of \(f(x,y,z)=z^2\) is
 \[
-  r_x\times r_y=(-g_x,-g_y,1),\qquad
-  dS=\sqrt{1+g_x^2+g_y^2}\,dx\,dy.
+ \iint_S z^2\,dS
+ =R\int_0^{2\pi}\int_0^H z^2\,dz\,d\theta
+ =\frac{2\pi RH^3}{3}.
 \]
-\end{example}
+The calculation is just length around the circumference times the integral of density over height, but the Gram factor makes it independent of which parameters describe the cylinder.
 
-\section{Flux integrals}
+\section{Flux uses the oriented area vector}
 
-A flux integral measures how much a vector field crosses an oriented surface.  If \(S\) is parametrized by \(r(u,v)\), then
+A flux integral measures the component of a vector field \(F\) crossing the chosen side of a surface:
 \[
-  \iint_S F\cdot n\,dS
-  =\iint_D F(r(u,v))\cdot(r_u\times r_v)\,du\,dv,
+ \iint_S F\cdot n\,dS
+ =\iint_D F(r(u,v))\cdot(r_u\times r_v)\,du\,dv,
 \]
-where the direction of \(r_u\times r_v\) determines the orientation.
+provided \(r_u\times r_v\) gives the prescribed orientation.
 
-Reversing the normal reverses the sign.  This is the surface analogue of reversing a line integral of a vector field.
-
-\section{First kind versus second kind}
-
+For the same cylinder, \(r_\theta\times r_z=(R\cos\theta,R\sin\theta,0)\) points outward. Let \(F=(x,y,0)\), so the field points radially away from the axis. Then
 \[
-\begin{array}{c|c|c}
-\text{object} & \text{first kind} & \text{second kind}\\
-\hline
-\text{curve} & \int_C f\,ds & \int_C F\cdot dr\\
-\text{surface} & \iint_S f\,dS & \iint_S F\cdot n\,dS
-\end{array}
+ F(r)\cdot(r_\theta\times r_z)=R^2,\qquad
+ \boxed{\iint_{\text{lateral }S}F\cdot n\,dS=2\pi R^2H.}
 \]
+The top and bottom caps contribute zero because \(F\) is horizontal. Since \(\operatorname{div}F=2\) and the cylinder's volume is \(\pi R^2H\), the divergence theorem gives the same total flux \(2\pi R^2H\). The direct parametrization and the volume calculation provide independent checks of the orientation and scale.
 
-First-kind integrals use metric size: length or area.  Second-kind integrals use orientation: direction along a curve or normal direction through a surface.
+\section{A vector field gives a one-form and a two-form}
 
-\section{Parametrization invariance}
-
-A geometric integral should not depend on the particular parametrization.  For \(\int_C f\,ds\), reparametrizing a curve changes \(\norm{r'(t)}dt\) in exactly the compensating way.  For \(\int_C F\cdot dr\), orientation-preserving reparametrizations leave the value unchanged, while orientation reversal changes sign.
-
-For surfaces, changing parameters multiplies the area element by the absolute Jacobian in first-kind integrals.  In flux integrals, the sign of the Jacobian records whether the orientation is preserved or reversed.
-
-\section{Differential forms viewpoint}
-
-A vector-field line integral in \(\mathbb R^3\) can be read as the integral of a one-form
+In oriented Euclidean \(\mathbb R^3\), the vector field \(F=(P,Q,R)\) gives a one-form
 \[
-  \omega=P\,dx+Q\,dy+R\,dz.
+ \alpha_F=P\,dx+Q\,dy+R\,dz
 \]
-A flux integral corresponds to the two-form
+and a two-form
 \[
-  \omega_F=P\,dy\wedge dz+Q\,dz\wedge dx+R\,dx\wedge dy.
+ \beta_F=P\,dy\wedge dz+Q\,dz\wedge dx+R\,dx\wedge dy.
 \]
-Parametrization formulas are pullback formulas for these forms.
+The one-form measures work along tangent vectors; the two-form measures flux across oriented tangent parallelograms.
 
-This viewpoint explains why orientation is built into second-kind integrals but not into scalar length or area integrals.
-
-\section{Orientability warning}
-
-Flux through a surface requires a consistent choice of normal.  Spheres and tori are orientable; a Möbius strip is not.  On a non-orientable surface, a globally defined flux integral needs extra care or must be treated locally.
-
-\section{Densities versus differential forms}
-
-The first-kind line integral and the second-kind line integral look similar only because both are written with an integral sign.  Their transformation laws are different.
-
-For a curve \(r(t)\), arclength is a density:
+These are related by the Euclidean Hodge star:
 \[
-  ds=\norm{r'(t)}\,dt.
+ \boxed{\beta_F=\star\alpha_F.}
 \]
-The absolute value makes it insensitive to orientation.  By contrast, a one-form pulls back as
+The star depends on the metric and orientation. It encodes the operation of converting a tangent direction into the complementary oriented area direction.
+
+For a parametrization \(r(u,v)\), the two-form pulls back to
 \[
-  r^*(P\,dx+Q\,dy+R\,dz)
-  =(P(r(t))x'(t)+Q(r(t))y'(t)+R(r(t))z'(t))\,dt.
+ r^*\beta_F=
+ \bigl(F(r(u,v))\cdot(r_u\times r_v)\bigr)\,du\wedge dv.
 \]
-If \(t\) is reversed, \(dt\) changes sign, so the integral changes sign.  This is the exact mathematical distinction between density and form.
+The vector-calculus flux formula is exactly this pullback formula.
 
-\section{Flux and the Hodge star}
-
-In Euclidean three-space, a vector field \(F=(P,Q,R)\) can be converted into a two-form by the Hodge star:
+Exterior differentiation then reproduces the two standard differential operators:
 \[
-  F\cdot dS
-  \quad\longleftrightarrow\quad
-  \omega_F=P\,dy\wedge dz+Q\,dz\wedge dx+R\,dx\wedge dy.
+ d\alpha_F=(\operatorname{curl}F)\cdot d\mathbf S,
+ \qquad
+ d\beta_F=(\operatorname{div}F)\,dx\wedge dy\wedge dz.
 \]
-If \(r(u,v)\) parametrizes a surface, then
-\[
-  \iint_S F\cdot n\,dS=\iint_D r^*\omega_F.
-\]
-Expanding this pullback gives exactly the cross-product formula
-\[
-  F(r(u,v))\cdot(r_u\times r_v)\,du\,dv.
-\]
-Thus the vector-calculus formula is not arbitrary: it is the coordinate expression of pulling back a two-form.
+Here \((\operatorname{curl}F)\cdot d\mathbf S\) means the two-form built from the curl by the same rule used for \(\beta_F\). Integrating these identities yields the familiar Stokes and divergence theorems as different degree cases of \(\int_{\partial M}\omega=\int_Md\omega\).
 
-\section{Boundary orientation is not a sign convention}
+\section{Nonorientability is a genuine obstruction}
 
-For Stokes-type theorems, the orientation of a boundary is forced by the orientation of the interior.  In the plane, positive orientation means the region stays on the left as one traverses the boundary.  On an oriented surface, the boundary orientation is determined by the right-hand rule.
+The factor \(\|r_u\times r_v\|\) makes scalar surface integration possible even on a Möbius strip, because local area elements agree after changing charts. To define signed flux, however, the normal must vary continuously and consistently across the entire surface. A Möbius strip has no global continuous choice of unit normal.
 
-This matters because the theorem
-\[
-  \int_{\partial M}\omega=\int_M d\omega
-\]
-can only be correct when the two orientations are compatible.  A wrong sign in a flux or circulation problem is often not a computational accident; it means the boundary orientation and interior orientation were not matched.
+One can still integrate a scalar density over it, and a chosen local patch can carry flux relative to a local normal. But a global signed flux through the whole Möbius strip has no canonical meaning for a general field. The failure is topological: the obstruction remains even with arbitrarily accurate parametrization formulas.
 
-\section{Non-orientability as a real obstruction}
-
-A scalar surface integral \(\iint_S f\,dS\) makes sense on a Möbius strip because area does not need a global normal.  A flux integral \(\iint_S F\cdot n\,dS\) needs a consistent normal direction.  The Möbius strip has no such global choice.
-
-This is a topological obstruction, not a defect of parametrization.  Locally one can always choose a normal; globally the choices may return reversed after going once around the strip.  Vector calculus is already detecting orientability.
-
-\section{What the parametrization is responsible for}
-
-First-kind integrals integrate scalar densities against geometric measure.  For a curve this means that the parametrization contributes the speed \(\norm{r'(t)}\); for a surface it contributes the area factor \(\norm{r_u\times r_v}\).  Changing parameters should not change the value, because these factors exactly compensate for stretching or compressing the parameter domain.
-
-Second-kind integrals keep orientation.  A line integral of work uses the directed tangent displacement \(dr\), and a flux integral uses the oriented normal vector \(r_u\times r_v\) or a chosen unit normal \(n\).  This is why reversing orientation changes the sign of work and flux but not the sign of scalar length or area.  The Möbius-strip example marks the boundary of the usual formula: scalar surface area is still meaningful, but a global flux integral is not available until a consistent normal direction has been chosen.
+This separates the roles of metric, orientation and topology. The metric supplies lengths and areas. Orientation supplies the signs for work and flux. Topology determines whether an orientation can be chosen globally. Once those roles are clear, the first-kind and second-kind integration formulas follow naturally from the geometry of what is being accumulated.

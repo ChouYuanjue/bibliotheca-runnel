@@ -1,6 +1,6 @@
 \notechapter{N-20230118}{Local Information, Global Structure: Pigeonhole, Ramsey, Radon, and Helly}
 
-\section{Pigeonhole is an averaging theorem with a design problem hidden inside}
+\section{Pigeonhole as Averaging}
 
 If \(N\) objects are placed into \(r\) boxes, some box contains at least
 \[
@@ -21,7 +21,7 @@ possible patterns.  Among nine elements, two have the same pattern and therefore
 
 The conclusion is not merely “two objects coincide.”  A carefully chosen finite state space forces two complicated objects to become indistinguishable with respect to all recorded tests.
 
-\section{Partial sums turn a divisibility problem into a finite-state collision}
+\section{Partial Sums and Divisibility}
 
 Let \(a_1,\ldots,a_n\) be integers.  There is always a nonempty consecutive block whose sum is divisible by \(n\).
 
@@ -48,7 +48,7 @@ Subtracting gives
 
 The objects are partial histories, the boxes are residue states, and a collision cancels the common prefix.  This pattern appears throughout additive combinatorics and automata: encode a running process in finitely many states, then use repetition to extract a structured segment.
 
-\section{Repeated pigeonhole becomes sequential compactness on an interval}
+\section{Pigeonhole and Sequential Compactness}
 
 Let \((x_n)\) be an infinite sequence in \([0,1]\).  Divide the interval into two closed halves.  At least one half contains infinitely many terms; call it \(I_1\).  Divide \(I_1\) into two halves and choose one, \(I_2\), that again contains infinitely many terms.  Continuing gives nested intervals
 \[
@@ -81,7 +81,7 @@ Hence
 
 This is Bolzano--Weierstrass on \([0,1]\).  The infinite conclusion is built by iterating a finite pigeonhole step at finer and finer scales.  In a compact metric space, finite covers by small balls play the role of interval subdivisions.
 
-\section{Ramsey theory forces a pattern, not merely a repeated label}
+\section{Ramsey's Forced Patterns}
 
 Color every edge of the complete graph \(K_6\) red or blue.  Choose a vertex \(v\).  Among the five edges incident to \(v\), at least three have the same color; suppose
 \[
@@ -139,7 +139,7 @@ so \(a\le b\).  Every interval contains the segment \([a,b]\), and therefore
 
 Pairwise intersection is enough in one dimension because the order lets one reduce all left endpoints to their maximum and all right endpoints to their minimum.  In higher dimensions there is no total order of boundaries; convexity and affine dependence replace it.
 
-\section{Radon's theorem is an affine dependence split into two convex combinations}
+\section{Radon's Theorem from Affine Dependence}
 
 \begin{theorem}[Radon]
 Any \(d+2\) points in \(\mathbb R^d\) can be partitioned into two disjoint sets whose convex hulls intersect.
@@ -181,7 +181,7 @@ Both sides are convex combinations.  Their common value lies in
 
 The Radon partition is the geometric form of a minimal affine dependence.  In oriented-matroid language, such a signed dependence is the prototype of a circuit.
 
-\section{Helly's theorem follows by applying Radon to carefully chosen witnesses}
+\section{Helly's Theorem via Radon}
 
 \begin{theorem}[Finite Helly]
 Let \(C_1,\ldots,C_m\) be convex subsets of \(\mathbb R^d\), with \(m\ge d+1\).  If every \(d+1\) of them have nonempty intersection, then
@@ -215,7 +215,7 @@ If \(k\in J\), use the convex hull indexed by \(I\).  If \(k>d+2\), every \(x_i\
 
 The proof shows exactly where the number \(d+1\) comes from: Radon's affine dependence begins at \(d+2\) points.
 
-\section{Carathéodory reduces a large convex representation to \texorpdfstring{$d+1$}{d+1} points}
+\section{Carathéodory's Reduction}
 
 \begin{theorem}[Carathéodory]
 If \(x\in\operatorname{conv}S\subset\mathbb R^d\), then \(x\) lies in the convex hull of at most \(d+1\) points of \(S\).
@@ -261,19 +261,68 @@ In one dimension, the sets are intervals.  Intersecting pairs are edges of an in
 
 The conclusion is weaker than total intersection but robust under noise.  It is an extremal version of Helly rather than a different slogan about local-to-global behavior.
 
-\section{The nerve records exactly which subfamilies intersect}
+\section{Three disks and one missing triangle}
 
-For a finite family \(\mathcal F=\{U_i\}_{i\in I}\), its nerve is the simplicial complex
+For a finite family of sets $\mathcal F=\{U_i\}_{i\in I}$, its \emph{nerve} is the simplicial complex
 \[
-  N(\mathcal F)
-  =\{J\subseteq I:\bigcap_{j\in J}U_j\ne\varnothing\}.
+ N(\mathcal F)=
+ \left\{J\subseteq I:\bigcap_{j\in J}U_j\ne\varnothing\right\}.
 \]
-Vertices represent sets, edges represent pairwise intersections, triangles represent triple intersections, and higher simplices represent higher common intersections.
+Vertices record sets, edges record pairwise intersections, and a filled triangle appears precisely when three sets share a point. The nerve theorem says that if the sets form a suitable open \emph{good cover}---every nonempty finite intersection is contractible---then
+\[
+ \boxed{\bigcup_{i\in I}U_i\simeq N(\mathcal F)}
+\]
+up to homotopy equivalence. For convex sets the intersection condition is automatic. This is the topological mechanism behind Helly-type theorems: information about intersections of small subfamilies constrains which simplices, and hence which holes, the nerve may have.
 
-Take three open disks arranged in a ring so that every pair intersects but the triple intersection is empty.  The nerve consists of three vertices and three edges but no filled triangle.  It is the boundary of a triangle, homotopy equivalent to a circle.  The union of the disks also has a central hole.
+Here is also a short homological explanation of the number $d+1$ in a topological version of Helly's theorem. Suppose a finite good cover by open subsets of $\mathbb R^d$ has at least $d+1$ members, every $d+1$ members meet, yet the whole family has empty intersection. Choose a \emph{smallest} subfamily with empty intersection, of size $m\ge d+2$. Every proper subfamily meets, so its nerve is the boundary of an $(m-1)$-simplex, a sphere $S^{m-2}$. The nerve theorem would then give
+\[
+ \widetilde H_{m-2}\!\left(\bigcup_{i=1}^mU_i\right)
+ \cong\widetilde H_{m-2}(S^{m-2})\ne0.
+\]
+But an open subset of $\mathbb R^d$ has no nonzero homology in degrees $j\ge d$. Therefore $m-2<d$, or $m\le d+1$. In particular, if every $d+1$ members meet, no empty intersection can exist. Convex families are good covers, so classical Helly is included.
 
-The nerve theorem makes this precise: if every nonempty finite intersection in the family is contractible, then the union is homotopy equivalent to the nerve.  Such a family is called a good cover.
+A small geometric experiment makes the nerve theorem almost visible. Put three centers at the vertices of an equilateral triangle of side $1$,
+\[
+ p_1=(0,0),\qquad p_2=(1,0),\qquad
+ p_3=\left(\frac12,\frac{\sqrt3}{2}\right),
+\]
+and draw open disks $U_i=B(p_i,r)$ of the same radius.
 
-A topological Helly theorem follows under acyclicity hypotheses.  For a finite family of open subsets of \(\mathbb R^d\), assume every nonempty finite intersection is contractible, or more generally has the required vanishing reduced homology.  If every \(d+1\) members intersect, then the whole family intersects.  Convex sets satisfy the hypotheses because every nonempty convex intersection is contractible.
+Two disks meet as soon as $2r>1$, so $r>\frac12$ ensures \emph{every pair} intersects. But a point can belong to all three disks only if its maximum distance from the three centers is less than $r$. Symmetry, or a short smallest-enclosing-circle argument, shows that the least possible maximum distance is the circumradius $1/\sqrt3$. Thus if
+\[
+ \boxed{\frac12<r<\frac1{\sqrt3},}
+\]
+every pair intersects but the triple intersection is empty. Take $r=11/20$.
 
-The three-disk ring explains what the topology is detecting.  Pairwise data alone allow a one-dimensional hole; filling the triple intersection fills the missing simplex in the nerve.  Topological Helly theorems control which holes an intersection pattern could create in dimension \(d\), replacing linear convexity by precise homological conditions.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.08]
+ \coordinate (p1) at (0,0);
+ \coordinate (p2) at (2,0);
+ \coordinate (p3) at (1,1.73205);
+ \draw[teal!76!black,thick] (p1) circle (1.10);
+ \draw[teal!76!black,thick] (p2) circle (1.10);
+ \draw[teal!76!black,thick] (p3) circle (1.10);
+ \foreach \P in {p1,p2,p3}\fill[teal!80!black] (\P) circle (1.7pt);
+ \node[font=\footnotesize] at (1,-1.55) {three overlapping disks};
+ \begin{scope}[xshift=5.0cm]
+  \draw[orange!85!black,very thick] (0,0)--(2,0)--(1,1.73205)--cycle;
+  \foreach \x/\y/\t in {0/0/1,2/0/2,1/1.73205/3}{
+   \fill[orange!85!black] (\x,\y) circle (2pt);
+   \node[font=\footnotesize,above right] at (\x,\y) {$\t$};
+  }
+  \node[font=\footnotesize] at (1,-1.55) {their nerve: an unfilled triangle};
+ \end{scope}
+\end{tikzpicture}
+\caption{All three pairwise intersections are nonempty, so every nerve edge is present. The missing triple intersection leaves out the two-dimensional face.}
+\end{figure}
+
+The nerve is exactly the boundary of a triangle:
+\[
+ N(\{U_1,U_2,U_3\})=
+ \{\varnothing,\{1\},\{2\},\{3\},
+   \{1,2\},\{2,3\},\{1,3\}\}.
+\]
+Since intersections of disks in the plane are convex whenever nonempty, this is a good cover. The nerve theorem now says that the union $U_1\cup U_2\cup U_3$ has the homotopy type of a circle. Its central hole is recorded by the one-dimensional homology of the \emph{missing face}.
+
+At $r>1/\sqrt3$, the triple intersection becomes nonempty. The nerve gains the triangle $\{1,2,3\}$, and that cycle becomes the boundary of a $2$-simplex. An intersection condition that changes at one explicit radius has removed a topological hole. For open disks the endpoint $r=1/\sqrt3$ still lacks the triple intersection; the distinction between open and closed balls matters exactly at this threshold.

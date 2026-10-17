@@ -4,12 +4,14 @@
 
 This chapter studies conic sections through transformations.  The guiding question is not only how an ellipse, parabola, or hyperbola is described by an equation, but what kind of geometry regards two such objects as the same.
 
-The hierarchy is:
+For transformations of the \emph{same real affine plane}, the first part of a useful hierarchy really is
 \[
-  \text{Euclidean}\subset \text{similarity}\subset \text{affine}\subset
-  \text{projective}\subset \text{conformal/inversive phenomena}.
+ \mathrm{Euclidean}\subset \mathrm{similarity}\subset
+ \mathrm{affine}\subset \mathrm{projective}.
 \]
-Each enlargement forgets some invariants and preserves others.  This is the spirit of Klein's Erlangen program: a geometry is the study of properties invariant under a chosen transformation group.
+Conformal and inversive geometry take another direction. A shear is affine and projective but does not preserve angles; inversion in a circle preserves angles (up to orientation) but generally takes straight lines to circles. The two families are therefore not successive levels of the same inclusion chain.
+
+The interesting question is what each transformation actually preserves. This is the spirit of Klein's Erlangen program: a geometry concerns properties invariant under a specified group of transformations. We will test that principle with concrete conics, a cross-ratio calculation and an honest example of inversion.\footnote{For real projective conics, cross-ratios and polarity see Bobenko's \href{https://www3.math.tu-berlin.de/geometrie/Lehre/WS16/GeometryI/geometry1-ws16.pdf}{\emph{Geometry I} lecture notes}, Sections 2.5 and 2.10--2.13.}
 
 \section{Affine transformations}
 
@@ -177,38 +179,96 @@ In an affine coordinate it has the form
 \]
 
 \begin{theorem}
-Projective transformations preserve cross-ratio.
+A projective transformation of a projective line preserves the cross-ratio of four ordered distinct points. The restriction of a projective transformation of $\mathbb P^2$ to any line has the same property.
 \end{theorem}
+
+\begin{proof}
+In an affine chart, a projective change of line coordinate has the form
+\[
+ F(t)=\frac{\alpha t+\beta}{\gamma t+\delta},
+ \qquad \alpha\delta-\beta\gamma\ne0.
+\]
+For any two finite coordinates where the denominators do not vanish,
+\[
+ F(s)-F(t)=
+ \frac{(\alpha\delta-\beta\gamma)(s-t)}
+ {(\gamma s+\delta)(\gamma t+\delta)}.
+\]
+The cross-ratio is a quotient of four such differences. Each factor $\alpha\delta-\beta\gamma$ and each denominator $\gamma t+\delta$ appears equally often in its numerator and denominator, and cancels. Hence
+\[
+ (F(a),F(b);F(c),F(d))=(a,b;c,d).
+\]
+Points at infinity are handled by taking limits in projective coordinates. For a transformation of a projective plane, restrict its defining linear map to the two-dimensional vector space representing the given line; the same calculation applies.
+\end{proof}
+
+For an actual numerical example, take $(a,b,c,d)=(0,1,2,3)$. Then
+\[
+ (0,1;2,3)=\frac{(2-0)(3-1)}{(2-1)(3-0)}=\frac43.
+\]
+The non-affine projective map $F(t)=t/(t+1)$ sends these four positions to $0,\frac12,\frac23,\frac34$, whose cross-ratio is
+\[
+ \frac{(\frac23-0)(\frac34-\frac12)}
+ {(\frac23-\frac12)(\frac34-0)}
+ =\frac43.
+\]
+The individual interval lengths have changed. The special combination has not. Since a projectivity of a line is determined by the images of three distinct points, the cross-ratio measures the position of a fourth point relative to those three in a way that survives perspective.
 
 \begin{remark}
 The cross-ratio is the prototype of a projective invariant.  Once one understands it, projective geometry stops looking like distorted Euclidean geometry and becomes an invariant theory of incidence.
 \end{remark}
 
-\section{Projective duality and conics}
+\section{Inversion: when a straight line turns into a circle}
 
-Projective duality interchanges points and lines.  A nondegenerate conic defines a duality: to a point \(p\), one associates its polar line with respect to the conic.  In matrix form, if the conic is \(X^TQX=0\), then the polar line of \(p\) is
+Inversion about the unit circle is defined on $\mathbb R^2\setminus\{0\}$ by
 \[
-  p^TQX=0.
+ I(x)=\frac{x}{\|x\|^2}.
 \]
+It is an involution: $I(I(x))=x$. The unit circle remains pointwise fixed; points inside it exchange places with points outside. In complex notation $I(z)=1/\overline z$.
 
-\begin{remark}
-The same quadratic form that defines the conic also turns points into lines.  The conic is therefore not just a curve; it is a device for dualizing projective geometry.
-\end{remark}
-
-\section{Inversion}
-
-\begin{definition}
-Inversion in the circle of radius \(r\) centered at the origin is the map
+Take the line $x=c$, $c\ne0$, and write the coordinates of its inverted image as $(u,v)$. Since inversion is its own inverse,
 \[
-  x\mapsto \frac{r^2}{\|x\|^2}x.
+ \frac{u}{u^2+v^2}=c
+ \quad\Longleftrightarrow\quad
+ \boxed{\left(u-\frac1{2c}\right)^2+v^2=\frac1{4c^2}.}
 \]
-In the complex plane, inversion in the unit circle is essentially
-\[
-  z\mapsto \frac{1}{\overline z}.
-\]
-\end{definition}
+The image is a circle of radius $1/(2|c|)$ centered at $(1/(2c),0)$, with the origin omitted. The origin is its limiting point corresponding to points running infinitely far out along the original line. In the other direction, circles passing through the center of inversion become lines.
 
-Inversion sends lines and circles to lines and circles, with the convention that lines are circles through infinity.  It is conformal away from the center of inversion: it preserves angles but not distances.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=.94]
+ \begin{scope}[shift={(-3.4,0)}]
+  \draw[->,gray!75] (-.35,0)--(2.4,0) node[right] {$x$};
+  \draw[->,gray!75] (0,-1.38)--(0,1.4) node[above] {$y$};
+  \draw[blue!75!black,very thick] (.5,-1.22)--(.5,1.22);
+  \foreach \y in {0,.5,-.5}
+    {\fill[blue!75!black] (.5,\y) circle (2pt);}
+  \node[font=\footnotesize,blue!75!black] at (1.30,1.13) {$x=\frac12$};
+  \node[font=\footnotesize] at (1,-1.62) {straight line};
+ \end{scope}
+ \begin{scope}[shift={(2.2,0)}]
+  \draw[->,gray!75] (-.35,0)--(2.5,0) node[right] {$u$};
+  \draw[->,gray!75] (0,-1.38)--(0,1.4) node[above] {$v$};
+  \draw[orange!85!black,very thick] (1,0) circle (1);
+  \foreach \x/\y in {2/0,1/1,1/-1}
+    {\fill[orange!85!black] (\x,\y) circle (2pt);}
+  \draw[orange!85!black,fill=white] (0,0) circle (2.5pt);
+  \node[font=\footnotesize,orange!85!black] at (1.15,1.34)
+       {$(u-1)^2+v^2=1$};
+  \node[font=\footnotesize] at (1,-1.62) {circle minus origin};
+ \end{scope}
+ \draw[->,thick] (-.54,.35)--(1.45,.35)
+   node[midway,above,font=\footnotesize] {inversion};
+\end{tikzpicture}
+\caption{Under unit-circle inversion, $(\tfrac12,0)$ maps to $(2,0)$ and $(\tfrac12,\pm\tfrac12)$ map to $(1,\pm1)$. The hollow origin is excluded, though the image circle passes through it as a limiting point.}
+\end{figure}
+
+But inversion has an entirely different invariant from projective maps. Put $u=x/\|x\|$. Differentiation gives
+\[
+ DI_x=\frac1{\|x\|^2}(I_2-2uu^T).
+\]
+The matrix $I_2-2uu^T$ is a reflection: its square is the identity, it has eigenvalues $1,-1$, and it preserves inner products. Hence the derivative of inversion is a positive scale factor followed by an orthogonal reflection. It preserves \emph{unoriented} angles locally, while reversing orientation. In complex geometry it is anti-conformal (anti-holomorphic), rather than an orientation-preserving holomorphic map.
+
+This already refutes the proposed inclusion of all projective maps inside the conformal group, or vice versa. The affine shear $(x,y)\mapsto(x+y,y)$ is projective but changes a right angle. Inversion preserves angles but maps our straight line to a genuine circle, and so cannot be a projective plane transformation, which must send lines to lines.
 
 \section{Möbius transformations}
 
@@ -225,34 +285,9 @@ The group of Möbius transformations is
   PGL(2,\mathbb C).
 \]
 
-Möbius transformations send generalized circles to generalized circles and preserve cross-ratios.  They are simultaneously projective transformations of \(\mathbb P^1(\mathbb C)\) and conformal automorphisms of the Riemann sphere.
+Möbius transformations send generalized circles to generalized circles and preserve the \emph{complex} cross-ratio. They are projective transformations of the complex projective line $\mathbb P^1(\mathbb C)$ and precisely the orientation-preserving conformal automorphisms of the Riemann sphere. This is a projective space of complex dimension one, not the real projective plane $\mathbb P^2(\mathbb R)$ used for ordinary conics.
 
-\section{Conic sections}
-
-Classically, conics arise as plane sections of a cone.  Analytically, they are degree-two plane curves.  Projectively, a conic is a homogeneous quadratic equation in \(\mathbb P^2\).
-
-\begin{center}
-\small
-\begin{tabularx}{\textwidth}{@{}lYY@{}}
-\toprule
-Geometry & Transformations & Conic classification\\
-\midrule
-Euclidean & Rigid motions & Metric shape matters\\
-Similarity & Rotations, translations, scalings & Eccentricity-like shape remains\\
-Affine & Invertible affine maps & Ellipses are equivalent to circles\\
-Projective & \(PGL(3)\) & Nondegenerate conics are equivalent over algebraically closed fields\\
-\bottomrule
-\end{tabularx}
-\end{center}
-
-
-\section{The Erlangen program}
-
-Klein's Erlangen program says that geometry should be understood through a group of transformations and the invariants under that group.  Euclidean geometry studies invariants under Euclidean motions; affine geometry studies invariants under affine transformations; projective geometry studies invariants under projective transformations.
-
-\begin{remark}
-This viewpoint explains why the same object can look different in different geometries.  A circle is special in Euclidean geometry, but not in affine geometry.  Parallel lines are meaningful in affine geometry, but not in projective geometry.  Cross-ratio is invisible in elementary Euclidean geometry, but central in projective geometry.
-\end{remark}
+Circle inversion $z\mapsto1/\overline z$, on the other hand, is anti-Möbius: conjugation reverses orientation and conjugates the complex cross-ratio. It preserves the underlying real-circle geometry without belonging to the holomorphic Möbius group. These distinctions explain how projective and conformal structures can meet in one complex dimension while remaining incomparable as transformation groups of the Euclidean plane.
 
 \section{A hierarchy of invariants}
 
@@ -272,25 +307,34 @@ Möbius & Generalized circles, angles, cross-ratio on \(\widehat{\mathbb C}\) & 
 \end{center}
 
 
-\section{Quadratic forms and matrix language}
+\section{Conics and the Line at Infinity}
 
-A conic in the projective plane can be written as
+Fix the affine chart $Z=1$, with line at infinity $Z=0$. A real affine ellipse, parabola and hyperbola can have projective completions
 \[
-  X^TQX=0,
+ \begin{array}{rcll}
+ X^2+Y^2-Z^2&=&0&\text{ellipse (unit circle)},\\
+ X^2-YZ&=&0&\text{parabola},\\
+ X^2-Y^2-Z^2&=&0&\text{hyperbola}.
+ \end{array}
 \]
-where \(X=(x:y:z)^T\) is a homogeneous coordinate vector and \(Q\) is a symmetric matrix.  Passing to homogeneous coordinates is not cosmetic.  It lets ellipses, parabolas, and hyperbolas be treated uniformly and allows points at infinity to participate in the geometry.
-
-Under a projective change of coordinates \(X=M X'\), the conic matrix transforms as
+Their intersection with the \emph{fixed} line $Z=0$ gives the three calculations
 \[
-  Q' = M^TQM
+ \begin{array}{c|c|c}
+ &\text{equation at infinity}&\text{real intersections}\\\hline
+ \text{ellipse}&X^2+Y^2=0&\text{none}\\
+ \text{parabola}&X^2=0&\text{one double point}\\
+ \text{hyperbola}&X^2-Y^2=0&\text{two distinct points}
+ \end{array}
 \]
-or equivalently \(Q\mapsto M^{-T}QM^{-1}\), depending on whether one transforms coordinates or points.  The equation changes, but the geometric conic is the same object in new coordinates.
+A projective parabola is tangent to the line at infinity, while a projective hyperbola meets it in the two directions of its asymptotes. The circle has two complex points at infinity $[1:\pm i:0]$, and no real ones. The intersection pattern is preserved under affine transformations because the line at infinity stays where it is; a general projective map may move this line.
 
-\section{Affine classification versus projective classification}
+Over the reals one must also be careful with the claim that all nonsingular conics are projectively equivalent. A nondegenerate symmetric quadratic form in three variables has a signature: the numbers of positive and negative squares after a real invertible change of coordinates. Sylvester's law of inertia says that signature is preserved. If the form is definite, the equation $X^TQX=0$ has no nonzero real solution, and its projective conic is empty. If it is indefinite, multiplying its equation by $-1$ when necessary and changing coordinates brings it to
+\[
+ U^2+V^2-W^2=0.
+\]
+Thus all \emph{nonempty nonsingular real} projective conics are equivalent; an empty definite conic forms a separate case. Over an algebraically closed field of characteristic different from $2$, nonsingular plane conics do form one projective equivalence class.
 
-In affine geometry, ellipses, parabolas, and hyperbolas are genuinely different because the line at infinity is fixed.  The way a conic meets the line at infinity distinguishes the types: an ellipse has no real points at infinity, a parabola is tangent to the line at infinity, and a hyperbola meets it in two real points.
-
-In projective geometry over an algebraically closed field, all nonsingular conics are projectively equivalent.  Projective geometry forgets metric shape and focuses on incidence and cross-ratio-type data.
+This explains precisely what was achieved in the parabola-to-circle matrix calculation: we changed the chosen affine chart while staying within the real indefinite projective class. We did not claim an arbitrary real quadratic form can be changed into an ellipse.
 
 \section{Polar lines}
 
@@ -302,16 +346,45 @@ If \(P\) lies on the conic, the polar line is the tangent line at \(P\).  If \(P
 
 The pole-polar relation is one of the best examples of why projective conic theory is richer than coordinate classification.  It converts points to lines and lines to points in a way controlled by the conic.
 
-\section{Transformation groups determine the geometry being studied}
+The definition actually comes from differentiation. If $F(X)=X^TQX$ with symmetric $Q$, then
+\[
+ DF_P(V)=2P^TQV.
+\]
+At a point $P$ on the conic, the projective tangent line is therefore the equation $P^TQX=0$. Since $Q$ is invertible, the assignment from a point $P$ to the covector $QP$ is itself an isomorphism (up to scale). Thus a conic establishes a precise duality between points and lines.
 
-The transformation-centered view naturally leads to modern geometry:
-\begin{enumerate}[(i)]
-  \item algebraic geometry studies varieties and morphisms, with projective space as a basic ambient object;
-  \item differential geometry studies invariants under diffeomorphisms or isometries;
-  \item complex geometry studies holomorphic maps;
-  \item representation theory studies symmetries through linear actions;
-  \item category theory abstracts the entire pattern by treating structure-preserving maps as primary.
-\end{enumerate}
+Here is a calculation that makes the polar line visible. For the unit circle $X^2+Y^2-Z^2=0$, choose the exterior point
+\[
+ P=[2:0:1],\qquad Q=\operatorname{diag}(1,1,-1).
+\]
+Its polar is $2X-Z=0$, or $x=1/2$ in the affine plane. The polar meets the circle at
+\[
+ T_\pm=\left(\frac12,\pm\frac{\sqrt3}{2}\right).
+\]
+The tangent at $T_\pm$ has equation
+\[
+ \frac12 x\pm\frac{\sqrt3}{2}y=1.
+\]
+Both tangent lines pass through $(2,0)$: substituting $x=2$, $y=0$ makes either left-hand side equal to $1$. Hence the polar of this exterior point is exactly the chord of contact of its two tangents. This picture is an incidence statement controlled entirely by the bilinear form.
+
+The reciprocity of polarity is just the symmetry of $Q$. If $R$ belongs to the polar line of $P$, then $P^TQR=0$. Symmetry gives $R^TQP=0$, so $P$ belongs to the polar line of $R$. What sounds like a rather mystical point--line duality is a one-line identity in linear algebra.
+
+\section{Parametrizing a circle by lines through one point}
+
+The same circle connects projective geometry to rational functions. Fix the point $(0,-1)$ on $x^2+y^2=1$, and pass the line $y=tx-1$ through it. Substitution gives
+\[
+ x^2+(tx-1)^2=1
+ \quad\Longleftrightarrow\quad
+ x\bigl((1+t^2)x-2t\bigr)=0.
+\]
+The root $x=0$ is the fixed base point; the second intersection is
+\[
+ \boxed{x=\frac{2t}{1+t^2},\qquad y=\frac{t^2-1}{1+t^2}.}
+\]
+The missing top point $(0,1)$ is reached at the projective parameter $t=\infty$. In homogeneous coordinates the parametrization is
+\[
+ [S:T]\longmapsto[2ST:T^2-S^2:S^2+T^2].
+\]
+We have exhibited a rational parametrization of a nonsingular conic by the projective line of slopes through one point. The half-angle formulas of trigonometry conceal the same idea: $\tan(\theta/2)$ turns points on a circle into rational coordinates.
 
 \section{How to choose the right geometry}
 
@@ -335,17 +408,3 @@ angle with generalized circles & conformal/inversive & inversion preserves angle
 \begin{remark}[A common mistake]
 Saying that two conics are projectively equivalent does not mean they are the same in Euclidean or affine geometry.  A parabola and a circle may be projectively equivalent, but the projective map can move the line at infinity.  Once that happens, affine notions such as parallelism and the distinction between ellipse/parabola/hyperbola need not be preserved.
 \end{remark}
-
-\section{Using the transformation group in a conic problem}
-
-A conic in homogeneous coordinates is
-\[
-  X^TAX=0.
-\]
-If the problem asks only for incidence or tangency, one may use a projective change of coordinates; algebraically this replaces \(A\) by a congruent matrix \(P^TAP\).  The tangent at a point \(X\) is read from the bilinear form as
-\[
-  X^TAY=0,
-\]
-so the same matrix controls the conic, its tangent lines, and the pole--polar correspondence.
-
-The restrictions become important when the question contains metric words.  A projective map may send a circle to a parabola because it can move the line at infinity, so it does not preserve Euclidean length, angle, focus, or eccentricity.  An affine map keeps parallelism and ratios on parallel lines but may change angles.  Inversion and conformal maps preserve angles and generalized circles, but not distances.  Thus in an actual problem the first step is to mark which data must survive: cross-ratio and incidence suggest projective coordinates; parallelism suggests affine coordinates; angles with circles suggest inversive geometry; lengths force a Euclidean or similarity argument.

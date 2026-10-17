@@ -1,302 +1,143 @@
-\notechapter{N-20210804}{Boolean Algebras, Boolean Rings, and the First Hint of Stone Duality}
+\notechapter{N-20210804}{Boolean Algebra as the Geometry of Clopen Sets}
 
-\section{Boolean algebra beyond computing}
+The subsets of a finite set can be combined by union, intersection and complement. Nothing in that calculation suggests a new topology until we ask what a Boolean algebra looks like when the underlying set is no longer given. Stone's idea is to regard homomorphisms into the two-element algebra as points. The algebra then manufactures its own compact topological space, and every Boolean operation becomes an operation on clopen sets.\footnote{The algebraic and topological constructions follow Davey and Priestley, \emph{Introduction to Lattices and Order}, and P. T. Johnstone, \emph{Stone Spaces}.}
 
-Boolean algebra is often first encountered through computer science, which can make it look like a computational convention rather than a mathematical structure.  The broader theory immediately pushes beyond that impression.
+\section{A Boolean ring is a calculus of exclusive choices}
 
-Boolean algebra belongs simultaneously to logic, set theory, topology, measure theory, ring theory, and categorical duality.  Stone duality supplies the topological direction, while Heyting algebras show how the story changes when classical logic is weakened; the elementary algebraic models come first.
-
-\begin{remark}
-The planned route is deliberately elementary: first collect the algebraic vocabulary, then introduce Boolean rings and Boolean algebras, and only later move toward Stone spaces, Stone duality, and perhaps Heyting algebras.  The point is not to pretend that Boolean algebra is difficult at the entry level, but to show that it has more mathematical depth than its first appearance suggests.
-\end{remark}
-
-\section{A first definition via Heyting algebras}
-
-One compact definition is the following.
-
-\begin{definition}
-A Boolean algebra is a Heyting algebra satisfying the law of excluded middle.  Equivalently, for every element \(x\),
+For a set \(X\), use symmetric difference and intersection as operations on \(\mathcal P(X)\):
 \[
-  \neg\neg x=x,
+ A+B=(A\setminus B)\cup(B\setminus A),
+ \qquad AB=A\cap B.
 \]
-or equivalently
+Every element is idempotent under multiplication:
 \[
-  x\vee\neg x=\top.
+ A^2=A.
 \]
-\end{definition}
+Indeed, \(\mathcal P(X)\) becomes a commutative ring with additive identity \(\varnothing\), multiplicative identity \(X\), and \(A+A=\varnothing\). Characteristic functions identify it with the ring of functions \(X\to\mathbb F_2\), with pointwise addition and multiplication.
 
-\begin{caution}
-This definition is elegant but not beginner-friendly.  If one has not learned Heyting algebras, it hides the concrete content.  The concrete content is therefore developed through groups, rings, lattices, subsets, and characteristic functions.
-\end{caution}
+Conversely, suppose \(R\) is a unital ring satisfying \(a^2=a\) for every \(a\in R\). Expanding \((a+a)^2=a+a\) and using \(a^2=a\) shows \(2a=0\). Expanding \((a+b)^2=a+b\) then shows \(ab+ba=0\), so \(ab=ba\) in characteristic two. Thus every Boolean ring is commutative and has characteristic two (unless it is the zero ring).
 
-\section{A small amount of algebra}
-
-Let \(S\) be a nonempty set.  A binary operation on \(S\) is a map
+The Boolean-algebra operations can be recovered from the ring:
 \[
-  S\times S\to S.
+ a\wedge b=ab,\qquad
+ \neg a=1+a,\qquad
+ a\vee b=a+b+ab.
 \]
-Depending on context we may denote the value on \((a,b)\) by \(ab\), \(a+b\), \(a-b\), \(a*b\), or \(a\circ b\).
+For subsets these become intersection, complement and union. The ring formalism is useful because algebraic homomorphisms already know how to preserve all three logical operations.
 
-\begin{definition}
-A semigroup is a nonempty set \(G\) with an associative binary operation:
+\section{Points appear as consistent truth assignments}
+
+Let \(B\) be a Boolean algebra with \(0\ne1\). A map
 \[
-  a(bc)=(ab)c.
+ \chi:B\longrightarrow\{0,1\}
 \]
-If there is an element \(e\in G\) such that \(ae=ea=a\), and every element \(a\in G\) has an inverse \(a^{-1}\) with
+preserving \(0,1,\wedge,\vee,\neg\) is a complete Boolean truth assignment. Its true elements form
 \[
-  aa^{-1}=a^{-1}a=e,
+ U_\chi=\{b\in B:\chi(b)=1\}.
 \]
-then \(G\) is a group.  If \(ab=ba\) for all \(a,b\in G\), then \(G\) is an abelian group.
-\end{definition}
+This is an \emph{ultrafilter}: it contains \(1\) but not \(0\), is closed under finite meets, is upward closed, and for each \(b\in B\) contains exactly one of \(b\) and \(\neg b\).
 
-The full theory of group homomorphisms, kernels, images, cosets, normal subgroups, and quotient groups is not needed here, but one basic model is useful: a quotient group \(G/N\) consists of cosets of a normal subgroup \(N\triangleleft G\), with multiplication
+Conversely, given such an ultrafilter \(U\), put \(\chi_U(b)=1\) if \(b\in U\), and \(0\) otherwise. The ultrafilter axioms verify the Boolean homomorphism laws. Hence
 \[
-  (aN)(bN)=abN.
+ \boxed{\{\text{ultrafilters on }B\}
+ \cong\operatorname{Hom}_{\mathrm{Bool}}(B,2).}
 \]
+The two descriptions are interchangeable: an ultrafilter is a consistent way to declare each Boolean proposition true or false.
 
-\begin{definition}
-A ring \(R\) is a set with addition and multiplication such that \((R,+)\) is an abelian group, multiplication is associative, and multiplication distributes over addition:
+For a finite set \(X\), every ultrafilter on \(\mathcal P(X)\) comes from exactly one point \(x\in X\):
 \[
-  a(b+c)=ab+ac,
-  \qquad
-  (b+c)a=ba+ca.
+ U_x=\{A\subseteq X:x\in A\}.
 \]
-If multiplication is commutative, the ring is commutative.  If there is an element \(1\in R\) with \(1a=a1=a\), the ring has a unit.
-\end{definition}
+Indeed, since \(X\) is the union of its finitely many singleton subsets, the ultrafilter property forces one singleton to be true; two different singletons cannot both be true because their intersection is empty. A finite Boolean algebra can therefore recover its underlying points without knowing them in advance.
 
-\begin{definition}
-A lattice is a partially ordered set in which finite meets and finite joins exist.  We write
+\section{An infinite example produces an extra point}
+
+Let \(B\) be the Boolean algebra of all \emph{finite or cofinite} subsets of \(\mathbb N\). For each \(n\in\mathbb N\) we have the principal ultrafilter
 \[
-  p\wedge q,\qquad p\vee q
+ U_n=\{A\in B:n\in A\}.
 \]
-for meet and join.
-\end{definition}
-
-\begin{remark}
-This algebra review is intentionally minimal.  The important point is that Boolean algebra can be approached from two sides: as a special ring and as a special lattice.
-\end{remark}
-
-\section{Boolean rings}
-
-The smallest nontrivial ring with unit is
+There is also a different ultrafilter:
 \[
-  \mathbb F_2=\{0,1\},
+ U_\infty=\{A\in B:\mathbb N\setminus A\text{ is finite}\}.
 \]
-with addition and multiplication modulo \(2\):
+It contains every cofinite set, no finite set, and decides every element of \(B\), so it is an ultrafilter.
+
+These are all the ultrafilters. If an ultrafilter contains a finite set \(F\), the finite-union property forces it to contain a singleton \(\{n\}\subseteq F\), hence it equals \(U_n\). Otherwise it contains no finite set and therefore must contain the complement of every finite set, making it \(U_\infty\).
+
+The ultrafilters have thus produced the space
 \[
-\begin{array}{c|cc}
-+&0&1\\\hline
-0&0&1\\
-1&1&0
-\end{array}
-\qquad
-\begin{array}{c|cc}
-\cdot&0&1\\\hline
-0&0&0\\
-1&0&1
-\end{array}
+ S(B)=\mathbb N\cup\{\infty\}.
 \]
-Every element satisfies \(p^2=p\).  This condition is the key.
+The extra point was not inserted artificially: it is the truth assignment that accepts all cofinite sets and rejects every finite set.
 
-\begin{definition}
-A Boolean ring is a ring \(R\) in which every element is idempotent:
+\section{The topology is forced by the algebra}
+
+For each \(b\in B\), define
 \[
-  x^2=x
-  \qquad(x\in R).
+ \widehat b=\{U\in S(B):b\in U\}.
 \]
-Some definitions also require a unit, but the idempotence condition is the essential feature.
-\end{definition}
-
-\begin{proposition}
-Every Boolean ring satisfies \(x+x=0\) for every \(x\in R\), and every Boolean ring is commutative.
-\end{proposition}
-
-\begin{proof}
-Since \(x+x\) is idempotent,
+The ultrafilter laws immediately give
 \[
-  x+x=(x+x)^2=x^2+xx+xx+x^2=x+x+2x^2.
+ \widehat{a\wedge b}=\widehat a\cap\widehat b,\qquad
+ \widehat{a\vee b}=\widehat a\cup\widehat b,\qquad
+ \widehat{\neg a}=S(B)\setminus\widehat a.
 \]
-Thus \(2x^2=0\), and since \(x^2=x\), we get \(2x=0\).
+These sets are closed under finite unions and complements; declaring them open makes them automatically \emph{clopen}. They form a basis of a topology on \(S(B)\).
 
-Next,
+For our finite--cofinite algebra,
 \[
-  x+y=(x+y)^2=x^2+xy+yx+y^2=x+y+xy+yx.
+ \widehat{\{n\}}=\{U_n\},
 \]
-So \(xy+yx=0\).  But every element is its own additive inverse, hence \(xy=yx\).
-\end{proof}
-
-\section{Examples of Boolean rings}
-
-The two-dimensional example is
+so each ordinary point \(n\) is isolated. For a cofinite subset \(\mathbb N\setminus F\), the corresponding clopen set is
 \[
-  \mathbb F_2^2=\{(0,0),(0,1),(1,0),(1,1)\},
+ \widehat{\mathbb N\setminus F}
+ =\{U_\infty\}\cup\{U_n:n\notin F\}.
 \]
-with coordinatewise operations:
+Every neighborhood of \(U_\infty\) therefore contains all but finitely many natural-number points. This is exactly the \emph{one-point compactification} of the discrete space \(\mathbb N\).
+
+Compactness can be checked directly. An open cover has some member containing \(U_\infty\), which already covers all but finitely many points. Finitely many additional members cover those remaining points. The topology was constructed from Boolean operations alone, yet it has recovered a classical compact space.
+
+\section{Stone's theorem and the role of ultrafilter extension}
+
+Stone's representation theorem states that every Boolean algebra \(B\) is isomorphic to the Boolean algebra \(\operatorname{Clop}(S(B))\) of clopen subsets of its ultrafilter space:
 \[
-  (p_0,p_1)+(q_0,q_1)=(p_0+q_0,p_1+q_1),
+ \boxed{B\xrightarrow{\ \sim\ }\operatorname{Clop}(S(B)),
+ \qquad b\longmapsto\widehat b.}
 \]
+We have already verified that the map preserves Boolean operations. The remaining issues are injectivity and surjectivity, which reveal where compactness enters the theory.
+
+If \(a\ne b\), their symmetric difference is nonzero. By the Boolean prime ideal theorem, a nonzero element belongs to some ultrafilter. Such an ultrafilter distinguishes \(a\) and \(b\), so \(\widehat a\ne\widehat b\). This proves injectivity.
+
+For surjectivity, every clopen \(C\subseteq S(B)\) is open, hence covered by basic sets \(\widehat{b_i}\) contained in \(C\). The ultrafilter space is compact, so finitely many of them suffice:
 \[
-  (p_0,p_1)(q_0,q_1)=(p_0q_0,p_1q_1).
+ C=\widehat{b_1}\cup\cdots\cup\widehat{b_m}
+   =\widehat{b_1\vee\cdots\vee b_m}.
 \]
-The zero and unit are
+Thus every clopen subset comes from an element of \(B\).
+
+The general compactness of \(S(B)\) and the ultrafilter-extension step can be obtained from the Boolean prime ideal theorem, a choice principle weaker than the full axiom of choice. In the finite--cofinite example we needed neither an abstract extension lemma nor an appeal to an existence theorem: every point and every basic open set could be listed explicitly.
+
+\section{Why the correspondence reverses arrows}
+
+Suppose \(h:B\to C\) is a Boolean-algebra homomorphism. A point of \(S(C)\) is an ultrafilter \(U\subseteq C\). Pull it back:
 \[
-  (0,0),\qquad (1,1).
+ h^{-1}(U)=\{b\in B:h(b)\in U\}.
 \]
-The same construction gives \(\mathbb F_2^n\).
-
-Another standard example is a ring of sets.
-
-\begin{example}
-Let \(\mathcal R\) be a class of sets such that if \(E,F\in\mathcal R\), then
+It is an ultrafilter of \(B\), so \(h\) induces a continuous map
 \[
-  E\cup F\in\mathcal R,\qquad E-F\in\mathcal R.
+ S(h):S(C)\longrightarrow S(B),\qquad
+ U\longmapsto h^{-1}(U).
 \]
-Define
+Continuity follows from the actual calculation
 \[
-  E+F=(E\setminus F)\cup(F\setminus E),
+ S(h)^{-1}(\widehat b)=\widehat{h(b)}.
 \]
-that is, symmetric difference, and define
+Notice the direction reversal: an algebra homomorphism \(B\to C\) gives a map of spaces \(S(C)\to S(B)\), not \(S(B)\to S(C)\).
+
+Conversely, if \(f:X\to Y\) is a continuous map between compact Hausdorff totally disconnected spaces, inverse image sends clopen sets of \(Y\) to clopen sets of \(X\):
 \[
-  EF=E\cap F.
+ f^{-1}:\operatorname{Clop}(Y)\longrightarrow\operatorname{Clop}(X).
 \]
-Then the set-theoretic laws match the Boolean ring laws.
-\end{example}
+That operation also reverses arrows. Stone duality states that these two contravariant constructions give an equivalence between Boolean algebras and compact Hausdorff zero-dimensional spaces.
 
-\begin{remark}
-This is also why Boolean algebra naturally appears in measure theory.  Collections of measurable sets, especially modulo null sets, behave like Boolean algebras or Boolean rings.
-\end{remark}
-
-\section{Boolean algebras directly}
-
-Let \(X\) be a set.  The power set \(\mathcal P(X)\) has union, intersection, and complement:
-\[
-  P\cup Q,\qquad P\cap Q,\qquad P^c=X\setminus P.
-\]
-This is the concrete model for Boolean algebra.
-
-\begin{definition}
-A Boolean algebra is a nonempty set \(A\) equipped with two binary operations \(\vee,\wedge\), a unary operation \(('\)), and elements \(0,1\), satisfying the identities modeled on union, intersection, and complement.  In particular,
-\[
-  p\wedge0=0,\quad p\wedge1=p,\quad p\wedge p'=0,\quad p\wedge p=p,
-\]
-\[
-  p\vee1=1,\quad p\vee0=p,\quad p\vee p'=1,\quad p\vee p=p,
-\]
-\[
-  (p')'=p,\qquad
-  (p\wedge q)'=p'\vee q',\qquad
-  (p\vee q)'=p'\wedge q',
-\]
-together with commutativity, associativity, and distributivity.
-\end{definition}
-
-\begin{caution}
-Boolean algebras and Boolean rings with unit are two equivalent presentations of the same structure.
-\end{caution}
-
-\section[Characteristic functions and the meaning of 2\textasciicircum{}X]{Characteristic functions and the meaning of \(2^X\)}
-
-Every subset \(P\subseteq X\) corresponds to a characteristic function
-\[
-  \chi_P:X\to\mathbb F_2,\qquad
-  \chi_P(x)=
-  \begin{cases}
-    1,&x\in P,\\
-    0,&x\notin P.
-  \end{cases}
-\]
-This gives a natural bijection
-\[
-  \mathcal P(X)\cong 2^X.
-\]
-Thus writing the power set as \(2^X\) is not merely a notational habit: a subset is the same thing as a \(0/1\)-valued function.
-
-Under this identification, pointwise operations on functions become set operations:
-\[
-  P+Q=(P\cap Q^c)\cup(P^c\cap Q),
-\]
-which is symmetric difference, and
-\[
-  PQ=P\cap Q.
-\]
-The zero and unit are
-\[
-  0=\varnothing,\qquad 1=X.
-\]
-
-\section{Moving between the two structures}
-
-From a Boolean ring \(R\) with unit, define
-\[
-  p\wedge q=pq,\qquad
-  p\vee q=p+q+pq,\qquad
-  p'=p+1.
-\]
-These operations make \(R\) a Boolean algebra.
-
-Conversely, from a Boolean algebra \(A\), define
-\[
-  p+q=(p\wedge q')\vee(p'\wedge q),\qquad pq=p\wedge q.
-\]
-This makes \(A\) a Boolean ring.
-
-\begin{remark}
-The formulas are not magic.  In the subset model, addition is exactly symmetric difference, multiplication is intersection, and complement is symmetric difference with the whole universe.
-\end{remark}
-
-\section{The logical shadow}
-
-The operations \(\wedge,\vee,{}'\) correspond to ``and'', ``or'', and ``not''.  The elements \(0\) and \(1\) correspond to false and true.  This is why Boolean algebra is the algebra of classical propositional logic.
-
-\begin{remark}
-This also explains why Heyting algebras are the natural next object: Boolean algebras model classical logic, while Heyting algebras model intuitionistic logic.  Stone duality then brings topology into the same picture.
-\end{remark}
-
-\section{Filters, ultrafilters, and Stone spaces}
-
-The next natural step is to introduce filters, ultrafilters, Stone spaces, and the Stone representation theorem.  This does not replace the dictionary between Boolean rings, Boolean algebras, sets, and logic; it explains why that dictionary has a topological shadow.
-
-Let \(B\) be a Boolean algebra.  A filter \(F\subseteq B\) is a collection of propositions regarded as ``large'' or ``accepted''.  It satisfies three basic rules:
-\[
-  1\in F,\qquad 0\notin F,
-\]
-if \(a,b\in F\), then \(a\wedge b\in F\), and if \(a\in F\) and \(a\le b\), then \(b\in F\).  Thus a filter is closed under strengthening by consequence and under finite conjunction.
-
-An ultrafilter is a maximal proper filter.  Equivalently, for every \(a\in B\), exactly one of \(a\) and \(a'\) belongs to the ultrafilter.  This makes an ultrafilter look like a complete truth assignment: every Boolean proposition is judged either true or false, compatibly with the Boolean operations.
-
-The Stone space of \(B\), denoted \(S(B)\), is the set of all ultrafilters on \(B\).  For each \(a\in B\), define
-\[
-  U_a=\{\mathfrak u\in S(B):a\in\mathfrak u\}.
-\]
-These subsets form a basis of clopen sets.  The Boolean operations are reflected topologically by
-\[
-  U_{a\wedge b}=U_a\cap U_b,
-  \qquad
-  U_{a\vee b}=U_a\cup U_b,
-  \qquad
-  U_{a'}=S(B)\setminus U_a.
-\]
-So the algebra \(B\) is represented inside the topology of \(S(B)\) as the Boolean algebra of clopen sets.
-
-Stone's representation theorem says, in one common form, that every Boolean algebra is isomorphic to the Boolean algebra of clopen subsets of its Stone space.  The finite example is easy to remember: if \(B=\mathcal P(X)\), then ultrafilters are just choices of points of \(X\), and the Stone space recovers \(X\) with the discrete topology.  For infinite Boolean algebras, non-principal ultrafilters appear, and the resulting Stone space is compact, Hausdorff, and totally disconnected.
-
-
-\section{Boolean rings from Boolean algebras}
-
-Given a Boolean algebra, define addition by symmetric difference
-\[
-  A+B=(A\setminus B)\cup(B\setminus A)
-\]
-and multiplication by intersection
-\[
-  AB=A\cap B.
-\]
-Then every element satisfies \(A^2=A\), so the resulting ring is Boolean.  Conversely, a Boolean ring gives a Boolean algebra by defining meet as multiplication and join by
-\[
-  a\vee b=a+b+ab.
-\]
-This equivalence explains why logic, sets, and algebra keep producing the same identities.
-
-\section{Stone duality as a first hint}
-
-Stone duality says that Boolean algebras correspond to certain topological spaces, namely Stone spaces.  The rough idea is that algebraic operations encode clopen subsets of a space.  Thus Boolean logic can be represented geometrically.  This is one of the earliest examples of algebra and topology reflecting each other.
+This is the deeper reason Boolean algebra belongs simultaneously to logic and topology. The algebra describes which yes/no statements can be combined; the points are consistent evaluations of those statements; and continuity means that truth regions pull back to truth regions. If we replace clopen sets by all open sets, complements need not remain open, and the resulting Heyting algebra may fail excluded middle. Classical Boolean logic corresponds to the geometry of clopen predicates.

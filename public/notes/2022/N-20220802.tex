@@ -581,14 +581,41 @@ In hyperbolic geometry the corresponding formula is
 \]
 Its small-scale expansion gives the same Euclidean law, but hyperbolic triangles have angle sum less than \(\pi\).  Spherical, Euclidean, and hyperbolic trigonometry are therefore the positive-, zero-, and negative-curvature versions of one question: how do distances and directions interact in the ambient geometry?
 
-\section{What holds the system together}
+\section{A product of sines that knows an integer}
 
-The identities in this chapter arise from a small number of structures rather than from a long table.
-
-Arc length gives the radian coordinate and the local relation
+Place the $n$-th roots of unity at the vertices of a regular $n$-gon. Each vertex $e^{2\pi i k/n}$ has Euclidean distance
 \[
-  \sin\theta\sim\theta.
+ |1-e^{2\pi i k/n}|=2\sin\frac{\pi k}{n}
 \]
-The unit circle gives sine, cosine, parity, periodicity, and the Pythagorean identity.  Composition in \(SO(2)\) gives the addition formulas.  Complex multiplication gives De Moivre's formula, roots of unity, and multiple angles.  Chebyshev polynomials translate those angles into algebra.  Dot products and Gram determinants give the laws of cosines, sines, and Heron's formula.  Characters of the circle explain why frequencies add and why Fourier modes are orthogonal.  Finally, spherical and hyperbolic laws show which parts of trigonometry depend on curvature.
+from the distinguished vertex $1$. So the lengths of the $n-1$ chords from $1$ are trigonometric numbers. Their \emph{product}, surprisingly, is an integer.
 
-This organization also separates nearby topics.  A proof-comparison chapter can ask how many logically independent routes lead to the addition formulas.  A calculus chapter can build derivatives from the basic limit and analyze inverse branches.  A Fourier chapter can develop completeness and convergence.  The role of the present chapter is different: it presents trigonometry itself as a coherent geometry of rotations, triangles, polynomial recurrences, and constant curvature.
+Factor the geometric-series polynomial:
+\[
+ \frac{z^n-1}{z-1}
+ =1+z+\cdots+z^{n-1}
+ =\prod_{k=1}^{n-1}(z-e^{2\pi i k/n}).
+\]
+Evaluate at $z=1$ and take absolute values. Because all the angles $\pi k/n$ lie in $(0,\pi)$, their sines are positive, giving
+\[
+ \boxed{\prod_{k=1}^{n-1}
+    2\sin\frac{\pi k}{n}=n.}
+\]
+For $n=4$, the four vertices are the cardinal directions. The three chord lengths from $1$ are $\sqrt2,2,\sqrt2$, and their product is indeed $4$.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.1]
+ \draw[gray!65,thick] (0,0) circle (1.35);
+ \draw[teal!70!black,thick] (0:1.35)--(90:1.35)--(180:1.35)--(270:1.35)--cycle;
+ \draw[orange!85!black,very thick] (0:1.35)--(90:1.35)
+  (0:1.35)--(180:1.35) (0:1.35)--(270:1.35);
+ \foreach \q in {0,90,180,270}\fill[teal!70!black] (\q:1.35) circle (2pt);
+ \node[font=\footnotesize,anchor=west] at (1.47,0) {$1$};
+ \node[font=\footnotesize,anchor=south] at (0,1.52) {$i$};
+ \node[font=\footnotesize,anchor=east] at (-1.50,0) {$-1$};
+ \node[font=\footnotesize,anchor=north] at (0,-1.52) {$-i$};
+\end{tikzpicture}
+\caption{For $n=4$, three chords from the point $1$ have lengths $\sqrt2$, $2$, and $\sqrt2$. The product is $4$, as predicted by the factorization of $z^4-1$.}
+\end{figure}
+
+The identity is at once a calculation about circle geometry, a polynomial factorization, and a statement about roots of unity. There is nothing additional to memorize: the product formula is what the equation $z^n=1$ says when viewed from the vertex $z=1$.

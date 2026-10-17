@@ -121,7 +121,7 @@ The final source figure is a taxonomy of real matrices.  It distinguishes square
 
 The diagram prevents a common error: applying the wrong theorem to the wrong class.  Determinants and eigenvalues belong naturally to square matrices; orthogonal diagonalization belongs to symmetric real matrices; pseudoinverses and SVD work for arbitrary real matrices.
 
-\section{Choose the invariant appropriate to the matrix question}
+\section{Choosing the Right Matrix Invariant}
 
 The unifying theme is that a matrix should be read through the invariant appropriate to the question.  The determinant measures signed volume scaling; the trace and eigenvalues measure intrinsic square-matrix behavior; rank measures the dimension of the image; singular values measure metric distortion; and the pseudoinverse measures least-squares inverse behavior when an exact inverse is unavailable.
 
@@ -148,4 +148,4 @@ For the examples in this note, the practical reading rule is:
 \end{array}
 \]
 
-This is why the images are not decorative.  They show the same matrix simultaneously as an algebraic object, a geometric transformation, and a data-processing device.
+The same linear map has an algebraic signature (rank and spectrum), a geometric action (stretches and invariant directions), and a numerical role (conditioning and low-rank approximation). The choice of invariant determines which of these aspects can be read from a matrix.

@@ -1,20 +1,26 @@
 \notechapter{N-20251113}{When Addition Starts Floating: Theta-Links, Log-Links, and Arithmetic Deformation}
 
-\section{What has to be explained}
+\section{A multiplicative period and its arithmetic scale}
 
-The previous note ended with a deliberately strange operation.  At a bad split multiplicative valuation \(v\), one has a Tate parameter \(q_v\), and the arithmetic-deformation viewpoint takes seriously transformations of the shape
+Imagine a curve whose local points can be described by multiplying nonzero numbers, with one special number $q$ acting as a period. Over a nonarchimedean local field $L$, an elliptic curve with split multiplicative reduction admits a Tate uniformization
 \[
-  q_v\longmapsto q_v^{m^2},
-  \qquad
-  u\longmapsto u\quad (u\in\mathcal O_{F_v}^{\times}).
+ E_q(\overline L)\simeq\overline L^\times/q^{\mathbb Z},
+ \qquad 0<|q|_v<1.
 \]
-This is not a ring homomorphism.  It is a transformation of multiplicative data.  The mathematical question is therefore precise:
+The quotient identifies $u$, $qu$, $q^2u$ and so on, just as $\mathbb R/\mathbb Z$ identifies numbers differing by an integer. The operation here is multiplication, though, and the valuation $v(q)$ measures the size of the period in the nonarchimedean direction. It also records the valuation of the minimal discriminant of the curve.
 
-\begin{center}
-\emph{How can one deform multiplicative theta-data, lose ordinary additive compatibility, and still recover enough structure to prove an inequality?}
-\end{center}
+A genuine example gives the notation some weight. Dupuy and Hilado construct initial theta data beginning with the elliptic curve $11a1$,
+\[
+ E:\quad y^2+y=x^3-x^2-10x-20,
+ \qquad v_{11}(q_{11})=5.
+\]
+The valuations of $q_{11}$, $q_{11}^{4}$ and $q_{11}^{9}$ are consequently
+\[
+ \boxed{5,\quad20,\quad45.}
+\]
+Here the squares $1,4,9$ are particularly suggestive. Special values of nonarchimedean theta-functions naturally produce $q^{m^2}$-type information; a theta-link is designed to compare this selected multiplicative information across arithmetic settings.
 
-Fesenko's survey passes through nonarchimedean theta-functions, generalized Kummer theory, theta-links, log-links, log-shells, multiradial reconstruction, and indeterminacies.  Each object appears because the previous one no longer carries enough structure to compare the deformed multiplicative data.
+There is a catch with far-reaching consequences. A comparison that respects products and special theta-values has no automatic reason to respect sums. Once the additive structures can no longer be identified directly, it becomes necessary to control what survives: roots and Galois actions, logarithms of units, and the ambiguities in reconstructing numbers from those records. This is the motivation for theta-links, Kummer theory, log-links and the network of Hodge theaters. Their common goal is a numerical inequality extracted from arithmetic information that can still be compared.\footnote{See Ivan Fesenko, \href{https://ivanfesenko.org/wp-content/uploads/2021/10/notesoniut.pdf}{\emph{Arithmetic Deformation Theory via Arithmetic Fundamental Groups and Nonarchimedean Theta-Functions}}, and Taylor Dupuy and Anton Hilado, \href{https://arxiv.org/abs/2004.13228}{\emph{The Statement of Mochizuki's Corollary 3.12: Initial Theta Data}}.}
 
 \section{The nonarchimedean theta-function}
 
@@ -84,19 +90,48 @@ Thus the local theta-link acts on two kinds of local data:
 \]
 and it is glued to global monoid-theoretic data satisfying the product formula.
 
-\begin{proposition}[Why the theta-link is not scheme-theoretic]
-The theta-link is not compatible with the full ring structure of \(L\).  In particular, it should not be interpreted as a morphism of schemes or as a ring isomorphism between two local fields.
-\end{proposition}
+We can feel the difference between a multiplicative comparison and a ring map without knowing IUT. Work just in $\mathbb Q_5^\times$. Every nonzero element has a unique expression
+\[
+ x=5^n u,\qquad n\in\mathbb Z,\quad u\in\mathbb Z_5^\times.
+\]
+Define the following \emph{toy} transformation, with exponent $4=2^2$:
+\[
+ T(5^nu)=5^{4n}u.
+\]
+It behaves impeccably with respect to multiplication:
+\[
+ T(5^nu\cdot 5^mv)=5^{4(n+m)}uv=T(5^nu)T(5^mv).
+\]
+It even fixes every unit, so $T(1)=1$. But consider the entirely ordinary addition $1+5=6$. Since $6$ is a $5$-adic unit,
+\[
+ \boxed{T(1+5)=T(6)=6
+ \qquad\text{while}\qquad
+ T(1)+T(5)=1+5^4=626.}
+\]
+The map remembers products and valuations while failing to preserve sums. Every ring identity still holds \emph{inside} $\mathbb Q_5$; it is the attempt to \emph{transport} addition through $T$ that fails.
 
-\begin{proof}
-A ring homomorphism must preserve both multiplication and addition.  The theta-link is built from the multiplicative monoid of units, powers of the Tate parameter, and special values of a theta-function.  It transports multiplicative/theta data, but the additive operation of the local field is not transported by the displayed map.  Fesenko therefore describes this as an arithmetic deformation of the local structure rather than as an ordinary scheme-theoretic morphism.
-\end{proof}
+This calculation is not a construction of a theta-link. It isolates the elementary feature behind Fesenko's explanation: a theta-link compares selected multiplicative/theta-theoretic structures across theaters and provides no ordinary ring isomorphism carrying every sum along with them. The real theory has considerably more data than this toy, but that basic distinction is already unavoidable.
 
 This is the first honest meaning of the phrase ``addition starts floating''.  It does not mean that the equation \(1+1=2\) becomes false inside a fixed field.  It means that after theta-deformation one is no longer allowed to identify the additive coordinates on the two sides as if a ring homomorphism had carried them across.
 
 \section{The bridge supplied by Kummer theory}
 
 If the theta-link only destroyed additive compatibility, it would not be useful.  The next ingredient explains how monoid-theoretic data can still communicate with Galois and fundamental-group data.
+
+For an elementary glimpse, suppose a field $L$ contains the $\ell$-th roots of unity and we adjoin $\alpha$ with
+\[
+ \alpha^\ell=a\in L^\times.
+\]
+Any Galois automorphism $\sigma$ fixing $L$ must send $\alpha$ to another root of the same equation. Therefore
+\[
+ \sigma(\alpha)=\zeta_\sigma\alpha,
+ \qquad \zeta_\sigma^\ell=1,
+ \quad\text{or}\quad
+ \boxed{\frac{\sigma(\alpha)}{\alpha}\in\mu_\ell.}
+\]
+One piece of \emph{multiplicative} information, the possibility of extracting an $\ell$-th root, has produced a record of \emph{Galois} action. For example, when $\alpha=q^{1/\ell}$, the possible ratios $\sigma(\alpha)/\alpha$ explain why extracting roots of a Tate parameter naturally creates torsion labels. If the roots of unity are fixed by the Galois group, the ratios even form a character; in the general situation they form a cocycle.
+
+This is the small calculation behind the much more elaborate generalized Kummer correspondence. The point is to keep enough information about roots and Galois symmetries to compare structures even when an ordinary additive identification is unavailable.
 
 \begin{definition}[Kummer map, schematic form]
 Let \(H\) be an open subgroup of a Galois or arithmetic fundamental group acting on an abelian group \(M\).  Kummer theory studies maps of the form
@@ -162,7 +197,7 @@ Conjugate synchronization is a system of identifications between local absolute 
 
 The need for such synchronization is one reason the theory becomes much more rigid than a naive ``copy-and-paste'' of local fields.  The comparison is not allowed to choose arbitrary basepoint identifications.  It must respect the label symmetries and the Kummer-theoretic data surrounding the theta-values.
 
-\section{The log-link: recovering additive structure from multiplicative structure}
+\section{The Log-Link and Additive Structure}
 
 The theta-link uses multiplicative theta-values.  To regain access to additive structure, Fesenko turns to the nonarchimedean logarithm.
 
@@ -179,6 +214,23 @@ and sends multiplicative representatives of the finite residue field to \(0\).
 \end{definition}
 
 The key point is that \(\log\) transforms multiplication into addition where it is defined.  Thus the logarithm lets multiplicative unit data speak an additive language.
+
+One computation is enough to show why a logarithm is the natural partner of multiplication. In $\mathbb Q_5$, take units close to $1$, say $u,v\in1+5\mathbb Z_5$. The convergent power series gives
+\[
+ \log_5(1+t)=t-\frac{t^2}{2}+\frac{t^3}{3}-\cdots,
+ \qquad t\in5\mathbb Z_5,
+\]
+and consequently
+\[
+ \boxed{\log_5(uv)=\log_5 u+\log_5 v.}
+\]
+For instance, $6=1+5$ and $36=6^2$ belong to this group, so
+\[
+ \log_5(36)=2\log_5(6).
+\]
+No numerical approximation is needed: this is an exact identity of $5$-adic numbers.
+
+A useful mental picture is that the logarithm changes the \emph{language} of the data. What used to be multiplication of nearby units becomes addition of their logarithms. It does not magically transport all additions across a theta-link. In particular, the toy transformation $T$ above still sends $1+5$ and $T(1)+T(5)$ to different numbers. The log-link helps compare a selected, logarithmically encoded piece of the additive story, while the theory has to control the pieces it cannot identify directly.
 
 \begin{definition}[Log-link, structural form]
 A log-link is the comparison which shifts multiplicative unit data through the nonarchimedean logarithm, so that additive structures can be reconstructed from logarithmic images of multiplicative structures.
@@ -232,7 +284,7 @@ The picture is:
 
 This diagram is only a guide.  Fesenko notes that the main results use just two neighboring infinite vertical lines and the horizontal arrow between the lattice points \((0,0)\) and \((1,0)\).  The important idea is that the theory does not compare a single source and target once.  It studies a controlled pattern of comparisons.
 
-\section{The log-shell: a common container for incompatible links}
+\section{The Log-Shell}
 
 A technical difficulty now appears.  The log-link does not commute with the theta-link.  If one expected a clean commutative square, one would be disappointed.  IUT instead introduces a common structure that can hold the relevant images even when elementwise compatibility fails.
 
@@ -296,30 +348,28 @@ The three main indeterminacies are:
 
 The third phrase, ``upper semi-compatibility'', is deliberately weaker than commutativity of a diagram.  Instead of asking for equality of transported elements, one asks for controlled inclusion relations among the relevant subsets.
 
-\begin{proposition}[Why indeterminacies are mathematically productive]
-The indeterminacies do not merely obscure the comparison.  They make it possible to compare data across distinct theaters without falsely identifying the full ring structures on the two sides.
-\end{proposition}
+Why keep track of these ambiguities instead of just choosing convenient identifications? Think of trying to compare two measurements when their exact matching is unavailable. One can still compare the \emph{sets of possible results}. For example, if different choices produce values in $[1,2]$ and $[3/2,5/2]$, both sets fit inside the common interval $[1,5/2]$, even though no particular element of the first interval has been identified with a particular element of the second. The interval is deliberately larger than either set: it is a \emph{container} in which a bound can be stated without pretending to have a pointwise correspondence.
 
-\begin{proof}
-The theta-link is not ring-theoretic, and the log-link does not commute with it.  Therefore an elementwise comparison of ordinary rings would impose more structure than the construction provides.  The indeterminacies specify exactly which ambiguity is allowed: permutation ambiguity, horizontal theta-link ambiguity, and weakened Kummer/log compatibility.  A volume computation can then be performed after enlarging the target by these controlled ambiguities.
-\end{proof}
+This is only an analogy for the role of a log-shell and the allowed indeterminacies: the actual objects are logarithmic images, Galois-theoretic correspondences and adelic data. Yet it explains the logical advantage of controlling an entire region of possible images. An estimate about its size may survive changes of labels or choices, even when an equality between two chosen elements would make no sense.
+
+The three indeterminacies track different sources of that freedom: the choice of synchronization along the log-links, the symmetries seen across a theta-link, and the weaker compatibility of Kummer-theoretic images with logarithmic data. One should not confuse the \emph{existence of a container} with a proof of the difficult global inequality bounding its size; the latter is the substantive assertion of IUT.
 
 This is where the intuitive phrase ``floating addition'' becomes mathematically safer.  The additive structure is not discarded into chaos.  It is reconstructed through logarithmic images and fundamental-group algorithms, while the unavoidable ambiguity is measured by the three indeterminacies.
 
-\section{What the second note adds}
+\section{Where the comparison is supposed to lead}
 
-We can now summarize the actual mechanism more accurately than by saying ``IUT uses many universes''.
+We can now follow the story without keeping nine new definitions in our heads. At a split multiplicative place the Tate parameter $q$ records a local scale; theta-values supply the $q^{m^2}$-type data for the theta-link. The obstacle is already visible in the little map $T(5^nu)=5^{4n}u$: knowing how to transport products gives no permission to transport sums.
 
-\begin{enumerate}
-  \item The Tate parameter \(q\) gives local multiplicative data at bad reduction valuations.
-  \item Nonarchimedean theta-functions produce distinguished values behaving like \(q^{m^2}\).
-  \item The theta-link transports this theta/multiplicative data but is not a ring morphism.
-  \item Generalized Kummer theory relates monoid-theoretic data to Galois and arithmetic fundamental-group data.
-  \item The two label symmetries separate the geometric-additive side from the arithmetic-multiplicative side.
-  \item The log-link uses \(\log:\mathcal O_L^{\times}\to L\) to recover additive information from multiplicative units.
-  \item The log-shell supplies a common container when the log-link and theta-link fail to commute elementwise.
-  \item Mono-anabelian reconstruction and multiradial algorithms make it possible to describe reconstructed objects from several theaters at once.
-  \item The three indeterminacies specify the allowed ambiguity and enter the final volume estimate.
-\end{enumerate}
+The surrounding mechanisms address different parts of this obstacle. Kummer theory turns selected roots into Galois information. The two symmetries control geometric and arithmetic labels. The log-link expresses multiplication of units in an additive language, while log-shells and indeterminacies hold possible images in a common container. Mono-anabelian reconstruction and multiradial descriptions are meant to keep useful information accessible from several theaters. The log-theta-lattice makes these comparisons interact.
 
-The next note should therefore not treat the controversy around IUT as a piece of mathematical news.  The foundational issue is already visible here: once ordinary ring-theoretic identification is forbidden, the theory must replace it by theta-links, log-links, Kummer correspondences, and multiradial reconstruction.  The controversy is ultimately about whether this replacement is strong enough, not about whether the vocabulary is unusual.
+Fesenko's account also gives a strikingly simple piece of algebra behind the \emph{goal} of this machinery. Write $D>0$ for a normalized degree associated to Tate parameters and $V$ for a logarithmic volume term constructed from the theta-data. The intended inequalities have the shape
+\[
+ -D\le V\le a(\ell)-b(\ell)D,\qquad b(\ell)>1.
+\]
+If these estimates can be established in the relevant arithmetic setting, a school-level rearrangement gives
+\[
+ \boxed{(b(\ell)-1)D\le a(\ell).}
+\]
+The challenge lies in the first comparison: it relates data from different theaters while respecting only the allowed information. Dupuy and Hilado make a useful distinction here. Their computable initial theta data explain how the input to the claimed inequality is assembled; the intricate inter-theater estimate is treated as an assumption, not proved by the input computation.
+
+The phrase \emph{addition starts floating} now has a definite intuition: inside each field addition remains entirely ordinary, but transporting it through a multiplicative comparison is delicate. The aim is to recover enough bounded, choice-independent numerical information for a Diophantine inequality while keeping the differences between the theaters visible.

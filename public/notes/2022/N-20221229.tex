@@ -2,9 +2,9 @@
 
 \section{From quotient pictures to algebraic invariants}
 
-Several threads meet in one progression: the torus as $(\mathbb R/\mathbb Z)^2$, the product $S^1\times S^1$, disjoint unions and wedge sums, CW complexes, cosets, and polygonal gluing descriptions of surfaces.  Topology suggests quotient pictures; quotient pictures resemble congruence classes; congruence classes lead to cosets; and square quotients return as the torus and Klein bottle.
+Several threads meet in one progression: the torus as $(\mathbb R/\mathbb Z)^2$, the product $S^1\times S^1$, disjoint unions and wedge sums, CW complexes, cosets, and polygonal gluing descriptions of surfaces.  The important experiment is to attach a single two-cell to the same figure-eight one-skeleton in two different ways. The resulting torus and Klein bottle have identical cell counts but different fundamental groups and homology.\footnote{The CW construction, attaching words, cellular boundaries and projective-space examples follow A. Hatcher, \href{https://pi.math.cornell.edu/~hatcher/AT/ATchapters.html}{\emph{Algebraic Topology}}, Chapters 0--2.}
 
-The top margin says that there is another intuitive understanding of
+A useful geometric realization of the product is
 \[
   S^1\times S^1 \cong T^2.
 \]
@@ -13,7 +13,7 @@ Think of a torus as a vertical circle carried around a horizontal circle.  The p
 \begin{figure}[H]
 \centering
 \includegraphics[width=.92\linewidth]{figures/N-20221229/01-torus-product-analysis.png}
-\caption{The original visual analysis of $S^1\times S^1$: one parameter goes around the big circle, the other around the small circular fiber.}
+\caption{The two circle coordinates of the torus: one travels around its major circle, the other around its cross-section.}
 \end{figure}
 
 \section[The torus as a parametrized product]{\texorpdfstring{$S^1\times S^1$}{S1 x S1} as a parametrized torus}
@@ -66,7 +66,7 @@ A $k$-cell is a copy of $D^k$ attached along $S^{k-1}$ by an attaching map
 \]
 Informally: attach disks along their boundaries.
 
-The note compares two CW structures on $D^2$.  One uses two $0$-cells, two $1$-cells, and one $2$-cell.  The other uses one $0$-cell, one $1$-cell whose two endpoints are glued to that point, and one $2$-cell.  Both build a disk, but the second is more economical.
+The disk $D^2$ illustrates that the same space may have different CW structures.  One uses two $0$-cells, two $1$-cells, and one $2$-cell.  The other uses one $0$-cell, one $1$-cell whose two endpoints are glued to that point, and one $2$-cell.  Both build a disk, but the second is more economical.
 
 \begin{figure}[H]
 \centering
@@ -118,7 +118,7 @@ The equivalence class of $a$ is the right coset
 \]
 The map $H\to Ha$, $h\mapsto ha$, is a bijection, so $|Ha|=|H|$.  The group $G$ is partitioned into cosets, and two cosets are either equal or disjoint.  This is exactly the algebraic version of cutting a space into equivalence classes.
 
-This is why the note can return from cosets to $(\mathbb R/\mathbb Z)$ naturally.  Both are quotient constructions: identify things differing by a subgroup.
+The quotient $(\mathbb R/\mathbb Z)$ illustrates the same principle in a geometric setting.  Both are quotient constructions: identify things differing by a subgroup.
 
 \section{The Klein bottle}
 
@@ -138,7 +138,7 @@ The relation says that going around one direction reverses the other.  Thus the 
 
 \section{Polygon schemata for surfaces}
 
-The last figure records polygon schemata for surfaces.  A polygon with labelled, oriented boundary edges can be glued according to those labels.  The resulting quotient is a surface.  For example, the torus corresponds to
+Labelled polygons give concrete gluing schemata for surfaces.  A polygon with labelled, oriented boundary edges can be glued according to those labels.  The resulting quotient is a surface.  For example, the torus corresponds to
 \[
   aba^{-1}b^{-1},
 \]
@@ -157,7 +157,7 @@ The picture compresses several ideas at once: cut a surface into a polygon, labe
 
 \section{Projective spaces as quotient spaces}
 
-The section title also mentions real and complex projective spaces.  They fit the same quotient philosophy.  Real projective space is
+Real and complex projective spaces give two further quotients with strikingly different cellular structures.  Real projective space is
 \[
   \mathbb{RP}^n=S^n/(x\sim -x),
 \]
@@ -168,127 +168,143 @@ the space of lines through the origin in $\mathbb R^{n+1}$.  Complex projective 
 A useful CW fact is that $\mathbb{RP}^n$ has one cell in each dimension $0,1,\ldots,n$, while $\mathbb{CP}^n$ has one cell in each even real dimension $0,2,4,\ldots,2n$.
 
 
-\section{Cellular boundary words and fundamental groups}
+\section{An attaching word has two algebraic interpretations}
 
-The attaching word of the two-cell is not a decorative label.  For the torus, the word
+Begin with the figure eight
 \[
-  aba^{-1}b^{-1}
+ X^1=S^1\vee S^1.
 \]
-becomes the relation saying that \(a\) and \(b\) commute.  For the Klein bottle, the twist changes the relation to one of the form
+Its fundamental group is the free group \(F(a,b)\) on the loops \(a,b\). A cellular map \(S^1\to X^1\) can be described, up to homotopy, by a word \(w(a,b)\): as one goes around the boundary circle, the map traverses the two loops with the orientations specified by the letters.
+
+Attach a two-cell along this map, forming \(X=X^1\cup_wD^2\). Van Kampen's theorem says that the attaching disk makes the loop \(w\) null-homotopic:
 \[
-  aba^{-1}=b^{-1}.
+ \boxed{\pi_1(X)\cong
+  F(a,b)/\langle\!\langle w\rangle\!\rangle,}
 \]
-Thus two spaces can have the same numbers of cells but different topology because the attaching maps differ.
+where the denominator is the normal closure of the word. The normal closure matters: if a loop becomes null-homotopic, so do all its conjugates.
 
-\section{Why polygon schemata are efficient}
-
-A labelled polygon schema compresses a surface into boundary data.  The labels record which edges are glued, and the arrows record orientation.  Once this is understood, the diagram becomes an algebraic object: reading around the boundary gives a word in generators and inverses.
-
-This is the reason algebraic topology can turn pictures into group presentations and chain complexes.
-
-\section{Further context}
-
-The constructions form one continuous story.  The product $S^1\times S^1$ parametrizes the torus; opposite-side identification realizes it as a quotient; disjoint union and wedge sum combine spaces before quotienting; CW complexes systematize attachment; cosets supply the algebraic analogue; and polygon schemata encode whole surfaces by boundary words.
-
-The central lesson is that algebraic topology is not simply topology plus algebra added later.  The topology is already algebraic as soon as we record how pieces are glued: arrows, labels, words, equivalence classes, and quotient maps are the bridge.
-
-\section{Cellular chain complex of the torus}
-
-The torus CW structure with one \(0\)-cell, two \(1\)-cells \(a,b\), and one \(2\)-cell gives a cellular chain complex
+Now compute the same attaching map in cellular homology. Since \(X\) has one cell in dimension zero, two in dimension one, and one in dimension two, its cellular chain complex is
 \[
-  0\to C_2\cong\mathbb Z
-  \xrightarrow{\partial_2}
-  C_1\cong\mathbb Z^2
-  \xrightarrow{\partial_1}
-  C_0\cong\mathbb Z\to0.
+ 0\longrightarrow\mathbb Z
+ \xrightarrow{\partial_2}\mathbb Z^2
+ \xrightarrow{\partial_1=0}\mathbb Z
+ \longrightarrow0.
 \]
-Since both ends of each one-cell attach to the single zero-cell, \(\partial_1=0\).  The two-cell is attached by the commutator word
+The boundary of the two-cell is obtained by \emph{abelianizing the word}: if \(w\) has exponent sums \(r\) in \(a\) and \(s\) in \(b\), then
 \[
-  aba^{-1}b^{-1}.
+ \boxed{\partial_2(1)=(r,s).}
 \]
-In cellular homology, the total exponent of \(a\) is \(1-1=0\), and the total exponent of \(b\) is \(1-1=0\), so \(\partial_2=0\).  Therefore
+The group computation remembers the order of the letters; the homology computation remembers only their total signed counts. This difference is exactly why the same attaching diagram contains more information than the resulting chain complex.
+
+\section{Torus versus Klein Bottle}
+
+For the torus, the boundary word is
 \[
-  H_0(T^2)\cong\mathbb Z,\qquad
-  H_1(T^2)\cong\mathbb Z^2,\qquad
-  H_2(T^2)\cong\mathbb Z.
+ w_T=aba^{-1}b^{-1}.
 \]
-The same square diagram that gives the fundamental group also gives homology by linearizing the boundary word.
-
-\section{Klein bottle: same cells, different boundary}
-
-The Klein bottle has the same cell counts as the torus: one \(0\)-cell, two \(1\)-cells, and one \(2\)-cell.  But the attaching word is different.  With a common convention, it is
+Its exponent sums are both zero, hence \(\partial_2=0\). It follows that
 \[
-  aba^{-1}b.
+ \begin{aligned}
+ H_0(T^2;\mathbb Z)&\cong\mathbb Z,\\
+ H_1(T^2;\mathbb Z)&\cong\mathbb Z^2,\\
+ H_2(T^2;\mathbb Z)&\cong\mathbb Z.
+ \end{aligned}
 \]
-The total exponent of \(a\) is \(0\), while the total exponent of \(b\) is \(2\).  Hence the cellular boundary has the form
+In the fundamental group, however, the attaching relation is
+\(aba^{-1}b^{-1}=1\), or \(ab=ba\), so
 \[
-  \partial_2(1)=2b.
+ \pi_1(T^2)
+ =\langle a,b\mid [a,b]=1\rangle
+ \cong\mathbb Z^2.
 \]
-So
+
+For the Klein bottle, take the standard word
 \[
-  H_1(K)\cong \mathbb Z\oplus \mathbb Z/2\mathbb Z,\qquad
-  H_2(K)=0.
+ w_K=aba^{-1}b.
 \]
-The absence of \(H_2\cong\mathbb Z\) is the homological shadow of non-orientability.
-
-\section{Euler characteristic as cell bookkeeping}
-
-For a finite CW complex,
+It has exponent sum zero in \(a\) and two in \(b\). Therefore
 \[
-  \chi(X)=\sum_k(-1)^k c_k,
+ \partial_2(1)=(0,2),\qquad
+ H_1(K;\mathbb Z)
+ =\frac{\mathbb Z^2}{\langle(0,2)\rangle}
+ \cong\mathbb Z\oplus\mathbb Z/2\mathbb Z,
 \]
-where \(c_k\) is the number of \(k\)-cells.  The torus and Klein bottle both have
+whereas
 \[
-  \chi=1-2+1=0.
+ H_2(K;\mathbb Z)=\ker\partial_2=0.
 \]
-Thus Euler characteristic cannot distinguish them.  Their difference lies not in the number of cells but in the attaching map of the two-cell.  This is the core lesson of CW complexes: cell counts are only the first approximation; attaching maps carry the topology.
-
-\section{Orientability from polygon words}
-
-In polygon schemata, orientability can be read from edge orientations.  For an orientable surface, each label appears once in each direction, as in
+The corresponding fundamental-group presentation is
 \[
-  aba^{-1}b^{-1}.
+ \pi_1(K)
+ =\langle a,b\mid aba^{-1}=b^{-1}\rangle.
 \]
-For a non-orientable surface, some label appears twice with the same direction after normalizing the word, as in projective-plane-type words.
+It records a conjugation that reverses one generator. That reversal is the algebraic shadow of the twist in the edge identification and of the failure of orientability.
 
-This explains why the torus is orientable and the Klein bottle is not.  The twist in the edge gluing reverses local orientation after going around a loop.
-
-\section{Van Kampen and presentations from gluing}
-
-The one-skeleton of the torus is \(S^1\vee S^1\), whose fundamental group is the free group \(F(a,b)\).  Attaching the two-cell along \(aba^{-1}b^{-1}\) imposes the relation
+Both spaces have Euler characteristic
 \[
-  aba^{-1}b^{-1}=1.
+ \chi=1-2+1=0.
+\]
+Thus \(\chi\) is incapable of distinguishing the two gluing patterns. The chain complex can distinguish them because it remembers \(\partial_2\), and the fundamental group distinguishes them even more sharply because it remembers the noncommutative attaching word.
+
+There is a second instructive comparison. The figure eight itself has
+\[
+ H_1(S^1\vee S^1;\mathbb Z)=\mathbb Z^2
+\]
+just like the torus. The difference is the extra two-cell: its attaching commutator is invisible after abelianization, so \(H_1\) does not change, but \(H_2=\mathbb Z\) appears and \(\pi_1\) becomes abelian. This shows exactly which information each invariant forgets.
+
+\section{Projective Spaces in All Dimensions}
+
+Real and complex projective spaces are quotient spaces:
+\[
+ \mathbb{RP}^n=S^n/(x\sim-x),\qquad
+ \mathbb{CP}^n=S^{2n+1}/S^1.
+\]
+Their natural CW decompositions are rather different.
+
+The space \(\mathbb{RP}^n\) has one cell \(e^k\) in every dimension \(0\le k\le n\). Its \(k\)-skeleton is \(\mathbb{RP}^k\). The attaching map of \(e^k\) is the double covering
+\(S^{k-1}\to\mathbb{RP}^{k-1}\). When the cellular attaching map is projected onto the quotient of the \((k-1)\)-skeleton by its \((k-2)\)-skeleton, the resulting degree is
+\[
+ \boxed{\partial_k=1+(-1)^k.}
+\]
+One way to see the sign is to compare the two hemispheres of \(S^{k-1}\): the second contributes the degree of the antipodal map, which is \((-1)^k\). Thus the cellular boundaries alternate between multiplication by \(2\) and the zero map:
+\[
+ \partial_{2j}=2,\qquad \partial_{2j+1}=0.
+\]
+
+For \(\mathbb{RP}^2\), the chain complex is therefore
+\[
+ 0\longrightarrow\mathbb Z
+ \xrightarrow{\ 2\ }\mathbb Z
+ \xrightarrow{\ 0\ }\mathbb Z
+ \longrightarrow0,
+\]
+and
+\[
+ \boxed{H_1(\mathbb{RP}^2;\mathbb Z)\cong\mathbb Z/2\mathbb Z,
+ \qquad H_2(\mathbb{RP}^2;\mathbb Z)=0.}
+\]
+The \(2\)-torsion is the homological residue of the antipodal identification.
+
+Complex projective space has instead one cell in every even real dimension \(0,2,\ldots,2n\), and no odd-dimensional cells. Every cellular differential therefore vanishes for dimension reasons. Hence
+\[
+ \boxed{H_{2j}(\mathbb{CP}^n;\mathbb Z)\cong\mathbb Z
+ \quad(0\le j\le n),}
+ \qquad H_{2j+1}(\mathbb{CP}^n;\mathbb Z)=0.
+\]
+The difference in cell dimensions explains the difference in homology with almost no additional computation.
+
+\section{Orientability is encoded by the top boundary}
+
+The chain computations give a uniform way to detect orientability for connected closed surfaces. A coherent orientation on all top-dimensional cells produces a nonzero fundamental cycle, which generates \(H_2(M;\mathbb Z)\cong\mathbb Z\). If going around a loop reverses the local orientation, such a global cycle cannot exist, and \(H_2(M;\mathbb Z)=0\).
+
+The torus has a top cycle because the opposite oriented edge contributions cancel. The Klein bottle does not: its top two-cell has boundary \(2b\), so it cannot be a cycle over \(\mathbb Z\). Nevertheless, with coefficients in \(\mathbb F_2\), that boundary becomes zero:
+\[
+ 2b=0\quad\text{in }\mathbb F_2.
 \]
 Thus
 \[
-  \pi_1(T^2)=\langle a,b\mid aba^{-1}b^{-1}=1\rangle\cong\mathbb Z^2.
+ H_2(K;\mathbb F_2)\cong\mathbb F_2,
 \]
-For the Klein bottle, the attaching word imposes a different relation, giving
-\[
-  \pi_1(K)=\langle a,b\mid aba^{-1}=b^{-1}\rangle.
-\]
-This is the precise algebraic meaning of the arrows on the edge-identification diagram.
+as for every connected closed surface. Reduction modulo two forgets the distinction between positive and negative orientation.
 
-\section{Projective spaces through cells}
-
-The quotient descriptions
-\[
-  \mathbb{RP}^n=S^n/(x\sim -x),\qquad
-  \mathbb{CP}^n=S^{2n+1}/S^1
-\]
-are not just definitions.  They explain the CW structures:
-\[
-  \mathbb{RP}^n: \text{one cell in every dimension }0,
-  1,
-  \ldots,n,
-\]
-while
-\[
-  \mathbb{CP}^n: \text{one cell in every even dimension }0,2,
-  \ldots,2n.
-\]
-For \(\mathbb{CP}^n\), this leads to homology groups \(\mathbb Z\) in even degrees and \(0\) in odd degrees.  Thus a quotient construction immediately produces computable algebraic invariants.
-
-\section{Cellular surfaces through homology and presentations}
-
-Pictures become algebra through structure-preserving translations.  A product picture gives \(S^1\times S^1\), a gluing picture gives a quotient, a CW picture gives chain groups and boundary maps, and a labelled boundary word gives a fundamental-group presentation and homology after abelianization.  Algebraic topology is already encoded in arrows, labels, and attaching maps.
+The labelled polygon has led to a chain of increasingly sensitive invariants. The cell counts give Euler characteristic, exponent sums give cellular boundary maps, and the full boundary word gives the fundamental-group presentation. The arithmetic of \(2\)-torsion and the sign of an attaching map retain information that an unlabelled drawing or an Euler-characteristic calculation cannot.

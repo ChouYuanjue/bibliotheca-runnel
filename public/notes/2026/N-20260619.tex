@@ -1,287 +1,175 @@
-\notechapter{N-20260619}{First-Order Partial Differential Equations and Characteristics}
+\notechapter{N-20260619}{Characteristics, Caustics, and the Selection of Shocks}
 
-\section{What a first-order PDE asks for}
+A first-order PDE often becomes an ordinary differential equation when followed along the right curves. For linear transport these curves simply carry an initial profile; for nonlinear conservation laws their speeds depend on the transported value itself. When faster characteristics catch slower ones, the classical solution ceases to exist. The weak conservation law still makes sense, but it admits too many solutions until an entropy condition selects the physically relevant one.\footnote{G. Strang, MIT 18.086 (\emph{Characteristics, Shocks, and Fans}); \href{https://ocw.mit.edu/courses/18-306-advanced-partial-differential-equations-with-applications-fall-2009/pages/lecture-notes/}{MIT 18.306}, lectures on shock and entropy solutions.}
 
-A partial differential equation is an equation for an unknown function of several variables and its partial derivatives.  A first-order scalar equation for \(u=u(x,t)\) has the schematic form
-\[
-  F(x,t,u,u_x,u_t)=0.
-\]
-The simplest useful class is the linear transport equation
-\[
-  u_t+a u_x=b(x,t),
-\]
-where \(a\) is a constant.  It is called a transport equation because it moves the initial profile without changing its shape, except for the forcing term \(b\).
-
-The geometric method for first-order equations is the method of characteristics.  Instead of trying to understand \(u\) on the whole \((x,t)\)-plane at once, one looks for curves along which the PDE becomes an ordinary differential equation.
-
-\begin{definition}[Characteristic curves]
-For the constant-coefficient transport equation
-\[
-  u_t+a u_x=b(x,t),
-\]
-a characteristic is a curve \(x=x(t)\) satisfying
-\[
-  \frac{dx}{dt}=a.
-\]
-Along such a curve,
-\[
-  \frac{d}{dt}u(x(t),t)=u_x(x(t),t)x'(t)+u_t(x(t),t)=a u_x+u_t=b(x(t),t).
-\]
-\end{definition}
-
-Thus a first-order PDE has been replaced by two ordinary differential equations:
-\[
-  \frac{dx}{dt}=a,\qquad \frac{du}{dt}=b(x(t),t).
-\]
-The first equation describes the characteristic line, and the second describes the value of the solution along that line.
-
-\section{The unforced transport equation}
+\section{The chain rule chooses the path}
 
 Consider
 \[
-  u_t-c u_x=0.
+ u_t+a(x,t)u_x=b(x,t),\qquad u(x,0)=f(x),
 \]
-This sign convention has the form \(u_t+a u_x=0\) with \(a=-c\), so the characteristics satisfy
+where the coefficients are sufficiently smooth to give unique characteristic curves. If \(x(t)\) solves
 \[
-  \frac{dx}{dt}=-c.
+ x'(t)=a(x(t),t),
 \]
-Hence
+then the chain rule gives
 \[
-  x(t)=x_0-ct,\qquad x_0=x+ct.
+ \frac d{dt}u(x(t),t)
+ =u_t+a(x(t),t)u_x=b(x(t),t).
 \]
-Along each such line,
+The PDE is therefore equivalent, along each characteristic, to a pair of ODEs:
 \[
-  \frac{d}{dt}u(x(t),t)=u_t-c u_x=0.
+ x'(t)=a(x(t),t),\qquad
+ \frac d{dt}u(x(t),t)=b(x(t),t).
 \]
-Therefore \(u\) is constant on the line \(x+ct=x_0\).
+For constant \(a=c\) and no forcing, \(x(t)=\xi+ct\) and
+\[
+ \boxed{u(x,t)=f(x-ct).}
+\]
+This is a translating profile: neither its height nor its shape changes with time.
 
-\begin{theorem}[Solution of the constant-speed transport equation]
-Let \(f\) be a differentiable function.  The solution of
+As a small example, take \(u_t+cu_x=x+t\). Along the characteristic through \((x,t)\), the earlier position is \(x-c(t-s)\). Thus
 \[
-  u_t-c u_x=0,\qquad u(x,0)=f(x)
+\begin{aligned}
+ u(x,t)
+ &=f(x-ct)+\int_0^t\bigl(x-c(t-s)+s\bigr)\,ds\\
+ &=\boxed{f(x-ct)+xt+\frac{1-c}{2}t^2}.
+\end{aligned}
 \]
-is
-\[
-  u(x,t)=f(x+ct).
-\]
-\end{theorem}
+The force accumulates along a moving path, rather than at a fixed spatial point.
 
-\begin{proof}
-The initial point of the characteristic through \((x,t)\) is \((x+ct,0)\).  Since \(u\) is constant along the characteristic,
-\[
-  u(x,t)=u(x+ct,0)=f(x+ct).
-\]
-A direct check gives
-\[
-  u_t=c f'(x+ct),\qquad u_x=f'(x+ct),
-\]
-so \(u_t-c u_x=0\).
-\end{proof}
+\section{Characteristic data require transversality}
 
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}[scale=0.95,>=Stealth,every node/.style={fill=white,inner sep=1pt}]
-  \draw[->] (-0.8,0) -- (6.0,0) node[right] {$x$};
-  \draw[->] (0,-0.4) -- (0,3.6) node[above] {$t$};
-  \node[below left] at (0,0) {$O$};
-  \foreach \x in {1.2,2.2,3.2,4.2,5.2} {
-    \draw[red!75!black,thick] (\x,0) -- ({\x-1.0},2.8);
-  }
-  \node[align=left,anchor=west] at (3.65,3.0) {characteristics\\$x+ct=x_0$};
-  \draw[->,blue!70!black,thick] (3.7,2.65) -- (3.0,2.15);
-\end{tikzpicture}
-\caption{Characteristics for \(u_t-c u_x=0\).  The solution is constant along each red line and the initial profile moves to the left as \(t\) increases.}
-\end{figure}
+Suppose initial values are prescribed on a parametrized curve \(s\mapsto(x_0(s),t_0(s))\). The directional derivative specified by the PDE is along \((a,1)\) in the \((x,t)\)-plane. To recover an entire neighborhood from the initial curve, that curve must cross the characteristics:
+\[
+ \det\begin{pmatrix}x_0'(s)&a(x_0(s),t_0(s))\\
+ t_0'(s)&1\end{pmatrix}
+ =x_0'(s)-a(x_0(s),t_0(s))t_0'(s)\ne0.
+\]
+This is the noncharacteristic condition. It ensures the characteristic flow gives local coordinates built from the initial curve parameter and time.
 
-\section{Example: translating a parabola}
+For \(u_t+u_x=0\), prescribing data on \(x-t=0\) is not enough to determine the solution nearby: that line is itself a characteristic. Any compatible data must be constant along it, and the values on neighboring lines remain unspecified. The failure comes from geometry, not from an algebraic defect in the formula.
 
-Let
-\[
-  u_t-c u_x=0,\qquad u(x,0)=x^2-3.
-\]
-The theorem gives
-\[
-  u(x,t)=(x+ct)^2-3.
-\]
-For each fixed time \(t\), the graph in the \((x,u)\)-plane is the same parabola shifted left by \(ct\).
+\section{Nonlinear characteristics can collide}
 
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}[xscale=0.72,yscale=0.45,>=Stealth,every node/.style={fill=white,inner sep=1pt}]
-  \draw[->] (-6,0) -- (6,0) node[right] {$x$};
-  \draw[->] (0,-3.6) -- (0,6.7) node[above] {$u$};
-  \foreach \shift/\lbl/\shade in {-2/{$t<0$}/35,0/{$t=0$}/60,2/{$t>0$}/85} {
-    \draw[blue!\shade!black,thick,domain=-3.0:3.0,samples=80] plot ({\x+\shift},{\x*\x-3});
-    \node[blue!\shade!black] at ({\shift+2.7},5.6) {\lbl};
-  }
-\end{tikzpicture}
-\caption{Time slices of \(u(x,t)=(x+ct)^2-3\), shown as translated copies of the initial profile.}
-\end{figure}
+The inviscid Burgers equation is
+\[
+ u_t+uu_x=0,\qquad u(x,0)=u_0(x).
+\]
+Along a characteristic, the value \(u\) stays constant. If the characteristic begins at \(\xi\), its speed is \(u_0(\xi)\), so
+\[
+ \boxed{x=\xi+t\,u_0(\xi),\qquad
+ u(x,t)=u_0(\xi).}
+\]
+As long as the map \(\xi\mapsto x\) remains invertible, this implicitly defines a classical solution.
 
-\section{Forced transport}
+Differentiate the characteristic relation with respect to \(\xi\):
+\[
+ \frac{\partial x}{\partial\xi}=1+t\,u_0'(\xi).
+\]
+The first crossing occurs when this Jacobian vanishes. Differentiating the solution itself gives
+\[
+ \boxed{u_x(x,t)=\frac{u_0'(\xi)}
+                          {1+t\,u_0'(\xi)}.}
+\]
+A negative initial slope therefore steepens: the denominator shrinks toward zero and the spatial derivative blows up while the solution values remain bounded.
 
-Now consider
+Take the smooth initial profile \(u_0(\xi)=-\tanh\xi\). Since
 \[
-  u_t+a u_x=b(x,t),\qquad u(x,0)=f(x).
+ u_0'(\xi)=-\operatorname{sech}^2\xi,
 \]
-The characteristic through \((x,t)\) has the form
+the first characteristic crossing occurs at
 \[
-  x(s)=x-a(t-s),\qquad 0\le s\le t,
+ t_*=-\frac{1}{\min_\xi u_0'(\xi)}=1.
 \]
-because \(x(t)=x\).  Along this path,
+Near \(\xi=0\), the characteristic map is
 \[
-  \frac{d}{ds}u(x(s),s)=b(x(s),s).
+ x=\xi-t\tanh\xi
+   =(1-t)\xi+\frac t3\xi^3+O(\xi^5).
 \]
-Integrating from \(0\) to \(t\) gives the formula
+At \(t=1\) the linear term disappears, making the projection of the characteristic family singular. This is a caustic: the map from initial labels to physical positions loses invertibility. For \(t>1\), the formal characteristic solution becomes multivalued near \(x=0\).
+
+\section{Conservation determines the speed of a jump}
+
+Burgers' equation is also the conservation law
 \[
-  u(x,t)=f(x-at)+\int_0^t b(x-a(t-s),s)\,ds.
+ \boxed{u_t+\partial_x\left(\frac{u^2}{2}\right)=0.}
+\]
+A discontinuity is not differentiable in the classical sense, but the integral conservation law survives.
+
+For a general flux \(F\), suppose \(u\) has a jump at \(x=s(t)\), with left and right states \(u_L,u_R\). Integrate the conservation law over a narrow interval straddling the moving jump. As the interval shrinks, the balance is
+\[
+ s'(t)(u_L-u_R)=F(u_L)-F(u_R).
+\]
+Thus the Rankine--Hugoniot jump speed is
+\[
+ \boxed{s'(t)=\frac{F(u_L)-F(u_R)}{u_L-u_R}}
+ \qquad(u_L\ne u_R).
+\]
+For Burgers' flux \(F(u)=u^2/2\), this becomes
+\[
+ \boxed{s'=\frac{u_L+u_R}{2}.}
+\]
+Conservation fixes a discontinuity's speed, but it does not by itself say whether a proposed discontinuity is physically admissible.
+
+\section{Shocks versus Rarefactions}
+
+Consider the step initial data
+\[
+ u(x,0)=\begin{cases}u_L,&x<0,\\u_R,&x>0.\end{cases}
 \]
 
-\begin{example}[A forced first-order wave equation]
-Solve
+When \(u_L>u_R\), left characteristics travel faster than right ones and converge. The entropy solution has a shock moving at
+\(s=(u_L+u_R)/2\):
 \[
-  u_t+5u_x=e^{-t},\qquad u(x,0)=e^{-x^2}.
+ u(x,t)=
+ \begin{cases}u_L,&x<st,\\u_R,&x>st.\end{cases}
 \]
-Here \(a=5\), so
+For the concrete data \(u_L=1\), \(u_R=0\), the shock speed is \(1/2\). The characteristics move into it:
 \[
-  x(s)=x-5(t-s).
+ 1=F'(u_L)>\frac12>F'(u_R)=0.
 \]
-The forcing depends only on time, and therefore
-\[
-  \int_0^t e^{-s}\,ds=1-e^{-t}.
-\]
-The initial point is \(x-5t\).  Hence
-\[
-  u(x,t)=e^{-(x-5t)^2}+1-e^{-t}.
-\]
-Equivalently, if one writes the characteristic label as \(x_0=x-5t\), then \(u=f(x_0)+1-e^{-t}\).  The sign of the last term is fixed by differentiating the proposed solution back into the PDE.
-\end{example}
+This inequality is the Lax compressivity condition for a convex flux.
 
-\section{What can go wrong}
+When \(u_L<u_R\), characteristics separate, leaving a fan. For \(u_L=0,u_R=1\), the entropy solution is
+\[
+ \boxed{
+ u(x,t)=
+ \begin{cases}
+ 0,&x\le0,\\
+ x/t,&0<x<t,\\
+ 1,&x\ge t,
+ \end{cases}\qquad t>0.}
+\]
+Inside the fan, \(u=x/t\) satisfies \(u_t+uu_x=0\) because
+\[
+ u_t=-\frac{x}{t^2},\qquad
+ uu_x=\frac xt\cdot\frac1t=\frac{x}{t^2}.
+\]
+The profile is continuous across both fan edges and has the appropriate limiting initial data.
 
-For first-order equations, the initial curve must meet the characteristic curves transversely.  If the data are prescribed on a characteristic, then the PDE may fail to determine a unique solution.  For constant-speed transport, prescribing \(u(x,0)=f(x)\) is safe because the initial line \(t=0\) intersects each characteristic once.  This is the first place where PDEs differ from ordinary differential equations: the geometry of the set on which data are given is part of the problem.
+For the same increasing step, a discontinuity of speed \(1/2\) also satisfies Rankine--Hugoniot, yet is not the entropy solution. The missing selection criterion is therefore substantive, not merely a preferred way of drawing characteristics.
 
-% Expanded PDE supplement: N-20260619
-\section{General linear first-order equations}
+\section{Entropy and Time Direction}
 
-The constant-coefficient equation is only the first model.  A more general linear first-order equation is
+For smooth Burgers solutions, every convex twice-differentiable function \(\eta(u)\) satisfies another conservation law:
 \[
-  a(x,t)u_x+b(x,t)u_t=c(x,t)u+d(x,t).
+ \partial_t\eta(u)+\partial_xq(u)=0,
+ \qquad q'(u)=\eta'(u)F'(u)=u\eta'(u).
 \]
-The characteristic curves now satisfy
+For discontinuous solutions, the entropy condition replaces equality by
 \[
-  \frac{dx}{ds}=a(x,t),\qquad \frac{dt}{ds}=b(x,t).
+ \boxed{\partial_t\eta(u)+\partial_xq(u)\le0}
 \]
-Along such a curve, the value of \(u\) satisfies
-\[
-  \frac{du}{ds}=c(x(s),t(s))u+d(x(s),t(s)).
-\]
-Thus even when the coefficients vary, the method is still the same: solve a characteristic system in the independent variables, then solve an ordinary differential equation for the dependent variable along the characteristic.
+in the distributional sense, for every convex entropy pair.
 
-\begin{example}[Variable speed transport]
-Consider
+Take \(\eta(u)=u^2/2\), so \(q(u)=u^3/3\). Across a Burgers shock of speed \(s=(u_L+u_R)/2\), the coefficient of the delta distribution in \(\eta_t+q_x\) is
 \[
-  u_t+xu_x=0,\qquad u(x,0)=f(x).
+ [q]-s[\eta]
+ =\frac{u_R^3-u_L^3}{3}
+  -\frac{u_L+u_R}{2}\frac{u_R^2-u_L^2}{2}
+ =\frac{(u_R-u_L)^3}{12}.
 \]
-The characteristics solve
-\[
-  \frac{dx}{dt}=x,
-\]
-so \(x(t)=x_0e^t\).  The initial footpoint through \((x,t)\) is therefore \(x_0=xe^{-t}\).  Since \(u\) is constant along characteristics,
-\[
-  u(x,t)=f(xe^{-t}).
-\]
-A direct check gives
-\[
-  u_t=-xe^{-t}f'(xe^{-t}),\qquad xu_x=xe^{-t}f'(xe^{-t}),
-\]
-and hence \(u_t+xu_x=0\).
-\end{example}
+It is nonpositive exactly when \(u_L\ge u_R\). The decreasing step creates an entropy-admissible shock; the increasing step would give positive entropy production in this convention and is replaced by a rarefaction fan.
 
-\section{Quasilinear equations}
-
-A first-order equation is called quasilinear if it is linear in the derivatives but the coefficients may depend on \(u\):
-\[
-  a(x,t,u)u_x+b(x,t,u)u_t=c(x,t,u).
-\]
-The characteristic system is now
-\[
-  \frac{dx}{ds}=a(x,t,u),\qquad
-  \frac{dt}{ds}=b(x,t,u),\qquad
-  \frac{du}{ds}=c(x,t,u).
-\]
-This is already a nonlinear system of ordinary differential equations.  In this sense, first-order nonlinear PDEs are not an entirely new object: they are families of coupled ODEs whose curves fill the plane.
-
-\begin{example}[Inviscid Burgers equation]
-The equation
-\[
-  u_t+u u_x=0
-\]
-has characteristic speed \(u\) itself.  Along a characteristic,
-\[
-  \frac{du}{dt}=u_t+u u_x=0,
-\]
-so \(u\) is constant.  If \(u(x,0)=f(x)\), then the characteristic starting from \(x_0\) has
-\[
-  x=x_0+f(x_0)t,\qquad u=f(x_0).
-\]
-Thus the implicit solution is obtained from
-\[
-  x_0=x-u t,\qquad u=f(x-u t).
-\]
-This formula is useful only as long as the map \(x_0\mapsto x_0+f(x_0)t\) remains one-to-one.
-\end{example}
-
-\section{Crossing characteristics and shocks}
-
-For linear transport with constant speed, characteristics never cross.  For nonlinear equations such as Burgers' equation, faster characteristics can overtake slower ones.  When this happens, the classical solution becomes multi-valued if one continues the characteristic construction naively.
-
-Differentiate the characteristic map for Burgers' equation:
-\[
-  x=x_0+f(x_0)t.
-\]
-The map stops being locally invertible when
-\[
-  \frac{\partial x}{\partial x_0}=1+f'(x_0)t=0.
-\]
-Thus if \(f'(x_0)<0\) somewhere, characteristic crossing occurs at time
-\[
-  t_*=-\frac{1}{\min f'(x_0)}
-\]
-provided the minimum is negative.  This is the first appearance of shock formation.
-
-In an introductory PDE course, one often stops here and says that classical differentiable solutions break down.  A more advanced treatment replaces them by weak solutions and adds an entropy condition to select the physically relevant shock.  The point for this note is more elementary: first-order PDEs are controlled by the geometry of characteristic curves, and loss of uniqueness in that geometry is visible before one writes any distribution theory.
-
-\section{Initial curves and well-posedness}
-
-Let initial data be prescribed on a curve \(\Gamma\) in the \((x,t)\)-plane.  For the characteristic method to determine a solution near \(\Gamma\), the curve must not be tangent to the characteristic direction.  For
-\[
-  a(x,t)u_x+b(x,t)u_t=c(x,t,u),
-\]
-the characteristic direction in the \((x,t)\)-plane is \((a,b)\).  If \(\Gamma\) has tangent vector \(\tau\), then the non-characteristic condition is
-\[
-  \tau \not\parallel (a,b).
-\]
-Equivalently, the characteristic curves must cross the data curve rather than slide along it.
-
-\begin{example}[Bad data curve]
-For \(u_t+u_x=0\), the characteristics are lines \(x-t=\text{const.}\).  If data are prescribed on the line \(x-t=0\), then the data are given along a characteristic.  The equation says the solution is constant on that line, but it does not determine what happens on neighboring characteristic lines.  Therefore the problem is not locally well-posed from that data curve.
-\end{example}
-
-\section{Conservation-law viewpoint}
-
-Some first-order equations are written in conservation form:
-\[
-  u_t+\partial_x F(u)=0.
-\]
-For smooth solutions, this is the same as
-\[
-  u_t+F'(u)u_x=0.
-\]
-The characteristic speed is \(F'(u)\).  Burgers' equation corresponds to \(F(u)=u^2/2\).  Conservation form becomes important when shocks appear, because it still has meaning after differentiability is lost.
-
-Integrating over an interval \([a,b]\), we obtain
-\[
-  \frac{d}{dt}\int_a^b u(x,t)\,dx=F(u(a,t))-F(u(b,t)).
-\]
-Thus the amount of \(u\) in the interval changes only by flux through the boundary.  This is the conceptual reason that conservation laws are the natural nonlinear continuation of transport equations.
+This calculation makes an important distinction. Characteristics explain how smooth information travels, and their crossing predicts failure of a classical solution. Conservation fixes the possible jump speed, while entropy rules out the unphysical weak solutions. The full theory needs all three levels because each answers a different mathematical question.

@@ -1,0 +1,442 @@
+\notechapter{N-20261016}{After Forgetting Labels: Random Occupancy and Hidden Weights}
+
+Three balls are independently thrown into two boxes, each ball choosing either box with probability \(1/2\). After the experiment, we forget the identities of the balls. There are just four possible occupancy vectors:
+\[
+ (3,0),\qquad(2,1),\qquad(1,2),\qquad(0,3).
+\]
+It would be natural, at first glance, to assign probability \(1/4\) to each. In the experiment we actually described, their probabilities are
+\[
+ \frac18,\qquad\frac38,\qquad\frac38,\qquad\frac18.
+\]
+The information we forget is precisely where the unequal weights come from. There are three labelled assignments realizing \((2,1)\), and only one realizing \((3,0)\).
+
+In the twelvefold way, labels determined which objects were considered equal. Here we will ask a more delicate question: \emph{what probability measure survives after the labels have been forgotten?} It leads from exact enumerations to probability thresholds, Poisson approximation and the cycle structure of a random permutation.\footnote{For the occupancy and coupon-collector calculations, see MIT's \href{https://courses.csail.mit.edu/6.856/current/Notes/n05-deviations.html}{6.856 lecture notes on deviations} and Djalil Chafa\"i, \href{https://djalil.chafai.net/blog/2010/10/20/back-to-basics-coupon-collector/}{\emph{Back to basics: Coupon collector}}. The combinatorics of permutation cycles also appears in Sedgewick and Flajolet's \href{https://aofa.cs.princeton.edu/70permutations/}{\emph{Analysis of Algorithms}, Chapter 7}.}
+
+\section{Three probability models}
+
+Keep \(n\) and \(k\) positive, and consider three ways of choosing a distribution of \(n\) balls into \(k\) boxes. Each way is perfectly legitimate, but they define different experiments.
+
+First, the balls can be labelled and can independently choose one of the \(k\) labelled boxes. We choose one of the \(k^n\) functions \(f:[n]\to[k]\), all equally likely. If \(A_i\) is the occupancy of box \(i\), then
+\[
+ \Pr(A_1=a_1,\ldots,A_k=a_k)
+ =\frac{n!}{k^n a_1!\cdots a_k!},
+ \qquad \sum_{i=1}^k a_i=n.
+\]
+The factorials count which ball identities give the specified occupancies. This is the multinomial distribution.
+
+Second, we can ignore ball identities \emph{before sampling}, and choose each weak composition
+\[
+ (a_1,\ldots,a_k),\qquad a_i\ge0,\quad \sum_i a_i=n,
+\]
+with equal probability. There are \(\binom{n+k-1}{k-1}\) such vectors, so each has probability
+\[
+ \Pr_{\mathrm{comp}}(a_1,\ldots,a_k)
+ =\binom{n+k-1}{k-1}^{-1}.
+\]
+This sampling rule is different from throwing labelled balls independently.
+
+Third, we might disregard the labels of the boxes as well, and choose uniformly among the integer partitions \(\lambda\vdash n\) having at most \(k\) positive parts. Each such partition then receives probability \(1/p_{\le k}(n)\). This is a further distinct probability model.
+
+For the first two models, take \(n=3,k=2\). The numbers make the distinction difficult to miss:
+\[
+\begin{array}{c|cccc}
+ (a_1,a_2)&(3,0)&(2,1)&(1,2)&(0,3)\\ \hline
+ \text{independent throws}&1/8&3/8&3/8&1/8\\
+ \text{uniform compositions}&1/4&1/4&1/4&1/4
+\end{array}
+\]
+If box names are subsequently removed, the two possible integer partitions are \(3\) and \(2+1\). Under independent throws their probabilities are \(1/4\) and \(3/4\), whereas a uniform choice of integer partition assigns \(1/2\) to each.
+
+\section{Orbit weights}
+
+The discrepancy can be calculated for every possible integer partition, not just for small examples.
+
+Let \(\lambda=(\lambda_1,\ldots,\lambda_\ell)\) be a partition of \(n\) into \(\ell\le k\) positive parts. Let \(m_r\) denote the number of parts of size \(r\) in \(\lambda\). How many functions \(f:[n]\to[k]\) produce the unlabelled occupancy pattern \(\lambda\)?
+
+Choose \(\ell\) distinct box names, assign the \(\ell\) part sizes to them, and then assign the \(n\) labelled balls to boxes with these occupancies. A convenient combined formula is
+\[
+ \boxed{w_k(\lambda)=
+ \frac{n!(k)_{\underline\ell}}
+      {\left(\prod_{i=1}^{\ell}\lambda_i!\right)
+       \left(\prod_{r\ge1}m_r!\right)}.}
+\]
+The \(m_r!\) denominators account for the indistinguishable equal parts. The formula agrees with the orbit--stabilizer principle: symmetries that exchange equal-sized groups, and permutations of balls within a group, affect how many labelled functions represent the same pattern.
+
+\begin{example}
+For \(n=4,k=3\), there are four possible unlabelled occupancy patterns. The table records the numbers of labelled functions producing them.
+\[
+\begin{array}{c|rrrr|r}
+ \lambda & (4)&(3,1)&(2,2)&(2,1,1)&\text{total}\\ \hline
+ w_3(\lambda)&3&24&18&36&81
+\end{array}
+\]
+Their probabilities under four independent throws are respectively
+\[
+ \frac3{81},\qquad\frac{24}{81},\qquad
+ \frac{18}{81},\qquad\frac{36}{81}.
+\]
+Under a uniform choice of integer partition, each would have probability \(1/4\). The difference is large even at this tiny scale.
+\end{example}
+
+There is a general principle here. If a finite group \(G\) acts on a finite set \(X\), and we choose an element \(x\in X\) uniformly before replacing it by its orbit, then
+\[
+ \Pr(\text{orbit }O)=\frac{|O|}{|X|}.
+\]
+Uniformity on \(X\) induces an \emph{orbit-size-biased} distribution on \(X/G\). To make the orbits themselves uniformly likely, one must change the sampling procedure. Dividing counts by symmetry and pushing forward a probability measure are related operations, but their normalization rules are different.
+
+\section{Counting occupied boxes}
+
+Now return to the independent-throw model, with \(n\) labelled balls and \(k\) labelled boxes. Let \(K_n\) be the number of occupied boxes and \(Z_n=k-K_n\) the number of empty boxes.
+
+There are \(\binom kj\) choices of which \(j\) boxes are occupied. For any fixed choice, the balls must map surjectively onto those boxes, and there are \(j!S(n,j)\) such maps. The twelvefold table therefore gives the full distribution:
+\[
+ \boxed{\Pr(K_n=j)=
+ \frac{\binom kj j!S(n,j)}{k^n}
+ =\frac{(k)_{\underline j}S(n,j)}{k^n},}
+ \qquad 1\le j\le\min(n,k).
+\]
+In particular,
+\[
+ \Pr(Z_n=0)=\frac{k!S(n,k)}{k^n}.
+\]
+The old counting formula has become an exact probability of covering every box.
+
+To find the expected number of empty boxes, introduce indicators
+\[
+ I_i=\begin{cases}
+ 1,&\text{box }i\text{ is empty},\\
+ 0,&\text{otherwise}.
+ \end{cases}
+ \qquad Z_n=\sum_{i=1}^kI_i.
+\]
+A particular box remains empty precisely when all \(n\) balls avoid it. Thus
+\[
+ q:=\Pr(I_i=1)=\left(1-\frac1k\right)^n,
+ \qquad
+ \boxed{\mathbb E Z_n=k\left(1-\frac1k\right)^n.}
+\]
+Notice how this expectation was easier than the complete probability distribution. Linearity of expectation avoids the need to describe all possible joint occupancy patterns.
+
+The indicators are dependent: if one box is known to be empty, the remaining balls must occupy the other boxes. For distinct \(i,j\),
+\[
+ \mathbb E[I_iI_j]=\left(1-\frac2k\right)^n.
+\]
+Consequently,
+\[
+ \boxed{
+ \operatorname{Var}(Z_n)=kq(1-q)+
+ k(k-1)\left[\left(1-\frac2k\right)^n-q^2\right].
+ }
+\]
+The covariance term is nonpositive for \(k\ge2\). Empty-box events are negatively correlated in this model.
+
+What happens in the \emph{uniform-composition} model? A particular box is empty in
+\(\binom{n+k-2}{k-2}\) of the \(\binom{n+k-1}{k-1}\) weak compositions. Therefore, for \(k\ge2\),
+\[
+ \boxed{\mathbb E_{\mathrm{comp}} Z_n
+ =k\frac{k-1}{n+k-1}.}
+\]
+When \(n=k\to\infty\), independent throws give approximately \(k/e\) empty boxes, while uniform weak compositions give approximately \(k/2\). One can meaningfully ask for a uniformly random allocation only after fixing the underlying space of equally likely outcomes.
+
+\section{The first collision}
+
+Throw balls independently until some box receives a second ball. Before the first collision, the assignment is injective. After \(n\) throws, the probability of no collision is exactly
+\[
+ \Pr(\text{no collision after }n)
+ =\frac{(k)_{\underline n}}{k^n}
+ =\prod_{j=0}^{n-1}\left(1-\frac jk\right)
+ \qquad(n\le k).
+\]
+Taking logarithms and using \(\log(1-t)=-t+O(t^2)\) for small \(t\) gives
+\[
+ \begin{aligned}
+ \log\Pr(\text{no collision})
+ &=-\frac1k\sum_{j=0}^{n-1}j
+   +O\left(\frac1{k^2}\sum_{j=0}^{n-1}j^2\right)\\
+ &=-\frac{n(n-1)}{2k}
+   +O\left(\frac{n^3}{k^2}\right)
+ \end{aligned}
+\]
+when \(n=o(k)\). In the interesting regime \(n\sim t\sqrt{k}\) with fixed \(t>0\), the error tends to zero. Hence
+\[
+ \boxed{
+ \Pr(\text{a collision by }n)
+ \longrightarrow1-e^{-t^2/2}
+ \quad\text{if }n/\sqrt{k}\longrightarrow t.
+ }
+\]
+The first collision occurs on the scale \(\sqrt{k}\), long before most boxes have been occupied. This is the mathematical core of the birthday paradox.
+
+Why the square root? There are \(\binom n2\) pairs of balls, and each pair has probability \(1/k\) of landing in the same box. The expected number of colliding pairs is
+\[
+ \mathbb E C=\frac{\binom n2}{k}.
+\]
+It becomes order one when \(n\) is of order \(\sqrt{k}\). The exact injection formula turns this heuristic into the exponential limit above.
+
+\section{The last empty box}
+
+Let \(T_k\) be the first throw number at which all \(k\) boxes are occupied. Once \(j\) different boxes have appeared, the next throw reaches a new box with probability
+\[
+ \frac{k-j}{k}.
+\]
+Write \(T_k=G_0+\cdots+G_{k-1}\), where \(G_j\) is the number of further throws needed to move from \(j\) to \(j+1\) occupied boxes. The \(G_j\) are independent geometric waiting times with means \(k/(k-j)\). Thus
+\[
+ \boxed{\mathbb E T_k
+ =\sum_{j=0}^{k-1}\frac{k}{k-j}
+ =kH_k,\qquad H_k=\sum_{r=1}^k\frac1r.}
+\]
+Since \(H_k=\log k+\gamma+o(1)\), the expected cover time is \(k\log k+O(k)\). One needs roughly \(k\log k\) throws to reach every box, compared with only \(\sqrt{k}\) throws to encounter the first repeated box.
+
+The geometric decomposition also computes the variance. A geometric waiting time on \(\{1,2,\ldots\}\) with success probability \(p\) has variance \((1-p)/p^2\). Therefore
+\[
+ \boxed{\operatorname{Var}(T_k)
+ =k^2\sum_{r=1}^k\frac1{r^2}-kH_k
+ =\left(\frac{\pi^2}{6}+o(1)\right)k^2.}
+\]
+The natural fluctuations around the main term \(k\log k\) have scale \(k\).
+
+There is also an exact formula for the distribution function. The event \(T_k\le n\) says precisely that the \(n\) throws form a surjection onto the \(k\) boxes:
+\[
+ \boxed{\Pr(T_k\le n)
+ =\frac{k!S(n,k)}{k^n}
+ =\sum_{j=0}^k(-1)^j\binom kj
+        \left(1-\frac jk\right)^n.}
+\]
+We have returned to the inclusion--exclusion formula for Stirling numbers, now with a time parameter. This will let us refine the estimate \(k\log k\) into a limiting distribution.
+
+\section{A Gumbel limit}
+
+Place the throw count at
+\[
+ n_k=\left\lfloor k\log k+ck\right\rfloor
+\]
+for a fixed real number \(c\). The expected number of boxes still empty is
+\[
+ \mathbb E Z_{n_k}
+ =k\left(1-\frac1k\right)^{n_k}
+ \longrightarrow e^{-c}.
+\]
+It is already suggestive that a finite expected number of missing boxes remains exactly on the scale where the cover time changes from unlikely to likely.
+
+To see the full limiting law, consider the falling factorial moment
+\[
+ (Z_n)_{\underline r}=Z_n(Z_n-1)\cdots(Z_n-r+1).
+\]
+It counts ordered \(r\)-tuples of \emph{distinct empty boxes}. A specified set of \(r\) boxes is simultaneously empty when every throw avoids all of them. Hence
+\[
+ \boxed{\mathbb E(Z_n)_{\underline r}
+   =(k)_{\underline r}\left(1-\frac rk\right)^n.}
+\]
+With \(n=n_k\) and \(r\) fixed,
+\[
+ (k)_{\underline r}\sim k^r,\qquad
+ \left(1-\frac rk\right)^{n_k}
+ \sim k^{-r}e^{-cr},
+\]
+and therefore
+\[
+ \mathbb E(Z_{n_k})_{\underline r}\longrightarrow e^{-cr}.
+\]
+These are exactly the factorial moments of a Poisson random variable with mean \(e^{-c}\). The factorial-moment criterion gives
+\[
+ Z_{n_k}\ \xrightarrow{\mathrm d}\
+ \operatorname{Poisson}(e^{-c}).
+\]
+In particular, the probability that \emph{no} empty boxes remain tends to \(\exp(-e^{-c})\). Therefore
+\[
+ \boxed{\Pr\left(
+ \frac{T_k-k\log k}{k}\le c\right)
+ \longrightarrow\exp(-e^{-c}).}
+\]
+This is the Gumbel distribution. Its appearance has a simple reading: the final stage of collecting all boxes is governed by the extreme waiting time for the last missing possibilities, rather than by an average waiting time.
+
+The scales from the previous two sections are markedly different. The first collision is already likely after \(O(\sqrt{k})\) throws. The last empty box disappears around \(k\log k\) throws. They are both properties of the same random function, revealed by applying different events to its fibers.
+
+\section{Poissonization}
+
+In fixed-\(n\) occupancy, knowing that one box has received many balls affects the allocations of the others. There is an elegant way to remove this dependence: randomize the \emph{number} of balls.
+
+Let \(N\) be Poisson with mean \(k\lambda\), and conditionally on \(N\), throw all \(N\) balls independently into \(k\) labelled boxes. Let \(A_i\) be the resulting occupancies. Their joint probability generating function is
+\[
+ \begin{aligned}
+ \mathbb E\left[\prod_{i=1}^k t_i^{A_i}\right]
+ &=\mathbb E\left[\left(\frac{t_1+\cdots+t_k}{k}\right)^N\right]\\
+ &=\exp\left(k\lambda\left(\frac{t_1+\cdots+t_k}{k}-1\right)\right)\\
+ &=\prod_{i=1}^k\exp\bigl(\lambda(t_i-1)\bigr).
+ \end{aligned}
+\]
+The last expression factors completely. Each \(A_i\) is a Poisson random variable with mean \(\lambda\), and the \(k\) occupancies are independent.
+
+An individual box is now empty with probability \(e^{-\lambda}\), so
+\[
+ \boxed{Z\sim\operatorname{Binomial}(k,e^{-\lambda}),\qquad
+ \Pr(Z=0)=(1-e^{-\lambda})^k.}
+\]
+Set \(\lambda=\log k+c\). Then
+\[
+ (1-e^{-\lambda})^k
+ =\left(1-\frac{e^{-c}}{k}\right)^k
+ \longrightarrow\exp(-e^{-c}).
+\]
+The Gumbel expression emerges immediately from independent Poisson occupancies. To recover the fixed-number-of-balls result rigorously, one can compare Poisson total counts with \(\lfloor k\log k+ck\rfloor\pm\varepsilon k\). The Poisson total has standard deviation \(O(\sqrt{k\log k})=o(k)\), and the event that every box is occupied is monotone in the number of throws. Taking the limit and then letting \(\varepsilon\downarrow0\) transfers the Poissonized result back to the fixed-\(n\) model.
+
+Poissonization is useful far beyond boxes and balls. It replaces a fixed-total constraint by independent local counts; analytic calculations become simpler, and concentration of the randomized total can return us to the original problem.
+
+\section{Random set partitions}
+
+So far we have forgotten the identities of the balls and occasionally the boxes. There is another quotient worth considering: keep the balls labelled and forget only the names of the boxes. The outcome is a set partition of \([n]\), with a number \(J\) of blocks between \(1\) and \(k\).
+
+Suppose we first sample a uniform random function \([n]\to[k]\), and only then forget box names. A fixed set partition with \(j\) blocks has
+\[
+ (k)_{\underline j}
+\]
+preimages: we can assign its \(j\) distinct nonempty blocks injectively to \(k\) labelled boxes. Therefore that particular partition has probability
+\[
+ \boxed{\Pr(\Pi=\pi)
+ =\frac{(k)_{\underline{|\pi|}}}{k^n},}
+\]
+where \(|\pi|\) is the number of blocks of \(\pi\).
+
+In contrast, a uniformly random set partition of \([n]\) chooses among the \(B_n\) partitions with equal weight, and its block-count distribution is
+\[
+ \Pr_{\mathrm{uniform}}(J=j)=\frac{S(n,j)}{B_n}.
+\]
+For the partition induced by a random function, the corresponding law is
+\[
+ \Pr_{\mathrm{function}}(J=j)
+ =\frac{S(n,j)(k)_{\underline j}}{k^n}.
+\]
+Even though both random objects are called a random partition, their block counts need not behave similarly. The construction leading to the partition is part of its probability law.
+
+This is a useful distinction whenever a combinatorial structure is obtained by forgetting hidden labels in a random process. Counting the unlabelled structures and describing their natural sampling distribution are separate tasks.
+
+\section{Permutation cycles}
+
+Integer partitions arise in another setting that brings a new probability measure with them. Every permutation \(\sigma\in S_n\) can be written as a product of disjoint cycles. For example,
+\[
+ \sigma=(1\,4\,2)(3\,5)(6)
+\]
+has cycle-length partition \(3+2+1\) of \(6\).
+
+The lengths alone do not specify the permutation: a cycle of length \(r\) has \((r-1)!\) possible cyclic orderings on a given set of \(r\) labelled elements. The cost of forgetting those cyclic orderings is another factorial weight.
+
+Let \(\lambda\vdash n\) have \(m_r\) parts of size \(r\). The number of permutations of cycle type \(\lambda\) is
+\[
+ \boxed{\frac{n!}{z_\lambda},
+ \qquad z_\lambda=\prod_{r\ge1}r^{m_r}m_r!.}
+\]
+To derive it, arrange the \(n\) labels in a linear order (\(n!\) choices), cut the list into successive groups of lengths prescribed by \(\lambda\), and close each group into a cycle. Rotating an \(r\)-cycle does not change it, producing a factor \(r\) for every such cycle. Permuting the \(m_r\) cycles of equal length also changes nothing, producing the factor \(m_r!\).
+
+If \(\sigma\) is uniformly sampled from \(S_n\), its cycle type has the distribution
+\[
+ \boxed{\Pr(\text{cycle type}=\lambda)=\frac1{z_\lambda}.}
+\]
+In particular, \(\sum_{\lambda\vdash n}1/z_\lambda=1\). Integer partitions have appeared again, but with weights that differ from both uniform integer partitions and the random occupancy patterns.
+
+For \(n=4\), this produces a surprisingly uneven distribution:
+\[
+\begin{array}{c|ccccc}
+ \lambda&(4)&(3,1)&(2,2)&(2,1,1)&(1,1,1,1)\\ \hline
+ \#\text{permutations}&6&8&3&6&1\\
+ \Pr(\lambda)&1/4&1/3&1/8&1/4&1/24
+\end{array}
+\]
+If we select one of the five integer partitions uniformly, every type would instead have probability \(1/5\).
+
+\section{Counting random cycles}
+
+Let \(C_r(\sigma)\) be the number of cycles of length \(r\) in a uniformly random permutation of \(n\) elements. Choose an \(r\)-element subset to be the support of a specified cycle. There are \((r-1)!\) cyclic orders on this subset and \((n-r)!\) permutations on the remaining labels. Dividing by \(n!\) gives
+\[
+ \boxed{\mathbb E C_r
+ =\frac{\binom nr(r-1)!(n-r)!}{n!}
+ =\frac1r,\qquad 1\le r\le n.}
+\]
+Summing over all lengths,
+\[
+ \boxed{\mathbb E\bigl[\#\text{cycles of }\sigma\bigr]
+ =\sum_{r=1}^n\frac1r=H_n.}
+\]
+A random permutation of a very large set typically has far fewer cycles than elements: its expected number of cycles grows only logarithmically.
+
+There is a generating-function version that explains the exact weights \(1/r\). A cycle of length \(r\) on labelled elements contributes \(z^r/r\) to an exponential generating function: there are \((r-1)!\) cyclic orders, and we divide by \(r!\). A permutation is an unordered set of such cycles. If the variable \(u_r\) records the number of \(r\)-cycles, the exponential construction gives
+\[
+ \boxed{
+ \sum_{n\ge0}\frac{z^n}{n!}
+ \sum_{\sigma\in S_n}\prod_{r\ge1}u_r^{C_r(\sigma)}
+ =\exp\left(\sum_{r\ge1}\frac{u_rz^r}{r}\right).
+ }
+\]
+Set every \(u_r=1\):
+\[
+ \exp\left(\sum_{r\ge1}\frac{z^r}{r}\right)
+ =\exp(-\log(1-z))=\frac1{1-z}.
+\]
+The coefficient of \(z^n\) is \(1\), as expected from \(n!/n!=1\).
+
+More interestingly, setting every \(u_r=u\) records the total number \(C(\sigma)\) of cycles:
+\[
+ \frac1{n!}\sum_{\sigma\in S_n}u^{C(\sigma)}
+ =[z^n](1-z)^{-u}
+ =\frac{u(u+1)\cdots(u+n-1)}{n!}.
+\]
+This is the probability generating function of \(C(\sigma)\). Differentiating at \(u=1\) yields
+\[
+ \mathbb E C(\sigma)=
+ \left.\frac{d}{du}
+ \frac{u(u+1)\cdots(u+n-1)}{n!}\right|_{u=1}
+ =H_n,
+\]
+agreeing with our direct cycle-count argument.
+
+The harmonic number has appeared twice in this chapter, for two unrelated random quantities:
+\[
+ \mathbb E T_k=kH_k
+ \qquad\text{and}\qquad
+ \mathbb E C(\sigma)=H_n.
+\]
+In the coupon-collector problem it comes from successive geometric waiting times; in random permutations it comes from the chance of seeing a cycle of each length. The shared expression is revealing precisely because the counting mechanisms are so different.
+
+\section{Long cycles and the hundred prisoners}
+
+There is a wonderful application of the cycle-counting formula that looks, at first, like a problem about search strategies.
+
+A hundred numbered prisoners face a hundred numbered boxes. The boxes contain the numbers \(1,\ldots,100\), arranged in a uniformly random permutation. Each prisoner, alone, may open at most fifty boxes and must find the number matching their own identity. The group succeeds only if \emph{every} prisoner succeeds. They may agree on a strategy before the experiment but cannot communicate afterward.
+
+If each prisoner independently opens fifty randomly chosen boxes, their individual success probabilities are \(1/2\), and the probability of everyone succeeding is \(2^{-100}\). There is a far more effective strategy using the permutation hidden in the boxes.
+
+Prisoner \(i\) first opens box \(i\). If it contains the number \(j\), they next open box \(j\), and repeat. Their search follows the unique cycle of the permutation containing \(i\). They find their own number upon completing that cycle, so prisoner \(i\) succeeds within fifty openings exactly when their cycle has length at most \(50\). Every prisoner succeeds exactly when the permutation has no cycle longer than \(50\).
+
+Why can we compute the probability of this global event so easily? For \(r>50\), a permutation of \(100\) elements cannot contain two cycles of length \(r\), or even two cycles whose lengths both exceed \(50\). Thus the events
+\[
+ \{\text{there is a cycle of length }r\},
+ \qquad r=51,\ldots,100,
+\]
+are pairwise disjoint. Their probabilities are \(\mathbb E C_r=1/r\), by the calculation in the previous section. Therefore
+\[
+ \boxed{
+ \Pr(\text{everyone succeeds})
+ =1-\sum_{r=51}^{100}\frac1r
+ =1-H_{100}+H_{50}
+ \approx0.311828.
+ }
+\]
+A probability of more than \(31\%\) is astonishing compared with \(2^{-100}\). The prisoners do not need to know the permutation in advance; they exploit its cycle structure as they reveal it.
+
+The same calculation works for \(2m\) prisoners who may open \(m\) boxes each. Under the cycle-following strategy,
+\[
+ \Pr(\text{all succeed})
+ =1-\sum_{r=m+1}^{2m}\frac1r
+ \longrightarrow1-\log2
+ \approx0.306853.
+\]
+We have avoided any direct enumeration of the huge family of successful permutations. The global search constraint has been translated into an invariant of a permutation, and the expected number \(1/r\) of \(r\)-cycles has done all the counting. This is a good example of why the cycle type of a random permutation is a mathematically useful description rather than merely a convenient notation.
+
+\section{What is random?}
+
+We have encountered several ways to produce a partition. Throw labelled balls independently and forget the box names; choose a set partition uniformly; forget ball identities too and obtain an integer partition; or take cycle lengths from a uniformly random permutation. Their possible outputs overlap, but their probability measures retain traces of the procedures that generated them.
+
+For uniform independent throws, the weight of an occupancy vector \((a_i)\) is proportional to \(1/\prod_i a_i!\). For unlabelled occupancy patterns \(\lambda\), the orbit-size weight is \(w_k(\lambda)\). For cycle types of a uniform random permutation, the weight is \(1/z_\lambda\). Uniform integer partitions instead give every allowed \(\lambda\) equal weight.
+
+All these formulas are instances of a simple idea: when several labelled realizations collapse into the same visible object, the number of hidden realizations determines how likely that visible object is to appear. Once that multiplicity is understood, counting identities become probability distributions, and the study of typical behavior begins.
+
+Two particularly instructive consequences have emerged. A birthday-type collision is seen after order \(\sqrt{k}\) samples, while the disappearance of the last empty box takes order \(k\log k\) samples, with Gumbel fluctuations. And among the very different distributions carried by integer partitions, the cycle types of uniform random permutations lead naturally to a logarithmic number of cycles. The word random needs a construction just as much as the word count needs a definition of equality.

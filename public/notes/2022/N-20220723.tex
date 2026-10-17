@@ -84,7 +84,7 @@ Thus a fixed jump length visits every vertex exactly when
 \]
 This is the first appearance of a general principle: multiplication by \(k\) permutes residue classes modulo \(N\) exactly when \(k\) is invertible modulo \(N\).
 
-\section{Roots of unity place the polygon on the complex plane}
+\section{Roots of Unity as Polygon Vertices}
 
 Let
 \[
@@ -249,6 +249,53 @@ Then orthogonality gives the inversion formula
 \]
 The proof is only a double sum followed by the vanishing identity above.
 
+\section{A Fourier Filter for Subset Counts}
+
+The vanishing polygon sum is useful far beyond geometry. Suppose we want to count subsets of an $n$-element set whose sizes are divisible by three:
+\[
+ C_3(n)=\sum_{\substack{0\le k\le n\\3\mid k}}\binom nk.
+\]
+The binomial theorem gives every size at once:
+\[
+ (1+t)^n=\sum_{k=0}^n\binom nk t^k.
+\]
+If $\omega=e^{2\pi i/3}$, orthogonality says
+\[
+ \frac{1+\omega^k+\omega^{2k}}3
+ =\begin{cases}1,&3\mid k,\\0,&3\nmid k.\end{cases}
+\]
+Multiply the $k$-th binomial coefficient by this expression and sum:
+\[
+ \begin{aligned}
+ C_3(n)
+ &=\frac13\sum_{k=0}^n
+       \binom nk(1+\omega^k+\omega^{2k})\\
+ &=\boxed{\frac{2^n+(1+\omega)^n+(1+\omega^2)^n}{3}.}
+ \end{aligned}
+\]
+The complex terms combine to a real integer. In fact
+\[
+ 1+\omega=e^{i\pi/3},\qquad
+ 1+\omega^2=e^{-i\pi/3},
+\]
+and hence
+\[
+ \boxed{C_3(n)=\frac{2^n+2\cos(n\pi/3)}3.}
+\]
+At $n=6$ this gives $(64+2)/3=22$, exactly the direct count
+\[
+ \binom60+\binom63+\binom66=1+20+1=22.
+\]
+
+The apparently mysterious cube roots are acting as a \emph{filter}: they cancel the binomial coefficients with the wrong residues and keep the desired ones. More generally, for any modulus $m$ and residue $r$,
+\[
+ \boxed{\sum_{\substack{0\le k\le n\\k\equiv r\;(\mathrm{mod}\,m)}}
+     \binom nk
+ =\frac1m\sum_{j=0}^{m-1}
+      \zeta_m^{-rj}(1+\zeta_m^j)^n.}
+\]
+This follows by inserting the orthogonality identity for the congruence $k\equiv r$. Thus the same roots of unity that describe hops around a polygon also solve counting problems that may have no polygon in their statement.
+
 \section{Chord lengths depend only on modular distance}
 
 The distance between vertices \(a\) and \(b\) on the unit circle is
@@ -286,6 +333,39 @@ and opposite vertices are distance
   2\sin\frac{5\pi}{10}=2.
 \]
 The same modular difference that controls hopping also controls Euclidean distance on the polygon.
+
+\section{The Product of Chords}
+
+Chord lengths offer another unexpected exact identity. Fix the vertex $1$ of the regular $N$-gon inscribed in the unit circle. The distances to the other vertices are
+\[
+ \bigl|1-\zeta_N^j\bigr|
+ =2\sin\frac{\pi j}{N},
+ \qquad j=1,\ldots,N-1.
+\]
+(The sine is positive because $0<\pi j/N<\pi$.) How can the product of all these trigonometric lengths be something simple?
+
+Factor the polynomial whose roots are the \emph{other} vertices:
+\[
+ \frac{z^N-1}{z-1}
+ =1+z+\cdots+z^{N-1}
+ =\prod_{j=1}^{N-1}(z-\zeta_N^j).
+\]
+Substituting $z=1$ yields an exact complex identity,
+\[
+ N=\prod_{j=1}^{N-1}(1-\zeta_N^j).
+\]
+Taking absolute values gives
+\[
+ \boxed{\prod_{j=1}^{N-1}
+           2\sin\frac{\pi j}{N}=N,}
+ \qquad
+ \boxed{\prod_{j=1}^{N-1}
+           \sin\frac{\pi j}{N}
+        =\frac{N}{2^{N-1}}.}
+\]
+For the equilateral triangle the two chord lengths from one vertex are each $\sqrt3$, so their product is $3$. For a square, they are $\sqrt2,2,\sqrt2$, and their product is $4$. The general polygon identity explains both observations without evaluating any trigonometric product by hand.
+
+One subtle point is that the formula for the original chord lengths involves \emph{Euclidean geometry}, but the product identity came from the value of a polynomial at $1$. Geometry supplies the absolute values, while algebra controls their product. It is a good example of how keeping complex phases until the last step can make a real-valued calculation easier.
 
 \section{The roots of \texorpdfstring{$z^N-1$}{zN-1} form the polygon}
 

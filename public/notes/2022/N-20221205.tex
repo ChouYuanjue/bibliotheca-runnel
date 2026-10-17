@@ -1,6 +1,6 @@
 \notechapter{N-20221205}{Counting by Logic, Projection, Inversion, and Generating Series}
 
-\section{Set operations are logical operations written geometrically}
+\section{Set Operations as Logic}
 
 For a finite universe \(U\), the indicator of a set \(A\subseteq U\) is
 \[
@@ -41,7 +41,7 @@ is therefore the logical identity
 
 This translation is more than notation.  It allows a set identity to be verified pointwise and then summed to obtain a counting identity.  The same habit will later turn inclusion--exclusion into an algebraic inversion formula.
 
-\section{Addition counts disjoint cases; multiplication counts successive choices}
+\section{Addition and Multiplication Principles}
 
 If a finite collection is partitioned into disjoint cases \(C_i\), then
 \[
@@ -102,7 +102,7 @@ Pascal's identity
 \]
 comes from partitioning \(r\)-subsets according to whether they contain one distinguished element.  The identity is a decomposition of the counted set, not merely a factorial manipulation.
 
-\section{Double counting is counting one incidence set through two projections}
+\section{Double Counting via Incidences}
 
 Let \(X\) be a finite set of pairs.  The two coordinate projections partition \(X\) in different ways, and equality of the resulting totals produces an identity.
 
@@ -174,7 +174,7 @@ As a quick application, the number of surjections from an \(n\)-element set onto
 \]
 Start with all \(m^n\) functions and exclude those missing at least one target value.  Intersections correspond to missing a specified set of \(j\) values, leaving \((m-j)^n\) functions.
 
-\section{Boolean Möbius inversion explains the alternating signs structurally}
+\section{Möbius Inversion on Subsets}
 
 Let functions \(f,g\) be defined on subsets of \([m]\), with
 \[
@@ -211,7 +211,7 @@ To verify the formula, substitute the definition of \(g\).  The coefficient of a
 \]
 which is \(1\) when \(R=S\) and \(0\) otherwise.  Inversion works because all unwanted lower-level contributions cancel.
 
-\section{Ordinary generating functions turn decomposition into multiplication}
+\section{Products of Generating Functions}
 
 For a sequence \((a_n)_{n\ge0}\), its ordinary generating function is
 \[
@@ -241,7 +241,7 @@ Extracting \([x^n]\) from the left gives
 \]
 while the right gives \(\binom{r+s}n\).  The same identity now has both an incidence-set proof and a coefficient proof.
 
-\section{Generating functions solve recurrences and coin-change problems}
+\section{Recurrences and Coin Change}
 
 Let \(F_0=0\), \(F_1=1\), and
 \[
@@ -308,7 +308,7 @@ No independence between edge indicators is required for linearity of expectation
 
 The argument is constructive in logic even when it does not exhibit the cut: if every cut had fewer than \(m/2\) crossing edges, the average could not equal \(m/2\).
 
-\section{Stirling's formula reveals the scale of the central binomial coefficient}
+\section{Stirling and Central Binomial Growth}
 
 The largest coefficient in the \(n\)-th row of Pascal's triangle lies near \(n/2\).  For even \(n=2m\), Stirling's approximation
 \[
@@ -338,7 +338,7 @@ Thus the largest layer of the Boolean lattice contains about \(2^n/\sqrt n\) sub
 \]
 counts the whole lattice; the asymptotic formula describes how that mass concentrates around the middle ranks.
 
-\section{Species record how labelled structures move under relabelling}
+\section{Species and Relabelling}
 
 A combinatorial species \(F\) assigns to each finite label set \(U\) a set \(F[U]\) of structures, and every bijection
 \[

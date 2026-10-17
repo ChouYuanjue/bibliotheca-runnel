@@ -1,12 +1,12 @@
 \notechapter{N-20230217}{Tensors in Nonorthogonal Coordinates: Dual Bases, Metrics, and Contraction}
 
-\section{Why coordinates become interesting when they are not orthogonal}
+\section{Nonorthogonal Coordinates}
 
 In an orthonormal basis, vector calculus can hide a great deal of structure.  The same list of numbers may be used for a vector and for the linear functional obtained by taking its dot product.  Upper and lower indices look interchangeable.  The identity matrix also serves as the metric matrix, and the dual basis is visually indistinguishable from the original basis.
 
 All of these coincidences disappear as soon as the coordinate directions are tilted or stretched.  That is not an inconvenience to be avoided.  It is the setting in which tensor notation begins to explain what is genuinely geometric and what is merely a consequence of a particularly friendly basis.
 
-This chapter therefore has a narrower task than a general introduction to tensors.  The earlier notes treat exterior algebra, Hodge duality, basis change, and tensor invariance in their own right.  Here the focus is concrete: how does one compute honestly in a nonorthogonal frame, and why do dual bases, the metric, index raising, and contraction appear together?
+Tilt the coordinate axes, and a simple geometric question becomes surprisingly delicate: what does the dot product of two vectors look like when their coordinate basis is no longer orthonormal? Answering it brings in the dual basis, the Gram matrix, raised and lowered indices, and tensor contraction, each for a concrete reason.
 
 The basic lesson is that a geometric object does not change when coordinates change, but its components must change in a precisely compensating way.
 
@@ -259,7 +259,7 @@ The inverse relations are
 \]
 They express that the metric and inverse metric undo one another when used to change index type.
 
-\section{Raising and lowering indices is the metric acting as a map}
+\section{Raising and Lowering Indices}
 
 The metric is not merely a table of dot products.  It defines a linear map
 \[
@@ -387,7 +387,7 @@ The object \(v\) and the covector \(v^\flat\) did not change.  Three component a
 
 In an orthonormal basis, both component lists happen to coincide because \(g_{ij}=\delta_{ij}\).  Tensor notation refuses to build that coincidence into the definitions, which is why it remains valid in arbitrary coordinates and on curved spaces.
 
-\section{Tensor type records what the object consumes and produces}
+\section{Inputs and Outputs of Tensors}
 
 A tensor of type \((r,s)\) can be viewed as a multilinear map
 \[
@@ -423,7 +423,7 @@ The metric can change tensor type.  For example, from a \((1,1)\)-tensor \(A^i{}
 \]
 Whether \(A_{ij}\) is symmetric is therefore a metric-dependent statement about the corresponding operator.  In Euclidean orthonormal coordinates this subtlety is hidden because lowering an index leaves the numerical array unchanged.
 
-\section{Contraction creates invariants by closing one input-output pair}
+\section{Contractions and Invariants}
 
 Contraction pairs one upper and one lower index.  For a \((1,1)\)-tensor,
 \[
@@ -458,7 +458,7 @@ On a curved Riemannian manifold, the same idea persists, but partial derivatives
 
 Contraction is therefore more than compact notation.  It is one of the principal mechanisms by which tensors produce coordinate-independent scalars and lower-rank tensors.
 
-\section{Orientation and volume are not contained in the metric alone}
+\section{Orientation Beyond the Metric}
 
 In three-dimensional Euclidean space, the scalar triple product
 \[

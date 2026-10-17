@@ -1,487 +1,298 @@
-\notechapter{N-20260106}{Calculus Review III: Convexity, Integral Inequalities, Wallis Formula, and More}
+\notechapter{N-20260106}{Integral Inequalities, Symmetry, and the Beta Function}
 
-A blackboard review of integral inequalities kept returning to the same few moves: compare a convex graph with its chord, pair \(x\) with \(a+b-x\), turn an oscillatory integral into a comparison of weights, and choose a substitution that exposes an involution.  The problems looked unrelated until these repetitions became visible.
+Integral inequalities become especially transparent when one interprets integration as averaging. Convexity compares the average of a function with its values at special points; symmetry replaces an integral with another integral of exactly the same value; and repeated integration by parts produces recurrences whose limiting behavior is encoded by special functions. We will use these three mechanisms to connect quadrature errors, a sharp reciprocal inequality, and Wallis' formula.\footnote{For the beta--gamma identity, see NIST Digital Library of Mathematical Functions, \S5.12: \url{https://dlmf.nist.gov/5.12}.}
 
-\section{Convexity and the Hermite--Hadamard inequality}
+\section{Hermite--Hadamard is a theorem about averages}
 
-Let $f$ be continuous on $[a,b]$ and twice differentiable on $(a,b)$, with
+Suppose \(f\) is convex on \([a,b]\), \(a<b\), and put \(m=(a+b)/2\). Convexity gives
 \[
-  f''(x)>0.
+ f(m)\le\frac{f(x)+f(a+b-x)}2.
 \]
-This means the graph is convex.  The visible statement is the Hermite--Hadamard inequality:
+Integrate in \(x\) to obtain the lower bound in
 \[
-  f\left(
-\frac{a+b}{2}
-\right)
-  \le
-\frac1{b-a}\int_a^b f(x)\,dx
-  \le
-\frac{f(a)+f(b)}2.
+ \boxed{f(m)\le\frac1{b-a}\int_a^b f(x)\,dx
+       \le\frac{f(a)+f(b)}2.}
 \]
-
-The left inequality says that the value at the midpoint is no larger than the average value of a convex function.  The right inequality says that the average value is no larger than the average of the endpoint values.
-
-The geometric proof shown on the board uses two facts.  First, a convex curve lies below the chord joining its endpoints:
+For the upper bound, use the fact that a convex function lies below its endpoint chord:
 \[
-  f(x)\le
-\frac{b-x}{b-a}f(a)+
-\frac{x-a}{b-a}f(b).
+ f(x)\le\frac{b-x}{b-a}f(a)+\frac{x-a}{b-a}f(b).
 \]
-Integrating this gives the upper bound.  Second, symmetry around the midpoint and convexity imply
+Integrating the chord gives the endpoint average.
+
+The two inequalities measure different approximations to the same integral. In numerical analysis they are the midpoint and trapezoidal rules, each exact for affine functions. The sign of the quadrature error is already determined by convexity.
+
+\section{Quadrature errors are weighted second derivatives}
+
+Let \(f\in C^2([a,b])\). Twice integrating by parts gives the exact identity
 \[
-  f(x)+f(a+b-x)\ge 2f\left(
-\frac{a+b}{2}
-\right).
+ \frac{b-a}{2}\bigl(f(a)+f(b)\bigr)-\int_a^bf(x)\,dx
+ =\frac12\int_a^b(x-a)(b-x)f''(x)\,dx.
 \]
-Integrating from $a$ to $b$ gives the lower bound.
-
-Geometrically, the tangent line lies below a convex graph, while the chord lies above it.
-
-\section{Kantorovich-type integral inequality}
-
-Another framed problem assumes that $f$ is continuous and bounded between two positive constants:
+The kernel \((x-a)(b-x)\) is nonnegative. By the integral mean value theorem there is \(\xi\in(a,b)\) such that
 \[
-  0<\lambda_1\le f(x)\le \lambda_2,\qquad x\in[a,b].
-\]
-The goal is the estimate
-\[
-  \left(\int_a^b f(x)\,dx
-\right)
-  \left(\int_a^b 
-\frac{dx}{f(x)}
-\right)
-  \le
-\frac{(\lambda_1+\lambda_2)^2}{4\lambda_1\lambda_2}(b-a)^2.
+ \boxed{\frac{f(a)+f(b)}2-
+ \frac1{b-a}\int_a^bf
+ =\frac{(b-a)^2}{12}f''(\xi).}
 \]
 
-The board proof starts from
+For the midpoint approximation, expand around \(m\) with the integral remainder. The odd first-order term integrates to zero, and the remaining second-order remainder has a nonnegative kernel. Another application of the integral mean value theorem yields
 \[
-  (f(x)-\lambda_1)(f(x)-\lambda_2)\le0.
+ \boxed{\frac1{b-a}\int_a^bf-f(m)
+ =\frac{(b-a)^2}{24}f''(\eta)}
 \]
-After expanding and dividing by $f(x)>0$, one obtains
-\[
-  f(x)+
-\frac{\lambda_1\lambda_2}{f(x)}
-  \le \lambda_1+\lambda_2.
-\]
-Integrating gives
-\[
-  A+\lambda_1\lambda_2 B
-  \le
-  (\lambda_1+\lambda_2)(b-a),
-\]
-where
-\[
-  A=\int_a^b f(x)\,dx,\qquad
-  B=\int_a^b
-\frac{dx}{f(x)}.
-\]
-Since for positive numbers $u,v$ one has $uv\le ((u+v)/2)^2$, we get
-\[
-  \lambda_1\lambda_2 AB
-  \le
-\frac{(\lambda_1+\lambda_2)^2}{4}(b-a)^2.
-\]
-This is the desired inequality.
+for some \(\eta\in(a,b)\). These formulas refine Hermite--Hadamard: convexity determines the signs, while the curvature \(f''\) determines the magnitudes.
 
-The usual Cauchy inequality gives the lower bound
-\[
-  \left(\int_a^b f
-\right)\left(\int_a^b
-\frac1f
-\right)\ge (b-a)^2,
-\]
-whereas this problem asks for an upper bound under a two-sided bound on $f$.
+For \(f(x)=x^2\) on \([-1,1]\), the true average is \(1/3\), the midpoint value is \(0\), and the endpoint average is \(1\). Since \(f''=2\), the displayed formulas predict gaps \(1/3\) and \(2/3\), exactly as observed.
 
-\section{Integral mean value with odd symmetry}
+\section{A sharp reciprocal inequality from one pointwise bound}
 
-For a function on a symmetric interval, combine the two oriented integrals as
+Assume \(0<m\le f(x)\le M\) almost everywhere on \([a,b]\), and let
 \[
-  \int_0^x f(t)\,dt+\int_0^{-x}f(t)\,dt
-  =
-  \int_0^x [f(t)-f(-t)]\,dt.
+ \mathbb E[g]=\frac1{b-a}\int_a^b g(x)\,dx.
 \]
-If $f$ is differentiable near $0$, then the integral mean value theorem gives a number $	heta\in(0,1)$ such that
+The product \((M-f)(f-m)\) is nonnegative, so
 \[
-  \int_0^x [f(t)-f(-t)]\,dt
-  =
-  x\,[f(	heta x)-f(-	heta x)].
+ f+\frac{mM}{f}\le m+M.
 \]
-
-When $x	o0$, the quotient comparison uses
+Averaging and applying AM--GM to the two nonnegative terms gives
 \[
-  f(	heta x)-f(-	heta x)\approx 2	heta x f'(0),
-\]
-while
-\[
-  \int_0^x [f(t)-f(-t)]\,dt
-  \approx
-  \int_0^x 2t f'(0)\,dt
-  =
-  x^2 f'(0).
-\]
-Thus the natural limiting value is
-\[
-  	heta	o
-\frac12.
-\]
-This is a typical use of the integral mean value theorem together with local linearization.
-
-\section[A lower bound involving f double-prime over f]{A lower bound involving $f''/f$}
-
-Another problem assumes
-\[
-  f\in C^2[a,b],\qquad f(x)>0	ext{ on }(a,b),\qquad f(a)=f(b)=0.
-\]
-The following estimate holds:
-\[
-  \int_a^b \left|
-\frac{f''(x)}{f(x)}
-\right|\,dx
-  >
-\frac4{b-a}.
-\]
-The idea is to let $x_0$ be a point where $f$ attains its positive maximum.  By the mean value theorem, there exist
-\[
-  \xi_1\in(a,x_0),\qquad \xi_2\in(x_0,b)
-\]
-such that
-\[
-  f'(\xi_1)=
-\frac{f(x_0)}{x_0-a},\qquad
-  f'(\xi_2)=-
-\frac{f(x_0)}{b-x_0}.
-\]
-Since $f(x)\le f(x_0)$, one has
-\[
-  \int_a^b \left|
-\frac{f''(x)}{f(x)}
-\right|\,dx
-  \ge
-\frac1{f(x_0)}\int_a^b |f''(x)|\,dx.
-\]
-The total variation of $f'$ is at least the drop from $f'(\xi_1)$ to $f'(\xi_2)$, so
-\[
-\frac1{f(x_0)}\int_a^b |f''(x)|\,dx
-  \ge
-\frac1{x_0-a}+
-\frac1{b-x_0}.
-\]
-Finally,
-\[
-\frac1{x_0-a}+
-\frac1{b-x_0}
-  \ge
-\frac4{b-a}.
-\]
-The proof is a good example of turning a global integral estimate into a maximum-point argument.
-
-\section{Symmetry of integrals about the midpoint}
-
-A common symmetry fact is the following.  If
-\[
-  f(x)=f(a+b-x),
-\]
-then
-\[
-  \int_a^b f(x)\,dx
-  =
-  2\int_a^{(a+b)/2}f(x)\,dx.
-\]
-Indeed, substitute
-\[
-  u=a+b-x
-\]
-in the right half of the integral.  This midpoint symmetry is used repeatedly in the board calculations.
-
-More generally, for any integrable $f$,
-\[
-  \int_a^b f(x)\,dx
-  =
-  \int_a^b f(a+b-x)\,dx,
-\]
-and therefore
-\[
-  \int_a^b f(x)\,dx
-  =
-\frac12\int_a^b [f(x)+f(a+b-x)]\,dx.
-\]
-This averaging trick is useful whenever $f(x)+f(a+b-x)$ simplifies.
-
-\section{Midpoint and trapezoidal error terms}
-
-Taylor expansion also gives the midpoint-rule error term.  Let
-\[
-  m=
-\frac{a+b}{2}.
-\]
-Taylor's formula around $m$ gives
-\[
-  f(x)=f(m)+f'(m)(x-m)+
-\frac12f''(\xi_x)(x-m)^2.
-\]
-After integrating, the odd term vanishes, and the second derivative can be pulled out by the integral mean value theorem.  Thus there exists $\xi\in(a,b)$ such that
-\[
-  \int_a^b f(x)\,dx
-  =
-  (b-a)f(m)+
-\frac{(b-a)^3}{24}f''(\xi).
-\]
-
-Similarly, the trapezoidal rule error has the form
-\[
-  \int_a^b f(x)\,dx
-  =
-\frac{b-a}{2}[f(a)+f(b)]
-  -
-\frac{(b-a)^3}{12}f''(\xi)
-\]
-for some $\xi\in(a,b)$.  The constants should not be confused: the midpoint coefficient is $1/24$, while the trapezoidal coefficient is $1/12$ with the opposite sign.
-
-\section{First special integral}
-
-Consider the integral
-\[
-  I=\int_0^1
-\frac{\ln(1+x)}{1+x^2}\,dx.
-\]
-Set
-\[
-  x=	an t,\qquad 0\le t\le
-\frac\pi4.
-\]
-Then $dx/(1+x^2)=dt$, and
-\[
-  I=\int_0^{\pi/4}\ln(1+	an t)\,dt.
-\]
-Use the substitution
-\[
-  t\mapsto 
-\frac\pi4-t.
-\]
-Since
-\[
-  1+	an\left(
-\frac\pi4-t
-\right)
-  =
-\frac2{1+	an t},
-\]
-one obtains
-\[
-  I=\int_0^{\pi/4}\left[\ln2-\ln(1+	an t)
-\right]\,dt.
-\]
-Adding the two expressions for $I$ gives
-\[
-  2I=
-\frac\pi4\ln2,
-\]
-hence
-\[
-  I=
-\frac\pi8\ln2.
-\]
-The trick is not the tangent substitution alone; it is pairing the interval by the involution $t\leftrightarrow \pi/4-t$.
-
-\section{Positivity of a Fresnel-type integral}
-
-Another example proves
-\[
-  \int_0^{\sqrt{2\pi}}\sin x^2\,dx>0.
-\]
-Let
-\[
-  t=x^2,\qquad dx=
-\frac{dt}{2\sqrt t}.
-\]
-Then
-\[
-  \int_0^{\sqrt{2\pi}}\sin x^2\,dx
-  =
-\frac12\int_0^{2\pi}
-\frac{\sin t}{\sqrt t}\,dt.
-\]
-Split the interval into $[0,\pi]$ and $[\pi,2\pi]$.  In the second part use $t=u+\pi$; since $\sin(u+\pi)=-\sin u$, the sum becomes
-\[
-\frac12\int_0^\pi \sin u
-  \left(
-\frac1{\sqrt u}-
-\frac1{\sqrt{u+\pi}}
-\right)\,du.
-\]
-For $u\in(0,\pi)$, both factors are positive, so the integral is positive.
-
-The oscillation alone is not enough; the positive half has larger weight because $1/\sqrt t$ decreases.
-
-\section{A symmetry integral with arcsine}
-
-Consider also
-\[
-  I=\int_0^1
-\frac{\arcsin\sqrt x}{\sqrt{x(1-x)}}\,dx.
-\]
-There are two neat ways.  First,
-\[
-  d(\arcsin\sqrt x)
-  =
-\frac{dx}{2\sqrt{x(1-x)}}.
-\]
-Hence
-\[
-  I=2\int_0^1 \arcsin\sqrt x\,d(\arcsin\sqrt x)
-  =
-  \left[\arcsin\sqrt x\right]^2\Big|_0^1
-  =
-\frac{\pi^2}{4}.
-\]
-
-Symmetry gives the alternative identity
-\[
-  \arcsin\sqrt x+\arcsin\sqrt{1-x}=
-\frac\pi2.
-\]
-Averaging $x$ and $1-x$ gives
-\[
-  I=
-\frac12\int_0^1
-\frac{\arcsin\sqrt x+\arcsin\sqrt{1-x}}{\sqrt{x(1-x)}}\,dx
-  =
-\frac\pi4\int_0^1
-\frac{dx}{\sqrt{x(1-x)}}.
-\]
-The last integral equals $\pi$, so again $I=\pi^2/4$.
-
-\section{A logarithmic sine integral}
-
-A logarithmic sine example is
-\[
-  I=\int_0^{\pi/2}\sin x\ln(\sin x)\,dx.
-\]
-Let $u=\cos x$.  Then $du=-\sin x\,dx$ and
-\[
-  I=\int_0^1 \ln\sqrt{1-u^2}\,du
-  =
-\frac12\int_0^1\ln(1-u^2)\,du.
-\]
-Since
-\[
-  \ln(1-u^2)=\ln(1-u)+\ln(1+u),
-\]
-we use
-\[
-  \int_0^1\ln(1-u)\,du=-1,
-\]
-and
-\[
-  \int_0^1\ln(1+u)\,du=2\ln2-1.
+ 2\sqrt{mM\,\mathbb E[f]\mathbb E[1/f]}
+ \le \mathbb E[f]+mM\,\mathbb E[1/f]\le m+M.
 \]
 Therefore
 \[
-  I=\ln2-1.
+ \boxed{\mathbb E[f]\,\mathbb E[1/f]
+ \le\frac{(m+M)^2}{4mM}.}
 \]
-This example trains the habit of choosing $u=\cos x$ when the factor $\sin x\,dx$ appears.
+This is the integral version of the Kantorovich inequality. Cauchy--Schwarz supplies the reverse inequality \(\mathbb E[f]\mathbb E[1/f]\ge1\).
 
-\section[Integrals of 1/(a + b cos x)]{Integrals of \(1/(a+b\cos x)\)}
-
-Two standard formulas complete this family.  If $a>0$ and $|b|<a$, then on the interval $[-\pi/2,\pi/2]$,
+The upper bound is sharp: choose \(f=m\) on half the interval and \(f=M\) on the other half. Then
 \[
-  \int_{-\pi/2}^{\pi/2}
-\frac{dx}{a+b\cos x}
-  =
-\frac{2}{\sqrt{a^2-b^2}}\arccos
-\frac ba.
+ \mathbb E[f]=\frac{m+M}2,\qquad
+ \mathbb E[1/f]=\frac{1/m+1/M}2.
 \]
-Using
+The product equals the claimed constant. When continuity is imposed and \(m<M\), the sharp constant is approached by continuous approximations of this two-level function.
+
+\section{An involution can evaluate a logarithmic integral}
+
+Consider
 \[
-  \arccos
-\frac ba
-  =
-  2\arctan\sqrt{
-\frac{a-b}{a+b}},
+ I=\int_0^1\frac{\log(1+x)}{1+x^2}\,dx.
 \]
-this can also be written as
+Set \(x=\tan t\), so \(0\le t\le\pi/4\), and obtain
 \[
-\frac{4}{\sqrt{a^2-b^2}}
-  \arctan\sqrt{
-\frac{a-b}{a+b}}.
+ I=\int_0^{\pi/4}\log(1+\tan t)\,dt.
 \]
-
-On the interval $[0,\pi]$, the standard formula is
+The reflection \(t\mapsto\pi/4-t\) preserves the integration interval. Moreover,
 \[
-  \int_0^\pi 
-\frac{dx}{a+b\cos x}
-  =
-\frac{\pi}{\sqrt{a^2-b^2}},
-  \qquad a>0,\ |b|<a.
+ 1+\tan\left(\frac\pi4-t\right)=\frac{2}{1+\tan t}.
 \]
-This follows from the universal tangent half-angle substitution, while symmetry over the full half-period simplifies the result.
-
-\section{Wallis integral and Wallis product}
-
-The Wallis integral is
+Consequently
 \[
-  I_n=\int_0^{\pi/2}\sin^n x\,dx.
+ I=\int_0^{\pi/4}
+ \bigl(\log2-\log(1+\tan t)\bigr)\,dt
+ =\frac\pi4\log2-I.
 \]
-Integration by parts gives the recurrence
+The exact value follows without expanding any logarithm:
 \[
-  I_n=
-\frac{n-1}{n}I_{n-2}\qquad(n\ge2).
+ \boxed{I=\frac\pi8\log2.}
 \]
-Indeed,
+The essential move was to find a measure-preserving reflection under which the integrand transforms into a constant minus itself.
+
+The same pairing philosophy proves positivity of an oscillatory example:
 \[
-  I_n=\int_0^{\pi/2}\sin^{n-1}x\sin x\,dx,
+ \begin{aligned}
+ \int_0^{\sqrt{2\pi}}\sin(x^2)\,dx
+ &=\frac12\int_0^{2\pi}\frac{\sin t}{\sqrt t}\,dt\\
+ &=\frac12\int_0^\pi\sin t
+   \left(\frac1{\sqrt t}-\frac1{\sqrt{t+\pi}}\right)dt>0.
+ \end{aligned}
 \]
-choose
+The two half-periods have opposite signs, but the positive one carries the larger weight. This is an elementary instance of oscillatory cancellation with monotone amplitude.
+
+\section{Opposite-Point Averages}
+
+The reflection $t\mapsto -t$ can turn a symmetric pair of integrals into a derivative test. For $f$ continuous near $0$ and $x>0$, write
 \[
-  u=\sin^{n-1}x,\qquad dv=\sin x\,dx.
+ H(x)=\int_0^x f(t)\,dt+\int_0^{-x}f(t)\,dt
+     =\int_0^x\bigl(f(t)-f(-t)\bigr)\,dt.
 \]
-The boundary term vanishes and the remaining integral becomes
+The integral mean-value theorem supplies some $\vartheta_x\in(0,1)$ with
 \[
-\frac{n-1}{n}I_{n-2}.
+ H(x)=x\bigl(f(\vartheta_xx)-f(-\vartheta_xx)\bigr).
 \]
-Comparing even and odd subsequences $I_{2n}$ and $I_{2n+1}$ and letting $n	o\infty$ gives the Wallis product.
-
-\section{A wider frame}
-
-Integral problem-solving is pattern recognition.  Convexity gives chord and midpoint inequalities; bounded positive functions give product estimates; symmetry pairs an integral with its reflected version; Taylor's formula controls quadrature error; substitutions such as \(x=\tan t\) and \(t=x^2\) expose symmetry or sign; and Wallis' recurrence turns integration by parts into a product formula.
-
-\section{Convexity as second-order positivity}
-
-For twice differentiable functions, convexity on an interval follows from
+What can we say about $\vartheta_x$ as the interval shrinks? If $f$ is differentiable at $0$ and $f'(0)\ne0$, then
 \[
-  f''(x)\ge0.
+ f(t)-f(-t)=2tf'(0)+o(t),\qquad
+ H(x)=x^2f'(0)+o(x^2).
 \]
-The Hermite--Hadamard inequality
+The remainder estimate is uniform for $0\le t\le x$, so the mean-value identity gives
 \[
-  f\left(\frac{a+b}{2}\right)\le \frac1{b-a}\int_a^b f(x)\,dx\le \frac{f(a)+f(b)}2
+ x^2f'(0)+o(x^2)
+   =2\vartheta_xx^2f'(0)+o(x^2);
+ \qquad\boxed{\vartheta_x\longrightarrow\tfrac12}.
 \]
-compares midpoint value, average value, and endpoint average for convex functions.
-
-\section{Integral inequalities as weighted averages}
-
-Many integral inequalities are Jensen-type statements with a probability measure.  If \(w\ge0\) and \(\int w=1\), then
+The nonzero-derivative hypothesis matters. For $f(t)=t^3$, the identity is exactly
 \[
-  f\left(\int xw(x)\,dx\right)\le \int f(x)w(x)\,dx
+ \frac{x^4}{2}=2\vartheta_x^3x^4,
+ \qquad \vartheta_x=4^{-1/3},
 \]
-for convex \(f\).  This is Jensen's inequality in measure form.
+a fixed value different from $1/2$. The representative point of an integral is governed by the first nonvanishing odd-order term, not automatically by the midpoint.
 
-\section{Symmetry and cancellation}
+\section{Two antiderivatives hiding in an arcsine integral}
 
-Integrals over symmetric intervals often vanish because an odd part cancels:
+Consider
 \[
-  \int_{-a}^{a} f_{\mathrm{odd}}(x)\,dx=0.
+ A=\int_0^1
+  \frac{\arcsin\sqrt{x}}{\sqrt{x(1-x)}}\,dx.
 \]
-More generally, symmetry lets one project a function onto invariant and anti-invariant parts.  This is the same idea behind Fourier even/odd decompositions.
-
-\section{Wallis formula and asymptotic products}
-
-Wallis-type integrals encode asymptotic behavior of products and beta functions.  The recurrence for
+The weight looks singular at the endpoints, but it is integrable. Put
+$u=\arcsin\sqrt{x}$, so $x=\sin^2u$ and
+$dx=2\sin u\cos u\,du$. Thus the apparent singularity disappears:
 \[
-  I_n=\int_0^{\pi/2}\sin^n x\,dx
+ A=2\int_0^{\pi/2}u\,du
+   =\boxed{\frac{\pi^2}{4}}.
 \]
-leads to ratios of products and ultimately to approximations involving \(\pi\).  This is an early bridge from calculus to asymptotic analysis.
+There is a second proof worth keeping, because it anticipates beta integrals. The involution $x\mapsto1-x$ preserves
+$dx/\sqrt{x(1-x)}$, while
+\[
+ \arcsin\sqrt{x}+\arcsin\sqrt{1-x}=\frac\pi2.
+\]
+Averaging the transformed and untransformed integrals yields
+\[
+ 2A=\frac\pi2\int_0^1\frac{dx}{\sqrt{x(1-x)}}
+    =\frac\pi2 B\left(\tfrac12,\tfrac12\right)
+    =\frac{\pi^2}{2}.
+\]
+This is also the arcsine probability density in disguise:
+$\bigl(\pi\sqrt{x(1-x)}\bigr)^{-1}$ is a probability density on $(0,1)$, and symmetry makes its mean transformed angle
+$\mathbb E[\arcsin\sqrt{X}]=\pi/4$. The same integral has an elementary substitution, a symmetry proof, and a probabilistic interpretation.
 
-\section{Integral inequalities through convexity and asymptotics}
+\section{Why a cosine integral leads to the Poisson kernel}
 
-The integral inequalities in this review are not isolated estimates.  They are consequences of convexity, weighted averages, symmetry, error analysis, and asymptotic product behavior.  The advanced habit is to identify which structural feature of the integrand controls the inequality.
+For $a>|b|$ with $a>0$, the family
+\[
+ J(a,b)=\int_0^\pi\frac{dx}{a+b\cos x}
+\]
+has a surprisingly clean value. The substitution $t=\tan(x/2)$ gives
+\[
+ \cos x=\frac{1-t^2}{1+t^2},\qquad
+ dx=\frac{2\,dt}{1+t^2},\qquad 0<t<\infty.
+\]
+Consequently
+\[
+ \begin{aligned}
+ J(a,b)
+ &=2\int_0^\infty\frac{dt}{(a+b)+(a-b)t^2}\\
+ &=\boxed{\frac{\pi}{\sqrt{a^2-b^2}}}.
+ \end{aligned}
+\]
+Changing the interval changes the answer: the integral over
+$[-\pi/2,\pi/2]$ is instead
+\[
+ \int_{-\pi/2}^{\pi/2}\frac{dx}{a+b\cos x}
+ =\frac{4}{\sqrt{a^2-b^2}}
+   \arctan\sqrt{\frac{a-b}{a+b}}.
+\]
+One can check both formulas immediately at $b=0$.
+
+A more structural derivation explains the radical. Set
+$\Delta=\sqrt{a^2-b^2}$,
+$C=(a+\Delta)/2$, and $r=-b/(a+\Delta)$. Then $|r|<1$ and
+\[
+ a+b\cos x=C(1-2r\cos x+r^2),
+ \qquad C(1-r^2)=\Delta.
+\]
+Therefore
+\[
+ \frac1{a+b\cos x}
+ =\frac1\Delta\,
+    \underbrace{\frac{1-r^2}{1-2r\cos x+r^2}}_{P_r(x)}.
+\]
+The factor $P_r$ is the Poisson kernel for the disk. Its Fourier expansion
+\[
+ P_r(x)=1+2\sum_{n=1}^\infty r^n\cos(nx)
+\]
+converges absolutely for $|r|<1$; integrating from $0$ to $\pi$ kills every nonconstant cosine. We recover $J(a,b)=\pi/\Delta$ and see why a rational trigonometric integral is naturally related to harmonic functions on the disk.
+
+\section{Variation Bounds from Derivatives}
+
+Convexity is not the only source of integral inequalities. Let
+$f\in C^2([a,b])$ satisfy $f(a)=f(b)=0$ and $f>0$ on $(a,b)$.
+Write $M=f(x_0)=\max f$ for an interior maximizer. The mean-value theorem gives points
+$\xi_1\in(a,x_0)$ and $\xi_2\in(x_0,b)$ with
+\[
+ f'(\xi_1)=\frac{M}{x_0-a},
+ \qquad f'(\xi_2)=-\frac{M}{b-x_0}.
+\]
+Since $f\le M$ where it is positive, we have (allowing the left side to be infinite)
+\[
+ \begin{aligned}
+ \int_a^b\left|\frac{f''(x)}{f(x)}\right|dx
+ &\ge\frac1M\int_a^b|f''(x)|\,dx\\
+ &\ge\frac{f'(\xi_1)-f'(\xi_2)}M\\
+ &=\frac1{x_0-a}+\frac1{b-x_0}
+ \ge\boxed{\frac4{b-a}}.
+ \end{aligned}
+\]
+The middle inequality is the total-variation estimate
+$\int|f''|\ge|f'(\xi_2)-f'(\xi_1)|$.
+This is a different kind of argument from Hermite--Hadamard: a function forced to rise from zero and return to zero must pay a definite amount of curvature. For the smooth profile
+$f(x)=\sin\bigl(\pi(x-a)/(b-a)\bigr)$, the integral is
+$\pi^2/(b-a)$, which confirms the scale $1/(b-a)$ and shows why the dimensions of the estimate are natural.
+
+\section{Wallis integrals become beta integrals}
+
+Define
+\[
+ I_n=\int_0^{\pi/2}\sin^n x\,dx,\qquad n\ge0.
+\]
+Integration by parts shows
+\[
+ I_n=\frac{n-1}{n}I_{n-2}\quad(n\ge2),
+ \qquad I_0=\frac\pi2,\quad I_1=1.
+\]
+Hence the even and odd subsequences are controlled by alternating products of consecutive integers.
+
+There is a useful closed form that does not require treating the two parities separately. With \(t=\sin^2x\),
+\[
+\begin{aligned}
+ I_n&=\frac12\int_0^1
+ t^{(n-1)/2}(1-t)^{-1/2}\,dt\\
+ &=\frac12 B\left(\frac{n+1}2,\frac12\right)
+ =\frac{\sqrt\pi\,\Gamma((n+1)/2)}
+        {2\Gamma((n+2)/2)}.
+\end{aligned}
+\]
+The beta function is Euler's integral \(B(u,v)=\int_0^1t^{u-1}(1-t)^{v-1}dt\), and the last equality uses \(B(u,v)=\Gamma(u)\Gamma(v)/\Gamma(u+v)\).
+
+The asymptotic behavior has a geometric explanation. Writing \(x=\pi/2-t\), we have
+\[
+ I_n=\int_0^{\pi/2}\cos^n t\,dt.
+\]
+For large \(n\), the mass concentrates near \(t=0\), where
+\(\log\cos t=-t^2/2+O(t^4)\). The resulting Gaussian scaling, justified by Laplace's method, gives
+\[
+ \boxed{I_n\sim\sqrt{\frac{\pi}{2n}}.}
+\]
+The recurrence produces Wallis' product for \(\pi\), while the beta--gamma formula and Gaussian approximation describe the same sequence from special-function and asymptotic viewpoints.
+
+There is one more payoff. Regard \(I_s=\int_0^{\pi/2}\sin^s x\,dx\) as a function of a real parameter \(s>-1\). Differentiation under the integral sign gives
+\[
+ I_s'=\int_0^{\pi/2}\sin^s x\log(\sin x)\,dx.
+\]
+At \(s=1\) this is the logarithmic sine integral. It has an elementary evaluation that checks the parameter method without invoking derivatives of the gamma function:
+\[
+ \begin{aligned}
+ I_1'&=\int_0^{\pi/2}\sin x\log(\sin x)\,dx\\
+ &=\frac12\int_0^1\log(1-u^2)\,du
+   \qquad(u=\cos x)\\
+ &=\frac12\left(
+     \int_0^1\log(1-u)\,du+
+     \int_0^1\log(1+u)\,du\right)\\
+ &=\boxed{\log2-1}.
+ \end{aligned}
+\]
+The parameter \(s\) has converted an integral with a logarithm into the derivative of an ordinary beta integral. This is a useful general strategy for moments and normalizing constants in probability.
+
+Averaging, reflection and recurrence all reduce an integral to simpler data: a convex bound, an invariant pair of points, or a relation between neighboring exponents. Here the special-function language grows directly from calculations one can still check by elementary substitutions.

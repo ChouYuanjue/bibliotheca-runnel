@@ -2,16 +2,14 @@
 
 \section{Structure beyond topology}
 
-The starting question is: what does it mean for a space to carry a structure?  A topological manifold has a topology; a smooth manifold has a smooth structure; a complex manifold has a complex structure.
-
-A topology tells us which sets are open, which sequences or nets converge, and which maps are continuous.  A smooth structure adds the ability to speak about differentiability in local coordinates.  A complex structure is stricter: coordinate changes must be holomorphic.
+The sphere and the torus are both smooth real surfaces, yet their meromorphic maps obey different global constraints. To see the source of the difference, begin with what local coordinates record. A topology determines which subsets are open; a smooth atlas makes differentiation possible; a complex atlas requires that every change of coordinates be holomorphic.\footnote{The local normal form and branched-cover constructions follow O. Forster, \emph{Lectures on Riemann Surfaces}. The topological proof of Riemann--Hurwitz is developed in \href{https://webspace.science.uu.nl/~looij101/riemannsurfaces.pdf}{E. Looijenga's Riemann-surface lectures}.}
 
 \begin{example}
 The interval \((0,2)\subset\mathbb R\) is a topological \(1\)-manifold.  One chart may be the identity map
 \[
   \varphi_1(x)=x.
 \]
-Another chart can still be a homeomorphism while failing to be smooth.  This shows why topology alone is not enough to define smoothness.
+The alternative coordinate \(\psi(x)=1+\sqrt[3]{x-1}\), using the real cube root, is also a homeomorphism from \((0,2)\) onto itself. Yet its derivative is unbounded at \(x=1\). The transition map between these two charts fails to be \(C^1\), so the two charts are not compatible in a smooth atlas. Topology alone cannot decide smooth differentiability.
 \end{example}
 
 \begin{figure}[H]
@@ -182,8 +180,12 @@ by sending poles to \(\infty\).
 Nonconstant meromorphic functions \(X\to\mathbb C\) correspond to holomorphic maps \(X\to\mathbb C_\infty\) not identically equal to \(\infty\).
 \end{proposition}
 
-\begin{proof}[Idea]
-Away from a pole this is clear.  Near a pole, use the coordinate \(t=1/z\) near infinity on \(\mathbb C_\infty\).  If \(f\) has a pole, then \(1/f\) is holomorphic and vanishes there, so the map into the sphere is holomorphic in the \(t\)-coordinate.
+\begin{proof}
+Near a pole \(p\), take a local coordinate \(z\) with \(z(p)=0\). A meromorphic function has the form \(f(z)=z^{-m}h(z)\), where \(m\ge1\) and \(h\) is holomorphic with \(h(0)\ne0\). In the target coordinate \(t=1/w\) near infinity, the composite is
+\[
+ t\circ f(z)=\frac{z^m}{h(z)},
+\]
+which is holomorphic and sends \(p\) to \(t=0\). Thus \(f\) extends as a holomorphic map into the sphere. Conversely, for a nonconstant holomorphic map to the sphere, use \(t=1/w\) near a preimage of infinity. The function \(t\circ f\) is holomorphic with an isolated zero of finite order \(m\), so \(f\) has a pole of order \(m\). At all other points it is an ordinary holomorphic function.
 \end{proof}
 
 \section{Degree and multiplicity}
@@ -273,77 +275,102 @@ then \(F(p(t))=e^{4\pi it}\) winds twice around the target origin, so the square
 
 Thus the map \(z\mapsto z^2\) is an unbranched two-fold covering of \(\mathbb C^*\), while the missing point \(0\) is where the corresponding map on \(\mathbb C\) would branch.  To make \(\sqrt w\) single-valued one must either cut the base, for example by removing a ray, or pass to a covering space.  This is the global meaning of the failure: local coordinate charts glue with a monodromy representation, and on a non-simply-connected region those gluings need not collapse to one global coordinate.
 
-\section{Holomorphic transition maps}
+\section{Why a compact surface forces meromorphic functions}
 
-A Riemann surface is locally modeled on open subsets of \(\mathbb C\), but the crucial condition is on overlaps.  If two charts
+The earlier examples distinguish the two basic compact Riemann surfaces: the sphere \(\mathbb P^1(\mathbb C)\), assembled from the \(z\)- and \(1/z\)-charts, and a complex torus \(\mathbb C/\Lambda\), assembled from translations by a lattice. On either compact surface a global holomorphic function \(f:X\to\mathbb C\) must be constant. Indeed, \(|f|\) attains its maximum, and the maximum-modulus principle forces \(f\) to be constant on a connected surface.
+
+Meromorphic functions avoid this obstruction by allowing isolated poles. A nonconstant meromorphic \(f\) determines a holomorphic map
 \[
-  \varphi:U\to V\subseteq\mathbb C,\qquad
-  \psi:U'\to V'\subseteq\mathbb C
+ f:X\longrightarrow\mathbb P^1(\mathbb C),
 \]
-overlap, then the transition map
+where each pole maps to \(\infty\). Thus the poles are not merely defects of a function: they are precisely the points where the image enters the second coordinate chart on the sphere. For compact \(X\), the resulting map has a finite degree \(d\), and the local power map \(z\mapsto z^{e_p}\) records its ramification index at \(p\).
+
+We can now ask a concrete topological question. If an analytic map has degree \(d\) and branches at some points, how can the number of handles of its source and target differ? The answer follows from counting cells over a covering.
+
+\section{Riemann--Hurwitz by lifting a triangulation}
+
+Let \(f:X\to Y\) be a nonconstant holomorphic map between connected compact Riemann surfaces, of degree \(d\). Put
 \[
-  \psi\circ\varphi^{-1}:\varphi(U\cap U')\to\psi(U\cap U')
+ R(f)=\sum_{p\in X}(e_p-1).
 \]
-must be holomorphic.  This is what makes complex analysis possible on the surface without choosing one global coordinate.
+Only finitely many terms are nonzero: a nonconstant holomorphic map is locally a power map, and its critical points are isolated; compactness makes the total critical set finite.
 
-The condition is stronger than smoothness.  Holomorphic maps are rigid: they preserve angles, satisfy Cauchy--Riemann equations, and are locally power series.  Thus a Riemann surface is not just a two-dimensional smooth surface; it is a surface with complex-analytic coordinate changes.
-
-\section{Examples beyond the plane}
-
-The complex plane \(\mathbb C\) is a Riemann surface with one global chart.  The Riemann sphere
+Choose a triangulation of \(Y\) with every branch value among its vertices. Over an open face or an open edge, the map is an ordinary \(d\)-sheeted covering. Each open face and edge therefore has exactly \(d\) lifts. Over a vertex \(y\), the number of distinct preimages is
 \[
-  \widehat{\mathbb C}=\mathbb C\cup\{\infty\}
+ \#f^{-1}(y)
+ =d-\sum_{p\in f^{-1}(y)}(e_p-1),
 \]
-requires two charts: one coordinate \(z\) near finite points and another coordinate \(w=1/z\) near infinity.  The transition map \(w=1/z\) is holomorphic away from zero, so the charts are compatible.
+because the multiplicities of the points in the fiber sum to \(d\).
 
-A complex torus is obtained from \(\mathbb C\) by quotienting by a lattice
+Count Euler characteristics in the lifted triangulation:
 \[
-  \Lambda=\mathbb Z\omega_1+\mathbb Z\omega_2.
+\begin{aligned}
+ \chi(X)
+ &=V_X-E_X+F_X\\
+ &=dV_Y-R(f)-dE_Y+dF_Y\\
+ &=d\chi(Y)-R(f).
+\end{aligned}
 \]
-The quotient
+Since an orientable compact surface of genus \(g\) has \(\chi=2-2g\), this yields
 \[
-  \mathbb C/\Lambda
+ \boxed{2g_X-2=d(2g_Y-2)+R(f).}
 \]
-is topologically a torus but also carries a complex structure inherited from the plane.  This example is the bridge from elementary complex analysis to elliptic curves.
+This is the Riemann--Hurwitz formula. The correction \(R(f)\) counts how many distinct preimages of vertices are lost when several sheets merge at a ramification point. The proof explains why the local analytic multiplicities have a global topological cost.
 
-\section{Meromorphic functions}
+\section{The power map checks every term}
 
-On a compact Riemann surface, holomorphic functions are often forced to be constant by the maximum principle.  Meromorphic functions are therefore more flexible.  A meromorphic function is holomorphic except at isolated poles.  Locally near a pole, it has a Laurent expansion with finitely many negative terms.
-
-Thinking of meromorphic functions as holomorphic maps to the Riemann sphere is useful:
+Take
 \[
-  f:X\to\widehat{\mathbb C}.
+ f:\mathbb P^1\to\mathbb P^1,\qquad z\longmapsto z^n
+ \quad(n\ge2).
 \]
-A pole is simply a point mapped to \(\infty\).  This viewpoint turns singularities into ordinary values on a compact target.
+A generic nonzero finite value has \(n\) distinct preimages, so \(d=n\). At \(z=0\), the map has ramification index \(n\). At infinity, use \(w=1/z\) in the source and \(v=1/f(z)\) in the target. Then \(v=w^n\), so the index at infinity is also \(n\). All other points have \(e_p=1\).
 
-\section{Riemann surfaces retain complex structure beyond topology}
-
-The main transition in the note is from topology to complex geometry.  A topological surface only knows neighborhoods up to homeomorphism.  A smooth surface knows differentiable coordinate changes.  A Riemann surface knows holomorphic coordinate changes, so complex analysis can be done intrinsically.  This is why Riemann surfaces are simultaneously one-dimensional complex manifolds and two-dimensional real manifolds.
-
-\section{Complex structure is stronger than topology}
-
-A Riemann surface is topological dimension two but complex dimension one.  The complex charts have holomorphic transition maps, so local coordinates remember angle and orientation.  This is why every holomorphic map between Riemann surfaces is far more rigid than a continuous map.
-
-\section{Meromorphic functions and branched coverings}
-
-A nonconstant meromorphic function on a compact Riemann surface is a holomorphic map to the Riemann sphere:
+Both surfaces have genus zero, and the formula reads
 \[
-  f:X\to\mathbb P^1(\mathbb C).
+ -2=n(-2)+(n-1)+(n-1)=-2.
 \]
-Its degree counts preimages with multiplicity.  Branch points are where local behavior looks like
+The ramification at infinity is essential. Forgetting it would produce an apparent contradiction, precisely because an affine calculation sees only one of the two exceptional values.
+
+\section{A square root of a polynomial produces a torus}
+
+Consider the compactification of the smooth affine curve
 \[
-  z\mapsto z^e.
+ X:\quad y^2=(x-a_1)(x-a_2)(x-a_3)(x-a_4),
 \]
-The integer \(e\) records ramification.
-
-\section{Riemann--Hurwitz}
-
-For a holomorphic map \(f:X\to Y\) of degree \(d\), Riemann--Hurwitz says
+where the complex numbers \(a_1,\ldots,a_4\) are distinct. The projection
 \[
-  2g_X-2=d(2g_Y-2)+\sum_{p\in X}(e_p-1).
+ \pi:X\longrightarrow\mathbb P^1,\qquad(x,y)\longmapsto x
 \]
-This formula ties topology, degree, and branching into one invariant statement.
+has degree two: generically there are two possible square roots.
 
-\section{Complex curves through topology and ramification}
+At \(x=a_i\), write \(x=a_i+t^2\) in a local parameter \(t\). Since the other three factors are nonzero there, the equation determines \(y\) as \(t\) times a nonvanishing holomorphic function. The projection is locally \(t\mapsto t^2\), so each of the four points above \(a_i\) has \(e=2\).
 
-Riemann surfaces are where topology, complex analysis, and algebraic geometry first coincide.  Holomorphic charts give rigidity, meromorphic functions give maps to the sphere, divisors record zeros and poles, and ramification translates analytic multiplicity into topological genus.
+We must still inspect infinity. Put
+\[
+ u=\frac1x,\qquad v=\frac{y}{x^2}.
+\]
+Then the curve equation becomes
+\[
+ v^2=\prod_{i=1}^{4}(1-a_i u).
+\]
+At \(u=0\), the equation has two distinct solutions \(v=\pm1\). They are regular points, and \(u\) is a local coordinate near either of them; hence the double cover is unramified over infinity.
+
+The total ramification is therefore \(R(\pi)=4\), and Riemann--Hurwitz gives
+\[
+ 2g_X-2=2(-2)+4=0,
+ \qquad\boxed{g_X=1.}
+\]
+The smooth compactification is topologically a torus. More generally, if the defining polynomial has \(2m\) distinct roots, the same computation gives \(R=2m\) and
+\[
+ 2g_X-2=-4+2m,\qquad g_X=m-1.
+\]
+An algebraic square-root equation has acquired a precise topological genus.
+
+\section{Why a Torus Differs from a Sphere}
+
+The two principal examples now behave differently even before one studies their geometry explicitly. A degree-one nonconstant holomorphic map between compact Riemann surfaces is a biholomorphism: the sum of multiplicities in each fiber is one, so every fiber has one point with local index one, and the map is a bijective local holomorphic isomorphism. In particular, a genus-one surface cannot map biholomorphically to the sphere.
+
+The genus-one double cover above must have degree at least two; its four simple branch points make that possible. Conversely, a degree-two meromorphic function on a torus records the torus as two copies of the sphere joined along branch cuts. The analytic data of sheets and critical points and the topological data of handles are linked by a single cell-counting identity.
+
+This is the utility of treating complex structure as something encoded by coordinate changes. Locally a nonconstant holomorphic map is only a power map. Globally those local powers may connect sheets in a way that produces a new surface, and the amount of branching measures the resulting change in Euler characteristic.

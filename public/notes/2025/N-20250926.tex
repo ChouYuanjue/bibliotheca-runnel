@@ -1,6 +1,6 @@
 \notechapter{N-20250926}{Backpropagation in One MLP Layer: From a Three-Dimensional Tensor to an Outer Product}
 
-\section{The setting}
+\section{The weight derivative and its three indices}
 
 Consider one middle layer of a multilayer perceptron:
 \[
@@ -19,14 +19,14 @@ The activation function $\sigma$ acts elementwise, for example sigmoid or ReLU. 
 \]
 for a loss function $L$.
 
+The organization of derivatives as linear maps and reverse-mode pullbacks follows MIT OCW, \emph{Matrix Calculus for Machine Learning and Beyond}.\footnote{\href{https://ocw.mit.edu/courses/18-s096-matrix-calculus-for-machine-learning-and-beyond-january-iap-2023/pages/lecture-notes-and-readings/}{MIT 18.S096 lecture notes}.}
+
 The softmax--cross-entropy setting provides a standard example.  If the final layer produces logits $z_i$, then
 \[
   \hat y_i=\frac{e^{z_i}}{\sum_j e^{z_j}},\qquad
   L=-\sum_i t_i\ln \hat y_i,
 \]
 where $t_i$ is a one-hot label.  Backpropagation asks how this scalar loss changes when each weight $W_{j,k}$ changes.
-
-\section{The theoretical tensor}
 
 Strictly speaking, the derivative of the vector $y\in\mathbb R^m$ with respect to the matrix $W\in\mathbb R^{m\times n}$ has three indices:
 \[
@@ -38,8 +38,6 @@ The index $i$ chooses the output component, $j$ chooses the row of $W$, and $k$ 
 \]
 
 This is the source of the confusion recorded in the note.  The derivative is theoretically a third-order tensor, but in neural-network code one usually sees only a matrix gradient.  The matrix appears after chain-rule contraction with the upstream gradient.
-
-\section{Computing the sparse derivative}
 
 Write the linear preactivation component as
 \[
@@ -72,7 +70,7 @@ Thus
 \]
 For elementwise activation this is nonzero only when $i=j$.
 
-\section{Contraction by the chain rule}
+\section{Scalar losses contract the tensor}
 
 The loss $L$ is scalar.  Therefore
 \[
@@ -107,8 +105,6 @@ where
   \delta=\frac{\partial L}{\partial z}.
 \]
 
-\section{Why the tensor disappears}
-
 The original derivative $\partial y/\partial W$ is a tensor with shape $(m,m,n)$.  But backpropagation does not need to store it.  The chain rule contracts it with the vector $\partial L/\partial y$, leaving a matrix of shape $(m,n)$.
 
 Equivalently:
@@ -120,7 +116,17 @@ Equivalently:
 \]
 This is not a loss of information for gradient descent, because gradient descent only needs the derivative of the scalar loss with respect to each parameter.
 
-\section{Contravariant reading of the same calculation}
+For the final layer with softmax and cross entropy, the derivative simplifies to
+\[
+  \frac{\partial L}{\partial z}=\hat y-t.
+\]
+Therefore the final-layer weight gradient is
+\[
+  \frac{\partial L}{\partial W}=(\hat y-t)x^T.
+\]
+This is why implementation code often looks much simpler than the theoretical tensor derivation.
+
+\section{Reverse-mode derivatives as cotangent pullbacks}
 
 The same computation can be described as a pullback of covectors.  A forward layer is a map
 \[
@@ -177,118 +183,22 @@ If the weights are stored instead as \(W_{\mathrm{col}}\in\mathbb R^{n\times m}\
 \]
 The two expressions differ only by the convention for storing the weight matrix.
 
-\section{Outer-product expression}
+\section{A numerical gradient and a useful consistency check}
 
-Let
+Take \(m=2\), \(n=3\), input \(x=(1,2,3)^T\), and preactivations \(z=(0.1,-1)^T\). For sigmoid activation \(\sigma\),
 \[
-  \frac{\partial y}{\partial z}
+ \sigma'(0.1)\approx0.2494,\qquad \sigma'(-1)\approx0.1966.
 \]
-be treated as a column vector for elementwise activation, with entries $\sigma'(z_i)$.  Then the derivative of $y$ with respect to $W$ can be represented row by row as
+The matrix obtained by stacking the derivatives of each output \(y_i\) with respect to the entries in \emph{its own row} \(W_{i,:}\) is
 \[
-  \frac{\partial y}{\partial W}\sim
-  \begin{bmatrix}
-  \frac{\partial y_1}{\partial z_1}x^T\\
-  \frac{\partial y_2}{\partial z_2}x^T\\
-  \vdots\\
-  \frac{\partial y_m}{\partial z_m}x^T
-  \end{bmatrix}
-  =\left(\frac{\partial y}{\partial z}\right)x^T.
+ \begin{pmatrix}0.2494&0.4988&0.7482\\
+                 0.1966&0.3932&0.5898\end{pmatrix}.
 \]
-For the scalar loss, replace $\partial y/\partial z$ by the backpropagated vector $\delta=\partial L/\partial z$.
+This is a collection of two nonzero slices of the full \((m,m,n)\) Jacobian, \emph{not} the complete Jacobian itself. If the upstream loss gradient happens to be \(\partial L/\partial y=(1,1)^T\), the contracted \emph{weight gradient} is numerically the same matrix. For a general upstream gradient \(u\), however, it becomes
+\[
+ \frac{\partial L}{\partial W}
+ =\bigl(u\odot\sigma'(z)\bigr)x^T.
+\]
+This distinction explains when the numerical outer product is a legitimate gradient and when it merely displays the local activation sensitivities.
 
-\section{Numerical example}
-
-The note gives a simple example with
-\[
-  m=2,\qquad n=3,\qquad x=[1,2,3]^T,\qquad z=[0.1,-1.0]^T.
-\]
-For sigmoid,
-\[
-  \sigma'(0.1)\approx0.2494,\qquad
-  \sigma'(-1.0)\approx0.1966.
-\]
-Therefore
-\[
-  \frac{\partial y}{\partial W}\sim
-  \begin{bmatrix}0.2494\\0.1966\end{bmatrix}
-  \begin{bmatrix}1&2&3\end{bmatrix}
-  =
-  \begin{bmatrix}
-  0.2494&0.4988&0.7482\\
-  0.1966&0.3932&0.5898
-  \end{bmatrix}.
-\]
-Each row is the input vector scaled by the derivative of the corresponding output.
-
-\section{Einstein notation proof}
-
-An index calculation makes the chain rule explicit.  Let $y=f(z)$ and $z=Wx$.  For a matrix entry $A_{pq}=W_{pq}$,
-\[
-  \frac{\partial z_i}{\partial A_{pq}}
-  =\frac{\partial}{\partial A_{pq}}
-  \sum_j A_{ij}x_j
-  =\delta_{ip}x_q.
-\]
-Then
-\[
-  \frac{\partial L}{\partial A_{pq} }
-  =\sum_i \frac{\partial L}{\partial y_i}
-  \frac{\partial y_i}{\partial z_p}x_q.
-\]
-For elementwise activation, this becomes
-\[
-  \frac{\partial L}{\partial A_{pq}}
-  =\frac{\partial L}{\partial z_p}x_q.
-\]
-This is the component form of $\partial L/\partial W=\delta x^T$.
-
-\section{Kronecker product viewpoint}
-
-The note also explores vectorization.  If $y=f(Wx)$ and we vectorize $W$, then the Jacobian with respect to $\operatorname{vec}(W)$ can be written using Kronecker products.  The important identity is that changing one matrix entry affects only one row of $z$, which is encoded by a Kronecker delta.
-
-In batch form, if $X$ is a matrix of inputs and $\Delta$ is the matrix of upstream gradients, then the gradient becomes
-\[
-  \frac{\partial L}{\partial W}=\Delta X^T.
-\]
-This is the same outer-product rule, summed over the batch dimension.
-
-\section{Softmax--cross-entropy simplification}
-
-For the final layer with softmax and cross entropy, the derivative simplifies to
-\[
-  \frac{\partial L}{\partial z}=\hat y-t.
-\]
-Therefore the final-layer weight gradient is
-\[
-  \frac{\partial L}{\partial W}=(\hat y-t)x^T.
-\]
-This is why implementation code often looks much simpler than the theoretical tensor derivation.
-
-\section{A wider interpretation}
-
-The key lesson is that matrix calculus is compressed tensor calculus.  The full derivative of a vector with respect to a matrix is a higher-order object, but backpropagation contracts it immediately with an upstream gradient.  The result is an outer product: error signal times input.  This is the local rule behind every dense neural-network layer.
-
-\section{Backpropagation as cotangent pullback}
-For a layer \(z=Wx+b\), the forward map sends activations forward, while backpropagation sends covectors backward:
-\[
-\bar x=W^T\bar z.
-\]
-This is the pullback on cotangent vectors.
-\section{Why the three-dimensional tensor collapses}
-The derivative of \(z_i=\sum_j W_{ij}x_j+b_i\) with respect to \(W_{ab}\) is
-\[
-\frac{\partial z_i}{\partial W_{ab}}=\delta_{ia}x_b.
-\]
-Contracting with upstream gradient \(\bar z_i\) gives
-\[
-\frac{\partial L}{\partial W_{ab}}=\bar z_a x_b.
-\]
-Thus the huge derivative tensor disappears after contraction, leaving an outer product.
-\section{Batch form}
-For a batch, gradients add over examples:
-\[
-\nabla_W L=\bar Z X^T.
-\]
-This is matrix multiplication as accumulated outer products.
-\section{Backpropagation as sparse tensor contraction}
-Backpropagation is not magic tensor cancellation.  It is cotangent pullback plus contraction of sparse Jacobians, and the familiar weight gradient is the outer product of upstream error with input activation.
+In vectorized notation one may write \(\operatorname{vec}(\delta x^T)=x\otimes\delta\) when columns are stacked, but constructing this Kronecker product gains nothing computationally. For batches the correct matrix formula in the convention \(X\in\mathbb R^{b\times n}\), \(G\in\mathbb R^{b\times m}\), \(Y=XW^T\), is \(\nabla_WL=G^TX\); its transpose \(X^TG\) belongs to the alternative column-stored weight convention.

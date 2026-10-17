@@ -48,7 +48,7 @@ The right side has absolute value less than \(|b|\), while a nonzero multiple of
 
 The theorem is more than a formal version of long division.  It supplies a remainder whose size is strictly smaller than the divisor, and that strict decrease is what makes Euclidean descent possible.
 
-\section{The gcd is preserved when a remainder replaces a number}
+\section{Euclid's GCD Invariant}
 
 For integers \(a,b\), not both zero, the greatest common divisor \(d=\gcd(a,b)\) is the unique positive integer satisfying
 \[
@@ -72,7 +72,7 @@ Indeed, a number divides both \(a\) and \(b\) exactly when it divides both \(b\)
 \]
 The set of common divisors has not changed.
 
-This invariant turns division into an algorithm.  Starting with \(a,b\), repeatedly replace the larger pair by the divisor and remainder:
+This invariant turns division into an algorithm. First take absolute values and arrange the inputs so that $a\ge b>0$; a zero input has an immediate gcd. Now repeatedly replace a pair by its divisor and remainder:
 \[
 \begin{aligned}
   a&=q_0b+r_0,\\
@@ -85,7 +85,7 @@ with
 \[
   b>r_0>r_1>r_2>\cdots\ge0.
 \]
-Well-ordering forces the remainders to reach zero.  The last nonzero remainder is the gcd because the common-divisor invariant survives every step.
+Stop when the next remainder is zero. Every nonzero remainder is smaller than the previous positive divisor, so well-ordering guarantees termination. The last nonzero remainder is the gcd because the common-divisor invariant survives every step.
 
 The important object is not the displayed chain of divisions but the transformation
 \[
@@ -422,7 +422,7 @@ The exponent \(\varphi(n)\) is always valid but is not usually minimal.  The lea
 \]
 for every unit \(a\) is the exponent of the group, called the Carmichael function \(\lambda(n)\).  Group structure refines the coarse bound supplied by group order.
 
-\section{Counting elements by their exact order gives a divisor identity}
+\section{Counting Elements by Order}
 
 A useful identity is
 \[

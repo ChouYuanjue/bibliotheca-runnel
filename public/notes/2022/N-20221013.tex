@@ -1,12 +1,12 @@
 \notechapter{N-20221013}{Oriented Boundary Sums, Polynomial Remainders, and Congruence Classes}
 
-\section{Three short computations hide three different kinds of structure}
+\section{Three Computations, Three Structures}
 
 A coordinate-area formula, a polynomial remainder problem, and a modular-exponent problem can appear on the same exercise sheet without sharing one master theorem.  What they do share is a style of simplification: each calculation throws away information that the question does not need.
 
 For a polygon, the relevant data are the oriented contributions of its edges.  For a polynomial modulo \(x-a\), all multiples of \(x-a\) become invisible and only the value at \(a\) remains.  For an integer modulo \(m\), numbers differing by a multiple of \(m\) are treated as the same residue class.  The useful lesson is therefore not that every ``remainder'' is secretly identical, but that one should identify the map that preserves exactly the requested invariant.
 
-\section{A determinant is the signed area of two position vectors}
+\section{Determinants as Signed Area}
 
 For vectors
 \[
@@ -35,7 +35,7 @@ Triangulating from the origin suggests the signed sum
 \]
 If the origin lies outside the polygon, some triangles point with the opposite orientation.  This is not a defect: the negative pieces cancel the extra positive pieces, leaving the polygon's oriented area.
 
-\section{The shoelace formula is a boundary integral evaluated edge by edge}
+\section{Shoelace as a Boundary Integral}
 
 Green's theorem gives an origin-free expression for the oriented area of a positively oriented region \(D\):
 \[
@@ -66,7 +66,7 @@ Summing over the edges yields
 \]
 The familiar crossing columns are therefore a mnemonic for a discrete line integral, not the reason the formula is true.
 
-\section{Translation and orientation provide immediate consistency checks}
+\section{Translation and Orientation Checks}
 
 The shoelace sum should not depend on where the coordinate origin is placed.  Translate every vertex by a fixed vector \(t\).  Then
 \[
@@ -134,7 +134,7 @@ Its kernel is the ideal \((x-a)\), so the first isomorphism theorem gives
 \]
 The quotient notation is useful because it says exactly what has been discarded: two polynomials become equal when their difference is divisible by \(x-a\).
 
-\section{Remainders modulo several linear factors are interpolation data}
+\section{Remainders as Interpolation Data}
 
 Suppose \(f(x)\) leaves remainder \(99\) modulo \(x-19\) and remainder \(19\) modulo \(x-99\).  The remainder modulo
 \[
@@ -175,7 +175,7 @@ This is not a separate trick from interpolation.  A polynomial of degree at most
 \]
 which simplifies to the same answer.
 
-\section{The polynomial Chinese remainder theorem explains uniqueness}
+\section{Polynomial CRT and Uniqueness}
 
 Because \(19\ne99\), the ideals \((x-19)\) and \((x-99)\) are comaximal.  The Chinese remainder theorem gives
 \[
@@ -200,6 +200,71 @@ More generally, for distinct \(a_1,\ldots,a_n\),
   \cong k^n,
 \]
 and the inverse map is Lagrange interpolation.  The elementary remainder theorem has grown into a structural statement without changing the computation it was designed to perform.
+
+\section{Repeated Factors and Hermite Data}
+
+Evaluation modulo $x-a$ forgets everything except $f(a)$. A natural question is what remains visible modulo a higher power $(x-a)^2$. Write the exact polynomial Taylor expansion
+\[
+ f(x)=f(a)+f'(a)(x-a)+(x-a)^2q(x),
+\]
+where $q\in\mathbb Q[x]$. Then
+\[
+ \boxed{f(x)\equiv f(a)+f'(a)(x-a)
+                  \pmod{(x-a)^2}.}
+\]
+Two polynomials agree modulo $(x-a)^2$ precisely when their values \emph{and first derivatives} agree at $a$. Repeated linear factors remember a little more local information than an ordinary point evaluation.
+
+This observation extends the preceding Chinese-remainder example. Suppose we wish to find a polynomial $R$ of degree less than three such that
+\[
+ R(1)=2,\qquad R'(1)=3,\qquad R(-1)=4.
+\]
+Start with the first-order Taylor data at $1$:
+\[
+ R(x)=2+3(x-1)+c(x-1)^2.
+\]
+The remaining value condition gives
+\[
+ 4=R(-1)=2-6+4c,
+ \qquad c=2.
+\]
+Thus
+\[
+ \boxed{R(x)=2x^2-x+1.}
+\]
+Check directly that $R(1)=2$, $R'(1)=4-1=3$, and $R(-1)=4$. The calculation has not secretly used three unrelated equations: it is the polynomial Chinese remainder theorem for the coprime factors $(x-1)^2$ and $(x+1)$,
+\[
+ \mathbb Q[x]/\bigl((x-1)^2(x+1)\bigr)
+ \cong
+ \mathbb Q[x]/(x-1)^2\times\mathbb Q[x]/(x+1).
+\]
+The first component is the pair of numbers $(f(1),f'(1))$, and the second component is $f(-1)$. The total degree bound is $2+1=3$, matching the three scalar data.
+
+Why is this solution unique? If $R$ and $S$ both have the three prescribed data, their difference is divisible by $(x-1)^2$ and by $(x+1)$. Since these factors are coprime, their product divides $R-S$. But $\deg(R-S)<3$; therefore $R=S$. This proves uniqueness without a determinant calculation.
+
+\section{Infinitesimals in Quotient Rings}
+
+There is a particularly memorable way to interpret the first component. Introduce a symbol $\varepsilon$ with $\varepsilon^2=0$, but \emph{do not} assume $\varepsilon=0$. The ring
+\[
+ \mathbb Q[\varepsilon]/(\varepsilon^2)
+\]
+is called the ring of dual numbers. The substitution $x=1+\varepsilon$ makes every quadratic and higher term disappear:
+\[
+ f(1+\varepsilon)=f(1)+f'(1)\varepsilon.
+\]
+For instance,
+\[
+ (1+\varepsilon)^5
+ =1+5\varepsilon+10\varepsilon^2+\cdots
+ =1+5\varepsilon.
+\]
+It is easy to verify that
+\[
+ \mathbb Q[x]/(x-1)^2
+ \cong\mathbb Q[\varepsilon]/(\varepsilon^2)
+\]
+by sending the class of $x-1$ to $\varepsilon$. More generally, the quotient modulo $(x-a)^k$ remembers the first $k$ coefficients of the Taylor expansion of $f$ at $a$ (over a characteristic-zero field).
+
+This is the algebraic germ of a derivative, or a \emph{jet}. We have not introduced a real number smaller than every positive real number: $\varepsilon$ lives in a different ring and satisfies $\varepsilon^2=0$. Nevertheless, first-order calculus becomes exact arithmetic there. The same distinction between a point value and its first-order neighborhood later appears in tangent vectors, differential geometry, and automatic differentiation.\footnote{For Hermite interpolation viewed through Taylor data and polynomial congruences, see Bossoney and Troyanov, \href{https://arxiv.org/html/2607.17998v3}{\emph{A Direct Approach to Hermite Interpolation}}, Sections 1--3.}
 
 \section{Integer congruence is another quotient arithmetic}
 

@@ -12,7 +12,7 @@ Tarski's circle-squaring problem unfolds through a sequence of increasingly subt
 \]
 The visual configurations below support theorem statements whose algebraic and measure-theoretic content is developed directly in the prose.
 
-Tarski asked in 1925 whether a disk and a square of equal area in the plane are equidecomposable: can the disk be partitioned into finitely many pieces, and can those pieces be moved by isometries to partition the square?
+Tarski asked in 1925 whether a disk and a square of equal area in the plane are equidecomposable: can the disk be partitioned into finitely many pieces, and can those pieces be moved by isometries to partition the square? The link between discrepancy, bounded flows and definability follows Laczkovich and the \href{https://arxiv.org/abs/1612.05833}{Borel theorem of Marks and Unger}.
 
 \section{Equidecomposability and dissection congruence}
 
@@ -76,7 +76,7 @@ The extra obstruction is the Dehn invariant.  If a polyhedron has edge lengths $
 \[
   D(P)=\sum_i \ell_i\otimes \theta_i
 \]
-with values in a tensor product such as $\mathbb R\otimes_{\mathbb Z} \mathbb R/(2\pi\mathbb Z)$, depending on conventions.  The invariant records length-angle data that volume does not see; the tensor product signals that this is no longer elementary area bookkeeping.
+with values in $\mathbb R\otimes_{\mathbb Q}(\mathbb R/\pi\mathbb Q)$, where angles differing by rational multiples of $\pi$ represent the same class.  The invariant records length-angle data that volume does not see; the tensor product signals that this is no longer elementary area bookkeeping.
 
 Sydler's theorem says that volume and Dehn invariant together are complete in dimension three.  Thus the two-dimensional polygon theorem has no naive three-dimensional analogue.
 
@@ -108,7 +108,7 @@ At first sight the boundary seems to obstruct the construction.  A disk has circ
 
 The note distinguishes equidecomposability from scissors congruence.  In the scissors-congruence version, the pieces must be tame: each piece is homeomorphic to a disk and has boundary given by curves of finite length.  Under such restrictions, the disk and square are not scissors congruent.
 
-The invariant mentioned in the source is:
+The relevant signed boundary quantity is:
 \[
   \text{convex circular perimeter}-\text{concave circular perimeter}.
 \]
@@ -185,7 +185,7 @@ So edges correspond to single generator moves.
 \caption{The generator graph: locally it looks like a lattice with bounded moves.}
 \end{figure}
 
-To show $A$ and $B$ are equidecomposable, it suffices to find a Borel bijection
+To show $A$ and $B$ are equidecomposable, it suffices to find a bijection
 \[
   f:A\to B
 \]
@@ -249,29 +249,72 @@ and similarly for $B$:
 \]
 Since $\lambda(A)=\lambda(B)$, large boxes contain nearly equal numbers of $A$ and $B$ points.  The error term grows more slowly than the volume term $N^d$, which is exactly what makes matching possible.
 
-\section{From Laczkovich to Borel circle squaring}
+\section{From discrepancy to a bounded transport flow}
 
-Laczkovich's original proof used the axiom of choice.  Later work by Marks and Unger showed that the pieces can be chosen Borel.  This is much stronger: the pieces are still extremely complicated, but they are definable in the Borel hierarchy.
+The discrepancy estimate is useful because it places a quantitative restriction on how much mass can accumulate in one part of an orbit. Write
+\[
+ b(x)=\mathbf1_A(x)-\mathbf1_B(x)
+\]
+for the surplus at a vertex of the orbit graph. A point of \(A\setminus B\) contributes \(+1\), a point of \(B\setminus A\) contributes \(-1\), and all other vertices have zero net surplus. A transport flow is an antisymmetric function on oriented edges,
+\[
+ \varphi(x,y)=-\varphi(y,x),
+\]
+with discrete divergence
+\[
+ \boxed{\sum_{y\sim x}\varphi(x,y)=b(x).}
+\]
+This is an exact conservation equation, not a statistical approximation.
+
+Its meaning is already clear on four consecutive vertices \(v_0,v_1,v_2,v_3\). Suppose \(A=\{v_0,v_1\}\) and \(B=\{v_2,v_3\}\). Sending one unit across \(v_0v_1\), two across \(v_1v_2\), and one across \(v_2v_3\) gives
+\[
+ \begin{array}{c|cccc}
+ x&v_0&v_1&v_2&v_3\\ \hline
+ b(x)&1&1&-1&-1
+ \end{array}
+\]
+because the outgoing minus incoming flows are exactly \(1,1,-1,-1\). The amount crossing each edge equals the cumulative imbalance on one side. The one-dimensional model explains the difficulty in higher dimensions: if a region has a large surplus, that surplus must be carried across the region's boundary.
+
+Now use Laczkovich's discrepancy estimate for the same box \(S_N(x)\), both for \(A\) and for \(B\). Since \(\lambda(A)=\lambda(B)\), subtraction gives
+\[
+ \left|\sum_{y\in S_N(x)} b(y)\right|
+ \le 2M N^{d-1-\varepsilon}.
+\]
+A \(d\)-dimensional box has \(O(N^{d-1})\) boundary edges, so this surplus is smaller than the boundary scale by a factor \(O(N^{-\varepsilon})\). At dyadic scales \(N=2^j\), the corresponding scale factors are summable:
+\[
+ \sum_{j\ge0}2^{-j\varepsilon}<\infty.
+\]
+This is the critical quantitative feature. A mere ergodic estimate \(o(N^d)\) would not control the amount of flow that must cross boundaries at successive scales. The stronger discrepancy estimate makes uniformly bounded multi-scale corrections plausible.
+
+Constructing such a flow is a theorem-level step: the corrections must be routed consistently across overlapping boxes and across every orbit. The bound above explains the role of the exponent; it is not, by itself, a proof that the infinite network has a bounded solution. Laczkovich's method and its Borel refinement supply the additional combinatorial construction.
+
+\section{Borel Pieces of a Real Flow}
+
+A uniformly bounded real-valued flow still does not immediately give a translation partition. A single point cannot be divided into a fraction of a point, whereas a real flow is permitted to carry noninteger quantities. An integer-valued flow is better adapted to matching discrete vertices.
+
+In finite networks, one can see the difference by the integral max-flow theorem: when supplies and capacities are integers, a feasible flow can be chosen integer valued. For the infinite orbit graph there is an extra compatibility problem. Independently choosing an integral flow on each finite subgraph may fail to produce a globally bounded or definable choice.
+
+There is also a second, logically separate issue. Even if every orbit admits an appropriate matching, making one arbitrary choice on each of uncountably many orbits need not yield a Borel function of the starting vertex. A valid equidecomposition by arbitrary pieces need not be a Borel equidecomposition.
+
+The theorem of Marks and Unger solves both obstacles for bounded Borel sets \(A,B\subseteq\mathbb R^k\) with
+\[
+ \lambda(A)=\lambda(B)>0,\qquad
+ \overline{\dim}_{M}(\partial A),\;
+ \overline{\dim}_{M}(\partial B)<k.
+\]
+Their proof first builds a bounded \emph{Borel real flow} using discrepancy. It then uses special finite Borel partitions of free \(\mathbb Z^d\)-orbits, together with integral-flow arguments, to obtain a bounded \emph{integer-valued Borel flow}. The final conversion produces a Borel bijection \(f:A\to B\) that moves every point by one of finitely many translations. The underlying orbit partitions are a substantial input from Borel graph theory; bounded real flow alone is not the conclusion.
+
+To see why this last property gives the desired pieces, let \(F\subset\mathbb Z^d\) be the finite set of displacement vectors used by \(f\). Define
+\[
+ A_g=\{x\in A:f(x)=g\cdot x\},\qquad g\in F.
+\]
+The sets \(A_g\) are Borel because \(f\) and the group action are Borel. They partition \(A\), while the translates \(g\cdot A_g\) partition \(B\) because \(f\) is a bijection. Only finitely many translations are required.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=.60\linewidth]{figures/N-20221214/12-borel-colored-partition.png}
-\caption{A visual impression of the Borel circle-squaring pieces.}
+\caption{A schematic depiction of intricate Borel pieces: definability does not require polygonal or smooth boundaries.}
 \end{figure}
 
-The main components are the Dehn invariant, group actions, torus embeddings, traversal and matching, and measure/discrepancy theory.  The proof is not one trick but a combination of several fields.
+For the circle and square, both boundaries have Minkowski dimension one, strictly below the ambient dimension two, so the theorem applies. The pieces are Borel, but they need not have finite-perimeter boundaries or resemble jigsaw pieces. A Borel decomposition is thus substantially more regular than a partition into arbitrary subsets, yet much less geometrically tame than ordinary scissors congruence.
 
-\section{Bridge to later ideas}
-
-The same question changes answer depending on the category of pieces.  Plane polygons are controlled by area.  Three-dimensional polyhedra require the Dehn invariant.  Tame planar scissors pieces preserve circular-boundary data, so a disk cannot become a square.  But arbitrary or Borel pieces are flexible enough for Laczkovich's theorem and Borel circle squaring.
-
-Thus Tarski's circle-squaring problem is a crossroads of geometry, measure theory, group actions, discrepancy estimates, graph matching, and descriptive set theory.  The important lesson is not only that the answer is yes, but why the yes lives far beyond ordinary scissors geometry.
-
-\section{Scissors congruence and invariants}
-Polygon dissection problems ask whether one shape can be cut into finitely many pieces and rearranged into another.  Area is an invariant, but in higher dimensions it is not enough; Hilbert's third problem needs the Dehn invariant.
-\section{Measurable versus nonmeasurable decompositions}
-Tarski-style paradoxes show that arbitrary set-theoretic decompositions can violate geometric intuition.  Requiring pieces to be measurable or Borel changes the problem drastically because measure becomes a meaningful invariant.
-\section{Circle squaring and group actions}
-Laczkovich's theorem uses translations and carefully controlled pieces to equidecompose a disk and a square of equal area.  The modern refinements ask for regularity of the pieces, such as Borel or measurable structure.
-\section{Equidecomposition under measure and group action}
-Circle-squaring is not just a geometric puzzle.  It sits at the meeting point of group actions, measure theory, regularity of sets, and invariants of dissection.
+One question has revealed three distinct invariance mechanisms. Euclidean polygon dissections are governed by area; polyhedral scissors congruence detects additional Dehn length-angle data; circle squaring is controlled by arithmetic discrepancy and graph transport once sufficiently complicated pieces are admitted. The regularity of those pieces determines which theorems can be used, and which obstructions survive.

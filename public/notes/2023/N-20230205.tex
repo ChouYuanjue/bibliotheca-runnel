@@ -83,7 +83,7 @@ and
 \]
 The sign is positive because the ordered triple agrees with the chosen orientation, and the absolute value is the geometric volume.
 
-\section{The wedge product records an oriented plane before choosing a normal}
+\section{Wedge Products and Oriented Planes}
 
 Given vectors \(u,v\) in a vector space \(V\), their wedge product
 \[
@@ -254,7 +254,7 @@ Equality holds exactly when the wedge product vanishes, that is, when \(u,v\) ar
 
 What looks like a special identity about a three-dimensional operation is therefore the determinant formula for the inner product of two oriented area elements.
 
-\section{Contraction removes one vector from an alternating form}
+\section{Contraction of Alternating Forms}
 
 For a vector \(u\), the interior product or contraction
 \[
@@ -303,7 +303,7 @@ Applying \(\sharp\) gives
 \]
 The BAC--CAB identity is no longer a mnemonic.  It is the contraction rule for an oriented area form, translated back into vectors by the Hodge star.
 
-\section{The Levi--Civita symbol is the coordinate form of volume}
+\section{Volume and the Levi--Civita Symbol}
 
 In a positively oriented orthonormal basis, define
 \[
@@ -417,4 +417,47 @@ so
   \operatorname{div}Y=3.
 \]
 
-The progression is now continuous.  Wedge product records oriented area, the metric and Hodge star translate complementary dimensions, contraction produces vector identities, and the exterior derivative turns the same algebra into differential operators on fields.  The familiar cross product is one three-dimensional expression of a calculus that continues beyond coordinates and beyond constant vectors.
+\section{A small square measures the same curl}
+
+The formula for curl has a directly measurable interpretation. Take the same field
+\[
+ X=(-y,x,0)
+\]
+and orient the rectangle $S=[0,a]\times[0,b]$ in the $xy$-plane counterclockwise. On its four boundary edges, the line integrals are
+\[
+ \begin{array}{c|c}
+ \text{edge} & \displaystyle\int X\cdot d\ell\\ \hline
+ y=0,\ x:0\to a&0\\
+ x=a,\ y:0\to b&ab\\
+ y=b,\ x:a\to0&ab\\
+ x=0,\ y:b\to0&0
+ \end{array}
+\]
+so $\oint_{\partial S}X\cdot d\ell=2ab$. We already computed $\operatorname{curl}X=(0,0,2)$; its flux through $S$ is also $2ab$.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=1.1]
+ \draw[teal!75!black,very thick] (0,0) rectangle (3,1.65);
+ \draw[->,orange!85!black,thick] (1.0,0)--(1.9,0);
+ \draw[->,orange!85!black,thick] (3,.35)--(3,1.16);
+ \draw[->,orange!85!black,thick] (2.1,1.65)--(1.2,1.65);
+ \draw[->,orange!85!black,thick] (0,1.15)--(0,.35);
+ \node[font=\footnotesize,below] at (1.5,-.15) {$a$};
+ \node[font=\footnotesize,left] at (-.15,.83) {$b$};
+ \node[font=\footnotesize,align=center] at (1.5,.78)
+   {$\operatorname{curl}X=2\,\partial_z$};
+\end{tikzpicture}
+\caption{The boundary integral for the rotating field is $2ab$, exactly the curl flux through the rectangle.}
+\end{figure}
+
+Stokes' theorem packages this equality as
+\[
+ \oint_{\partial S}X^\flat=\int_Sd(X^\flat).
+\]
+One more exterior derivative produces two classical identities with almost no calculation:
+\[
+ \operatorname{curl}(\nabla f)=0,\qquad
+ \operatorname{div}(\operatorname{curl}X)=0.
+\]
+Both come from $d^2=0$. The first applies $d^2$ to the $0$-form $f$; the second applies it to the $1$-form $X^\flat$ and uses the Hodge star to translate a $2$-form into a vector field. The apparent miracles of vector-calculus notation become ordinary algebraic consequences of taking the boundary of a boundary.

@@ -1,180 +1,329 @@
-\notechapter{N-20220131}{Rethinking Set Theory Through Functions Rather Than Membership}
+\notechapter{N-20220131}{Set Theory Through Maps: From Characteristic Functions to Cantor's Theorem}
 
-\section{Why this translation/note matters}
+A set can be understood by the ways other sets map into it and by the ways it maps into others. This perspective is especially useful when a proof seems to depend on a mysterious encoding of mathematical objects as sets. Products, subsets, elements and functions can all be recovered from a small collection of mapping principles. Cantor's theorem then becomes a direct consequence of how evaluation and negation interact.\footnote{Tom Leinster, \href{https://pages.jh.edu/rrynasi1/NewFoundations4Math/Literature/Set/Leinster2014RethinkingSetTheory.pdf}{\emph{Rethinking Set Theory}} (2014), with his supplementary ETCS axioms.}
 
-Tom Leinster's \emph{Rethinking Set Theory}, a Chauvenet Prize-winning article, asks why the set theory used by working mathematicians feels so different from the official ZFC story.  Its aim is not to make set theory more technical, but to identify the principles actually used in ordinary mathematical practice.
+\section{An element is a map from a singleton}
 
-The guiding question is simple:
-\begin{question}
-If most mathematicians manipulate sets safely without remembering the ZFC axioms, what principles are they actually using?
-\end{question}
-
-The answer explored here is Lawvere's Elementary Theory of the Category of Sets, usually abbreviated ETCS.  The important point is that ETCS is not an attempt to replace set theory by category theory.  It is another axiomatization of set theory, written in a language closer to everyday mathematical practice.
-
-\section{The discomfort with ZFC}
-
-ZFC treats every element of every set as itself a set.  Formally, this is convenient.  But in ordinary mathematics it is strange.  Questions such as ``what are the elements of \(\pi\)?'' or ``what are the elements of a real number?'' are normally treated as meaningless in mathematical practice.
-
-In ZFC, however, every object has been coded as a set, so asking for the elements of a real number is formally allowed.  This does not mean ZFC is wrong.  It means that ZFC uses the word ``set'' differently from how mathematicians often use it in practice.
-
-\begin{remark}
-The point is not merely that real numbers are encoded arbitrarily.  The deeper point is linguistic: ZFC makes membership primitive, while ordinary mathematics often treats functions, products, subsets, and inverse images as the more natural operations.
-\end{remark}
-
-A typical ZFC axiom such as foundation says that every nonempty set has an element disjoint from it.  This makes formal sense only because all elements are also sets.  But when the set under discussion is something like \(\mathbb R\), the ordinary mathematical intuition does not ask whether \(\pi\cap\mathbb R=\varnothing\).
-
-\section{Three misunderstandings about ETCS}
-
-The original article emphasizes three misunderstandings.
-
-\begin{enumerate}[(i)]
-  \item ETCS is not a competitor to set theory; it is a form of set theory.
-  \item ETCS does not require more sophisticated mathematics than ZFC.  It can be stated elementarily, even though its origin is categorical.
-  \item ETCS is not circular merely because it is inspired by categories.  ZFC says, roughly, ``there are things called sets and a relation called membership.''  ETCS says, roughly, ``there are things called sets and things called functions, and functions compose.''  Both are first-order theories.
-\end{enumerate}
-
-\begin{caution}
-It is easy to overstate the category-theoretic flavor.  The point here is not to presuppose the whole theory of categories.  The point is to take functions and composition as basic, because that is often closer to actual mathematical use.
-\end{caution}
-
-\section{Elements as special functions}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.82\textwidth]{figures/N-20220131/fig-01.png}
-  \caption{The motivating picture: elements can be represented as maps from a singleton.}
-\end{figure}
-
-The key idea is to define elements using functions.  Suppose there is a singleton set
+In familiar set theory, an element \(x\in X\) is commonly regarded as a primitive relation. Instead fix a one-element set \(1=\{*\}\). Every element \(x\in X\) determines a unique map
 \[
-  1=\{\bullet\}.
+ \widehat x:1\longrightarrow X,\qquad \widehat x(*)=x.
 \]
-Then an element of a set \(X\) can be identified with a function
+Conversely every such map determines one element. Thus
 \[
-  1\to X.
+ \boxed{\text{elements of }X\ \longleftrightarrow\ \operatorname{Hom}(1,X).}
 \]
-Indeed, such a function is determined by the image of \(\bullet\), and that image is an element of \(X\).
+This is a small example of a useful change in language: instead of specifying what an object is made of, one specifies maps that probe it.
 
-At first this looks like a formal trick, but it is a very general mathematical pattern:
-\begin{itemize}
-  \item a loop in a topological space \(X\) is a continuous map \(S^1\to X\);
-  \item a sequence in \(X\) is a function \(\mathbb N\to X\);
-  \item a solution of equations in a ring can be represented by a suitable homomorphism out of a quotient ring;
-  \item a point of a space is often best treated as a map from a test object.
-\end{itemize}
+For example, a loop in a space \(X\) is represented by a map \(S^1\to X\), while a sequence of elements of \(X\) is a map \(\mathbb N\to X\). An element is simply a probe with the smallest nonempty domain.
 
-\begin{remark}
-This is the first philosophical shift: instead of saying that functions are built out of elements, we may say that elements are special cases of functions.
-\end{remark}
+\section{The Universal Property of Products}
 
-\section{The informal ETCS-style principles}
-
-The informal ETCS-style principles can be stated as follows:
-\begin{enumerate}[(i)]
-  \item functions compose associatively and have identity functions;
-  \item there is a singleton set;
-  \item there is an empty set;
-  \item a function is determined by its effect on elements;
-  \item products \(X\times Y\) exist;
-  \item function sets \(Y^X\) exist;
-  \item inverse images of elements or subsets exist;
-  \item subsets of \(X\) correspond to functions \(X\to\{0,1\}\);
-  \item the natural numbers form a set;
-  \item every surjection has a right inverse, i.e. a choice principle.
-\end{enumerate}
-
-These principles are striking because they sound like the operations used constantly in ordinary mathematics.  They do not begin by asking what the elements of elements are.
-
-\section{Subsets via characteristic functions}
-
-A subset \(A\subseteq X\) may be represented by its characteristic function
+The cartesian product \(X\times Y\) comes with projection maps
 \[
-  \chi_A:X\to\{0,1\},\qquad
-  \chi_A(x)=
-  \begin{cases}
-    1,&x\in A,\\
-    0,&x\notin A.
-  \end{cases}
+ \pi_X:X\times Y\to X,\qquad
+ \pi_Y:X\times Y\to Y.
 \]
-Thus the power set of \(X\) is expressed as a function set
+Its decisive property is that, for every set \(T\) and maps \(f:T\to X\), \(g:T\to Y\), there is a unique map \(\langle f,g\rangle:T\to X\times Y\) satisfying
 \[
-  2^X.
+ \pi_X\circ\langle f,g\rangle=f,\qquad
+ \pi_Y\circ\langle f,g\rangle=g.
 \]
-This fits the ETCS point of view perfectly: subsets are not introduced by a membership relation alone, but through maps into a classifier of truth values.
+Taking \(T=1\) recovers the usual description of a pair as two elements. But the universal property applies equally well to pairs of functions, pairs of families or pairs of continuously varying parameters in a different category.
 
-\section{Products, exponentials, and inverse images}
+It also proves uniqueness of products up to a unique compatible isomorphism. If \(P\) and \(Q\) both satisfy the same property, the property constructs maps \(P\to Q\) and \(Q\to P\); their composites must be the respective identities by uniqueness. Thus a product is characterized by what it does, independent of an arbitrary encoding of ordered pairs.
 
-The ordinary constructions of mathematics appear directly:
+\section{Function spaces and currying}
+
+An element of $Y^X$ is itself a function $X\to Y$. That observation can be made universal. Given a map
 \[
-  X\times Y
+ q:T\times X\longrightarrow Y,
 \]
-represents pairs; the exponential
+hold the $T$-coordinate fixed and regard the result as a function of $X$. We obtain a map
 \[
-  Y^X
+ \widehat q:T\longrightarrow Y^X,\qquad
+ \widehat q(t)(x)=q(t,x).
 \]
-represents functions from \(X\) to \(Y\); and inverse images let us pull subsets back along functions.  These are exactly the operations that mathematicians use constantly when building structures.
-
-\begin{remark}
-In this sense, ETCS feels less like an encoding scheme and more like a formalization of actual mathematical behavior.
-\end{remark}
-
-\section{Choice as right inverses}
-
-The choice principle in this language says that every surjection has a right inverse.  If
+Conversely $h:T\to Y^X$ determines $(t,x)\mapsto h(t)(x)$. The constructions are inverse, and they commute with maps between parameter sets:
 \[
-  f:X\twoheadrightarrow Y
+ \boxed{\operatorname{Hom}(T\times X,Y)
+          \cong\operatorname{Hom}(T,Y^X).}
 \]
-is surjective, then there exists
+This is the universal property of an \emph{exponential object}. Just as projections characterize products, evaluation characterizes function spaces. The familiar act of treating a two-variable function as a family of one-variable functions is the map called \emph{currying}.
+
+For a very small example, take $T=\{a,b\}$ and $X=Y=\{0,1\}$. Define $q$ by the table
 \[
-  g:Y\to X
+\begin{array}{c|cc}
+ q(t,x)&x=0&x=1\\\hline
+ t=a&0&1\\
+ t=b&1&0
+\end{array}.
 \]
-with
+Then $\widehat q(a)$ is the identity function on $\{0,1\}$ and $\widehat q(b)$ is Boolean negation. The very same four values can be read row-by-row as two functions, or all at once as one function of two inputs.
+
+The importance of this property is its independence from the chosen description of a function. A category can have exponential objects even when its arrows are continuous maps, group actions, or something less familiar. In each case one must check whether the appropriate function object exists. The evaluation map gives a convenient way to formulate that question.
+
+\section{Equations and fibers as universal constructions}
+
+There is a similarly economical description of the solution set of an equation. Given maps $f,g:X\to Y$, their \emph{equalizer} is a map $e:E\to X$ such that $fe=ge$, universal among maps on which $f$ and $g$ agree. In ordinary sets,
 \[
-  f\circ g=\id_Y.
+ E=\{x\in X:f(x)=g(x)\}.
 \]
-This is exactly the idea of choosing one element from each fibre of \(f\).
+If a map $h:T\to X$ satisfies $fh=gh$, there is exactly one $\bar h:T\to E$ with $e\bar h=h$. This last sentence still makes sense when the elements of $E$ have never been specified.
 
-\begin{caution}
-This formulation is often more transparent than the usual family-of-nonempty-sets version, but it is the same choice principle in a categorical dress.
-\end{caution}
-
-\section{Why a function-centered foundation matters}
-
-The main lesson is not that ZFC is useless or wrong.  ZFC is powerful and foundationally successful.  The lesson is that there is a mismatch between the official membership-first universe of ZFC and the function-centered practice of most mathematics.
-
-ETCS suggests that one can axiomatize set theory using:
+A fiber is a special case. Fix $y:1\to Y$ and consider $f:X\to Y$. Then $f^{-1}(y)$ sits in a pullback square
 \[
-\begin{gathered}
-  \text{sets},\quad \text{functions},\quad \text{composition},\\
-  \text{products},\quad \text{function spaces},\quad \text{subsets},\\
-  \text{natural numbers},\quad \text{choice}.
-\end{gathered}
+\begin{tikzcd}[row sep=large,column sep=large]
+ f^{-1}(y)\arrow[r,hook,"i"]\arrow[d] & X\arrow[d,"f"]\\
+ 1\arrow[r,"y"'] &Y.
+\end{tikzcd}
 \]
-That language is closer to the way sets are used in ordinary mathematics.
+One can recognize this square by a factorization test: $h:T\to X$ factors through the fiber exactly when $fh$ is the constant map with value $y$.
 
-\begin{question}
-Is ETCS only a more convenient presentation of ordinary mathematics, or does it also change how one should teach foundations?  The article strongly suggests the latter, making pedagogy part of the foundational question.
-\end{question}
+As a calculation, let $f:\mathbb Z\to\mathbb Z/3\mathbb Z$ send each integer to its residue. The fiber over $\overline1$ consists of $1,4,7,\ldots$ and their negative counterparts, namely $1+3\mathbb Z$. A map $h:T\to\mathbb Z$ factors through this fiber precisely when every value of $h$ is congruent to $1$ modulo $3$.
 
+Finite products and equalizers give finite limits, including all finite pullbacks. The everyday constructions of pairs, solutions to equations, and inverse images therefore grow from a rather short list of demands on arrows. Later, these same diagrams can be interpreted in categories whose objects have topology, geometry, or varying local data.
 
-\section{ETCS intuition: membership is not primitive practice}
+\section{Subsets as Binary Predicates}
 
-One of the central insights of ETCS is that working mathematicians rarely use the membership relation as their main tool.  They use functions.  A set is understood by the maps into it, the maps out of it, its products, its subsets, and its quotients.
-
-For example, instead of defining an ordered pair through nested braces, one can characterize the product \(A\times B\) by its universal property.  Instead of treating a subset as a special kind of element relation, one can treat it through its characteristic map to a subobject classifier.  This does not deny membership; it changes which notions are primitive.
-
-\section{Element reasoning inside categorical set theory}
-
-A common worry is that categorical set theory loses elements.  It does not.  In a category of sets, an element of \(A\) can be represented as a map
+Let \(2=\{0,1\}\). A subset \(A\subseteq X\) determines its characteristic function
 \[
-  1\to A
+ \chi_A:X\to2,\qquad
+ \chi_A(x)=\begin{cases}1,&x\in A,\\0,&x\notin A.\end{cases}
 \]
-from a terminal object.  Thus element reasoning is recovered as morphism reasoning from the one-point set.
+Conversely, a function \(\chi:X\to2\) specifies the subset \(\chi^{-1}(\{1\})\). Therefore
+\[
+ \boxed{\mathcal P(X)\cong2^X,}
+\]
+where \(2^X\) denotes the set of all maps from \(X\) to \(2\).
 
-This is a typical categorical move: replace internal membership statements by external mapping properties.  The result often looks more abstract, but it is closer to how structures are transported by functions.
+Ordinary set operations become pointwise Boolean operations:
+\[
+ \chi_{A\cap B}=\chi_A\chi_B,\qquad
+ \chi_{A^c}=1-\chi_A,
+\]
+and
+\[
+ \chi_{A\cup B}=\chi_A+\chi_B-\chi_A\chi_B.
+\]
+These formulas use arithmetic in the integers, but evaluate only to \(0\) or \(1\) on Boolean inputs.
 
-\section{Why this matters philosophically}
+Given \(f:X\to Y\), inverse image has a particularly natural description:
+\[
+ \boxed{\chi_{f^{-1}(B)}=\chi_B\circ f.}
+\]
+Pulling a subset back along a map is just composition of its predicate with that map. The preimage operation therefore comes from the most basic operation on functions: composition.
 
-ZFC gives a reductionist foundation: everything is encoded as a set.  ETCS gives a structural foundation: sets are objects in a category satisfying axioms that support ordinary set operations.  The philosophical difference is that ETCS does not ask what a set is made of at the lowest membership level; it asks what role sets play in mathematics.
+\section{Membership through a subobject classifier}
 
-This is why Leinster's article is compelling.  It shows that the official foundation and the working foundation are not identical.  ZFC is powerful as a background theory, but ETCS more closely describes the everyday language of functions, products, quotients, and subsets.
+A subset $A\subseteq X$ is represented by its inclusion $i:A\hookrightarrow X$. Abstractly an inclusion is a \emph{monomorphism}: a map $m:A\to X$ with the property that $mu=mv$ forces $u=v$ for all maps $u,v$ with a common domain. In sets this says exactly that $m$ is injective.
+
+Two injections can represent the same subset without their domains being literally equal. For example, a pair of distinct labels $\{\alpha,\beta\}$ could be mapped injectively to the even residues $\{\overline0,\overline2\}$ inside $\mathbb Z/4\mathbb Z$. What matters is the image and how it sits in the ambient set. Categorically we regard monomorphisms into $X$ as equivalent when they differ by an isomorphism over $X$. Their equivalence classes form the collection $\operatorname{Sub}(X)$ of \emph{subobjects}.
+
+For sets, $\mathbf2=\{0,1\}$ and the distinguished point $t:1\to\mathbf2$ with value $1$ have a universal property. Each monomorphism $m:A\hookrightarrow X$ fits, up to the unique appropriate isomorphism, into a pullback square
+\[
+\begin{tikzcd}[row sep=large,column sep=large]
+ A\arrow[r,hook,"m"]\arrow[d] &X\arrow[d,"\chi_A"]\\
+ 1\arrow[r,"t"'] &\mathbf2 .
+\end{tikzcd}
+\]
+Conversely every arrow $\chi:X\to\mathbf2$ produces a subobject by pulling back the point $t$. The object $\mathbf2$, together with $t$, is the \emph{subobject classifier} of $\mathbf{Set}$.
+
+The two faces of a subset now meet:
+\[
+ \boxed{\operatorname{Sub}(X)
+   \cong\operatorname{Hom}(X,\mathbf2)
+   \cong\operatorname{Hom}(1,\mathbf2^X).}
+\]
+The first is the classifier property; the second is currying with $T=1$. The ordinary power set $\mathcal P(X)$ and the exponential $\mathbf2^X$ are two descriptions of the same object in $\mathbf{Set}$.
+
+Membership becomes a question about factorization. An element $x:1\to X$ belongs to the subobject represented by $m:A\hookrightarrow X$ when there is a map $a:1\to A$ with $ma=x$. Equivalently,
+\[
+ x\in A\quad\Longleftrightarrow\quad \chi_Ax=t.
+\]
+No membership test is required between two arbitrary mathematical objects. One first names the ambient set $X$, then a subobject $A$ of $X$, and finally a point $x$ of $X$. This is why the categorical viewpoint suits the way one actually uses sets when doing algebra or analysis.
+
+A general elementary topos also has a subobject classifier $\Omega$, although it need not look like $\mathbf2$. For sheaves on a space, truth may depend on an open region; a subobject can be locally true without having a single global Boolean value. ETCS singles out a setting in which ordinary set-like points, subsets, and classical truth values behave as expected.
+
+\section{Evaluation turns Cantor's paradox into a proof}
+
+For sets \(X,Y\), the set \(Y^X\) comes with an evaluation map
+\[
+ \operatorname{ev}:Y^X\times X\to Y,\qquad
+ (h,x)\longmapsto h(x).
+\]
+Suppose, toward a contradiction, that there is a surjective map
+\[
+ s:X\longrightarrow 2^X.
+\]
+Every point \(x\in X\) has been assigned a Boolean-valued function \(s(x):X\to2\). Define the diagonal predicate
+\[
+ d(x)=1-\operatorname{ev}(s(x),x)=1-s(x)(x).
+\]
+Because \(s\) is surjective, some \(a\in X\) must satisfy \(s(a)=d\). Evaluating at \(a\) gives
+\[
+ d(a)=1-s(a)(a)=1-d(a),
+\]
+which is impossible for a value in \(\{0,1\}\). Consequently
+\[
+ \boxed{\text{there is no surjection }X\to2^X.}
+\]
+This is Cantor's theorem \(|\mathcal P(X)|>|X|\). In the map-based presentation, the contradiction comes from evaluation and the operation of changing a truth value, with no need to ask what the elements of \(X\) are made of.
+
+The same proof is familiar when written as the diagonal subset
+\[
+ D=\{x\in X:x\notin s(x)\}.
+\]
+The categorical-looking version makes clear that the engine of the argument is a self-reference created by evaluation, not any special internal material from which sets are constructed.
+
+For example, on $X=\{a,b\}$ suppose that a proposed list has
+\[
+ s(a)=\{b\},\qquad s(b)=\{a,b\}.
+\]
+The diagonal test asks whether $a\in s(a)$ and $b\in s(b)$, and reverses each answer:
+\[
+\begin{array}{c|cc|c}
+ &a\in s(x)&b\in s(x)&x\in D\ ?\\\hline
+ x=a&\text{no}&\text{yes}&\text{yes}\\
+ x=b&\text{yes}&\text{yes}&\text{no}
+\end{array}
+\qquad D=\{a\}.
+\]
+Neither $s(a)$ nor $s(b)$ equals $D$. The calculation does not rely on the particular two assigned subsets: negating the answer on the diagonal guarantees that the newly constructed subset differs from every subset in the list, at its own index.
+
+\section{Choice means splitting a surjection}
+
+For a surjection \(p:E\to B\), a right inverse is a map \(s:B\to E\) with
+\[
+ p\circ s=\operatorname{id}_B.
+\]
+It chooses one element in each fiber \(p^{-1}(b)\), compatibly with the ordinary definition of a function. The axiom of choice is equivalent, in the category of sets, to the assertion that every surjection has such a section.
+
+This is a strong structural statement about maps. It fails automatically in many categories of spaces with extra structure, even when the underlying function is surjective.
+
+Consider the continuous covering map
+\[
+ p:S^1\to S^1,\qquad p(z)=z^2.
+\]
+It is surjective, but there is no continuous right inverse. If \(s\) existed, the induced maps on fundamental groups would satisfy
+\[
+ p_*\circ s_*=\operatorname{id}_{\pi_1(S^1)}.
+\]
+After identifying \(\pi_1(S^1)\cong\mathbb Z\), the map \(p_*\) is multiplication by \(2\). Hence we would need an integer \(m\) with \(2m=1\), a contradiction.
+
+Set-theoretically one can choose a square root of each \(z\), but no such choice can be continuous around the circle. The example distinguishes the abstract existence of choices from their compatibility with added geometric structure.
+
+\section{Natural numbers as a recursion principle}
+
+A natural numbers object \(N\) comes with a distinguished zero map \(z:1\to N\) and successor map \(s:N\to N\). Its defining property is recursion: given an object \(X\), a point \(x_0:1\to X\), and a map \(g:X\to X\), there is a unique \(h:N\to X\) with
+\[
+ h(0)=x_0,\qquad h(n+1)=g(h(n)).
+\]
+In ordinary sets, take \(X=\mathbb N\), \(x_0=0\) and \(g(k)=k+2\). The unique recursively defined map is
+\[
+ h(n)=2n.
+\]
+This simple property gives a structural characterization of iteration. It is a basic reason why natural numbers, finite sequences and inductive definitions fit naturally into a map-based foundation.
+
+The same recursion principle can carry more than one number at a time. In $\mathbf{Set}$ let
+\[
+ X=\mathbb N\times\mathbb N,\quad x_0=(0,1),
+ \quad g(a,b)=(b,a+b).
+\]
+The uniquely defined arrow $h:N\to X$ begins
+\[
+ h(0)=(0,1),\quad h(1)=(1,1),\quad
+ h(2)=(1,2),\quad h(3)=(2,3),\ldots .
+\]
+Its two coordinates are consecutive Fibonacci numbers. One recursion on a product object generates an infinite system of linked calculations.
+
+\section{The ETCS axioms in action}
+
+Lawvere's \emph{Elementary Theory of the Category of Sets} asks for a category of sets and maps with a particularly useful package of properties. One standard modern formulation is
+\[
+ \boxed{\text{ETCS: a well-pointed elementary topos
+              with a natural numbers object and choice.}}
+\]
+Here an \emph{elementary topos} has finite limits, exponential objects, and a subobject classifier. The various constructions already encountered explain what those conditions provide. Finite limits give products, equations, and fibers. Exponentials supply sets of functions. The classifier lets us form and manipulate subsets. The natural numbers object supports recursion and induction, and the choice axiom provides sections of epimorphisms.
+
+A topos also has finite colimits, including quotients of equivalence relations. To see the connection with the elementary theory of congruences, take the relation
+\[
+ m\sim n \quad\Longleftrightarrow\quad m-n\in3\mathbb Z
+\]
+on $\mathbb Z$. The quotient map $q:\mathbb Z\to\mathbb Z/3\mathbb Z$ identifies the pairs $(m,n)$ with $m\sim n$. Its characteristic property is this: if $h:\mathbb Z\to Y$ satisfies $h(m)=h(n)$ whenever $m\sim n$, then $h$ factors uniquely through $q$:
+\[
+ \begin{tikzcd}[column sep=large,row sep=small]
+ \mathbb Z\arrow[r,"h"]\arrow[d,"q"']&Y\\
+ \mathbb Z/3\mathbb Z\arrow[ur,dashed,"\bar h"']&
+ \end{tikzcd}
+\]
+The relation is the kernel pair of $q$, and $q$ is the coequalizer of its two projections. Quotients in a topos obey the same universal pattern. Hence the structures named in ETCS give a remarkably broad supply of familiar constructions without selecting particular encodings for them.
+
+\section{What well-pointedness buys}
+
+ETCS has another hypothesis which deserves more attention. Its terminal object $1$ is a \emph{generator}: whenever $f,g:X\to Y$ are different arrows, some point $x:1\to X$ witnesses the difference,
+\[
+ f\ne g\quad\Longrightarrow\quad fx\ne gx
+ \quad\text{for some }x:1\to X.
+\]
+This is the categorical form of the ordinary principle that two functions are equal when they agree at every input. Once this property is assumed, many arrow equations may be verified by element chasing, exactly as in undergraduate mathematics.
+
+In a general category, a map $T\to X$ is called a \emph{generalized element} of $X$ of shape $T$. If we allow all shapes $T$, maps can always be distinguished: choose $T=X$ and compare $f\circ\operatorname{id}_X$ with $g\circ\operatorname{id}_X$. Well-pointedness says that the single shape $1$ already suffices. It is a substantive requirement, not an automatic consequence of learning the language of arrows.
+
+The axiom of choice also has an arrow formulation:
+\[
+ \boxed{\text{every epimorphism }p:E\to B
+        \text{ has a section }s:B\to E,\quad ps=1_B.}
+\]
+In $\mathbf{Set}$, epimorphisms are surjections, so this recovers the ordinary choice axiom. ETCS asserts that the same splitting property holds in its proposed category of sets.
+
+A useful consequence is that the internal logic of an ETCS topos is classical. In fact, Diaconescu's theorem says that the splitting of all epimorphisms in an elementary topos forces its subobject logic to be Boolean. This helps explain why the classifier of ordinary sets has precisely two truth values, while sheaf topoi can use open regions as their local truth values.
+
+\section{How much set theory is hidden here?}
+
+There is a practical distinction between manipulating an already given set and forming an entirely new collection of sets. ETCS supplies subsets of each set $X$, quotients, products, and function sets $Y^X$ for given objects $X,Y$. It can carry out a great deal of the set-based mathematics appearing in algebra, analysis, and geometry.
+
+It does not provide an unrestricted set of all sets, and its standard axioms do not contain the full Replacement schema of ZFC. This is a real difference in proof-theoretic strength. A precise comparison is known: ETCS is \emph{equiconsistent} with bounded Zermelo set theory with Choice, where Separation is restricted to bounded formulas and Replacement is absent. Michael Shulman's \emph{Comparing Material and Structural Set Theories} gives a modern account. Stronger structural set theories add carefully formulated replacement or collection principles when they are needed.
+
+A concrete distinction is useful here. Given a map $f:X\to Y$ and a subset $B\subseteq Y$, the inverse image $f^{-1}(B)$ is part of the ordinary bounded collection of subobjects of $X$. Replacing an entire class-indexed family of objects by a single new set is a different task: the objects to be collected may range beyond any previously named set. The extra strength required for such arguments cannot be inferred solely from the existence of $Y^X$.
+
+The categorical language also makes it easier to locate which hypotheses a proof really uses. The existence of a diagonal function and the exponential $2^X$ is enough to formulate Cantor's argument. Choosing elements simultaneously from many fibers uses the choice axiom. Recursion uses the natural numbers object. When two arrows are compared by evaluating them on points, well-pointedness is doing the work.
+
+\section{A square root with no global element}
+
+The distinctive force of well-pointedness is clearest in an example where it fails. Cover the unit circle by the map
+\[
+ p:S^1\longrightarrow S^1,\qquad p(z)=z^2.
+\]
+For each open arc $U\subseteq S^1$, let $\mathcal F(U)$ consist of continuous choices of square root:
+\[
+ \mathcal F(U)=
+ \{s:U\to S^1\text{ continuous}:s(z)^2=z
+    \text{ for every }z\in U\}.
+\]
+These sets, together with restriction of functions, form a sheaf $\mathcal F$ on the circle. On a sufficiently short arc there are two possible continuous branches. Across overlapping arcs, a choice must agree with its restriction.
+
+Over the entire circle there is no continuous square root. Indeed, a global $s:S^1\to S^1$ with $s(z)^2=z$ would give, on fundamental groups,
+\[
+ (z\mapsto z^2)_*\circ s_*
+  =\operatorname{id}_{\mathbb Z},
+\]
+forcing $2\deg(s)=1$. Therefore
+\[
+ \boxed{\mathcal F(S^1)=\varnothing.}
+\]
+A global element $1\to\mathcal F$ of the sheaf topos would be exactly such a global section, so $\mathcal F$ has no global elements. Yet $\mathcal F$ is a genuine, nonempty local object: $\mathcal F(U)$ has elements on short arcs.
+
+This difference prevents $1$ from being a generator in the sheaf topos. Let $\underline{\mathbf2}$ denote the constant sheaf of two values. There are two maps
+\[
+ c_0,c_1:\mathcal F\longrightarrow\underline{\mathbf2}
+\]
+which assign the constant value $0$ or $1$ to every local section. They differ on the short arcs where sections exist. But there is no global point $x:1\to\mathcal F$ available to detect the difference, since both composites $c_0x,c_1x$ have no instances at all.
+
+A single loop around the circle exchanges the two local branches. Their obstruction to gluing has a particularly concise categorical form:
+\[
+ \boxed{\operatorname{Hom}_{\mathbf{Sh}(S^1)}(1,\mathcal F)=\varnothing,
+ \qquad
+ c_0\ne c_1\in
+ \operatorname{Hom}_{\mathbf{Sh}(S^1)}
+        (\mathcal F,\underline{\mathbf2}).}
+\]

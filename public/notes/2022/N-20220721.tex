@@ -1,204 +1,171 @@
-\notechapter{N-20220721}{Probability, Conditional Probability, and Substitution Tricks in Inequalities}
+\notechapter{N-20220721}{Conditioning as Projection: Probability, Jensen's Inequality, and Lost Information}
 
-\section{Random experiments and sample spaces}
+Conditioning changes the weights assigned to outcomes. When the condition is a single event this is a new probability measure; when the available information is a partition of the sample space it is a new function, the conditional expectation. That function turns out to be an orthogonal projection in \(L^2\). The same operation also satisfies Jensen's inequality and, in information theory, can only decrease the relative entropy between distributions after outcomes have been merged.\footnote{\href{https://web.stanford.edu/class/stats310a/lnotes.pdf}{Stanford Stats 310A}, \S4.3 (conditional expectation as projection); MIT 6.441, Chapters 2--3 (information-theoretic data processing).}
 
-A random experiment is a repeatable process whose possible outcomes are known but whose actual outcome is uncertain.  Examples include tossing a coin, drawing a ball from a box, or choosing a card.
+\section{How Conditioning Reweights Outcomes}
 
-The set of all possible basic outcomes is the sample space, denoted
+On a finite probability space \(\Omega\), let \(p(\omega)>0\) denote the weight of each outcome. For an event \(B\subseteq\Omega\) with \(\Pr(B)>0\), the conditional law is
 \[
-  \Omega.
+ p_B(\omega)=\frac{p(\omega)\mathbf1_B(\omega)}{\Pr(B)}.
 \]
-A subset \(A\subseteq\Omega\) is an event.  If the sample space is finite and all outcomes are equally likely, then
+Thus for a random variable \(X\),
 \[
-  P(A)=\frac{|A|}{|\Omega|}.
+ \mathbb E[X\mid B]
+ =\sum_{\omega\in\Omega}X(\omega)p_B(\omega)
+ =\frac{\mathbb E[X\mathbf1_B]}{\Pr(B)}.
 \]
+Conditioning is an explicit reweighting of the same outcomes.
 
-The note stresses that events are sets.  This is why union, intersection, complement, and inclusion--exclusion immediately become probability tools:
+Bayes' theorem follows by comparing two ways of multiplying conditional and marginal probabilities:
 \[
-  P(A\cup B)=P(A)+P(B)-P(A\cap B).
+ \Pr(H\mid E)=\frac{\Pr(E\mid H)\Pr(H)}{\Pr(E)}.
 \]
-
-\section{Classical model and Venn diagrams}
-
-Consider seven labeled balls with three properties represented by sets \(A_1,A_2,A_3\).  A Venn diagram and factorial counts compute a probability such as
+The odds form is especially informative:
 \[
-  P=\frac{7!-3\cdot6!+3\cdot5!-4!}{7!}.
+ \boxed{\frac{\Pr(H\mid E)}{\Pr(H^c\mid E)}
+ =\frac{\Pr(E\mid H)}{\Pr(E\mid H^c)}
+  \frac{\Pr(H)}{\Pr(H^c)}.}
 \]
-The exact numbers matter less than the method.  If conditions overlap, count by inclusion--exclusion.  A Venn diagram is not a proof by itself, but it helps prevent double-counting.
-
-\section{Conditional probability}
-
-The conditional probability of \(B\) given \(A\) is
+It says that evidence multiplies prior odds by a likelihood ratio. For a rare event with prior probability \(1/100\), a test of sensitivity \(9/10\) and false-positive rate \(1/10\) gives
 \[
-  P(B\mid A)=\frac{P(A\cap B)}{P(A)}
+ \Pr(H\mid +)
+ =\frac{(9/10)(1/100)}
+ {(9/10)(1/100)+(1/10)(99/100)}
+ =\frac1{12}.
 \]
-when \(P(A)>0\).  The note includes examples where one must be careful not to confuse \(P(B\mid A)\) with \(P(B)\).
+High sensitivity alone cannot overcome very small prior odds and a substantial false-positive rate.
 
-Independence is the condition
+\section{Observing a partition gives a random estimate}
+
+Suppose the observation only tells us which cell of a partition
+\(\Omega=C_1\sqcup\cdots\sqcup C_m\) contains the outcome. If \(\Pr(C_j)>0\), define
 \[
-  P(A\cap B)=P(A)P(B),
+ M(\omega)=\frac{\sum_{\eta\in C_j}p(\eta)X(\eta)}
+                  {\Pr(C_j)}
+ \qquad(\omega\in C_j).
 \]
-or equivalently
+The function \(M\) is the conditional expectation of \(X\) given this observation. It is constant on each information cell and averages \(X\) using the conditional weights within that cell.
+
+For example, take four outcomes of probabilities
 \[
-  P(B\mid A)=P(B).
+ (p_1,p_2,p_3,p_4)=\frac1{10}(1,2,3,4),
 \]
-This means that knowing \(A\) occurred does not change the probability of \(B\).
-
-A common trap appears in nested events.  If \(A\subseteq B\), then
+with \(X=(0,2,3,7)\). If the observation distinguishes only \(\{1,2\}\) from \(\{3,4\}\), the best cellwise predictions are
 \[
-  P(B\mid A)=1,
+ M|_{\{1,2\}}=\frac{1\cdot0+2\cdot2}{1+2}=\frac43,
+ \qquad
+ M|_{\{3,4\}}=\frac{3\cdot3+4\cdot7}{3+4}=\frac{37}{7}.
 \]
-but
+The mean is preserved:
 \[
-  P(A\mid B)=\frac{P(A)}{P(B)}
+ \mathbb E[M]
+ =\frac3{10}\frac43+\frac7{10}\frac{37}{7}
+ =\frac{41}{10}=\mathbb E[X].
 \]
-may be much smaller.  Conditional probability is not symmetric.
 
-\section{A transition to substitution tricks}
+\section{Conditional Expectation as Projection}
 
-The note then changes direction and discusses substitutions used in inequalities.  A recurring constraint is
+Equip real-valued functions on \(\Omega\) with the inner product
 \[
-  abc=1.
+ \langle X,Z\rangle=\mathbb E[XZ].
 \]
-A standard substitution is
+The functions constant on each information cell form a vector subspace \(V\) of this finite-dimensional Hilbert space. For any \(Z\in V\), say \(Z=z_j\) on \(C_j\),
 \[
-  a=\frac xy,\qquad b=\frac yz,\qquad c=\frac zx.
+\begin{aligned}
+ \mathbb E[(X-M)Z]
+ &=\sum_jz_j\sum_{\omega\in C_j}
+       p(\omega)(X(\omega)-M(\omega))\\
+ &=0.
+\end{aligned}
 \]
-Another useful substitution is
+Thus the residual \(X-M\) is orthogonal to every function measurable from the observation:
 \[
-  x=a+\frac1a,\qquad y=b+\frac1b,\qquad z=c+\frac1c.
+ \boxed{M=\operatorname{Proj}_V X.}
 \]
-Such substitutions are not merely algebraic decoration; they encode hidden positivity and symmetry.  Many complicated-looking inequalities become simpler after this change of variables.
 
-\section{A classical symmetric equation}
-
-The pages discuss equations such as
+For any other predictor \(Z\in V\), Pythagoras gives
 \[
-  xyz=x+y+z+2.
+ \mathbb E[(X-Z)^2]
+ =\mathbb E[(X-M)^2]+\mathbb E[(M-Z)^2].
 \]
-This can be rewritten as
+It follows that \(M\) uniquely minimizes the mean squared prediction error among all predictors using the available observation. No Gaussian distribution or linear regression assumption was needed.
+
+The same geometry yields the law of total variance. Writing \(X-\mathbb E[X]=(X-M)+(M-\mathbb E[X])\) and using orthogonality,
 \[
-  xyz+1=(x+1)(y+1)(z+1)-xy-yz-zx-x-y-z.
+ \boxed{\operatorname{Var}(X)
+ =\mathbb E[\operatorname{Var}(X\mid Y)]
+  +\operatorname{Var}(\mathbb E[X\mid Y]),}
 \]
-A better-known substitution is
+where \(Y\) denotes the partition observation. Total variability splits into the uncertainty left inside each cell and the variability explained by knowing the cell.
+
+\section{Jensen turns changes of viewpoint into inequalities}
+
+A convex function \(\varphi\) satisfies, for nonnegative weights summing to one,
 \[
-  x=a+\frac1a,\quad y=b+\frac1b,\quad z=c+\frac1c,
+ \varphi\left(\sum_i\lambda_ix_i\right)
+ \le\sum_i\lambda_i\varphi(x_i).
 \]
-or trigonometric substitutions when the variables resemble
+Applying this separately within each information cell gives the conditional Jensen inequality:
 \[
-  2\cos A,\quad 2\cos B,\quad 2\cos C.
+ \boxed{\varphi(\mathbb E[X\mid Y])
+        \le\mathbb E[\varphi(X)\mid Y].}
 \]
-The note is circling around the idea that symmetric algebraic equations often become geometry or trigonometry after the right substitution.
+This follows directly from convexity; the inequality requires the relevant expectations to exist.
 
-\section{Inequality examples}
-
-One example asks to prove
+The familiar Cauchy inequality
 \[
-  \frac{a}{b+c+a}+\frac{b}{c+a+b}+\frac{c}{a+b+c}\ge\frac32
+ (a+b+c)^2\le3(a^2+b^2+c^2)
 \]
-in a normalized form.  Contest inequalities of this type are handled by standard tools such as Cauchy, AM--GM, or substitution.
-
-The point is that conditions like \(abc=1\), \(x+y+z=\text{constant}\), or \(x^2+y^2+z^2+2xyz=1\) should not be treated as random constraints.  They are invitations to choose a special parametrization.
-
-\section{Jensen, trigonometry, and contest style}
-
-Later examples involve trigonometric inequalities in a triangle.  A triangle condition \(A+B+C=\pi\) naturally suggests identities such as
+is Jensen for \(\varphi(x)=x^2\) and a uniform random variable whose three possible values are \(a,b,c\). Similarly, concavity of \(\log\) gives weighted AM--GM:
 \[
-  \cos^2A+\cos^2B+\cos^2C+2\cos A\cos B\cos C=1.
+ \sum_i\lambda_i\log x_i
+ \le\log\left(\sum_i\lambda_ix_i\right)
+ \quad\Longleftrightarrow\quad
+ \boxed{\prod_i x_i^{\lambda_i}\le\sum_i\lambda_ix_i}
 \]
-This identity is one of the reasons that substitutions by cosines appear in olympiad inequalities.
+for \(x_i>0\). Choosing the weights and the random variable is therefore a systematic way of finding the right normalization in many inequality problems.
 
-\section{The hidden structure}
+\section{Merging outcomes can only erase relative entropy}
 
-This note looks like probability followed by inequalities, but both topics are about choosing the right sample space.  In probability, the sample space is literal: events are subsets of \(\Omega\).  In inequalities, the ``sample space'' is the domain allowed by the constraint.  A good substitution changes that domain into something more natural, just as choosing a good probability model turns a counting problem into a set problem.
-
-\section{Conditional probability as changing measure}
-
-Conditional probability is not just a formula.  It changes the universe from \(\Omega\) to the event \(B\):
+Let \(p=(p_i)\) and \(q=(q_i)\) be strictly positive probability vectors on a finite set. Their relative entropy is
 \[
-  \mathbb P(A\mid B)=\frac{\mathbb P(A\cap B)}{\mathbb P(B)}.
+ D(p\|q)=\sum_i p_i\log\frac{p_i}{q_i}.
 \]
-The denominator renormalizes the measure so that \(B\) has probability \(1\).
-
-This is why Venn diagrams help: conditioning restricts attention to one region and rescales its area.
-
-\section{Bayes formula and inverse problems}
-
-Bayes' formula
+Define the likelihood ratio \(R(i)=p_i/q_i\) and take expectation under \(q\). Then
 \[
-  \mathbb P(A_i\mid B)=\frac{\mathbb P(B\mid A_i)\mathbb P(A_i)}{\sum_j \mathbb P(B\mid A_j)\mathbb P(A_j)}
+ D(p\|q)=\mathbb E_q[R\log R].
 \]
-turns likelihoods into posterior probabilities.  It is a finite version of inference: update prior weights after observing evidence.
-
-The formula is especially useful when \(B\) is easier to compute conditional on each case \(A_i\) than directly.
-
-\section{Inequality substitutions as coordinate choices}
-
-The substitution tricks in the inequality part should be read as coordinate changes.  Symmetric expressions often simplify under
+The function \(\varphi(r)=r\log r\) is strictly convex on \(r>0\), because \(\varphi''(r)=1/r\). By ordinary Jensen,
 \[
-  u=x+y,\qquad v=xy,
+ D(p\|q)\ge\varphi(\mathbb E_qR)=\varphi(1)=0,
 \]
-or under trigonometric substitutions that encode constraints.  The good substitution is the one that turns the constraint into a simple domain.
+with equality precisely when \(p=q\).
 
-\section{Changing measures and changing coordinates}
-
-Probability and inequality substitutions share a habit: change the viewpoint before computing.  Conditioning changes the measure; Bayes reverses conditional information; substitutions choose coordinates adapted to the constraint.  This last sentence is worth making more precise, because it is the higher-level bridge hidden inside the elementary examples.
-
-\begin{definition}[Conditioning as a new probability measure]
-Let \((\Omega,\mathcal F,\mathbb P)\) be a probability space and let \(B\in\mathcal F\) satisfy \(\mathbb P(B)>0\).  The conditional probability given \(B\) is the probability measure
+Now suppose an observation merges individual outcomes into cells \(C_j\). Let
 \[
-  \mathbb P_B(A)=\mathbb P(A\mid B)
-  =\frac{\mathbb P(A\cap B)}{\mathbb P(B)}.
+ \overline p_j=\sum_{i\in C_j}p_i,\qquad
+ \overline q_j=\sum_{i\in C_j}q_i.
 \]
-Equivalently,
+The conditional mean of \(R\) within the \(j\)-th cell, under weights \(q_i/\overline q_j\), is
 \[
-  \mathbb P_B(A)=\int_A \frac{\mathbf 1_B}{\mathbb P(B)}\,d\mathbb P.
+ \mathbb E_q[R\mid C_j]
+ =\frac{\overline p_j}{\overline q_j}.
 \]
-Thus \(\mathbb P_B\) is absolutely continuous with respect to \(\mathbb P\), with Radon--Nikodym derivative
+Apply conditional Jensen and average over all cells:
 \[
-  \frac{d\mathbb P_B}{d\mathbb P}=\frac{\mathbf 1_B}{\mathbb P(B)}.
+\begin{aligned}
+ D(p\|q)
+ &=\mathbb E_q[\varphi(R)]\\
+ &\ge\sum_j\overline q_j
+        \varphi\left(\frac{\overline p_j}{\overline q_j}\right)\\
+ &=\sum_j\overline p_j
+        \log\frac{\overline p_j}{\overline q_j}.
+\end{aligned}
 \]
-\end{definition}
+Therefore
+\[
+ \boxed{D(p\|q)\ge D(\overline p\|\overline q).}
+\]
+This is the data-processing inequality for a deterministic coarse-graining. Distinguishing fewer outcomes cannot make two distributions more distinguishable in relative entropy. Equality holds when the ratio \(p_i/q_i\) is constant on each cell.
 
-This is the clean meaning of the phrase ``conditioning changes the measure''.  The set \(\Omega\) may stay formally the same, but the weights assigned to its parts have changed.  Everything outside \(B\) receives weight zero, and the mass inside \(B\) is rescaled so that the total mass is again one.
-
-\begin{proposition}[Conditional expectation as integration in the new measure]
-For every integrable random variable \(X\),
-\[
-  \mathbb E[X\mid B]
-  =\int_{\Omega}X\,d\mathbb P_B
-  =\frac{1}{\mathbb P(B)}\int_B X\,d\mathbb P.
-\]
-\end{proposition}
-
-\begin{proof}
-By the definition of \(\mathbb P_B\) and its density with respect to \(\mathbb P\),
-\[
-  \int_{\Omega}X\,d\mathbb P_B
-  =\int_{\Omega}X\frac{\mathbf 1_B}{\mathbb P(B)}\,d\mathbb P
-  =\frac{1}{\mathbb P(B)}\int_B X\,d\mathbb P.
-\]
-This is precisely the usual formula for conditional expectation on the event \(B\).
-\end{proof}
-
-Bayes' formula is also clearer from this viewpoint.  Suppose \(A_1,\ldots,A_n\) form a partition of \(\Omega\).  After observing \(B\), the old weights \(\mathbb P(A_i)\) are replaced by
-\[
-  \mathbb P_B(A_i)
-  =\frac{\mathbb P(B\mid A_i)\mathbb P(A_i)}{\sum_j\mathbb P(B\mid A_j)\mathbb P(A_j)}.
-\]
-The numerator is the old weight multiplied by the likelihood of the observation.  The denominator is just the normalization which makes the new weights add to one.  So Bayes' formula is not a trick for reversing arrows; it is a reweighting rule.
-
-The same pattern appears in substitutions for inequalities.  A substitution changes how we integrate, compare, or optimize over a domain.  If \(T:U\to V\) is a change of variables, then a function on \(V\) can be pulled back to \(U\) by
-\[
-  f\longmapsto f\circ T.
-\]
-For integrals, the measure also changes through the Jacobian:
-\[
-  \int_V f(y)\,dy
-  =\int_U f(T(x))\,\left|\det DT(x)\right|\,dx.
-\]
-For inequalities, even when no explicit integral is present, the same philosophy remains: choose coordinates in which the constraint and the symmetry become visible.
-
-\begin{remark}[The shared template]
-Conditioning replaces \(\mathbb P\) by the weighted measure \(\mathbb P_B\).  Bayes' formula replaces prior weights by posterior weights.  A substitution replaces the original coordinates by coordinates adapted to the constraint.  In all three cases, the computation becomes easier because the background viewpoint has changed before the algebra begins.
-\end{remark}
+The projection interpretation and data processing describe the same loss of information from two angles. For squared prediction error, conditioning keeps the component visible to the observation and discards an orthogonal residual. For relative entropy, conditioning averages the likelihood ratio, and convexity shows that its distinguishing power cannot increase. Both calculations begin with reweighting on the information cells and end with a precise inequality.

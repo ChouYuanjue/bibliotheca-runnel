@@ -1,14 +1,12 @@
 \notechapter{N-20220713}{Completeness, Supremum, Dedekind Cuts, and Metric Spaces}
 
-\section{Large and small positive real numbers}
+\section{Order, bounds, and the least-upper-bound property}
 
 A simple but important fact is that for every positive real \(A\), there is a positive real \(M>A\), and for every positive real \(a\), there is a positive real \(\varepsilon<a\).  For instance,
 \[
   M=A+1,\qquad \varepsilon=\frac a2.
 \]
-This is the first appearance of the \(\varepsilon\)-language of analysis.
-
-\section{The geometric view of the real line}
+This is the first appearance of the \(\varepsilon\)-language of analysis. Our treatment follows the ordered-field and metric-completion development in the MIT 18.100A notes and Jiří Lebl's \emph{Basic Analysis I}; see especially the discussion of supremum and Cauchy completeness.\footnote{\href{https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/pages/lecture-notes-and-readings/}{MIT 18.100A, \emph{Real Analysis}, lecture notes}.}
 
 We think of \(\mathbb R\) as a line, where order is represented by left and right.  This picture is helpful, but the note emphasizes that all conclusions must ultimately come from axioms and rigorous reasoning, not from the drawing itself.
 
@@ -20,8 +18,6 @@ Such an \(A\) is an upper bound.  Similarly, \(X\) is bounded below if there exi
 \[
   a\le x\quad\text{for all }x\in X.
 \]
-
-\section{Supremum property}
 
 The least upper bound property says: if \(X\subseteq\mathbb R\) is nonempty and bounded above, then the set of upper bounds has a least element.  This least upper bound is denoted
 \[
@@ -47,7 +43,15 @@ One always has
 \]
 for a nonempty bounded set.
 
-\section{Nested intervals imply completeness}
+The supremum of a set \(A\subseteq\mathbb R\) is not merely a maximum.  It is the least number \(s\) such that every element of \(A\) is at most \(s\).  A maximum must belong to \(A\); a supremum need not.
+
+For example,
+\[
+  \sup(0,1)=1,
+\]
+but \((0,1)\) has no maximum.  Completeness has a concrete obstruction over \(\mathbb Q\). The set \(S=\{q\in\mathbb Q:q>0,\ q^2<2\}\) is nonempty and bounded above but has no supremum in \(\mathbb Q\); any putative rational boundary would satisfy \(r^2=2\), contradicting the elementary parity argument that \(\sqrt2\) is irrational. Therefore the ordered-field axioms alone do not imply the supremum property.
+
+\section{Completeness and nested-interval bisection}
 
 Let \(X\subseteq\mathbb R\) be nonempty and bounded above.  One can construct nested intervals
 \[
@@ -61,9 +65,11 @@ The nested interval axiom gives a point
 \[
   M\in\bigcap_{n=1}^{\infty}I_n.
 \]
-The shrinking length forces \(M\) to be the least upper bound of \(X\).  If \(M\) were not an upper bound, some \(x\in X\) would lie above it; for large \(n\), the right endpoint \(b_n\) would be too close to \(M\), contradiction.  If \(M\) were not least, a smaller upper bound would contradict the construction of the \(a_n\)'s.
+At each bisection, retain the half whose lower endpoint is not an upper bound and whose upper endpoint is an upper bound; the interval length halves. The nested-interval property then supplies \(M\). The shrinking length forces \(M\) to be the least upper bound of \(X\).  If \(M\) were not an upper bound, some \(x\in X\) would lie above it; for large \(n\), the right endpoint \(b_n\) would be too close to \(M\), contradiction.  If \(M\) were not least, a smaller upper bound would contradict the construction of the \(a_n\)'s.
 
-\section{Dedekind cuts}
+The supremum property says every nonempty bounded-above set has a least upper bound.  This is the order-theoretic heart of the real line.  It is what makes monotone convergence and intermediate-value reasoning possible.
+
+\section{Dedekind cuts and the order completion}
 
 A Dedekind cut is a subset \(X\subset\mathbb Q\) such that:
 \begin{enumerate}[(i)]
@@ -79,9 +85,15 @@ An irrational such as \(\sqrt2\) is represented by
 \[
   X_{\sqrt2}=\{x\in\mathbb Q_{>0}:x^2<2\}\cup\mathbb Q_{\le0}.
 \]
-Thus real numbers can be constructed from rational cuts.
+This is an actual lower cut: it is nonempty, proper, downward closed and has no greatest rational element. The last property uses density of the rationals. The cut does not come from any rational endpoint, because \(2\) is not a square in \(\mathbb Q\). Thus real numbers can be constructed from rational cuts.
 
-\section{Metric spaces}
+A Dedekind cut separates rationals into a lower part and an upper part with no gap.  Irrational numbers appear as cuts not produced by a rational boundary.  Completeness says that every such cut corresponds to a real number.
+
+This is the philosophical point of constructing \(\mathbb R\): the real line is obtained by filling all rational gaps.
+
+Dedekind cuts construct reals by filling order gaps; Cauchy completion constructs reals by adding missing limits of Cauchy sequences.  The two constructions produce isomorphic complete ordered fields, but they emphasize different structures: order versus metric.
+
+\section{Metric spaces, dense subspaces, and Cauchy completion}
 
 A metric space is a set \(X\) equipped with a function
 \[
@@ -129,8 +141,6 @@ In the discrete metric, open balls are especially simple:
 \]
 Boundary points are not included in an open ball, which explains why the case \(r=1\) gives \(\{x\}\), not all of \(X\).
 
-\section{Subspaces and density}
-
 If \(Y\subseteq X\) and \(X\) has metric \(d\), then \(Y\) inherits the subspace metric
 \[
   d_Y(y_1,y_2)=d(y_1,y_2).
@@ -141,39 +151,4 @@ A subset \(Y\subseteq X\) is dense if for every \(x\in X\) and every \(\varepsil
 \]
 This formalizes the idea that \(Y\) comes arbitrarily close to every point of \(X\).
 
-
-\section{Supremum as least upper bound}
-
-The supremum of a set \(A\subseteq\mathbb R\) is not merely a maximum.  It is the least number \(s\) such that every element of \(A\) is at most \(s\).  A maximum must belong to \(A\); a supremum need not.
-
-For example,
-\[
-  \sup(0,1)=1,
-\]
-but \((0,1)\) has no maximum.  This distinction is exactly what makes completeness subtle.
-
-\section{Dedekind cuts and completeness}
-
-A Dedekind cut separates rationals into a lower part and an upper part with no gap.  Irrational numbers appear as cuts not produced by a rational boundary.  Completeness says that every such cut corresponds to a real number.
-
-This is the philosophical point of constructing \(\mathbb R\): the real line is obtained by filling all rational gaps.
-
-\section{Looking ahead}
-
-The note moves from the order-completeness of \(\mathbb R\) to the metric-space language of distance and density.  Supremum, Dedekind cuts, nested intervals, and metrics are different ways of making precise the intuition that the real line has no holes.
-
-\section{Supremum as order-completeness}
-
-The supremum property says every nonempty bounded-above set has a least upper bound.  This is the order-theoretic heart of the real line.  It is what makes monotone convergence and intermediate-value reasoning possible.
-
-\section{Cauchy completion and metric completion}
-
-A metric space can be completed by adding equivalence classes of Cauchy sequences.  Two Cauchy sequences are equivalent if their distance tends to zero.  The real numbers can be constructed as the completion of \(\mathbb Q\) under the usual metric.
-
-\section{Dedekind cuts versus Cauchy sequences}
-
-Dedekind cuts construct reals by filling order gaps; Cauchy completion constructs reals by adding missing limits of Cauchy sequences.  The two constructions produce isomorphic complete ordered fields, but they emphasize different structures: order versus metric.
-
-\section{Completeness as the no-gap principle}
-
-Completeness is the bridge from algebraic number systems to analysis.  Supremum, nested intervals, Dedekind cuts, density, and metric completion are not separate facts; they are equivalent ways of ruling out gaps.
+A metric space can be completed by adding equivalence classes of Cauchy sequences.  Two Cauchy sequences are equivalent if their distance tends to zero.  The real numbers can be constructed as the completion of \(\mathbb Q\) under the usual metric. For example, set \(q_n=\lfloor10^n\sqrt2\rfloor/10^n\). Each \(q_n\) is rational and \(|q_n-\sqrt2|<10^{-n}\); hence \((q_n)\) is Cauchy in \(\mathbb Q\), but has no rational limit. The completion adjoins its equivalence class. Two Cauchy sequences represent the same real number precisely when their termwise difference tends to zero. This turns the philosophical claim about ``filling gaps'' into an explicit construction.

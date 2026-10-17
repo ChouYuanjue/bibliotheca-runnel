@@ -1,283 +1,132 @@
-\notechapter{N-20220411}{Invertible Matrices, Adjoints, Row Reduction, and Rotations}
+\notechapter{N-20220411}{Invertibility, Orthogonal Motion, and Polar Decomposition}
 
-\section{Invertibility}
+A matrix may be invertible while compressing one direction so severely that recovering it from noisy data becomes impossible in practice. Gaussian elimination detects whether a direction is destroyed; singular values quantify how close that destruction is. Between these two questions lies the geometry of orthogonal transformations and polar decomposition.\footnote{See MIT 18.700, supplementary notes on Gaussian elimination and the spectral theorem: \url{https://ocw.mit.edu/courses/18-700-linear-algebra-fall-2013/pages/study-materials/}.}
 
-A square matrix \(A\) is invertible if there exists a matrix \(A^{-1}\) such that
-\[
-  A^{-1}A=I,\qquad AA^{-1}=I.
-\]
-Some immediate consequences recorded in the note are:
-\begin{enumerate}[(i)]
-  \item If \(A\) is invertible, then Gaussian elimination has a pivot in every column and every row.
-  \item \(A\) may have many distinct powers, but it has only one inverse.
-  \item If \(A\) is invertible, then the equation \(Ax=b\) has the unique solution
-  \[
-    x=A^{-1}b.
-  \]
-  \item If the homogeneous equation \(Ax=0\) has a nonzero solution, then \(A\) is not invertible.
-\end{enumerate}
+\section{An inverse requires a trivial kernel}
 
-The last point is fundamental: invertibility is equivalent to trivial kernel for a square matrix.
+For \(A\in M_n(F)\), invertibility is equivalent to \(\ker A=\{0\}\). Indeed, rank--nullity shows that an injective endomorphism of \(F^n\) must also be surjective. Gaussian elimination detects this by seeking a pivot in every column. For the two-dimensional case,
+\[
+ \begin{pmatrix}a&b\\c&d\end{pmatrix}^{-1}
+ =\frac1{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix},
+ \quad ad-bc\ne0.
+\]
+The determinant is the signed volume factor, so a zero determinant means that some nonzero direction has been collapsed.
 
-\section[The 2 x 2 formula]{The \(2\times2\) formula}
+The inverse can also be found without a closed formula. To solve $AX=I$, use the same row operations on both blocks of the augmented matrix:
+\[
+ \left[\begin{array}{cc|cc}
+  1&4&1&0\\ 2&9&0&1
+ \end{array}\right]
+ \;\xrightarrow{R_2\gets R_2-2R_1}\;
+ \left[\begin{array}{cc|cc}
+  1&4&1&0\\ 0&1&-2&1
+ \end{array}\right]
+ \;\xrightarrow{R_1\gets R_1-4R_2}\;
+ \left[\begin{array}{cc|cc}
+  1&0&9&-4\\ 0&1&-2&1
+ \end{array}\right].
+\]
+Thus $A=\left(\begin{smallmatrix}1&4\\2&9\end{smallmatrix}\right)$ has
+$A^{-1}=\left(\begin{smallmatrix}9&-4\\-2&1\end{smallmatrix}\right)$.
+Every row operation is multiplication by an invertible elementary matrix on the left. Writing the entire computation as $E_k\cdots E_1A=I$ explains both why the right block becomes $A^{-1}=E_k\cdots E_1$ and why elimination is an algorithm for constructing the inverse.
 
-For a \(2\times2\) matrix
-\[
-  A=\begin{pmatrix}a&b\\ c&d\end{pmatrix},
-\]
-we have
-\[
-  A^{-1}=\frac1{ad-bc}\begin{pmatrix}d&-b\\ -c&a\end{pmatrix},
-\]
-provided
-\[
-  ad-bc\neq0.
-\]
-Thus the determinant is the obstruction to invertibility.
+The order of composition is worth checking once:
+$(AB)^{-1}=B^{-1}A^{-1}$, because reversing a sequence of operations requires undoing the last one first. In contrast, a diagonal matrix $\operatorname{diag}(d_1,\ldots,d_n)$ is inverted entry by entry if every $d_i$ is nonzero.
 
-\section{Diagonal matrices}
+\section{The adjugate records the missing direction}
 
-If
+The adjugate \(\operatorname{adj}(A)\) is the transpose of the cofactor matrix. Expanding the determinant along a row gives the identity
 \[
-  A=\operatorname{diag}(d_1,\ldots,d_n),
+ A\operatorname{adj}(A)=\operatorname{adj}(A)A=(\det A)I.
 \]
-then \(A\) is invertible iff every \(d_i\neq0\), and
-\[
-  A^{-1}=\operatorname{diag}(d_1^{-1},\ldots,d_n^{-1}).
-\]
-This is the simplest case where the inverse is completely visible.
+When \(\det A\ne0\), this produces \(A^{-1}\). If \(\operatorname{rank}A=n-1\), some \((n-1)\)-minor is nonzero, so \(\operatorname{adj}(A)\ne0\); the identity then shows every column of the adjugate is a kernel vector. In fact, its rank is one. If \(\operatorname{rank}A\le n-2\), all these minors vanish and \(\operatorname{adj}(A)=0\).
 
-\section{Products of inverses}
+The adjugate is algebraic. The \emph{adjoint} \(A^*\) instead comes from an inner product; it is \(A^T\) over \(\mathbb R\) and \(\overline A^{\,T}\) over \(\mathbb C\). Distinguishing the two matters when interpreting geometry.
 
-For invertible matrices,
-\[
-  (AB)^{-1}=B^{-1}A^{-1}.
-\]
-More generally,
-\[
-  (ABC)^{-1}=C^{-1}B^{-1}A^{-1}.
-\]
-The order reverses because composition reverses when undoing operations.
+\section{Rotations as one-parameter subgroups}
 
-\section{Adjugate formula}
-
-Let \(A=(a_{ij})\).  Delete row \(i\) and column \(j\) to get the minor \(M_{ij}\).  The cofactor is
+An orthogonal matrix \(Q\) satisfies \(Q^TQ=I\) and preserves all Euclidean lengths and angles. The two-dimensional rotations are
 \[
-  C_{ij}=(-1)^{i+j}\det M_{ij}.
+ R_\theta=
+ \begin{pmatrix}\cos\theta&-\sin\theta\\
+ \sin\theta&\cos\theta\end{pmatrix},
+ \qquad R_\theta R_\varphi=R_{\theta+\varphi}.
 \]
-The adjugate matrix is the transpose of the cofactor matrix:
+Differentiating at \(\theta=0\) gives
 \[
-  \operatorname{adj}(A)=(C_{ji}).
+ J=\begin{pmatrix}0&-1\\1&0\end{pmatrix},\qquad J^T=-J.
 \]
-Then
+This is a Lie-algebraic phenomenon that can be checked directly. If \(K^T=-K\), then \(Q(t)=e^{tK}\) obeys
 \[
-  A^{-1}=\frac1{\det A}\operatorname{adj}(A)
+ \frac d{dt}(Q(t)^TQ(t))=Q(t)^T(K^T+K)Q(t)=0.
 \]
-when \(\det A\neq0\).
-
-The formula is computationally expensive but conceptually important: it proves that entries of the inverse are rational functions of entries of \(A\).
-
-\section{Row reduction for inverses}
-
-The practical method is row reduction:
-\[
-  [A\mid I]\longrightarrow [I\mid A^{-1}].
-\]
-For example, for
-\[
-  M=\begin{pmatrix}1&4\\2&9\end{pmatrix},
-\]
-one has
-\[
-  \det M=9-8=1,
-\]
-and hence
-\[
-  M^{-1}=\begin{pmatrix}9&-4\\-2&1\end{pmatrix}.
-\]
-The note also illustrates obtaining this inverse by elementary row operations on the augmented matrix.
-
-\section{Rotation matrices}
-
-The final inserted page discusses planar rotations.  The rotation matrix is
-\[
-  R_\theta=
-  \begin{pmatrix}
-  \cos\theta&-\sin\theta\\
-  \sin\theta&\cos\theta
-  \end{pmatrix}.
-\]
-It sends
-\[
-  \begin{pmatrix}x\\y\end{pmatrix}
-\]
-to
-\[
-  \begin{pmatrix}
-  x\cos\theta-y\sin\theta\\
-  x\sin\theta+y\cos\theta
-  \end{pmatrix}.
-\]
-Its inverse is
-\[
-  R_\theta^{-1}=R_{-\theta}=
-  \begin{pmatrix}
-  \cos\theta&\sin\theta\\
-  -\sin\theta&\cos\theta
-  \end{pmatrix}.
-\]
+Since \(Q(0)=I\), every \(Q(t)\) is orthogonal; continuity of determinant shows \(\det Q(t)=1\). Thus skew-symmetric matrices generate smooth paths of rotations.
 
 \begin{figure}[H]
-\centering
-\begin{tikzpicture}[scale=1.4,>=Stealth,every node/.style={fill=white,inner sep=1pt}]
-  \draw[->] (-0.2,0)--(2.4,0) node[right] {$x$};
-  \draw[->] (0,-0.2)--(0,2.05) node[above] {$y$};
-  \draw[->,thick] (0,0)--(1.7,0.5);
-  \node[right=2pt] at (1.7,0.5) {$v$};
-  \draw[->,thick] (0,0)--(1.05,1.42);
-  \node[above left=1pt] at (1.05,1.42) {$R_\theta v$};
-  \draw (0.55,0.16) arc (16:54:0.57);
-  \node at (0.82,0.40) {$\theta$};
-\end{tikzpicture}
-\caption{A planar rotation acts linearly on vectors and is represented by \(R_\theta\).}
+ \centering
+ \begin{tikzpicture}[scale=1.45,>=Stealth]
+  \draw[->,gray!75] (-.17,0)--(2.1,0) node[right] {$x$};
+  \draw[->,gray!75] (0,-.17)--(0,1.95) node[above] {$y$};
+  \coordinate (v) at ({1.72*cos(16)},{1.72*sin(16)});
+  \coordinate (w) at ({1.72*cos(54)},{1.72*sin(54)});
+  \draw[->,very thick,teal!75!black] (0,0)--(v)
+       node[below right] {$v$};
+  \draw[->,very thick,orange!85!black] (0,0)--(w)
+       node[above left] {$R_\theta v$};
+  \draw[->,thick] ({.56*cos(16)},{.56*sin(16)})
+       arc[start angle=16,end angle=54,radius=.56];
+  \node at (.70,.40) {$\theta$};
+ \end{tikzpicture}
+ \caption{A rotation changes the direction of a vector while preserving its length; the angle between the two rays is $\theta$.}
 \end{figure}
 
-\section{Beyond the first calculation}
+\section{The polar factorization of an invertible map}
 
-Invertible matrices are automorphisms of finite-dimensional vector spaces.  Gaussian elimination, determinants, adjugates, and block decompositions are different ways to detect or compute the same object: a reversible linear transformation.
-
-\section{Invertibility as isomorphism}
-
-A matrix is invertible exactly when the associated linear map is an isomorphism.  This means three equivalent things in finite dimensions:
+Let \(A\in GL(n,\mathbb R)\). The matrix \(A^TA\) is positive definite, so by the spectral theorem it has a unique positive-definite square root
 \[
-  \ker A=0,\qquad \operatorname{im}A=V,\qquad \det A\ne0.
+ P=(A^TA)^{1/2}.
 \]
-Row reduction tests the same fact by constructing inverse operations.
-
-\section{Adjugate and exterior powers}
-
-The adjugate formula
+Define \(Q=AP^{-1}\). Then
 \[
-  A^{-1}=\frac{1}{\det A}\operatorname{adj}(A)
+ Q^TQ=P^{-1}A^TAP^{-1}=I,
+ \qquad \boxed{A=QP}.
 \]
-comes from cofactors.  Conceptually, determinants describe the action of \(A\) on top exterior power, while cofactors encode how \((n-1)\)-dimensional volume elements transform.
+The factor \(P\) is a stretching along orthogonal eigendirections; \(Q\) is an isometry, possibly reversing orientation. Because \(P^2=A^TA\), the two factors are uniquely determined.
 
-\section{Rotations as orthogonal matrices}
-
-A rotation matrix \(R\) satisfies
+For the shear \(A=\left(\begin{smallmatrix}1&1\\0&1\end{smallmatrix}\right)\), the decomposition is explicit:
 \[
-  R^TR=I,\qquad \det R=1.
+ \begin{aligned}
+ A^TA&=\begin{pmatrix}1&1\\1&2\end{pmatrix},\\
+ P&=\frac1{\sqrt5}\begin{pmatrix}2&1\\1&3\end{pmatrix},
+ &Q&=\frac1{\sqrt5}\begin{pmatrix}2&1\\-1&2\end{pmatrix}.
+ \end{aligned}
 \]
-The first condition preserves lengths and angles; the second preserves orientation.  Thus rotations are the orientation-preserving part of the orthogonal group.
+Indeed, \(P^2=A^TA\), \(P\) has positive eigenvalues, \(Q^TQ=I\), and multiplying \(QP\) recovers the original shear. Here
+\(Q\) is a clockwise rotation by \(\arctan(1/2)\): even a shear has a genuine rotational factor when described using the Euclidean metric. Polar decomposition lets us quantify that geometry instead of attaching a vague arrow to a matrix.
 
-\section{Invertibility, volume, and orthogonal motion}
+\section{Conditioning is more precise than the determinant}
 
-Inverse formulas, row reduction, adjugates, diagonal matrices, and rotations are all different faces of isomorphism: solve uniquely, preserve or rescale volume, and understand what the map does independently of coordinates.
-
-\section{Inverse as undoing a linear process}
-
-The inverse matrix should be read as an operation that undoes a linear process.  The formula
+The singular values of \(A\) are the square roots of the eigenvalues of \(A^TA\), ordered
+\(\sigma_1\ge\cdots\ge\sigma_n>0\). They give the sharp estimates
 \[
-  (AB)^{-1}=B^{-1}A^{-1}
+ \sigma_n\|x\|_2\le\|Ax\|_2\le\sigma_1\|x\|_2,
+ \qquad \|A^{-1}\|_2=\sigma_n^{-1}.
 \]
-then becomes obvious: if one first applies \(B\) and then \(A\), one must undo \(A\) first and then undo \(B\).  Row reduction, adjugates, and determinants are three different languages for this same reversibility.
-
-The rotation matrix is a particularly good example because the inverse is visible geometrically.  Rotating by \(\theta\) is undone by rotating by \(-\theta\), so
+A perturbation in the data of \(Ax=b\) produces
 \[
-  R_\theta^{-1}=R_{-\theta}=R_\theta^T.
+ \|\delta x\|_2=\|A^{-1}\delta b\|_2
+ \le\frac{\|\delta b\|_2}{\sigma_n}.
 \]
-This is the first glimpse of orthogonal matrices, where algebraic inverse equals geometric transpose.
-
-\section{Invertible matrices as a Lie group}
-
-The set of all invertible $n\times n$ matrices over $\mathbb R$ is
+For relative errors the spectral condition number is
 \[
-  GL(n,\mathbb R)=\{A:\det A\ne0\}.
+ \kappa_2(A)=\frac{\sigma_1}{\sigma_n}.
 \]
-It is a group under multiplication and also an open subset of $\mathbb R^{n^2}$.  Therefore it is a Lie group: a group with a smooth manifold structure.
 
-The tangent space at the identity is the Lie algebra
+The determinant can remain harmless even when the condition number diverges. For
 \[
-  \mathfrak{gl}(n,\mathbb R)=M_n(\mathbb R).
+ A_\varepsilon=\begin{pmatrix}\varepsilon&0\\0&\varepsilon^{-1}\end{pmatrix},
+ \qquad 0<\varepsilon<1,
 \]
-The exponential map
-\[
-  \exp X=I+X+\frac{X^2}{2!}+\cdots
-\]
-connects infinitesimal generators to invertible transformations.  Elementary matrix powers and exponentials are thus the entry point to continuous symmetry.
+we have \(\det A_\varepsilon=1\) but \(\kappa_2(A_\varepsilon)=\varepsilon^{-2}\). The map preserves area while nearly destroying information along one axis.
 
-\section{Determinant as a volume form}
-
-The determinant is not merely a formula for invertibility.  It is the factor by which a linear map scales oriented volume:
-\[
-  \operatorname{Vol}(Av_1,\ldots,Av_n)=\det(A)\operatorname{Vol}(v_1,\ldots,v_n).
-\]
-The multiplicative identity
-\[
-  \det(AB)=\det A\det B
-\]
-says that volume scaling composes multiplicatively.
-
-This is why row operations affect determinants in exactly the familiar ways.  Swapping rows reverses orientation, scaling a row scales volume, and adding one row to another shears volume without changing it.
-
-\section{Polar decomposition}
-
-Every invertible real matrix has a polar decomposition
-\[
-  A=QP,
-\]
-where $Q$ is orthogonal and $P$ is symmetric positive definite.  One can take
-\[
-  P=(A^TA)^{1/2},\qquad Q=AP^{-1}.
-\]
-Geometrically, $P$ stretches along orthogonal principal axes, and $Q$ rotates or reflects.  This separates deformation into ``pure strain'' and ``rigid motion.''
-
-The elementary inverse/rotation examples become clearer through this decomposition.  Orthogonal matrices preserve lengths; positive definite matrices perform anisotropic stretching; a general invertible matrix is both.
-
-\section{Numerical stability of inverses}
-
-Although $A^{-1}$ exists when $\det A\ne0$, computing it may be unstable.  The condition number
-\[
-  \kappa_2(A)=\|A\|_2\|A^{-1}\|_2=\frac{\sigma_{\max}(A)}{\sigma_{\min}(A)}
-\]
-measures how much errors may be amplified.  A tiny determinant is not by itself the best diagnostic; singular values describe directional collapse.
-
-Thus the elementary criterion $\det A\ne0$ answers existence, while numerical linear algebra asks sensitivity.
-
-\section{Row operations and the general linear group}
-
-Gaussian elimination writes an invertible matrix as a product of elementary matrices.  Geometrically, elementary matrices are simple transformations: shears, scalings, and swaps.  Thus an invertible linear transformation can be built from elementary geometric moves.  This is the computational skeleton behind the group $GL(n)$.
-
-The determinant map
-\[
-  \det:GL(n,\mathbb R)\to\mathbb R^\times
-\]
-is a group homomorphism.  Its kernel is the special linear group
-\[
-  SL(n,\mathbb R)=\{A:\det A=1\}.
-\]
-This group consists of volume-preserving linear transformations.  Elementary determinant tests therefore separate invertible maps by how they scale volume.
-
-For rotations, the relevant subgroup is
-\[
-  O(n)=\{Q:Q^TQ=I\},\qquad SO(n)=O(n)\cap SL(n,\mathbb R).
-\]
-Orthogonal matrices preserve the inner product, hence all lengths and angles.  The chain
-\[
-  SO(n)\subset O(n)\subset GL(n)
-\]
-organizes the original examples: rotations are the most rigid, orthogonal maps allow reflections, and invertible maps allow arbitrary linear distortion without collapse.
-
-\section{Exponential map and infinitesimal motion}
-
-A smooth path $A(t)$ in $GL(n)$ with $A(0)=I$ has derivative $X=A'(0)$, an arbitrary matrix.  Conversely, a matrix $X$ generates the path
-\[
-  A(t)=e^{tX}.
-\]
-If $X$ is skew-symmetric, then $e^{tX}$ is orthogonal.  Indeed,
-\[
-  \frac d{dt}(e^{tX})^Te^{tX}=0
-\]
-when $X^T=-X$.  This gives a precise meaning to ``skew-symmetric matrices generate rotations.''
-
-The elementary rotation matrices in the note are therefore not isolated formulas; they are one-parameter subgroups of $GL(n)$.
+Elimination determines whether an inverse exists, polar decomposition isolates stretching from orthogonal motion, and singular values show how reliable that inverse is. These are progressively finer questions about a single linear transformation.

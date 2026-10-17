@@ -1,15 +1,13 @@
 \notechapter{N-20230117}{More Function Exercises: Periodicity, Piecewise Definitions, Images, and Functional Equations}
 \enlargethispage{4\baselineskip}
 
-\section{Continuing the function chapter}
+\section{Piecewise Maps and Their Domains}
 
 Function exercises of this kind are solved by translating each problem into one of several languages:
 \[
   \text{formula},\qquad \text{graph},\qquad \text{image/preimage},\qquad \text{iteration},\qquad \text{functional equation}.
 \]
-Many errors in such problems come from using a formula while ignoring its domain or from treating a functional equation as if it held only for special values.
-
-\section{Piecewise functions}
+Many errors come from using a formula while ignoring its domain or treating an identity valid for all inputs as though it were a formula at a few special values. We follow the standard real-analysis approach to continuous images and the Cauchy equation, as in Gressman's \emph{Advanced Analysis} notes and the lecture notes on Cauchy's functional equation.\footnote{\href{https://www2.math.upenn.edu/~gressman/analysis/04-ivt.html}{P. Gressman's intermediate-value theorem notes}, with complementary calculus exercises from Carleton University.}
 
 A piecewise-defined function may use different formulas on intervals such as
 \[
@@ -24,26 +22,6 @@ The safe method is:
   \item check that the solution actually belongs to the assumed region.
 
 \end{enumerate}
-
-\section{Periodicity from functional equations}
-
-A relation such as
-\[
-  f(x+1)=1-f(x)
-\]
-implies
-\[
-  f(x+2)=1-f(x+1)=f(x).
-\]
-Thus the function is periodic with period $2$.  The general method is to apply the same equation repeatedly until the input returns to a familiar form.
-
-If instead
-\[
-  f(x+T)=f(x)
-\]
-for all $x$, then $T$ is a period.  The smallest positive period, if it exists, is called the fundamental period.
-
-\section{Graph transformations}
 
 The pages include small sketches of graphs.  The standard transformations are:
 \[
@@ -68,27 +46,24 @@ reflects the negative part upward, while
 \]
 copies the right half to the left.
 
-\section{Image of an interval}
-
-For a continuous function on an interval, the image is also an interval.  This is the intermediate value principle in set language.  If the function is monotone on the interval, then the endpoints determine the image directly.
-
-To find the range of an expression, rewrite it as a one-variable function, determine monotonicity or extrema, and translate the result back into an interval.
-
-\section{Functional equations and substitution}
-
-Substituting special values such as $x=0$, $y=0$, or $y=x$ is a standard strategy.  For a functional equation in two variables,
-\[
-  F(x,y,f(x),f(y),f(x+y))=0,
-\]
-choosing simple values isolates pieces of the function.
+A piecewise function is a function defined after partitioning the domain into regions.  The mathematical issue is not only which formula applies, but how the pieces meet.  Discontinuities occur at boundaries of the partition; differentiability requires matching first-order behavior across boundaries.
 
 For example, if
 \[
-  f(x+y)=f(x)+f(y)+c,
+  f(x)=\begin{cases}f_1(x),&x<a,\\ f_2(x),&x\ge a,
+  \end{cases}
 \]
-then setting $x=y=0$ determines $f(0)$, and subtracting a constant can reduce the equation to the additive Cauchy equation.
+then continuity at $a$ requires
+\[
+  \lim_{x\to a^-}f_1(x)=f_2(a).
+\]
+Differentiability additionally requires matching slopes.  This is a local gluing condition. For example, let \(f(x)=ax^2\) for \(x<1\) and \(f(x)=bx+c\) for \(x\ge1\). Continuity at \(1\) requires \(a=b+c\), while differentiability requires in addition \(2a=b\). Hence differentiability holds exactly when \(b=2a\) and \(c=-a\). The boundary test is an actual linear system for the unknown coefficients, rather than an informal statement that the formulas should match.
 
-\section{Counting functions between finite sets}
+\section{Images of intervals and finite maps}
+
+For a continuous function on an interval, the image is also an interval.  Indeed, intervals are the connected subsets of \(\mathbb R\), and continuous images of connected sets remain connected. This is the intermediate value theorem in set language. However, the image of an open interval need not be open: \(f(x)=x^2\) sends \((-1,1)\) to \([0,1)\).  If the function is monotone on the interval, then the endpoints determine the image directly.
+
+To find the range of an expression, rewrite it as a one-variable function, determine monotonicity or extrema, and translate the result back into an interval.
 
 The printed exercise page also touches finite functions.  If $|A|=m$ and $|B|=n$, then the number of functions $A\to B$ is
 \[
@@ -104,21 +79,41 @@ If one requires bijectivity and $m=n$, the number is
 \[
   n!.
 \]
+If surjectivity is required for \(m\ge n\), inclusion--exclusion gives
+\[
+ \#\operatorname{Surj}(A,B)=\sum_{j=0}^{n}(-1)^j\binom nj(n-j)^m.
+\]
+Indeed, count all \(n^m\) functions and subtract those omitting at least one of the \(n\) target elements. This explains why injectivity and surjectivity lead to different counting problems.
 
-\section{A compact bridge}
+\section{Functional equations as transformations}
 
-The note is a training page for reading functions flexibly.  A function may be a formula, a graph, a rule on a finite set, or an unknown object constrained by an equation.  Each representation suggests a different method: casework for piecewise definitions, transformations for graphs, counting for finite domains, and substitution for functional equations.
+A relation such as
+\[
+  f(x+1)=1-f(x)
+\]
+implies
+\[
+  f(x+2)=1-f(x+1)=f(x).
+\]
+Thus the function is periodic with period $2$.  The general method is to apply the same equation repeatedly until the input returns to a familiar form.
 
-\section{Piecewise functions as glued maps}
-A piecewise function is built by gluing formulas on regions.  The important checks occur at boundaries: continuity, differentiability, or jump behavior depends on whether the pieces match there.
-\section{Periodicity from generated transformations}
-Relations such as \(f(x+a)=f(x)\) or \(f(c-x)=f(x)\) generate translations and reflections of the line.  The resulting group action partitions the domain into orbits.
-\section{Images of intervals}
-For continuous functions, the image of an interval is an interval.  If the interval is compact, the image is compact, so maxima and minima are attained.  This is the topological reason range problems often reduce to endpoint and critical-point checks.
-\section{Local definitions and global function behavior}
-Piecewise definitions, periodicity, graph transformations, images, and functional equations all ask how local rules glue into global behavior over the domain.
+If instead
+\[
+  f(x+T)=f(x)
+\]
+for all $x$, then $T$ is a period.  The smallest positive period, if it exists, is called the fundamental period.
 
-\section{Functional equations as dynamics}
+Substituting special values such as $x=0$, $y=0$, or $y=x$ is a standard strategy.  For a functional equation in two variables,
+\[
+  F(x,y,f(x),f(y),f(x+y))=0,
+\]
+choosing simple values isolates pieces of the function.
+
+For example, if
+\[
+  f(x+y)=f(x)+f(y)+c,
+\]
+then setting $x=y=0$ determines $f(0)$, and subtracting a constant can reduce the equation to the additive Cauchy equation.
 
 A functional equation often specifies a transformation rule rather than a direct formula.  For example, equations involving $f(x+1)$, $f(2x)$, or $f(f(x))$ are naturally studied by iteration.  The orbit of $x$ under a transformation $T$ is
 \[
@@ -132,68 +127,6 @@ For instance, if
 \]
 then $f$ is constant along orbits of the translation $T(x)=x+1$.  Periodicity is invariance under a group action of $\mathbb Z$.
 
-\section{Cauchy's equation and regularity}
-
-Cauchy's equation is
-\[
-  f(x+y)=f(x)+f(y).
-\]
-If $f$ is continuous, measurable, or bounded on an interval, then
-\[
-  f(x)=cx.
-\]
-But without regularity assumptions, there are wild solutions constructed using a Hamel basis of $\mathbb R$ over $\mathbb Q$.
-
-This shows why elementary functional equations often include hidden conditions such as continuity or monotonicity.  These conditions are not technical decorations; they exclude pathological solutions arising from the axiom of choice.
-
-\section{Symbolic dynamics}
-
-Piecewise-defined functions and iteration can lead to symbolic dynamics.  If an interval map sends subintervals across one another, one can encode an orbit by a sequence of symbols recording which subinterval contains each iterate.
-
-The shift map
-\[
-  \sigma((a_0,a_1,a_2,\ldots))=(a_1,a_2,a_3,\ldots)
-\]
-is a central model.  Complicated interval dynamics can often be compared to shifts on symbol spaces.
-
-Thus a piecewise function graph in an elementary note can be the beginning of chaos, coding of orbits, and topological entropy.
-
-\section{Rigidity from regularity}
-
-Many functional equations have many algebraic solutions but few regular solutions.  The pattern is:
-
-\begin{center}
-\small
-\begin{tabularx}{\textwidth}{@{}lYY@{}}
-\toprule
-Equation & Algebraic freedom & Regularity conclusion \\
-\midrule
-$f(x+y)=f(x)+f(y)$ & Hamel-linear maps & $f(x)=cx$ under continuity \\
-$f(xy)=f(x)+f(y)$ & Logarithmic freedom over the multiplicative group & $f(x)=c\log x$ under continuity \\
-$f(x+T)=f(x)$ & Arbitrary values on a fundamental domain & Periodic structure under smoothness \\
-\bottomrule
-\end{tabularx}
-\end{center}
-
-The original piecewise and functional-equation exercises should therefore be read as local training for a general principle: algebraic equations become meaningful only after the allowed regularity class is specified.
-
-\section{Piecewise functions and partitions}
-
-A piecewise function is a function defined after partitioning the domain into regions.  The mathematical issue is not only which formula applies, but how the pieces meet.  Discontinuities occur at boundaries of the partition; differentiability requires matching first-order behavior across boundaries.
-
-For example, if
-\[
-  f(x)=\begin{cases}f_1(x),&x<a,\\ f_2(x),&x\ge a,
-  \end{cases}
-\]
-then continuity at $a$ requires
-\[
-  \lim_{x\to a^-}f_1(x)=f_2(a).
-\]
-Differentiability additionally requires matching slopes.  This is a local gluing condition.
-
-\section{Functional equations and invariants}
-
 A functional equation often says that $f$ is invariant or equivariant under transformations.  The equation
 \[
   f(x+T)=f(x)
@@ -205,3 +138,30 @@ says $f$ is invariant under the translation action of $T\mathbb Z$.  The equatio
 says $f$ is homogeneous with respect to scaling.
 
 Thus solving a functional equation often means finding the invariants of a group or semigroup action.  This perspective makes the original examples more natural: periodicity, parity, and scaling are all symmetry constraints.
+
+\section{Regularity makes Cauchy's equation rigid}
+
+Cauchy's equation is
+\[
+  f(x+y)=f(x)+f(y).
+\]
+For an additive map \(f:\mathbb R\to\mathbb R\), continuity at one point, Lebesgue measurability, or boundedness on a nondegenerate interval each implies
+\[
+  f(x)=cx.
+\]
+Here is the continuous case. Additivity gives \(f(0)=0\), \(f(nx)=nf(x)\), and \(f(p/q)=(p/q)f(1)\) for rationals \(p/q\). If \(q_k\in\mathbb Q\) approaches real \(x\), continuity yields \(f(x)=\lim_k f(q_k)=x f(1)\). The discontinuous Hamel-basis solutions show exactly what continuity rules out.
+But without regularity assumptions, there are wild solutions constructed using a Hamel basis of $\mathbb R$ over $\mathbb Q$.
+
+This shows why elementary functional equations often include hidden conditions such as continuity or monotonicity.  These conditions are not technical decorations; they exclude pathological solutions arising from the axiom of choice.
+
+\section{From iterated intervals to symbolic dynamics}
+
+Piecewise-defined functions and iteration can lead to symbolic dynamics.  If an interval map sends subintervals across one another, one can encode an orbit by a sequence of symbols recording which subinterval contains each iterate.
+
+The shift map
+\[
+  \sigma((a_0,a_1,a_2,\ldots))=(a_1,a_2,a_3,\ldots)
+\]
+is a central model.  Complicated interval dynamics can often be compared to shifts on symbol spaces.
+
+For a specific example, partition \([0,1)\) into \(I_0=[0,1/2)\) and \(I_1=[1/2,1)\), and set \(T(x)=2x\pmod1\). The itinerary of \(x\) is the sequence \(a_k\in\{0,1\}\) recording which interval contains \(T^k(x)\). Under the binary expansion convention that avoids trailing strings of ones, this itinerary is precisely the binary digits of \(x\); the map \(T\) shifts them left. Thus symbolic dynamics is the exact encoding of a concrete interval map, with the usual care about dyadic endpoints.

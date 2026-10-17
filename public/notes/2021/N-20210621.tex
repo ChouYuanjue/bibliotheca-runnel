@@ -1,455 +1,723 @@
-\notechapter{N-20210621}{Prop Presentations for Linear Algebra: Diagrams, Matrices, and Relations}
+\notechapter{N-20210621}{Graphical Linear Algebra: From Matrices to Lagrangian Relations}
 
-\newcommand{\wireone}{%
-\begin{tikzpicture}[baseline=-0.55ex,scale=0.5]
-  \draw (0,0) -- (0,1.4);
-\end{tikzpicture}%
-}
-\newcommand{\copygen}{%
-\begin{tikzpicture}[baseline=-0.55ex,scale=0.5]
-  \draw (0,0) -- (0,0.55);
-  \draw (0,0.55) -- (-0.45,1.25);
-  \draw (0,0.55) -- (0.45,1.25);
-  \draw[fill=white] (0,0.55) circle (0.13);
-\end{tikzpicture}%
-}
-\newcommand{\discardgen}{%
-\begin{tikzpicture}[baseline=-0.55ex,scale=0.5]
-  \draw (0,0) -- (0,0.95);
-  \draw[fill=white] (0,1.05) circle (0.15);
-\end{tikzpicture}%
-}
-\newcommand{\addgen}{%
-\begin{tikzpicture}[baseline=-0.55ex,scale=0.5]
-  \draw (-0.45,0) -- (0,0.65);
-  \draw (0.45,0) -- (0,0.65);
-  \draw (0,0.65) -- (0,1.35);
-  \draw[fill=gray!45] (0,0.65) circle (0.14);
-\end{tikzpicture}%
-}
-\newcommand{\zerogen}{%
-\begin{tikzpicture}[baseline=-0.55ex,scale=0.5]
-  \draw (0,0.35) -- (0,1.25);
-  \draw[fill=gray!45] (0,0.3) circle (0.15);
-\end{tikzpicture}%
-}
-\newcommand{\scalargen}[1]{%
-\begin{tikzpicture}[baseline=-0.55ex,scale=0.5]
-  \draw (0,0) -- (0,0.45);
-  \node[draw,minimum width=0.45cm,minimum height=0.33cm,inner sep=0pt,fill=white] at (0,0.72) {\scriptsize #1};
-  \draw (0,0.9) -- (0,1.35);
-\end{tikzpicture}%
-}
-
-\section{First orientation}
-
-A deceptively small diagram---a few white nodes, a few grey nodes, scalar labels, and wires---can present linear algebra as a graphical calculus rather than merely serve as a mnemonic.
-
-The central contrast is:
+A matrix is an economical way to describe a linear map, but matrix multiplication hides a remarkably simple fact. In a network, a signal can reach an output along several paths. Each path contributes the product of its weights, while the paths ending at the same output have their contributions added. Thus
 \[
-\begin{array}{c}
-  \text{ordinary linear algebra writes maps as grids of numbers;}\\
-  \text{graphical linear algebra writes them as processes made of wires and nodes.}
-\end{array}
+ (AB)_{ij}=\sum_r A_{ir}B_{rj}
 \]
-This note decodes that special symbolic system.  The point is not to admire the pictures, but to understand why the pictures form a proof system.
+is already a wiring instruction: the repeated index \(r\) marks a collection of intermediate wires that are connected and then hidden.
 
-The guiding slogan is:
+Could one perform the algebra with the wires themselves, transforming one network into another by small local moves? The question becomes even more interesting when a network specifies an equation which has several solutions, or no solution at all. We shall begin with the matrix operations, then allow equations to be read in either direction, and finally ask which such relations preserve a symplectic form. The resulting path leads from the PROP \(\mathbf{cb}_k\) to \(\mathbf{ih}_k\), and then to Lagrangian relations.\footnote{The first part follows Pawe\l{} Soboci\'nski, \href{https://graphicallinearalgebra.net/}{\emph{Graphical Linear Algebra}}, especially Episodes 7--30. Our white-copy/grey-add convention follows the ZX-style colouring used by Comfort and Kissinger. The complete matrix and relation presentations are developed in Bonchi, Soboci\'nski and Zanasi, \emph{Interacting Hopf Algebras} (2017).}
+
+\section{A linear map on four paths}
+
+Start with
 \[
-  \text{matrices are compiled diagrams, and diagrams are structured linear processes.}
+ A=\begin{pmatrix}1&2\\3&4\end{pmatrix},\qquad
+ \begin{pmatrix}y_1\\y_2\end{pmatrix}
+ =A\begin{pmatrix}x_1\\x_2\end{pmatrix}.
 \]
-Once this is understood, the later movement toward linear relations, Lagrangian relations, circuits, and stabilizer calculi becomes much less mysterious.
+The two outputs can be assembled with three kinds of operation: copy each input, multiply each copy by a weight, and add all contributions to an output. We draw white circles for copying and grey circles for addition. In every diagram of this note, \emph{inputs are on the left and outputs on the right}.
 
-\section{Props as typed wiring diagrams}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=1cm,y=.92cm,
+ cp/.style={circle,draw=black,fill=white,inner sep=0pt,minimum size=7pt},
+ ad/.style={circle,draw=black,fill=gray!45,inner sep=0pt,minimum size=7pt},
+ wt/.style={rectangle,draw=black,fill=purple!6,inner sep=2.5pt,minimum width=.44cm},
+ every node/.style={font=\small}]
+ \node[cp] (c1) at (1.05,1.15) {};
+ \node[cp] (c2) at (1.05,-1.15) {};
+ \node[wt] (w11) at (3.0,1.9) {\(1\)};
+ \node[wt] (w21) at (3.0,.57) {\(3\)};
+ \node[wt] (w12) at (3.0,-.57) {\(2\)};
+ \node[wt] (w22) at (3.0,-1.9) {\(4\)};
+ \node[ad] (s1) at (5.55,1.15) {};
+ \node[ad] (s2) at (5.55,-1.15) {};
+ \draw[thick] (0,1.15)--(c1); \draw[thick] (0,-1.15)--(c2);
+ \draw[thick] (c1)--(w11)--(s1);
+ \draw[thick] (c1)--(w21)--(s2);
+ \draw[thick] (c2)--(w12)--(s1);
+ \draw[thick] (c2)--(w22)--(s2);
+ \draw[thick] (s1)--(6.65,1.15);
+ \draw[thick] (s2)--(6.65,-1.15);
+ \node[anchor=east] at (-.06,1.15) {\(x_1\)};
+ \node[anchor=east] at (-.06,-1.15) {\(x_2\)};
+ \node[anchor=west] at (6.72,1.15) {\(y_1\)};
+ \node[anchor=west] at (6.72,-1.15) {\(y_2\)};
+ \node[font=\footnotesize,gray!80!black] at (3.38,-2.5)
+   {A crossing without a node leaves the two wires separate.};
+\end{tikzpicture}
+\caption{The matrix \(A\) expressed as a weighted network. Reading from left to right gives \(y_1=x_1+2x_2\) and \(y_2=3x_1+4x_2\).}
+\end{figure}
 
-The right ambient language is a prop.
+A diagram of this kind is a mathematical expression: connecting two diagrams ought to mean composing the transformations. If we want to \emph{prove} equalities by moving its nodes, however, we must specify both the types of the diagrams and the equations that justify moving them.
 
-\begin{definition}[Prop]
-A prop is a strict symmetric monoidal category whose objects are natural numbers
+\section{Why a number of wires is an object}
+
+Fix a commutative ring \(k\) for the elementary calculations; a field will be required later for some geometric results. The category \(\mathsf{Mat}_k\) uses natural numbers \(0,1,2,\ldots\) as objects. Its arrows are
 \[
-  0,1,2,\ldots
+ \mathsf{Mat}_k(n,m)=\{m\times n\text{ matrices over }k\}.
 \]
-and whose monoidal product on objects is addition.
-\end{definition}
+The number \(n\) stands for a free module \(k^n\). An arrow \(A:n\to m\) is therefore a linear map \(k^n\to k^m\).
 
-The object \(n\) should be read as \(n\) parallel wires.  A morphism
+There are two ways to combine arrows. For \(A:n\to m\) and \(B:m\to p\), connecting the output of \(A\) to the input of \(B\) means \(B\circ A=BA:n\to p\). For \(C:r\to s\), putting \(A\) and \(C\) next to each other means the block diagonal matrix
 \[
-  f:n\to m
+ A\oplus C=
+ \begin{pmatrix}A&0\\0&C\end{pmatrix}:n+r\to m+s.
 \]
-is a process with \(n\) input wires and \(m\) output wires.
+The switch of two adjacent wires is a permutation matrix \(\sigma:2\to2\), and permutations of larger collections of wires are built from such switches.
 
-There are two basic operations on morphisms.
-
-First, vertical composition plugs outputs into inputs:
+A \emph{PROP} is a strict symmetric monoidal category with object set \(\mathbb N\) and monoidal product on objects given by addition. Here its monoidal product of arrows is the \emph{direct sum}. There is an important distinction:
 \[
-  f:n\to m,\qquad g:m\to p,\qquad g\circ f:n\to p.
+ \text{two parallel wires}\quad\longleftrightarrow\quad k\oplus k,
 \]
-Second, the monoidal product puts diagrams side by side:
-\[
-  f:n\to m,\qquad g:n'\to m',\qquad f\oplus g:n+n'\to m+m'.
-\]
+which has rank \(2\). It does not mean \(k\otimes_k k\), which has rank \(1\). Confusing these operations would completely alter the meaning of graphical copying.
 
-This makes a prop feel like a typed programming language for wiring diagrams:
-\[
-\begin{array}{c|c}
-\text{prop notation} & \text{programming / wiring intuition}\\
-\hline
-n & n\text{ wires}\\
-f:n\to m & \text{process with }n\text{ inputs and }m\text{ outputs}\\
-g\circ f & \text{run }f\text{, then run }g\\
-f\oplus g & \text{run }f\text{ and }g\text{ in parallel}
-\end{array}
-\]
+\section{Five operations and their exact types}
 
-The prop \(\mathbf{Mat}_k\) has natural numbers as objects and matrices over \(k\) as morphisms.  A morphism
-\[
-  n\to m
-\]
-is an \(m\times n\) matrix, regarded as a linear map
-\[
-  k^n\to k^m.
-\]
-Composition is matrix multiplication, and the monoidal product is block direct sum.
-
-\section{The alphabet: copy, discard, add, zero, and scalars}
-
-The graphical calculus \(\mathbf{cb}_k\) is generated by a small alphabet.  In the diagrams below, time flows upward: inputs are at the bottom and outputs are at the top.
-
-\begin{center}
-\small
-\begin{tabular}{>{\raggedright\arraybackslash}p{0.16\textwidth}>{\raggedright\arraybackslash}p{0.12\textwidth}>{\raggedright\arraybackslash}p{0.22\textwidth}>{\raggedright\arraybackslash}p{0.34\textwidth}}
-\toprule
-symbol & type & linear meaning & intuition\\
-\midrule
-\copygen\quad copy \(\Delta\) & \(1\to2\) & \(x\mapsto(x,x)\) & duplicate one wire into two copies\\
-\discardgen\quad discard \(\epsilon\) & \(1\to0\) & \(x\mapsto *\) & forget the value on a wire\\
-\addgen\quad add \(\mu\) & \(2\to1\) & \((x,y)\mapsto x+y\) & combine two wires by addition\\
-\zerogen\quad zero \(\eta\) & \(0\to1\) & \(*\mapsto0\) & create the additive zero\\
-\scalargen{a}\quad scalar \(a\) & \(1\to1\) & \(x\mapsto ax\) & multiply a wire by \(a\in k\)\\
-\bottomrule
-\end{tabular}
-\end{center}
-
-One must be careful about the word ``copy.''  In ordinary vector spaces, there is no natural linear map \(V\to V\oplus V\) for every abstract vector space \(V\) unless one has fixed the diagonal map.  In this prop, one wire represents the free rank-one module \(k\).  The copy generator is the linear map
-\[
-  k\to k\oplus k,\qquad x\mapsto(x,x).
-\]
-Arbitrary matrices are then built by composing and tensoring these elementary maps.
-
-\section{Two colours: a comonoid and a monoid}
-
-The white structure is the copying structure:
-\[
-  \Delta:1\to2,\qquad \epsilon:1\to0.
-\]
-Algebraically, it is a commutative comonoid.  The equations say that copying twice does not depend on which copy is copied first, that the two copies can be swapped, and that discarding a copied output returns the original wire.
-
-The grey structure is the adding structure:
-\[
-  \mu:2\to1,\qquad \eta:0\to1.
-\]
-Algebraically, it is a commutative monoid.  The equations say that adding three terms does not depend on bracketing, that order does not matter, and that adding zero changes nothing.
-
-A good way to remember the two colours is:
+The graphical theory \(\mathbf{cb}_k\) has four basic structural operations, plus a scalar operation for every \(a\in k\). These are maps of finite free modules:
 \[
 \begin{array}{c|c|c}
-\text{colour} & \text{structure} & \text{operation}\\
-\hline
-\text{white} & \text{comonoid} & \text{copy / discard}\\
-\text{grey} & \text{monoid} & \text{add / zero}
+\text{operation}&\text{type}&\text{value on inputs}\\ \hline
+\Delta\text{ (copy)}&1\to2&x\mapsto(x,x)\\
+\epsilon\text{ (discard)}&1\to0&x\mapsto 0\in k^0\\
+\mu\text{ (add)}&2\to1&(x,y)\mapsto x+y\\
+\eta\text{ (zero)}&0\to1&0\in k^0\mapsto0\\
+{}[a]\text{ (scalar)}&1\to1&x\mapsto ax
 \end{array}
 \]
-The calculus becomes interesting because these two structures are not independent.  They interact through the bialgebra law.
-
-\section{The bialgebra law}
-
-The central equation says:
+The zero-dimensional module \(k^0\) has only one element. In ordinary matrices these generators are
 \[
-  \text{copy after add}=	ext{add after copying both inputs.}
-\]
-In ordinary algebra, this is the statement
-\[
-  \Delta(x+y)=(x+y,x+y)=(x,x)+(y,y).
+ \Delta=\begin{pmatrix}1\\1\end{pmatrix},\quad
+ \epsilon=0_{0\times1},\quad
+ \mu=\begin{pmatrix}1&1\end{pmatrix},\quad
+ \eta=0_{1\times0},\quad
+ [a]=\begin{pmatrix}a\end{pmatrix}.
 \]
 
-The two sides can be read as dataflow programs.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=.85cm,y=.8cm,
+ cp/.style={circle,draw=black,fill=white,minimum size=7pt,inner sep=0pt},
+ ad/.style={circle,draw=black,fill=gray!45,minimum size=7pt,inner sep=0pt},
+ be/.style={rectangle,draw=black,fill=purple!6,minimum width=.5cm,minimum height=.34cm,inner sep=1pt},
+ every node/.style={font=\small}]
+ \node[cp](d) at (1,1.4){};
+ \draw[thick](0,1.4)--(d);
+ \draw[thick](d)--(2,1.85);
+ \draw[thick](d)--(2,.95);
+ \node[below,font=\footnotesize]at(1,.55){\(\Delta:1\to2\)};
+ \node[cp](e)at(4.4,1.4){};
+ \draw[thick](3.4,1.4)--(e);
+ \node[below,font=\footnotesize]at(4.4,.55){\(\epsilon:1\to0\)};
+ \node[ad](m)at(7,1.4){};
+ \draw[thick](6,1.85)--(m);
+ \draw[thick](6,.95)--(m);
+ \draw[thick](m)--(8,1.4);
+ \node[below,font=\footnotesize]at(7,.55){\(\mu:2\to1\)};
+ \node[ad](z)at(1,-1.0){};
+ \draw[thick](z)--(2,-1.0);
+ \node[below,font=\footnotesize]at(1,-1.42){\(\eta:0\to1\)};
+ \node[be](b)at(4.4,-1.0){\(a\)};
+ \draw[thick](3.45,-1.0)--(b);
+ \draw[thick](b)--(5.35,-1.0);
+ \node[below,font=\footnotesize]at(4.4,-1.42){\([a]:1\to1\)};
+\end{tikzpicture}
+\caption{Five elementary diagrams. Their boundary types are part of the notation, and the two colours carry different operations.}
+\end{figure}
 
-Left side:
-\begin{verbatim}
-input:  (x, y)
-step 1: add       -> x + y
-step 2: copy      -> (x + y, x + y)
-output: (x + y, x + y)
-\end{verbatim}
-
-Right side:
-\begin{verbatim}
-input:  (x, y)
-step 1: copy x and copy y       -> (x, x, y, y)
-step 2: swap the middle wires   -> (x, y, x, y)
-step 3: add pairwise            -> (x + y, x + y)
-output: (x + y, x + y)
-\end{verbatim}
-
-This is the first moment where the topology of wires matters.  The swap of the middle wires is not decoration.  It is the wiring needed to pair the first copy of \(x\) with the first copy of \(y\), and the second copy of \(x\) with the second copy of \(y\).
-
-\begin{remark}
-The bialgebra law is the graphical form of distributivity.  It says that copying respects addition.  Without this law, the white and grey nodes would be two unrelated gadgets; with it, they become the algebraic core of linear algebra.
-\end{remark}
-
-\section{Scalars as ring operations}
-
-A scalar bead labelled \(a\in k\) is the one-wire map
+The copying operation is genuinely linear:
 \[
-  [a]:1\to1,\qquad x\mapsto ax.
+ \Delta(x+y)=(x+y,x+y)=\Delta(x)+\Delta(y)
 \]
-The scalar equations force these beads to behave like elements of the ring \(k\).
+where addition on the right is componentwise. By comparison, the map \(v\mapsto v\otimes v\) is generally nonlinear, since
+\((v+w)\otimes(v+w)\) contains cross terms. We can copy a classical value into a direct sum without assuming that arbitrary vectors may be copied in a tensor product.
 
-Stacking scalar beads corresponds to multiplication:
+The types already catch elementary mistakes. The composite \(\eta\epsilon:1\to1\) is the zero map \(x\mapsto0\); reversing the order gives \(\epsilon\eta:0\to0\), which has an entirely different domain and codomain.
+
+\section{The equations behind moving the nodes}
+
+The grey addition operation is associative, commutative and has zero as its unit. Diagrammatically this says
 \[
-  [b]\circ[a]=[ba].
+ \mu(\mu\oplus\mathrm{id})
+ =\mu(\mathrm{id}\oplus\mu),\qquad
+ \mu\sigma=\mu,\qquad
+ \mu(\eta\oplus\mathrm{id})=\mathrm{id}.
 \]
-If \(k\) is commutative, this is just \([ab]\).
-
-Parallel scalar branches combined by the add/copy structure express addition:
+Copy and discard obey the equations with all arrows reversed:
 \[
-  [a]+[b]=[a+b].
+ (\Delta\oplus\mathrm{id})\Delta
+ =(\mathrm{id}\oplus\Delta)\Delta,\quad
+ \sigma\Delta=\Delta,\quad
+ (\epsilon\oplus\mathrm{id})\Delta=\mathrm{id}.
 \]
-The identity scalar is a plain wire:
+We call the former a commutative monoid and the latter a cocommutative comonoid. The equations authorize local substitution \emph{inside} larger diagrams: adding three values in two bracketings really is the same map.
+
+The first interesting law concerns the interaction of the two colours. If we add \(x\) and \(y\), then copy the result, we obtain \((x+y,x+y)\). Alternatively we may copy both inputs, exchange the middle two resulting wires and add corresponding pairs:
 \[
-  [1]=\id_1.
+ \boxed{
+ \Delta\mu
+ =(\mu\oplus\mu)
+   (\mathrm{id}\oplus\sigma\oplus\mathrm{id})
+   (\Delta\oplus\Delta).
+ }
 \]
-The zero scalar factors through discard and zero:
+Both sides have type \(2\to2\); the switch is essential for the types and the intended pairing.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=.88cm,y=.91cm,
+ cp/.style={circle,draw=black,fill=white,inner sep=0pt,minimum size=7pt},
+ ad/.style={circle,draw=black,fill=gray!45,inner sep=0pt,minimum size=7pt},
+ every node/.style={font=\footnotesize}]
+ \node[ad](s)at(1.08,0){};
+ \node[cp](d)at(2.23,0){};
+ \draw[thick](0,.52)--(s); \draw[thick](0,-.52)--(s);
+ \draw[thick](s)--(d);
+ \draw[thick](d)--(3.18,.52);
+ \draw[thick](d)--(3.18,-.52);
+ \node at (3.85,0){\(\displaystyle=\)};
+ \node[cp](u)at(5,.60){};
+ \node[cp](v)at(5,-.60){};
+ \node[ad](a)at(7.35,.60){};
+ \node[ad](b)at(7.35,-.60){};
+ \draw[thick](4.36,.60)--(u); \draw[thick](4.36,-.60)--(v);
+ \draw[thick](u)to[out=28,in=158](a);
+ \draw[thick](u)to[out=-28,in=132](b);
+ \draw[thick](v)to[out=28,in=-132](a);
+ \draw[thick](v)to[out=-28,in=-158](b);
+ \draw[thick](a)--(8.1,.60); \draw[thick](b)--(8.1,-.60);
+ \node[below=13pt] at (1.65,-.55){add, then copy};
+ \node[below=13pt] at (6.2,-.75){copy, exchange, then add};
+\end{tikzpicture}
+\caption{The bialgebra law. On either side the output is \((x+y,x+y)\); crossing wires without a node remain distinct.}
+\end{figure}
+
+In ordinary matrices the left side is
 \[
-  [0]=\eta\circ\epsilon.
+ \begin{pmatrix}1\\1\end{pmatrix}
+ \begin{pmatrix}1&1\end{pmatrix}
+ =\begin{pmatrix}1&1\\1&1\end{pmatrix}.
 \]
+The right side gives the same matrix by multiplying the appropriate block and permutation matrices. There are also laws saying that the zero can be copied, that sums can be discarded, and that scalar nodes cooperate with the two structures.
 
-So the calculus has two layers:
+Scalars are particularly instructive. Two beads in series multiply, while a copy followed by two weighted branches and an addition produces their sum:
 \[
-\begin{array}{c|c}
-\text{structural layer} & \text{copy, discard, add, zero}\\
-\text{coefficient layer} & \text{scalar beads labelled by elements of }k
-\end{array}
+ [b]\,[a]=[ba],\qquad [1]=\mathrm{id}_1,\qquad
+ \boxed{[a+b]=\mu([a]\oplus[b])\Delta},\qquad
+ [0]=\eta\epsilon.
 \]
-Together these layers generate matrices.
+These identities explain how several paths can collapse to a single scalar. They are examples of the full equations for a bicommutative bialgebra with the scalar family; our displayed selection is meant to explain the mechanisms, not silently replace the complete presentation.
 
-\section{How a matrix becomes a diagram}
+\section{A normal form for every matrix}
 
-Consider the matrix
+For an arbitrary \(m\times n\) matrix \(A=(a_{ij})\), there is a systematic recipe. Copy each input \(x_j\) into \(m\) branches, multiply its \(i\)-th branch by \(a_{ij}\), permute branches so that the \(n\) contributions to output \(i\) sit together, and add them. The result is the map
 \[
-  A=\begin{bmatrix}
-  2&3\\
-  5&7
-  \end{bmatrix}:k^2\to k^2.
+ y_i=\sum_{j=1}^{n}a_{ij}x_j.
 \]
-It sends
+Write \(\Delta_m:1\to m\) for repeated copying, \(\mu_n:n\to1\) for repeated addition, and \(P_{m,n}\) for the wire permutation changing input-major to output-major order. Then the diagram can be written as a typed composite:
 \[
-  (x_1,x_2)\longmapsto(y_1,y_2),\qquad
-  y_1=2x_1+3x_2,\qquad
-  y_2=5x_1+7x_2.
+ \mathcal D(A)=
+ \left(\bigoplus_{i=1}^m\mu_n\right)
+ P_{m,n}
+ \left(\bigoplus_{j=1}^n\bigoplus_{i=1}^m[a_{ij}]\right)
+ \left(\bigoplus_{j=1}^n\Delta_m\right).
 \]
-
-The diagrammatic recipe is:
+Its intermediate types are
 \[
-\begin{array}{ll}
-\text{columns} & \text{input wires}\\
-\text{rows} & \text{output wires}\\
-A_{ij} & \text{scalar bead on the branch from input }j\text{ to output }i\\
-\text{copy nodes} & \text{fan one input out to all rows}\\
-\text{add nodes} & \text{sum all contributions landing at one output}
-\end{array}
+ n\longrightarrow mn\longrightarrow mn
+ \longrightarrow mn\longrightarrow m.
 \]
+The conventions \(\Delta_0=\epsilon\) and \(\mu_0=\eta\) accommodate empty boundaries.
 
-In code-like form:
-\begin{verbatim}
-def compile_matrix(A):
-    # A has m rows and n columns.
-    # Input wire j carries x_j.
-    # Output wire i should carry sum_j A[i][j] * x_j.
-    for each input wire j:
-        copy x_j into m branches
-    for each pair (i, j):
-        put scalar bead A[i][j] on branch j -> i
-    for each output wire i:
-        add all branches landing at i
-\end{verbatim}
+This construction shows that \emph{all matrices have diagrams}. The converse is a subtler theorem: the equations suffice to prove equality of any two diagrams which denote the same matrix. A normalization argument repeatedly moves copying past addition using the bialgebra law, groups wires using associativity and permutation laws, and combines repeated weighted paths using the scalar laws. Eventually the diagram takes the copy--scalar--add form corresponding to its matrix entries. A complete proof must show that each normalization step is licensed by the full list of equations.
 
-For the example above, the diagram computes
+\begin{theorem}[The matrix presentation]
+For a commutative ring \(k\), the PROP \(\mathbf{cb}_k\) of bicommutative bialgebra diagrams with its complete scalar equations presents the PROP \(\mathsf{Mat}_k\):
 \[
-\begin{aligned}
-  y_1&=2x_1+3x_2,\\
-  y_2&=5x_1+7x_2.
-\end{aligned}
+ \boxed{\mathbf{cb}_k\cong\mathsf{Mat}_k.}
 \]
-This is why diagrams can represent arbitrary matrices.  Copy creates enough branches; scalars weight the branches; adders collect contributions.
-
-\section{Completeness: a proof system for matrices}
-
-The key theorem can be stated as follows.
-
-\begin{theorem}[Completeness of the matrix prop]
-For a suitable ring \(k\), the graphical theory \(\mathbf{cb}_k\) presents the prop \(\mathbf{Mat}_k\) of matrices over \(k\) under direct sum.
+In particular, graphical provability and equality of denoted matrices coincide.
 \end{theorem}
 
-This theorem has two parts.
+The essential distinction is between \emph{expressiveness}, which the construction \(\mathcal D(A)\) establishes directly, and \emph{completeness}, which requires the full equational normal-form argument. An attractive circuit drawing alone gives neither a proof of faithfulness nor an algorithm for rewriting every equivalent diagram.
 
-Soundness says that every equation derivable by diagram rewriting is true as a matrix equation.  If two diagrams can be transformed into each other using the graphical rules, then they denote the same matrix.
+\section{Matrix multiplication counts weighted paths}
 
-Completeness says the converse: if two diagrams denote the same matrix, then the graphical rules are strong enough to prove them equal.
-
-Thus the diagrams are not merely suggestive notation.  They form a proof system for linear algebra:
+Let
 \[
-  \text{diagram equality}\quad \Longleftrightarrow\quad \text{matrix equality.}
+ B=\begin{pmatrix}3&0\\4&1\end{pmatrix},\qquad
+ A=\begin{pmatrix}1&2\\0&1\end{pmatrix}.
 \]
-
-\section{Why the calculus hides indices and exposes structure}
-
-Matrix notation is extremely efficient, but it hides the process structure behind indices.  The product of two matrices is written
+Passing signals first through \(B\) and then through \(A\) means multiplying in the order
 \[
-  (AB)_{ij}=\sum_k A_{ik}B_{kj}.
+ AB=\begin{pmatrix}11&2\\4&1\end{pmatrix}.
 \]
-The summation index \(k\) is an internal wire: output from one process becomes input to another.  Diagrammatic notation makes that internal connection visible.
+The coefficient \(11\) is a sum of contributions from two paths: \(1\cdot3\) through the first intermediate wire and \(2\cdot4\) through the second.
 
-The comparison is:
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=1cm,y=.89cm,>=Stealth,
+ v/.style={circle,draw=black,fill=white,minimum size=6.5pt,inner sep=0pt},
+ lab/.style={fill=white,inner sep=1.7pt,font=\footnotesize},
+ every node/.style={font=\small}]
+ \node[v](x1)at(0,1.25){};\node[v](x2)at(0,-.9){};
+ \node[v](u1)at(3,1.25){};\node[v](u2)at(3,-.9){};
+ \node[v](y1)at(6,1.25){};\node[v](y2)at(6,-.9){};
+ \draw[->,thick](x1)--node[lab,above]{\(3\)}(u1);
+ \draw[->,thick](x1)--node[lab,sloped,above]{\(4\)}(u2);
+ \draw[->,thick](x2)--node[lab,below]{\(1\)}(u2);
+ \draw[->,thick](u1)--node[lab,above]{\(1\)}(y1);
+ \draw[->,thick](u2)--node[lab,sloped,above]{\(2\)}(y1);
+ \draw[->,thick](u2)--node[lab,below]{\(1\)}(y2);
+ \node[anchor=east]at(-.12,1.25){\(x_1\)};
+ \node[anchor=east]at(-.12,-.9){\(x_2\)};
+ \node[above=6pt]at(u1){\(u_1\)};\node[below=6pt]at(u2){\(u_2\)};
+ \node[anchor=west]at(6.12,1.25){\(y_1\)};
+ \node[anchor=west]at(6.12,-.9){\(y_2\)};
+ \node[below=19pt]at(1.5,-.9){\(B\)};
+ \node[below=19pt]at(4.5,-.9){\(A\)};
+\end{tikzpicture}
+\caption{The path-sum rule for two connected linear networks. Zero-weight edges have been omitted; each path contributes a product and parallel paths contribute a sum.}
+\end{figure}
+
+The path-sum rule follows by induction for finite acyclic networks built from copy, scalars and addition. Composition concatenates paths, while addition merges their contributions:
 \[
-\begin{array}{c|c}
-\text{matrix notation} & \text{diagram notation}\\
-\hline
-\text{entries and indices} & \text{wires and nodes}\\
-\text{matrix multiplication} & \text{vertical plugging}\\
-\text{block direct sum} & \text{side-by-side placement}\\
-\text{transpose-like operations} & \text{reflection or reversal, depending on convention}\\
-\text{trace / feedback} & \text{connecting an output back to an input}
-\end{array}
+ (AB)_{ij}=\sum_r A_{ir}B_{rj}.
 \]
+It is important not to extrapolate this formula to an arbitrary directed feedback loop by declaring an infinite sum of paths. Feedback introduces simultaneous equations; without invertibility or convergence it may fail to determine a function. A language of \emph{relations} will handle those cases without pretending that every feedback network has a unique solution.
 
-It would be too strong to say that \(\mathbf{Mat}_k\) is completely basis-free: wire counts still refer to finite free modules \(k^n\).  The better statement is:
+\section{Negative coefficients and the Hopf antipode}
+
+The scalar \([-1]\) deserves attention because it permits cancellation. Write \(S=[-1]:1\to1\). Then
 \[
-  \text{the calculus hides indices and exposes compositional structure.}
+ \boxed{\mu(\mathrm{id}\oplus S)\Delta
+           =\eta\epsilon:1\to1.}
 \]
-This is exactly what makes it useful in networks, signal flow graphs, circuits, tensor contractions, and other settings where the shape of composition matters more than individual coordinates.
+Both sides send \(x\) to zero: copy it, negate one copy, and add. In Hopf-algebra terminology \(S\) is the \emph{antipode}.
 
-\section{From matrices to linear relations}
+There is a genuine hierarchy here. The copy/add calculus with natural-number coefficients describes nonnegative integer matrices; allowing negative coefficients reaches integer matrices; admitting scalar beads indexed by a ring \(k\) yields matrices over that ring. Cancellation cannot be used in an equational system whose available scalars do not admit additive inverses. The antipode is the structural form of subtraction, and it will also explain sign conventions when arrows are reversed.
 
-A matrix is a total linear function
+\section{What happens when an arrow is reversed?}
+
+Consider a perfectly ordinary equation:
 \[
-  k^n\to k^m.
+ z=x+y.
 \]
-A linear relation from \(k^n\) to \(k^m\) is more general.  It is a linear subspace
+When \(x,y\) are the inputs and \(z\) the output, this is the linear map
+\(\mu:k^2\to k\). But suppose we are given \(z\) and asked to recover \((x,y)\). Over a field, there are many pairs satisfying the equation:
 \[
-  R\subseteq k^n\oplus k^m.
+ (x,y)=(t,z-t),\qquad t\in k.
 \]
-Instead of saying each input has exactly one output, a relation says which input-output pairs are compatible.
+The same constraint makes sense in both directions, although it is a function in only one of them.
 
-For example, the equation
+A \emph{linear relation} \(R:n\to m\) is a linear subspace
 \[
-  x+y=z
+ R\subseteq k^n\oplus k^m.
 \]
-defines a linear relation among \(x,y,z\).  It is not best understood as a function until one chooses which variables are inputs and which are outputs.
-
-This is why graphical calculi naturally move beyond matrices.  Wires and nodes are good at expressing constraints.  A relation can be composed by connecting shared variables and existentially hiding the internal wires.  This is the relational analogue of matrix multiplication.
-
-The broader graphical-linear-algebra story uses interacting Hopf-algebra structures to present such relations.  The matrix calculus \(\mathbf{cb}_k\) is the entry point; linear relations are the next layer.
-
-\section{From linear relations to Lagrangian relations}
-
-The later part of the story enters symplectic linear algebra.  A symplectic vector space is a vector space \(V\) equipped with a nondegenerate skew-symmetric form
+We write \(x\,R\,y\) when \((x,y)\in R\). An input may be related to no outputs, one output, or many outputs. A linear map \(A:k^n\to k^m\) determines the relation
 \[
-  \omega:V\times V\to k.
+ \Gamma_A=\{(x,Ax):x\in k^n\}.
 \]
-The standard example is \(k^{2n}\) with form represented by the block matrix
+The \emph{converse} of a relation reverses its two boundaries:
 \[
-  J=\begin{bmatrix}
-  0&I\\
-  -I&0
-  \end{bmatrix}.
+ R^\dagger=\{(y,x):(x,y)\in R\}.
 \]
+This operation always exists. When \(R=\Gamma_A\), however, its converse need not be the graph of a function.
 
-For a subspace \(W\subseteq V\), define its symplectic orthogonal by
+For our two basic generators, their converses behave quite differently:
 \[
-  W^\omega=\{v\in V:\omega(v,w)=0\text{ for all }w\in W\}.
+ \begin{aligned}
+ \mu^\dagger
+ &=\{(z,(x,y)):x+y=z\},\\
+ \Delta^\dagger
+ &=\{((x,y),z):x=y=z\}.
+ \end{aligned}
 \]
-A subspace is Lagrangian if
+Thus the converse of addition splits a given value into \emph{any} two summands, while the converse of copying tests that two values agree. Merely observing that both \(\mu^\dagger\) and \(\Delta\) have type \(1\to2\) does not make them equal.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=.92cm,y=1cm,
+ ad/.style={circle,draw=black,fill=gray!45,minimum size=7pt,inner sep=0},
+ every node/.style={font=\small}]
+ \node[ad](a)at(1.6,0){};
+ \draw[thick](.15,.48)--(a);
+ \draw[thick](.15,-.48)--(a);
+ \draw[thick](a)--(3.0,0);
+ \node[anchor=east]at(.07,.48){\(x\)};
+ \node[anchor=east]at(.07,-.48){\(y\)};
+ \node[anchor=west]at(3.04,0){\(z\)};
+ \node[below=18pt,font=\footnotesize]at(1.6,-.5)
+   {\(\mu:\ (x,y)\mapsto x+y\)};
+ \node[ad](b)at(6.45,0){};
+ \draw[thick](4.85,0)--(b);
+ \draw[thick](b)--(7.95,.48);
+ \draw[thick](b)--(7.95,-.48);
+ \node[anchor=east]at(4.8,0){\(z\)};
+ \node[anchor=west]at(8.0,.48){\(x\)};
+ \node[anchor=west]at(8.0,-.48){\(y\)};
+ \node[below=18pt,font=\footnotesize]at(6.45,-.5)
+   {\(\mu^\dagger:\ x+y=z\)};
+\end{tikzpicture}
+\caption{The addition constraint oriented in opposite directions. A grey node with two outputs means the \emph{converse relation} of addition, and has no deterministic output.}
+\end{figure}
+
+This is a useful warning about diagrams: reflection is an operation on \emph{relations}, and its semantics must be stated. It is generally neither matrix inversion nor matrix transposition.
+
+\section{Connecting constraints means eliminating variables}
+
+Let \(R:n\to m\) and \(S:m\to p\) be linear relations. Connecting the output of \(R\) to the input of \(S\) means
 \[
-  W=W^\omega.
+ \boxed{
+ S\circ R=\{(x,z):\exists y\in k^m,\;
+             (x,y)\in R,\ (y,z)\in S\}.
+ }
 \]
+The intermediate wire is an existentially quantified variable. Relational composition therefore performs a familiar operation: \emph{eliminating hidden variables in a system of equations}.
 
-\begin{definition}[Lagrangian relation, informal]
-A Lagrangian relation is a linear relation that is Lagrangian inside the appropriate symplectic input-output space.
-\end{definition}
-
-The conceptual shift is:
+For example, let
 \[
-\begin{array}{c|c}
-\text{linear relation} & \text{linear constraint}\\
-\text{Lagrangian relation} & \text{symplectic or phase-space-compatible constraint}
-\end{array}
+ R=\{(x,(u,v)):u=x,\ v=x\},
+ \quad
+ S=\{((u,v),z):z=u+2v\}.
 \]
-This is why the calculus becomes relevant to physics.  Phase space, circuits, and stabilizer-like systems are naturally symplectic.
+The composite eliminates \(u,v\) and leaves the graph \(z=3x\). But if \(R\) says \(u+v=x\), then for each \(x\) there are many allowed pairs \((u,v)\); this is nevertheless a perfectly good linear relation.
 
-\section{Affine shifts and stabilizers}
+Here is a powerful normal form, derived from ordinary linear algebra.
 
-The affine version allows translations.  Instead of linear subspaces passing through the origin, one allows affine subspaces:
+\begin{proposition}[Every linear relation is a span of two maps]
+For each linear relation \(R\subseteq k^n\oplus k^m\) over a field, there are linear maps
+\(X:k^r\to k^n\), \(Y:k^r\to k^m\) with
 \[
-  v+W.
+ \boxed{R=\Gamma_Y\circ\Gamma_X^\dagger.}
 \]
-Diagrammatically, this means adding generators that can shift a relation by a constant.
-
-This affine Lagrangian-relational world connects to several process theories:
+\end{proposition}
+\begin{proof}
+Take a basis of \(R\), let \(r=\dim R\), and collect the first and second components of the basis vectors as the columns of \(X\) and \(Y\). The set of all pairs generated by this basis is
 \[
-\begin{array}{c|c}
-\text{domain} & \text{role of the calculus}\\
-\hline
-\text{electrical circuits} & \text{constraints between currents and potentials}\\
-\text{signal flow graphs} & \text{linear dynamical interconnection}\\
-\text{Spekkens' toy theory} & \text{epistemic states as affine Lagrangian relations}\\
-\text{qudit stabilizer circuits} & \text{symplectic/affine structure over finite fields}
-\end{array}
+ R=\{(Xt,Yt):t\in k^r\}.
 \]
+But \((x,y)\in\Gamma_Y\circ\Gamma_X^\dagger\) means precisely that there exists \(t\in k^r\) with \(x=Xt\) and \(y=Yt\).
+\end{proof}
 
-For this note, these applications should be read as the research-level endpoint rather than the entry point.  The entry point is still the alphabet: copy, discard, add, zero, and scalars.
-
-\section{Relation with ZX-calculus}
-
-The resemblance to ZX-calculus is real but should be stated carefully.  Both calculi use coloured nodes, wires, and bialgebra-like interaction laws.  Both are props or prop-like symmetric monoidal graphical languages.  Both replace long index manipulations by diagrammatic rewriting.
-
-The difference is the intended semantics:
+The same relation may be represented by \emph{equations} rather than by parameters. Choose a matrix \(C\) with kernel \(R\), and write
 \[
-\begin{array}{c|c}
-\text{graphical linear algebra} & \text{ZX-calculus}\\
-\hline
-\text{matrices, relations, linear constraints} & \text{quantum processes}\\
-\text{copy/add structures} & \text{complementary observables}\\
-\text{linear algebra and circuits} & \text{categorical quantum mechanics}
-\end{array}
+ R=\{(x,y):C\binom{x}{y}=0\}.
 \]
-Thus \(\mathbf{cb}_k\) is not simply ZX-calculus.  It is better seen as a training ground for understanding why ZX-like diagrammatic calculi work: algebraic equations are replaced by local topological rewrites.
+The span representation describes solutions; the kernel representation describes constraints. Gaussian elimination translates one into the other.
 
-\section{Broader perspective}
+These elementary facts already explain why one wants to add reflected copies of the matrix generators to a diagrammatic language. They generate every relation, but generation alone does not settle whether two diagrams expressing the same subspace can be transformed into each other by the rules.
 
-The main lesson is not that matrices can be drawn prettily.  The main lesson is that a small symbolic system can present all matrix algebra.
-
-The core dictionary is:
+\begin{theorem}[Interacting Hopf algebras]
+For a field \(k\), the PROP \(\mathbf{ih}_k\) formed from forward and reversed matrix generators with the complete interacting-Hopf equations presents the PROP of linear relations:
 \[
-\begin{array}{c|c}
-\text{diagrammatic object} & \text{linear-algebraic meaning}\\
-\hline
-n\text{ wires} & k^n\\
-\text{diagram }n\to m & m\times n\text{ matrix}\\
-\text{vertical composition} & \text{matrix multiplication}\\
-\text{side-by-side composition} & \text{block direct sum}\\
-\text{copy} & x\mapsto(x,x)\\
-\text{add} & (x,y)\mapsto x+y\\
-\text{scalar bead }a & x\mapsto ax
-\end{array}
+ \boxed{\mathbf{ih}_k\cong\mathsf{LinRel}_k.}
 \]
+\end{theorem}
 
-The bialgebra law is the heart of the system:
+The completeness theorem must account for redundant parameters in a span, different matrices cutting out the same kernel, and all the ways these choices interact during composition. The equations implement those changes of presentation graphically. A proof that all relations have \emph{some} diagram, such as the proposition above, is only half the story.
+
+\section{The zero scalar is not invertible, but it has a converse}
+
+This distinction between a function and a relation explains the provocative expression \emph{division by zero} in the graphical linear algebra series.
+
+Let \([a]\) denote multiplication by \(a\). Reversing its graph gives
 \[
-  \text{copying a sum is the same as summing the copies.}
+ [a]^\dagger=\{(y,x):y=ax\}.
 \]
-The completeness theorem says that this is not only notation but a genuine proof system:
+When \(a\ne0\) in a field, this is the ordinary function \(y\mapsto a^{-1}y\). When \(a=0\), instead,
 \[
-  \text{diagrammatic equality is matrix equality.}
+ \boxed{[0]^\dagger=\{(0,x):x\in k\}.}
 \]
-After this is understood, the path toward linear relations, Lagrangian relations, affine shifts, circuits, and stabilizer calculi is no longer a jump.  It is the natural extension of the same idea: algebra can be presented as topology of wires.
+It accepts the input \(0\), and there it allows \emph{every} output. At a nonzero input it has no solution. There is no numerical object \(1/0\) hiding in the picture; the reversed relation remains meaningful because equations do not need to have unique solutions.
+
+This becomes especially useful in feedback. Suppose a value satisfies the loop equation
+\[
+ x=u+rx,
+\]
+where \(u\) is an external input. The network denotes
+\[
+ F_r=\{(u,x):(1-r)x=u\}.
+\]
+For \(r\ne1\), it is the ordinary graph \(x=(1-r)^{-1}u\). For \(r=1\), it becomes the relation \(\{(0,x):x\in k\}\). The loop is then inconsistent for \(u\ne0\) and underdetermined for \(u=0\).
+
+A vector-valued version makes the link to classical linear algebra even clearer:
+\[
+ F_M=\{(u,x):(I-M)x=u\}.
+\]
+If \(I-M\) is invertible, the relation is a function. Otherwise there can be no solutions when \(u\notin\operatorname{im}(I-M)\), and an affine family of solutions indexed by \(\ker(I-M)\) when \(u\) lies in the image. A relational circuit retains both possibilities without imposing invertibility by fiat.
+
+\section{Two Frobenius structures and the spider rule}
+
+Some very short calculations explain why interacting graphical calculi admit dramatic simplifications. Relational converse gives
+\[
+ \boxed{\Delta^\dagger\Delta=\mathrm{id}_1,
+ \qquad \mu\mu^\dagger=\mathrm{id}_1.}
+\]
+To verify the first, copy \(x\) into \((x,x)\), then apply the equality test; the only possible result is \(x\). For the second, split \(z\) into any two summands and add them back; every possible route returns \(z\).
+
+Reversing the order does \emph{not} give identities:
+\[
+ \begin{aligned}
+ \Delta\Delta^\dagger
+ &=\{((a,b),(c,d)):a=b=c=d\},\\
+ \mu^\dagger\mu
+ &=\{((a,b),(c,d)):a+b=c+d\}.
+ \end{aligned}
+\]
+The second relation preserves only the total sum, while the first demands equality of all four entries. Their difference is a concrete reason why arbitrary nodes cannot be cancelled as if they were isomorphisms.
+
+The copy operation with its converse, and the addition operation with its converse, each satisfy the equations of a \emph{special commutative Frobenius algebra} in \(\mathsf{LinRel}_k\). The corresponding spider theorem says that a connected network consisting exclusively of one such family of nodes depends only on the number of its exposed inputs and outputs. For the equality family, a connected spider is simply the relation that all incident variables have the same value. A tree of equality tests and copies can therefore be contracted into one node.
+
+This theorem is a powerful \emph{local} rewriting principle. Mixing the two colours introduces additional interaction equations; one cannot fuse a copy spider with an add spider just because their pictures look alike.
+
+\section{The missing structure: phase space}
+
+The graphical language is now expressive enough to handle general linear constraints, including reversed arrows and feedback. A further problem arises in mechanics and in certain electrical and quantum systems: two kinds of variables travel together. A configuration variable \(q\) is paired with a momentum-like or covector variable \(p\).
+
+Let \(V=k^n\) over a field \(k\), and write its cotangent phase space in coordinates as
+\[
+ T^*V\cong k^n_q\oplus k^n_p.
+\]
+The canonical symplectic form is the alternating, nondegenerate bilinear form
+\[
+ \boxed{\omega((q,p),(q',p'))
+   =q^{\mathsf T}p'-p^{\mathsf T}q'.}
+\]
+Its matrix is
+\[
+ J=\begin{pmatrix}0&I_n\\-I_n&0\end{pmatrix}.
+\]
+The word \emph{alternating}, meaning \(\omega(v,v)=0\), is important in characteristic \(2\), where an equation involving only skew-symmetry can be misleading.
+
+For a subspace \(L\subseteq T^*V\), its symplectic orthogonal is
+\[
+ L^\omega=\{w:\omega(w,\ell)=0\ \text{for all }\ell\in L\}.
+\]
+We call \(L\) \emph{Lagrangian} when \(L=L^\omega\). Because \(\omega\) is nondegenerate, a subspace is Lagrangian precisely when \(\omega\) vanishes on it and its dimension equals \(n\).
+
+What does this condition mean for a familiar matrix? Given \(A\in k^{n\times n}\), consider the graph
+\[
+ L_A=\{(q,p):p=Aq\}.
+\]
+It has dimension \(n\), and for its two generic points we calculate
+\[
+ \begin{aligned}
+ \omega((q,Aq),(q',Aq'))
+ &=q^{\mathsf T}Aq'-(Aq)^{\mathsf T}q'\\
+ &=q^{\mathsf T}(A-A^{\mathsf T})q'.
+ \end{aligned}
+\]
+Thus
+\[
+ \boxed{L_A\text{ is Lagrangian}
+        \Longleftrightarrow A=A^{\mathsf T}.}
+\]
+We have found matrix symmetry again, now as the necessary and sufficient condition for a graph in phase space to be compatible with the symplectic pairing.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=.94cm,y=.78cm,>=Stealth]
+ \draw[->,gray!80](-3.2,0)--(3.15,0)node[right]{\(q\)};
+ \draw[->,gray!80](0,-2.38)--(0,2.35)node[above]{\(p\)};
+ \draw[line width=1.25pt,blue!65!black](-2.6,0)--(2.6,0);
+ \draw[line width=1.25pt,teal!65!black](0,-2)--(0,2);
+ \draw[line width=1.25pt,purple!85!black](-2.6,-1.72)--(2.6,1.72);
+ \node[fill=white,text=blue!65!black,inner sep=1.6pt,font=\footnotesize]
+   at(2.05,-.43){\(p=0\)};
+ \node[fill=white,text=teal!65!black,inner sep=1.6pt,font=\footnotesize]
+   at(-.47,1.95){\(q=0\)};
+ \node[fill=white,text=purple!85!black,inner sep=1.6pt,font=\footnotesize]
+   at(2,1.86){\(p=aq\)};
+\end{tikzpicture}
+\caption{Lagrangian lines in the real phase plane. The two axes will arise from doubling zero and full subspaces; a nonhorizontal, nonvertical line exposes the need for an additional generator.}
+\end{figure}
+
+In one degree of freedom, every line through the origin is isotropic and therefore Lagrangian. In two degrees of freedom, the symmetric matrix
+\(\begin{pmatrix}0&1\\1&0\end{pmatrix}\) gives the Lagrangian plane
+\(p_1=q_2,\ p_2=q_1\), while the nonsymmetric matrix
+\(\begin{pmatrix}0&1\\0&0\end{pmatrix}\) does not.
+
+\section{A matrix on positions determines a relation on momenta}
+
+A linear map \(A:k^n\to k^m\) sends a position \(q\) to \(Q=Aq\). But what should happen to a momentum-like covector? Its natural transformation runs in the other direction:
+\[
+ p=A^{\mathsf T}P.
+\]
+Together the two equations define the \emph{cotangent-lift relation}
+\[
+ \boxed{\mathcal L_A=
+ \{((q,p),(Q,P)):Q=Aq,\ p=A^{\mathsf T}P\}.}
+\]
+The construction is a relation even when \(A\) is singular or rectangular. It has as many solutions as its freely chosen parameters \(q\in k^n\) and \(P\in k^m\) permit.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=.99cm,y=.93cm,>=Stealth,
+ box/.style={draw=black,rounded corners=2pt,fill=purple!5,
+             minimum width=1.32cm,minimum height=.61cm},
+ every node/.style={font=\small}]
+ \node[box](A)at(3.15,1.13){\(A\)};
+ \node[box](AT)at(3.15,-.92){\(A^{\mathsf T}\)};
+ \draw[->,thick,blue!70!black](.45,1.13)--(A.west);
+ \draw[->,thick,blue!70!black](A.east)--(5.8,1.13);
+ \draw[<-,thick,teal!70!black](.45,-.92)--(AT.west);
+ \draw[<-,thick,teal!70!black](AT.east)--(5.8,-.92);
+ \node[anchor=east]at(.37,1.13){\(q\)};
+ \node[anchor=east]at(.37,-.92){\(p\)};
+ \node[anchor=west]at(5.85,1.13){\(Q\)};
+ \node[anchor=west]at(5.85,-.92){\(P\)};
+ \node[font=\footnotesize]at(3.15,.10)
+  {\(Q=Aq,\quad p=A^{\mathsf T}P\)};
+\end{tikzpicture}
+\caption{A position map \(A\) and its transpose on covectors form a Lagrangian relation. The opposing arrows indicate how to solve the defining constraints, without asserting that the relation is a function.}
+\end{figure}
+
+The ambient space for a relation between phase spaces is
+\[
+ \overline{T^*k^n}\oplus T^*k^m,
+\]
+where the bar reverses the symplectic form on the input. We can verify explicitly that \(\mathcal L_A\) is Lagrangian. It has dimension \(n+m\), half the dimension \(2(n+m)\) of the ambient space. Its symplectic pairing is zero:
+\[
+ \begin{aligned}
+ &\omega_m((Aq,P),(Aq',P'))-
+     \omega_n((q,A^{\mathsf T}P),(q',A^{\mathsf T}P'))\\
+ &=q^{\mathsf T}A^{\mathsf T}P'-P^{\mathsf T}Aq'
+   -q^{\mathsf T}A^{\mathsf T}P'
+   +P^{\mathsf T}Aq'=0.
+ \end{aligned}
+\]
+Furthermore, for \(B:k^m\to k^r\), interconnecting these lifted relations gives
+\[
+ Q=Aq,\quad Z=BQ,\quad
+ p=A^{\mathsf T}P,\quad P=B^{\mathsf T}R.
+\]
+Eliminating \(Q,P\) yields \(Z=(BA)q,\ p=(BA)^{\mathsf T}R\), hence
+\[
+ \boxed{\mathcal L_B\circ\mathcal L_A=\mathcal L_{BA}.}
+\]
+The transpose arises from the symplectic pairing, and the reversed momentum flow makes the composition work without requiring either \(A\) or \(B\) to be invertible.
+
+\section{Doubling a linear relation with its annihilator}
+
+We can remove the assumption that our starting object was the graph of a matrix. Let
+\(U=k^n,\ V=k^m\) and let \(R\subseteq U\oplus V\) be any linear relation. Define its annihilator
+\[
+ R^\perp=\{(\alpha,\beta)\in U^*\oplus V^*:
+          \alpha(u)+\beta(v)=0
+          \text{ for all }(u,v)\in R\}.
+\]
+Now construct
+\[
+ \boxed{
+ \mathcal L_R=
+ \left\{((u,p_U),(v,p_V)):
+       (u,v)\in R,\quad(-p_U,p_V)\in R^\perp
+ \right\}.
+ }
+\]
+The minus sign is essential: the symplectic form on the \emph{input} phase space has been reversed. Without it, even the matrix case would not give the cotangent-lift equation \(p_U=A^{\mathsf T}p_V\).
+
+Here is a direct proof that the construction is Lagrangian. Since
+\[
+ \dim R+\dim R^\perp=n+m,
+\]
+the doubled relation has dimension \(n+m\), half that of its ambient symplectic space. Let
+\((r,s)\) and \((r',s')\) represent two of its elements with \(r,r'\in R\) and \(s,s'\in R^\perp\), using the sign convention above. The ambient symplectic pairing is
+\[
+ s'(r)-s(r')=0
+\]
+because the covectors annihilate \(R\). The relation is isotropic and half-dimensional, hence Lagrangian.
+
+For \(R=\Gamma_A\), a covector \((\alpha,\beta)\) annihilates its graph precisely when
+\(\alpha=-A^{\mathsf T}\beta\). Thus
+\[
+ (-p_U,p_V)\in\Gamma_A^\perp
+ \quad\Longleftrightarrow\quad
+ p_U=A^{\mathsf T}p_V.
+\]
+The earlier cotangent lift was the graph case of this more general \emph{doubling} construction.
+
+One also needs to know that doubling respects composition and tensoring. For finite-dimensional vector spaces over a field, orthogonal-complement identities under linear projection and intersection give
+\[
+ \mathcal L_{S\circ R}=\mathcal L_S\circ\mathcal L_R.
+\]
+Together with the natural reordering of position and momentum summands, this makes doubling a faithful strong symmetric monoidal functor
+\[
+ \mathsf{LinRel}_k\longrightarrow\mathsf{LagRel}_k.
+\]
+Faithfulness is immediate from the position component: one can recover \(R\) by projecting \(\mathcal L_R\) onto the original position variables. The compositional statement is a verified theorem, and rests on the annihilator calculus for finite-dimensional relations.\footnote{Cole Comfort and Aleks Kissinger, \href{https://arxiv.org/abs/2105.06244}{\emph{A Graphical Calculus for Lagrangian Relations}}, 2022, especially Lemma 2.7 and Theorems 3.1--3.2. Their paper also states the matrix and linear-relation presentations in Section 1.}
+
+\section{A Lagrangian relation that doubling cannot produce}
+
+The doubling functor is faithful, but it is not \emph{full}. The simplest obstruction appears in just one degree of freedom.
+
+A linear relation \(R:0\to1\) is a linear subspace of the one-dimensional space \(k\). There are only two choices: \(R=0\) or \(R=k\). Their doubles in \(T^*k\) are
+\[
+ \mathcal L_{0}=\{(q,p):q=0\},\qquad
+ \mathcal L_k=\{(q,p):p=0\}.
+\]
+Yet for any nonzero \(a\), the line
+\[
+ L_a=\{(q,p):p=aq\}
+\]
+is Lagrangian, as we established earlier, and is neither axis. Therefore it is \emph{not} in the image of doubling.
+
+How can we create it? Consider the shear
+\[
+ S_a:(q,p)\longmapsto(q,p+aq).
+\]
+For two vectors,
+\[
+ \begin{aligned}
+ \omega(S_a(q,p),S_a(q',p'))
+ &=q(p'+aq')-(p+aq)q'\\
+ &=qp'-pq'.
+ \end{aligned}
+\]
+Thus \(S_a\) is symplectic, and it sends the horizontal axis \(p=0\) to \(p=aq\). Another symplectic operation is the Fourier-type rotation
+\[
+ F:(q,p)\longmapsto(-p,q).
+\]
+It exchanges the two coordinate directions, with the sign necessary for preservation of the symplectic form.
+
+These are concrete new operations which the purely doubled subcategory lacks. Comfort and Kissinger prove that, over any field, doubled linear relations together with the indicated Fourier and shear generators generate \emph{all} linear Lagrangian relations. Their constructive proof uses symplectic Gaussian-elimination operations on a matrix representation of a Lagrangian subspace.
+
+The distinction between generation and a stand-alone equation system matters here, just as it did for matrices. The paper gives a complete description via the already complete graphical calculus of linear relations, supplemented by appropriate generators. It does not provide a small, independent complete list of diagrammatic equations written solely in its chosen Lagrangian generators; this is explicitly left as a further direction.
+
+\section{Affine shifts and a carefully scoped quantum connection}
+
+Every linear relation is a subspace, so it contains the zero vector. To describe \(p=aq+b\) with \(b\ne0\), we must allow an \emph{affine} Lagrangian subspace, or a translate of a linear Lagrangian subspace. The translations
+\[
+ (q,p)\longmapsto(q+b,p+c)
+\]
+preserve the symplectic form on displacement vectors. One extra affine-shift generator supplies the additional expressive power needed for affine Lagrangian relations.
+
+A major application now becomes intelligible. Over an odd prime field \(\mathbb F_p\), the paper proves a symmetric monoidal equivalence between affine Lagrangian relations and the corresponding \(p\)-dimensional qudit stabilizer process theory, \emph{modulo invertible scalars}. The restriction to odd primes is substantive; the statement does not claim an equivalence with all quantum computations or an identical theorem for qubits.
+
+Another application concerns electrical networks, where potential/current or voltage/current variables form conjugate pairs. Interconnecting ports gives linear constraints and suitable ideal components admit a Lagrangian-relational semantics. To describe resistors, sources or dynamical components, the chosen coefficient field and the individual constitutive laws still matter. The diagrams do not magically make every physical component symplectic or lossless.
+
+This also clarifies the family resemblance to ZX-calculus. Both use coloured generators, spiders and equations that permit local replacements. The intended semantic objects are nevertheless different:
+\[
+ \begin{array}{rcl}
+ \mathbf{cb}_k&\longleftrightarrow&\text{matrices},\\
+ \mathbf{ih}_k&\longleftrightarrow&\text{linear relations},\\
+ \mathsf{LagRel}_k&\longleftrightarrow&\text{Lagrangian phase-space relations}.
+ \end{array}
+\]
+A node is given its mathematical meaning by its interpretation, not by its colour or visual resemblance to some other diagram.
+
+\section{Returning to the first network}
+
+The original weighted network represented
+\[
+ A=\begin{pmatrix}1&2\\3&4\end{pmatrix}.
+\]
+In \(\mathbf{cb}_k\), it can be compared with any other weighted copy--scalar--add circuit using a sound and complete equational calculus. Viewed in \(\mathsf{LinRel}_k\), its graph can be reversed, connected with a zero test, or placed inside feedback; the resulting system may no longer be a function. Finally, as a doubled relation in phase space it carries the pair of constraints
+\[
+ Q=Aq,\qquad p=A^{\mathsf T}P.
+\]
+The transpose and the reversed momentum wire now come from a mathematical requirement: compatibility with the symplectic pairing.
+
+At each stage the pictures require a precise rule for what their boundaries mean and for what counts as equality. The diagrammatic method earns its value when it permits us to manipulate a network while preserving its linear or symplectic semantics; a visually pleasing picture without those rules would be little more than an illustration.
