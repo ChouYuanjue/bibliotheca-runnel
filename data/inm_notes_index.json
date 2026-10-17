@@ -4,7 +4,7 @@
     "subtitle": "A dated archive of mathematical notes reconstructed into an English TeX book.",
     "fullPdf": "/notes/inm.pdf",
     "oldArchive": "https://github.com/ChouYuanjue/Informal_Notes_on_Mathematics",
-    "noteCount": 160,
+    "noteCount": 161,
     "volumeCount": 13,
     "source": "E:/INM-TeX"
   },
@@ -32,6 +32,28 @@
     "2021"
   ],
   "notes": [
+    {
+      "id": "N-20261017",
+      "date": "2026-10-17",
+      "year": "2026",
+      "month": "Oct",
+      "day": "17",
+      "title": "How Should a Neural Network Take a Step? Muon and Matrix Geometry",
+      "volume": "Machine Learning and Inference",
+      "sectionCount": 20,
+      "sections": [
+        "Two directions hidden in a tiny gradient",
+        "A norm tells us how to spend a step",
+        "Which two-norm? A matrix has several",
+        "Why spectral steepest descent is a matrix sign",
+        "Between preserving and erasing the spectrum",
+        "AdamW lives in moving coordinates",
+        "Muon orthogonalizes a momentum matrix",
+        "The memory advantage has an exact accounting"
+      ],
+      "pdf": "/notes/2026/N-20261017.pdf",
+      "tex": "/notes/2026/N-20261017.tex"
+    },
     {
       "id": "N-20261016",
       "date": "2026-10-16",

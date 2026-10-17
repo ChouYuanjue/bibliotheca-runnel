@@ -1,6 +1,17 @@
 [
   {
     "type": "Note",
+    "title": "N-20261017 · How Should a Neural Network Take a Step? Muon and Matrix Geometry",
+    "description": "Machine Learning and Inference · 20 sections · PDF and TeX source available in the INM archive.",
+    "date": "2026-10-17",
+    "link": "/notes/2026/N-20261017.pdf",
+    "tags": [
+      "Machine Learning and Inference",
+      "INM"
+    ]
+  },
+  {
+    "type": "Note",
     "title": "N-20261016 · After Forgetting Labels: Random Occupancy and Hidden Weights",
     "description": "Combinatorics and Discrete Structures · 12 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-10-16",
@@ -35,7 +46,7 @@
   {
     "type": "Collection",
     "title": "INM: Informal Notes on Mathematics",
-    "description": "160 dated notes across 13 thematic volumes, with full PDF and per-note TeX sources.",
+    "description": "161 dated notes across 13 thematic volumes, with full PDF and per-note TeX sources.",
     "date": "2026-07-02",
     "link": "/library/notes",
     "tags": [
