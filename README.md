@@ -13,7 +13,7 @@ This project is built with **Next.js** and designed to be a comprehensive knowle
   - **Classics**: Self-authored and curated classical texts with switchable typography.
   - **Linguistics Miscellanea**: Notes on phonology, syntax, and historical linguistics (including Tangut script research).
   - **Criticisms**: Lectures, essays, and field research on literature and philosophy.
-- **Automated CV Generation**: Generates a professional PDF resume from Markdown source using Puppeteer during the build process.
+- **Research & Engineering CV**: The web version lives in `data/cv.md`; the downloadable three-page PDF is typeset from the native Tsinghua XeLaTeX source in `cv-source/main.tex`, with vector institution marks.
 - **Rich Content Rendering**:
   - Full **Markdown** support with **GFM** (GitHub Flavored Markdown).
   - Mathematical typesetting via **KaTeX**.
@@ -69,7 +69,7 @@ To create a production build:
 npm run build
 ```
 
-> **Note**: The build validates poster assets before compiling the Next.js site. Regenerate the CV PDF separately with `npm run generate-cv` when needed.
+> **Note**: The build validates poster assets before compiling Next.js. The checked-in `public/cv.pdf` is the canonical downloadable CV. To recompile it after changing `cv-source/main.tex`, run `npm run generate-cv` on a machine with XeLaTeX.
 
 ### Publishing posters
 
@@ -86,7 +86,7 @@ All SVG typography must be outlined into vector paths, preserving the original f
 ## Scripts
 
 - `npm run dev`: Starts the development server.
-- `npm run build`: Generates the CV PDF and builds the Next.js application.
+- `npm run build`: Validates poster assets and builds the Next.js application (does not retypeset the CV).
 - `npm run update-data`: Scans the `data/` directory and updates the JSON indices for the library sections.
 - `npm run generate-cv`: Manually triggers the PDF generation for the CV.
 
@@ -95,7 +95,7 @@ All SVG typography must be outlined into vector paths, preserving the original f
 This project is optimized for deployment on **Vercel**.
 
 ### Vercel Deployment Note
-Keep the build command as `npm run build` so the poster SVG validation runs on deployment. Generate `public/cv.pdf` locally with `npm run generate-cv` and commit it if the deployment environment cannot run Puppeteer.
+Keep the build command as `npm run build` so poster SVG validation runs on deployment. Compile the CV locally with `npm run generate-cv` (XeLaTeX required), then commit `public/cv.pdf` alongside `cv-source/` and the web counterpart `data/cv.md`; Vercel does not need TeX.
 
 ## Author
 
@@ -103,7 +103,7 @@ Keep the build command as `npm run build` so the poster SVG validation runs on d
 *Undergraduate at Nanjing University, Jianxiong Academy*
 
 - **Interests**: Computer Science, Mathematics, Linguistics.
-- **Contact**: Runnel.Zhang@smail.nju.edu.cn
+- **Contact**: zhangruncheng@thunlp.com
 
 ## License
 

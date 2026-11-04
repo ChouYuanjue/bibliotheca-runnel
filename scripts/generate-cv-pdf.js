@@ -1,81 +1,69 @@
-const fs = require('fs');
-const path = require('path');
-const { mdToPdf } = require('md-to-pdf');
+// The public CV PDF is typeset with the native Tsinghua XeLaTeX resume template.
+// The website Markdown (data/cv.md) is a readable web counterpart, not the PDF source.
+// This script deliberately does not use md-to-pdf: doing so would overwrite the curated CV.
+const fs = require("fs");
+const path = require("path");
+const os = require("os");
+const { spawnSync } = require("child_process");
 
-(async () => {
-  const cvPath = path.join(__dirname, '../data/cv.md');
-  const outputPath = path.join(__dirname, '../public/cv.pdf');
+const root = path.resolve(__dirname, "..");
+const sourceDir = path.join(root, "cv-source");
+const texFile = path.join(sourceDir, "main.tex");
+const publicPdf = path.join(root, "public", "cv.pdf");
 
-  // Check if we need to regenerate
-  if (fs.existsSync(outputPath)) {
-    const cvStats = fs.statSync(cvPath);
-    const pdfStats = fs.statSync(outputPath);
-
-    if (cvStats.mtime <= pdfStats.mtime) {
-      console.log('CV PDF is up to date. Skipping generation.');
-      return;
+function findXeLaTeX() {
+  if (process.env.XELATEX_BIN) return process.env.XELATEX_BIN;
+  if (process.platform === "win32") {
+    const localAppData = process.env.LOCALAPPDATA;
+    if (localAppData) {
+      const candidate = path.join(localAppData, "Programs", "MiKTeX", "miktex", "bin", "x64", "xelatex.exe");
+      if (fs.existsSync(candidate)) return candidate;
     }
   }
+  return "xelatex";
+}
 
-  console.log(`Generating PDF from ${cvPath}...`);
-
+function compile() {
+  if (!fs.existsSync(texFile)) throw new Error("Missing cv-source/main.tex");
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "bibliotheca-cv-"));
+  const compiler = findXeLaTeX();
   try {
-    let mdContent = fs.readFileSync(cvPath, 'utf-8');
-
-    // Add KaTeX support with auto-render
-    // We inject the CSS and JS, and a script to trigger rendering with $...$ support
-    const katexHeader = `
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        renderMathInElement(document.body, {
-            delimiters: [
-              {left: '$$', right: '$$', display: true},
-              {left: '$', right: '$', display: false},
-              {left: '\\\\(', right: '\\\\)', display: false},
-              {left: '\\\\[', right: '\\\\]', display: true}
-            ],
-            throwOnError : false
-        });
-    });
-</script>
-`;
-
-    // Prepend header to content
-    mdContent = katexHeader + '\n\n' + mdContent;
-
-    const pdf = await mdToPdf({ content: mdContent }, {
-        stylesheet_encoding: 'utf-8',
-        pdf_options: {
-            format: 'A4',
-            margin: '13mm',
-            printBackground: true,
-        },
-        css: `
-            body { font-family: "Times New Roman", "Songti SC", serif; font-size: 10.5px; line-height: 1.38; color: #222; }
-            h1 { font-size: 24px; font-weight: 700; margin: 0 0 4px 0; color: #111; }
-            h2 { font-size: 15px; font-weight: 700; margin: 13px 0 7px 0; border-bottom: 1px solid #d9d9d9; padding-bottom: 3px; color: #111; break-after: avoid; page-break-after: avoid; }
-            h3 { font-size: 12px; font-weight: 700; margin: 8px 0 3px 0; color: #111; break-after: avoid; page-break-after: avoid; }
-            p { margin: 0 0 5px 0; }
-            a { color: #222; text-decoration: none; }
-            ul { margin: 1px 0 5px 16px; padding: 0; }
-            li { margin-bottom: 2px; }
-            strong { font-weight: 700; }
-            code { background-color: #f3f4f6; padding: 1px 3px; border-radius: 2px; font-family: monospace; }
-            h2 + p, h3 + p { break-before: avoid; page-break-before: avoid; }
-            /* KaTeX adjustments */
-            .katex { font-size: 1em; }
-        `
-    });
-
-    if (pdf) {
-      fs.writeFileSync(outputPath, pdf.content);
-      console.log(`CV PDF generated at ${outputPath}`);
+    for (let i = 0; i < 2; i++) {
+      const args = [
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-no-shell-escape",
+        `-output-directory=${tmp}`,
+        "main.tex",
+      ];
+      const result = spawnSync(compiler, args, {
+        cwd: sourceDir,
+        encoding: "utf8",
+        shell: false,
+        maxBuffer: 8 * 1024 * 1024,
+      });
+      if (result.error || result.status !== 0) {
+        throw new Error(
+          `XeLaTeX pass ${i + 1} failed. ${result.error?.message || ""}\n` +
+          (result.stdout || "").slice(-1800) + "\n" + (result.stderr || "").slice(-500)
+        );
+      }
     }
-  } catch (err) {
-    console.error('Error generating PDF:', err);
-    process.exit(1);
+    const builtPdf = path.join(tmp, "main.pdf");
+    if (!fs.existsSync(builtPdf) || fs.statSync(builtPdf).size < 10000) {
+      throw new Error("XeLaTeX did not produce a valid CV PDF");
+    }
+    fs.copyFileSync(builtPdf, publicPdf);
+    console.log(`Updated ${publicPdf} from cv-source/main.tex (${fs.statSync(publicPdf).size} bytes).`);
+  } finally {
+    fs.rmSync(tmp, { recursive: true, force: true });
   }
-})();
+}
+
+try {
+  compile();
+} catch (err) {
+  console.error(err.message);
+  console.error("Install XeLaTeX or set XELATEX_BIN. The checked-in public/cv.pdf remains untouched on failure.");
+  process.exitCode = 1;
+}

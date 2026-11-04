@@ -1,0 +1,196 @@
+% Runcheng Zhang | Research & Engineering CV (November 2026)
+% Built on the native K-Wu/CV-tsinghua-template resume.cls and rSection/rSubsection.
+% This document is a research-and-engineering portfolio, not a targeted HR one-pager.
+\documentclass{resume}
+\usepackage[letterpaper,top=.67in,bottom=.67in,left=.82in,right=.82in]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{needspace}
+\usepackage{enumitem}
+\usepackage{etoolbox}
+\usepackage{ifthen}
+\usepackage{microtype}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{newtxtext,newtxmath}
+\definecolor{TsinghuaPurple}{cmyk}{0.58,0.90,0,0}
+\definecolor{CVMuted}{HTML}{60616A}
+\definecolor{CVInk}{HTML}{25232B}
+\definecolor{CVRule}{HTML}{C9C3CB}
+\hypersetup{colorlinks=true,urlcolor=TsinghuaPurple,linkcolor=TsinghuaPurple,
+ pdfauthor={Runcheng Zhang},pdftitle={Runcheng Zhang - Curriculum Vitae},
+ pdfsubject={Research and Engineering CV, November 2026}}
+\urlstyle{same}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\parfillskip}{0pt plus 1fil} % Avoid the native 30pt tabular overflow.
+\renewcommand{\arraystretch}{1.03}
+\raggedbottom
+\emergencystretch=1em
+% The original class automatically centers the name at the start of the document.
+% Retain that native mechanism; place two VECTOR institution marks on its flanks.
+\makeatletter
+\def\printname{%
+ \par\noindent\makebox[\textwidth][c]{%
+   \rlap{\raisebox{-0.16in}{\includegraphics[height=.74in,keepaspectratio]{assets/nju_vector.pdf}}}%
+   \hfill{\fontsize{22.5}{26}\selectfont\bfseries\@name}\hfill%
+   \llap{\raisebox{-0.15in}{\includegraphics[height=.84in,keepaspectratio]{assets/thunlp_full_vector.pdf}}}%
+ }\par\vspace{3.0pt}}
+\makeatother
+\name{Runcheng Zhang}
+\address{\href{mailto:zhangruncheng@thunlp.com}{zhangruncheng@thunlp.com}\quad
+ \textbar\quad\href{https://github.com/ChouYuanjue}{github.com/ChouYuanjue}\quad
+ \textbar\quad\href{https://www.runnelzhang.com}{runnelzhang.com}}
+\address{\href{https://orcid.org/0009-0005-7611-3583}{ORCID: 0009-0005-7611-3583}\qquad Nanjing, China}
+% Genuine K-Wu template section style, restoring its purple heading and rule.
+\renewenvironment{rSection}[1]{%
+ \par\vspace{10pt}\noindent\needspace{3\baselineskip}%
+ {\color{TsinghuaPurple}\bfseries\normalsize\MakeUppercase{#1}}\par\vspace{4pt}%
+ {\color{CVRule}\hrule height .65pt}\vspace{6pt}%
+}{\vspace{1pt}}
+% Preserve rSubsection's four-argument contract while lifting its old dense list settings.
+\renewenvironment{rSubsection}[4]{%
+ \par\needspace{5.0\baselineskip}%
+ \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X>{\raggedleft\arraybackslash}p{1.42in}@{}}
+ {\bfseries #1} & {\color{CVMuted}\footnotesize #2}
+ \end{tabularx}\par\vspace{1pt}%
+ \ifthenelse{\equal{#3}{}}{}{\textit{\small #3}\par\vspace{1pt}}%
+ \begin{list}{$\bullet$}{\setlength{\leftmargin}{1.16em}\setlength{\itemsep}{2.0pt}\setlength{\topsep}{2.5pt}\setlength{\parsep}{0pt}}%
+ \small
+}{\end{list}\vspace{3.0pt}}
+\newcommand{\cvsmalllink}[2]{\href{#1}{\textcolor{TsinghuaPurple}{#2}}}
+\newcommand{\cvsubheading}[2]{\par\needspace{2.5\baselineskip}%
+ \noindent{\bfseries #1}\hfill{\color{CVMuted}\small #2}\par\vspace{3pt}}
+% Compact bibliographic item: modest dark title, aligned date and a one-line research TL;DR.
+% Minipages (not a height-constrained table) preserve top alignment even for wrapped headings.
+\newcommand{\posterrow}[4]{%
+ \par\needspace{3.0\baselineskip}%
+ \noindent\begin{minipage}[t]{\dimexpr\linewidth-.75in\relax}%
+ \vspace{0pt}\raggedright{\small\bfseries\href{#2}{\textcolor{CVInk}{#1}}}%
+ \end{minipage}\hfill
+ \begin{minipage}[t]{.63in}%
+ \vspace{0pt}\raggedleft{\color{CVMuted}\footnotesize #3}%
+ \end{minipage}\par\vspace{1.5pt}%
+ \noindent{\footnotesize\color{CVMuted}#4}\par\vspace{7pt}%
+}
+\newcommand{\cvpar}[1]{{\small #1}\par\vspace{5pt}}
+\newcommand{\cvfoot}{\small\color{CVMuted}\thepage\ / \pageref{LastPage}}
+\pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\cvfoot}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0pt}
+\setlength{\footskip}{21pt}
+\begin{document}
+\thispagestyle{fancy}
+
+\begin{rSection}{Education}
+\noindent {\bfseries Nanjing University}\hfill{\color{CVMuted}\small Sep 2025 -- Present}\par
+B.S. in Intelligent Science and Technology \hfill Nanjing, China
+\end{rSection}
+
+\begin{rSection}{Research Experience}
+\begin{rSubsection}{Tsinghua University -- Natural Language Processing Lab (THUNLP)}{Mar 2026 -- Present}{Research Intern, AI for Science \quad | \quad Advisor: Zheni Zeng}{}
+\item Investigating language-model inference and sampling strategies for multi-objective molecular optimization, linking candidate generation to molecular property evaluation and scientific constraints.
+\item Prototyping scientific agents that combine inexpensive surrogate predictions, selective high-cost verification, executable analysis tools, and evidence-traceable hypotheses.
+\end{rSubsection}
+
+\begin{rSubsection}{Microsoft Research Asia (Beijing)}{Jan -- Aug 2026}{Research Intern, AI for Mathematics \quad | \quad Advisor: Xian Zhang; Collaborator: Ziyu Zhou}{}
+\item Explored formal reasoning and autoformalization with Lean and Rzk, emphasizing native verifier feedback, typed proof obligations, error localization, and structured repair.
+\item Developed reproducible evaluation and proof-search utilities to separate verified proof progress from incomplete or invalid model outputs.
+\end{rSubsection}
+
+\begin{rSubsection}{NJU Institute of Intelligent Networks and Communications (NINE)}{Aug 2026 -- Present}{Research Intern \quad | \quad Supervisor: Huihong Liang; Institute Director: Kun Yang}{}
+\item Studied efficient semantic video processing on constrained devices, including selective vision-token updates, temporal feature reuse, and reconstruction fidelity at narrow representation bottlenecks.
+\item Investigated CPU-native low-bit inference on ARM platforms and checked computational equivalence against reference implementations.
+\end{rSubsection}
+
+\begin{rSubsection}{Wuxi Xishan NJU Institute of Applied Biotechnology}{Sep 2026 -- Present}{Research Intern, Computational Enzyme Discovery}{}
+\item Contributed to an enzyme--reaction discovery workflow connecting biochemical reaction queries, domain-specific evidence, and interactive computational tools for experimental research.
+\end{rSubsection}
+\end{rSection}
+
+\begin{rSection}{Manuscript}
+\noindent\textbf{Input-Output Sampling for Efficient Multi-Objective Molecular Optimization with LLMs}\par\vspace{3pt}
+Haoran Liu\textsuperscript{*}, \textbf{Runcheng Zhang\textsuperscript{*}}, Zheni Zeng, Yukun Yan, Zhenghao Liu.\par\vspace{2pt}
+\textit{Submitted to ICLR 2027.}\quad {\small\textsuperscript{*}Equal contribution.}\par\vspace{2pt}
+% Match the concise, contribution-oriented bullets used throughout the CV.
+\begin{itemize}[leftmargin=1.16em,topsep=2.7pt,itemsep=2.5pt,parsep=0pt]
+\small
+\item Proposed MolDAS for multi-objective molecular RL: capability-aware sampling of diverse, learnable inputs; selective oracle feedback on low-probability output segments; and reward-dispersion-guided imitation with adaptive objective weights.
+\item In simulator-to-oracle training, improved optimization scores over vanilla GRPO by 3.7\% in the low-fidelity stage and over 16.1\% under capped high-fidelity calls, while reducing structural redundancy and training fluctuations.
+\end{itemize}
+\end{rSection}
+
+
+
+\newpage
+
+\begin{rSection}{Professional Experience}
+\begin{rSubsection}{Beijing Volcano Engine Technology Co., Ltd.}{Aug 2026 -- Present}{Agent Development Engineer \quad | \quad Client: Guizhou Xijiu Group}{}
+\item Developed components of a document-centric enterprise agent that structures multi-step analysis, draft generation, semantic review, and revision as tool-augmented workflows with explicit intermediate state.
+\item Integrated enterprise knowledge retrieval, model orchestration, and office-document tools through modular adapters; incorporated source-grounded checks to preserve verifiable facts across generated documents.
+\end{rSubsection}
+
+\begin{rSubsection}{Nanjing Flux Technology Co., Ltd.}{Jan 2026 -- Present}{Project Team Member \quad | \quad Client-facing software development}{}
+\item Participate in backend and full-stack development, integrating reusable services, APIs, and model-assisted workflows within team-delivered projects.
+\item \textbf{Bank of Nanjing (outsourced proof of concept, Jan--Mar 2026):} implemented parts of a multimodal customer-emotion recognition pipeline combining speech preprocessing, speaker-aware transcription, and audio-language inference. Work remained at the PoC stage.
+\end{rSubsection}
+\end{rSection}
+
+\begin{rSection}{Selected Research Projects}
+\begin{rSubsection}{Evidence-Grounded Enzyme--Reaction Discovery (iGEM 2026)}{2026}{NJU-China Dry Lab \quad | \quad Dry Lab Student Lead \quad | \quad \cvsmalllink{https://www.runnelzhang.com/posters/igem-atlas}{Poster}}{}
+\item Built a two-direction protein--reaction ranking framework that combines sequence and reaction representations with evidence-dependent expert corrections, without restricting predictions to expert-retrieved candidates.
+\item Connected ranking outputs to a scientific-agent workflow spanning reaction/sequence queries, graph-based evidence exploration, and explicit separation of verified knowledge from inferred candidates.
+\item Coordinated computational modeling and evaluation with wet-lab objectives, focusing on how researchers can inspect candidate provenance before experimental follow-up.
+\end{rSubsection}
+
+\begin{rSubsection}{TRACE: Typed Reasoning with Attribution, Certificates, and Evidence}{2026}{Formal reasoning research linked to MSRA work \quad | \quad \cvsmalllink{https://www.runnelzhang.com/posters/trace}{Poster}}{}
+\item Explored typed obligation graphs as a common interface between model-generated reasoning steps and independent native checkers for formal proof tasks.
+\item Organized certificate-backed conclusions, missing-support diagnoses, and replayable tool traces so unresolved search is not confused with a logically established answer.
+\end{rSubsection}
+
+\begin{rSubsection}{Tangut-SPAR: Structured Proxy Augmentation and Reliable Preference Tuning}{2026}{Low-resource language modeling \quad | \quad \cvsmalllink{https://www.runnelzhang.com/posters/tangut-spar}{Poster}}{}
+\item Studied data scarcity in Tangut translation using structured proxy augmentation to supply additional training signals while retaining linguistic constraints.
+\item Explored preference-based refinement of translation candidates, emphasizing faithful generation and the reliability of weak or proxy-derived supervision.
+\end{rSubsection}
+\begin{rSubsection}{BiSem-Edge: Compute-Efficient Semantic Video}{2026}{NINE Lab \quad | \quad \cvsmalllink{https://www.runnelzhang.com/posters/bisem-edge}{Poster}}{}
+\item Investigated selective visual-token refresh and cached temporal representations to avoid redundant encoder computation on largely unchanged frames.
+\item Analyzed information lost in low-dimensional semantic features and explored complementary reconstruction and CPU-native bitwise inference without conflating encoder speed with restored video quality.
+\end{rSubsection}
+\end{rSection}
+\newpage
+\begin{rSection}{Selected Research Projects (continued)}
+
+
+\begin{rSubsection}{Doge-SAGE: Stateful Agent Systems for Scientific Communities}{2026}{Agent infrastructure and scientific computing \quad | \quad \cvsmalllink{https://www.runnelzhang.com/posters/doge-sage}{Poster}}{}
+\item Designed a persistent, multi-user scientific assistant with shared capability discovery, turn-scoped state assembly, and event-local execution paths.
+\item Isolated concurrent task execution and merged committed history into durable group state, while applying admission checks before model or tool calls.
+\end{rSubsection}
+\end{rSection}
+
+\begin{rSection}{Additional Research Posters}
+\posterrow{Exchangeable Hard Negatives for Vision--Language Evaluation}{https://www.runnelzhang.com/posters/candidate-exchangeability}{2026}{Removed candidate-set structural shortcuts to test whether vision--language models use image evidence.}
+\posterrow{ProCo: Verifiable Abstention through Missing-Support Supervision}{https://www.runnelzhang.com/posters/proco-evidence}{2026}{Trained abstention with verifier-checkable witnesses of missing evidence in open-world reasoning.}
+\posterrow{Attributing Inference-Time Gains in Lean Theorem Proving}{https://www.runnelzhang.com/posters/lean-attribution}{2026}{Separated search-policy gains from retrieval, compute-budget, and prover-specific effects.}
+\posterrow{Structural Transfer in Low-Resource Autoformalization}{https://www.runnelzhang.com/posters/structural-transfer}{2026}{Diagnosed Rzk proof construction across boundaries, dependent lifts, and nested witnesses.}
+\posterrow{MOSAIC: Reference-Grounded Compositional Emoji Fusion}{https://www.runnelzhang.com/posters/mosaic}{2025}{Proposed source-aware visual composition with explicit roles, attribute transfer, and region planning.}
+\end{rSection}
+
+\begin{rSection}{Independent Mathematical Writing}
+\noindent \textbf{Informal Notes on Mathematics}\hfill{\color{CVMuted}\small Ongoing}\par\vspace{2pt}
+\cvpar{Author and editor of a multi-volume, English-language LaTeX collection of informal mathematical notes and essays. Rebuilt earlier multilingual material into a coherent book with thematic organization, corrected arguments, diagrams, and expanded explanations spanning algebra, geometry, topology, analysis, and logic. \cvsmalllink{https://www.runnelzhang.com/projects/inm-tex}{Project}\quad\cvsmalllink{https://www.runnelzhang.com/library/notes}{Notes library}.}
+\end{rSection}
+
+\begin{rSection}{Technical Presentations}
+\noindent\textbf{Navigating the Full-Stack Ecosystem: Implementation Strategies and Knowledge Graphs for Information Aggregation}\hfill{\color{CVMuted}\small Dec 2025}\par\vspace{2pt}
+\cvpar{Student presenter, Intelligent Data and Decision Studio, Nanjing University. \cvsmalllink{https://doi.org/10.5281/zenodo.17852269}{Presentation record}.}
+\noindent\textbf{Architectural Paradigms in Collaborative Software Engineering: A Comprehensive Analysis of the Nova Project}\hfill{\color{CVMuted}\small Nov 2025}\par\vspace{2pt}
+\cvpar{Student presenter, Intelligent Data and Decision Studio, Nanjing University. \cvsmalllink{https://doi.org/10.5281/zenodo.17765724}{Presentation record}.}
+\end{rSection}
+
+
+\begin{rSection}{Technical Background}
+\noindent\textbf{Research:} LLM reasoning and scientific agents; multimodal representation; molecular optimization; formal verification; evaluation design.\par\vspace{3pt}
+\noindent\textbf{Engineering:} Python, TypeScript, PyTorch, Linux, Git; model/tool orchestration, knowledge retrieval, asynchronous services, resource-constrained inference.\par
+\end{rSection}
+
+\end{document}
