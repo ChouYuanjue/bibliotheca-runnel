@@ -1,6 +1,83 @@
 [
   {
     "type": "Note",
+    "title": "N-20261109 · Twenty-Seven Lines on a Cubic Surface",
+    "description": "Algebraic and Arithmetic Geometry · 11 sections · PDF and TeX source available in the INM archive.",
+    "date": "2026-11-09",
+    "link": "/notes/2026/N-20261109.pdf",
+    "tags": [
+      "Algebraic and Arithmetic Geometry",
+      "INM"
+    ]
+  },
+  {
+    "type": "Note",
+    "title": "N-20261108 · Inverse Ackermann and Path Compression",
+    "description": "Combinatorics and Discrete Structures · 7 sections · PDF and TeX source available in the INM archive.",
+    "date": "2026-11-08",
+    "link": "/notes/2026/N-20261108.pdf",
+    "tags": [
+      "Combinatorics and Discrete Structures",
+      "INM"
+    ]
+  },
+  {
+    "type": "Note",
+    "title": "N-20261107 · Waiting for a Pattern",
+    "description": "Combinatorics and Discrete Structures · 9 sections · PDF and TeX source available in the INM archive.",
+    "date": "2026-11-07",
+    "link": "/notes/2026/N-20261107.pdf",
+    "tags": [
+      "Combinatorics and Discrete Structures",
+      "INM"
+    ]
+  },
+  {
+    "type": "Note",
+    "title": "N-20261105 · Random Chords, Couplings, and Copulas",
+    "description": "Real and Complex Analysis · 8 sections · PDF and TeX source available in the INM archive.",
+    "date": "2026-11-05",
+    "link": "/notes/2026/N-20261105.pdf",
+    "tags": [
+      "Real and Complex Analysis",
+      "INM"
+    ]
+  },
+  {
+    "type": "Note",
+    "title": "N-20261030 · When Roots Walk Around Holes",
+    "description": "Algebraic and Arithmetic Geometry · 8 sections · PDF and TeX source available in the INM archive.",
+    "date": "2026-10-30",
+    "link": "/notes/2026/N-20261030.pdf",
+    "tags": [
+      "Algebraic and Arithmetic Geometry",
+      "INM"
+    ]
+  },
+  {
+    "type": "Note",
+    "title": "N-20261026 · Toposes, Probability, and Language Models: Notes on Lafforgue's Lecture",
+    "description": "Machine Learning and Inference · 20 sections · PDF and TeX source available in the INM archive.",
+    "date": "2026-10-26",
+    "link": "/notes/2026/N-20261026.pdf",
+    "tags": [
+      "Machine Learning and Inference",
+      "INM"
+    ]
+  },
+  {
+    "type": "Note",
+    "title": "N-20261020 · Almost Nowhere, Yet Everywhere",
+    "description": "Topology and Homotopy Theory · 8 sections · PDF and TeX source available in the INM archive.",
+    "date": "2026-10-20",
+    "link": "/notes/2026/N-20261020.pdf",
+    "tags": [
+      "Topology and Homotopy Theory",
+      "INM"
+    ]
+  },
+  {
+    "type": "Note",
     "title": "N-20261017 · How Should a Neural Network Take a Step? Muon and Matrix Geometry",
     "description": "Machine Learning and Inference · 20 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-10-17",
@@ -33,6 +110,17 @@
     ]
   },
   {
+    "type": "Note",
+    "title": "N-20261009 · Compression, Information, and Hidden Features",
+    "description": "Machine Learning and Inference · 10 sections · PDF and TeX source available in the INM archive.",
+    "date": "2026-10-09",
+    "link": "/notes/2026/N-20261009.pdf",
+    "tags": [
+      "Machine Learning and Inference",
+      "INM"
+    ]
+  },
+  {
     "type": "Project",
     "title": "INM-TeX",
     "description": "An English TeX reconstruction of Informal Notes on Mathematics, with corrected and expanded notes compiled into a book-length PDF.",
@@ -46,7 +134,7 @@
   {
     "type": "Collection",
     "title": "INM: Informal Notes on Mathematics",
-    "description": "161 dated notes across 13 thematic volumes, with full PDF and per-note TeX sources.",
+    "description": "169 dated notes across 13 thematic volumes, with full PDF and per-note TeX sources.",
     "date": "2026-07-02",
     "link": "/library/notes",
     "tags": [

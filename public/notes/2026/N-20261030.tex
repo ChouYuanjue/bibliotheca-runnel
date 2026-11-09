@@ -1,0 +1,407 @@
+\notechapter{N-20261030}{When Roots Walk Around Holes}
+
+Choose a square root of \(1\), say \(+1\), and let the number under the square root move once around the origin in the complex plane. Keep following the same square root continuously. By the time the input returns to \(1\), the output has become \(-1\). The input is back where it started, but the root remembers the journey.
+
+There is a very concrete way to make sense of this. We can replace the troublesome multivalued expression by an ordinary function on a space with more than one sheet. Closed paths on the base space then act on the possible values of the function. It is a short route from elementary complex numbers to covering spaces, fundamental groups and permutations of polynomial roots, and eventually to the Galois group of an equation. Kuga's \emph{Galois' Dream} develops this geometric viewpoint through coverings, monodromy and differential equations.\footnote{Michio Kuga, \href{https://link.springer.com/book/10.1007/978-1-4612-0329-2}{\emph{Galois' Dream: Group Theory and Differential Equations}} (Birkh\"auser, 1993), especially the chapters on covering surfaces, their fundamental groups, and function theory on covering spaces. The explicit polynomial computations in the present note are carried out below.}
+
+\section{One turn changes a square root}
+
+For a path that goes once around the origin, put
+\[
+ z(\theta)=e^{i\theta},\qquad0\leq\theta\leq2\pi.
+\]
+At every \(\theta\) there are two solutions of \(w^2=z(\theta)\). Starting from \(w(0)=1\), the continuous choice is
+\begin{equation}
+ w(\theta)=e^{i\theta/2}.
+ \label{eq:N20261030-sqrtlift}
+\end{equation}
+It satisfies \(w(\theta)^2=z(\theta)\) at every instant. But
+\[
+ w(2\pi)=e^{i\pi}=-1\ne w(0).
+\]
+A second circuit returns the root to its original value. The two local square-root branches are exchanged by going once around the origin.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=.90,every node/.style={font=\small}]
+ \begin{scope}[shift={(-3.0,0)}]
+  \draw[->,gray!65] (-1.45,0)--(1.45,0);
+  \draw[->,gray!65] (0,-1.45)--(0,1.45);
+  \draw[very thick,purple!75!black,->] (1.25,0)
+   arc[start angle=0,end angle=325,radius=1.25];
+  \draw[thick,purple!75!black] (1.25,0)
+   arc[start angle=0,end angle=360,radius=1.25];
+  \fill (0,0) circle (2pt);
+  \node at (0,-1.90) {\(z(\theta)=e^{i\theta}\)};
+  \node[right] at (1.30,.15) {\(1\)};
+ \end{scope}
+ \begin{scope}[shift={(3.0,0)}]
+  \draw[->,gray!65] (-1.45,0)--(1.45,0);
+  \draw[->,gray!65] (0,-1.45)--(0,1.45);
+  \draw[thick,teal!70!black,->] (1.25,0)
+   arc[start angle=0,end angle=160,radius=1.25];
+  \draw[very thick,teal!70!black] (1.25,0)
+   arc[start angle=0,end angle=180,radius=1.25];
+  \fill (1.25,0) circle (2pt) node[below right] {\(+1\)};
+  \fill (-1.25,0) circle (2pt) node[below left] {\(-1\)};
+  \node at (0,-1.90) {\(w(\theta)=e^{i\theta/2}\)};
+ \end{scope}
+ \draw[->,thick,gray!75] (-.90,0)--(.90,0)
+  node[midway,above] {\(\;w^2=z\)};
+\end{tikzpicture}
+\caption{The input completes a circle while the continuously followed root completes only a semicircle. The two endpoints correspond to different square roots of the same input.}
+\label{fig:N20261030-sqrt-loop}
+\end{figure}
+
+There is a simple obstruction to choosing a continuous square root on all of \(\mathbb C^\times=\mathbb C\setminus\{0\}\). If such a function \(s\) existed with \(s(z)^2=z\), then applying it around the unit circle would give a continuous choice of \(w\) satisfying \eqref{eq:N20261030-sqrtlift} and returning to its starting value. The only continuous choices along that circle are \(e^{i\theta/2}\) and \(-e^{i\theta/2}\), and each ends at the opposite value. So no globally continuous branch exists.
+
+The issue is the missing point at \(0\). On a simply connected region avoiding \(0\), we can choose a continuous logarithm and define
+\[
+ \sqrt z=\exp\left(\frac12\log z\right).
+\]
+The branch changes when the chosen logarithm gains \(2\pi i\) after a circuit.
+
+\section{The sheets form an ordinary space}
+
+Rather than treating the square root as a defective function, construct the space
+\[
+ E=\{(z,w)\in\mathbb C^\times\times\mathbb C^\times:w^2=z\}
+\]
+and the projection
+\[
+ p:E\longrightarrow\mathbb C^\times,\qquad(z,w)\longmapsto z.
+\]
+Every \(z\) has exactly two preimages, \((z,\sqrt z)\) and \((z,-\sqrt z)\). The space \(E\) is naturally identified with \(\mathbb C^\times\) through
+\[
+ w\longmapsto(w^2,w),
+\]
+so \(p\) becomes the map \(w\mapsto w^2\).
+
+If \(z_0\ne0\), choose a small disk \(D\) around \(z_0\) avoiding the origin. The disk admits two continuous, indeed holomorphic, branches of the square root. Its inverse image under \(p\) splits into two disjoint open sets, each mapped homeomorphically to \(D\). That is exactly the local property of a \emph{two-sheeted covering map}.
+
+A path in the base has a unique lift through each chosen starting point of the fiber. The function \(w(\theta)\) in \eqref{eq:N20261030-sqrtlift} is the lift of \(z(\theta)\) that starts at \(w=1\).
+
+An element of the fiber over \(z=1\) is simply a choice from \(\{+1,-1\}\). Lifting a closed path permutes these two choices. A loop making \(k\) positive turns around the origin induces
+\begin{equation}
+ w\longmapsto(-1)^k w.
+ \label{eq:N20261030-winding}
+\end{equation}
+Why does only the number of turns matter? Two loops in \(\mathbb C^\times\) that can be continuously deformed into one another through loops avoiding \(0\) have endpoint-compatible lifts. Their winding number,
+\[
+ \operatorname{wind}(\gamma,0)
+ =\frac{1}{2\pi i}\oint_\gamma\frac{dz}{z}\in\mathbb Z,
+\]
+classifies their homotopy classes. Thus
+\[
+ \pi_1(\mathbb C^\times,1)\cong\mathbb Z,
+ \qquad
+ k\longmapsto\bigl(w\mapsto(-1)^kw\bigr).
+\]
+
+For \(w^n=z\), the same argument gives
+\[
+ w(\theta)=e^{i\theta/n},\qquad
+ w(2\pi)=e^{2\pi i/n}w(0).
+\]
+The \(n\) roots of unity are permuted cyclically. We obtain an action of \(\mathbb Z\) on the \(n\) sheets through the cyclic group of order \(n\).
+
+The map \(w\mapsto -w\) is an automorphism of the square-root covering: it exchanges the sheets and commutes with \(p\). It is often called a \emph{deck transformation}. In the square-root example, the loop permutation agrees with a deck transformation. That agreement requires care in general: a covering may have far more monodromy permutations than deck transformations.
+
+\section{Following the roots of a polynomial}
+
+Let \(P(z)\) be a polynomial of degree \(d\), and consider its solutions as a parameter \(t\) varies:
+\[
+ P(z)=t.
+\]
+A root \(z_0\) of \(P(z)-t_0\) is \emph{simple} when \(P'(z_0)\ne0\). The holomorphic implicit-function theorem then supplies a unique holomorphic root \(z(t)\) near \(t_0\), satisfying
+\[
+ z(t_0)=z_0,\qquad P(z(t))=t.
+\]
+Differentiating the identity gives
+\begin{equation}
+ z'(t)=\frac{1}{P'(z(t))}.
+ \label{eq:N20261030-implicit}
+\end{equation}
+So the roots can move holomorphically as long as they stay simple.
+
+The possible failures occur at critical values
+\[
+ B=\{P(c):P'(c)=0\}.
+\]
+Remove these finitely many values from the parameter plane and write
+\[
+ X=\mathbb C\setminus B,\qquad
+ E_P=\{(t,z)\in X\times\mathbb C:P(z)=t\}.
+\]
+The projection \(E_P\to X\) is a \(d\)-sheeted covering map. Every parameter in \(X\) has exactly \(d\) distinct roots, and every sufficiently small disk in \(X\) allows all of them to be labeled by holomorphic functions.
+
+A path \(t(s)\) in \(X\) can therefore be lifted to a continuously varying root \(z(s)\). If the path is closed, its endpoint may be another root of the same equation. Fix \(t_0\in X\) and label the roots above it \(r_1,\ldots,r_d\). Every loop at \(t_0\) produces a permutation of these labels, and homotopic loops produce the same permutation. This yields a \emph{monodromy representation}
+\begin{equation}
+ \rho:\pi_1(X,t_0)\longrightarrow S_d.
+ \label{eq:N20261030-monodromy}
+\end{equation}
+We choose a consistent convention for composing paths and permutations; a different convention merely reverses the order of products. The image of \(\rho\) is the monodromy group of the polynomial family.
+
+\section{A cubic with two collisions}
+
+Take the explicit family
+\begin{equation}
+ z^3-3z=t.
+ \label{eq:N20261030-cubic}
+\end{equation}
+The critical points of \(P(z)=z^3-3z\) are the solutions of
+\[
+ P'(z)=3(z^2-1)=0,
+ \qquad z=\pm1.
+\]
+Their critical values are
+\[
+ P(-1)=2,\qquad P(1)=-2.
+\]
+Consequently the three roots are distinct for every
+\[
+ t\in X:=\mathbb C\setminus\{-2,2\}.
+\]
+
+Start at \(t_0=0\). The three roots are particularly simple:
+\[
+ r_1=-\sqrt3,\qquad r_2=0,\qquad r_3=\sqrt3.
+\]
+For real \(-2<t<2\), all three roots remain real and distinct. We can follow them by increasing or decreasing \(t\) without crossing a collision.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=1,
+ every node/.style={font=\small}]
+ \draw[->,gray!80] (-3.3,0)--(3.3,0) node[right] {\(t\)};
+ \draw[->,gray!80] (0,-2.78)--(0,2.78) node[above] {\(z\)};
+ \draw[very thick,purple!75!black,domain=-2.08:2.08,samples=155,smooth]
+  plot ({.70*(\x*\x*\x-3*\x)},{1.20*\x});
+ \fill[orange!80!black] (-1.4,1.2) circle (2.5pt);
+ \fill[orange!80!black] (1.4,-1.2) circle (2.5pt);
+ \node[above left,orange!75!black] at (-1.4,1.25)
+  {\((t,z)=(-2,1)\)};
+ \node[below right,orange!75!black] at (1.4,-1.25)
+  {\((t,z)=(2,-1)\)};
+ \foreach \y/\lab in {-2.078/{r_1},0/{r_2},2.078/{r_3}}{
+  \fill[teal!75!black] (0,\y) circle (2.3pt);
+ }
+ \node[left] at (-.1,-2.08) {\(r_1\)};
+ \node[left] at (-.1,.1) {\(r_2\)};
+ \node[left] at (-.1,2.08) {\(r_3\)};
+ \node[below] at (-1.4,-.08) {\(-2\)};
+ \node[above] at (1.4,.08) {\(2\)};
+\end{tikzpicture}
+\caption{The real curve \(t=z^3-3z\), with \(t\) drawn horizontally. Between the two critical parameters, a vertical line meets three real branches. The first two collide at \(t=2\), and the last two at \(t=-2\). Following a complex loop around either critical parameter exchanges the corresponding pair.}
+\label{fig:N20261030-cubic}
+\end{figure}
+
+At \(t=2\), the polynomial factors as
+\[
+ z^3-3z-2=(z+1)^2(z-2).
+\]
+Thus \(r_1\) and \(r_2\) collide at \(z=-1\), while \(r_3\) tends to \(2\). To see what happens around that collision, write \(z=-1+u\). An exact expansion gives
+\begin{equation}
+ t=2-3u^2+u^3.
+ \label{eq:N20261030-localplus}
+\end{equation}
+For small \(u\), the leading relation is
+\[
+ u^2\sim\frac{2-t}{3}.
+\]
+In fact this resemblance to a square root can be made exact. Choose a holomorphic branch of \(g(u)=\sqrt{u-3}\) near \(u=0\), which is possible because \(u-3\ne0\) there. The change of local coordinate \(v=u\,g(u)\) has nonzero derivative at the origin and satisfies \(v^2=t-2\). Thus \(v=\pm\sqrt{t-2}\) are the two local branches, and a circuit of \(t\) around \(2\) exchanges them. Since \(u\mapsto v\) is locally invertible, it also exchanges the corresponding two roots:
+\[
+ \gamma_2:\quad(r_1\,r_2),
+\]
+where \(\gamma_2\) is a small positive loop around \(t=2\), connected to the base point \(0\) along a path inside \(X\).
+
+At \(t=-2\), we have
+\[
+ z^3-3z+2=(z-1)^2(z+2).
+\]
+Here \(r_2\) and \(r_3\) collide at \(z=1\). Writing \(z=1+u\) gives
+\begin{equation}
+ t=-2+3u^2+u^3.
+ \label{eq:N20261030-localminus}
+\end{equation}
+Here the exact local coordinate is \(v=u\sqrt{3+u}\), for which \(v^2=t+2\). A small circuit about \(-2\) exchanges the two square-root branches, and now the induced permutation is
+\[
+ \gamma_{-2}:\quad(r_2\,r_3).
+\]
+
+These two transpositions generate the entire symmetric group \(S_3\):
+\[
+ (12),\ (23),\ (12)(23)=(123),
+ \qquad
+ \langle(12),(23)\rangle=S_3.
+\]
+Since the fundamental group of the plane punctured at \(\pm2\) is generated by loops around these punctures, the monodromy group of \eqref{eq:N20261030-cubic} is exactly
+\begin{equation}
+ \boxed{\operatorname{Mon}(z^3-3z-t)=S_3.}
+ \label{eq:N20261030-monS3}
+\end{equation}
+With the roots labeled at \(t=0\), the group consists of all six permutations. We did not assume an abstract symmetry in advance: the two visible collisions in the parameter plane produced the group.
+
+\section{The discriminant remembers the parity}
+
+There is an algebraic way of detecting the collisions, without plotting the roots. For a monic cubic
+\[
+ z^3+pz+q,
+\]
+its discriminant is
+\[
+ \Delta=-4p^3-27q^2.
+\]
+With \(p=-3\) and \(q=-t\), we find
+\begin{equation}
+ \Delta(t)=27(4-t^2).
+ \label{eq:N20261030-discriminant}
+\end{equation}
+It vanishes precisely at \(t=\pm2\), as the derivative calculation predicted.
+
+Why is this a natural expression? If \(r_1(t),r_2(t),r_3(t)\) are the three local root branches, put
+\[
+ D(t)=
+ (r_1-r_2)(r_1-r_3)(r_2-r_3).
+\]
+Then
+\[
+ D(t)^2=\Delta(t).
+\]
+Exchanging any two roots changes the sign of \(D\); an even permutation preserves it. Thus the two possible values of \(\sqrt{\Delta(t)}\) keep track of the parity of the permutation obtained by continuation. A circuit around either simple zero of \(\Delta\) changes the sign of its square root, just as our local root analysis predicted a transposition.
+
+It is worth distinguishing two groups at this point. A loop in the parameter plane gives a permutation by \emph{analytic continuation}. Galois theory begins with an algebraic extension of the rational-function field \(\mathbb C(t)\) and asks for its field automorphisms. For algebraic functions of one complex variable, these descriptions agree after one passes to the splitting field.
+
+\begin{theorem}[Algebraic monodromy principle]
+Let \(F(z,t)\in\mathbb C(t)[z]\) be a separable polynomial, and remove from the complex parameter line the finitely many values where its roots are singular, collide, or the degree drops. Analytic continuation of the local root branches along loops produces a permutation group naturally isomorphic, as a permutation group of the roots, to the Galois group of the splitting field of \(F\) over \(\mathbb C(t)\).
+\end{theorem}
+
+The comparison rests on the algebraic-function covering: continuations of algebraic branches act on their field of functions, while globally single-valued meromorphic algebraic functions of \(t\) are rational. Proving the general theorem uses the correspondence between finite branched coverings of Riemann surfaces and finite algebraic extensions of their function fields. In this example we can verify the conclusion independently, using only ordinary polynomial algebra.
+
+The polynomial \(z^3-3z-t\) is irreducible over \(\mathbb C(t)\). Indeed, it is irreducible in \(\mathbb C[z,t]\): because it is linear in \(t\) with coefficient \(-1\), any nontrivial factorization would have a factor independent of \(t\), and that factor would divide the unit \(-1\). Gauss's lemma then gives irreducibility over \(\mathbb C(t)\). Its Galois group is therefore a transitive subgroup of \(S_3\).
+
+The discriminant \(\Delta(t)=27(4-t^2)\) is not a square in \(\mathbb C(t)\): it has a zero of odd order at each of \(t=\pm2\), whereas a square rational function has zeros and poles of even order. Thus the Galois group contains an odd permutation and is not contained in the alternating group \(A_3\). The only transitive subgroups of \(S_3\) are \(A_3\) and \(S_3\). Therefore
+\begin{equation}
+ \operatorname{Gal}
+ \bigl(\operatorname{Spl}_{\mathbb C(t)}(z^3-3z-t)/
+ \mathbb C(t)\bigr)\cong S_3,
+ \label{eq:N20261030-GalS3}
+\end{equation}
+in agreement with our monodromy calculation.
+
+\section{A free group that produces six permutations}
+
+The parameter domain of the cubic,
+\[
+ X=\mathbb C\setminus\{-2,2\},
+\]
+has two punctures. It deformation retracts onto a figure-eight graph, so
+\[
+ \pi_1(X,0)\cong F_2,
+\]
+the free group on two generators. One generator can be taken to wind once around \(2\), the other once around \(-2\). There is no relation forcing them to commute.
+
+Our explicit continuation calculation defines a surjective homomorphism
+\[
+ F_2\longrightarrow S_3,\qquad
+ a\longmapsto(12),\qquad
+ b\longmapsto(23).
+\]
+The source contains infinitely many distinct homotopy classes of loops. The target contains only six permutations, because most of those different journeys have exactly the same effect on the three roots. For example, going twice around either individual branch point returns each root to itself.
+
+The earlier distinction between monodromy and deck transformations can now be made concrete. A deck transformation \(h:E_P\to E_P\) satisfies \(p\circ h=p\). It sends every fiber to itself and commutes with lifting loops, so its permutation of the fiber over \(0\) must commute with the entire monodromy group \(S_3\). The centralizer of \(S_3\) in its natural action on three letters is trivial. Therefore this cubic covering has no nonidentity deck transformation, even though its monodromy group is all of \(S_3\).
+
+The square-root covering was quite different: its two sheets could be exchanged by the globally defined map \(w\mapsto-w\), giving a nontrivial deck transformation. This is why it is useful to regard a covering as more than a collection of sheets with arbitrary labels.
+
+\section{From two branch points to every permutation}
+
+The cubic suggests a more ambitious experiment. For an integer \(n\ge2\), set
+\begin{equation}
+ P_n(z)=z^n-nz,\qquad P_n(z)=t.
+ \label{eq:N20261030-general-family}
+\end{equation}
+The derivative is
+\[
+ P_n'(z)=n(z^{n-1}-1).
+\]
+Its critical points are the \((n-1)\)st roots of unity \(\zeta\), and at each one
+\[
+ P_n(\zeta)=\zeta^n-n\zeta
+ =-(n-1)\zeta,
+\]
+because \(\zeta^{n-1}=1\). These critical values are distinct. Moreover,
+\[
+ P_n''(\zeta)=n(n-1)\zeta^{n-2}\ne0,
+\]
+so every critical point is simple. The local expansion near \(\zeta\) has a nonzero quadratic leading term,
+\[
+ t-P_n(\zeta)
+ =\frac12P_n''(\zeta)(z-\zeta)^2
+  +O((z-\zeta)^3).
+\]
+Therefore a loop around each critical value interchanges exactly two roots and fixes the others. Its monodromy is a transposition.
+
+We can determine the full monodromy group without explicitly following all \(n\) roots.
+
+\begin{theorem}
+For every integer \(n\ge2\), the polynomial \(z^n-nz-t\) has monodromy group \(S_n\) over the complex parameter plane with its critical values removed. Its Galois group over \(\mathbb C(t)\) is also \(S_n\).
+\end{theorem}
+
+\begin{proof}
+Let \(B\) be the finite set of critical values above and let \(X=\mathbb C\setminus B\). The total space
+\[
+ E_n=\{(t,z)\in X\times\mathbb C:P_n(z)=t\}
+\]
+is isomorphic to the punctured plane \(\mathbb C\setminus P_n^{-1}(B)\), by the map \(z\mapsto(P_n(z),z)\). This space is path connected: removing finitely many points from \(\mathbb C\) does not disconnect it. Hence the monodromy action on the \(n\) points of a fiber is \emph{transitive}. Indeed, a path in the total space between two fiber points projects to a loop in the base whose lift carries one point to the other.
+
+The fundamental group of the plane minus finitely many punctures is generated by loops around those punctures. We have seen that each such generator acts as a transposition. Therefore the monodromy group is a transitive subgroup of \(S_n\) generated by transpositions.
+
+Here is a useful elementary group-theoretic lemma. Given a collection of transpositions on \(n\) letters, draw a graph whose vertices are the letters and whose edges join the two letters exchanged by each transposition. The generated group preserves each connected component of that graph. Conversely, transpositions along the edges of a connected graph generate the entire symmetric group on its vertices: follow paths to obtain any exchange, or choose a spanning tree and proceed inductively. Thus a transitive group generated by transpositions is necessarily \(S_n\). Our monodromy group is \(S_n\).
+
+The polynomial \(z^n-nz-t\) is irreducible in \(\mathbb C(t)[z]\) by the same linear-in-\(t\) argument used for the cubic. The algebraic monodromy principle identifies its Galois group, as a permutation group on the roots, with \(S_n\).
+\end{proof}
+
+At \(n=5\), we obtain a concrete one-parameter quintic
+\[
+ z^5-5z=t
+\]
+with Galois group \(S_5\) over \(\mathbb C(t)\). The group \(S_5\) is not solvable: its alternating subgroup \(A_5\) is nonabelian and simple. By the classical Galois criterion, the roots of this polynomial cannot be expressed \emph{as functions of the indeterminate \(t\)} using finitely many field operations and radical extractions over \(\mathbb C(t)\).
+
+That last qualification matters. Special values of \(t\) may produce equations with very simple roots; for instance \(t=0\) gives \(z(z^4-5)=0\). The obstruction concerns a formula valid for the generic parameter. We have watched the obstruction emerge from entirely explicit, ordinary square-root exchanges around the critical values.
+
+\section{Differential equations remember loops too}
+
+There is a related viewpoint that makes Kuga's inclusion of differential equations in the story feel less mysterious. If an algebraic root branch satisfies
+\[
+ P(z(t))=t,
+\]
+then away from the critical values it satisfies the differential equation
+\[
+ \frac{dz}{dt}=\frac1{P'(z)}.
+\]
+Different initial values corresponding to different roots give different local solutions. Continuing those solutions around a branch point permutes the initial values. For the cubic, this is the equation
+\[
+ \frac{dz}{dt}=\frac1{3z^2-3}.
+\]
+Its singular behavior as \(z\to\pm1\) is exactly the local collision that produced the transpositions.
+
+Linear differential equations display a close cousin of this phenomenon. On \(\mathbb C^\times\), consider
+\begin{equation}
+ \frac{dy}{dz}=\frac{\alpha}{z}\,y,
+ \label{eq:N20261030-linearODE}
+\end{equation}
+where \(\alpha\in\mathbb C\) is fixed. On a simply connected region avoiding \(0\), its solutions are
+\[
+ y(z)=c\exp(\alpha\log z)=cz^\alpha.
+\]
+After one positive circuit about \(0\), the logarithm gains \(2\pi i\), so a continued solution changes by
+\[
+ y\longmapsto e^{2\pi i\alpha}y.
+\]
+For \(\alpha=\frac12\), this factor is \(-1\), and we recover the original square-root example as a first-order differential equation.
+
+For a linear system \(Y'(z)=A(z)Y(z)\) of rank \(r\), local solutions form an \(r\)-dimensional vector space. Analytic continuation along closed paths acts by invertible linear maps on this space, giving a representation
+\[
+ \pi_1(X,z_0)\longrightarrow\operatorname{GL}_r(\mathbb C).
+\]
+In the polynomial-root examples, the action was by permutations of a finite set; for linear differential equations the natural action is by matrices. Both record the same essential geometric event: a locally defined solution is transported around a hole and comes back transformed.

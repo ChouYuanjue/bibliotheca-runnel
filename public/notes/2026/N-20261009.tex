@@ -1,0 +1,484 @@
+\notechapter{N-20261009}{Compression, Information, and Hidden Features}
+
+While working on BiSem, a ViT-based pipeline for compressing laboratory video and running its sender on a Raspberry Pi~5, I became interested in a peculiar discrepancy. The reconstructed images could lose quite visible details of a person or chair, while internal patch representations still carried information from which a small probe could predict person locations. Improving a local reconstruction score did not necessarily improve the probe. These are different tests of what a representation retains, and they have different mathematical answers.
+
+I will begin with a tiny distribution that makes the distinction exact, then work through sufficient statistics, rate--distortion theory and the information bottleneck. After revisiting actual BiSem frames and latent measurements, we shall ask a second question: even if information survives, who decided which coordinates or sparse components deserve to be called \emph{features}?\footnote{For the information-bottleneck principle, see Tishby, Pereira and Bialek, \href{https://arxiv.org/abs/physics/0004057}{\emph{The Information Bottleneck Method}} (1999/2000). For sparse representation uniqueness we follow Donoho and Elad, \emph{Optimally Sparse Representation in General (Nonorthogonal) Dictionaries via \(\ell^1\) Minimization} (2003).}
+
+\section{A perfect classifier and a poor reconstruction}
+
+Let \(Y\) and \(N\) be independent fair bits and put \(X=(Y,N)\). Pretend that \(Y\) records the identity of an object and \(N\) records a nuisance detail. All four source outcomes have probability \(1/4\):
+\[
+ X\in\{(0,0),(0,1),(1,0),(1,1)\}.
+\]
+An encoder sends only
+\[
+ Z=f(X)=Y.
+\]
+A classifier using \(Z\) predicts \(Y\) without error. A decoder trying to recover the \emph{whole} \(X\) cannot guess \(N\) better than chance, because \(N\) is independent of \(Z\).
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth,thick,
+ item/.style={draw=purple!65!black,fill=purple!5,rounded corners=3pt,inner xsep=11pt,inner ysep=6pt},
+ code/.style={draw=teal!65!black,fill=teal!7,rounded corners=3pt,inner xsep=12pt,inner ysep=6pt},
+ every node/.style={font=\small}]
+ \node[item] (a) at (0,2.1) {\(X=(0,0)\)};
+ \node[item] (b) at (0,.7) {\(X=(0,1)\)};
+ \node[item] (c) at (0,-.7) {\(X=(1,0)\)};
+ \node[item] (d) at (0,-2.1) {\(X=(1,1)\)};
+ \node[code] (z0) at (5,1.4) {\(Z=0\)};
+ \node[code] (z1) at (5,-1.4) {\(Z=1\)};
+ \draw[->,purple!65!black] (a)--(z0);
+ \draw[->,purple!65!black] (b)--(z0);
+ \draw[->,purple!65!black] (c)--(z1);
+ \draw[->,purple!65!black] (d)--(z1);
+ \node[align=center,font=\footnotesize] at (2.6,-2.8)
+ {one transmitted bit, two possible source states per codeword};
+\end{tikzpicture}
+\caption{A task-perfect encoding that loses half of the source's two independent bits. Each codeword corresponds to two distinct possible inputs.}
+\label{fig:N20261009-four-to-two}
+\end{figure}
+
+Measure reconstruction error by the number of incorrect bits:
+\[
+ d_{\mathrm{rec}}(x,\widehat x)
+ =\mathbf1_{\{y\ne\widehat y\}}+\mathbf1_{\{n\ne\widehat n\}}.
+\]
+The optimal decoder using \(Z=Y\) can reconstruct \(Y\) perfectly, but has
+\[
+ \Pr(\widehat N\ne N)=\frac12,\qquad
+ \mathbb E[d_{\mathrm{rec}}(X,\widehat X)]=\frac12.
+\]
+The task loss \(d_{\mathrm{task}}(y,\widehat y)=\mathbf1_{\{y\ne\widehat y\}}\), by contrast, is exactly zero.
+
+This reconstruction error is the best possible for \emph{any} deterministic one-bit code, not merely \(Z=Y\). A deterministic decoder has only two possible outputs, one for each codeword. At most two of the four equally likely binary pairs can be reconstructed exactly. Each of the other two differs from its reconstruction in at least one bit, so the average number of erroneous bits is at least \(2/4=1/2\). Our task-based encoder attains this bound while also solving the classification problem perfectly.
+
+A representation can be excellent for one loss function and poor for another. The word \emph{information} becomes useful only when we specify what information is being requested.
+
+\section{Sufficiency as an information identity}
+
+For finite random variables, write \(H(X)\) for Shannon entropy and
+\[
+ I(X;Y)=H(Y)-H(Y\mid X)
+\]
+for mutual information. In the example,
+\[
+ H(X)=H(Y,N)=2,\qquad H(Z)=1,
+\]
+with logarithms to base \(2\). Moreover
+\[
+ I(Z;Y)=1=I(X;Y),\qquad I(Z;X)=1.
+\]
+The one-bit representation retains \emph{all} information about \(Y\), although it retains only one of the two bits in \(X\).
+
+For a general encoder specified by a conditional distribution \(p(z\mid x)\), assume the Markov relation
+\[
+ Y\longrightarrow X\longrightarrow Z:
+ \qquad Y\perp Z\mid X.
+\]
+The chain rule for mutual information gives
+\begin{align*}
+ I(Y;X,Z)&=I(Y;X)+I(Y;Z\mid X)=I(Y;X),\\
+ I(Y;X,Z)&=I(Y;Z)+I(Y;X\mid Z).
+\end{align*}
+Therefore
+\begin{equation}
+ \boxed{I(Y;X)-I(Y;Z)=I(Y;X\mid Z)\geq0.}
+ \label{eq:N20261009-DPI}
+\end{equation}
+This is the data processing inequality for the Markov chain. No downstream computation of \(Z\) can increase the information that \(X\) provided about \(Y\).
+
+Equality has a particularly useful interpretation:
+\[
+ I(Y;Z)=I(Y;X)
+ \quad\Longleftrightarrow\quad
+ I(Y;X\mid Z)=0.
+\]
+For finite alphabets, the latter is equivalent to \(Y\perp X\mid Z\). Thus knowing \(Z\) makes the original input \(X\) irrelevant for predicting \(Y\). This is the statistical sense in which \(Z\) is \emph{sufficient} for \(Y\).
+
+In our example \(Z=Y\) is sufficient. So is \(Z=(Y,N)\), but the latter remembers unnecessary information. One can ask for a sufficient representation that carries as little information about \(X\) as possible. Since
+\[
+ I(X;Z)\geq I(Y;Z)=I(Y;X)=1
+\]
+for every sufficient \(Z\), the simple choice \(Z=Y\) is optimal for this particular distribution.
+
+There is an important qualification in applications. A representation that is sufficient for a given label distribution need not be sufficient for every future task. If tomorrow's task asks for \(N\), our one-bit representation loses it entirely. Sufficiency is always relative to the target being predicted.
+
+\section{How expensive is it to remember more?}
+
+Rate--distortion theory gives a general language for the tension between compression and reconstruction. For a source \(X\), a reconstruction \(\widehat X\), and distortion \(d(X,\widehat X)\), define
+\begin{equation}
+ R(D)=\inf_{\substack{p(\widehat x\mid x)\\
+          \mathbb E d(X,\widehat X)\leq D}}
+          I(X;\widehat X).
+ \label{eq:N20261009-RD}
+\end{equation}
+The infimum runs over all (possibly randomized) reconstruction channels satisfying a distortion budget. The single-letter expression is the information-theoretic rate--distortion function of a memoryless source with additive distortion; operational coding statements about long blocks require a separate theorem.
+
+A complete calculation is possible for one fair bit. Let \(X\sim\operatorname{Bernoulli}(1/2)\) and use Hamming distortion \(d(x,\widehat x)=\mathbf1_{\{x\ne\widehat x\}}\). If \(\Pr(X\ne\widehat X)=d\leq D\leq1/2\), define the error bit \(E=X\oplus\widehat X\). Since \(X\) is determined by the pair \((\widehat X,E)\),
+\[
+ H(X\mid\widehat X)=H(E\mid\widehat X)
+ \leq H(E)=h_2(d)\leq h_2(D),
+\]
+where \(h_2(u)=-u\log_2u-(1-u)\log_2(1-u)\) is binary entropy. Hence
+\[
+ I(X;\widehat X)=1-H(X\mid\widehat X)\geq1-h_2(D).
+\]
+
+To attain the bound, take an independent noise bit \(E\sim\operatorname{Bernoulli}(D)\) and set \(\widehat X=X\oplus E\). Then the reconstruction error is \(D\), while \(\widehat X\) is fair and \(E\) is independent of \(\widehat X\). Thus \(H(X\mid\widehat X)=h_2(D)\), giving
+\begin{equation}
+ \boxed{R(D)=1-h_2(D)\quad(0\leq D\leq\tfrac12),}
+ \label{eq:N20261009-binaryRD}
+\end{equation}
+and \(R(D)=0\) for \(D\geq1/2\). The answer is a convex decreasing curve: allowing progressively more reconstruction mistakes decreases the amount of information that must be transmitted.
+
+For \(X=(Y,N)\), the no-distortion requirements of our two tasks are already enough to exhibit different rate requirements:
+\[
+ R_{\mathrm{rec}}(0)=H(Y,N)=2,\qquad
+ R_{\mathrm{task}}(0)=H(Y)=1.
+\]
+An exact reconstruction of both independent bits requires two bits of information; an exact prediction of the first requires only one. The distortion function determines which bits are expensive to forget.
+
+\section{The information bottleneck}
+
+The information bottleneck makes the target \(Y\) explicit in the compression objective. For an encoder \(p(z\mid x)\) obeying \(Y-X-Z\), consider
+\begin{equation}
+ \mathcal L_\beta(Z)
+ =I(X;Z)-\beta I(Y;Z),
+ \qquad\beta\geq0.
+ \label{eq:N20261009-IB}
+\end{equation}
+The first term penalizes retaining information about \(X\). The second rewards retaining information useful for predicting \(Y\).
+
+For the two-bit example, we can solve this optimization \emph{globally}, even allowing randomized encoders. The Markov-chain inequality gives \(I(X;Z)\geq I(Y;Z)\), so
+\[
+ \mathcal L_\beta(Z)\geq(1-\beta)I(Y;Z).
+\]
+When \(0\leq\beta\leq1\), this is nonnegative, and a constant \(Z\) attains zero. When \(\beta>1\), use \(I(Y;Z)\leq H(Y)=1\) and note that multiplying by \(1-\beta<0\) reverses the inequality. Hence
+\[
+ \mathcal L_\beta(Z)\geq1-\beta,
+\]
+and \(Z=Y\) attains it. Therefore
+\begin{equation}
+ \boxed{\min_Z\mathcal L_\beta(Z)=
+ \begin{cases}
+ 0,&0\leq\beta\leq1,\\
+ 1-\beta,&\beta>1.
+ \end{cases}}
+ \label{eq:N20261009-IBopt}
+\end{equation}
+
+In this tiny world the solution makes an abrupt transition: with a weak reward for relevance, the best code says nothing; with a sufficiently strong reward, it communicates precisely the task bit. More complicated sources yield richer trade-off curves. This example is useful because the entire optimization can be checked without invoking a neural architecture or an approximation to mutual information.
+
+\section{Three measurements from a video encoder}
+
+The distinction between retained information and visible reconstruction quality is not confined to toy distributions. The following are later measurements from my BiSem/NineLab experiments, collected on October 30--31. They are included retrospectively in this dated note because they make the mathematical questions unusually concrete.\footnote{The panels come directly from the BiSem/NineLab experimental figures in the weekly report of October 26--November 1. Numerical results are from \emph{BISEM\_THREE\_AXES\_PERSON\_ROI\_LATENT\_SIZE\_20261030} and the audited E9 closeout of October 31. The figures are measurements on specific videos and checkpoints, not general benchmark claims.}
+
+\paragraph{Averages hide a badly reconstructed person.}
+One high-motion frame from the laboratory videos is shown below. We used a person region detected in the \emph{original} high-resolution input, then mapped the same coordinates to the different reconstructions. The person was not rediscovered independently in every reconstructed frame: doing so would systematically discard regions in which the detector failed after compression.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{tex/figures/N-20261009/05_high_motion_person_worst_case.png}
+\caption{A real BiSem/NineLab high-motion case. The same person region is followed from the source frame to the original E9 reconstruction and a faster Pi~5 variant. In this particular frame the region PSNR drops from \(27.88\) to \(19.52\)\,dB, much more sharply than a full-frame average suggests. Image from the project's October 30 visual audit.}
+\label{fig:N20261009-bisem-person}
+\end{figure}
+
+A peak signal-to-noise ratio is a monotone transform of mean squared pixel error:
+\begin{equation}
+ \operatorname{PSNR}(x,\widehat x)
+ =10\log_{10}\frac{L^2}
+        {|R|^{-1}\sum_{i\in R}(x_i-\widehat x_i)^2},
+ \label{eq:N20261009-psnr}
+\end{equation}
+where \(R\) is the compared pixel region and \(L\) is the maximum intensity range. Changing \(R\) from the full frame to a person box changes the distortion measure. A localized failure may have little effect on the average error over a large, mostly static background.
+
+\paragraph{Information can become easier to read out.}
+A separate experiment tested person-location information in hidden states of the frozen E9 ViT encoder. Labels were derived from YOLO detections on the original \(1080p\) videos, projected to the \(14\times14\) patch grid. A linear probe was trained on one set of recordings and evaluated on a held-out recording of 41 frames, giving 7,697 evaluated patches, 732 of them positive under the chosen pseudo-label rule.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Features supplied to probe & Person-patch AP & AUROC\\
+\midrule
+Fixed spatial coordinates only & \(0.430\) & \(0.733\)\\
+ViT patch embedding & \(0.338\) & \(0.707\)\\
+ViT block 3 & \(\mathbf{0.789}\) & \(0.943\)\\
+ViT block 6 & \(0.777\) & \(\mathbf{0.949}\)\\
+ViT block 9 & \(0.772\) & \(0.940\)\\
+ViT block 12 & \(0.743\) & \(0.933\)\\
+\bottomrule
+\end{tabular}
+\caption{Measured E9 linear-probe results for original-video YOLO-derived person-patch labels. AP is average precision and AUROC is area under the receiver operating characteristic curve. The coordinate-only baseline is particularly relevant because the camera view is fixed.}
+\label{tab:N20261009-bisem-probe}
+\end{table}
+
+The intermediate hidden states are much more \emph{linearly decodable} under this particular evaluation. One might worry that this contradicts the data processing inequality: how could a later layer have more information than an earlier layer?
+
+The answer is that a restricted linear probe measures \emph{accessibility of information to a particular model class}, not mutual information. A nonlinear map can make a fact linearly accessible while creating no new information at all. The XOR example makes this precise. Take independent fair bits \(B_1,B_2\), let
+\[
+ Y=B_1\oplus B_2,\qquad X=(B_1,B_2).
+\]
+The pair \(X\) determines \(Y\) exactly, so \(I(X;Y)=1\) bit. Yet no affine threshold can separate the two XOR classes in the plane: labeling \((0,0),(1,1)\) negative and \((1,0),(0,1)\) positive would require
+\[
+ b<0,\quad w_1+w_2+b<0,\quad
+ w_1+b>0,\quad w_2+b>0.
+\]
+The last two inequalities give \(w_1+w_2+2b>0\); the first two imply \(w_1+w_2+2b<b<0\), a contradiction. After the nonlinear transformation \(Z=B_1\oplus B_2\), a one-dimensional linear threshold predicts \(Y\) perfectly, while
+\[
+ I(Y;Z)=I(Y;X)=1.
+\]
+No information was created. It merely became easier for a linear reader to extract.
+
+The BiSem probe is not a proof that the encoder captures an invariant notion of personhood. The labels are detector-generated, the scene comes from a restricted laboratory camera, and a coordinate-only classifier already scores \(0.430\) AP. The observation is more modest and more useful: probe performance and reconstruction fidelity answer different questions.
+
+\paragraph{A local repair is not a universal feature improvement.}
+In the later VAL115 comparison, a residual correction with coefficient \(\gamma=0.5\) was tested against a sparse K12 baseline. Over 144 frames, the full-frame PSNR increased from \(31.800\) to \(31.869\)\,dB, a difference of only \(0.069\)\,dB. Across 515 repeated person-region observations, the mean ROI PSNR gain was \(0.174\)\,dB and the median gain was \(0.038\)\,dB. The improvement was concentrated in the highly dynamic first scene.
+
+The corresponding final-layer person-patch probes, trained and assessed in the project's VAL115 comparison, told a different story:
+\begin{equation}
+ \begin{aligned}
+  \mathrm{AP}(\text{original E9})&=0.7416,\\
+  \mathrm{AP}(\text{sparse K12})&=0.7340,\\
+  \mathrm{AP}(\text{sparse K12}+\text{residual})&=0.7329.
+ \end{aligned}
+ \label{eq:N20261009-val115-ap}
+\end{equation}
+In this experiment, a small gain in person-region pixel fidelity did not come with an improvement in the probe. These VAL115 scores belong to a separate final-layer evaluation and should not be treated as a repeated measurement of the layer-by-layer probe in Table~\ref{tab:N20261009-bisem-probe}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{tex/figures/N-20261009/08_residual_person_psnr_curve.png}
+\caption{Measured person-region PSNR changes across the 144-frame VAL115 clip, grouped by scene. The local gains vary sharply; the 515 person observations are repeated detections across frames, not 515 independent videos. BiSem/NineLab E9 closeout, October 31.}
+\label{fig:N20261009-bisem-roi}
+\end{figure}
+
+We also compared a framewise error in the person region with drift in the ViT hidden states under sparse temporal updates. A 41-frame exploratory probe showed a negative Spearman association (approximately \(-0.65\)) between latent drift and the change in local PSNR. Its frames are temporally correlated, so this is diagnostic evidence, not a causal claim.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{tex/figures/N-20261009/06_person_latent_drift.png}
+\caption{An actual BiSem E9 study of person-region image error and ViT hidden-state drift in a laboratory video. The plotted association motivates a task-sensitive distortion analysis; it does not show that a particular hidden feature caused the reconstruction failure.}
+\label{fig:N20261009-bisem-latent}
+\end{figure}
+
+These experiments suggest several possible distortion measures: full-image pixel error, error restricted to objects of interest, predictive error of a learned probe, and discrepancy between internal states. Optimizing one may improve or worsen the others. The distinction leads naturally to our next question: even when a useful signal is present in \(h\), which hidden coordinates represent it?
+
+\section{Coordinates are negotiable}
+
+Now consider a hidden representation \(h(x)\in\mathbb R^d\) inside a neural computation. If its next layer is linear, with logits \(s(x)=Wh(x)\), then any invertible matrix \(A\in\operatorname{GL}_d(\mathbb R)\) gives an equivalent factorization:
+\begin{equation}
+ h'(x)=Ah(x),\qquad W'=WA^{-1},
+ \qquad W'h'(x)=Wh(x).
+ \label{eq:N20261009-basis}
+\end{equation}
+A change of hidden coordinates need not change the output function at all. It may, however, completely change which individual coordinate appears to correspond to a concept.
+
+For instance, suppose
+\[
+ h(x)=\begin{pmatrix}a(x)\\b(x)\end{pmatrix},
+ \qquad
+ A=\frac1{\sqrt2}
+ \begin{pmatrix}1&1\\1&-1\end{pmatrix}.
+\]
+Then
+\[
+ h'_1(x)=\frac{a(x)+b(x)}{\sqrt2},
+ \qquad
+ h'_2(x)=\frac{a(x)-b(x)}{\sqrt2}.
+\]
+Neither of the original two coordinates survives unchanged, despite identical linear predictions after the corresponding change of \(W\).
+
+This is a genuine mathematical ambiguity, though \emph{not} a license to insert arbitrary basis changes into every layer of a network. A nonlinear activation or a fixed architectural restriction may prevent a general \(A\) from being absorbed by neighboring weights. The observation is that the behavior of a model alone does not always select a preferred coordinate system for its internal states.
+
+A geometric quantity such as the span of all hidden states, or the dimension of that span, behaves more predictably under invertible changes of coordinates than the interpretation of a single neuron. If we want individual \emph{features}, some further principle must make a decomposition special.
+
+\section{Looking for a sparse description}
+
+Suppose the hidden vectors are approximately constructed from reusable directions:
+\begin{equation}
+ h\simeq Dz,\qquad
+ D=[d_1\ \cdots\ d_p]\in\mathbb R^{d\times p},
+ \qquad z\in\mathbb R^p.
+ \label{eq:N20261009-dictionary}
+\end{equation}
+The columns \(d_j\) form a \emph{dictionary}; the components of \(z\) are coefficients. We might have many more dictionary atoms than hidden-state dimensions, \(p>d\), and still hope that only a few \(z_j\) are nonzero for any particular input.
+
+For an exact observation \(h\), the idealized sparse recovery problem is
+\[
+ \min_{z:Dz=h}\|z\|_0,
+ \qquad \|z\|_0=\#\{j:z_j\ne0\}.
+\]
+The count \(\|z\|_0\) is not a norm; minimizing it generally involves combinatorial search. Two popular alternatives are
+\[
+ \min_{z:Dz=h}\|z\|_1
+ \quad\text{and}\quad
+ \min_z\bigl(\|h-Dz\|_2^2+\lambda\|z\|_1\bigr),
+ \label{eq:N20261009-l1}
+\]
+where \(\|z\|_1=\sum_j|z_j|\). The first seeks a sparse exact representation; the second permits reconstruction error. They need not recover the same coefficients unless additional assumptions hold.
+
+A sparse autoencoder (SAE) learns an approximate version of this decomposition over a distribution of hidden states. Its encoder assigns coefficients \(z=f_\phi(h)\), while a decoder reconstructs
+\[
+ \widehat h=D f_\phi(h)+b.
+\]
+A typical training objective balances reconstruction and sparsity:
+\[
+ \mathbb E_h\!\left[
+ \|h-Df_\phi(h)-b\|_2^2
+ +\lambda\|f_\phi(h)\|_1\right].
+\]
+The encoder may use ReLU or another nonlinearity, and the actual sparsity penalty varies with the implementation. A constraint or normalization on the decoder columns is important: without it, scaling \(D\) upward and the coefficients downward can reduce an \(\ell^1\) penalty without changing reconstruction.
+
+The decoder's reconstructed state has a practical purpose. It must retain enough information to substitute for the original hidden state in the downstream computation. Reconstructing \(h\) accurately checks one condition; checking whether the downstream prediction survives this substitution checks a different, more behaviorally relevant condition.
+
+\section{Can two sparse explanations agree exactly?}
+
+Let us leave the training process aside and study an exact algebraic question. Fix a dictionary \(D\). Can the same vector \(h\) have two different \(k\)-sparse representations?
+
+Define the \emph{spark} of \(D\) as the smallest number of its columns that are linearly dependent:
+\[
+ \operatorname{spark}(D)
+ =\min\{|S|:\{d_j:j\in S\}
+                \text{ is linearly dependent}\}.
+\]
+Assume the dictionary has more columns than its rank, so this minimum exists. For a full-column-rank dictionary one may adopt the convention \(\operatorname{spark}(D)=p+1\).
+
+\begin{theorem}[Uniqueness of sparse coding]
+Every vector \(h\) has at most one representation \(h=Dz\) with \(\|z\|_0\leq k\) if and only if
+\begin{equation}
+ \operatorname{spark}(D)>2k.
+ \label{eq:N20261009-spark}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Suppose \(Dz=Dz'\), where both \(z,z'\) have at most \(k\) nonzero entries. Then
+\[
+ D(z-z')=0,\qquad\|z-z'\|_0\leq2k.
+\]
+If \(\operatorname{spark}(D)>2k\), no nonzero vector with support of size at most \(2k\) lies in the kernel, so \(z=z'\).
+
+Conversely, if \(\operatorname{spark}(D)\leq2k\), there is a nonzero kernel vector \(v\) supported on some set \(S\) with \(|S|\leq2k\). Partition \(S\) into \(S_1,S_2\), each with at most \(k\) elements. Define \(z=v\) on \(S_1\) and zero elsewhere, and \(z'=-v\) on \(S_2\) and zero elsewhere. Then \(z-z'=v\), so \(Dz=Dz'\), while \(z\ne z'\). Uniqueness fails.
+\end{proof}
+
+The condition is sharp as a uniform guarantee. It does not say that every vector is \(k\)-sparse, and it does not say that solving an \(\ell^1\) optimization problem necessarily finds the sparse code.
+
+\begin{example}[Three directions in the plane]
+Let
+\[
+ D=
+ \begin{pmatrix}
+ 1&0&1\\
+ 0&1&1
+ \end{pmatrix},
+ \qquad h=\begin{pmatrix}1\\1\end{pmatrix}.
+\]
+The same vector has the representations
+\[
+ h=1\cdot d_3
+  =1\cdot d_1+1\cdot d_2.
+\]
+Any two dictionary columns are independent, but all three are linearly dependent, so \(\operatorname{spark}(D)=3\). The theorem guarantees uniqueness among one-sparse representations, and here the one-sparse code \(z=(0,0,1)\) is indeed unique. At sparsity level \(2\), uniqueness is already lost.
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=1.1,every node/.style={font=\small}]
+ \draw[->,gray!70] (-.3,0)--(3.1,0);
+ \draw[->,gray!70] (0,-.3)--(0,2.8);
+ \draw[->,very thick,purple!72!black] (0,0)--(2,0)
+      node[midway,below] {\(d_1\)};
+ \draw[->,very thick,purple!72!black] (0,0)--(0,2)
+      node[midway,left] {\(d_2\)};
+ \draw[->,very thick,teal!72!black] (0,0)--(2,2)
+      node[pos=.70,above left] {\(d_3=h\)};
+ \draw[->,dashed,orange!75!black] (2,0)--(2,2);
+ \draw[->,dashed,orange!75!black] (0,2)--(2,2);
+ \fill[teal!72!black] (2,2) circle (2.1pt);
+\end{tikzpicture}
+\caption{A vector assembled either from one diagonal atom or from two coordinate atoms. Sparse coding chooses the shorter representation only under assumptions that make such a choice meaningful and recoverable.}
+\label{fig:N20261009-sparse}
+\end{figure}
+
+It is useful to see a more checkable sufficient condition for \eqref{eq:N20261009-spark}. Suppose all columns of \(D\) have unit Euclidean norm, and define their \emph{mutual coherence}
+\[
+ \mu(D)=\max_{i\ne j}|\langle d_i,d_j\rangle|.
+\]
+If \(s\) columns were dependent, let \(G_S\) be their Gram matrix. Its diagonal is \(1\) and each off-diagonal entry has absolute value at most \(\mu(D)\). Whenever
+\[
+ (s-1)\mu(D)<1,
+\]
+the matrix is strictly diagonally dominant and therefore invertible, a contradiction. Hence
+\[
+ \operatorname{spark}(D)\geq1+\frac1{\mu(D)}
+\]
+in the usual real-valued inequality sense. In particular,
+\begin{equation}
+ 2k<1+\frac1{\mu(D)}
+ \quad\Longrightarrow\quad
+ \text{all \(k\)-sparse representations are unique.}
+ \label{eq:N20261009-coherence}
+\end{equation}
+The smaller the correlations between distinct atoms, the larger the guaranteed range of identifiable sparse codes. The condition is sufficient rather than necessary.
+
+\section{What should a reconstructed state preserve?}
+
+The reconstructed state in an SAE is often evaluated using Euclidean error, \(\|h-\widehat h\|_2^2\). But the rest of a network does not read a hidden state by measuring its Euclidean distance from some reference point. It performs a computation on it.
+
+For a linear downstream layer \(g(h)=Wh\), the output error is
+\[
+ \|g(h)-g(\widehat h)\|_2
+ =\|W(h-\widehat h)\|_2
+ \leq\|W\|_{\mathrm{op}}\|h-\widehat h\|_2.
+\]
+The inequality is useful: small Euclidean reconstruction error guarantees small output error when the operator norm is controlled. Its converse generally fails.
+
+To see why, let \(h=(Y,N)^\top\) in our opening example and let \(W=(1\ \ 0)\), so the next layer only reads the task bit. The reconstructed state
+\[
+ \widehat h=(Y,0)^\top
+\]
+loses the nuisance bit and has positive mean squared reconstruction error:
+\[
+ \mathbb E\|h-\widehat h\|_2^2
+ =\mathbb E[N^2]=\frac12.
+\]
+Nevertheless \(W\widehat h=Wh=Y\) for every input. The error vector lies in
+\(\ker W\), which the downstream layer cannot detect. Indeed the downstream computation depends only on the equivalence class
+\[
+ [h]\in\mathbb R^d/\ker W.
+\]
+This quotient is the exact linear algebraic space of information relevant to \(W\).
+
+At the opposite extreme, a small perturbation in a direction heavily amplified by \(W\) can be consequential. If \(W=(M\ \ 0)\) and
+\(\widehat h-h=(\varepsilon,0)^\top\), the output changes by \(M\varepsilon\). A task-sensitive distortion such as
+\[
+ d_W(h,\widehat h)=\|W(h-\widehat h)\|_2^2
+\]
+therefore measures a different kind of fidelity from ordinary hidden-state reconstruction. For a nonlinear downstream map, a local Jacobian plays a similar role, although the linear approximation may fail under large interventions.
+
+This is why an SAE can have an excellent reconstruction score while the interpretation of its features remains unconvincing, and why a task-preserving compression can have a poor reconstruction score. The two scores answer different mathematical questions. They become especially informative when reported side by side.
+
+\section{Which feature have we identified?}
+
+The previous theorem concerns coefficients when the dictionary is \emph{fixed}. Learning the dictionary itself poses a different identifiability question. If \(P\) is a permutation matrix and \(S\) is an invertible diagonal matrix, then
+\[
+ Dz=(DPS)(S^{-1}P^{-1}z).
+\]
+The same reconstruction can be described by reordered and rescaled atoms. Sparsity is unchanged by permutations and nonzero rescaling of coordinates. These ambiguities are usually regarded as harmless after normalizing atoms and forgetting their order.
+
+There can be more serious ambiguities. For a general invertible \(A\),
+\[
+ Dz=(DA^{-1})(Az),
+\]
+and no observation of \(h\) alone distinguishes the two factorizations. Sparsity restricts such transformations and, under appropriate assumptions on the distribution of \(z\), can make the generating dictionary identifiable up to permutation and scaling. A uniqueness theorem for a particular sparse code under a known dictionary does not by itself establish identifiability of an entire trained SAE.
+
+Nor does mathematical uniqueness automatically give a chemical or linguistic interpretation to an atom. A feature may correlate with an experimental property merely because both are driven by a third variable. To test a mechanistic claim, one can intervene on a coefficient, reconstruct the hidden state with that intervention, and measure a downstream change. For instance, with \(z=f_\phi(h)\) and chosen coordinate \(j\), compare
+\[
+ \widehat h=Dz+b,\qquad
+ \widehat h^{(j\leftarrow 0)}
+   =D(z-z_je_j)+b,
+\]
+then pass each state through the \emph{same} downstream network. This defines a controlled computational intervention, though its effects must still be interpreted cautiously when the reconstructed states are off the model's normal hidden-state distribution.
+
+The elementary \(X=(Y,N)\) example and the sparse dictionary example illuminate different obstacles. A bottleneck may discard information needed for another task. A hidden vector may retain information while admitting competing decompositions. A unique sparse code may still lack a validated interpretation. These are separate mathematical questions, and none is answered merely by naming an axis a feature.

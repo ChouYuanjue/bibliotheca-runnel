@@ -1,0 +1,466 @@
+\notechapter{N-20261105}{Random Chords, Couplings, and Copulas}
+
+A chord is drawn at random in a circle. What is the probability that it is longer than a side of an inscribed equilateral triangle? There is a familiar answer of \(1/3\), another of \(1/2\), and a third of \(1/4\). Each follows from a perfectly elementary calculation; the disagreement begins before any calculation, when someone decides what \emph{at random} means.
+
+This is Bertrand's chord paradox. I want to follow its mathematical question a little further. A random experiment requires a probability measure on its possible outcomes. Even when we specify the distribution of each coordinate of an experiment, we can still leave its joint law undetermined. These two forms of ambiguity lead naturally to measure-theoretic pushforwards, couplings, copulas and a small corner of optimal transport.\footnote{For the historical discussion of Bertrand's chord problem and an influential proposal based on invariance, see E.~T. Jaynes, \href{https://doi.org/10.1007/BF00709116}{\emph{The Well-Posed Problem}} (1973). Jaynes proposes additional invariance assumptions under which a distinguished answer emerges. Our interest here begins with the different experiments and the laws they actually generate.}
+
+\section{How close is the chord to the center?}
+
+Use a circle of radius \(1\). If a chord has midpoint at distance \(r\in[0,1]\) from the center, a right triangle gives
+\begin{equation}
+ \ell(r)=2\sqrt{1-r^2},
+ \label{eq:N20261105-length}
+\end{equation}
+where \(\ell(r)\) is the length of the chord. The side of an inscribed equilateral triangle has length \(\sqrt3\), hence
+\begin{equation}
+ \ell(r)>\sqrt3
+ \quad\Longleftrightarrow\quad
+ r<\frac12.
+ \label{eq:N20261105-long}
+\end{equation}
+Every proposed random-chord construction therefore reduces to one question:
+\[
+ \Pr(\text{long chord})=\Pr\left(R<\frac12\right),
+\]
+where \(R\) is the distance of the chord's midpoint from the center. The choice of how to draw the chord has disappeared from the geometry, but it survives in the \emph{distribution of \(R\)}.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0,>=Stealth,every node/.style={font=\small}]
+ \coordinate (o) at (0,0);
+ \draw[thick,gray!75] (o) circle (2.1);
+ \draw[dashed,purple!60!black,thick] (o) circle (1.05);
+ \coordinate (t) at (90:2.1);
+ \coordinate (l) at (210:2.1);
+ \coordinate (r) at (330:2.1);
+ \draw[orange!80!black,thick] (t)--(l)--(r)--cycle;
+ \draw[very thick,teal!75!black] (-2.04,.50)--(2.04,.50);
+ \fill (0,0) circle (1.9pt) node[below left] {\(O\)};
+ \fill (0,.50) circle (1.9pt) node[above left] {\(M\)};
+ \draw[|-|,semithick] (.64,0)--(.64,.50);
+ \node[anchor=east] at (.46,.25) {\(r\)};
+ \draw[->,thin] (1.48,-1.58)--(1.04,-.30);
+ \node[anchor=west] at (1.35,-1.75) {\(\frac12\)};
+ \node[align=left,anchor=west,font=\footnotesize] at (2.60,.72)
+  {a long chord};
+ \draw[->,thin] (2.56,.62)--(1.93,.52);
+ \node[anchor=west] at (2.60,-.78) {\(\ell=2\sqrt{1-r^2}\)};
+\end{tikzpicture}
+\caption{For a unit circle, a chord is longer than the inscribed equilateral triangle's side precisely when its midpoint lies inside the dashed disk of radius \(1/2\). The three sampling rules below agree on this geometry and differ on the distribution of the midpoint.}
+\label{fig:N20261105-chord}
+\end{figure}
+
+\section{Three laws on the same set of chords}
+
+\paragraph{Two random endpoints.}
+Choose two points independently and uniformly on the circumference, and join them. By rotational symmetry we may fix the first endpoint at angle \(0\), and let the angle of the other endpoint be \(\Theta\sim\mathrm{Unif}[0,2\pi)\). The chord length is
+\[
+ L=2\left|\sin\frac{\Theta}{2}\right|.
+\]
+It exceeds \(\sqrt3\) precisely when
+\(\Theta\in(2\pi/3,4\pi/3)\). Thus
+\[
+ \boxed{\Pr(L>\sqrt3)=\frac{2\pi/3}{2\pi}=\frac13.}
+\]
+The distance of its midpoint is
+\[
+ R=\left|\cos\frac{\Theta}{2}\right|.
+\]
+For \(0\leq r\leq1\),
+\[
+ \Pr(R\leq r)=\frac{2}{\pi}\arcsin r,\qquad
+ f_R(r)=\frac{2}{\pi\sqrt{1-r^2}}.
+\]
+Here chord midpoints are more likely to be found near the boundary than near the center.
+
+\paragraph{A random line through the disk.}
+Choose a normal direction \(\Phi\) uniformly on \([0,\pi)\), and independently choose a signed distance \(S\) uniformly on \([-1,1]\). The equation
+\[
+ x\cos\Phi+y\sin\Phi=S
+\]
+describes a line crossing the disk, and its intersection with the disk is a chord. The midpoint distance is \(R=|S|\). Since \(|S|\sim\mathrm{Unif}[0,1]\),
+\[
+ \boxed{\Pr(L>\sqrt3)=\Pr(|S|<1/2)=\frac12.}
+\]
+The adjective \emph{uniform} now applies to a one-dimensional offset, not to area in the disk.
+
+\paragraph{A random midpoint.}
+Choose a point uniformly with respect to area in the entire unit disk, and declare it to be the midpoint of a chord perpendicular to its radius. The disk of radius \(r\) occupies the fraction \(r^2\) of the unit disk's area, so
+\[
+ \Pr(R\leq r)=r^2,\qquad f_R(r)=2r.
+\]
+Consequently,
+\[
+ \boxed{\Pr(L>\sqrt3)=\Pr(R<1/2)=\frac14.}
+\]
+
+All three experiments are invariant under rotating the circle. One of them concentrates midpoint probability near the circumference, one makes the radius uniform, and one is uniform with respect to area. Rotational symmetry leaves room for every one of them.
+
+\begin{table}[htbp]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Sampling rule & Density of midpoint radius \(r\) & \(\Pr(r<1/2)\)\\
+\midrule
+Independent endpoints & \(\displaystyle \frac{2}{\pi\sqrt{1-r^2}}\) & \(1/3\)\\
+Uniform line offset & \(1\) & \(1/2\)\\
+Uniform midpoint area & \(2r\) & \(1/4\)\\
+\bottomrule
+\end{tabular}
+\caption{Three probability laws on the same geometric space of unoriented chords. Each density is on \(0<r<1\).}
+\label{tab:N20261105-chord-laws}
+\end{table}
+
+\section{Uniform in which coordinates?}
+
+It is worth making the hidden choice of measure explicit. Let \(\mathcal C\) be the set of unoriented chords of the unit disk, let \(Z\) be a parameter space, and let \(F:Z\to\mathcal C\) be a procedure for turning parameters into chords. If \(P_Z\) is the law used to generate the parameters, the actual chord law is its \emph{pushforward},
+\begin{equation}
+ P_{\mathcal C}=F_\#P_Z,
+ \qquad
+ (F_\#P_Z)(A)=P_Z(F^{-1}(A)).
+ \label{eq:N20261105-pushforward}
+\end{equation}
+The geometric map alone does not specify \(P_{\mathcal C}\). We must also specify \(P_Z\).
+
+For instance, choosing \(R\) uniformly on \([0,1]\) yields density \(f_R(r)=1\). Choosing \(R^2\) uniformly on \([0,1]\) yields \(f_R(r)=2r\), which is precisely the uniform-area model. In polar coordinates, this is the Jacobian:
+\[
+ dx\,dy=r\,dr\,d\theta.
+\]
+A distribution that is uniform in one coordinate does not generally remain uniform after a nonlinear change of coordinates. The density transforms along with the coordinates.
+
+We can even exhibit a continuum of rotationally symmetric chord laws. Choose a uniform normal direction and an independent radius with density
+\[
+ f_a(r)=(a+1)r^a,\qquad0<r<1,\quad a>-1.
+\]
+Every such law has the same geometric outcomes and the same rotational symmetry, but
+\[
+ \Pr_a(L>\sqrt3)=\int_0^{1/2}(a+1)r^a\,dr
+ =2^{-(a+1)}.
+\]
+As \(a\) varies, the answer varies continuously between \(0\) and \(1\). Symmetry under rotations alone does not determine a probability measure.
+
+Jaynes suggested looking for a law compatible with additional transformations, in particular translations and changes of scale. One can see why the random-line model is relevant. The natural Euclidean-motion-invariant measure on the \emph{space of lines in the plane} has, up to scale, density
+\[
+ d\Phi\,dS.
+\]
+It is an infinite measure on all lines, as a uniform offset over the entire real line cannot define a probability distribution. Once we restrict this measure to the lines intersecting the unit disk and normalize it, the permissible offsets satisfy \(|S|\leq1\), and we obtain exactly the random-line construction yielding \(1/2\).
+
+This supplies a principled way to specify a particular experiment. Whether its assumptions describe the intended physical procedure is a further question. An experiment that samples two boundary points is another precise procedure with a different induced measure.
+
+\section{Same margins, different joint laws}
+
+Here is another kind of underdetermination. Suppose someone tells us that two random variables \(U,V\) are both uniformly distributed on \([0,1]\). We know all the probabilities
+\[
+ \Pr(U\leq u)=u,\qquad
+ \Pr(V\leq v)=v
+ \qquad (0\leq u,v\leq1).
+\]
+Do these facts determine the probability that \emph{both} inequalities hold?
+
+Take a single uniform random variable \(Z\) on \([0,1]\), and consider three constructions:
+\begin{equation}
+ (U,V)=(Z,Z),\qquad
+ (U,V)=(Z,1-Z),\qquad
+ (U,V)=(Z_1,Z_2),
+ \label{eq:N20261105-threecouplings}
+\end{equation}
+where \(Z_1,Z_2\) are independent uniforms in the third construction. Both coordinates are uniform in all three cases. Their joint probabilities are different:
+\begin{align*}
+ \Pr(Z\leq u,Z\leq v)&=\min(u,v),\\
+ \Pr(Z\leq u,1-Z\leq v)&=\max(u+v-1,0),\\
+ \Pr(Z_1\leq u,Z_2\leq v)&=uv.
+\end{align*}
+For example,
+\[
+ \Pr(U\leq\tfrac14,V\leq\tfrac14)
+ =\begin{cases}
+ \frac14,&V=U,\\[2pt]
+ 0,&V=1-U,\\[2pt]
+ \frac1{16},&U,V\text{ independent}.
+ \end{cases}
+\]
+Knowledge of each coordinate's distribution has not determined their dependence.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,>=Stealth,every node/.style={font=\small}]
+\foreach \x/\title in {0/{\(V=U\)},3.15/{independent},6.30/{\(V=1-U\)}}{
+ \begin{scope}[shift={(\x,0)}]
+ \draw[thin,->] (-.10,0)--(2.35,0) node[below] {\(u\)};
+ \draw[thin,->] (0,-.10)--(0,2.35) node[left] {\(v\)};
+ \draw[gray!40] (0,0) rectangle (2.15,2.15);
+ \node at (1.08,-.55) {\title};
+ \node[below left,font=\scriptsize] at (2.15,0) {\(1\)};
+ \node[below left,font=\scriptsize] at (0,2.15) {\(1\)};
+ \end{scope}}
+\begin{scope}[shift={(0,0)}]
+ \draw[very thick,purple!78!black] (0,0)--(2.15,2.15);
+\end{scope}
+\begin{scope}[shift={(3.15,0)}]
+ \foreach \u in {.18,.54,.90,1.26,1.62,1.98}
+  \foreach \v in {.18,.54,.90,1.26,1.62,1.98}
+    \fill[teal!55!black] (\u,\v) circle (1pt);
+\end{scope}
+\begin{scope}[shift={(6.30,0)}]
+ \draw[very thick,orange!85!black] (0,2.15)--(2.15,0);
+\end{scope}
+\end{tikzpicture}
+\caption{Three couplings of the same two uniform marginals. The left and right laws are concentrated on lines, while the middle law spreads mass uniformly over the square. The dots are a schematic depiction of uniform area, not an empirical sample.}
+\label{fig:N20261105-threecouplings}
+\end{figure}
+
+A \emph{coupling} of two probability distributions \(\mu\) and \(\nu\) is a probability measure \(\pi\) on the product space whose coordinate marginals are \(\mu\) and \(\nu\). For example, the joint law of any one of the pairs in \eqref{eq:N20261105-threecouplings} is a coupling of two uniform measures. For any sets \(A,B\),
+\[
+ \pi(A\times[0,1])=\mu(A),\qquad
+ \pi([0,1]\times B)=\nu(B).
+\]
+The set of couplings is typically very large. It is even convex: if \(\pi_0,\pi_1\) share the same marginals, then so does
+\[
+ \pi_\lambda=\lambda\pi_0+(1-\lambda)\pi_1,
+ \qquad0\leq\lambda\leq1.
+\]
+A random choice between two joint experiments preserves each coordinate's distribution, while varying their dependence.
+
+\section{Copulas and the sharp bounds on dependence}
+
+The function
+\[
+ C(u,v)=\Pr(U\leq u,V\leq v)
+\]
+for a pair of uniform random variables is called its \emph{copula}. This name is apt: a copula joins two one-dimensional distributions into a joint distribution. It also makes precise what information is missing when the marginals are known.\footnote{The proofs and standard terminology here follow Roger B. Nelsen, \href{https://doi.org/10.1007/0-387-28678-0}{\emph{An Introduction to Copulas}}, 2nd ed. (2006), especially Chapter~2.}
+
+What conditions must a function \(C:[0,1]^2\to[0,1]\) satisfy in order to be a copula? Its restrictions to the edges are forced by the uniform marginals:
+\begin{equation}
+ C(u,0)=C(0,v)=0,\qquad
+ C(u,1)=u,\qquad C(1,v)=v.
+ \label{eq:N20261105-copula-boundaries}
+\end{equation}
+The remaining condition says that every rectangle has nonnegative probability. If \(u_1\leq u_2\) and \(v_1\leq v_2\), then
+\begin{align}
+ \Delta C
+ &:=C(u_2,v_2)-C(u_1,v_2)
+   -C(u_2,v_1)+C(u_1,v_1)\notag\\
+ &=\Pr(u_1<U\leq u_2,\ v_1<V\leq v_2)\geq0.
+ \label{eq:N20261105-rectangle}
+\end{align}
+A function satisfying the boundary conditions and this rectangle inequality is a copula. The requirement \(\Delta C\geq0\) is sometimes called \emph{2-increasingness}; it is the two-dimensional analogue of the monotonicity of an ordinary distribution function.
+
+Every copula obeys remarkably simple bounds. For the events
+\[
+ A=\{U\leq u\},\qquad B=\{V\leq v\}
+\]
+we have \(\Pr(A)=u\) and \(\Pr(B)=v\). Since an intersection is contained in either event,
+\[
+ C(u,v)=\Pr(A\cap B)\leq\min(u,v).
+\]
+On the other hand, inclusion--exclusion and \(\Pr(A\cup B)\leq1\) give
+\[
+ C(u,v)=u+v-\Pr(A\cup B)\geq u+v-1.
+\]
+Nonnegative probabilities must also be at least zero. Combining these inequalities,
+\begin{equation}
+ \boxed{\max(u+v-1,0)\leq C(u,v)\leq\min(u,v).}
+ \label{eq:N20261105-FH}
+\end{equation}
+These are the \emph{Fr\'echet--Hoeffding bounds}. Neither can be improved, because the constructions \(V=1-U\) and \(V=U\) attain them for all \(u,v\). The independent coupling sits between the extremes:
+\[
+ W(u,v)=\max(u+v-1,0),\qquad
+ \Pi(u,v)=uv,\qquad
+ M(u,v)=\min(u,v).
+\]
+
+Notice how little we needed to prove the inequalities. We did not assume that a joint density existed. This matters because the extreme copulas \(W\) and \(M\) are supported on diagonal lines, sets having two-dimensional area zero.
+
+\section{Moving between marginals and dependence}
+
+The example with uniform random variables is much more general than it first appears. Suppose \(X,Y\) have marginal distribution functions
+\[
+ F(x)=\Pr(X\leq x),\qquad
+ G(y)=\Pr(Y\leq y)
+\]
+and joint distribution function \(H(x,y)=\Pr(X\leq x,Y\leq y)\).
+
+For the moment suppose \(F,G\) are continuous. Then the probability integral transforms
+\[
+ U=F(X),\qquad V=G(Y)
+\]
+are both uniform on \([0,1]\). To see this, take any \(u\in(0,1)\), choose a quantile \(x_u\) with \(F(x_u)=u\), and use the monotonicity and continuity of \(F\):
+\[
+ \Pr(F(X)\leq u)=F(x_u)=u.
+\]
+If \(F\) has a constant interval, equality between the two threshold events may fail there pointwise, but only on a set to which \(X\) assigns probability zero. The same argument applies to \(G\).
+
+Let \(C\) be the joint distribution function of \((U,V)\). By the same almost-sure equivalence of threshold events,
+\begin{equation}
+ H(x,y)=C(F(x),G(y)).
+ \label{eq:N20261105-Sklar}
+\end{equation}
+Furthermore, because continuous distribution functions attain every value strictly between \(0\) and \(1\), the formula determines \(C\) uniquely.
+
+\begin{theorem}[Sklar's theorem]
+Given a bivariate distribution function \(H\) with marginal distribution functions \(F,G\), there exists a copula \(C\) such that
+\[
+ H(x,y)=C(F(x),G(y)).
+\]
+If \(F,G\) are continuous, \(C\) is unique. For general marginals the values of \(C\) are uniquely determined only on \(\operatorname{Ran}(F)\times\operatorname{Ran}(G)\). Conversely, every copula \(C\) and pair of distribution functions \(F,G\) define a bivariate distribution function by this formula.
+\end{theorem}
+
+We have proved the continuous-marginal case. For discontinuous marginals, one first defines a \emph{subcopula} on \(\operatorname{Ran}(F)\times\operatorname{Ran}(G)\) and then extends it to \([0,1]^2\), as in the standard proof of Sklar's theorem. The extension is generally nonunique.
+
+There is also a constructive converse. Given a copula \(C\), sample a uniform pair \((U,V)\) with joint law \(C\), and set
+\[
+ X=F^{-1}(U),\qquad Y=G^{-1}(V),
+\]
+using generalized quantile functions \(F^{-1}(u)=\inf\{x:F(x)\geq u\}\) and similarly for \(G\). The resulting variables have exactly the prescribed marginals, and their joint distribution is \(C(F(x),G(y))\).
+
+An explicit discrete example shows why the uniqueness qualification matters. Let \(U\) be uniform on \([0,1]\), and define a measure-preserving map
+\[
+ \tau(u)=
+ \begin{cases}
+ \frac12-u,&0\leq u\leq\frac12,\\[2pt]
+ \frac32-u,&\frac12<u\leq1.
+ \end{cases}
+\]
+Both pairs \((U,U)\) and \((U,\tau(U))\) have uniform marginals, but their copulas differ: for the former,
+\[
+ \Pr(U\leq\tfrac14,V\leq\tfrac14)=\frac14,
+\]
+whereas for the latter the same probability is zero. Now threshold both coordinates at \(1/2\), defining \(X=\mathbf1_{\{U>1/2\}}\) and \(Y=\mathbf1_{\{V>1/2\}}\). Because \(\tau\) preserves each half of the unit interval, both constructions give \(X=Y\), each a fair Bernoulli variable. Their \emph{discrete} joint distributions are identical even though the underlying copulas are not.
+
+Sklar's theorem separates two choices that were tangled together in the original random-chord puzzle: which distribution to assign to each coordinate, and how to couple those coordinates.
+
+\section{A dependence with zero correlation}
+
+There is a particularly memorable way to see how much a correlation coefficient can miss. Let
+\[
+ X\sim\mathrm{Unif}(-1,1),\qquad Y=X^2.
+\]
+The relation between \(X\) and \(Y\) is deterministic. Yet symmetry gives
+\[
+ \operatorname{Cov}(X,Y)
+ =\mathbb E[X^3]-\mathbb EX\,\mathbb E[X^2]=0.
+\]
+Since both variances are positive, their Pearson correlation is exactly zero. Independence would imply that every event in \(X\) is unrelated to every event in \(Y\), which is plainly false here. For example,
+\[
+ \Pr(Y\leq\tfrac14\mid |X|\leq\tfrac12)=1,
+ \qquad
+ \Pr(Y\leq\tfrac14)=\frac12.
+\]
+
+The marginal distribution functions are explicit:
+\[
+ F_X(x)=\frac{x+1}{2}\quad(-1\leq x\leq1),
+ \qquad
+ F_Y(y)=\sqrt y\quad(0\leq y\leq1).
+\]
+Applying their probability integral transforms yields
+\begin{equation}
+ U=F_X(X)=\frac{X+1}{2},\qquad
+ V=F_Y(Y)=|X|=|2U-1|.
+ \label{eq:N20261105-Vshape}
+\end{equation}
+Both \(U,V\) are uniform on \([0,1]\), but their joint law is concentrated on a \(V\)-shaped curve in the unit square.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.8,>=Stealth,every node/.style={font=\small}]
+ \draw[->] (-.08,0)--(2.55,0) node[below] {\(u\)};
+ \draw[->] (0,-.08)--(0,2.55) node[left] {\(v\)};
+ \draw[gray!50] (0,0) rectangle (2.2,2.2);
+ \draw[very thick,teal!75!black] (0,2.2)--(1.1,0)--(2.2,2.2);
+ \node[font=\small,fill=white,inner sep=1.5pt] at (1.10,1.52)
+    {\(v=|2u-1|\)};
+ \node[below] at (1.1,-.1) {\(\frac12\)};
+ \node[below] at (2.2,-.1) {\(1\)};
+ \node[left] at (-.05,2.2) {\(1\)};
+ \fill[teal!75!black] (1.1,0) circle (1.4pt);
+\end{tikzpicture}
+\caption{A singular copula with uniform marginal distributions and zero correlation in the original variables: probability lies on the two line segments \(v=|2u-1|\).}
+\label{fig:N20261105-Vshape}
+\end{figure}
+
+We can compute its copula directly. For \(0\leq u,v\leq1\),
+\begin{align*}
+ C(u,v)
+ &=\Pr\bigl(X\leq2u-1,\ -v\leq X\leq v\bigr)\\
+ &=\frac12\max\{0,\min(2u-1,v)+v\}\\
+ &=\boxed{\max\left\{0,\min\left(v,u+\frac{v-1}{2}\right)\right\}}.
+\end{align*}
+At \((u,v)=(1/4,1/2)\) this copula equals zero, whereas independence would give \(uv=1/8\).
+
+Now suppose we tried to recover the joint density by differentiating:
+\[
+ f_{X,Y}(x,y)\stackrel{?}{=}
+ c(F_X(x),F_Y(y))\,f_X(x)f_Y(y),
+ \qquad
+ c(u,v)=\frac{\partial^2C}{\partial u\,\partial v}.
+\]
+That formula requires an \emph{absolutely continuous copula} and appropriate marginal densities. It does not apply here. The entire joint distribution of \((X,Y)\) lies on the parabola \(y=x^2\), which has two-dimensional Lebesgue measure zero. Thus no ordinary two-dimensional joint density \(f_{X,Y}\) can describe it. There are perfectly ordinary one-dimensional marginal densities:
+\[
+ f_X(x)=\tfrac12\mathbf1_{(-1,1)}(x),\qquad
+ f_Y(y)=\frac{1}{2\sqrt y}\mathbf1_{(0,1)}(y).
+\]
+The second formula follows by differentiating \(F_Y(y)=\sqrt y\), or by adding the contributions from the two inverse branches \(x=\pm\sqrt y\).
+
+This is also a useful place to distinguish conditioning on a \emph{value} from dividing by the probability of a point. For \(0<y<1\), the conditional distribution of \(X\) given \(Y=y\), in the regular conditional-distribution sense, is
+\begin{equation}
+ \mathcal L(X\mid Y=y)
+ =\frac12\delta_{-\sqrt y}+\frac12\delta_{\sqrt y}.
+ \label{eq:N20261105-conditional}
+\end{equation}
+The two preimages have equal Jacobian factors \(1/(2\sqrt y)\) and equal original densities. Hence
+\[
+ \mathbb E[X\mid Y=y]=0,\qquad
+ \mathbb E[X^2\mid Y=y]=y.
+\]
+No event \(\{Y=y\}\) has positive probability; the displayed conditional law specifies the relevant disintegration rather than an elementary ratio of point probabilities. Conversely, \(\mathbb E[Y\mid X=x]=x^2\). The direction in which we condition matters enormously.
+
+\section{The geometry of choosing a coupling}
+
+A coupling can also be selected by asking it to optimize a mathematical quantity. This is the idea behind optimal transport. For example, among all pairs of uniform \(U,V\in[0,1]\), how small or large can
+\[
+ \mathbb E[(U-V)^2]
+\]
+be?
+
+We have \(\mathbb EU^2=\mathbb EV^2=1/3\), so
+\begin{equation}
+ \mathbb E[(U-V)^2]=\frac23-2\mathbb E[UV].
+ \label{eq:N20261105-transport-cost}
+\end{equation}
+It is clearly nonnegative. Equality is attained by the diagonal coupling \(V=U\), for which the cost is zero.
+
+For the maximum, use another nonnegative square:
+\[
+ 0\leq\mathbb E[(U+V-1)^2]
+ =2\mathbb E[UV]-\frac13.
+\]
+Thus \(\mathbb E[UV]\geq1/6\), and \eqref{eq:N20261105-transport-cost} gives the sharp upper bound \(1/3\). Equality is attained by \(V=1-U\). For independent \(U,V\), \(\mathbb E[UV]=1/4\) and the cost is \(1/6\). We have proved, with no appeal to a general transport theorem, that
+\[
+ \boxed{\quad
+ 0\leq\mathbb E[(U-V)^2]\leq\frac13,\quad
+ \begin{aligned}
+ V=U&:\ 0,\\
+ U\perp V&:\ \frac16,\\
+ V=1-U&:\ \frac13.
+ \end{aligned}\quad}
+\]
+This is a small instance of a more general phenomenon: fixing the marginals leaves an entire geometric space of couplings, and a cost function can select one of them. In one dimension, quantile coupling supplies the optimal alignment for many convex costs.
+
+One last construction is worth keeping. Let \(Z\sim\mathrm{Unif}[0,1]\) and independently let \(J\) be Bernoulli with parameter \(\lambda\). Set
+\[
+ (U,V)=
+ \begin{cases}
+ (Z,Z),&J=1,\\
+ (Z,1-Z),&J=0.
+ \end{cases}
+\]
+Both marginals remain uniform, and
+\[
+ \operatorname{Corr}(U,V)=2\lambda-1,\qquad
+ \mathbb E[(U-V)^2]=\frac{1-\lambda}{3}.
+\]
+Indeed, the covariance is the weighted average of \(1/12\) and \(-1/12\), while each marginal variance is \(1/12\). At \(\lambda=1/2\), the correlation vanishes, but the pair is confined to the \emph{union of two diagonals}. It is far from independent. Even a numerical summary of dependence that reaches exactly zero can conceal a singular geometric arrangement.
+
+Our two opening questions now have a common mathematical language. A chord construction pushes a chosen measure on parameters forward to geometric outcomes. A joint experiment selects a coupling of its marginal laws. Both require information that the description of the possible outcomes alone does not contain. Sometimes invariance or an optimization principle supplies that information; sometimes the physical sampling mechanism must supply it.

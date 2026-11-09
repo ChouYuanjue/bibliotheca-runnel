@@ -1,0 +1,770 @@
+\notechapter{N-20261026}{Toposes, Probability, and Language Models: Notes on Lafforgue's Lecture}
+
+On October 20, I attended Laurent Lafforgue's Top Talk at Tsinghua University, \emph{A Topological Point of View on Probability Spaces: The Example of Large Language Models}. I also had the chance to speak with Lafforgue in person and obtained his permission to translate the lecture slides. The lecture begins with coverings on a partially ordered set, constructs a topos of infinite token sequences, equips it with the probability law of a language model, passes from measure to Grothendieck topology and geometric logic, and finally goes in the opposite direction: a law of large numbers recovers a numerical measure from topology on an infinite space of samples.
+
+We follow the lecture in its original order. I supply a few missing definitions and calculations, with more detailed proofs for the law of large numbers at the end. Questions about language models, representation and interpretability are reserved until the lecture has been fully developed.
+
+\section{Coverings on an ordered set}
+
+Let \((C,\leq)\) be a partially ordered set. We think of \(x'\leq x\) as a piece of \(x\), and of a family \((x_i\leq x)_{i\in I}\) as a possible covering of \(x\). A \emph{Grothendieck topology} \(J\) specifies which families are coverings, subject to four conditions.
+
+\begin{definition}[Grothendieck topology on a poset]
+For each \(x\in C\), choose a collection \(J(x)\) of families \((x_i\leq x)_{i\in I}\). The following rules hold.
+\begin{enumerate}
+ \item \emph{Identity.} The singleton family \(x\leq x\) covers \(x\).
+ \item \emph{Enlargement.} If \((x_i\leq x)_{i\in I}\) covers \(x\), and another family \((x'_j\leq x)_{j\in J}\) satisfies
+ \[
+ \forall i\in I\ \exists j\in J:\qquad x_i\leq x'_j\leq x,
+ \]
+ then the second family also covers \(x\).
+ \item \emph{Restriction.} If \((x_i\leq x)_{i\in I}\) covers \(x\), then for every \(y\leq x\) there is a covering \((y_j\leq y)_{j\in J}\) such that each \(y_j\) lies under some \(x_i\):
+ \[
+ \forall j\in J\ \exists i\in I:\qquad y_j\leq x_i\leq x.
+ \]
+ \item \emph{Composition.} If \((x_i\leq x)_{i\in I}\) covers \(x\), and for every \(i\) the family \((x_{ij}\leq x_i)_{j\in J_i}\) covers \(x_i\), then
+ \[
+ (x_{ij}\leq x)_{i\in I,\ j\in J_i}
+ \]
+ covers \(x\).
+\end{enumerate}
+\end{definition}
+
+For ordinary open sets ordered by inclusion, these axioms say that a cover remains a cover when we enlarge its pieces, restrict to a smaller open set, or cover each member of a cover in turn. The categorical generalization replaces inequalities \(x'\leq x\) by morphisms \(x'\to x\) and chains of inequalities by composition. In the categorical formulation, covering sieves give a particularly convenient language.
+
+\section{From a topology to a topos}
+
+The covering prescription tells us what it means for local data to glue together.
+
+\begin{definition}
+Let \((C,J)\) be a small site. A presheaf \(F:C^{\mathrm{op}}\to\mathbf{Set}\) is a \(J\)-\emph{sheaf} when compatible local sections over a covering family glue uniquely over the covered object. The category
+\[
+ \mathcal E=\operatorname{Sh}(C,J)
+\]
+is the \emph{Grothendieck topos} presented by the site.
+\end{definition}
+
+The lecture also denotes the presheaf category by \(\widehat C\), and the sheaf topos by \(\widehat C_J\). Different sites can present equivalent toposes.
+
+For example, let \(X\) be a topological space and \(C\) a basis of open sets ordered by inclusion. With the usual covers
+\[
+ U=\bigcup_{i\in I}U_i,
+\]
+we obtain
+\[
+ \mathcal E_X=\operatorname{Sh}(X),
+\]
+independent, up to equivalence, of the chosen basis.
+
+There is also an intrinsic notion of a \emph{point} of a topos: a geometric morphism \(\mathbf{Set}\to\mathcal E\). The points form a topological space denoted \(|\mathcal E|\). Geometric morphisms \(f:\mathcal E'\to\mathcal E\) induce continuous maps
+\[
+ |f|:|\mathcal E'|\longrightarrow|\mathcal E|.
+\]
+The lecture records a canonical continuous map \(X\to|\mathcal E_X|\) and an equivalence
+\[
+ \mathcal E_X\simeq\mathcal E_{|\mathcal E_X|}.
+\]
+Here \(|\mathcal E_X|\) is the sobrification of \(X\). In particular, if \(Y\) is sober, geometric morphisms \(\mathcal E_X\to\mathcal E_Y\) correspond to continuous maps \(X\to Y\). These statements explain in what sense a topos extends the idea of a topological space.
+
+\section{The topological space of texts}
+
+Fix a finite vocabulary \(M\) of tokens. Write \(C_M\) for the set of nonempty finite words
+\[
+ m=(m_1,\ldots,m_\ell),\qquad m_i\in M,\qquad |m|=\ell.
+\]
+The crucial choice of order is \emph{reverse prefix order}:
+\[
+ m\leq m'
+ \quad\Longleftrightarrow\quad
+ |m|\geq|m'|\ \text{and}\ m_i=m'_i\quad (1\leq i\leq |m'|).
+\]
+Thus a longer word is smaller: a word such as \emph{a dog barks} lies under \emph{a dog}, since it specifies a more restrictive condition on a continuation.
+
+The lecture endows this ordered set with a Grothendieck topology \(J\). A family \((m_i\leq m)_{i\in I}\) covers \(m\) precisely when there is some length \(L\geq|m|\) such that every word \(w\) of length \(L\) extending \(m\) extends at least one \(m_i\). Equivalently, for every word \(w\) of length \(L\),
+\[
+ w\leq m\quad\Longleftrightarrow\quad
+ \exists i\in I:\ w\leq m_i.
+\]
+The cover eventually accounts for every continuation of the given prefix.
+
+Now form the set of infinite sequences
+\[
+ M^{\mathbb N}=\{(a_1,a_2,\ldots):a_i\in M\}.
+\]
+To a finite word \(m\) attach its \emph{cylinder}
+\[
+ U_m=\{a\in M^{\mathbb N}:a_i=m_i,\ 1\leq i\leq|m|\}.
+\]
+The cylinders form a basis of the product topology, where \(M\) is discrete. A longer prefix determines a smaller cylinder:
+\[
+ m\leq m'\ \Longrightarrow\ U_m\subseteq U_{m'}.
+\]
+
+\begin{proposition}[The text-space identification]
+The points of the topos
+\[
+ \mathcal E_M=\operatorname{Sh}(C_M,J)
+\]
+may be identified with \(M^{\mathbb N}\), with basic open sets \(U_m\). Moreover,
+\[
+ \mathcal E_M\simeq\operatorname{Sh}(M^{\mathbb N}).
+\]
+\end{proposition}
+
+Each cylinder splits into finitely many disjoint cylinders one token longer:
+\[
+ U_m=\coprod_{a\in M}U_{(m,a)}.
+\]
+Repeated refinement gives every length \(L\) cylinder below \(m\). Since \(M\) is finite, \(M^{\mathbb N}\) is compact, and each cylinder is compact as well. An open cover of a cylinder by cylinders therefore has a finite subcover; a sufficiently long common prefix length then detects the cover. This explains the choice of \(J\).
+
+The space \(M^{\mathbb N}\) is compact, Hausdorff and totally disconnected: it is \emph{profinite}. This property will matter when extending measures to subtoposes.
+
+\section{Next-token probabilities and their measure}
+
+A language model is now reduced to a precise mathematical input. For each finite prefix \(m\), it supplies
+\[
+ p(a\mid m)\in[0,1]\qquad(a\in M),
+ \qquad\sum_{a\in M}p(a\mid m)=1.
+\]
+The lecture writes these as conditional probabilities \(\mu(U_{(m,a)}\mid U_m)\) associated with the decomposition
+\[
+ U_m=\coprod_{a\in M}U_{(m,a)}.
+\]
+For the first token we also allow the empty prefix \(\varnothing\), with \(U_\varnothing=M^{\mathbb N}\).
+
+Set
+\[
+ \mu(U_{(m_1,\ldots,m_\ell)})
+ =\prod_{i=1}^{\ell}
+ p(m_i\mid m_1,\ldots,m_{i-1}).
+\]
+The normalization of next-token probabilities gives
+\[
+ \sum_{a\in M}\mu(U_{(m,a)})=\mu(U_m).
+\]
+These consistent cylinder probabilities determine a unique Borel probability measure on \(M^{\mathbb N}\), by the extension theorem for finite-dimensional distributions. Thus
+\[
+ \underbrace{p(a\mid m)}_{\text{one-step rule}}
+ \quad\leadsto\quad
+ \underbrace{\mu(U_m)}_{\text{prefix probability}}
+ \quad\leadsto\quad
+ \underbrace{\mu}_{\text{measure on infinite texts}}.
+\]
+Only this family of conditional probabilities is used here. The construction requires no information about embeddings, hidden states or the network architecture.
+
+\section{Subtoposes and finer coverings}
+
+If \(\mathcal E=\operatorname{Sh}(C,J)\), a \emph{subtopos} \(\mathcal E'\hookrightarrow\mathcal E\) is the topos analogue of a subspace. Every Grothendieck topology \(J'\) on \(C\) finer than \(J\) gives one:
+\[
+ J'\supseteq J
+ \quad\longmapsto\quad
+ \operatorname{Sh}(C,J')\hookrightarrow\operatorname{Sh}(C,J).
+\]
+Conversely, all subtoposes arise this way. A stronger covering rule imposes more gluing conditions, so fewer presheaves qualify as sheaves.
+
+For a subset \(Z\subseteq X\), the familiar subspace gives
+\[
+ \mathcal E_Z\hookrightarrow\mathcal E_X.
+\]
+On the site of open sets of \(X\), its covering condition is
+\[
+ (U_i\subseteq U)_{i\in I}\text{ covers for }J_Z
+ \quad\Longleftrightarrow\quad
+ U\cap Z=\bigcup_{i\in I}(U_i\cap Z).
+\]
+Only what happens on \(Z\) matters.
+
+But subtoposes have more possibilities than ordinary point-set subspaces. For example, declare a family \(U_i\subseteq U\) to cover when \(\bigcup_iU_i\) is \emph{dense} in \(U\). This dense topology can yield a subtopos not presented by a subset \(Z\subseteq X\) in the elementary way. It is the first indication that subtoposes contain information invisible from point sets alone.
+
+\section{Operations on subtoposes}
+
+The subtoposes of a fixed topos \(\mathcal E\) form an ordered set under inclusion. This ordered set admits arbitrary unions and intersections. The lecture emphasizes two distributivity properties:
+\[
+ \mathcal E'\cup\bigcap_{\alpha}\mathcal F_\alpha
+ =\bigcap_\alpha(\mathcal E'\cup\mathcal F_\alpha),
+\]
+and, for finite families,
+\[
+ \mathcal E'\cap(\mathcal F_1\cup\mathcal F_2)
+ =(\mathcal E'\cap\mathcal F_1)\cup
+  (\mathcal E'\cap\mathcal F_2).
+\]
+For two subtoposes \(\mathcal E_1,\mathcal E_2\hookrightarrow\mathcal E\), their difference is characterized without pointwise set subtraction:
+\begin{equation}
+ \mathcal E_1\setminus\mathcal E_2\subseteq\mathcal F
+ \quad\Longleftrightarrow\quad
+ \mathcal E_1\subseteq\mathcal E_2\cup\mathcal F
+ \qquad\text{for every subtopos }\mathcal F.
+ \label{eq:N20261026-subtopos-difference}
+\end{equation}
+It is the smallest remainder which, when joined to \(\mathcal E_2\), contains \(\mathcal E_1\).
+
+There is a warning in the slides. Although
+\[
+ Z\subseteq X\longmapsto\mathcal E_Z\hookrightarrow\mathcal E_X
+\]
+preserves unions, it does not generally preserve intersections, even finite ones. One may have \(Z_1\cap Z_2=\varnothing\) but
+\[
+ \mathcal E_{Z_1}\cap\mathcal E_{Z_2}\ne0;
+\]
+the intersection subtopos may have no points and nevertheless be nontrivial. Geometric intuition based only on sets of points must therefore be used carefully.
+
+A geometric morphism \(f:\mathcal E'\to\mathcal E\) also induces direct- and inverse-image operations on subtoposes:
+\[
+ f_*:\operatorname{Subtop}(\mathcal E')\to\operatorname{Subtop}(\mathcal E),
+ \qquad
+ f^{-1}:\operatorname{Subtop}(\mathcal E)\to\operatorname{Subtop}(\mathcal E'),
+\]
+with the adjunction
+\[
+ f_*(\mathcal F')\subseteq\mathcal F
+ \quad\Longleftrightarrow\quad
+ \mathcal F'\subseteq f^{-1}(\mathcal F).
+\]
+
+\section{Extending a measure from open sets}
+
+We next need a notion of measure suited to the lattice of open sets. In the lecture, a bounded measure on the opens of \(X\) is a map
+\[
+ \mu:\mathcal O(X)\longrightarrow\mathbb R_{\geq0}
+\]
+satisfying the valuation identity
+\begin{equation}
+ \mu(U)+\mu(V)=\mu(U\cap V)+\mu(U\cup V),
+ \label{eq:N20261026-valuation}
+\end{equation}
+as well as continuity for directed increasing families:
+\begin{equation}
+ \mu\left(\bigcup_{i\in I}U_i\right)
+ =\sup_{i\in I}\mu(U_i).
+ \label{eq:N20261026-directed}
+\end{equation}
+We understand \(\mu(\varnothing)=0\). For an ordinary finite Borel measure these properties follow from finite additivity and continuity from below. In locale theory this is often called a \emph{continuous valuation}.
+
+For a subtopos \(\mathcal E'\hookrightarrow\mathcal E_X\), define
+\begin{equation}
+ \mu(\mathcal E')
+ =\inf\bigl\{\mu(U):
+ U\subseteq X\text{ open and }\mathcal E'\subseteq\mathcal E_U\bigr\}.
+ \label{eq:N20261026-subtopos-measure}
+\end{equation}
+A generalized subspace is evaluated by the measures of its open neighborhoods.
+
+The slide cites a theorem of Olivier Leroy (1996 or earlier). First, for any increasing sequence of subtoposes \((\mathcal E_n)\),
+\begin{equation}
+ \mu\left(\bigcup_{n\geq1}\mathcal E_n\right)
+ =\sup_{n\geq1}\mu(\mathcal E_n).
+ \label{eq:N20261026-leroy-increasing}
+\end{equation}
+Second, suppose \(X\) is regular: every open \(U\) is covered by open \(V\) with \(\overline V\subseteq U\). Then the extension satisfies
+\begin{equation}
+ \mu(\mathcal E_1)+\mu(\mathcal E_2)
+ =\mu(\mathcal E_1\cap\mathcal E_2)
+  +\mu(\mathcal E_1\cup\mathcal E_2),
+ \label{eq:N20261026-leroy-modular}
+\end{equation}
+and for every subtopos \(\mathcal E'\) there is a smallest subtopos
+\[
+ \mathcal E''\subseteq\mathcal E'
+ \quad\text{with}\quad
+ \mu(\mathcal E'')=\mu(\mathcal E').
+\]
+
+The lecture remarks that this theorem addresses the Banach--Tarski paradox. This concerns a change of setting from arbitrary point-sets to subtoposes and valuations. It does not construct a countably additive, Euclidean-isometry-invariant extension of volume to every subset of \(\mathbb R^3\); the classical obstruction remains under those requirements.
+
+For a finite vocabulary \(M\), \(M^{\mathbb N}\) is profinite and hence regular. It therefore satisfies the hypothesis used in the second part of Leroy's theorem.
+
+\section{The Grothendieck topology induced by a measure}
+
+Suppose \(X\) is a regular topological space with a bounded measure \(\mu\). On the ordered set of its open subsets---or on the associated lattice of subtoposes---the lecture defines \(J_\mu\) by declaring
+\begin{equation}
+ (U_i\subseteq U)_{i\in I}\text{ to be a }J_\mu\text{-cover}
+ \quad\Longleftrightarrow\quad
+ \mu\left(\bigcup_{i\in I}U_i\right)=\mu(U).
+ \label{eq:N20261026-Jmu}
+\end{equation}
+For ordinary measures the uncovered part is thus null:
+\[
+ \mu\left(U\setminus\bigcup_iU_i\right)=0.
+\]
+The covering members need account for \(U\) only \emph{almost everywhere}, a weaker requirement than ordinary topological coverage. This gives a subtopos
+\[
+ \mathcal E_\mu\hookrightarrow\mathcal E_X.
+\]
+
+The lecture observes that knowing \(J_\mu\) is equivalent to knowing which locally closed subsets are negligible for \(\mu\). It also identifies the points of \(\mathcal E_\mu\) with the positive-mass atoms represented by points:
+\[
+ \bigl\{x\in X:\mu(\{x\})>0\bigr\}.
+\]
+Pointless portions of a subtopos may still be nontrivial, so its point set alone does not capture the complete structure.
+
+For \(X=M^{\mathbb N}\), the language-model interpretation is that this topology reveals which finite continuations \(m'\leq m\) can carry positive probability, together with the more general notion of almost-sure coverage. Whether that information captures the model's judgements is a separate question, to be considered after the mathematical construction is complete.
+
+\section{Geometric logic and classifying toposes}
+
+The next step is logical. A \emph{geometric first-order theory} \(T\) is formulated using finite conjunctions, arbitrary disjunctions and existential quantifiers, together with the ordinary structural operations of first-order logic. These operations are special because their interpretation is preserved by inverse images of geometric morphisms.
+
+For any topos \(\mathcal E\), one can speak of models of \(T\) \emph{inside} \(\mathcal E\); they form a category
+\[
+ \operatorname{Mod}_T(\mathcal E).
+\]
+If \(f:\mathcal E'\to\mathcal E\) is a geometric morphism, its inverse-image functor induces
+\[
+ f^*:\operatorname{Mod}_T(\mathcal E)\longrightarrow
+ \operatorname{Mod}_T(\mathcal E').
+\]
+In this sense, a geometric theory can be interpreted in many different mathematical universes.
+
+\begin{theorem}[Classifying topos]
+For every geometric theory \(T\) there exists a topos \(\mathcal E_T\) and a universal model
+\[
+ \mathcal U_T\in\operatorname{Mod}_T(\mathcal E_T)
+\]
+such that, naturally in \(\mathcal E\),
+\[
+ \operatorname{Geom}(\mathcal E,\mathcal E_T)
+ \simeq\operatorname{Mod}_T(\mathcal E),
+ \qquad f\longmapsto f^*\mathcal U_T.
+\]
+In particular, points of \(\mathcal E_T\), namely geometric morphisms
+\(\mathbf{Set}\to\mathcal E_T\), correspond to set-valued models of \(T\).
+\end{theorem}
+
+One can regard the classifying topos as a space whose points are models of a theory. The universal model is the single object whose pullbacks give all its interpretations. The lecture attributes the systematic development of these ideas to categorical logicians including Lawvere, Joyal, Makkai and Reyes in the 1970s, with early precedents in Monique Hakim's thesis.
+
+There is a striking converse: a given Grothendieck topos can be represented as the classifying topos of infinitely many geometric theories. The same topos may therefore be reached by different logical presentations.
+
+\section{Subtoposes as additional axioms}
+
+A theorem of Olivia Caramello gives a precise correspondence between strengthening a theory and passing to a subtopos.
+
+\begin{theorem}[Subtopos--quotient theory correspondence]
+Let \(T\) be a geometric theory in a language \(\Sigma\).
+\begin{enumerate}
+ \item Adjoining geometric axioms in the same language produces a quotient theory \(T'\), and its classifying topos is a subtopos
+ \[
+  \mathcal E_{T'}\hookrightarrow\mathcal E_T.
+ \]
+ \item Two such families of added axioms determine the same subtopos exactly when the resulting theories are provably equivalent over \(T\).
+ \item Every subtopos of \(\mathcal E_T\) arises from some such quotient theory, unique up to provable equivalence.
+\end{enumerate}
+\end{theorem}
+
+The direction of the arrows is worth remembering: more axioms mean fewer models and a \emph{smaller} classifying topos. If \(\mathcal E_T\simeq\operatorname{Sh}(C,J)\), the earlier description of subtoposes turns this into the correspondence
+\[
+ \begin{gathered}
+ \{\text{additional geometric axioms}\}/\text{provable equivalence}\\
+ \longleftrightarrow\\
+ \{J'\supseteq J:\ J'\text{ a Grothendieck topology on }C\}.
+ \end{gathered}
+\]
+This is the mathematical mechanism behind the lecture's translation of logical provability questions into questions about coverings.
+
+\section{The logic of a measure}
+
+The abstract correspondence becomes particularly transparent for an ordered set \((C,\leq)\). Consider a propositional language containing one nullary relation symbol \(R_x\) for each \(x\in C\). The basic theory has the sequents
+\[
+ R_{x'}\vdash R_x
+ \qquad\text{whenever }x'\leq x.
+\]
+Here \(R_x\) can be read as saying that the condition represented by \(x\) holds; if the finer condition \(x'\) holds, so does \(x\). The lecture presents this as the propositional description of the presheaf topos \(\widehat C\).
+
+A small qualification makes the presentation mathematically precise: the order implications alone do not axiomatize \(\widehat C\) for an arbitrary poset. The background flatness conditions for its points must also be encoded. For example, when \(C\) consists of two incomparable objects, \(\widehat C\simeq\mathbf{Set}\times\mathbf{Set}\) has two points up to isomorphism, whereas a theory of two independent nullary predicates has four set-valued models. The displayed sequents record the order relations stressed in the lecture; the covering sequents below are imposed on the appropriate underlying classifying presentation.
+
+For every \(J\)-cover \((x_i\leq x)_{i\in I}\), add the axiom
+\begin{equation}
+ R_x\vdash\bigvee_{i\in I}R_{x_i}.
+ \label{eq:N20261026-cover-sequent}
+\end{equation}
+The new theory classifies \(\operatorname{Sh}(C,J)\). A cover is thus read logically: whenever \(x\) holds, at least one of the pieces \(x_i\) must hold.
+
+If \(C\) is a basis of open sets of a space \(X\), use a symbol \(R_U\) for each \(U\in C\). The order gives
+\[
+ U'\subseteq U\quad\Longrightarrow\quad R_{U'}\vdash R_U,
+\]
+while an ordinary open cover \(U=\bigcup_iU_i\) gives
+\[
+ R_U\vdash\bigvee_iR_{U_i}.
+\]
+For the measure-induced topology \(J_\mu\), the additional axioms are exactly
+\begin{equation}
+ R_U\vdash\bigvee_i R_{U_i}
+ \qquad\text{when}\qquad
+ \mu\left(U\setminus\bigcup_iU_i\right)=0.
+ \label{eq:N20261026-measure-sequent}
+\end{equation}
+
+The interpretation is precise: a measure-zero omission does not prevent the family from being declared a cover. The resulting geometric theory records \emph{almost-everywhere} covering relations as axioms. Nothing in this construction has yet referred to a training procedure or the internal computation of a neural network; its logical content is derived from the chosen measure and its null sets.
+
+\section{Sequence spaces and product measures}
+
+We now begin the final part of the lecture. Let \(X\) be an arbitrary topological space and set
+\[
+ X^{\mathbb N}=\prod_{n\in\mathbb N}X.
+\]
+Its points are sequences \(x_\bullet=(x_0,x_1,\ldots)\). The product topology has a basis consisting of sets
+\begin{equation}
+ U=\prod_{n\in\mathbb N}U_n,
+ \qquad U_n\subseteq X\text{ open},\qquad
+ U_n=X\text{ for all sufficiently large }n.
+ \label{eq:N20261026-product-basis}
+\end{equation}
+
+When \(X=M^{\mathbb N}\) is the space of infinite texts, a basic open subset of \(X^{\mathbb N}\) specifies finitely many prefixes:
+\[
+ U=
+ \left(\prod_{0\leq i<N}U_{m_i}\right)
+ \times\left(\prod_{i\geq N}X\right).
+\]
+One may picture a point of \(X^{\mathbb N}\) as an infinite library of infinite texts. A basic open set puts restrictions on only finitely many entries in the library.
+
+If \(\mu\) is a probability measure on \(X\), there is a product measure \(\mu^{\mathbb N}\) on \(X^{\mathbb N}\). On product cylinders it is given by
+\begin{equation}
+ \mu^{\mathbb N}\left(\prod_{n\in\mathbb N}U_n\right)
+ =\prod_{n\in\mathbb N}\mu(U_n),
+ \label{eq:N20261026-product-measure}
+\end{equation}
+with all but finitely many factors equal to \(1\). Under this measure, the coordinates \(x_0,x_1,\ldots\) are independent, identically distributed samples with law \(\mu\).
+
+\section{Occurrence frequencies}
+
+Fix an open set \(U\subseteq X\). For each sample sequence \(x_\bullet\in X^{\mathbb N}\), the proportion of its first \(n\) entries that belong to \(U\) is
+\begin{equation}
+ p_n^U(x_\bullet)
+ =\frac{\#\{0\leq i<n:x_i\in U\}}{n}
+ =\frac1n\sum_{i=0}^{n-1}\mathbf1_U(x_i).
+ \label{eq:N20261026-empirical-frequency}
+\end{equation}
+The last expression will be the bridge to the law of large numbers.
+
+A sequence of frequencies need not converge for a particular \(x_\bullet\). Define its upper and lower limiting frequencies by
+\[
+ p_+^U(x_\bullet)
+ =\lim_{n\to\infty}\sup_{k\geq n}p_k^U(x_\bullet),
+ \qquad
+ p_-^U(x_\bullet)
+ =\lim_{n\to\infty}\inf_{k\geq n}p_k^U(x_\bullet).
+\]
+Always
+\[
+ 0\leq p_-^U(x_\bullet)\leq p_+^U(x_\bullet)\leq1.
+\]
+They are equal precisely when the sequence \(p_n^U(x_\bullet)\) converges. At this stage these are \emph{pointwise} definitions for arbitrary sequences; randomness has not yet supplied a limit.
+
+\section{Subspaces defined by limiting frequencies}
+
+Choose a dense subset \(Q\subseteq[0,1]\); to make countability explicit we may take \(Q=\mathbb Q\cap[0,1]\). For every open \(U\subseteq X\) and \(q\in Q\), define
+\begin{align}
+ P_{\geq q}^U(X^{\mathbb N})
+ &=\{x_\bullet:p_-^U(x_\bullet)\geq q\},\label{eq:N20261026-Pge}\\
+ P_{\leq q}^U(X^{\mathbb N})
+ &=\{x_\bullet:p_+^U(x_\bullet)\leq q\}.\label{eq:N20261026-Ple}
+\end{align}
+These are the two families of subspaces used on slide 15.
+
+The quantifiers hidden in these definitions are important. For \(q'<q\),
+\[
+ x_\bullet\in P_{\geq q}^U
+ \quad\Longleftrightarrow\quad
+ \#\{n\geq1:p_n^U(x_\bullet)\leq q'\}<\infty
+ \quad\text{for every }q'<q.
+\]
+In words: eventually the observed frequency stays above every threshold strictly smaller than \(q\). Dually,
+\[
+ x_\bullet\in P_{\leq q}^U
+ \quad\Longleftrightarrow\quad
+ \#\{n\geq1:p_n^U(x_\bullet)\geq q'\}<\infty
+ \quad\text{for every }q'>q.
+\]
+
+\begin{lemma}[Measurability of the frequency subspaces]
+For each open \(U\) and \(q\in[0,1]\), both \(P_{\geq q}^U\) and \(P_{\leq q}^U\) belong to the Borel \(\sigma\)-algebra of \(X^{\mathbb N}\).
+\end{lemma}
+\begin{proof}
+The coordinate maps \(x_\bullet\mapsto x_i\) are continuous, so \(\mathbf1_U(x_i)\) is Borel measurable. Each finite average \(p_n^U\) is therefore Borel. Moreover
+\[
+ P_{\geq q}^U
+ =\bigcap_{r=1}^{\infty}
+   \bigcup_{N=1}^{\infty}
+   \bigcap_{n\geq N}\{p_n^U>q-1/r\},
+\]
+and
+\[
+ P_{\leq q}^U
+ =\bigcap_{r=1}^{\infty}
+   \bigcup_{N=1}^{\infty}
+   \bigcap_{n\geq N}\{p_n^U<q+1/r\}.
+\]
+These are countable combinations of Borel sets.
+\end{proof}
+
+This lemma is necessary before assigning a product-measure probability to the new subspaces. They are defined by infinite limiting conditions, yet remain measurable.
+
+\section{The law of large numbers and measure reconstruction}
+
+The last slide contains the central result. The first part states that for \(q>q'\),
+\begin{equation}
+ \mu^{\mathbb N}\bigl(
+ P_{\geq q}^U(X^{\mathbb N})
+ \cap P_{\leq q'}^U(X^{\mathbb N})\bigr)=0.
+ \label{eq:N20261026-incompatible-thresholds}
+\end{equation}
+In fact the intersection is empty: no sequence can have
+\(p_-^U\geq q>q'\geq p_+^U\), since the lower limit cannot exceed the upper limit.
+
+The substantive part states that these subspaces have \emph{zero-or-one probabilities} determined exactly by \(\mu(U)\):
+\begin{theorem}[Law of large numbers in the form used by the lecture]
+Let \(X\) be a regular topological space carrying a Borel probability measure \(\mu\), and give \(X^{\mathbb N}\) the independent product measure \(\mu^{\mathbb N}\). For every open \(U\subseteq X\), writing \(p=\mu(U)\), we have
+\begin{equation}
+ \mu^{\mathbb N}(P_{\geq q}^U)=
+ \begin{cases}1,&q\leq p,\\0,&q>p,\end{cases}
+ \qquad(q\in Q),
+ \label{eq:N20261026-LLN-ge}
+\end{equation}
+and
+\begin{equation}
+ \mu^{\mathbb N}(P_{\leq q}^U)=
+ \begin{cases}1,&q\geq p,\\0,&q<p.\end{cases}
+ \qquad(q\in Q).
+ \label{eq:N20261026-LLN-le}
+\end{equation}
+\end{theorem}
+
+Let us unfold the probabilistic argument rather than treating the theorem as a black box. For a fixed open \(U\), define random variables on \(X^{\mathbb N}\)
+\[
+ Y_i(x_\bullet)=\mathbf1_U(x_i).
+\]
+Because the coordinates are independent with law \(\mu\), the \(Y_i\) are i.i.d. Bernoulli random variables with parameter \(p=\mu(U)\). Therefore
+\[
+ \mathbb E Y_i=p,\qquad
+ \operatorname{Var}(Y_i)=p(1-p),
+ \qquad
+ p_n^U=\frac1n\sum_{i=0}^{n-1}Y_i.
+\]
+By independence,
+\begin{equation}
+ \mathbb E p_n^U=p,\qquad
+ \operatorname{Var}(p_n^U)=\frac{p(1-p)}n.
+ \label{eq:N20261026-frequency-variance}
+\end{equation}
+Chebyshev's inequality immediately gives
+\[
+ \mu^{\mathbb N}(|p_n^U-p|\geq\varepsilon)
+ \leq\frac{p(1-p)}{n\varepsilon^2}.
+\]
+This proves convergence \emph{in probability}. To identify the sets \(P_{\geq q}^U\) and \(P_{\leq q}^U\), however, we need convergence \emph{almost surely}.
+
+One route to the stronger statement uses the exponential tail bound for bounded independent variables:
+\begin{equation}
+ \mu^{\mathbb N}(|p_n^U-p|\geq\varepsilon)
+ \leq 2e^{-2n\varepsilon^2}.
+ \label{eq:N20261026-hoeffding}
+\end{equation}
+For completeness, its mechanism is a one-line Chernoff argument after the bounded-variable moment estimate
+\(\mathbb E e^{t(Y_i-p)}\leq e^{t^2/8}\). Independence and Markov's inequality give
+\[
+ \Pr(p_n^U-p\geq\varepsilon)
+ \leq\inf_{t>0}
+ \exp\left(-nt\varepsilon+\frac{nt^2}{8}\right)
+ =e^{-2n\varepsilon^2},
+\]
+and the lower tail is identical. For each fixed \(\varepsilon>0\),
+\[
+ \sum_{n=1}^{\infty}\mu^{\mathbb N}(|p_n^U-p|\geq\varepsilon)
+ \leq\sum_{n=1}^{\infty}2e^{-2n\varepsilon^2}<\infty.
+\]
+The first Borel--Cantelli lemma now says that the deviation event occurs only finitely often, almost surely. Applying this for \(\varepsilon=1,1/2,1/3,\ldots\) and intersecting those countably many probability-one events yields
+\begin{equation}
+ \mu^{\mathbb N}\left(
+ \left\{x_\bullet:\lim_{n\to\infty}p_n^U(x_\bullet)=p\right\}
+ \right)=1.
+ \label{eq:N20261026-strong-LLN}
+\end{equation}
+On this full-measure set, both \(p_-^U\) and \(p_+^U\) equal \(p\). The two zero-or-one formulas in the theorem follow at once. Notice that the proof requires \emph{independent sampled elements of \(X\)}. When \(X\) is itself a space of infinite texts, the \(x_i\) are independently sampled \emph{texts}, not successive tokens in a single generated text.
+
+Now comes the converse direction which motivates the entire lecture.
+
+\begin{proposition}[Recovering a measure from full-measure frequency events]
+For every open \(U\subseteq X\), the number \(\mu(U)\) is uniquely determined by which of the measurable sets \(P_{\geq q}^U\) and \(P_{\leq q}^U\) have full \(\mu^{\mathbb N}\)-measure. In fact,
+\begin{align}
+ \mu(U)
+ &=\sup\{q\in Q:\mu^{\mathbb N}(P_{\geq q}^U)=1\},\label{eq:N20261026-recover-sup}\\
+ &=\inf\{q\in Q:\mu^{\mathbb N}(P_{\leq q}^U)=1\}.\label{eq:N20261026-recover-inf}
+\end{align}
+\end{proposition}
+\begin{proof}
+The first probability equals \(1\) exactly for \(q\leq\mu(U)\), and the second exactly for \(q\geq\mu(U)\). Density of \(Q\) in \([0,1]\) identifies the common boundary. We include \(0,1\in Q\), so the formulas also cover the endpoint cases.
+\end{proof}
+
+This is where the measure-induced topology reappears. Apply the construction of \(J_\mu\) to the measurable subsets of \(X^{\mathbb N}\), equipped with \(\mu^{\mathbb N}\). Its covering relation tells us which measurable subsets are null; equivalently, by taking complements, which have full measure. Thus it tells us the truth values of
+\[
+ \mu^{\mathbb N}(P_{\geq q}^U)=1,
+ \qquad
+ \mu^{\mathbb N}(P_{\leq q}^U)=1.
+\]
+The reconstruction formulas then recover \(\mu(U)\) for every open \(U\). This is the final assertion of the lecture: the numerical probability measure on \(X\) is completely determined by a Grothendieck topology \(J_{\mu^{\mathbb N}}\) on an appropriate ordered collection of measurable subsets of the \emph{sequence space} \(X^{\mathbb N}\).
+
+\begin{example}[Two coins with the same finite support]
+Let \(X=\{0,1\}\), take \(U=\{1\}\), and let \(\mu_p(\{1\})=p\) for \(0<p<1\). For both \(p=1/3\) and \(p=2/3\), every finite binary word has positive probability. Merely asking which finite cylinders are possible cannot distinguish the two measures.
+
+But consider the subset
+\[
+ A_{1/3}=\left\{x_\bullet:
+ \lim_{n\to\infty}\frac1n\sum_{i=0}^{n-1}x_i=\frac13\right\}.
+\]
+Then
+\[
+ \mu_{1/3}^{\mathbb N}(A_{1/3})=1,
+ \qquad
+ \mu_{2/3}^{\mathbb N}(A_{1/3})=0.
+\]
+The two product measures have different null sets, even though their finite-prefix supports coincide. Indeed, the same argument shows that if two probability measures \(\mu\ne\nu\) differ on some open \(U\), their infinite independent product measures are mutually singular: the set where the empirical frequency of \(U\) converges to \(\mu(U)\) is full under one and null under the other.
+\end{example}
+
+For the language-model space \(X=M^{\mathbb N}\), there is a useful further observation. The family of prefix cylinders
+\[
+ \mathcal B=\{U_m:m\in C_M\}
+\]
+is countable. Hence the intersection over all \(U\in\mathcal B\) of the probability-one events from \eqref{eq:N20261026-strong-LLN} still has probability one. With probability one, a single infinite independent library of texts has the correct limiting occurrence frequency for \emph{every finite prefix simultaneously}. Those cylinder probabilities determine the Borel measure \(\mu\) uniquely.
+
+The result is mathematically exact, but its infinite-sample formulation should be kept distinct from finite statistical estimation. For any one fixed open \(U\), the concentration inequality \eqref{eq:N20261026-hoeffding} also yields an operational bound:
+\[
+ n\geq\frac{\log(2/\delta)}{2\varepsilon^2}
+ \quad\Longrightarrow\quad
+ \Pr\bigl(|p_n^U-\mu(U)|\geq\varepsilon\bigr)\leq\delta.
+\]
+Estimating many events simultaneously requires an additional bound on the class of events being considered. This finite-sample result is a supplementary consequence of the ordinary concentration argument; the topological reconstruction theorem itself is an assertion about exact limiting events and their nullity.
+
+\section{What does the construction reveal about a model?}
+
+The mathematical result is quite beautiful: an exact real-valued probability law can be recovered from a yes-or-no notion of negligible subsets, provided we are allowed to pass to an infinite independent sample space. The interesting question for AI begins when we ask what information about a \emph{trained model} survives this construction.
+
+Let \(\mathfrak M\) denote a class of language-model implementations. The lecture defines a chain of maps of the form
+\begin{equation}
+ \begin{aligned}
+ \mathfrak M&\longrightarrow\operatorname{Prob}(M^{\mathbb N})
+ \longrightarrow\{\text{Grothendieck topologies}\},\\
+ F&\longmapsto\mu_F\longmapsto J_{\mu_F}.
+ \end{aligned}
+ \label{eq:N20261026-factorization}
+\end{equation}
+There is also the refined map \(\mu_F\mapsto J_{\mu_F^{\mathbb N}}\), from which the preceding section reconstructs \(\mu_F\). Every construction in this chain factors through the model's next-token conditional probabilities. It makes sense for an autoregressive Markov model, a probabilistic grammar, or a completely different implementation with the same conditionals. The mathematics does not use any special property of the Transformer.
+
+That immediately raises an \emph{identifiability} problem. Suppose two implementations \(F,G\) satisfy
+\[
+ p_F(a\mid m)=p_G(a\mid m)
+ \qquad
+ \text{for every finite history }m\text{ and token }a.
+\]
+Then \(\mu_F=\mu_G\), hence both \(J_{\mu_F}=J_{\mu_G}\) and
+\(J_{\mu_F^{\mathbb N}}=J_{\mu_G^{\mathbb N}}\). The latter construction can recover their complete common output law, but it cannot tell the two implementations apart.
+
+There are elementary examples of this ambiguity even within a simple neural layer. If logits depend on a hidden vector through
+\[
+ z=Wh,\qquad h=Vx,
+\]
+then for any invertible matrix \(A\) we can replace these parameters by
+\[
+ h'=Ah,\qquad W'=WA^{-1}
+\]
+and obtain exactly the same \(z\), and therefore the same probabilities after softmax. The coordinates of the hidden representation have changed. More radically, different circuits or architectures may implement exactly the same input-output function. Knowing that function does not recover the way it was computed.
+
+The resulting limitation is mathematical, quite apart from whether toposes are useful in other contexts: every property extracted \emph{solely} from \(\mu_F\) is constant on the observational equivalence class
+\[
+ [F]_{\mathrm{out}}
+ =\{G:\mu_G=\mu_F\}.
+\]
+A theory intending to recover specific internal features, causal circuits or training-induced representations must use additional information, assumptions, or interventions that distinguish members of this class.
+
+\section{What is possible after a prefix?}
+
+Slide 9 says that the measure topology tells us which continuations of a text are possible. For an ordinary softmax output
+\[
+ p_\theta(a\mid m)
+ =\frac{e^{z_a(m)}}{\sum_{b\in M}e^{z_b(m)}},
+\]
+every token has strictly positive probability, provided the logits are finite. Therefore every finite word \(m=(m_1,\ldots,m_\ell)\) has
+\[
+ \mu_\theta(U_m)
+ =\prod_{i=1}^{\ell}p_\theta(m_i\mid m_{<i})>0.
+\]
+All finite continuations are possible in this support-theoretic sense, including incoherent and factually mistaken ones. For a fixed ordinary softmax model, the question of \emph{which finite continuation has positive probability} tells us essentially nothing about its graded judgements.
+
+There is an important distinction here. Full support on finite cylinders does \emph{not} imply that the measure-induced topology \(J_\mu\) is trivial. A particular infinite sequence can have probability zero:
+\[
+ \mu(\{a\})
+ =\lim_{\ell\to\infty}\mu(U_{a_1,\ldots,a_\ell}),
+\]
+and null sets need not be open. The infinite-sample construction detects more than finite-word support, as the two-coin example showed. My concern is instead the inference from these mathematical relations to the model's linguistic or conceptual competence. The extra information supplied by the infinite-sample topology is the model's \emph{output probability law}; it does not disclose the internal computations that produced the law.
+
+A further choice is usually left implicit: which distribution are we analyzing? The unmodified model defines \(p_\theta(\,\cdot\mid m)\), but an actual decoder may transform it. For top-\(k\) sampling, for example,
+\[
+ p_{\theta,k}(a\mid m)
+ =\frac{\mathbf1\{a\in K_k(m)\}\,p_\theta(a\mid m)}
+ {\sum_{b\in K_k(m)}p_\theta(b\mid m)},
+\]
+where \(K_k(m)\) is the selected set of \(k\) tokens. Tokens outside \(K_k(m)\) now have exactly zero probability. Top-\(p\) sampling changes the support as well. The same trained parameters \(\theta\) can consequently produce different measures and different associated topologies under different decoding rules.
+
+One may decide to study the raw model distribution and avoid that ambiguity. The object under study is then unambiguously the pre-decoding output law. A different tokenizer introduces another representation choice: text strings are encoded into different token spaces, and a comparison between their measures requires specifying a map between those spaces and, where appropriate, pushing measures forward along it. A topological construction does not by itself guarantee invariance under such choices.
+
+\section{Logical semantics and learned semantics}
+
+The use of geometric logic in the lecture is mathematically exact. The axiom
+\[
+ R_U\vdash\bigvee_iR_{U_i}
+\]
+means that the family covers \(U\); for the measure topology, it expresses a relation holding up to a null set. A classifying topos supplies the appropriate semantic universe for a formal theory, and quotient theories correspond to subtoposes. These are substantive connections between logic, geometry and measure.
+
+The word \emph{semantics}, however, refers to another problem in machine learning. Formal semantics begins with a language and an interpretation: it asks whether a formula is true in a model. Representation learning asks how a system acquires useful concepts from experience, whether those concepts transfer across tasks, and whether they causally participate in computation.
+
+If a formal language already contains a predicate \(\mathrm{Cat}(x)\), the theory may encode relations involving that predicate. It has not thereby explained how a visual model learns to recognize cats from pixels, or why one learned feature is stable under changes of viewpoint and another is not. Likewise, naming a predicate after a scientific mechanism does not discover that mechanism in data. The interpretation connecting the symbol to observations is an essential part of the problem.
+
+This matters especially when the concepts themselves are unknown. In scientific learning we may not know in advance which properties or interactions deserve a predicate. We want a method that can discover useful distinctions, discover that a proposed distinction fails, or form a more appropriate representation. Describing already-interpreted propositions inside a rich logic is valuable, but the correspondence between those propositions and empirical phenomena still needs to be established.
+
+There is a sharp mathematical version of this concern. Given finitely many observations \(D\), consider the version space
+\[
+ \mathcal V(D)=\{T:\ T\text{ is consistent with all observations in }D\}.
+\]
+Many incompatible theories can lie in \(\mathcal V(D)\), some generalizing to new observations and others fitting accidents of the sample. The topos--quotient correspondence can represent families of added axioms, but representation of the candidates does not select the right one. Generalization requires an inductive bias, objective, prior, additional evidence or some other selection principle.
+
+Lafforgue's 2024 Barcelona talk, \emph{Some Sketches for a Topos-Theoretic AI}, approaches this problem through a chosen descriptive vocabulary, relations among its predicates, quotient theories and information-extraction morphisms.\footnote{See Laurent Lafforgue, \href{https://www.laurentlafforgue.org/Expose_Lafforgue_IA_Barcelone_fevrier_2024.pdf}{\emph{Some sketches for a topos-theoretic AI}} (Barcelona Mathematics and Machine Learning Colloquium, 2024).} It is a more explicit proposal for symbolic induction than the probability-space construction discussed in Tsinghua. The specification of a language and a family of morphisms is still only part of a learning procedure: one would also need a way to discover or revise vocabulary, search for useful morphisms, validate hypotheses and compare their predictions.
+
+\section{Numerical representations and the origin of meaning}
+
+In an earlier presentation, Lafforgue expressed concern that reducing descriptions of the world to collections of numbers makes their meaning disappear, and that enormous numerical ambient spaces contain many points with no meaningful interpretation.\footnote{Laurent Lafforgue, \href{https://www.laurentlafforgue.org/~lafforgue/Expose_Lafforgue_topos_AI_ETH_sept_2022.pdf}{\emph{Some possible roles for AI of Grothendieck topos theory}} (ETH Z\"urich, 2022).} This is an interesting motivation for seeking a different mathematical object on which learning could take place.
+
+I find it hard to derive an inefficiency or loss of meaning from the mere use of coordinates. A numerical representation can preserve information perfectly, and a learned representation can organize that information in ways that support recognition, generalization and intervention. The relevant mathematical questions concern the map from data to representations, the structure of the image of that map, the inductive bias of the architecture and the behavior of the optimization algorithm.
+
+For example, a hidden state may live in \(\mathbb R^d\) while the set of states actually reached on data occupies a highly constrained subset
+\[
+ \mathcal H_\theta=\{h_\theta(x):x\in\operatorname{supp}(P_{\mathrm{data}})\}
+ \subseteq\mathbb R^d.
+\]
+Counting arbitrary points of the ambient space that have no semantic interpretation says little about the computational cost of evaluating \(h_\theta\). A numerical optimizer does not enumerate all of \(\mathbb R^d\); and modern numerical hardware exploits the parallelism of matrix operations. Efficiency is a property of the algorithm, representation, data distribution and machine together.
+
+Interpretability research can at least formulate testable claims about hidden computation. Suppose a feature \(f(h)\) is proposed to represent a concept. High correlation between \(f(h)\) and the concept may motivate the hypothesis, but a causal claim requires an intervention. Schematically, for an output event \(A\), one can compare
+\[
+ \Delta_f(x)
+ =P_\theta(A\mid x,\operatorname{do}(f(h):=c))
+  -P_\theta(A\mid x),
+\]
+with the intervention defined by the actual computational graph rather than by a merely symbolic manipulation. Activation patching, representation analysis and causal interventions try to determine whether a feature plays an operative role in a model's behavior. Work such as emph{Locating and Editing Factual Associations in GPT} (ROME) and Anthropic's emph{Mapping the Mind of a Large Language Model} illustrates why a learned feature and a possible causal intervention are experimentally meaningful objects. Their empirical conclusions are limited, but they ask questions whose answers may be supported or refuted by experiments.
+
+For a theory of topological or logical representations to address the same phenomenon, it would be helpful to identify a corresponding invariant, causal mechanism, predicted intervention effect, or learning rule. A formal interpretation of a predicate and an observed learned feature may eventually be connected; that connection requires an actual construction.
+
+\section{Learning, generalization, and computational claims}
+
+Other remarks in earlier talks suggested that language models might be approaching a limit because available written text had already been used in training, and that topological methods might be closer to natural human thought. Those suggestions raise questions quite distinct from the topology of measures.
+
+A limit on additional pretraining text does not imply a limit on all procedures that improve a model. Optimization, architecture, synthetic tasks, verification and reinforcement learning introduce other sources of learning signal. In a schematic policy-gradient calculation, for example,
+\[
+ \nabla_\theta J(\theta)
+ =\mathbb E_{x,y\sim\pi_\theta}
+ \bigl[(R(x,y)-b(x))\nabla_\theta\log\pi_\theta(y\mid x)\bigr].
+\]
+Multiple sampled solutions to the same problem, followed by task-based reward or verification, can produce parameter updates without supplying a new human-written answer to every sample. This does not establish unlimited improvement: useful rewards and meaningful tasks remain necessary. It does show why corpus size alone cannot settle the question.
+
+Likewise, the fact that topological language can describe a cognitive phenomenon does not imply that a human mind implements the corresponding mathematical operations. Such a claim would require independent evidence from cognitive modeling, neuroscience or a predictive account of behavior. A useful mathematical description and an account of the mechanism are different levels of explanation.
+
+My broader interest in the proposed Topos-for-AI program can be expressed by separating several possible goals. One might try to replace vector spaces by new learnable objects while retaining data-driven representation discovery; this would require explicit learning algorithms and a theory of what is preserved by abstraction. One might keep neural networks and use toposes to organize the symbolic component of a neuro-symbolic system; this would require an interface between continuous representations and interpreted predicates. Another possibility is to learn additional axioms inside an already chosen formal language; its successes and limits would depend on the search method and inductive principles. One may also study categorical structures attached to an existing computation or to its output law, as in the Tsinghua lecture. Each project has distinct mathematical obligations, and the existence of a topos presentation alone does not discharge them.
+
+The lecture establishes a precise relation among probability laws, almost-sure covers, geometric theories and long-run frequencies. Its final reconstruction theorem is a satisfying demonstration of how much quantitative information can be encoded in apparently qualitative structure. The question that remains with me is what further structure, beyond the output law, would let us study the concepts and computations actually learned by a neural network.

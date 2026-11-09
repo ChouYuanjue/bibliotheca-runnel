@@ -4,7 +4,7 @@
     "subtitle": "A dated archive of mathematical notes reconstructed into an English TeX book.",
     "fullPdf": "/notes/inm.pdf",
     "oldArchive": "https://github.com/ChouYuanjue/Informal_Notes_on_Mathematics",
-    "noteCount": 161,
+    "noteCount": 169,
     "volumeCount": 13,
     "source": "E:/INM-TeX"
   },
@@ -32,6 +32,159 @@
     "2021"
   ],
   "notes": [
+    {
+      "id": "N-20261109",
+      "date": "2026-11-09",
+      "year": "2026",
+      "month": "Nov",
+      "day": "09",
+      "title": "Twenty-Seven Lines on a Cubic Surface",
+      "volume": "Algebraic and Arithmetic Geometry",
+      "sectionCount": 11,
+      "sections": [
+        "Why a line on a cubic is special",
+        "Replacing a point by its directions",
+        "Counting using divisors",
+        "Three kinds of curves",
+        "Why there cannot be a twenty-eighth",
+        "The intersections are just arithmetic",
+        "Forty-five tritangent planes",
+        "A double-six"
+      ],
+      "pdf": "/notes/2026/N-20261109.pdf",
+      "tex": "/notes/2026/N-20261109.tex"
+    },
+    {
+      "id": "N-20261108",
+      "date": "2026-11-08",
+      "year": "2026",
+      "month": "Nov",
+      "day": "08",
+      "title": "Inverse Ackermann and Path Compression",
+      "volume": "Combinatorics and Discrete Structures",
+      "sectionCount": 7,
+      "sections": [
+        "Beyond exponentials",
+        "A forest that keeps changing shape",
+        "Rank is an accounting device",
+        "Why one find can still be logarithmic",
+        "Grouping ranks into towers",
+        "A complete iterated-logarithm bound",
+        "Where the inverse Ackermann function enters"
+      ],
+      "pdf": "/notes/2026/N-20261108.pdf",
+      "tex": "/notes/2026/N-20261108.tex"
+    },
+    {
+      "id": "N-20261107",
+      "date": "2026-11-07",
+      "year": "2026",
+      "month": "Nov",
+      "day": "07",
+      "title": "Waiting for a Pattern",
+      "volume": "Combinatorics and Discrete Structures",
+      "sectionCount": 9,
+      "sections": [
+        "Three words, three waiting times",
+        "The useful part of a failed match",
+        "A finite automaton becomes a Markov chain",
+        "How a word overlaps itself",
+        "One identity for the entire distribution",
+        "A gambler who bets on prefixes",
+        "Avoiding a word",
+        "The tail remembers the distribution"
+      ],
+      "pdf": "/notes/2026/N-20261107.pdf",
+      "tex": "/notes/2026/N-20261107.tex"
+    },
+    {
+      "id": "N-20261105",
+      "date": "2026-11-05",
+      "year": "2026",
+      "month": "Nov",
+      "day": "05",
+      "title": "Random Chords, Couplings, and Copulas",
+      "volume": "Real and Complex Analysis",
+      "sectionCount": 8,
+      "sections": [
+        "How close is the chord to the center?",
+        "Three laws on the same set of chords",
+        "Uniform in which coordinates?",
+        "Same margins, different joint laws",
+        "Copulas and the sharp bounds on dependence",
+        "Moving between marginals and dependence",
+        "A dependence with zero correlation",
+        "The geometry of choosing a coupling"
+      ],
+      "pdf": "/notes/2026/N-20261105.pdf",
+      "tex": "/notes/2026/N-20261105.tex"
+    },
+    {
+      "id": "N-20261030",
+      "date": "2026-10-30",
+      "year": "2026",
+      "month": "Oct",
+      "day": "30",
+      "title": "When Roots Walk Around Holes",
+      "volume": "Algebraic and Arithmetic Geometry",
+      "sectionCount": 8,
+      "sections": [
+        "One turn changes a square root",
+        "The sheets form an ordinary space",
+        "Following the roots of a polynomial",
+        "A cubic with two collisions",
+        "The discriminant remembers the parity",
+        "A free group that produces six permutations",
+        "From two branch points to every permutation",
+        "Differential equations remember loops too"
+      ],
+      "pdf": "/notes/2026/N-20261030.pdf",
+      "tex": "/notes/2026/N-20261030.tex"
+    },
+    {
+      "id": "N-20261026",
+      "date": "2026-10-26",
+      "year": "2026",
+      "month": "Oct",
+      "day": "26",
+      "title": "Toposes, Probability, and Language Models: Notes on Lafforgue's Lecture",
+      "volume": "Machine Learning and Inference",
+      "sectionCount": 20,
+      "sections": [
+        "Coverings on an ordered set",
+        "From a topology to a topos",
+        "The topological space of texts",
+        "Next-token probabilities and their measure",
+        "Subtoposes and finer coverings",
+        "Operations on subtoposes",
+        "Extending a measure from open sets",
+        "The Grothendieck topology induced by a measure"
+      ],
+      "pdf": "/notes/2026/N-20261026.pdf",
+      "tex": "/notes/2026/N-20261026.tex"
+    },
+    {
+      "id": "N-20261020",
+      "date": "2026-10-20",
+      "year": "2026",
+      "month": "Oct",
+      "day": "20",
+      "title": "Almost Nowhere, Yet Everywhere",
+      "volume": "Topology and Homotopy Theory",
+      "sectionCount": 8,
+      "sections": [
+        "The Cantor set is already quite strange",
+        "A fat Cantor set",
+        "Completeness and the Baire theorem",
+        "A set that is negligible and generic",
+        "Numbers that are exceptionally easy to approximate",
+        "The Liouville numbers form a dense null $G_\\delta$",
+        "What does a homeomorphism remember?",
+        "Two different ways to ignore small sets"
+      ],
+      "pdf": "/notes/2026/N-20261020.pdf",
+      "tex": "/notes/2026/N-20261020.tex"
+    },
     {
       "id": "N-20261017",
       "date": "2026-10-17",
@@ -97,6 +250,28 @@
       ],
       "pdf": "/notes/2026/N-20261015.pdf",
       "tex": "/notes/2026/N-20261015.tex"
+    },
+    {
+      "id": "N-20261009",
+      "date": "2026-10-09",
+      "year": "2026",
+      "month": "Oct",
+      "day": "09",
+      "title": "Compression, Information, and Hidden Features",
+      "volume": "Machine Learning and Inference",
+      "sectionCount": 10,
+      "sections": [
+        "A perfect classifier and a poor reconstruction",
+        "Sufficiency as an information identity",
+        "How expensive is it to remember more?",
+        "The information bottleneck",
+        "Three measurements from a video encoder",
+        "Coordinates are negotiable",
+        "Looking for a sparse description",
+        "Can two sparse explanations agree exactly?"
+      ],
+      "pdf": "/notes/2026/N-20261009.pdf",
+      "tex": "/notes/2026/N-20261009.tex"
     },
     {
       "id": "N-20260621",

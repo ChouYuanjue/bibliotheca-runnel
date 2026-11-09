@@ -1,0 +1,335 @@
+\notechapter{N-20261108}{Inverse Ackermann and Path Compression}
+
+Some functions grow so slowly that there is no sensible way to watch them grow on a computer. The inverse Ackermann function is one of them. What makes it interesting is that it appears in the complexity of a very ordinary data structure: a collection of rooted trees used to maintain a partition of a set.
+
+The route from a frighteningly fast-growing function to almost constant-time algorithms is not obvious. We will first build a hierarchy of growth rates, then look carefully at path compression in a disjoint-set forest. A complete charging argument will give the bound \(O(m\log^*n)\). The sharper inverse-Ackermann theorem requires a more intricate version of the rank analysis; we will identify what needs to be sharpened rather than disguising an incomplete argument as its proof.\footnote{Robert E. Tarjan, \href{https://doi.org/10.1145/321879.321884}{\emph{Efficiency of a Good But Not Linear Set Union Algorithm}} (1975). The rank-block argument for the iterated-logarithm bound follows the standard exposition in \emph{Introduction to Algorithms}, §21.4, with charging details worked out below.}
+
+\section{Beyond exponentials}
+
+Repeatedly adding \(n\) produces multiplication; repeatedly multiplying \(n\) produces powers. Repeating exponentiation gives power towers. The operation of \emph{iteration} makes it possible to keep going.
+
+For a function \(f\), let \(f^{\circ k}\) be its \(k\)-fold composition, with \(f^{\circ0}(x)=x\). Define
+\begin{equation}
+ A_0(n)=n+1,\qquad
+ A_{r+1}(n)=A_r^{\circ(n+1)}(1),
+ \qquad r,n\geq0.
+ \label{eq:N20261108-hierarchy}
+\end{equation}
+This is one convention for an Ackermann hierarchy. Other books shift the indices or change the initial argument.
+
+The first few functions can be calculated directly:
+\begin{align*}
+ A_0(n)&=n+1,\\
+ A_1(n)&=n+2,\\
+ A_2(n)&=2n+3,\\
+ A_3(n)&=2^{n+3}-3.
+\end{align*}
+For example, \(A_2=A_1^{\circ(n+1)}(1)\), and every application of \(A_1\) adds two, so \(A_2(n)=1+2(n+1)=2n+3\). Applying \(x\mapsto2x+3\) exactly \(k\) times to \(1\) gives \(4\cdot2^k-3\). Taking \(k=n+1\) produces the fourth line.
+
+The next level is already unpleasant. At \(n=1\),
+\begin{align}
+ A_0(1)&=2,&A_1(1)&=3,&A_2(1)&=5,&A_3(1)&=13,\notag\\
+ A_4(1)&=A_3(A_3(1))
+       =A_3(13)=2^{16}-3=65533.
+ \label{eq:N20261108-values}
+\end{align}
+Going one level higher means
+\[
+ A_5(1)=A_4(A_4(1))=A_4(65533).
+\]
+Even the notation becomes more useful than decimal digits. The function \(A_4\) itself is obtained by iterating a roughly exponential function, \(n+1\) times.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth,
+ lev/.style={draw=purple!65!black,fill=purple!5,rounded corners=3pt,
+  inner xsep=9pt,inner ysep=7pt},
+ every node/.style={font=\small}]
+ \node[lev] (a) at (0,0) {\(A_0\)};
+ \node[lev] (b) at (2.25,0) {\(A_1\)};
+ \node[lev] (c) at (4.5,0) {\(A_2\)};
+ \node[lev] (d) at (6.75,0) {\(A_3\)};
+ \node[lev] (e) at (9,0) {\(A_4\)};
+ \foreach \from/\to in {a/b,b/c,c/d,d/e}{
+  \draw[->,thick,teal!65!black] (\from)--node[above,font=\scriptsize]
+    {iterate} (\to);
+ }
+ \node[below,font=\footnotesize,align=center] at (4.5,-.55)
+ {Each level is built from repeated composition of the preceding one};
+\end{tikzpicture}
+\caption{Each new Ackermann level outgrows the previous one. Inverting the hierarchy asks how many such levels are needed to reach a threshold.}
+\label{fig:N20261108-hierarchy}
+\end{figure}
+
+For definiteness, put
+\begin{equation}
+ \alpha(n)=\min\{r\geq1:A_r(1)\geq n\},
+ \qquad n\geq1.
+ \label{eq:N20261108-alpha}
+\end{equation}
+With our convention,
+\[
+ \alpha(n)=
+ \begin{cases}
+ 1,&n\leq3,\\
+ 2,&3<n\leq5,\\
+ 3,&5<n\leq13,\\
+ 4,&13<n\leq65533,\\
+ 5,&65533<n\leq A_5(1).
+ \end{cases}
+\]
+The last range extends to an extraordinary bound. The function is unbounded in the mathematical sense, yet increasing its value by one may require a number far larger than any quantity we can physically store.
+
+In sharp data-structure theorems, the notation \(\alpha(m,n)\) often denotes a \emph{two-parameter} inverse Ackermann variant, measuring \(m\) operations on \(n\) elements. Different normalizations can produce different small numerical values. A claim about \(\alpha(n)\) being less than four, for instance, must be read with its particular definition in mind. We use \eqref{eq:N20261108-alpha} when computing values and use Tarjan's conventional asymptotic notation for the sharp complexity result.
+
+\section{A forest that keeps changing shape}
+
+A disjoint-set union structure maintains a partition into nonoverlapping sets. It supports \(\operatorname{MAKESET}(x)\), creating a singleton; \(\operatorname{FIND}(x)\), returning the representative of the set containing \(x\); and \(\operatorname{UNION}(x,y)\), merging the sets containing \(x\) and \(y\).
+
+Represent every set by a rooted tree. Each node \(x\) has a parent pointer \(p[x]\), and a root satisfies \(p[x]=x\). A find follows pointers to the root.
+
+If every union attaches an arbitrary root below another, a tree can become a chain of length \(n-1\). A find can then traverse \(\Theta(n)\) pointers. The first improvement is to choose the direction of attachment carefully.
+
+\emph{Union by rank} stores a nonnegative integer \(\operatorname{rank}[x]\). Initially every rank is zero. When combining distinct roots \(r,s\), attach the lower-rank root below the higher-rank root. If the ranks are equal, attach either below the other and increase the new root's rank by one. Rank is maintained as a historical bound, not as the current depth after compression.
+
+\begin{center}
+\begin{minipage}{.87\textwidth}
+\ttfamily\small
+MAKESET(x):\\
+\hspace*{1.5em}parent[x] = x; rank[x] = 0\\[4pt]
+FIND(x):\\
+\hspace*{1.5em}if parent[x] != x:\\
+\hspace*{3em}parent[x] = FIND(parent[x])\\
+\hspace*{1.5em}return parent[x]\\[4pt]
+UNION(x, y):\\
+\hspace*{1.5em}a = FIND(x); b = FIND(y)\\
+\hspace*{1.5em}if a == b: return\\
+\hspace*{1.5em}if rank[a] < rank[b]: swap(a, b)\\
+\hspace*{1.5em}parent[b] = a\\
+\hspace*{1.5em}if rank[a] == rank[b]: rank[a] += 1
+\end{minipage}
+\end{center}
+
+The recursive call implements \emph{full path compression}. Once the root is known, all visited vertices on that path become its direct children.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth,
+ nd/.style={draw=purple!65!black,fill=purple!5,circle,minimum size=7mm,
+ font=\footnotesize},
+ every node/.style={font=\footnotesize}]
+ \foreach \x/\s in {0/a,1/b,2/c,3/r}{
+  \node[nd] (l\s) at (0,1.0*\x) {\(\s\)};
+  \node[nd] (r\s) at (5.5,1.0*\x) {\(\s\)};
+ }
+ \draw[->] (la)--(lb);
+ \draw[->] (lb)--(lc);
+ \draw[->] (lc)--(lr);
+ \draw[->,teal!70!black,thick] (ra) to[bend left=40] (rr);
+ \draw[->,teal!70!black,thick] (rb) to[bend right=35] (rr);
+ \draw[->,teal!70!black,thick] (rc)--(rr);
+ \draw[->,very thick,gray] (1.3,1.5)--(4.15,1.5)
+    node[midway,above] {\(\operatorname{FIND}(a)\)};
+ \node at (0,-.7) {before};
+ \node at (5.5,-.7) {after};
+\end{tikzpicture}
+\caption{One find traverses a chain and redirects all nonroot nodes to the common root. A later find cannot keep paying for the same chain unless subsequent unions change the forest.}
+\label{fig:N20261108-compression}
+\end{figure}
+
+\section{Rank is an accounting device}
+
+Two elementary lemmas explain why rank is so useful.
+
+\begin{lemma}[Strict ranks on every parent chain]
+For a nonroot \(x\),
+\[
+ \operatorname{rank}[x]<
+ \operatorname{rank}[p[x]].
+\]
+Ranks never decrease. Once a node becomes a nonroot, its rank never changes.
+\end{lemma}
+\begin{proof}
+The claims hold when every node is a singleton root. A link attaches a lower-rank root below a higher-rank root, or attaches equal-rank roots and then increases the new root's rank; the strict inequality holds in either case. Ranks change only for roots involved in ties. Path compression replaces a parent by an ancestor, whose rank is strictly larger than the replaced parent's rank unless the parent was already the root.
+\end{proof}
+
+\begin{lemma}[Exponential size]
+Whenever \(x\) is a root,
+\[
+ |\operatorname{tree}(x)|\geq2^{\operatorname{rank}[x]}.
+\]
+Consequently every rank is at most \(\lfloor\log_2 n\rfloor\) if a total of \(n\) elements have been created.
+\end{lemma}
+\begin{proof}
+A singleton has size \(1=2^0\). If two roots have different ranks, the larger-rank root keeps its rank and gains nodes, so the bound remains true. If both have rank \(r\), their disjoint trees each have at least \(2^r\) nodes; the new root has rank \(r+1\) and at least \(2^{r+1}\) nodes. Path compression changes no set sizes. Induction proves the claim.
+\end{proof}
+
+A stronger counting statement holds over an entire operation sequence.
+
+\begin{lemma}[Ranks are rare]
+Among \(n\) created elements, at most \(n/2^r\) are ever assigned rank \(r\), for every integer \(r\geq0\).
+\label{lem:N20261108-rank-count}
+\end{lemma}
+\begin{proof}
+Whenever a root first receives rank \(r\), mark every element in its then-current tree with that root's name. The tree has at least \(2^r\) elements. Different roots first attaining rank \(r\) have disjoint marked groups: once the first such root is attached to another, all its future ancestors have rank greater than \(r\). None of its elements can later belong to a different root that \emph{first} attains rank \(r\). Therefore no element is marked twice at the same rank. Since there are \(n\) elements, there can be at most \(n/2^r\) such groups. Every node first acquires a rank while it is a root, so this counts all nodes ever assigned that rank.
+\end{proof}
+
+Here are two valuable resources for the analysis: rank increases strictly as we climb a parent chain, and very few nodes can carry a high rank.
+
+\section{Why one find can still be logarithmic}
+
+Even union by rank and full path compression do not make \emph{every individual find} constant time. Before any compressing find is performed, repeatedly combine trees of equal rank. Two singletons form a tree of rank \(1\); two rank-\(1\) trees form one of rank \(2\), and so on. After building a set of \(2^r\) elements this way, a leaf can lie at depth \(r\). Its first find takes \(\Theta(r)=\Theta(\log n)\) time.
+
+The point of path compression is that the long find modifies the structure so that subsequent finds on the same path become cheap. The interesting upper bound is therefore \emph{amortized}: it controls the total cost of a long sequence of operations, not the cost of every operation separately.
+
+It is useful to recall the weaker logarithmic bound first. By the strict-rank lemma, a parent chain has at most \(\lfloor\log_2n\rfloor+1\) distinct ranks, so every find costs \(O(\log n)\). The analysis we really want must count how often a node can make us pay for the \emph{same portion} of that rank range.
+
+\section{Grouping ranks into towers}
+
+Define the iterated binary logarithm by
+\[
+ \log_2^*x=
+ \min\bigl\{k\geq0:
+    \underbrace{\log_2\circ\cdots\circ\log_2}_{k\text{ times}}(x)
+       \leq1\bigr\}.
+\]
+For example,
+\[
+ 65536\longmapsto16\longmapsto4
+ \longmapsto2\longmapsto1,
+ \qquad\log_2^*(65536)=4.
+\]
+It is much slower growing than \(\log_2n\), but still grows faster than an inverse Ackermann function.
+
+Construct tower boundaries
+\begin{equation}
+ B_{-1}=-1,\quad B_0=1,\qquad
+ B_{j+1}=2^{B_j}.
+ \label{eq:N20261108-towers}
+\end{equation}
+Thus
+\[
+ B_0=1,\quad B_1=2,\quad B_2=4,\quad
+ B_3=16,\quad B_4=65536,\ldots.
+\]
+We partition the possible ranks into consecutive groups
+\[
+ G_j=\{B_{j-1}+1,\ldots,B_j\},
+ \qquad j\geq0.
+\]
+The first groups are
+\[
+ G_0=\{0,1\},\quad G_1=\{2\},\quad
+ G_2=\{3,4\},\quad G_3=\{5,\ldots,16\}.
+\]
+Only those groups intersecting the range \(0,\ldots,\lfloor\log_2n\rfloor\) can occur. Their number is
+\[
+ b=O(1+\log_2^*n).
+\]
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth,thick,every node/.style={font=\footnotesize}]
+ \draw[->] (-.1,0)--(9.9,0) node[right] {rank};
+ \foreach \x/\r in {0/0,1.2/1,2.4/2,3.6/3,4.8/4,6.0/5,7.2/16,8.7/65536}{
+  \draw (\x,.09)--(\x,-.09);
+  \node[below] at (\x,-.1) {\(\r\)};
+ }
+ \draw[purple!70!black,line width=2.4pt] (0,.22)--(1.2,.22);
+ \draw[teal!70!black,line width=2.4pt] (2.4,.22)--(2.4,.24);
+ \draw[orange!75!black,line width=2.4pt] (3.6,.22)--(4.8,.22);
+ \draw[blue!60!black,line width=2.4pt] (6,.22)--(7.2,.22);
+ \node[above,purple!75!black] at (.6,.29) {\(G_0\)};
+ \node[above,teal!70!black] at (2.4,.29) {\(G_1\)};
+ \node[above,orange!75!black] at (4.2,.29) {\(G_2\)};
+ \node[above,blue!65!black] at (6.6,.29) {\(G_3\)};
+ \node[above] at (8.3,.30) {\(\cdots\)};
+ \node[above,font=\scriptsize] at (9.25,.52) {\(G_4\)};
+\end{tikzpicture}
+\caption{Successive rank groups end at tower values \(1,2,4,16,65536,\ldots\). The geometric spacing here is schematic, not numerical: the last group is enormously wider than it looks.}
+\label{fig:N20261108-rankblocks}
+\end{figure}
+
+Why choose these apparently absurd group widths? Because the rank-counting lemma makes the high-rank groups correspondingly rare. The rapid growth of \(B_j\) will cancel the scarcity of nodes having ranks in \(G_j\).
+
+\section{A complete iterated-logarithm bound}
+
+Consider a sequence of \(m\) operations after at most \(n\) MAKESET operations, with \(m\geq n\). We count the parent pointers traversed by every FIND. A UNION uses two FINDs and one constant-time link, so replacing unions by those primitive actions changes the operation count by at most a constant factor.
+
+Take one FIND path
+\[
+ x_0\longrightarrow x_1\longrightarrow\cdots
+ \longrightarrow x_\ell,
+ \qquad x_\ell=\text{root}.
+\]
+The ranks strictly increase. Classify its traversed edges in three ways:
+
+\begin{enumerate}
+\item An edge \(x_i\to x_{i+1}\) that passes from one rank group \(G_j\) to a higher group. There can be at most \(b-1\) of these per find.
+\item The last edge \(x_{\ell-1}\to x_\ell\), which we pay for directly if it has not already been counted. This contributes at most one extra edge per find.
+\item Every other edge stays inside a single rank group. We charge this edge to its lower endpoint \(x_i\).
+\end{enumerate}
+
+Only the third type needs a global argument. Suppose \(x=x_i\) has rank in group \(G_j\), and its edge to its parent \(x_{i+1}\) is of the third type. Since the parent is \emph{not} the final root, full path compression redirects \(x\) all the way to \(x_\ell\). By strict increase along the original chain,
+\[
+ \operatorname{rank}[x_\ell]>
+ \operatorname{rank}[x_{i+1}].
+\]
+The rank of \(x\) is now fixed forever, because \(x\) is a nonroot; the rank of its parent can only increase over time. On every future occasion when the same type of edge is charged to \(x\), its parent's rank has increased by at least one. As long as that parent's rank stays in \(G_j\), it cannot exceed \(B_j\).
+
+Therefore each nonroot \(x\) whose rank lies in \(G_j\) receives at most
+\[
+ B_j-B_{j-1}
+\]
+charges of the third type during the entire sequence. This may be a huge number for a large \(j\), but it applies to very few nodes.
+
+Let \(N_j\) be the number of nodes whose ranks ever belong to \(G_j\). The rank-count lemma gives, for \(j\geq1\),
+\begin{align*}
+ N_j
+ &\leq\sum_{r=B_{j-1}+1}^{B_j}\frac{n}{2^r}\\
+ &<\frac{n}{2^{B_{j-1}}}
+ =\frac{n}{B_j}.
+\end{align*}
+For \(j=0\), the two possible ranks \(0,1\) give \(N_0\leq3n/2\). Thus the total number of third-type charges from a nonzero group is at most
+\[
+ N_j(B_j-B_{j-1})
+ \leq\frac{n}{B_j}\,B_j=n,
+\]
+and the group \(G_0\) contributes at most a constant times \(n\). Summing over all at most \(b\) groups, there are only \(O(nb)\) charged edges of the third type in the \emph{entire sequence}.
+
+The other two edge types contribute \(O(mb)\), because they occur at most \(O(b)\) times per find. Every traversed edge has been paid for, giving the promised theorem.
+
+\begin{theorem}[A fully proved bound]
+With union by rank and full path compression, a sequence of \(m\geq n\) MAKESET, UNION and FIND operations on \(n\) elements takes
+\begin{equation}
+ \boxed{O\bigl(m(1+\log_2^*n)\bigr)}
+ \label{eq:N20261108-logstar}
+\end{equation}
+total time.
+\end{theorem}
+
+The important step is the cancellation
+\[
+ \underbrace{\frac{n}{B_j}}_{\text{few nodes}}
+ \cdot
+ \underbrace{B_j}_{\text{many charges per node}}
+ =n.
+\]
+Even though the groups rapidly become huge, each one can account for only \(O(n)\) expensive same-group traversals. The number of groups controls the answer.
+
+\section{Where the inverse Ackermann function enters}
+
+Tarjan's sharper theorem replaces the iterated logarithm by an inverse Ackermann function. In standard forms it states that a sequence of \(m\geq n\) operations can be carried out in
+\begin{equation}
+ O\bigl(m\,\alpha(m,n)\bigr)
+ \quad\text{or, with a one-variable upper bound,}\quad
+ O\bigl(m\,\alpha(n)\bigr).
+ \label{eq:N20261108-sharp}
+\end{equation}
+Here \(\alpha\) denotes one of the conventional functional inverses of an Ackermann hierarchy. The two-parameter function adjusts its threshold to the ratio \(m/n\); the precise definition affects small values, though not the nearly constant character of the complexity.
+
+Our rank-block proof already explains why this kind of hierarchy appears. A traversed edge is inexpensive if it crosses to a higher rank class; if it stays in one class, compression makes the parent's rank grow, so the edge can be charged only a limited number of times. To improve \(\log^*n\) further, a single tier of tower-sized classes is insufficient. The refined analysis assigns several \emph{levels} inside rank intervals, with advancement thresholds defined recursively by iterating the preceding level's threshold function. A hierarchy of repeated exponentials and their iterations naturally appears. The number of levels required to dominate all ranks is then controlled by the inverse Ackermann function. Establishing the sharp bound needs a carefully defined multilevel potential or charging scheme and a proof that the level transitions account for every traversed edge; we do not silently substitute the tower-block estimate for that argument.
+
+There is an asymptotic point worth keeping. The bound \eqref{eq:N20261108-sharp} grows without limit as \(n\to\infty\). It is mathematically different from \(O(m)\), and in relevant computational models there are matching inverse-Ackermann lower bounds for sufficiently general sequences of unions and finds. Calling the running time constant per operation is an extremely good engineering approximation, while the theorem says something more delicate.
+
+If you construct a rank-\(r\) tree by repeatedly merging equal-rank trees, an unlucky first FIND can still cost \(\Theta(r)=\Theta(\log n)\). The near-constant guarantee comes from adding costs over the complete sequence. In this sense the inverse Ackermann function measures the remaining cost of a long history of \emph{self-repairing} pointer traversals, not the height of a particular tree.
