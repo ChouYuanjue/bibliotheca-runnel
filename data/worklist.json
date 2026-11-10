@@ -1,6 +1,17 @@
 [
   {
     "type": "Note",
+    "title": "N-20261110 · Antipodal Symmetry and Winding",
+    "description": "Topology and Homotopy Theory · 9 sections · PDF and TeX source available in the INM archive.",
+    "date": "2026-11-10",
+    "link": "/notes/2026/N-20261110.pdf",
+    "tags": [
+      "Topology and Homotopy Theory",
+      "INM"
+    ]
+  },
+  {
+    "type": "Note",
     "title": "N-20261109 · Twenty-Seven Lines on a Cubic Surface",
     "description": "Algebraic and Arithmetic Geometry · 11 sections · PDF and TeX source available in the INM archive.",
     "date": "2026-11-09",
@@ -134,7 +145,7 @@
   {
     "type": "Collection",
     "title": "INM: Informal Notes on Mathematics",
-    "description": "169 dated notes across 13 thematic volumes, with full PDF and per-note TeX sources.",
+    "description": "170 dated notes across 13 thematic volumes, with full PDF and per-note TeX sources.",
     "date": "2026-07-02",
     "link": "/library/notes",
     "tags": [

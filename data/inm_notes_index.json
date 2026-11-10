@@ -4,7 +4,7 @@
     "subtitle": "A dated archive of mathematical notes reconstructed into an English TeX book.",
     "fullPdf": "/notes/inm.pdf",
     "oldArchive": "https://github.com/ChouYuanjue/Informal_Notes_on_Mathematics",
-    "noteCount": 169,
+    "noteCount": 170,
     "volumeCount": 13,
     "source": "E:/INM-TeX"
   },
@@ -32,6 +32,28 @@
     "2021"
   ],
   "notes": [
+    {
+      "id": "N-20261110",
+      "date": "2026-11-10",
+      "year": "2026",
+      "month": "Nov",
+      "day": "10",
+      "title": "Antipodal Symmetry and Winding",
+      "volume": "Topology and Homotopy Theory",
+      "sectionCount": 9,
+      "sections": [
+        "An antipodal sign change",
+        "A curve in a second plane",
+        "Rotating the meridian",
+        "Unwrapping a direction",
+        "The integer that cannot move",
+        "The antipodal reversal",
+        "The usual form of the theorem",
+        "An odd-degree explanation"
+      ],
+      "pdf": "/notes/2026/N-20261110.pdf",
+      "tex": "/notes/2026/N-20261110.tex"
+    },
     {
       "id": "N-20261109",
       "date": "2026-11-09",

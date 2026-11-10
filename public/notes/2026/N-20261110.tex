@@ -1,0 +1,679 @@
+\notechapter{N-20261110}{Antipodal Symmetry and Winding}
+
+This note is based on a popular-science video by \href{https://chaoli.club/index.php/member/1202}{@FatFish} (Dr.Wei). The starting point is a simple question: a continuous odd function on the sphere must vanish somewhere, so what happens when we ask \emph{two} such functions to vanish at the same point?
+
+We shall follow a meridian on the sphere and watch the two function values trace a curve in the plane. As the meridian rotates, this curve deforms continuously, while antipodal symmetry gives its final position a reversed orientation. The contradiction will come from measuring the total angle swept out by the curve about the origin.
+
+\section{An antipodal sign change}
+
+Write
+\[
+ S^2=\{p\in\mathbb R^3:\|p\|=1\}.
+\]
+For each point $p$, its \emph{antipode} is $-p$. A function $f:S^2\to\mathbb R$ is \emph{odd} if
+\[
+ f(-p)=-f(p).
+\]
+Begin with a real-valued function on the line. An input \(x\) is a point on the number line, and the number \(f(x)\) is plotted as a height above it. The definitions of evenness and oddness compare two inputs reflected through the origin:
+\[
+ \text{even: }f(-x)=f(x),
+ \qquad
+ \text{odd: }f(-x)=-f(x).
+\]
+For an even function, the two outputs agree; for an odd one, their signs are opposite. The corresponding graph has reflection symmetry about the vertical axis in the first case and central symmetry about the origin in the second. The simplest examples, \(x\mapsto x^2\) and \(x\mapsto x^3\), make the distinction visible.
+
+When the domain is a sphere, an input is a point \(p=(p_1,p_2,p_3)\) satisfying \(p_1^2+p_2^2+p_3^2=1\), while the output remains a \emph{single real number}. One can imagine the number written beside the point, or a continuous temperature or height field painted over the sphere. Opposite inputs are now the two ends of a diameter. The antipodal operation \(p\mapsto-p\) takes one end to the other, with the center of the diameter lying inside the ball. The equations for evenness and oddness look unchanged, though the geometry of the inputs has changed entirely.
+
+There is a useful trap here. For a continuous odd function on the entire real line, putting \(x=0\) immediately gives \(f(0)=-f(0)\), hence \(f(0)=0\). On the \emph{sphere}, the corresponding center \(p=0\) is not in the domain. The oddness equation alone therefore provides no distinguished point at which we may substitute \(p=-p\). It promises opposite values at antipodes; continuity must supply a zero somewhere \emph{between them along the surface}. This is the purpose of the first geometric argument.
+
+For a single continuous odd function, the existence of a zero follows by the intermediate value theorem. Pick any $p\in S^2$, and choose a continuous path $\gamma:[0,1]\to S^2$ from $p$ to $-p$. The continuous scalar function $h=f\circ\gamma$ satisfies
+\[
+ h(1)=-h(0).
+\]
+If $h(0)=0$, the job is done. Otherwise the endpoint values have opposite signs, and the intermediate value theorem supplies \(t_*\) such that \(h(t_*)=0\).
+
+Notice exactly where the intermediate value theorem is applied: on the familiar interval \([0,1]\), to the real-valued function \(h=f\circ\gamma\). The sphere provides a path joining the two antipodes; this path carries the problem back to a one-dimensional interval. A great-circle semicircle is one possible choice, though the route may wiggle as much as we like. As we walk, the value \(f(\gamma(t))\) changes continuously from \(a=f(p)\) to \(-a\). If \(a>0\), it must pass through zero before becoming negative. If \(a<0\), the same argument runs with the signs reversed.
+
+This little argument already explains the job done by each assumption. Continuity prevents a jump across zero. Oddness ensures that the two endpoint values are opposites. A path on the surface lets us compare those endpoint values through intermediate ones. The origin \emph{inside} the ball never enters the construction.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.89\linewidth]{figures/N-20261110/01-antipodal.jpg}
+\caption{Opposite points on the sphere carry opposite scalar values under an odd function.}
+\label{fig:N20261110-scalar}
+\end{figure}
+
+For two continuous odd functions $f,g:S^2\to\mathbb R$, this argument produces a zero of $f$ and a zero of $g$, but it does not tell us that those two zeros coincide. The theorem we want is
+\begin{theorem}[Borsuk--Ulam on $S^2$, odd-map form]
+If $f,g:S^2\to\mathbb R$ are continuous and odd, there is a point $p\in S^2$ such that
+\[
+ f(p)=g(p)=0.
+\]
+\end{theorem}
+
+It is worth seeing the logical gap before trying to prove anything stronger. For the first function we have found some point \(p_f\) where \(f(p_f)=0\). Applying the same argument to \(g\) gives a point \(p_g\) with \(g(p_g)=0\). We have no right to equate \(p_f\) and \(p_g\): the chosen path, the parameter value of the crossing, and the position of the zero may all differ. Even if we use \emph{the same} path for both functions, its scalar functions \(f\circ\gamma\) and \(g\circ\gamma\) may cross zero at different times.
+
+The two zero sets
+\[
+ Z_f=\{p\in S^2:f(p)=0\},\qquad
+ Z_g=\{p\in S^2:g(p)=0\}
+\]
+are each nonempty and antipodally symmetric. We want to prove that their intersection is nonempty. A simple example makes the desired intersection visible: if \(f(x,y,z)=z\) and \(g(x,y,z)=x\), then \(Z_f\) is the equator, \(Z_g\) is the great circle \(x=0\), and the common zeros are \((0,1,0)\) and \((0,-1,0)\). For an arbitrary continuous pair, their zero sets need not be tidy circles; they may have complicated shapes. The theorem promises an intersection without assuming any smoothness or geometric regularity.
+
+The dimension of the sphere matters. On \(S^1\subset\mathbb R^2\), the functions \(f(x,y)=x\) and \(g(x,y)=y\) are both odd, and each has zeros, yet they have no common zero: a point on the unit circle cannot satisfy \(x=y=0\). The statement for \(S^2\) is therefore a genuine two-dimensional theorem, far beyond two independent applications of the intermediate value theorem.
+
+The next step is to turn both scalar functions into \emph{one moving point}. Once we can watch the two numbers together, the question of a common zero becomes the geometric question of whether a planar curve ever visits the origin.
+
+\section{A curve in a second plane}
+
+Combine the two scalar functions into one map
+\begin{equation}
+ F=(f,g):S^2\longrightarrow\mathbb R^2,
+ \qquad F(-p)=-F(p).
+ \label{eq:N20261110-vector-map}
+\end{equation}
+The desired point is exactly a preimage of the origin: $F(p)=0$. For the sake of contradiction, assume
+\begin{equation}
+ F(p)\neq 0\qquad\text{for every }p\in S^2.
+ \label{eq:N20261110-nozero}
+\end{equation}
+
+Then the image of any path on the sphere is a path in the \emph{punctured plane} $\mathbb R^2\setminus\{0\}$. Picture a moving point $p$ on the sphere beside its planar image $q=F(p)$. By continuity, a small movement of $p$ produces a small movement of $q$. Even a simple curve on the sphere may map to a self-intersecting or highly winding curve in the plane.
+
+\paragraph{Two coordinates move at the same time.}
+Call the image point \(q=F(p)=(f(p),g(p))\). In the planar picture, the horizontal coordinate of \(q\) is the value of \(f\), and the vertical coordinate is the value of \(g\). The point \(q\) therefore keeps track of two numerical measurements at once. A sphere path \(p(t)\) produces a planar trace
+\[
+ q(t)=\bigl(f(p(t)),g(p(t))\bigr).
+\]
+When the original point moves continuously, each coordinate of \(q\) varies continuously. Consequently the planar trace moves continuously, even if it turns, overlaps itself, or crosses an earlier part of its own path.
+
+The oddness condition has a simple geometric translation. If \(p\) corresponds to \(q=(u,v)\), then the antipode \(-p\) corresponds to
+\[
+ F(-p)=(-u,-v)=-q.
+\]
+So any path joining \(p\) to \(-p\) gives a planar path joining \(q\) to \(-q\). These two endpoints are centrally symmetric with respect to the origin; they lie on the same line through it, on opposite sides.
+
+\paragraph{Crossing each axis is still insufficient.}
+One might be tempted to argue that the path must cross both coordinate axes and therefore must cross their intersection. The first half is true: the horizontal coordinate changes from \(u\) to \(-u\), and the vertical coordinate from \(v\) to \(-v\), so each coordinate takes the value \(0\) at some time (unless it already vanishes at an endpoint). But those times need not agree.
+
+For a very explicit picture, connect \(a=(1,1)\) to \(-a=(-1,-1)\) by the polygonal route
+\[
+ (1,1)\longrightarrow(1,-1)\longrightarrow(-1,-1).
+\]
+Its first segment crosses the horizontal axis at \((1,0)\); its second crosses the vertical axis at \((0,-1)\). The origin \((0,0)\) is never visited. The two coordinate crossings occur at different times, showing why independent intermediate value arguments cannot establish a common zero.
+
+The target origin matters for a reason that is now exact:
+\[
+ q(t)=(0,0)
+ \quad\Longleftrightarrow\quad
+ f(p(t))=0=g(p(t)).
+\]
+In contrast, meeting the horizontal axis only proves \(g=0\), and meeting the vertical axis only proves \(f=0\). From this point onward we must distinguish these events carefully.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.89\linewidth]{figures/N-20261110/02-paired-functions.jpg}
+\caption{A path joining antipodal points on the sphere maps to a planar path joining centrally opposite vectors.}
+\label{fig:N20261110-paired-trace}
+\end{figure}
+
+Choose coordinates on the sphere so that our starting point is the north pole and its antipode is the south pole. Any chosen antipodal pair can be made into these two poles by rotating the ambient \emph{coordinate system}. This does not require the functions \(f\) and \(g\) to have rotational symmetry; they may be completely arbitrary continuous odd functions.
+
+We next select a semicircle running over the sphere from north to south. Call it the longitude-zero meridian. To picture it, stand at the north pole, walk down one great-circle semicircle to the equator, then continue to the south pole. Now rotate this semicircle slowly about the north--south axis. Every intermediate semicircle has exactly the same two endpoints. The meridian is the \emph{input path}; the planar curve drawn in the second panel is its image under \(F\), and the shape of that image need not resemble a semicircle.
+
+Choose a north pole \(N=(0,0,1)\) and south pole \(S=(0,0,-1)=-N\). For each angle \(\theta\in[0,\pi]\), define the meridian
+\begin{equation}
+ \gamma_\theta(t)=
+ \bigl(\sin(\pi t)\cos\theta,\;
+       \sin(\pi t)\sin\theta,\;
+       \cos(\pi t)\bigr),\quad 0\leq t\leq1.
+ \label{eq:N20261110-meridians}
+\end{equation}
+Every meridian runs from $N$ to $S$. It is continuous in both its path parameter $t$ and its rotation parameter $\theta$. Following its image gives the planar path
+\begin{equation}
+ \eta_\theta(t)=F(\gamma_\theta(t))
+ \in\mathbb R^2\setminus\{0\}.
+ \label{eq:N20261110-eta}
+\end{equation}
+Let $a=F(N)$. Our assumption ensures $a\ne0$. Oddness forces
+\begin{equation}
+ \eta_\theta(0)=a,
+ \qquad\eta_\theta(1)=F(S)=-a.
+ \label{eq:N20261110-endpoints}
+\end{equation}
+The endpoints do not change as we rotate the meridian. Only the \emph{route between them} changes. This is the crucial condition for the deformation argument later on: we are never allowed to move the beginning \(a\) or the end \(-a\) while comparing the planar curves.
+
+It is useful to pause over the two parameters:
+\[
+ \begin{array}{c|l}
+ t\in[0,1]&\text{position of a point \emph{along} one meridian,}\\
+ \theta\in[0,\pi]&\text{rotation of the \emph{whole} meridian about the polar axis.}
+ \end{array}
+\]
+For fixed \(\theta\), increasing \(t\) draws one curve \(\eta_\theta\) in the plane. For fixed \(t\), increasing \(\theta\) moves the point of the sphere around its horizontal latitude, and the corresponding planar point changes continuously. These are two distinct kinds of motion. Separating the two parameters distinguishes the moving image point from the motion of the entire \emph{curve}.
+
+At \(\theta=0\), we have the first meridian, which passes through \((1,0,0)\) on the equator. At \(\theta=\pi/2\), the meridian passes through \((0,1,0)\). At \(\theta=\pi\), it passes through \((-1,0,0)\). Every one starts at \(N\) and ends at \(S\). Thus all the \(\eta_\theta\) live in the same space of planar paths from \(a\) to \(-a\). The existence of a common zero would mean that at some \((\theta,t)\), the corresponding path hits the origin. Under our contradictory assumption, this never happens, so the entire two-parameter family lies in the punctured plane.
+
+\section{Rotating the meridian}
+
+On the sphere, a blue meridian rotates around the north--south axis. In the plane, its image deforms continuously from a blue curve to a yellow curve. Every intermediate meridian still starts at $N$ and ends at $S$, so every intermediate planar curve still starts at $a$ and ends at $-a$.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.89\linewidth]{figures/N-20261110/03-rotating-meridian.jpg}
+\caption{Rotating a meridian deforms its planar image while preserving the two endpoints.}
+\label{fig:N20261110-meridian-rotation}
+\end{figure}
+
+A half-turn has a precise consequence that will eventually finish the proof:
+\begin{equation}
+ \gamma_\pi(t)=-\gamma_0(1-t).
+ \label{eq:N20261110-opposite-meridians}
+\end{equation}
+Indeed, the point at time $t$ on the meridian at longitude $\pi$ is the antipode of the point at time $1-t$ on the original meridian. Applying the odd map $F$ gives
+\begin{equation}
+ \boxed{\eta_\pi(t)=-\eta_0(1-t).}
+ \label{eq:N20261110-reversal}
+\end{equation}
+Thus the final image path is obtained by taking the initial one, reversing the direction of travel, and rotating every planar vector through \(\pi\). It is worth unpacking this slowly; two distinct operations are involved.
+
+First imagine the point \(p\) walking from north to south along the original meridian, and write down its planar trace in the order in which its image point \(q\) is visited. The path starts at \(a\) and ends at \(-a\); call it the \emph{blue} path. Now look at the antipodal point \(-p\). As \(p\) walks north to south, its antipode walks from south to north along the meridian on the other side of the globe. In the plane, the image of \(-p\) is the central reflection \(-q\) of the blue path. This reflected trace runs from \(-a\) to \(a\).
+
+But when we declare the opposite meridian to be another path \emph{from north to south}, its orientation is reversed. We must follow that reflected trace \emph{backwards}, from \(a\) to \(-a\). This produces the \emph{yellow} curve. The blue and yellow curves can therefore have the same endpoints while being traversed in opposite senses. In the notation,
+\[
+ \underbrace{\eta_0(t)}_{\text{blue, north to south}},
+ \quad
+ \underbrace{-\eta_0(t)}_{\text{reflected, south to north}},
+ \quad
+ \underbrace{-\eta_0(1-t)}_{\text{yellow, north to south}}.
+\]
+The last expression, not merely the middle one, describes what the sphere's half-turn gives us.
+
+We can also verify the geometric identity by examining three moments of the walk. At \(t=0\), both meridians start at \(N\). At \(t=1/2\), one visits \((1,0,0)\) and the other \((-1,0,0)\), which are antipodes. At \(t=1\), both end at \(S\). The relation \(\gamma_\pi(t)=-\gamma_0(1-t)\) describes all intermediate positions as well. This is why the reversal of the parameter \(t\) is unavoidable.
+
+\paragraph{What the simple picture suggests.}
+Begin by picturing the blue and yellow paths as relatively simple arcs. If we rotate the meridian through the intermediate longitudes, the blue image curve is seen to change continuously into the yellow one, with its ends held fixed. Visually, trying to deform the upper arc between opposite endpoints into the lower arc forces a passage through the point that sits between them: the origin. At this stage the idea is quite persuasive, but the word \emph{forces} needs justification.
+
+Consider the simplest possible model with endpoints \(1\) and \(-1\) in the complex plane:
+\[
+ \beta(t)=e^{i\pi t},\qquad
+ \upsilon(t)=e^{-i\pi t},\qquad 0\leq t\leq1.
+\]
+The first path follows the upper semicircle counterclockwise; the second follows the lower semicircle clockwise. They obey the antipodal reversal relation derived above:
+\[
+ \upsilon(t)=-\beta(1-t).
+\]
+A natural attempt to deform one to the other is to move every point along the straight segment joining its two positions:
+\[
+ K(s,t)=(1-s)\beta(t)+s\upsilon(t)
+       =\cos(\pi t)+i(1-2s)\sin(\pi t).
+\]
+At \(s=1/2\) and \(t=1/2\), this is zero. To rule out every possible deformation that avoids the origin, we need an invariant of the entire path.
+
+The problem becomes even harder to judge by eye when the image curve winds around the origin repeatedly, doubles back, or crosses itself. Our original functions are only continuous. There is no reason to expect their planar images to be smooth embedded arcs. A tangled trace reveals the limitations of the simple drawing. We now need a numerical quantity that detects the obstruction for \emph{every} continuous path.
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.89\linewidth]{figures/N-20261110/04-self-intersections.jpg}
+\caption{A planar image may loop and self-intersect even when its spherical input path is simple.}
+\label{fig:N20261110-complex-paths}
+\end{figure}
+
+One cannot tell from such a drawing how many times the curve has circled the origin, because one loop might undo another and several loops might share their crossing points. The quantity we seek must remember the direction of each turn and accumulate turns even when the picture overlaps itself. We shall measure the \emph{total angular change}. We now make that idea precise.
+
+\section{Unwrapping a direction}
+
+Every nonzero vector $z\in\mathbb R^2$ has a direction, represented by the point
+\[
+ u(z)=\frac{z}{\|z\|}\in S^1.
+\]
+It also has an angle, but a point of \(S^1\) does not possess a single preferred real angle: angles differing by \(2\pi\) describe the same direction. A path supplies the additional information needed to \emph{unwrap} the angle continuously.
+
+Imagine standing at the origin of the image plane and following the moving point \(q(t)\) with our eyes. At every instant when \(q(t)\ne0\), the ray from the origin to \(q(t)\) has a definite direction. As the point moves, that ray rotates. We declare counterclockwise rotation positive and clockwise rotation negative. If the point first turns a quarter-circle counterclockwise and then turns the same quarter-circle clockwise, the net change is zero. If it completes a full counterclockwise revolution, the net change is \(2\pi\); another revolution makes it \(4\pi\). These numbers record the entire journey, rather than just the direction in which the point happens to end.
+
+This distinction matters when a curve folds back on itself. For example, let a path go from \(a\) to some point \(b\) while rotating counterclockwise by \(\pi/3\), and then retrace precisely the same piece in reverse. The accumulated angle is \(\pi/3-\pi/3=0\), even though the ray rotated during the trip. By contrast, if it moves around a full circle and returns to the same position, the accumulated angle is \(2\pi\), although its final direction looks identical to its initial one. Any attempt to compute the angle merely by subtracting two values of the usual principal \(\operatorname{Arg}\) would lose that full turn.
+
+One can imagine a strip of paper wrapped around a circle, marked with all the real numbers rather than only one copy of the interval \([0,2\pi)\). When our direction crosses the positive horizontal axis after a revolution, we continue to the next sheet of the strip instead of resetting the angle to zero. Formally this is the covering map
+\[
+ \mathbb R\longrightarrow S^1,\qquad
+ \alpha\longmapsto(\cos\alpha,\sin\alpha).
+\]
+A continuous path of directions on the circle can be lifted to a continuous real-valued angle on this covering space. The lift records the rotation accumulated by the ray.
+
+\begin{definition}[Continuous argument and total angular change]
+For a continuous path $\eta:[0,1]\to\mathbb R^2\setminus\{0\}$, a \emph{continuous argument} is a continuous map $\varphi:[0,1]\to\mathbb R$ such that
+\begin{equation}
+ \frac{\eta(t)}{\|\eta(t)\|}
+ =\bigl(\cos\varphi(t),\sin\varphi(t)\bigr).
+ \label{eq:N20261110-lift}
+\end{equation}
+Its \emph{total angular change} is
+\[
+ \Delta(\eta)=\varphi(1)-\varphi(0).
+\]
+\end{definition}
+
+The definition raises two natural questions. Does a continuous argument always exist for a continuous path that avoids the origin? And if we choose the initial angle differently by a multiple of \(2\pi\), will we obtain the same total change?
+
+For existence, consider the unit direction
+\[
+ v(t)=\frac{\eta(t)}{\|\eta(t)\|}\in S^1.
+\]
+Because \(v\) is continuous on the compact interval \([0,1]\), it is uniformly continuous. Subdivide the interval into sufficiently short pieces \(0=t_0<t_1<\cdots<t_m=1\), so that within each piece the directions stay in some open semicircle. On one such arc of \(S^1\), we can choose a continuous angle without encountering a full revolution. Choose an angle value at \(t_0\), continue it through the first piece, and then choose the branch on the next piece that agrees with the previous value at \(t_1\). Continue in this way. Whenever two local angle formulas differ, their difference must be a multiple of \(2\pi\), and the appropriate multiple is fixed by the endpoint where the pieces meet. After finitely many steps we have obtained a continuous function \(\varphi\) all along the path.
+
+For uniqueness of the \emph{change}, suppose \(\varphi\) and \(\psi\) are two such lifts. Their values point in the same direction, so
+\[
+ \varphi(t)-\psi(t)\in2\pi\mathbb Z
+ \quad\text{for every }t.
+\]
+The difference is continuous, while \(2\pi\mathbb Z\) is a discrete set. Therefore \(\varphi-\psi\) is one constant \(2\pi k\) throughout the interval. Subtracting endpoint values eliminates that constant:
+\[
+ \varphi(1)-\varphi(0)
+ =\psi(1)-\psi(0).
+\]
+So \(\Delta(\eta)\) depends on the oriented path and not on a chosen initial numerical angle.
+
+The prohibition against passing through the origin is already visible in the construction. At \(q=0\), every direction is equally plausible: the ray from the origin to \(q\) has collapsed to a point. The expression \(q/\|q\|\) is undefined, and the argument-lifting procedure cannot be continued through that instant. At the origin, the direction and its continuous argument are undefined. If a path passes through the origin, it has already found the common zero we seek; the obstruction argument will only be needed for paths that avoid it.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.89\linewidth]{figures/N-20261110/05-total-angle.jpg}
+\caption{Opposite endpoint directions differ by a half-turn; complete revolutions add multiples of $2\pi$.}
+\label{fig:N20261110-total-angle}
+\end{figure}
+
+There are two important distinctions. An \emph{open} path in the punctured plane can have an arbitrary real total angular change; it need not be an integer multiple of $2\pi$. For a \emph{closed} path, the endpoint directions coincide, so the total change is $2\pi$ times an integer. That integer is the usual winding number about the origin. For our paths the endpoints are \emph{antipodal}, so instead
+\begin{equation}
+ \boxed{\Delta(\eta_\theta)=(2k_\theta+1)\pi,\qquad
+ k_\theta\in\mathbb Z.}
+ \label{eq:N20261110-odd-turn}
+\end{equation}
+The angle must differ by an odd multiple of \(\pi\); it cannot be zero. This is the precise meaning of a half-turn together with some number of whole turns. A path could travel counterclockwise by \(\pi\), clockwise by \(\pi\), counterclockwise by \(3\pi\), or clockwise by \(5\pi\). It can also make arbitrary detours, loops, and reversals in between. The endpoints force the \emph{net} angle to be in
+\[
+ \ldots,-5\pi,-3\pi,-\pi,\ \pi,3\pi,5\pi,\ldots
+\]
+and forbid all even multiples of \(\pi\).
+
+Here is an explicit collection that makes the integer \(k\) tangible. Identify \(\mathbb R^2\) with \(\mathbb C\), and for a nonzero starting point \(a\in\mathbb C\) define
+\[
+ \eta_k(t)=a\exp\bigl(i(2k+1)\pi t\bigr),
+ \qquad k\in\mathbb Z,\quad 0\leq t\leq1.
+\]
+Every path starts at \(a\) and ends at \(-a\), but its angular change is
+\[
+ \begin{array}{c|ccccc}
+ k&-2&-1&0&1&2\\ \hline
+ \Delta(\eta_k)&-3\pi&-\pi&\pi&3\pi&5\pi
+ \end{array}
+\]
+(the distance from the origin remains \(|a|\) in this example). The first and last points of the planar picture can be identical for all these paths. The integer \(k\) remembers how the ray traveled \emph{between} those points.
+
+For a general path, \(k\) counts the excess full turns over a chosen half-turn; the sign records orientation. An \emph{open} path does not have an absolute winding number in the usual sense. The quantity defined above is its real total angular change. A closed path has an integer winding number \(\Delta/(2\pi)\); an antipodal-endpoint path has the associated integer \(k=(\Delta-\pi)/(2\pi)\), once the orientation of the endpoint pair is fixed.
+
+We are now ready for the crucial test. All the intermediate meridians produce paths with the \emph{same} antipodal endpoints \(a,-a\). Could their integer \(k\) change gradually as we rotate the meridian? It cannot change by an infinitesimal amount, because it is an integer. We must still justify the continuity of the accumulated angle as the entire path deforms. We can establish this by comparing paths through sufficiently small moves.
+
+\section{The integer that cannot move}
+
+Could the total angle change while one curve deforms continuously into another? A moving picture makes this look plausible but also reveals the difficulty: the curve may be so complicated that one cannot simply look at its shape and read off the number of turns. Break the curve into short pieces, follow a vertex and its two adjacent segments, and assemble a long deformation from sufficiently small stages. Let us understand what this procedure measures.
+
+\paragraph{The total angle is the sum of local changes.}
+Take points \(0=t_0<t_1<\cdots<t_m=1\) along a path \(\eta\) avoiding the origin. If \(\varphi\) is a continuous argument, then
+\begin{align*}
+ \Delta(\eta)
+ &=\bigl(\varphi(t_1)-\varphi(t_0)\bigr)
+  +\bigl(\varphi(t_2)-\varphi(t_1)\bigr)
+  +\cdots
+  +\bigl(\varphi(t_m)-\varphi(t_{m-1})\bigr)\\
+ &=\varphi(1)-\varphi(0).
+\end{align*}
+This is a telescoping sum. The local changes may be positive, negative, or zero; a small piece that doubles back contributes an angle and then cancels it. The sum remains meaningful when the curve self-intersects, because each piece is considered in the order in which the moving point visits it.
+
+Now imagine moving one of the intermediate vertices while leaving its neighbors in place. Only the two adjoining small pieces change. If they remain away from the origin, their combined angular change can be followed continuously. The only way for a whole extra revolution to appear or disappear is for one of these local motions to lose its well-defined direction at the origin. It is tempting to regard this as the proof, but a general continuous curve need not literally be a polygon, and infinitesimal moves need a uniform control that prevents them from passing arbitrarily close to zero. Compactness supplies exactly that control.
+
+\paragraph{A single sufficiently small move.}
+Suppose \(\eta,\xi:[0,1]\to\mathbb C\setminus\{0\}\) have the same endpoints \(a,b\). Because \(\eta\) is continuous and avoids zero on a compact interval,
+\[
+ m=\min_{0\leq t\leq1}|\eta(t)|>0.
+\]
+Assume that the two paths are uniformly close:
+\begin{equation}
+ \sup_{0\leq t\leq1}|\xi(t)-\eta(t)|<m.
+ \label{eq:N20261110-close-move}
+\end{equation}
+Geometrically, \(\xi(t)\) lies inside a disk of radius smaller than \(|\eta(t)|\) centered at \(\eta(t)\). That disk does not reach the origin. Even the straight segment joining \(\eta(t)\) to \(\xi(t)\) avoids zero: for \(0\leq s\leq1\),
+\[
+ |(1-s)\eta(t)+s\xi(t)|
+ \geq|\eta(t)|-s|\xi(t)-\eta(t)|>0.
+\]
+Thus a small move really stays in the permitted part of the plane.
+
+We can compare the angles even more precisely. Regard the plane as \(\mathbb C\) and form
+\[
+ w(t)=\frac{\xi(t)}{\eta(t)}.
+\]
+Condition \eqref{eq:N20261110-close-move} implies \(|w(t)-1|<1\). All such complex numbers lie in the right half-plane, where a continuous ordinary argument \(\delta(t)=\arg w(t)\in(-\pi/2,\pi/2)\) is available. At the two endpoints \(\xi=\eta\), so
+\[
+ \delta(0)=\delta(1)=0.
+\]
+If \(\varphi(t)\) is a continuous argument of \(\eta(t)\), then \(\varphi(t)+\delta(t)\) is a continuous argument of \(\xi(t)\). Consequently
+\[
+ \Delta(\xi)-\Delta(\eta)
+ =\delta(1)-\delta(0)=0.
+\]
+The total angular change is unchanged under a sufficiently small deformation with fixed endpoints. This is the local principle behind moving a vertex and its two neighboring segments.
+
+\begin{lemma}[Angular change under a fixed-endpoint homotopy]
+Let \(H:[0,1]^2\to\mathbb R^2\setminus\{0\}\) be continuous, and suppose
+\[
+ H(s,0)=a,\qquad H(s,1)=b
+ \quad\text{for every }s\in[0,1],
+\]
+where \(a,b\ne0\) are fixed. Then the total angular change of \(t\mapsto H(s,t)\) is independent of \(s\); in particular,
+\[
+ \Delta\bigl(H(0,\cdot)\bigr)
+ =\Delta\bigl(H(1,\cdot)\bigr).
+\]
+\end{lemma}
+\begin{proof}
+The map \(H\) is continuous on the compact square \([0,1]^2\), and its values never reach zero. Thus there is a uniform positive distance
+\[
+ m_*=\min_{s,t\in[0,1]}|H(s,t)|>0.
+\]
+Uniform continuity of \(H\) gives \(\varepsilon>0\) such that
+\[
+ |s-s'|<\varepsilon
+ \quad\Longrightarrow\quad
+ |H(s,t)-H(s',t)|<\frac{m_*}{2}
+ \quad\text{for \emph{all} }t\in[0,1].
+\]
+Choose a finite partition \(0=s_0<s_1<\cdots<s_M=1\) with consecutive parameter differences smaller than \(\varepsilon\). The paths \(H(s_j,\cdot)\) and \(H(s_{j+1},\cdot)\) have the same endpoints and satisfy the small-move bound \eqref{eq:N20261110-close-move}, because each path stays at distance at least \(m_*\) from the origin. Our preceding calculation therefore gives
+\[
+ \Delta\bigl(H(s_0,\cdot)\bigr)
+ =\Delta\bigl(H(s_1,\cdot)\bigr)
+ =\cdots
+ =\Delta\bigl(H(s_M,\cdot)\bigr).
+\]
+The first and last paths are those at \(s=0\) and \(s=1\), which proves the lemma.
+\end{proof}
+
+A complicated deformation can thus be analyzed through finitely many small stages. The argument applies to arbitrary continuous paths, including paths with self-intersections or no derivatives, provided the endpoints remain fixed and the origin is avoided. Such a continuously varying family is called a \emph{homotopy relative to its endpoints}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.88\linewidth]{figures/N-20261110/06-deformation.jpg}
+\caption{Moving short pieces of a path with fixed endpoints preserves total angular change as long as the origin is avoided.}
+\label{fig:N20261110-deformation}
+\end{figure}
+
+\paragraph{The one event that can change the answer.}
+Another possibility is that a moving segment passes from one side of the origin to the other \emph{through the origin itself}. Before such a crossing we may see a ray sweep counterclockwise from its first direction to its last. After the crossing the ray can sweep clockwise instead. If the first measured change was \(\vartheta\), the second can be \(\vartheta-2\pi\). The initial and final rays still agree, because adding or subtracting a whole revolution does not change a direction. The \emph{net accumulated angle} is nevertheless different.
+
+We can build an exact one-parameter example that reproduces this effect, with the endpoints fixed throughout. In complex notation define
+\begin{equation}
+ K(s,t)=e^{i\pi t}
+ \bigl((1-s)+s e^{-2\pi i t}\bigr),
+ \qquad 0\leq s,t\leq1.
+ \label{eq:N20261110-crossing-model}
+\end{equation}
+For every \(s\),
+\[
+ K(s,0)=1,\qquad K(s,1)=-1.
+\]
+At the beginning of the deformation \(K(0,t)=e^{i\pi t}\) is the upper counterclockwise semicircle. At the end \(K(1,t)=e^{-i\pi t}\) is the lower clockwise semicircle. Between these two paths, the second factor moves once clockwise around a circle of radius \(s\), centered at \(1-s\). If \(s<1/2\), that circle does not enclose the origin and has winding number zero. If \(s>1/2\), it does enclose the origin and has winding number \(-1\). Therefore
+\[
+ \Delta\bigl(K(s,\cdot)\bigr)=
+ \begin{cases}
+ \pi,&0\leq s<\frac12,\\[2pt]
+ -\pi,&\frac12<s\leq1.
+ \end{cases}
+\]
+At the critical value \(s=1/2\), the factor becomes zero when \(t=1/2\), so
+\[
+ K\bigl(\tfrac12,\tfrac12\bigr)=0.
+\]
+Exactly then the angle is undefined. The apparent jump from \(\pi\) to \(-\pi\) is a jump of \(2\pi\) that occurs only by allowing the deformation to touch the origin.
+
+The example shows why the curve must avoid the origin. A path can cross itself elsewhere, or a moving curve can acquire additional bends and folds, without breaking the argument. To change its total angular change while retaining the same endpoints, some intermediate curve must pass through the origin. And if the curve under study is \(F(\gamma_\theta(t))\), such a crossing is already a point where \(f\) and \(g\) both vanish. We would have achieved the theorem directly.
+
+The path-lifting proof and the local small-segment argument describe the same obstruction. The first formalizes it for all continuous curves; the second helps us see how the origin divides possible deformations into distinct classes.
+
+Apply the lemma to
+\[
+ H(s,t)=F\bigl(\gamma_{\pi s}(t)\bigr).
+\]
+It is continuous and never zero by the assumption \eqref{eq:N20261110-nozero}, and its endpoints are always $a,-a$. We therefore obtain
+\begin{equation}
+ \boxed{\Delta(\eta_0)=\Delta(\eta_\pi).}
+ \label{eq:N20261110-homotopy-equal}
+\end{equation}
+
+\section{The antipodal reversal}
+
+We can now go back to the two colored curves with enough machinery to finish the argument. The first result, from rotating the meridian continuously, was
+\[
+ \Delta(\eta_0)=\Delta(\eta_\pi)
+\]
+provided no intermediate planar trace crosses the origin. This equality reflects the \emph{deformation}: both paths are connected through the images of intermediate meridians.
+
+The second result comes from the completely different relationship imposed by antipodal symmetry. Recall
+\[
+ \eta_\pi(t)=-\eta_0(1-t).
+\]
+The right-hand side contains two operations, and it is helpful to calculate their effects separately rather than simply claiming that the curves are opposite.
+
+Suppose \(\varphi:[0,1]\to\mathbb R\) is a continuous argument of the blue curve \(\eta_0(t)\). Reversing time gives the curve \(\eta_0(1-t)\), with continuous argument \(\varphi(1-t)\). Its angular change is
+\[
+ \varphi(0)-\varphi(1)
+ =-\bigl(\varphi(1)-\varphi(0)\bigr)
+ =-\Delta(\eta_0).
+\]
+Now multiply every point of that reversed path by \(-1\). Its direction turns through \(\pi\) everywhere. A continuous argument of the resulting yellow curve is
+\[
+ \psi(t)=\varphi(1-t)+\pi.
+\]
+Although the central reflection shifts \emph{each} angle by \(\pi\), it shifts the beginning and the end by the same amount. When we subtract them, the extra \(\pi\) cancels:
+\begin{align}
+ \Delta(\eta_\pi)
+ &=\psi(1)-\psi(0)\notag\\
+ &=(\varphi(0)+\pi)-(\varphi(1)+\pi)\notag\\
+ &=-\Delta(\eta_0).
+ \label{eq:N20261110-opposite-angle}
+\end{align}
+Thus
+\[
+ \boxed{\Delta(\eta_\pi)=-\Delta(\eta_0).}
+\]
+Along the centrally reflected and reversed curve, the ray travels from the same starting point to the same endpoint with opposite net orientation. A positive total angle for one becomes negative for the other. The algebra is valid even for curves with countless folds or self-intersections.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.89\linewidth]{figures/N-20261110/07-reversed-path.jpg}
+\caption{Opposite meridians produce planar paths related by central reflection and reversal of travel.}
+\label{fig:N20261110-reversed}
+\end{figure}
+
+Now the contradiction rests on three geometric facts:
+\[
+ \begin{aligned}
+ \Delta(\eta_0)&=\Delta(\eta_\pi)
+     &&\text{(continuous rotation with fixed endpoints)},\\
+ \Delta(\eta_\pi)&=-\Delta(\eta_0)
+     &&\text{(antipodal reflection and reversed travel)},\\
+ \Delta(\eta_0)&\in\pi+2\pi\mathbb Z
+     &&\text{(the endpoints \(a,-a\) are opposite)}.
+ \end{aligned}
+\]
+The first two equalities would force \(\Delta(\eta_0)=0\). The third says that it is \(\pi\), \(-\pi\), \(3\pi\), \(-3\pi\), or another odd multiple of \(\pi\), and hence can never be zero.
+
+Where can our reasoning fail? Every step used the assumption that all the planar traces avoid the origin. Consequently that assumption cannot hold. There must be a longitude \(\theta_*\) and a position \(t_*\) on that meridian for which
+\[
+ F\bigl(\gamma_{\theta_*}(t_*)\bigr)=(0,0).
+\]
+Writing \(p_*=\gamma_{\theta_*}(t_*)\), we obtain
+\[
+ f(p_*)=0,\qquad g(p_*)=0.
+\]
+This proves the odd-map form of the theorem. Notice the strength of the conclusion: the proof has produced \emph{one point} at which both numerical conditions hold. We never had to assume that the two zero sets were regular curves, or that an image path had no self-intersections.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.89\linewidth]{figures/N-20261110/08-forced-zero.jpg}
+\caption{Meeting the origin in the image plane gives a common zero of the two scalar functions.}
+\label{fig:N20261110-zero}
+\end{figure}
+
+\paragraph{A fully calculable pair of functions.}
+The abstract argument becomes much easier to remember if we try it on a pair for which every picture can be computed. Define
+\[
+ f(x,y,z)=z,\qquad g(x,y,z)=x
+ \qquad\bigl((x,y,z)\in S^2\bigr).
+\]
+Both functions are continuous and odd. The north pole maps to \(a=(1,0)\), the south pole maps to \(-a=(-1,0)\), and a point along the rotating meridian has image
+\begin{equation}
+ F(\gamma_\theta(t))
+   =\bigl(\cos(\pi t),\ \sin(\pi t)\cos\theta\bigr).
+ \label{eq:N20261110-explicit-example}
+\end{equation}
+At \(\theta=0\), this is the \emph{upper} unit semicircle:
+\[
+ \eta_0(t)=(\cos\pi t,\sin\pi t),
+ \qquad \Delta(\eta_0)=\pi.
+\]
+At \(\theta=\pi\), it is the \emph{lower} semicircle with the reverse orientation:
+\[
+ \eta_\pi(t)=(\cos\pi t,-\sin\pi t),
+ \qquad\Delta(\eta_\pi)=-\pi.
+\]
+These are the same two paths that appeared in our first simple example. Here they really do arise as images of the two opposite meridians under a single odd map on the sphere.
+
+What happens while we rotate the meridian? The second coordinate in \eqref{eq:N20261110-explicit-example} is multiplied by \(\cos\theta\), so the upper semicircle gradually flattens into a line segment and then reopens as a lower semicircle. At \(\theta=\pi/2\),
+\[
+ \eta_{\pi/2}(t)=(\cos\pi t,0).
+\]
+Precisely at \(t=1/2\), it reaches the origin. The corresponding sphere point is \((0,1,0)\), and indeed both \(f\) and \(g\) vanish there. The geometric obstruction is completely visible in this easy family. In the general theorem the image curves may behave much more wildly, but the angular-change calculation shows that the same essential obstruction persists.
+
+The proof needed no derivatives, no restriction on how tangled an image curve may be, and no special relationship between \(f\) and \(g\) beyond continuity and oddness. The sphere contributes its continuously rotating meridians; the punctured plane supplies an integer-valued obstruction to continuously deforming one path between fixed opposite endpoints into the reversed, reflected path.
+
+\section{The usual form of the theorem}
+
+The standard statement of the Borsuk--Ulam theorem in this dimension says that every continuous map $h:S^2\to\mathbb R^2$ identifies an antipodal pair:
+\begin{equation}
+ \exists p\in S^2\quad h(p)=h(-p).
+ \label{eq:N20261110-standard}
+\end{equation}
+The map $h$ itself need not be odd. Define
+\[
+ F(p)=h(p)-h(-p).
+\]
+This new map is continuous and odd, so the theorem we proved gives $F(p)=0$, which is exactly \eqref{eq:N20261110-standard}. Conversely, applying the standard statement to an odd map $F$ gives $F(p)=F(-p)=-F(p)$ and hence $F(p)=0$. The two formulations are equivalent.
+
+The sphere $S^2$ is intrinsically two-dimensional, although it is embedded in $\mathbb R^3$. The general theorem
+\[
+ h:S^n\to\mathbb R^n\quad\Longrightarrow\quad
+ h(p)=h(-p)\ \text{for some }p
+\]
+requires an additional topological argument when $n>2$. The rotating-meridian proof above establishes the $n=2$ case.
+
+\section{An odd-degree explanation}
+Another proof makes the integer invariant even more explicit.
+
+Under the same contradictory assumption that $F:S^2\to\mathbb R^2\setminus\{0\}$ is continuous and odd, normalize the output:
+\[
+ U(p)=\frac{F(p)}{\|F(p)\|}:S^2\to S^1.
+\]
+Restrict \(U\) to the equator \(E\cong S^1\). We obtain a continuous odd map \(u:S^1\to S^1\) satisfying \(u(-z)=-u(z)\).
+
+Here is the relation to what we have just learned. If \(u:S^1\to S^1\) is an arbitrary continuous circle map, let \(z=e^{it}\) traverse the source circle once, \(0\leq t\leq2\pi\). Its image also travels on the unit circle, perhaps forward, backward, or with repeated turns. A continuous argument \(\phi(t)\) of \(u(e^{it})\) exists just as before. Since the starting and ending image directions agree, its total angular change is an integer multiple of \(2\pi\). The integer
+\[
+ \deg u=\frac{\phi(2\pi)-\phi(0)}{2\pi}
+\]
+is the \emph{degree} of \(u\). It counts the signed number of times the image goes around its circle as the source makes one complete revolution.
+
+For example, \(u(z)=z\) has degree \(1\); \(u(z)=z^3\) has degree \(3\); and \(u(z)=\bar z=z^{-1}\) on the circle has degree \(-1\). Each is an \emph{odd} circle map because replacing \(z\) by \(-z\) also negates its value. The map \(u(z)=z^2\) has degree \(2\) and is even under the antipodal change, \(u(-z)=u(z)\). These examples suggest what the next lemma makes exact: antipodal oddness requires the degree to be odd. The images may wind many times; the parity survives.
+
+\begin{lemma}[Odd maps of a circle have odd degree]
+If $u:S^1\to S^1$ is continuous and satisfies $u(-z)=-u(z)$, then its degree is an odd integer.
+\end{lemma}
+\begin{proof}
+Parametrize the source circle by $z=e^{it}$ and choose a continuous lift $\phi:\mathbb R\to\mathbb R$ with $u(e^{it})=e^{i\phi(t)}$. Since $u(e^{i(t+\pi)})=-u(e^{it})$, we have
+\[
+ \phi(t+\pi)-\phi(t)\in\pi+2\pi\mathbb Z.
+\]
+The left side varies continuously in $t$, so it must equal one fixed number $(2k+1)\pi$. Repeating the same relation on the other half-circle gives
+\[
+ \phi(t+2\pi)-\phi(t)=2(2k+1)\pi.
+\]
+Dividing by $2\pi$ yields $\deg u=2k+1$.
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=1.0,
+  every node/.style={font=\small}]
+ \draw[thin,gray!55] (-2.1,0) circle (1.18);
+ \draw[thin,gray!55] (2.1,0) circle (1.18);
+ \fill[teal!70!black] (-.92,0.73) circle (2.3pt);
+ \fill[teal!70!black] (-3.28,0) circle (0pt);
+ \fill[orange!80!black] (-3.28,-.73) circle (0pt);
+ \draw[teal!75!black,ultra thick,->] (-.92,.73) arc[start angle=38,end angle=205,radius=1.18];
+ \draw[orange!80!black,ultra thick,->] (-3.28,-.73) arc[start angle=218,end angle=390,radius=1.18];
+ \node at (-2.1,-1.6) {boundary $S^1$};
+ \node at (2.1,-1.6) {target $S^1$};
+ \draw[->,thick] (-.45,0)--(.45,0) node[midway,above] {$u$};
+ \node[align=center,font=\footnotesize] at (2.1,0) {odd degree\\$\not=0$};
+\end{tikzpicture}
+\caption{An odd circle map has odd degree, while a circle map extending across the disk has degree zero.}
+\label{fig:N20261110-degree}
+\end{figure}
+
+There is a second, independent property of \(u\). The equator is the boundary of the northern hemisphere, and that hemisphere is homeomorphic to the closed disk \(D^2=\{z\in\mathbb C:|z|\leq1\}\). Our map \(U\) is already defined continuously on the \emph{whole sphere}, so its equatorial restriction \(u\) has a continuous extension
+\[
+ \widetilde u:D^2\longrightarrow S^1.
+\]
+An explicit contraction shows why the degree must vanish.
+
+The disk can contract its boundary circle to a single central point. For \(s\in[0,1]\), the map
+\[
+ H(s,e^{it})=\widetilde u\bigl((1-s)e^{it}\bigr)
+\]
+is continuous, equals \(u(e^{it})\) at \(s=0\), and becomes the constant value \(\widetilde u(0)\) at \(s=1\). So \(u\) is \emph{null-homotopic}. The degree of a circle map is unchanged by a continuous homotopy, because it is the accumulated angular change divided by \(2\pi\); the argument-lifting proof we developed earlier applies to this closed-loop setting as well. A constant map has degree zero. Hence
+\[
+ \deg u=0.
+\]
+
+We have obtained two mutually incompatible answers for exactly the same map:
+\[
+ \deg u\in2\mathbb Z+1
+ \qquad\text{by antipodal oddness},\qquad
+ \deg u=0
+ \qquad\text{by disk extension}.
+\]
+The assumption that \(F\) never vanishes must therefore be false. This proves the two-dimensional Borsuk--Ulam theorem again.
+
+The rotating-meridian proof follows \emph{open} planar paths joining opposite points, and the relevant total angles lie in \(\pi+2\pi\mathbb Z\). The degree proof considers a \emph{closed} equatorial loop, whose total angle lies in \(2\pi\mathbb Z\). Both detect the same topological hole in the target \(\mathbb R^2\setminus\{0\}\). The first argument compares antipodal meridians; the degree argument packages the obstruction into an odd integer on the equator. This also explains why the same idea generalizes in more sophisticated forms to higher-dimensional spheres, although the elementary winding-angle calculation in a plane no longer suffices by itself.
+
+\section{The dimension boundary}
+
+A final question is: how many real measurements of a point on a sphere can all be kept nonzero \emph{as a vector}? For a single continuous odd function \(f:S^2\to\mathbb R\), the path version of the intermediate value theorem already guarantees a zero. For a pair \(F=(f,g):S^2\to\mathbb R^2\), the Borsuk--Ulam theorem we have just proved guarantees a \emph{common} zero. What happens if we ask for three odd functions instead?
+
+There is a remarkably simple counterexample. Let
+\[
+ f_1(x,y,z)=x,\quad
+ f_2(x,y,z)=y,\quad
+ f_3(x,y,z)=z
+ \qquad\text{on }S^2.
+\]
+These functions are continuous and odd. Each one has many zeros, and pairs of them have common zeros, but the triple has no common zero: \(x=y=z=0\) describes the center of the ball, which is not on the sphere. Equivalently, the odd map
+\[
+ F:S^2\longrightarrow\mathbb R^3,\qquad F(p)=p
+\]
+never reaches the origin. Thus the number \(2\) in the theorem's target \(\mathbb R^2\) is a sharp dimensional boundary for the sphere \(S^2\).
+
+The degree proof makes this boundary more transparent. For a hypothetical zero-free map \(F:S^2\to\mathbb R^2\), normalization gives a map \(U:S^2\to S^1\). Its restriction to the equator is a map from a circle to a \emph{circle}. There is an integer degree available, and antipodal oddness forces that degree to be odd. At the same time, the map extends across the northern hemisphere, a disk, and so must have degree zero. The contradiction depends on both parts of that geometry.
+
+If the target were \(\mathbb R^3\), normalization would instead give \(U:S^2\to S^2\). Its equatorial restriction maps \(S^1\) into \(S^2\), and the same circle-valued winding number is no longer available; indeed \(S^2\) is simply connected, so every loop in it is null-homotopic. The identity map above shows that no analogous contradiction can hold for an arbitrary triple of odd real functions on \(S^2\).
+
+This also helps explain why the higher-dimensional Borsuk--Ulam theorem requires more topology. The dimension-matching statement \(S^n\to\mathbb R^n\) can be proved by higher-dimensional degree and related constructions, but the elementary angle of a ray in the \emph{plane} has no direct replacement that one can simply copy word for word. The angular-change proof above applies to the two-dimensional case.
+
+At the beginning, the question concerned two apparently unrelated scalar functions on a sphere. Combining their values made a common zero the origin of a second plane. Rotating a meridian produced a continuous family of paths with fixed antipodal endpoints. The winding-angle discussion revealed a quantity that remembers the direction and number of turns, even through self-intersections. Finally the half-turn reversed the sign of that quantity while continuous deformation required it to remain unchanged. The existence of a common zero is precisely what resolves the conflict.
