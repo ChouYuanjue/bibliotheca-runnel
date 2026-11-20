@@ -28,33 +28,38 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 ### Tsinghua University — Natural Language Processing Lab (THUNLP)
 *Research Intern, AI for Science* · Advisor: Zheni Zeng · Mar 2026 – Present
 
-- Developed a scientific discovery agent that proposes structure–property hypotheses from molecular observations and selects follow-up compounds to test them on unseen scaffolds.
+- Built a scientific discovery agent that combines molecular observations, surrogate predictions, and executable analysis to propose hypotheses and select follow-up tests on unseen scaffolds.
+- Developed training and evaluation workflows for language models in molecular design, connecting candidate generation to property scoring and checks against multiple chemical objectives.
 
 ### Microsoft Research Asia (Beijing)
 *Research Intern, AI for Mathematics* · Advisor: Xian Zhang; Collaborator: Ziyu Zhou · Jan – Aug 2026
 
-- Built verifier-guided evaluation for Lean proof search and Rzk autoformalization, isolating the effects of retrieval, search budget, and prover choice.
+- Built verifier-guided tools for Lean proof search and Rzk autoformalization, using checker feedback to localize failed proof steps.
+- Designed controlled evaluations that isolate the effects of retrieval, search budget, and prover choice on proof success.
 
 ### NJU Institute of Intelligent Networks and Communications (NINE)
 *Research Intern* · Supervisor: Huihong Liang; Institute Director: Kun Yang · Aug 2026 – Present
 
-- Built a Raspberry Pi 5 semantic video encoder that refreshes selected visual tokens and reuses cached features, achieving **18.3 FPS** in a sender-side benchmark.
+- Implemented selective token refresh and temporal feature reuse in a Raspberry Pi 5 encoder, achieving **18.3 FPS** in a sender-side benchmark.
+- Built a reconstruction evaluation pipeline that measures fidelity around moving people using reference regions from the original footage.
 
 ### Wuxi Xishan NJU Institute of Applied Biotechnology
 *Research Intern, Computational Enzyme Discovery* · Sep 2026 – Present
 
-- Prepared enzyme candidate shortlists for wet-lab follow-up by combining model rankings with supporting evidence.
+- Translated biochemical reaction queries into experimental screening shortlists by combining model rankings with supporting evidence.
 
 ## Professional Experience
 ### Beijing Volcano Engine Technology Co., Ltd.
 *Agent Development Engineer* · Client: **Guizhou Xijiu Group** · Aug 2026 – Present
 
-- Built Xijiu's document agent, connecting retrieval, model routing, and document editing to generate source-linked drafts and carry revisions across review rounds.
+- Built Xijiu's document workflow for source-linked drafting, semantic review, and iterative revision.
+- Integrated enterprise retrieval, model routing, and document editing through reusable adapters, with source checks and task state carried across review rounds.
 
 ### Nanjing Flux Technology Co., Ltd.
 *Project Team Member* · Client-facing software development · Jan 2026 – Present
 
 - **Bank of Nanjing.** Implemented speech preprocessing, speaker-aware transcription, and audio-language inference for a multimodal LLM system for customer emotion recognition.
+- Developed backend services and APIs and integrated model inference into client-facing applications.
 
 ## Selected Research Projects
 ### [Evidence-Grounded Enzyme–Reaction Discovery (iGEM 2026)](https://www.runnelzhang.com/posters/igem-atlas)
@@ -72,17 +77,17 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 ### [TRACE: Typed Reasoning with Attribution, Certificates, and Evidence](https://www.runnelzhang.com/posters/trace)
 *Formal reasoning research linked to MSRA work · 2026*
 
-- Built a typed reasoning graph for Lean, Rzk, and symbolic logic that tracks proof dependencies and supports verification, refutation, and repair.
+- Built a typed reasoning graph that tracks proof dependencies across Lean, Rzk, and symbolic logic, with outputs for checked proofs, refutations, and witnesses that identify missing premises.
 
 ### [Tangut-SPAR: Structured Proxy Augmentation and Reliable Preference Tuning](https://www.runnelzhang.com/posters/tangut-spar)
 *Low-resource language modeling · 2026*
 
-- Combined a locally trained translation model with dictionary-grounded LLM prompting for historical Tangut texts, improving chrF++ by **22.2%** over dictionary-grounded DeepSeek-V3.2 prompting alone.
+- Trained a Tangut translation model with synthetic multitask data and preference optimization. Combining it with dictionary-grounded LLM prompting improved chrF++ by **22.2%** over the DeepSeek-V3.2 prompting baseline.
 
 ### [Doge-SAGE: Stateful Agent Systems for Scientific Communities](https://www.runnelzhang.com/posters/doge-sage)
 *Agent infrastructure and scientific computing · 2026*
 
-- Built a group-chat assistant that routes conversational requests and explicit commands through a shared tool registry and runs requests concurrently while preserving conversation history.
+- Built a group-chat assistant with a shared tool registry, concurrent workers that preserve conversation history, and a local check that screens requests before invoking the model.
 
 ## Additional Research Posters
 - **[Exchangeable Hard Negatives for Vision–Language Evaluation](https://www.runnelzhang.com/posters/candidate-exchangeability)** (2026) — Designed balanced hard negatives to measure how much vision–language reasoning depends on the image itself.
