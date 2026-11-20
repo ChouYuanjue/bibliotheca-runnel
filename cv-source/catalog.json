@@ -199,18 +199,18 @@
         {
           "id": "selected-research-projects--bisem-edge-compute-efficient-semantic-video",
           "title": "BiSem-Edge: Compute-Efficient Semantic Video",
-          "summary": "rSubsectionBiSem-Edge: Compute-Efficient Semantic Video2026NINE Lab | Poster Implemented native one-bit NEON kernels for semantic video encoding on Raspberry Pi 5, cutting encoder latency by 72% versus floating-point execution at the same quantization level. Recovered detail lost in semantic compression by sending compact PCA side information to the decoder,",
-          "tex": "\\begin{rSubsection}{BiSem-Edge: Compute-Efficient Semantic Video}{2026}{NINE Lab \\quad | \\quad \\cvsmalllink{https://www.runnelzhang.com/posters/bisem-edge}{Poster}}{}\n\\item Implemented native one-bit NEON kernels for semantic video encoding on Raspberry Pi 5, cutting encoder latency by \\textbf{72\\%} versus floating-point execution at the same quantization level.\n\\item Recovered detail lost in semantic compression by sending compact PCA side information to the decoder, improving PSNR by 1.18 dB on held-out cameras.\n\\end{rSubsection}",
+          "summary": "rSubsectionBiSem-Edge: Compute-Efficient Semantic Video2026NINE Lab | Poster Cut ViT encoder work by reusing cached attention keys and values for stable video patches, pruning MLP widths layer by layer, and selectively applying ternary quantization to attention projections. A separate native one-bit NEON path cut Raspberry Pi 5 encoder latency by 72% versus ",
+          "tex": "\\begin{rSubsection}{BiSem-Edge: Compute-Efficient Semantic Video}{2026}{NINE Lab \\quad | \\quad \\cvsmalllink{https://www.runnelzhang.com/posters/bisem-edge}{Poster}}{}\n\\item Cut ViT encoder work by reusing cached attention keys and values for stable video patches, pruning MLP widths layer by layer, and selectively applying ternary quantization to attention projections. A separate native one-bit NEON path cut Raspberry Pi 5 encoder latency by \\textbf{72\\%} versus floating-point execution at matched quantization.\n\\item Recovered visual detail discarded by the semantic bottleneck by sending the decoder compressed PCA coefficients for information outside the bottleneck representation, improving PSNR by 1.18 dB on held-out cameras.\n\\end{rSubsection}",
           "before": "\\begin{rSubsection}{BiSem-Edge: Compute-Efficient Semantic Video}{2026}{NINE Lab \\quad | \\quad \\cvsmalllink{https://www.runnelzhang.com/posters/bisem-edge}{Poster}}{}\n",
           "after": "\\end{rSubsection}",
           "bullets": [
             {
-              "tex": "Implemented native one-bit NEON kernels for semantic video encoding on Raspberry Pi 5, cutting encoder latency by \\textbf{72\\%} versus floating-point execution at the same quantization level.",
-              "text": "Implemented native one-bit NEON kernels for semantic video encoding on Raspberry Pi 5, cutting encoder latency by 72% versus floating-point execution at the same quantization level."
+              "tex": "Cut ViT encoder work by reusing cached attention keys and values for stable video patches, pruning MLP widths layer by layer, and selectively applying ternary quantization to attention projections. A separate native one-bit NEON path cut Raspberry Pi 5 encoder latency by \\textbf{72\\%} versus floating-point execution at matched quantization.",
+              "text": "Cut ViT encoder work by reusing cached attention keys and values for stable video patches, pruning MLP widths layer by layer, and selectively applying ternary quantization to attention projections. A separate native one-bit NEON path cut Raspberry Pi 5 encoder latency by 72% versus floating-point execution at matched quantization."
             },
             {
-              "tex": "Recovered detail lost in semantic compression by sending compact PCA side information to the decoder, improving PSNR by 1.18 dB on held-out cameras.",
-              "text": "Recovered detail lost in semantic compression by sending compact PCA side information to the decoder, improving PSNR by 1.18 dB on held-out cameras."
+              "tex": "Recovered visual detail discarded by the semantic bottleneck by sending the decoder compressed PCA coefficients for information outside the bottleneck representation, improving PSNR by 1.18 dB on held-out cameras.",
+              "text": "Recovered visual detail discarded by the semantic bottleneck by sending the decoder compressed PCA coefficients for information outside the bottleneck representation, improving PSNR by 1.18 dB on held-out cameras."
             }
           ]
         },

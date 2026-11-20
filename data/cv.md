@@ -70,8 +70,8 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 ### [BiSem-Edge: Compute-Efficient Semantic Video](https://www.runnelzhang.com/posters/bisem-edge)
 *NINE Lab · 2026*
 
-- Implemented native one-bit NEON kernels for semantic video encoding on Raspberry Pi 5, cutting encoder latency by **72%** versus floating-point execution at the same quantization level.
-- Recovered detail lost in semantic compression by sending compact PCA side information to the decoder, improving PSNR by 1.18 dB on held-out cameras.
+- Cut ViT encoder work by reusing cached attention keys and values for stable video patches, pruning MLP widths layer by layer, and selectively applying ternary quantization to attention projections. A separate native one-bit NEON path cut Raspberry Pi 5 encoder latency by **72%** versus floating-point execution at matched quantization.
+- Recovered visual detail discarded by the semantic bottleneck by sending the decoder compressed PCA coefficients for information outside the bottleneck representation, improving PSNR by 1.18 dB on held-out cameras.
 
 ### [TRACE: Typed Reasoning with Attribution, Certificates, and Evidence](https://www.runnelzhang.com/posters/trace)
 *Formal reasoning research linked to MSRA work · 2026*
