@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node scripts/dev-next.js",
-    "build": "npm run verify:posters && next build",
+    "build": "node scripts/build-cv-catalog.js && npm run verify:posters && next build",
     "verify:posters": "node scripts/verify-posters.js",
     "start": "next start",
     "lint": "next lint",

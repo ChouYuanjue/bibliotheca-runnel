@@ -1,0 +1,25 @@
+[Unit]
+Description=CV TeX compiler
+After=network-online.target
+[Service]
+Type=simple
+User=cvcompiler
+Group=cvcompiler
+WorkingDirectory=/opt/cv-compiler
+ExecStart=/opt/cv-compiler/bin/node /opt/cv-compiler/scripts/cv-compiler-service.js
+Environment=PORT=18790
+Environment=TECTONIC_BIN=/opt/cv-compiler/bin/tectonic
+Environment=XDG_CACHE_HOME=/var/cache/cv-tex
+Environment=HTTPS_PROXY=http://127.0.0.1:10818
+Environment=HTTP_PROXY=http://127.0.0.1:10818
+ReadWritePaths=/opt/cv-compiler/.cv-cache /var/cache/cv-tex
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+Restart=on-failure
+RestartSec=3
+MemoryMax=768M
+TasksMax=32
+[Install]
+WantedBy=multi-user.target
