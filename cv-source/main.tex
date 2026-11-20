@@ -46,7 +46,7 @@
 \address{\href{https://orcid.org/0009-0005-7611-3583}{ORCID: 0009-0005-7611-3583}\qquad Nanjing, China}
 % Genuine K-Wu template section style, restoring its purple heading and rule.
 \renewenvironment{rSection}[1]{%
- \par\vspace{10pt}\noindent\needspace{3\baselineskip}%
+ \par\vspace{8.5pt}\noindent\needspace{3\baselineskip}%
  {\color{TsinghuaPurple}\bfseries\normalsize\MakeUppercase{#1}}\par\vspace{4pt}%
  {\color{CVRule}\hrule height .65pt}\vspace{6pt}%
 }{\vspace{1pt}}
@@ -57,9 +57,9 @@
  {\bfseries #1} & {\color{CVMuted}\footnotesize #2}
  \end{tabularx}\par\vspace{1pt}%
  \ifthenelse{\equal{#3}{}}{}{\textit{\small #3}\par\vspace{1pt}}%
- \begin{list}{$\bullet$}{\setlength{\leftmargin}{1.16em}\setlength{\itemsep}{2.0pt}\setlength{\topsep}{2.5pt}\setlength{\parsep}{0pt}}%
+ \begin{list}{$\bullet$}{\setlength{\leftmargin}{1.16em}\setlength{\itemsep}{1.1pt}\setlength{\topsep}{2.5pt}\setlength{\parsep}{0pt}}%
  \small
-}{\end{list}\vspace{3.0pt}}
+}{\end{list}\vspace{1.75pt}}
 \newcommand{\cvsmalllink}[2]{\href{#1}{\textcolor{TsinghuaPurple}{#2}}}
 \newcommand{\cvsubheading}[2]{\par\needspace{2.5\baselineskip}%
  \noindent{\bfseries #1}\hfill{\color{CVMuted}\small #2}\par\vspace{3pt}}
@@ -73,7 +73,7 @@
  \begin{minipage}[t]{.63in}%
  \vspace{0pt}\raggedleft{\color{CVMuted}\footnotesize #3}%
  \end{minipage}\par\vspace{1.5pt}%
- \noindent{\footnotesize\color{CVMuted}#4}\par\vspace{7pt}%
+ \noindent{\footnotesize\color{CVMuted}#4}\par\vspace{5.75pt}%
 }
 \newcommand{\cvpar}[1]{{\small #1}\par\vspace{5pt}}
 \newcommand{\cvfoot}{\small\color{CVMuted}\thepage\ / \pageref{LastPage}}
@@ -85,6 +85,12 @@
 \begin{rSection}{Education}
 \noindent {\bfseries Nanjing University}\hfill{\color{CVMuted}\small Sep 2025 -- Present}\par
 B.S. in Intelligent Science and Technology \hfill Nanjing, China
+\end{rSection}
+
+\begin{rSection}{Honors \& Awards}
+\noindent\textbf{NJU-China | iGEM 2026 Grand Jamboree}\hfill{\color{CVMuted}\small 2026}\par\vspace{3pt}
+\noindent{\small\textbf{Gold Medal} \quad $\cdot$ \quad \textbf{Best Software \& AI Project} (Village Award) \quad $\cdot$ \quad \textbf{Best Model} Nominee}\par\vspace{3pt}
+\noindent{\small\textit{Dry Lab Student Leader} (Head of the Dry Lab Team), NJU-China.}
 \end{rSection}
 
 \begin{rSection}{Research Experience}
@@ -108,6 +114,12 @@ B.S. in Intelligent Science and Technology \hfill Nanjing, China
 \end{rSubsection}
 \end{rSection}
 
+\begin{rSection}{Technical Background}
+\noindent{\small\textbf{Research:} Scientific agents, molecular optimization, multimodal learning, formal verification. \quad \textbf{Engineering:} Python, TypeScript, PyTorch, Linux, Git; retrieval, tool orchestration, edge inference.}
+\end{rSection}
+
+
+\needspace{14\baselineskip}
 \begin{rSection}{Manuscript}
 \noindent\textbf{Input-Output Sampling for Efficient Multi-Objective Molecular Optimization with LLMs}\par\vspace{3pt}
 Haoran Liu\textsuperscript{*}, \textbf{Runcheng Zhang\textsuperscript{*}}, Zheni Zeng, Yukun Yan, Zhenghao Liu.\par\vspace{2pt}
@@ -122,7 +134,6 @@ Haoran Liu\textsuperscript{*}, \textbf{Runcheng Zhang\textsuperscript{*}}, Zheni
 
 
 
-\newpage
 
 \begin{rSection}{Professional Experience}
 \begin{rSubsection}{Beijing Volcano Engine Technology Co., Ltd.}{Aug 2026 -- Present}{Agent Development Engineer \quad | \quad Client: Guizhou Xijiu Group}{}
@@ -137,7 +148,7 @@ Haoran Liu\textsuperscript{*}, \textbf{Runcheng Zhang\textsuperscript{*}}, Zheni
 \end{rSection}
 
 \begin{rSection}{Selected Research Projects}
-\begin{rSubsection}{Evidence-Grounded Enzyme--Reaction Discovery (iGEM 2026)}{2026}{NJU-China Dry Lab \quad | \quad Dry Lab Student Lead \quad | \quad \cvsmalllink{https://www.runnelzhang.com/posters/igem-atlas}{Poster}}{}
+\begin{rSubsection}{Evidence-Grounded Enzyme--Reaction Discovery (iGEM 2026)}{2026}{NJU-China Dry Lab \quad | \quad Dry Lab Student Leader \quad | \quad \cvsmalllink{https://www.runnelzhang.com/posters/igem-atlas}{Poster}}{}
 \item Built a two-direction protein--reaction ranking framework that combines sequence and reaction representations with evidence-dependent expert corrections, without restricting predictions to expert-retrieved candidates.
 \item Connected ranking outputs to a scientific-agent workflow spanning reaction/sequence queries, graph-based evidence exploration, and explicit separation of verified knowledge from inferred candidates.
 \item Coordinated computational modeling and evaluation with wet-lab objectives, focusing on how researchers can inspect candidate provenance before experimental follow-up.
@@ -157,7 +168,6 @@ Haoran Liu\textsuperscript{*}, \textbf{Runcheng Zhang\textsuperscript{*}}, Zheni
 \item Analyzed information lost in low-dimensional semantic features and explored complementary reconstruction and CPU-native bitwise inference without conflating encoder speed with restored video quality.
 \end{rSubsection}
 \end{rSection}
-\newpage
 \begin{rSection}{Selected Research Projects (continued)}
 
 
@@ -188,9 +198,6 @@ Haoran Liu\textsuperscript{*}, \textbf{Runcheng Zhang\textsuperscript{*}}, Zheni
 \end{rSection}
 
 
-\begin{rSection}{Technical Background}
-\noindent\textbf{Research:} LLM reasoning and scientific agents; multimodal representation; molecular optimization; formal verification; evaluation design.\par\vspace{3pt}
-\noindent\textbf{Engineering:} Python, TypeScript, PyTorch, Linux, Git; model/tool orchestration, knowledge retrieval, asynchronous services, resource-constrained inference.\par
-\end{rSection}
+
 
 \end{document}
