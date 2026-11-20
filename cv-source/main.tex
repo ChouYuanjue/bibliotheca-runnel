@@ -27,7 +27,25 @@
 \setlength{\parskip}{0pt}
 \setlength{\parfillskip}{0pt plus 1fil} % Avoid the native 30pt tabular overflow.
 \renewcommand{\arraystretch}{1.03}
-\raggedbottom
+\flushbottom
+% Redistribute at most 36pt per completed page into section/entry gaps.
+% Reserve any larger shortfall at the foot so sparse pages never develop huge gaps.
+\makeatletter
+\newdimen\cvbottomreserve
+\pretocmd{\@makecol}{%
+  \setbox\@tempboxa=\vbox{\unvcopy\@cclv}%
+  \cvbottomreserve=\@colht
+  \advance\cvbottomreserve by -\ht\@tempboxa
+  \advance\cvbottomreserve by -\dp\@tempboxa
+  \advance\cvbottomreserve by -36pt
+  \ifdim\cvbottomreserve<0pt \cvbottomreserve=0pt\fi
+}{}{\PackageError{cv}{Could not install page balancing}{}}
+\def\@textbottom{\vskip\cvbottomreserve}
+\makeatother
+% Infinite-order terminal glue absorbs the last page's space before finite gaps.
+\AtEndDocument{\par\vfill}
+\clubpenalty=10000
+\widowpenalty=10000
 \emergencystretch=1em
 % The original class automatically centers the name at the start of the document.
 % Retain that native mechanism; place two VECTOR institution marks on its flanks.
@@ -46,53 +64,56 @@
 \address{\href{https://orcid.org/0009-0005-7611-3583}{ORCID: 0009-0005-7611-3583}\qquad Nanjing, China}
 % Genuine K-Wu template section style, restoring its purple heading and rule.
 \renewenvironment{rSection}[1]{%
- \par\vspace{8.5pt}\noindent\needspace{3\baselineskip}%
+ \par\vspace{8.5pt plus 3pt}\noindent\Needspace*{3\baselineskip}%
  {\color{TsinghuaPurple}\bfseries\normalsize\MakeUppercase{#1}}\par\vspace{4pt}%
  {\color{CVRule}\hrule height .65pt}\vspace{6pt}%
-}{\vspace{1pt}}
+}{\vspace{1pt plus 1pt}}
 % Preserve rSubsection's four-argument contract while lifting its old dense list settings.
 \renewenvironment{rSubsection}[4]{%
- \par\needspace{5.0\baselineskip}%
+ \par\Needspace*{5.0\baselineskip}%
  \noindent\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X>{\raggedleft\arraybackslash}p{1.42in}@{}}
  {\bfseries #1} & {\color{CVMuted}\footnotesize #2}
  \end{tabularx}\par\vspace{1pt}%
  \ifthenelse{\equal{#3}{}}{}{\textit{\small #3}\par\vspace{1pt}}%
  \begin{list}{$\bullet$}{\setlength{\leftmargin}{1.16em}\setlength{\itemsep}{1.1pt}\setlength{\topsep}{2.5pt}\setlength{\parsep}{0pt}}%
  \small
-}{\end{list}\vspace{1.75pt}}
+}{\end{list}\vspace{1.75pt plus 2.5pt}}
 \newcommand{\cvsmalllink}[2]{\href{#1}{\textcolor{TsinghuaPurple}{#2}}}
-\newcommand{\cvsubheading}[2]{\par\needspace{2.5\baselineskip}%
+\newcommand{\cvsubheading}[2]{\par\Needspace*{2.5\baselineskip}%
  \noindent{\bfseries #1}\hfill{\color{CVMuted}\small #2}\par\vspace{3pt}}
 % Compact bibliographic item: modest dark title, aligned date and a one-line research TL;DR.
 % Minipages (not a height-constrained table) preserve top alignment even for wrapped headings.
 \newcommand{\posterrow}[4]{%
- \par\needspace{3.0\baselineskip}%
+ \par\Needspace*{3.0\baselineskip}%
  \noindent\begin{minipage}[t]{\dimexpr\linewidth-.75in\relax}%
  \vspace{0pt}\raggedright{\small\bfseries\href{#2}{\textcolor{CVInk}{#1}}}%
  \end{minipage}\hfill
  \begin{minipage}[t]{.63in}%
  \vspace{0pt}\raggedleft{\color{CVMuted}\footnotesize #3}%
  \end{minipage}\par\vspace{1.5pt}%
- \noindent{\footnotesize\color{CVMuted}#4}\par\vspace{5.75pt}%
+ \noindent{\footnotesize\color{CVMuted}#4}\par\vspace{5.75pt plus 2pt}%
 }
-\newcommand{\cvpar}[1]{{\small #1}\par\vspace{5pt}}
+\newcommand{\cvpar}[1]{{\small #1}\par\vspace{5pt plus 2pt}}
 \newcommand{\cvfoot}{\small\color{CVMuted}\thepage\ / \pageref{LastPage}}
 \pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\cvfoot}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0pt}
 \setlength{\footskip}{21pt}
 \begin{document}
 \thispagestyle{fancy}
 
+\Needspace*{9\baselineskip}
 \begin{rSection}{Education}
 \noindent {\bfseries Nanjing University}\hfill{\color{CVMuted}\small Sep 2025 -- Present}\par
 B.S. in Intelligent Science and Technology \hfill Nanjing, China
 \end{rSection}
 
+\Needspace*{9\baselineskip}
 \begin{rSection}{Honors \& Awards}
 \noindent\textbf{2026 International Genetically Engineered Machine (iGEM) Competition}\par\vspace{3pt}
 \noindent{\small\textbf{Gold Medal} \quad $\cdot$ \quad \textbf{Best Software \& AI Project} \quad $\cdot$ \quad \textbf{Best Model} Nominee}\par\vspace{3pt}
 \noindent{\small\textit{Student Leader (Head of the Dry Lab)}, NJU-China.}
 \end{rSection}
 
+\Needspace*{9\baselineskip}
 \begin{rSection}{Research Experience}
 \begin{rSubsection}{Tsinghua University -- Natural Language Processing Lab (THUNLP)}{Mar 2026 -- Present}{Research Intern, AI for Science \quad | \quad Advisor: Zheni Zeng}{}
 \item Investigating language-model inference and sampling strategies for multi-objective molecular optimization, linking candidate generation to molecular property evaluation and scientific constraints.
@@ -114,27 +135,7 @@ B.S. in Intelligent Science and Technology \hfill Nanjing, China
 \end{rSubsection}
 \end{rSection}
 
-\begin{rSection}{Technical Background}
-\noindent{\small\textbf{Research:} Scientific agents, molecular optimization, multimodal learning, formal verification. \quad \textbf{Engineering:} Python, TypeScript, PyTorch, Linux, Git; retrieval, tool orchestration, edge inference.}
-\end{rSection}
-
-
-\needspace{14\baselineskip}
-\begin{rSection}{Manuscript}
-\noindent\textbf{Input-Output Sampling for Efficient Multi-Objective Molecular Optimization with LLMs}\par\vspace{3pt}
-Haoran Liu\textsuperscript{*}, \textbf{Runcheng Zhang\textsuperscript{*}}, Zheni Zeng, Yukun Yan, Zhenghao Liu.\par\vspace{2pt}
-\textit{Submitted to ICLR 2027.}\quad {\small\textsuperscript{*}Equal contribution.}\par\vspace{2pt}
-% Match the concise, contribution-oriented bullets used throughout the CV.
-\begin{itemize}[leftmargin=1.16em,topsep=2.7pt,itemsep=2.5pt,parsep=0pt]
-\small
-\item Proposed MolDAS for multi-objective molecular RL: capability-aware sampling of diverse, learnable inputs; selective oracle feedback on low-probability output segments; and reward-dispersion-guided imitation with adaptive objective weights.
-\item In simulator-to-oracle training, improved optimization scores over vanilla GRPO by 3.7\% in the low-fidelity stage and over 16.1\% under capped high-fidelity calls, while reducing structural redundancy and training fluctuations.
-\end{itemize}
-\end{rSection}
-
-
-
-
+\Needspace*{9\baselineskip}
 \begin{rSection}{Professional Experience}
 \begin{rSubsection}{Beijing Volcano Engine Technology Co., Ltd.}{Aug 2026 -- Present}{Agent Development Engineer \quad | \quad Client: Guizhou Xijiu Group}{}
 \item Developed components of a document-centric enterprise agent that structures multi-step analysis, draft generation, semantic review, and revision as tool-augmented workflows with explicit intermediate state.
@@ -147,6 +148,20 @@ Haoran Liu\textsuperscript{*}, \textbf{Runcheng Zhang\textsuperscript{*}}, Zheni
 \end{rSubsection}
 \end{rSection}
 
+\Needspace*{9\baselineskip}
+\begin{rSection}{Manuscript}
+\noindent\textbf{Input-Output Sampling for Efficient Multi-Objective Molecular Optimization with LLMs}\par\vspace{3pt}
+Haoran Liu\textsuperscript{*}, \textbf{Runcheng Zhang\textsuperscript{*}}, Zheni Zeng, Yukun Yan, Zhenghao Liu.\par\vspace{2pt}
+\textit{Submitted to ICLR 2027.}\quad {\small\textsuperscript{*}Equal contribution.}\par\vspace{2pt}
+% Match the concise, contribution-oriented bullets used throughout the CV.
+\begin{itemize}[leftmargin=1.16em,topsep=2.7pt,itemsep=2.5pt,parsep=0pt]
+\small
+\item Proposed MolDAS for multi-objective molecular RL: capability-aware sampling of diverse, learnable inputs; selective oracle feedback on low-probability output segments; and reward-dispersion-guided imitation with adaptive objective weights.
+\item In simulator-to-oracle training, improved optimization scores over vanilla GRPO by 3.7\% in the low-fidelity stage and over 16.1\% under capped high-fidelity calls, while reducing structural redundancy and training fluctuations.
+\end{itemize}
+\end{rSection}
+
+\Needspace*{9\baselineskip}
 \begin{rSection}{Selected Research Projects}
 \begin{rSubsection}{Evidence-Grounded Enzyme--Reaction Discovery (iGEM 2026)}{2026}{NJU-China \quad | \quad Student Leader (Head of the Dry Lab) \quad | \quad \cvsmalllink{https://www.runnelzhang.com/posters/igem-atlas}{Poster}}{}
 \item Built a two-direction protein--reaction ranking framework that combines sequence and reaction representations with evidence-dependent expert corrections, without restricting predictions to expert-retrieved candidates.
@@ -167,9 +182,6 @@ Haoran Liu\textsuperscript{*}, \textbf{Runcheng Zhang\textsuperscript{*}}, Zheni
 \item Investigated selective visual-token refresh and cached temporal representations to avoid redundant encoder computation on largely unchanged frames.
 \item Analyzed information lost in low-dimensional semantic features and explored complementary reconstruction and CPU-native bitwise inference without conflating encoder speed with restored video quality.
 \end{rSubsection}
-\end{rSection}
-\begin{rSection}{Selected Research Projects (continued)}
-
 
 \begin{rSubsection}{Doge-SAGE: Stateful Agent Systems for Scientific Communities}{2026}{Agent infrastructure and scientific computing \quad | \quad \cvsmalllink{https://www.runnelzhang.com/posters/doge-sage}{Poster}}{}
 \item Designed a persistent, multi-user scientific assistant with shared capability discovery, turn-scoped state assembly, and event-local execution paths.
@@ -177,6 +189,7 @@ Haoran Liu\textsuperscript{*}, \textbf{Runcheng Zhang\textsuperscript{*}}, Zheni
 \end{rSubsection}
 \end{rSection}
 
+\Needspace*{9\baselineskip}
 \begin{rSection}{Additional Research Posters}
 \posterrow{Exchangeable Hard Negatives for Vision--Language Evaluation}{https://www.runnelzhang.com/posters/candidate-exchangeability}{2026}{Removed candidate-set structural shortcuts to test whether vision--language models use image evidence.}
 \posterrow{ProCo: Verifiable Abstention through Missing-Support Supervision}{https://www.runnelzhang.com/posters/proco-evidence}{2026}{Trained abstention with verifier-checkable witnesses of missing evidence in open-world reasoning.}
@@ -185,19 +198,22 @@ Haoran Liu\textsuperscript{*}, \textbf{Runcheng Zhang\textsuperscript{*}}, Zheni
 \posterrow{MOSAIC: Reference-Grounded Compositional Emoji Fusion}{https://www.runnelzhang.com/posters/mosaic}{2025}{Proposed source-aware visual composition with explicit roles, attribute transfer, and region planning.}
 \end{rSection}
 
+\Needspace*{9\baselineskip}
+\begin{rSection}{Technical Background}
+\noindent{\small\textbf{Research:} Scientific agents, molecular optimization, multimodal learning, formal verification.\par\vspace{2pt}\noindent\textbf{Engineering:} Python, TypeScript, PyTorch, Linux, Git; retrieval, tool orchestration, edge inference.}
+\end{rSection}
+
+\Needspace*{9\baselineskip}
 \begin{rSection}{Independent Mathematical Writing}
 \noindent \textbf{Informal Notes on Mathematics}\hfill{\color{CVMuted}\small Ongoing}\par\vspace{2pt}
 \cvpar{Author and editor of a multi-volume, English-language LaTeX collection of informal mathematical notes and essays. Rebuilt earlier multilingual material into a coherent book with thematic organization, corrected arguments, diagrams, and expanded explanations spanning algebra, geometry, topology, analysis, and logic. \cvsmalllink{https://www.runnelzhang.com/projects/inm-tex}{Project}\quad\cvsmalllink{https://www.runnelzhang.com/library/notes}{Notes library}.}
 \end{rSection}
 
+\Needspace*{9\baselineskip}
 \begin{rSection}{Technical Presentations}
 \noindent\textbf{Navigating the Full-Stack Ecosystem: Implementation Strategies and Knowledge Graphs for Information Aggregation}\hfill{\color{CVMuted}\small Dec 2025}\par\vspace{2pt}
 \cvpar{Student presenter, Intelligent Data and Decision Studio, Nanjing University. \cvsmalllink{https://doi.org/10.5281/zenodo.17852269}{Presentation record}.}
 \noindent\textbf{Architectural Paradigms in Collaborative Software Engineering: A Comprehensive Analysis of the Nova Project}\hfill{\color{CVMuted}\small Nov 2025}\par\vspace{2pt}
 \cvpar{Student presenter, Intelligent Data and Decision Studio, Nanjing University. \cvsmalllink{https://doi.org/10.5281/zenodo.17765724}{Presentation record}.}
 \end{rSection}
-
-
-
-
 \end{document}

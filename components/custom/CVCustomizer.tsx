@@ -12,7 +12,9 @@ export default function CVCustomizer({sections}: {sections:CVSection[]}){
  function restore(value:unknown):CVConfig{
   const v=value as CVConfig;
   if(!v||v.version!==1||!Array.isArray(v.sections)||!Array.isArray(v.entries)||!["letter","a4"].includes(v.paper)||!["normal","compact"].includes(v.density))throw Error("This is not a valid CV selection file.");
-  const ids=Array.from(new Set(v.sections.filter(id=>sections.some(s=>s.id===id))));
+  const previousDefault=["education","honors-awards","research-experience","technical-background","manuscript","professional-experience","selected-research-projects","additional-research-posters","independent-mathematical-writing","technical-presentations"];
+  const storedOrder=JSON.stringify(v.sections)===JSON.stringify(previousDefault)?sections.map(s=>s.id):v.sections;
+  const ids=Array.from(new Set(storedOrder.filter(id=>sections.some(s=>s.id===id))));
   // New catalogue sections stay available even when importing an older selection.
   for(const s of sections)if(!ids.includes(s.id))ids.push(s.id);
   const seen=new Set<string>();
@@ -127,7 +129,7 @@ export default function CVCustomizer({sections}: {sections:CVSection[]}){
      <h2 className="flex gap-2 items-center font-semibold"><Settings2 size={18}/>Export settings</h2>
      <label className="block text-sm font-medium">Paper size<select className="mt-1 block w-full rounded-lg border border-gray-200 bg-white p-2" value={config.paper} onChange={e=>setConfig(c=>({...c,paper:e.target.value as CVConfig["paper"]}))}><option value="letter">US Letter</option><option value="a4">A4</option></select></label>
      <label className="block text-sm font-medium">Spacing<select className="mt-1 block w-full rounded-lg border border-gray-200 bg-white p-2" value={config.density} onChange={e=>setConfig(c=>({...c,density:e.target.value as CVConfig["density"]}))}><option value="normal">Standard</option><option value="compact">Compact</option></select></label>
-     <p className="text-sm text-gray-500">Contact details and institution marks stay in the header. Empty sections are omitted automatically.</p>
+     <p className="text-sm text-gray-500">Contact details and institution marks stay in the header. Empty sections are omitted automatically. Earlier pages gently balance section and entry spacing; the final page keeps its natural height.</p>
      <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-purple-900 px-4 py-3 text-sm font-semibold text-white hover:bg-purple-800 disabled:opacity-40" disabled={!!busy||!config.entries.length} onClick={()=>generate("pdf")}>{busy==="pdf"?<Loader2 className="animate-spin" size={17}/>:<FileText size={17}/>} {busy==="pdf"?"Compiling PDF…":"Compile & preview PDF"}</button>
      <button className={button+" w-full"} disabled={!!busy||!config.entries.length} onClick={()=>generate("source")}>{busy==="source"?<Loader2 className="animate-spin" size={16}/>:<Download size={16}/>}Download TeX source package</button>
      {!config.entries.length&&<p className="text-sm text-purple-800">Select at least one entry to export.</p>}

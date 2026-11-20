@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "preamble": "% Runcheng Zhang | Research & Engineering CV (November 2026)\n% Built on the native K-Wu/CV-tsinghua-template resume.cls and rSection/rSubsection.\n% This document is a research-and-engineering portfolio, not a targeted HR one-pager.\n\\documentclass{resume}\n\\usepackage[letterpaper,top=.67in,bottom=.67in,left=.82in,right=.82in]{geometry}\n\\usepackage[dvipsnames]{xcolor}\n\\usepackage{graphicx}\n\\usepackage{tabularx}\n\\usepackage{hyperref}\n\\usepackage{needspace}\n\\usepackage{enumitem}\n\\usepackage{etoolbox}\n\\usepackage{ifthen}\n\\usepackage{microtype}\n\\usepackage{lastpage}\n\\usepackage{fancyhdr}\n\\usepackage{newtxtext,newtxmath}\n\\definecolor{TsinghuaPurple}{cmyk}{0.58,0.90,0,0}\n\\definecolor{CVMuted}{HTML}{60616A}\n\\definecolor{CVInk}{HTML}{25232B}\n\\definecolor{CVRule}{HTML}{C9C3CB}\n\\hypersetup{colorlinks=true,urlcolor=TsinghuaPurple,linkcolor=TsinghuaPurple,\n pdfauthor={Runcheng Zhang},pdftitle={Runcheng Zhang - Curriculum Vitae},\n pdfsubject={Research and Engineering CV, November 2026}}\n\\urlstyle{same}\n\\setlength{\\parindent}{0pt}\n\\setlength{\\parskip}{0pt}\n\\setlength{\\parfillskip}{0pt plus 1fil} % Avoid the native 30pt tabular overflow.\n\\renewcommand{\\arraystretch}{1.03}\n\\raggedbottom\n\\emergencystretch=1em\n% The original class automatically centers the name at the start of the document.\n% Retain that native mechanism; place two VECTOR institution marks on its flanks.\n\\makeatletter\n\\def\\printname{%\n \\par\\noindent\\makebox[\\textwidth][c]{%\n   \\rlap{\\raisebox{-0.16in}{\\includegraphics[height=.74in,keepaspectratio]{assets/nju_vector.pdf}}}%\n   \\hfill{\\fontsize{22.5}{26}\\selectfont\\bfseries\\@name}\\hfill%\n   \\llap{\\raisebox{-0.15in}{\\includegraphics[height=.84in,keepaspectratio]{assets/thunlp_full_vector.pdf}}}%\n }\\par\\vspace{3.0pt}}\n\\makeatother\n\\name{Runcheng Zhang}\n\\address{\\href{mailto:zhangruncheng@thunlp.com}{zhangruncheng@thunlp.com}\\quad\n \\textbar\\quad\\href{https://github.com/ChouYuanjue}{github.com/ChouYuanjue}\\quad\n \\textbar\\quad\\href{https://www.runnelzhang.com}{runnelzhang.com}}\n\\address{\\href{https://orcid.org/0009-0005-7611-3583}{ORCID: 0009-0005-7611-3583}\\qquad Nanjing, China}\n% Genuine K-Wu template section style, restoring its purple heading and rule.\n\\renewenvironment{rSection}[1]{%\n \\par\\vspace{8.5pt}\\noindent\\needspace{3\\baselineskip}%\n {\\color{TsinghuaPurple}\\bfseries\\normalsize\\MakeUppercase{#1}}\\par\\vspace{4pt}%\n {\\color{CVRule}\\hrule height .65pt}\\vspace{6pt}%\n}{\\vspace{1pt}}\n% Preserve rSubsection's four-argument contract while lifting its old dense list settings.\n\\renewenvironment{rSubsection}[4]{%\n \\par\\needspace{5.0\\baselineskip}%\n \\noindent\\begin{tabularx}{\\linewidth}{@{}>{\\raggedright\\arraybackslash}X>{\\raggedleft\\arraybackslash}p{1.42in}@{}}\n {\\bfseries #1} & {\\color{CVMuted}\\footnotesize #2}\n \\end{tabularx}\\par\\vspace{1pt}%\n \\ifthenelse{\\equal{#3}{}}{}{\\textit{\\small #3}\\par\\vspace{1pt}}%\n \\begin{list}{$\\bullet$}{\\setlength{\\leftmargin}{1.16em}\\setlength{\\itemsep}{1.1pt}\\setlength{\\topsep}{2.5pt}\\setlength{\\parsep}{0pt}}%\n \\small\n}{\\end{list}\\vspace{1.75pt}}\n\\newcommand{\\cvsmalllink}[2]{\\href{#1}{\\textcolor{TsinghuaPurple}{#2}}}\n\\newcommand{\\cvsubheading}[2]{\\par\\needspace{2.5\\baselineskip}%\n \\noindent{\\bfseries #1}\\hfill{\\color{CVMuted}\\small #2}\\par\\vspace{3pt}}\n% Compact bibliographic item: modest dark title, aligned date and a one-line research TL;DR.\n% Minipages (not a height-constrained table) preserve top alignment even for wrapped headings.\n\\newcommand{\\posterrow}[4]{%\n \\par\\needspace{3.0\\baselineskip}%\n \\noindent\\begin{minipage}[t]{\\dimexpr\\linewidth-.75in\\relax}%\n \\vspace{0pt}\\raggedright{\\small\\bfseries\\href{#2}{\\textcolor{CVInk}{#1}}}%\n \\end{minipage}\\hfill\n \\begin{minipage}[t]{.63in}%\n \\vspace{0pt}\\raggedleft{\\color{CVMuted}\\footnotesize #3}%\n \\end{minipage}\\par\\vspace{1.5pt}%\n \\noindent{\\footnotesize\\color{CVMuted}#4}\\par\\vspace{5.75pt}%\n}\n\\newcommand{\\cvpar}[1]{{\\small #1}\\par\\vspace{5pt}}\n\\newcommand{\\cvfoot}{\\small\\color{CVMuted}\\thepage\\ / \\pageref{LastPage}}\n\\pagestyle{fancy}\\fancyhf{}\\fancyfoot[C]{\\cvfoot}\\renewcommand{\\headrulewidth}{0pt}\\renewcommand{\\footrulewidth}{0pt}\n\\setlength{\\footskip}{21pt}\n",
+  "preamble": "% Runcheng Zhang | Research & Engineering CV (November 2026)\n% Built on the native K-Wu/CV-tsinghua-template resume.cls and rSection/rSubsection.\n% This document is a research-and-engineering portfolio, not a targeted HR one-pager.\n\\documentclass{resume}\n\\usepackage[letterpaper,top=.67in,bottom=.67in,left=.82in,right=.82in]{geometry}\n\\usepackage[dvipsnames]{xcolor}\n\\usepackage{graphicx}\n\\usepackage{tabularx}\n\\usepackage{hyperref}\n\\usepackage{needspace}\n\\usepackage{enumitem}\n\\usepackage{etoolbox}\n\\usepackage{ifthen}\n\\usepackage{microtype}\n\\usepackage{lastpage}\n\\usepackage{fancyhdr}\n\\usepackage{newtxtext,newtxmath}\n\\definecolor{TsinghuaPurple}{cmyk}{0.58,0.90,0,0}\n\\definecolor{CVMuted}{HTML}{60616A}\n\\definecolor{CVInk}{HTML}{25232B}\n\\definecolor{CVRule}{HTML}{C9C3CB}\n\\hypersetup{colorlinks=true,urlcolor=TsinghuaPurple,linkcolor=TsinghuaPurple,\n pdfauthor={Runcheng Zhang},pdftitle={Runcheng Zhang - Curriculum Vitae},\n pdfsubject={Research and Engineering CV, November 2026}}\n\\urlstyle{same}\n\\setlength{\\parindent}{0pt}\n\\setlength{\\parskip}{0pt}\n\\setlength{\\parfillskip}{0pt plus 1fil} % Avoid the native 30pt tabular overflow.\n\\renewcommand{\\arraystretch}{1.03}\n\\flushbottom\n% Redistribute at most 36pt per completed page into section/entry gaps.\n% Reserve any larger shortfall at the foot so sparse pages never develop huge gaps.\n\\makeatletter\n\\newdimen\\cvbottomreserve\n\\pretocmd{\\@makecol}{%\n  \\setbox\\@tempboxa=\\vbox{\\unvcopy\\@cclv}%\n  \\cvbottomreserve=\\@colht\n  \\advance\\cvbottomreserve by -\\ht\\@tempboxa\n  \\advance\\cvbottomreserve by -\\dp\\@tempboxa\n  \\advance\\cvbottomreserve by -36pt\n  \\ifdim\\cvbottomreserve<0pt \\cvbottomreserve=0pt\\fi\n}{}{\\PackageError{cv}{Could not install page balancing}{}}\n\\def\\@textbottom{\\vskip\\cvbottomreserve}\n\\makeatother\n% Infinite-order terminal glue absorbs the last page's space before finite gaps.\n\\AtEndDocument{\\par\\vfill}\n\\clubpenalty=10000\n\\widowpenalty=10000\n\\emergencystretch=1em\n% The original class automatically centers the name at the start of the document.\n% Retain that native mechanism; place two VECTOR institution marks on its flanks.\n\\makeatletter\n\\def\\printname{%\n \\par\\noindent\\makebox[\\textwidth][c]{%\n   \\rlap{\\raisebox{-0.16in}{\\includegraphics[height=.74in,keepaspectratio]{assets/nju_vector.pdf}}}%\n   \\hfill{\\fontsize{22.5}{26}\\selectfont\\bfseries\\@name}\\hfill%\n   \\llap{\\raisebox{-0.15in}{\\includegraphics[height=.84in,keepaspectratio]{assets/thunlp_full_vector.pdf}}}%\n }\\par\\vspace{3.0pt}}\n\\makeatother\n\\name{Runcheng Zhang}\n\\address{\\href{mailto:zhangruncheng@thunlp.com}{zhangruncheng@thunlp.com}\\quad\n \\textbar\\quad\\href{https://github.com/ChouYuanjue}{github.com/ChouYuanjue}\\quad\n \\textbar\\quad\\href{https://www.runnelzhang.com}{runnelzhang.com}}\n\\address{\\href{https://orcid.org/0009-0005-7611-3583}{ORCID: 0009-0005-7611-3583}\\qquad Nanjing, China}\n% Genuine K-Wu template section style, restoring its purple heading and rule.\n\\renewenvironment{rSection}[1]{%\n \\par\\vspace{8.5pt plus 3pt}\\noindent\\Needspace*{3\\baselineskip}%\n {\\color{TsinghuaPurple}\\bfseries\\normalsize\\MakeUppercase{#1}}\\par\\vspace{4pt}%\n {\\color{CVRule}\\hrule height .65pt}\\vspace{6pt}%\n}{\\vspace{1pt plus 1pt}}\n% Preserve rSubsection's four-argument contract while lifting its old dense list settings.\n\\renewenvironment{rSubsection}[4]{%\n \\par\\Needspace*{5.0\\baselineskip}%\n \\noindent\\begin{tabularx}{\\linewidth}{@{}>{\\raggedright\\arraybackslash}X>{\\raggedleft\\arraybackslash}p{1.42in}@{}}\n {\\bfseries #1} & {\\color{CVMuted}\\footnotesize #2}\n \\end{tabularx}\\par\\vspace{1pt}%\n \\ifthenelse{\\equal{#3}{}}{}{\\textit{\\small #3}\\par\\vspace{1pt}}%\n \\begin{list}{$\\bullet$}{\\setlength{\\leftmargin}{1.16em}\\setlength{\\itemsep}{1.1pt}\\setlength{\\topsep}{2.5pt}\\setlength{\\parsep}{0pt}}%\n \\small\n}{\\end{list}\\vspace{1.75pt plus 2.5pt}}\n\\newcommand{\\cvsmalllink}[2]{\\href{#1}{\\textcolor{TsinghuaPurple}{#2}}}\n\\newcommand{\\cvsubheading}[2]{\\par\\Needspace*{2.5\\baselineskip}%\n \\noindent{\\bfseries #1}\\hfill{\\color{CVMuted}\\small #2}\\par\\vspace{3pt}}\n% Compact bibliographic item: modest dark title, aligned date and a one-line research TL;DR.\n% Minipages (not a height-constrained table) preserve top alignment even for wrapped headings.\n\\newcommand{\\posterrow}[4]{%\n \\par\\Needspace*{3.0\\baselineskip}%\n \\noindent\\begin{minipage}[t]{\\dimexpr\\linewidth-.75in\\relax}%\n \\vspace{0pt}\\raggedright{\\small\\bfseries\\href{#2}{\\textcolor{CVInk}{#1}}}%\n \\end{minipage}\\hfill\n \\begin{minipage}[t]{.63in}%\n \\vspace{0pt}\\raggedleft{\\color{CVMuted}\\footnotesize #3}%\n \\end{minipage}\\par\\vspace{1.5pt}%\n \\noindent{\\footnotesize\\color{CVMuted}#4}\\par\\vspace{5.75pt plus 2pt}%\n}\n\\newcommand{\\cvpar}[1]{{\\small #1}\\par\\vspace{5pt plus 2pt}}\n\\newcommand{\\cvfoot}{\\small\\color{CVMuted}\\thepage\\ / \\pageref{LastPage}}\n\\pagestyle{fancy}\\fancyhf{}\\fancyfoot[C]{\\cvfoot}\\renewcommand{\\headrulewidth}{0pt}\\renewcommand{\\footrulewidth}{0pt}\n\\setlength{\\footskip}{21pt}\n",
   "sections": [
     {
       "id": "education",
@@ -110,47 +110,6 @@
       ]
     },
     {
-      "id": "technical-background",
-      "title": "Technical Background",
-      "texTitle": "Technical Background",
-      "entries": [
-        {
-          "id": "technical-background--research-engineering-skills",
-          "title": "Research & Engineering Skills",
-          "summary": "Research: Scientific agents, molecular optimization, multimodal learning, formal verification. Engineering: Python, TypeScript, PyTorch, Linux, Git; retrieval, tool orchestration, edge inference.",
-          "tex": "\\noindent{\\small\\textbf{Research:} Scientific agents, molecular optimization, multimodal learning, formal verification. \\quad \\textbf{Engineering:} Python, TypeScript, PyTorch, Linux, Git; retrieval, tool orchestration, edge inference.}",
-          "before": "",
-          "after": "",
-          "bullets": []
-        }
-      ]
-    },
-    {
-      "id": "manuscript",
-      "title": "Manuscript",
-      "texTitle": "Manuscript",
-      "entries": [
-        {
-          "id": "manuscript--input-output-sampling-for-efficient-multi-objective-molecular-optimization-with-llms",
-          "title": "Input-Output Sampling for Efficient Multi-Objective Molecular Optimization with LLMs",
-          "summary": "Input-Output Sampling for Efficient Multi-Objective Molecular Optimization with LLMs Haoran Liu * , Runcheng Zhang * , Zheni Zeng, Yukun Yan, Zhenghao Liu. Submitted to ICLR 2027. * Equal contribution. itemize[leftmargin=1.16em,topsep=2.7pt,itemsep=2.5pt,parsep=0pt] Proposed MolDAS for multi-objective molecular RL: capability-aware sampling of diverse, learn",
-          "tex": "\\noindent\\textbf{Input-Output Sampling for Efficient Multi-Objective Molecular Optimization with LLMs}\\par\\vspace{3pt}\nHaoran Liu\\textsuperscript{*}, \\textbf{Runcheng Zhang\\textsuperscript{*}}, Zheni Zeng, Yukun Yan, Zhenghao Liu.\\par\\vspace{2pt}\n\\textit{Submitted to ICLR 2027.}\\quad {\\small\\textsuperscript{*}Equal contribution.}\\par\\vspace{2pt}\n% Match the concise, contribution-oriented bullets used throughout the CV.\n\\begin{itemize}[leftmargin=1.16em,topsep=2.7pt,itemsep=2.5pt,parsep=0pt]\n\\small\n\\item Proposed MolDAS for multi-objective molecular RL: capability-aware sampling of diverse, learnable inputs; selective oracle feedback on low-probability output segments; and reward-dispersion-guided imitation with adaptive objective weights.\n\\item In simulator-to-oracle training, improved optimization scores over vanilla GRPO by 3.7\\% in the low-fidelity stage and over 16.1\\% under capped high-fidelity calls, while reducing structural redundancy and training fluctuations.\n\\end{itemize}",
-          "before": "\\noindent\\textbf{Input-Output Sampling for Efficient Multi-Objective Molecular Optimization with LLMs}\\par\\vspace{3pt}\nHaoran Liu\\textsuperscript{*}, \\textbf{Runcheng Zhang\\textsuperscript{*}}, Zheni Zeng, Yukun Yan, Zhenghao Liu.\\par\\vspace{2pt}\n\\textit{Submitted to ICLR 2027.}\\quad {\\small\\textsuperscript{*}Equal contribution.}\\par\\vspace{2pt}\n% Match the concise, contribution-oriented bullets used throughout the CV.\n\\begin{itemize}[leftmargin=1.16em,topsep=2.7pt,itemsep=2.5pt,parsep=0pt]\n\\small\n",
-          "after": "\\end{itemize}",
-          "bullets": [
-            {
-              "tex": "Proposed MolDAS for multi-objective molecular RL: capability-aware sampling of diverse, learnable inputs; selective oracle feedback on low-probability output segments; and reward-dispersion-guided imitation with adaptive objective weights.",
-              "text": "Proposed MolDAS for multi-objective molecular RL: capability-aware sampling of diverse, learnable inputs; selective oracle feedback on low-probability output segments; and reward-dispersion-guided imitation with adaptive objective weights."
-            },
-            {
-              "tex": "In simulator-to-oracle training, improved optimization scores over vanilla GRPO by 3.7\\% in the low-fidelity stage and over 16.1\\% under capped high-fidelity calls, while reducing structural redundancy and training fluctuations.",
-              "text": "In simulator-to-oracle training, improved optimization scores over vanilla GRPO by 3.7% in the low-fidelity stage and over 16.1% under capped high-fidelity calls, while reducing structural redundancy and training fluctuations."
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "professional-experience",
       "title": "Professional Experience",
       "texTitle": "Professional Experience",
@@ -188,6 +147,31 @@
             {
               "tex": "\\textbf{Bank of Nanjing (outsourced proof of concept, Jan--Mar 2026):} implemented parts of a multimodal customer-emotion recognition pipeline combining speech preprocessing, speaker-aware transcription, and audio-language inference. Work remained at the PoC stage.",
               "text": "Bank of Nanjing (outsourced proof of concept, Jan–Mar 2026): implemented parts of a multimodal customer-emotion recognition pipeline combining speech preprocessing, speaker-aware transcription, and audio-language inference. Work remained at the PoC stage."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "manuscript",
+      "title": "Manuscript",
+      "texTitle": "Manuscript",
+      "entries": [
+        {
+          "id": "manuscript--input-output-sampling-for-efficient-multi-objective-molecular-optimization-with-llms",
+          "title": "Input-Output Sampling for Efficient Multi-Objective Molecular Optimization with LLMs",
+          "summary": "Input-Output Sampling for Efficient Multi-Objective Molecular Optimization with LLMs Haoran Liu * , Runcheng Zhang * , Zheni Zeng, Yukun Yan, Zhenghao Liu. Submitted to ICLR 2027. * Equal contribution. itemize[leftmargin=1.16em,topsep=2.7pt,itemsep=2.5pt,parsep=0pt] Proposed MolDAS for multi-objective molecular RL: capability-aware sampling of diverse, learn",
+          "tex": "\\noindent\\textbf{Input-Output Sampling for Efficient Multi-Objective Molecular Optimization with LLMs}\\par\\vspace{3pt}\nHaoran Liu\\textsuperscript{*}, \\textbf{Runcheng Zhang\\textsuperscript{*}}, Zheni Zeng, Yukun Yan, Zhenghao Liu.\\par\\vspace{2pt}\n\\textit{Submitted to ICLR 2027.}\\quad {\\small\\textsuperscript{*}Equal contribution.}\\par\\vspace{2pt}\n% Match the concise, contribution-oriented bullets used throughout the CV.\n\\begin{itemize}[leftmargin=1.16em,topsep=2.7pt,itemsep=2.5pt,parsep=0pt]\n\\small\n\\item Proposed MolDAS for multi-objective molecular RL: capability-aware sampling of diverse, learnable inputs; selective oracle feedback on low-probability output segments; and reward-dispersion-guided imitation with adaptive objective weights.\n\\item In simulator-to-oracle training, improved optimization scores over vanilla GRPO by 3.7\\% in the low-fidelity stage and over 16.1\\% under capped high-fidelity calls, while reducing structural redundancy and training fluctuations.\n\\end{itemize}",
+          "before": "\\noindent\\textbf{Input-Output Sampling for Efficient Multi-Objective Molecular Optimization with LLMs}\\par\\vspace{3pt}\nHaoran Liu\\textsuperscript{*}, \\textbf{Runcheng Zhang\\textsuperscript{*}}, Zheni Zeng, Yukun Yan, Zhenghao Liu.\\par\\vspace{2pt}\n\\textit{Submitted to ICLR 2027.}\\quad {\\small\\textsuperscript{*}Equal contribution.}\\par\\vspace{2pt}\n% Match the concise, contribution-oriented bullets used throughout the CV.\n\\begin{itemize}[leftmargin=1.16em,topsep=2.7pt,itemsep=2.5pt,parsep=0pt]\n\\small\n",
+          "after": "\\end{itemize}",
+          "bullets": [
+            {
+              "tex": "Proposed MolDAS for multi-objective molecular RL: capability-aware sampling of diverse, learnable inputs; selective oracle feedback on low-probability output segments; and reward-dispersion-guided imitation with adaptive objective weights.",
+              "text": "Proposed MolDAS for multi-objective molecular RL: capability-aware sampling of diverse, learnable inputs; selective oracle feedback on low-probability output segments; and reward-dispersion-guided imitation with adaptive objective weights."
+            },
+            {
+              "tex": "In simulator-to-oracle training, improved optimization scores over vanilla GRPO by 3.7\\% in the low-fidelity stage and over 16.1\\% under capped high-fidelity calls, while reducing structural redundancy and training fluctuations.",
+              "text": "In simulator-to-oracle training, improved optimization scores over vanilla GRPO by 3.7% in the low-fidelity stage and over 16.1% under capped high-fidelity calls, while reducing structural redundancy and training fluctuations."
             }
           ]
         }
@@ -340,6 +324,22 @@
           "title": "MOSAIC: Reference-Grounded Compositional Emoji Fusion",
           "summary": "MOSAIC: Reference-Grounded Compositional Emoji Fusionhttps://www.runnelzhang.com/posters/mosaic2025Proposed source-aware visual composition with explicit roles, attribute transfer, and region planning.",
           "tex": "\\posterrow{MOSAIC: Reference-Grounded Compositional Emoji Fusion}{https://www.runnelzhang.com/posters/mosaic}{2025}{Proposed source-aware visual composition with explicit roles, attribute transfer, and region planning.}",
+          "before": "",
+          "after": "",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "technical-background",
+      "title": "Technical Background",
+      "texTitle": "Technical Background",
+      "entries": [
+        {
+          "id": "technical-background--research-engineering-skills",
+          "title": "Research & Engineering Skills",
+          "summary": "Research: Scientific agents, molecular optimization, multimodal learning, formal verification. Engineering: Python, TypeScript, PyTorch, Linux, Git; retrieval, tool orchestration, edge inference.",
+          "tex": "\\noindent{\\small\\textbf{Research:} Scientific agents, molecular optimization, multimodal learning, formal verification.\\par\\vspace{2pt}\\noindent\\textbf{Engineering:} Python, TypeScript, PyTorch, Linux, Git; retrieval, tool orchestration, edge inference.}",
           "before": "",
           "after": "",
           "bullets": []

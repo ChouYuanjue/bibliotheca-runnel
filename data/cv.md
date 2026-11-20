@@ -5,12 +5,10 @@
 **Email:** [zhangruncheng@thunlp.com](mailto:zhangruncheng@thunlp.com) · **GitHub:** [ChouYuanjue](https://github.com/ChouYuanjue) · **ORCID:** [0009-0005-7611-3583](https://orcid.org/0009-0005-7611-3583) · **Location:** Nanjing, China
 
 ## Education
-
 ### Nanjing University
 **B.S. in Intelligent Science and Technology** · Nanjing, China · Sep 2025 – Present
 
 ## Honors & Awards
-
 ### 2026 International Genetically Engineered Machine (iGEM) Competition
 
 **Gold Medal** · **Best Software & AI Project** · **Best Model Nominee**
@@ -18,7 +16,6 @@
 **Student Leader (Head of the Dry Lab)**, NJU-China.
 
 ## Research Experience
-
 ### Tsinghua University — Natural Language Processing Lab (THUNLP)
 *Research Intern, AI for Science* · Advisor: Zheni Zeng · Mar 2026 – Present
 
@@ -42,18 +39,7 @@
 
 - Contributed to an enzyme–reaction discovery workflow connecting biochemical reaction queries, domain-specific evidence, and interactive computational tools for experimental research.
 
-## Manuscript
-
-### Input-Output Sampling for Efficient Multi-Objective Molecular Optimization with LLMs
-
-Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
-*Submitted to ICLR 2027.* \*Equal contribution.
-
-- Proposed **MolDAS** for multi-objective molecular reinforcement learning: capability-aware sampling of diverse, learnable inputs; selective oracle feedback on low-probability output segments; and reward-dispersion-guided imitation with adaptive objective weights.
-- In simulator-to-oracle training, improved optimization scores over vanilla GRPO by **3.7%** in the low-fidelity stage and **over 16.1%** under capped high-fidelity calls, while reducing structural redundancy and training fluctuations.
-
 ## Professional Experience
-
 ### Beijing Volcano Engine Technology Co., Ltd.
 *Agent Development Engineer* · Client: **Guizhou Xijiu Group** · Aug 2026 – Present
 
@@ -66,8 +52,16 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 - Participate in backend and full-stack development, integrating reusable services, APIs, and model-assisted workflows within team-delivered projects.
 - **Bank of Nanjing (outsourced proof of concept, Jan–Mar 2026):** implemented parts of a multimodal customer-emotion recognition pipeline combining speech preprocessing, speaker-aware transcription, and audio-language inference. Work remained at the PoC stage.
 
-## Selected Research Projects
+## Manuscript
+### Input-Output Sampling for Efficient Multi-Objective Molecular Optimization with LLMs
 
+Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
+*Submitted to ICLR 2027.* \*Equal contribution.
+
+- Proposed **MolDAS** for multi-objective molecular reinforcement learning: capability-aware sampling of diverse, learnable inputs; selective oracle feedback on low-probability output segments; and reward-dispersion-guided imitation with adaptive objective weights.
+- In simulator-to-oracle training, improved optimization scores over vanilla GRPO by **3.7%** in the low-fidelity stage and **over 16.1%** under capped high-fidelity calls, while reducing structural redundancy and training fluctuations.
+
+## Selected Research Projects
 ### [Evidence-Grounded Enzyme–Reaction Discovery (iGEM 2026)](https://www.runnelzhang.com/posters/igem-atlas)
 *NJU-China · Student Leader (Head of the Dry Lab) · 2026*
 
@@ -100,30 +94,26 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 - Isolated concurrent task execution and merged committed history into durable group state, while applying admission checks before model or tool calls.
 
 ## Additional Research Posters
-
 - **[Exchangeable Hard Negatives for Vision–Language Evaluation](https://www.runnelzhang.com/posters/candidate-exchangeability)** (2026) — Removed candidate-set structural shortcuts to test whether vision–language models use image evidence.
 - **[ProCo: Verifiable Abstention through Missing-Support Supervision](https://www.runnelzhang.com/posters/proco-evidence)** (2026) — Trained abstention with verifier-checkable witnesses of missing evidence in open-world reasoning.
 - **[Attributing Inference-Time Gains in Lean Theorem Proving](https://www.runnelzhang.com/posters/lean-attribution)** (2026) — Separated search-policy gains from retrieval, compute-budget, and prover-specific effects.
 - **[Structural Transfer in Low-Resource Autoformalization](https://www.runnelzhang.com/posters/structural-transfer)** (2026) — Diagnosed Rzk proof construction across boundaries, dependent lifts, and nested witnesses.
 - **[MOSAIC: Reference-Grounded Compositional Emoji Fusion](https://www.runnelzhang.com/posters/mosaic)** (2025) — Proposed source-aware visual composition with explicit roles, attribute transfer, and region planning.
 
-## Independent Mathematical Writing
+## Technical Background
+**Research:** Scientific agents, molecular optimization, multimodal learning, formal verification.
 
+**Engineering:** Python, TypeScript, PyTorch, Linux, Git; retrieval, tool orchestration, edge inference.
+
+## Independent Mathematical Writing
 ### [Informal Notes on Mathematics](https://www.runnelzhang.com/projects/inm-tex)
 *Author and editor · Ongoing*
 
 A multi-volume, English-language LaTeX collection of informal mathematical notes and essays. Rebuilt earlier multilingual material into a coherent book with thematic organization, corrected arguments, diagrams, and expanded explanations spanning algebra, geometry, topology, analysis, and logic. [Browse the notes library](https://www.runnelzhang.com/library/notes).
 
 ## Technical Presentations
-
 ### Navigating the Full-Stack Ecosystem: Implementation Strategies and Knowledge Graphs for Information Aggregation
 *Student presenter · Intelligent Data and Decision Studio, Nanjing University · Dec 2025* · [Presentation record](https://doi.org/10.5281/zenodo.17852269)
 
 ### Architectural Paradigms in Collaborative Software Engineering: A Comprehensive Analysis of the Nova Project
 *Student presenter · Intelligent Data and Decision Studio, Nanjing University · Nov 2025* · [Presentation record](https://doi.org/10.5281/zenodo.17765724)
-
-## Technical Background
-
-**Research:** Scientific agents, molecular optimization, multimodal learning, formal verification.
-
-**Engineering:** Python, TypeScript, PyTorch, Linux, Git; retrieval, tool orchestration, edge inference.

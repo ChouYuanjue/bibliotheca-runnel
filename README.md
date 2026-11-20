@@ -99,7 +99,7 @@ Keep the build command as `npm run build` so poster SVG validation runs on deplo
 
 ## Tailored CV exports
 
-Open `/cv/customize` from the CV page. Choose entries and individual bullets, reorder sections and entries, select A4 or US Letter and standard or compact spacing. Focus presets use the existing content. Saved versions and the current draft stay in local browser storage; selection JSON supports transfer between devices. PDF previews are generated from the selected TeX, with stale previews marked after changes.
+Open `/cv/customize` from the CV page. Choose entries and individual bullets, reorder sections and entries, select A4 or US Letter and standard or compact spacing. Focus presets use the existing content. Saved versions and the current draft stay in local browser storage; selection JSON supports transfer between devices. PDF previews are generated from the selected TeX, with stale previews marked after changes. Research and professional experience are adjacent in the default order. Non-final pages distribute at most 36pt of extra space across section/entry gaps; terminal fill keeps the last page at its natural spacing. Strict space reservations keep headings with the following content. Legacy saved selections using the previous default order migrate to the new order; manually reordered selections stay intact.
 
 `cv-source/main.tex` remains the canonical source. `scripts/build-cv-catalog.js` derives the selectable catalogue during every build; it merges continued project sections and preserves the original TeX fragments. Do not edit `catalog.json` by hand. Run `node scripts/test-cv-model.js` to verify selections, ordering, and source preservation.
 

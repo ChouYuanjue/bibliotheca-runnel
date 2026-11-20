@@ -25,4 +25,9 @@ for(const invalid of [
 ])assert.throws(()=>validate(c,invalid));
 assert(c.sections.find(s=>s.id==='honors-awards').entries[0].summary.includes('Gold Medal'));
 assert(c.sections.find(s=>s.id==='manuscript').entries[0].bullets[1].text.includes('16.1%'));
+assert.equal(d.sections.indexOf('professional-experience'),d.sections.indexOf('research-experience')+1);
+assert(c.preamble.includes('\\AtEndDocument{\\par\\vfill}'));
+assert(c.preamble.includes('\\advance\\cvbottomreserve by -36pt'));
+assert(!c.preamble.includes('\\needspace{'));
+assert(c.sections.find(s=>s.id==='technical-background').entries[0].tex.includes('formal verification.\\par\\vspace{2pt}\\noindent\\textbf{Engineering:}'));
 console.log('CV model: catalogue, source preservation, selections, ordering, paper/spacing, invalid inputs passed.');
