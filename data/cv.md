@@ -29,7 +29,7 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 *Research Intern, AI for Science* · Advisor: Zheni Zeng · Mar 2026 – Present
 
 - Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation.
-- Trained surrogate models for drug absorption, metabolism, and toxicity to screen candidate molecules before more expensive scoring.
+- Developed reinforcement learning methods that train language models to balance competing molecular design objectives with limited access to high-fidelity feedback.
 
 ### Microsoft Research Asia (Beijing)
 *Research Intern, AI for Mathematics* · Advisor: Xian Zhang; Collaborator: Ziyu Zhou · Jan – Aug 2026

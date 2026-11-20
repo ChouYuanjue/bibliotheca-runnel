@@ -67,8 +67,8 @@
         {
           "id": "research-experience--tsinghua-university-natural-language-processing-lab-thunlp",
           "title": "Tsinghua University – Natural Language Processing Lab (THUNLP)",
-          "summary": "rSubsectionTsinghua University – Natural Language Processing Lab (THUNLP)Mar 2026 – PresentResearch Intern, AI for Science | Advisor: Zheni Zeng Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation. Trained surrogate models for drug ab",
-          "tex": "\\begin{rSubsection}{Tsinghua University -- Natural Language Processing Lab (THUNLP)}{Mar 2026 -- Present}{Research Intern, AI for Science \\quad | \\quad Advisor: Zheni Zeng}{}\n\\item Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation.\n\\item Trained surrogate models for drug absorption, metabolism, and toxicity to screen candidate molecules before more expensive scoring.\n\\end{rSubsection}",
+          "summary": "rSubsectionTsinghua University – Natural Language Processing Lab (THUNLP)Mar 2026 – PresentResearch Intern, AI for Science | Advisor: Zheni Zeng Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation. Developed reinforcement learning met",
+          "tex": "\\begin{rSubsection}{Tsinghua University -- Natural Language Processing Lab (THUNLP)}{Mar 2026 -- Present}{Research Intern, AI for Science \\quad | \\quad Advisor: Zheni Zeng}{}\n\\item Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation.\n\\item Developed reinforcement learning methods that train language models to balance competing molecular design objectives with limited access to high-fidelity feedback.\n\\end{rSubsection}",
           "before": "\\begin{rSubsection}{Tsinghua University -- Natural Language Processing Lab (THUNLP)}{Mar 2026 -- Present}{Research Intern, AI for Science \\quad | \\quad Advisor: Zheni Zeng}{}\n",
           "after": "\\end{rSubsection}",
           "bullets": [
@@ -77,8 +77,8 @@
               "text": "Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation."
             },
             {
-              "tex": "Trained surrogate models for drug absorption, metabolism, and toxicity to screen candidate molecules before more expensive scoring.",
-              "text": "Trained surrogate models for drug absorption, metabolism, and toxicity to screen candidate molecules before more expensive scoring."
+              "tex": "Developed reinforcement learning methods that train language models to balance competing molecular design objectives with limited access to high-fidelity feedback.",
+              "text": "Developed reinforcement learning methods that train language models to balance competing molecular design objectives with limited access to high-fidelity feedback."
             }
           ]
         },
