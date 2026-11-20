@@ -115,8 +115,8 @@ B.S. in Intelligent Science and Technology \hfill Nanjing, China
 \Needspace*{9\baselineskip}
 \begin{rSection}{Research Experience}
 \begin{rSubsection}{Tsinghua University -- Natural Language Processing Lab (THUNLP)}{Mar 2026 -- Present}{Research Intern, AI for Science \quad | \quad Advisor: Zheni Zeng}{}
-\item Trained property predictors covering \textbf{41 ADMET endpoints} on 29,320 molecules and set up scaffold-separated benchmarks for evaluating predictions on new chemical structures.
-\item Built a scientific agent that uses property predictions and Python analysis to propose structure--property hypotheses and choose which molecules to check with a higher-cost reference model.
+\item Developed a scientific agent that turns molecular observations into testable structure--property hypotheses and selects compounds for follow-up evaluation.
+\item Designed scaffold-held-out experiments to study how the agent weighs chemical priors against model predictions and revises hypotheses when the evidence disagrees.
 \end{rSubsection}
 
 \begin{rSubsection}{Microsoft Research Asia (Beijing)}{Jan -- Aug 2026}{Research Intern, AI for Mathematics \quad | \quad Advisor: Xian Zhang; Collaborator: Ziyu Zhou}{}
@@ -125,7 +125,7 @@ B.S. in Intelligent Science and Technology \hfill Nanjing, China
 \end{rSubsection}
 
 \begin{rSubsection}{NJU Institute of Intelligent Networks and Communications (NINE)}{Aug 2026 -- Present}{Research Intern \quad | \quad Supervisor: Huihong Liang; Institute Director: Kun Yang}{}
-\item Built a Raspberry Pi 5 video encoder that selectively refreshes visual tokens and reuses cached features. The sender sustained \textbf{18.3 FPS} over a 1,000-frame run.
+\item Implemented a real-time semantic video encoder on Raspberry Pi 5. It selectively refreshes visual tokens and reuses cached features to sustain \textbf{18.3 FPS} in a sender-side benchmark.
 \item Built an evaluation pipeline that tracks reconstruction quality around moving people using fixed reference regions from the original 1080p footage.
 \end{rSubsection}
 
@@ -142,8 +142,8 @@ B.S. in Intelligent Science and Technology \hfill Nanjing, China
 \end{rSubsection}
 
 \begin{rSubsection}{Nanjing Flux Technology Co., Ltd.}{Jan 2026 -- Present}{Project Team Member \quad | \quad Client-facing software development}{}
-\item Delivered backend APIs and model integrations that combine reusable services into client-facing analysis workflows.
-\item \textbf{Bank of Nanjing:} built multimodal customer-emotion analysis combining audio preprocessing, speaker-aware transcription, and model inference, producing attributed transcripts and emotion labels.
+\item Developed backend services and integrated model inference into client-facing applications.
+\item \textbf{Bank of Nanjing.} Implemented speech preprocessing, speaker-aware transcription, and audio-language inference components for a multimodal LLM system for customer emotion recognition.
 \end{rSubsection}
 \end{rSection}
 
@@ -156,14 +156,14 @@ Haoran Liu\textsuperscript{*}, \textbf{Runcheng Zhang\textsuperscript{*}}, Zheni
 \begin{itemize}[leftmargin=1.16em,topsep=2.7pt,itemsep=2.5pt,parsep=0pt]
 \small
 \item Introduced MolDAS: capability-aware sampling, selective oracle evaluation, and adaptive imitation for multi-objective molecular optimization.
-\item Outperformed vanilla GRPO by \textbf{3.7\%} with low-cost property predictors and \textbf{16.1\%} under the same high-fidelity oracle budget.
+\item Improved multi-objective optimization scores by \textbf{16.1\%} over vanilla GRPO under the same budget for high-fidelity property evaluations.
 \end{itemize}
 \end{rSection}
 
 \Needspace*{9\baselineskip}
 \begin{rSection}{Selected Research Projects}
 \begin{rSubsection}{Evidence-Grounded Enzyme--Reaction Discovery (iGEM 2026)}{2026}{NJU-China \quad | \quad Student Leader (Head of the Dry Lab) \quad | \quad \cvsmalllink{https://www.runnelzhang.com/posters/igem-atlas}{Poster}}{}
-\item Led BRIDGE development, improving balanced top-10 recall by \textbf{173\%} for reaction-to-enzyme search and \textbf{250\%} in reverse versus EnzymeCAGE.
+\item Led development of BRIDGE for bidirectional enzyme--reaction retrieval, reaching \textbf{2.7$\times$ to 3.5$\times$} EnzymeCAGE's balanced top-10 recall across both directions.
 \item Integrated the BRIDGE ranker, COMPASS query interface, and EDGE evidence graph so researchers can inspect what supports each prediction.
 \end{rSubsection}
 
@@ -173,26 +173,26 @@ Haoran Liu\textsuperscript{*}, \textbf{Runcheng Zhang\textsuperscript{*}}, Zheni
 \end{rSubsection}
 
 \begin{rSubsection}{Tangut-SPAR: Structured Proxy Augmentation and Reliable Preference Tuning}{2026}{Low-resource language modeling \quad | \quad \cvsmalllink{https://www.runnelzhang.com/posters/tangut-spar}{Poster}}{}
-\item Built synthetic multitask training and preference optimization from 491 Tangut--Chinese pairs, producing local candidates for dictionary-grounded historical translation.
-\item Improved translation quality (chrF++) by \textbf{22.2\%} over dictionary-grounded DeepSeek-V3.2 prompting (28.54 to 34.87) through hybrid candidate selection.
+\item Developed synthetic multitask training and preference optimization to generate dictionary-grounded translations of historical Tangut texts.
+\item Combined candidates from a locally trained model and a prompted LLM, improving translation quality by \textbf{22.2\%} on chrF++ over dictionary-grounded DeepSeek-V3.2 prompting.
 \end{rSubsection}
 \begin{rSubsection}{BiSem-Edge: Compute-Efficient Semantic Video}{2026}{NINE Lab \quad | \quad \cvsmalllink{https://www.runnelzhang.com/posters/bisem-edge}{Poster}}{}
-\item Cut Pi 5 encoder latency by \textbf{72\%} (1,709 to 479 ms per four keyframes) with native one-bit NEON kernels versus matched-quantization floating-point inference.
-\item Improved reconstruction PSNR by 1.18 dB over the original 64-dimensional decoder across 12 held-out cameras using compact PCA side information.
+\item Cut encoder latency on Raspberry Pi 5 by \textbf{72\%} using native one-bit NEON kernels, compared with floating-point inference at the same quantization level.
+\item Used compact PCA side information to restore image detail lost in the original decoder, improving reconstruction PSNR by 1.18 dB on held-out cameras.
 \end{rSubsection}
 
 \begin{rSubsection}{Doge-SAGE: Stateful Agent Systems for Scientific Communities}{2026}{Agent infrastructure and scientific computing \quad | \quad \cvsmalllink{https://www.runnelzhang.com/posters/doge-sage}{Poster}}{}
-\item Deployed a persistent scientific assistant unifying 281 actions across 36 domains behind shared handlers for natural-language and explicit commands.
-\item Replaced serialized group execution with concurrent event runners and shared history commits; local admission eliminates model-token spending on rejected requests.
+\item Deployed a persistent scientific assistant with a shared tool registry for conversational requests and explicit commands.
+\item Moved group-chat requests to concurrent workers with shared conversation history. A local admission check rejects ineligible requests before they reach the model.
 \end{rSubsection}
 \end{rSection}
 
 \Needspace*{9\baselineskip}
 \begin{rSection}{Additional Research Posters}
-\posterrow{Exchangeable Hard Negatives for Vision--Language Evaluation}{https://www.runnelzhang.com/posters/candidate-exchangeability}{2026}{Built 1,301 balanced candidate sets that hold text-only shortcuts at 50\% chance, isolating visual reasoning gains.}
-\posterrow{ProCo: Verifiable Abstention through Missing-Support Supervision}{https://www.runnelzhang.com/posters/proco-evidence}{2026}{Raised correct answers backed by verified evidence by \textbf{88\%} over proof-only training (39.9\% to 75.0\%) on ProofWriter.}
-\posterrow{Attributing Inference-Time Gains in Lean Theorem Proving}{https://www.runnelzhang.com/posters/lean-attribution}{2026}{Improved Lean proof success by \textbf{10.5\%} over single-profile search (31.7\% to 35.0\%) using fixed-budget portfolios.}
-\posterrow{Structural Transfer in Low-Resource Autoformalization}{https://www.runnelzhang.com/posters/structural-transfer}{2026}{Raised Rzk completion by \textbf{56\%} over direct prompting (32.1\% to 50.0\%); structural repair solved 2.2$\times$ as many replayed failures.}
+\posterrow{Exchangeable Hard Negatives for Vision--Language Evaluation}{https://www.runnelzhang.com/posters/candidate-exchangeability}{2026}{Designed balanced hard negatives to measure how much vision--language reasoning depends on the image itself.}
+\posterrow{ProCo: Verifiable Abstention through Missing-Support Supervision}{https://www.runnelzhang.com/posters/proco-evidence}{2026}{Taught language models to identify missing premises and improved the rate of correct, evidence-backed answers on ProofWriter from 39.9\% to 75.0\%.}
+\posterrow{Attributing Inference-Time Gains in Lean Theorem Proving}{https://www.runnelzhang.com/posters/lean-attribution}{2026}{Used fixed-budget search portfolios and controlled ablations to separate search improvements from retrieval and prover changes.}
+\posterrow{Structural Transfer in Low-Resource Autoformalization}{https://www.runnelzhang.com/posters/structural-transfer}{2026}{Used structural hints to improve Rzk proof completion and recover failures that persisted under direct prompting.}
 \posterrow{MOSAIC: Reference-Grounded Compositional Emoji Fusion}{https://www.runnelzhang.com/posters/mosaic}{2025}{Defined typed fusion plans linking source identity, spatial layout, and rendering style for controllable multi-emoji composition.}
 \end{rSection}
 
@@ -204,7 +204,7 @@ Haoran Liu\textsuperscript{*}, \textbf{Runcheng Zhang\textsuperscript{*}}, Zheni
 \Needspace*{9\baselineskip}
 \begin{rSection}{Independent Mathematical Writing}
 \noindent \textbf{Informal Notes on Mathematics}\hfill{\color{CVMuted}\small Ongoing}\par\vspace{2pt}
-\cvpar{Built and edited a searchable library of 170 mathematical notes, publishing an English-language collection spanning algebra, geometry, topology, analysis, and logic. \cvsmalllink{https://www.runnelzhang.com/projects/inm-tex}{Project}\quad\cvsmalllink{https://www.runnelzhang.com/library/notes}{Notes library}.}
+\cvpar{Author and editor of a multi-volume English-language book of mathematical notes and essays. Reworked multilingual drafts into a coherent collection, revising proofs, expanding explanations, and adding diagrams across algebra, geometry, topology, analysis, and logic. \cvsmalllink{https://www.runnelzhang.com/projects/inm-tex}{Project}\quad\cvsmalllink{https://www.runnelzhang.com/library/notes}{Notes library}.}
 \end{rSection}
 
 \Needspace*{9\baselineskip}

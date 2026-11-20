@@ -19,8 +19,8 @@
 ### Tsinghua University — Natural Language Processing Lab (THUNLP)
 *Research Intern, AI for Science* · Advisor: Zheni Zeng · Mar 2026 – Present
 
-- Trained property predictors covering **41 ADMET endpoints** on 29,320 molecules and set up scaffold-separated benchmarks for evaluating predictions on new chemical structures.
-- Built a scientific agent that uses property predictions and Python analysis to propose structure–property hypotheses and choose which molecules to check with a higher-cost reference model.
+- Developed a scientific agent that turns molecular observations into testable structure–property hypotheses and selects compounds for follow-up evaluation.
+- Designed scaffold-held-out experiments to study how the agent weighs chemical priors against model predictions and revises hypotheses when the evidence disagrees.
 
 ### Microsoft Research Asia (Beijing)
 *Research Intern, AI for Mathematics* · Advisor: Xian Zhang; Collaborator: Ziyu Zhou · Jan – Aug 2026
@@ -31,7 +31,7 @@
 ### NJU Institute of Intelligent Networks and Communications (NINE)
 *Research Intern* · Supervisor: Huihong Liang; Institute Director: Kun Yang · Aug 2026 – Present
 
-- Built a Raspberry Pi 5 video encoder that selectively refreshes visual tokens and reuses cached features. The sender sustained **18.3 FPS** over a 1,000-frame run.
+- Implemented a real-time semantic video encoder on Raspberry Pi 5. It selectively refreshes visual tokens and reuses cached features to sustain **18.3 FPS** in a sender-side benchmark.
 - Built an evaluation pipeline that tracks reconstruction quality around moving people using fixed reference regions from the original 1080p footage.
 
 ### Wuxi Xishan NJU Institute of Applied Biotechnology
@@ -49,8 +49,8 @@
 ### Nanjing Flux Technology Co., Ltd.
 *Project Team Member* · Client-facing software development · Jan 2026 – Present
 
-- Delivered backend APIs and model integrations that combine reusable services into client-facing analysis workflows.
-- **Bank of Nanjing:** built multimodal customer-emotion analysis combining audio preprocessing, speaker-aware transcription, and model inference, producing attributed transcripts and emotion labels.
+- Developed backend services and integrated model inference into client-facing applications.
+- **Bank of Nanjing.** Implemented speech preprocessing, speaker-aware transcription, and audio-language inference components for a multimodal LLM system for customer emotion recognition.
 
 ## Manuscript
 ### Input-Output Sampling for Efficient Multi-Objective Molecular Optimization with LLMs
@@ -59,13 +59,13 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 *Submitted to ICLR 2027.* \*Equal contribution.
 
 - Introduced MolDAS: capability-aware sampling, selective oracle evaluation, and adaptive imitation for multi-objective molecular optimization.
-- Outperformed vanilla GRPO by **3.7%** with low-cost property predictors and **16.1%** under the same high-fidelity oracle budget.
+- Improved multi-objective optimization scores by **16.1%** over vanilla GRPO under the same budget for high-fidelity property evaluations.
 
 ## Selected Research Projects
 ### [Evidence-Grounded Enzyme–Reaction Discovery (iGEM 2026)](https://www.runnelzhang.com/posters/igem-atlas)
 *NJU-China · Student Leader (Head of the Dry Lab) · 2026*
 
-- Led BRIDGE development, improving balanced top-10 recall by **173%** for reaction-to-enzyme search and **250%** in reverse versus EnzymeCAGE.
+- Led development of BRIDGE for bidirectional enzyme–reaction retrieval, reaching **2.7× to 3.5×** EnzymeCAGE's balanced top-10 recall across both directions.
 - Integrated the BRIDGE ranker, COMPASS query interface, and EDGE evidence graph so researchers can inspect what supports each prediction.
 
 ### [TRACE: Typed Reasoning with Attribution, Certificates, and Evidence](https://www.runnelzhang.com/posters/trace)
@@ -77,26 +77,26 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 ### [Tangut-SPAR: Structured Proxy Augmentation and Reliable Preference Tuning](https://www.runnelzhang.com/posters/tangut-spar)
 *Low-resource language modeling · 2026*
 
-- Built synthetic multitask training and preference optimization from 491 Tangut–Chinese pairs, producing local candidates for dictionary-grounded historical translation.
-- Improved translation quality (chrF++) by **22.2%** over dictionary-grounded DeepSeek-V3.2 prompting (28.54 to 34.87) through hybrid candidate selection.
+- Developed synthetic multitask training and preference optimization to generate dictionary-grounded translations of historical Tangut texts.
+- Combined candidates from a locally trained model and a prompted LLM, improving translation quality by **22.2%** on chrF++ over dictionary-grounded DeepSeek-V3.2 prompting.
 
 ### [BiSem-Edge: Compute-Efficient Semantic Video](https://www.runnelzhang.com/posters/bisem-edge)
 *NINE Lab · 2026*
 
-- Cut Pi 5 encoder latency by **72%** (1,709 to 479 ms per four keyframes) with native one-bit NEON kernels versus matched-quantization floating-point inference.
-- Improved reconstruction PSNR by 1.18 dB over the original 64-dimensional decoder across 12 held-out cameras using compact PCA side information.
+- Cut encoder latency on Raspberry Pi 5 by **72%** using native one-bit NEON kernels, compared with floating-point inference at the same quantization level.
+- Used compact PCA side information to restore image detail lost in the original decoder, improving reconstruction PSNR by 1.18 dB on held-out cameras.
 
 ### [Doge-SAGE: Stateful Agent Systems for Scientific Communities](https://www.runnelzhang.com/posters/doge-sage)
 *Agent infrastructure and scientific computing · 2026*
 
-- Deployed a persistent scientific assistant unifying 281 actions across 36 domains behind shared handlers for natural-language and explicit commands.
-- Replaced serialized group execution with concurrent event runners and shared history commits; local admission eliminates model-token spending on rejected requests.
+- Deployed a persistent scientific assistant with a shared tool registry for conversational requests and explicit commands.
+- Moved group-chat requests to concurrent workers with shared conversation history. A local admission check rejects ineligible requests before they reach the model.
 
 ## Additional Research Posters
-- **[Exchangeable Hard Negatives for Vision–Language Evaluation](https://www.runnelzhang.com/posters/candidate-exchangeability)** (2026) — Built 1,301 balanced candidate sets that hold text-only shortcuts at 50% chance, isolating visual reasoning gains.
-- **[ProCo: Verifiable Abstention through Missing-Support Supervision](https://www.runnelzhang.com/posters/proco-evidence)** (2026) — Raised correct answers backed by verified evidence by **88%** over proof-only training (39.9% to 75.0%) on ProofWriter.
-- **[Attributing Inference-Time Gains in Lean Theorem Proving](https://www.runnelzhang.com/posters/lean-attribution)** (2026) — Improved Lean proof success by **10.5%** over single-profile search (31.7% to 35.0%) using fixed-budget portfolios.
-- **[Structural Transfer in Low-Resource Autoformalization](https://www.runnelzhang.com/posters/structural-transfer)** (2026) — Raised Rzk completion by **56%** over direct prompting (32.1% to 50.0%); structural repair solved 2.2× as many replayed failures.
+- **[Exchangeable Hard Negatives for Vision–Language Evaluation](https://www.runnelzhang.com/posters/candidate-exchangeability)** (2026) — Designed balanced hard negatives to measure how much vision–language reasoning depends on the image itself.
+- **[ProCo: Verifiable Abstention through Missing-Support Supervision](https://www.runnelzhang.com/posters/proco-evidence)** (2026) — Taught language models to identify missing premises and improved the rate of correct, evidence-backed answers on ProofWriter from 39.9% to 75.0%.
+- **[Attributing Inference-Time Gains in Lean Theorem Proving](https://www.runnelzhang.com/posters/lean-attribution)** (2026) — Used fixed-budget search portfolios and controlled ablations to separate search improvements from retrieval and prover changes.
+- **[Structural Transfer in Low-Resource Autoformalization](https://www.runnelzhang.com/posters/structural-transfer)** (2026) — Used structural hints to improve Rzk proof completion and recover failures that persisted under direct prompting.
 - **[MOSAIC: Reference-Grounded Compositional Emoji Fusion](https://www.runnelzhang.com/posters/mosaic)** (2025) — Defined typed fusion plans linking source identity, spatial layout, and rendering style for controllable multi-emoji composition.
 
 ## Technical Background
@@ -108,7 +108,7 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 ### [Informal Notes on Mathematics](https://www.runnelzhang.com/projects/inm-tex)
 *Author and editor · Ongoing*
 
-Built and edited a searchable library of **170 mathematical notes**, publishing an English-language collection spanning algebra, geometry, topology, analysis, and logic. [Notes library](https://www.runnelzhang.com/library/notes).
+Author and editor of a multi-volume English-language book of mathematical notes and essays. Reworked multilingual drafts into a coherent collection, revising proofs, expanding explanations, and adding diagrams across algebra, geometry, topology, analysis, and logic. [Notes library](https://www.runnelzhang.com/library/notes).
 
 ## Technical Presentations
 ### Navigating the Full-Stack Ecosystem: Implementation Strategies and Knowledge Graphs for Information Aggregation

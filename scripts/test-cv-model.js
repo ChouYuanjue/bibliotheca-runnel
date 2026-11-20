@@ -35,6 +35,6 @@ const web=fs.readFileSync(path.join(__dirname,'../data/cv.md'),'utf8');
 const raw=fs.readFileSync(path.join(__dirname,'../cv-source/main.tex'),'utf8');
 assert(!/BANK\s+OF\s+CHINA|CHINA\s+BANK|中国银行|Akshay Vaishnav|Dreamland Apartment|example@example/i.test(raw+web));
 assert(!/Work remained at the PoC stage|without conflating|not confused with|Investigating language-model|Prototyping scientific agents/.test(raw+web));
-assert(web.includes('173%')&&web.includes('250%')&&web.includes('22.2%')&&web.includes('16.1%'));
-assert(web.includes('Improved Lean proof success'));
+assert(web.includes('16.1%') && web.includes('speaker-aware transcription'));
+assert(!/41 ADMET endpoints|29,320 molecules|170 mathematical notes/.test(raw+web));
 console.log('CV model: catalogue, source preservation, selections, ordering, paper/spacing, invalid inputs passed.');
