@@ -21,6 +21,8 @@ export default function CVCustomizer({sections}: {sections:CVSection[]}){
   const entries=v.entries.flatMap(e=>{
    const source=all.find(x=>x.id===e.id);if(!source||seen.has(e.id)||!Array.isArray(e.bullets))return [];
    seen.add(e.id);const bullets=Array.from(new Set(e.bullets.filter(i=>Number.isInteger(i)&&i>=0&&i<source.bullets.length)));
+   // A merged description replaces either of its two previously selectable bullets.
+   if(source.bullets.length===1 && e.bullets.includes(1))return [{id:e.id,bullets:[0]}];
    if(source.bullets.length&&!bullets.length)return [];
    return [{id:e.id,bullets}];
   });
