@@ -11,11 +11,11 @@
 
 ## Honors & Awards
 
-### NJU-China — iGEM 2026 Grand Jamboree
+### 2026 International Genetically Engineered Machine (iGEM) Competition
 
-**Gold Medal** · **Best Software & AI Project (Village Award)** · **Best Model Nominee** · 2026
+**Gold Medal** · **Best Software & AI Project** · **Best Model Nominee**
 
-**Dry Lab Student Leaderer (Head of the Dry Lab Team)**, NJU-China.
+**Student Leader (Head of the Dry Lab)**, NJU-China.
 
 ## Research Experience
 
@@ -69,7 +69,7 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 ## Selected Research Projects
 
 ### [Evidence-Grounded Enzyme–Reaction Discovery (iGEM 2026)](https://www.runnelzhang.com/posters/igem-atlas)
-*NJU-China Dry Lab · Dry Lab Student Leader · 2026*
+*NJU-China · Student Leader (Head of the Dry Lab) · 2026*
 
 - Built a two-direction protein–reaction ranking framework that combines sequence and reaction representations with evidence-dependent expert corrections, without restricting predictions to expert-retrieved candidates.
 - Connected ranking outputs to a scientific-agent workflow spanning reaction/sequence queries, graph-based evidence exploration, and explicit separation of verified knowledge from inferred candidates.
