@@ -2,11 +2,11 @@
 
 **Research & Engineering CV** · November 2026
 
-**Email:** [zhangruncheng@thunlp.com](mailto:zhangruncheng@thunlp.com) · **GitHub:** [ChouYuanjue](https://github.com/ChouYuanjue) · **ORCID:** [0009-0005-7611-3583](https://orcid.org/0009-0005-7611-3583) · **Location:** Nanjing, China
+**Email:** [zhangruncheng@thunlp.com](mailto:zhangruncheng@thunlp.com) · **GitHub:** [ChouYuanjue](https://github.com/ChouYuanjue) · **ORCID:** [0009-0005-7611-3583](https://orcid.org/0009-0005-7611-3583)
 
 ## Education
 ### Nanjing University
-**B.S. in Intelligent Science and Technology** · Nanjing, China · Sep 2025 – Present
+**B.S. in Intelligent Science and Technology** · Sep 2025 – Present
 
 ## Honors & Awards
 ### 2026 International Genetically Engineered Machine (iGEM) Competition
@@ -21,7 +21,7 @@
 Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 *Submitted to ICLR 2027.* \*Equal contribution.
 
-- Introduced MolDAS: capability-aware sampling, selective oracle evaluation, and adaptive imitation for multi-objective molecular optimization.
+- Introduced MolDAS to train language models for molecular design under an expensive evaluation budget. It samples tasks to match model capability, selectively queries the oracle, and uses adaptive imitation to learn from the evaluated candidates.
 - Improved multi-objective optimization scores by **16.1%** over vanilla GRPO under the same budget for high-fidelity property evaluations.
 
 ## Research Experience
@@ -56,28 +56,28 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 - Integrated enterprise retrieval, model routing, and document editing through reusable adapters, with source checks and task state carried across review rounds.
 
 ### Nanjing Flux Technology Co., Ltd.
-*Project Team Member* · Client-facing software development · Jan 2026 – Present
+*Project Team Member* · Client projects and in-house product development · Jan 2026 – Present
 
-- **Bank of Nanjing.** Implemented speech preprocessing, speaker-aware transcription, and audio-language inference for a multimodal LLM system for customer emotion recognition.
-- Developed backend services and APIs and integrated model inference into client-facing applications.
+- **Client project for Bank of Nanjing (Jan–Mar 2026).** Implemented speech preprocessing, speaker-aware transcription, and audio-language inference for a multimodal LLM system for customer emotion recognition.
+- Developed Flux's own internet products, building backend services and APIs for in-house applications.
 
 ## Selected Research Projects
 ### [Evidence-Grounded Enzyme–Reaction Discovery (iGEM 2026)](https://www.runnelzhang.com/posters/igem-atlas)
 *NJU-China · Student Leader (Head of the Dry Lab) · 2026*
 
-- Led development of BRIDGE, a bidirectional enzyme–reaction retrieval model that combines learned representations with gated expert signals. It achieved **2.7× to 3.5×** EnzymeCAGE's balanced top-10 recall across the two directions.
-- Integrated BRIDGE with COMPASS and EDGE to support natural-language searches and inspection of the evidence behind ranked candidates.
+- Led development of BRIDGE, which ranks the full search space and gates expert corrections by query. It achieved **2.7× to 3.5×** EnzymeCAGE's balanced top-10 recall across both enzyme–reaction search directions.
+- Added a memory that can incorporate newly validated examples without retraining. Connected the model to COMPASS and EDGE so users can trace candidate evidence from natural-language queries.
 
 ### [BiSem-Edge: Compute-Efficient Semantic Video](https://www.runnelzhang.com/posters/bisem-edge)
 *NINE Lab · 2026*
 
-- Cut encoder latency on Raspberry Pi 5 by **72%** using native one-bit NEON kernels, compared with floating-point inference at the same quantization level.
-- Used compact PCA side information to restore image detail lost in the original decoder, improving reconstruction PSNR by 1.18 dB on held-out cameras.
+- Implemented native one-bit NEON kernels for semantic video encoding on Raspberry Pi 5, cutting encoder latency by **72%** versus floating-point execution at the same quantization level.
+- Recovered detail lost in semantic compression by sending compact PCA side information to the decoder, improving PSNR by 1.18 dB on held-out cameras.
 
 ### [TRACE: Typed Reasoning with Attribution, Certificates, and Evidence](https://www.runnelzhang.com/posters/trace)
 *Formal reasoning research linked to MSRA work · 2026*
 
-- Built a typed reasoning graph that tracks proof dependencies across Lean, Rzk, and symbolic logic, with outputs for checked proofs, refutations, and witnesses that identify missing premises.
+- Represented reasoning as typed proof obligations in a shared graph across Lean, Rzk, and symbolic logic. Each outcome can carry a checked proof, refutation, or witness to a missing premise.
 
 ### [Tangut-SPAR: Structured Proxy Augmentation and Reliable Preference Tuning](https://www.runnelzhang.com/posters/tangut-spar)
 *Low-resource language modeling · 2026*
@@ -87,10 +87,10 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 ### [Doge-SAGE: Stateful Agent Systems for Scientific Communities](https://www.runnelzhang.com/posters/doge-sage)
 *Agent infrastructure and scientific computing · 2026*
 
-- Built a group-chat assistant with a shared tool registry, concurrent workers that preserve conversation history, and a local check that screens requests before invoking the model.
+- Designed a concurrent group-chat agent that runs inference independently for each event and merges only new history at a short, locked commit step. A shared registry serves both natural-language requests and explicit commands, with a local check before model invocation.
 
 ## Additional Research Posters
-- **[Exchangeable Hard Negatives for Vision–Language Evaluation](https://www.runnelzhang.com/posters/candidate-exchangeability)** (2026) — Designed balanced hard negatives to measure how much vision–language reasoning depends on the image itself.
+- **[Exchangeable Hard Negatives for Vision–Language Evaluation](https://www.runnelzhang.com/posters/candidate-exchangeability)** (2026) — Constructed exchangeable hard negatives that put every candidate in the same structural role, exposing when a model can answer from the choice set alone.
 - **[ProCo: Verifiable Abstention through Missing-Support Supervision](https://www.runnelzhang.com/posters/proco-evidence)** (2026) — Taught language models to identify missing premises and improved the rate of correct, evidence-backed answers on ProofWriter from 39.9% to 75.0%.
 - **[Attributing Inference-Time Gains in Lean Theorem Proving](https://www.runnelzhang.com/posters/lean-attribution)** (2026) — Used fixed-budget search portfolios and controlled ablations to separate search improvements from retrieval and prover changes.
 - **[Structural Transfer in Low-Resource Autoformalization](https://www.runnelzhang.com/posters/structural-transfer)** (2026) — Used structural hints to improve Rzk proof completion and recover failures that persisted under direct prompting.
@@ -109,9 +109,7 @@ Author and editor of a multi-volume English-language book of mathematical notes 
 
 ## Technical Presentations
 ### Navigating the Full-Stack Ecosystem: Implementation Strategies and Knowledge Graphs for Information Aggregation
-*Presented at Intelligent Data and Decision Studio, Nanjing University · Dec 2025* · [Presentation record](https://doi.org/10.5281/zenodo.17852269)
+*Student presenter · Intelligent Data and Decision Studio, Nanjing University · Dec 2025* · [Presentation record](https://doi.org/10.5281/zenodo.17852269)
 
 ### Architectural Paradigms in Collaborative Software Engineering: A Comprehensive Analysis of the Nova Project
-*Presented at Intelligent Data and Decision Studio, Nanjing University · Nov 2025* · [Presentation record](https://doi.org/10.5281/zenodo.17765724)
-
-Published both technical presentations as DOI-archived, openly accessible records.
+*Student presenter · Intelligent Data and Decision Studio, Nanjing University · Nov 2025* · [Presentation record](https://doi.org/10.5281/zenodo.17765724)
