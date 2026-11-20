@@ -19,25 +19,25 @@
 ### Tsinghua University — Natural Language Processing Lab (THUNLP)
 *Research Intern, AI for Science* · Advisor: Zheni Zeng · Mar 2026 – Present
 
-- Co-developed MolDAS, improving molecular optimization scores by **16.1%** over vanilla GRPO with the same expensive property-evaluation budget.
-- Built surrogate-to-oracle training with difficulty-aware sampling and targeted feedback; improved low-cost optimization scores by **3.7%** over GRPO.
+- Trained property predictors covering **41 ADMET endpoints** on 29,320 molecules and set up scaffold-separated benchmarks for evaluating predictions on new chemical structures.
+- Built a scientific agent that uses property predictions and Python analysis to propose structure–property hypotheses and choose which molecules to check with a higher-cost reference model.
 
 ### Microsoft Research Asia (Beijing)
 *Research Intern, AI for Mathematics* · Advisor: Xian Zhang; Collaborator: Ziyu Zhou · Jan – Aug 2026
 
-- Developed verifier-guided proof generation for Lean and Rzk; structural guidance improved Rzk completion by **56%** over direct prompting (32.1% to 50.0%).
-- Built proof-search evaluation and replay tools that produce kernel-checked proofs, localized repair feedback, and comparable theorem-level execution traces.
+- Developed evaluation tools for Lean proof search and Rzk autoformalization, using native checkers to score generated proofs and locate failed steps.
+- Designed controls that vary retrieval, compute budget, and prover independently to identify which changes account for gains in proof success.
 
 ### NJU Institute of Intelligent Networks and Communications (NINE)
 *Research Intern* · Supervisor: Huihong Liang; Institute Director: Kun Yang · Aug 2026 – Present
 
-- Accelerated Raspberry Pi 5 video encoding by **3.57×** over matched-quantization floating-point inference using packed one-bit NEON kernels.
-- Reduced model state by **93.2%** versus floating-point storage (458.0 to 31.4 MB); deployed a Pi 5 sender sustaining 18.3 FPS.
+- Built a Raspberry Pi 5 video encoder that selectively refreshes visual tokens and reuses cached features. The sender sustained **18.3 FPS** over a 1,000-frame run.
+- Built an evaluation pipeline that tracks reconstruction quality around moving people using fixed reference regions from the original 1080p footage.
 
 ### Wuxi Xishan NJU Institute of Applied Biotechnology
 *Research Intern, Computational Enzyme Discovery* · Sep 2026 – Present
 
-- Delivered an enzyme-discovery workbench that converts reaction and sequence queries into experimental shortlists linked to chemical structures and literature evidence.
+- Connected computational enzyme screening with experimental planning, organizing ranked candidates and their supporting evidence into shortlists for wet-lab follow-up.
 
 ## Professional Experience
 ### Beijing Volcano Engine Technology Co., Ltd.
@@ -66,13 +66,13 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 *NJU-China · Student Leader (Head of the Dry Lab) · 2026*
 
 - Led BRIDGE development, improving balanced top-10 recall by **173%** for reaction-to-enzyme search and **250%** in reverse versus EnzymeCAGE.
-- Connected BRIDGE, COMPASS, and EDGE into an evidence-linked discovery workbench; won iGEM Gold and Best Software & AI Project.
+- Integrated the BRIDGE ranker, COMPASS query interface, and EDGE evidence graph so researchers can inspect what supports each prediction.
 
 ### [TRACE: Typed Reasoning with Attribution, Certificates, and Evidence](https://www.runnelzhang.com/posters/trace)
 *Formal reasoning research linked to MSRA work · 2026*
 
-- Built a typed reasoning graph connecting Lean, symbolic-logic, and Rzk checkers, producing proof certificates, targeted repair feedback, and replayable traces.
-- Increased correct, evidence-verified answers by **88%** over proof-only training on ProofWriter (39.9% to 75.0%) through missing-support supervision.
+- Built a typed reasoning graph that gives Lean, symbolic-logic, and Rzk checkers a shared representation of dependencies, failed checks, and repair steps.
+- Defined three outputs for the framework: checked proofs, checked refutations, and witnesses that identify missing premises.
 
 ### [Tangut-SPAR: Structured Proxy Augmentation and Reliable Preference Tuning](https://www.runnelzhang.com/posters/tangut-spar)
 *Low-resource language modeling · 2026*
@@ -83,7 +83,7 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 ### [BiSem-Edge: Compute-Efficient Semantic Video](https://www.runnelzhang.com/posters/bisem-edge)
 *NINE Lab · 2026*
 
-- Cut Pi 5 encoder latency by **72%** versus matched-quantization floating-point inference (1,709 to 479 ms per four-keyframe batch).
+- Cut Pi 5 encoder latency by **72%** (1,709 to 479 ms per four keyframes) with native one-bit NEON kernels versus matched-quantization floating-point inference.
 - Improved reconstruction PSNR by 1.18 dB over the original 64-dimensional decoder across 12 held-out cameras using compact PCA side information.
 
 ### [Doge-SAGE: Stateful Agent Systems for Scientific Communities](https://www.runnelzhang.com/posters/doge-sage)
@@ -94,7 +94,7 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 
 ## Additional Research Posters
 - **[Exchangeable Hard Negatives for Vision–Language Evaluation](https://www.runnelzhang.com/posters/candidate-exchangeability)** (2026) — Built 1,301 balanced candidate sets that hold text-only shortcuts at 50% chance, isolating visual reasoning gains.
-- **[ProCo: Verifiable Abstention through Missing-Support Supervision](https://www.runnelzhang.com/posters/proco-evidence)** (2026) — More than doubled evidence-verified reasoning under depth shift versus proof-only training (26.5% to 55.0%).
+- **[ProCo: Verifiable Abstention through Missing-Support Supervision](https://www.runnelzhang.com/posters/proco-evidence)** (2026) — Raised correct answers backed by verified evidence by **88%** over proof-only training (39.9% to 75.0%) on ProofWriter.
 - **[Attributing Inference-Time Gains in Lean Theorem Proving](https://www.runnelzhang.com/posters/lean-attribution)** (2026) — Improved Lean proof success by **10.5%** over single-profile search (31.7% to 35.0%) using fixed-budget portfolios.
 - **[Structural Transfer in Low-Resource Autoformalization](https://www.runnelzhang.com/posters/structural-transfer)** (2026) — Raised Rzk completion by **56%** over direct prompting (32.1% to 50.0%); structural repair solved 2.2× as many replayed failures.
 - **[MOSAIC: Reference-Grounded Compositional Emoji Fusion](https://www.runnelzhang.com/posters/mosaic)** (2025) — Defined typed fusion plans linking source identity, spatial layout, and rendering style for controllable multi-emoji composition.

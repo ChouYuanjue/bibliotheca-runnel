@@ -42,68 +42,68 @@
         {
           "id": "research-experience--tsinghua-university-natural-language-processing-lab-thunlp",
           "title": "Tsinghua University – Natural Language Processing Lab (THUNLP)",
-          "summary": "rSubsectionTsinghua University – Natural Language Processing Lab (THUNLP)Mar 2026 – PresentResearch Intern, AI for Science | Advisor: Zheni Zeng Co-developed MolDAS, improving molecular optimization scores by 16.1% over vanilla GRPO with the same expensive property-evaluation budget. Built surrogate-to-oracle training with difficulty-aware sampling and targe",
-          "tex": "\\begin{rSubsection}{Tsinghua University -- Natural Language Processing Lab (THUNLP)}{Mar 2026 -- Present}{Research Intern, AI for Science \\quad | \\quad Advisor: Zheni Zeng}{}\n\\item Co-developed MolDAS, improving molecular optimization scores by \\textbf{16.1\\%} over vanilla GRPO with the same expensive property-evaluation budget.\n\\item Built surrogate-to-oracle training with difficulty-aware sampling and targeted feedback; improved low-cost optimization scores by \\textbf{3.7\\%} over GRPO.\n\\end{rSubsection}",
+          "summary": "rSubsectionTsinghua University – Natural Language Processing Lab (THUNLP)Mar 2026 – PresentResearch Intern, AI for Science | Advisor: Zheni Zeng Trained property predictors covering 41 ADMET endpoints on 29,320 molecules and set up scaffold-separated benchmarks for evaluating predictions on new chemical structures. Built a scientific agent that uses property",
+          "tex": "\\begin{rSubsection}{Tsinghua University -- Natural Language Processing Lab (THUNLP)}{Mar 2026 -- Present}{Research Intern, AI for Science \\quad | \\quad Advisor: Zheni Zeng}{}\n\\item Trained property predictors covering \\textbf{41 ADMET endpoints} on 29,320 molecules and set up scaffold-separated benchmarks for evaluating predictions on new chemical structures.\n\\item Built a scientific agent that uses property predictions and Python analysis to propose structure--property hypotheses and choose which molecules to check with a higher-cost reference model.\n\\end{rSubsection}",
           "before": "\\begin{rSubsection}{Tsinghua University -- Natural Language Processing Lab (THUNLP)}{Mar 2026 -- Present}{Research Intern, AI for Science \\quad | \\quad Advisor: Zheni Zeng}{}\n",
           "after": "\\end{rSubsection}",
           "bullets": [
             {
-              "tex": "Co-developed MolDAS, improving molecular optimization scores by \\textbf{16.1\\%} over vanilla GRPO with the same expensive property-evaluation budget.",
-              "text": "Co-developed MolDAS, improving molecular optimization scores by 16.1% over vanilla GRPO with the same expensive property-evaluation budget."
+              "tex": "Trained property predictors covering \\textbf{41 ADMET endpoints} on 29,320 molecules and set up scaffold-separated benchmarks for evaluating predictions on new chemical structures.",
+              "text": "Trained property predictors covering 41 ADMET endpoints on 29,320 molecules and set up scaffold-separated benchmarks for evaluating predictions on new chemical structures."
             },
             {
-              "tex": "Built surrogate-to-oracle training with difficulty-aware sampling and targeted feedback; improved low-cost optimization scores by \\textbf{3.7\\%} over GRPO.",
-              "text": "Built surrogate-to-oracle training with difficulty-aware sampling and targeted feedback; improved low-cost optimization scores by 3.7% over GRPO."
+              "tex": "Built a scientific agent that uses property predictions and Python analysis to propose structure--property hypotheses and choose which molecules to check with a higher-cost reference model.",
+              "text": "Built a scientific agent that uses property predictions and Python analysis to propose structure–property hypotheses and choose which molecules to check with a higher-cost reference model."
             }
           ]
         },
         {
           "id": "research-experience--microsoft-research-asia-beijing",
           "title": "Microsoft Research Asia (Beijing)",
-          "summary": "rSubsectionMicrosoft Research Asia (Beijing)Jan – Aug 2026Research Intern, AI for Mathematics | Advisor: Xian Zhang; Collaborator: Ziyu Zhou Developed verifier-guided proof generation for Lean and Rzk; structural guidance improved Rzk completion by 56% over direct prompting (32.1% to 50.0%). Built proof-search evaluation and replay tools that produce kernel-",
-          "tex": "\\begin{rSubsection}{Microsoft Research Asia (Beijing)}{Jan -- Aug 2026}{Research Intern, AI for Mathematics \\quad | \\quad Advisor: Xian Zhang; Collaborator: Ziyu Zhou}{}\n\\item Developed verifier-guided proof generation for Lean and Rzk; structural guidance improved Rzk completion by \\textbf{56\\%} over direct prompting (32.1\\% to 50.0\\%).\n\\item Built proof-search evaluation and replay tools that produce kernel-checked proofs, localized repair feedback, and comparable theorem-level execution traces.\n\\end{rSubsection}",
+          "summary": "rSubsectionMicrosoft Research Asia (Beijing)Jan – Aug 2026Research Intern, AI for Mathematics | Advisor: Xian Zhang; Collaborator: Ziyu Zhou Developed evaluation tools for Lean proof search and Rzk autoformalization, using native checkers to score generated proofs and locate failed steps. Designed controls that vary retrieval, compute budget, and prover inde",
+          "tex": "\\begin{rSubsection}{Microsoft Research Asia (Beijing)}{Jan -- Aug 2026}{Research Intern, AI for Mathematics \\quad | \\quad Advisor: Xian Zhang; Collaborator: Ziyu Zhou}{}\n\\item Developed evaluation tools for Lean proof search and Rzk autoformalization, using native checkers to score generated proofs and locate failed steps.\n\\item Designed controls that vary retrieval, compute budget, and prover independently to identify which changes account for gains in proof success.\n\\end{rSubsection}",
           "before": "\\begin{rSubsection}{Microsoft Research Asia (Beijing)}{Jan -- Aug 2026}{Research Intern, AI for Mathematics \\quad | \\quad Advisor: Xian Zhang; Collaborator: Ziyu Zhou}{}\n",
           "after": "\\end{rSubsection}",
           "bullets": [
             {
-              "tex": "Developed verifier-guided proof generation for Lean and Rzk; structural guidance improved Rzk completion by \\textbf{56\\%} over direct prompting (32.1\\% to 50.0\\%).",
-              "text": "Developed verifier-guided proof generation for Lean and Rzk; structural guidance improved Rzk completion by 56% over direct prompting (32.1% to 50.0%)."
+              "tex": "Developed evaluation tools for Lean proof search and Rzk autoformalization, using native checkers to score generated proofs and locate failed steps.",
+              "text": "Developed evaluation tools for Lean proof search and Rzk autoformalization, using native checkers to score generated proofs and locate failed steps."
             },
             {
-              "tex": "Built proof-search evaluation and replay tools that produce kernel-checked proofs, localized repair feedback, and comparable theorem-level execution traces.",
-              "text": "Built proof-search evaluation and replay tools that produce kernel-checked proofs, localized repair feedback, and comparable theorem-level execution traces."
+              "tex": "Designed controls that vary retrieval, compute budget, and prover independently to identify which changes account for gains in proof success.",
+              "text": "Designed controls that vary retrieval, compute budget, and prover independently to identify which changes account for gains in proof success."
             }
           ]
         },
         {
           "id": "research-experience--nju-institute-of-intelligent-networks-and-communications-nine",
           "title": "NJU Institute of Intelligent Networks and Communications (NINE)",
-          "summary": "rSubsectionNJU Institute of Intelligent Networks and Communications (NINE)Aug 2026 – PresentResearch Intern | Supervisor: Huihong Liang; Institute Director: Kun Yang Accelerated Raspberry Pi 5 video encoding by 3.57$ $ over matched-quantization floating-point inference using packed one-bit NEON kernels. Reduced model state by 93.2% versus floating-point stor",
-          "tex": "\\begin{rSubsection}{NJU Institute of Intelligent Networks and Communications (NINE)}{Aug 2026 -- Present}{Research Intern \\quad | \\quad Supervisor: Huihong Liang; Institute Director: Kun Yang}{}\n\\item Accelerated Raspberry Pi 5 video encoding by \\textbf{3.57$\\times$} over matched-quantization floating-point inference using packed one-bit NEON kernels.\n\\item Reduced model state by \\textbf{93.2\\%} versus floating-point storage (458.0 to 31.4 MB); deployed a Pi 5 sender sustaining 18.3 FPS.\n\\end{rSubsection}",
+          "summary": "rSubsectionNJU Institute of Intelligent Networks and Communications (NINE)Aug 2026 – PresentResearch Intern | Supervisor: Huihong Liang; Institute Director: Kun Yang Built a Raspberry Pi 5 video encoder that selectively refreshes visual tokens and reuses cached features. The sender sustained 18.3 FPS over a 1,000-frame run. Built an evaluation pipeline that ",
+          "tex": "\\begin{rSubsection}{NJU Institute of Intelligent Networks and Communications (NINE)}{Aug 2026 -- Present}{Research Intern \\quad | \\quad Supervisor: Huihong Liang; Institute Director: Kun Yang}{}\n\\item Built a Raspberry Pi 5 video encoder that selectively refreshes visual tokens and reuses cached features. The sender sustained \\textbf{18.3 FPS} over a 1,000-frame run.\n\\item Built an evaluation pipeline that tracks reconstruction quality around moving people using fixed reference regions from the original 1080p footage.\n\\end{rSubsection}",
           "before": "\\begin{rSubsection}{NJU Institute of Intelligent Networks and Communications (NINE)}{Aug 2026 -- Present}{Research Intern \\quad | \\quad Supervisor: Huihong Liang; Institute Director: Kun Yang}{}\n",
           "after": "\\end{rSubsection}",
           "bullets": [
             {
-              "tex": "Accelerated Raspberry Pi 5 video encoding by \\textbf{3.57$\\times$} over matched-quantization floating-point inference using packed one-bit NEON kernels.",
-              "text": "Accelerated Raspberry Pi 5 video encoding by 3.57$ $ over matched-quantization floating-point inference using packed one-bit NEON kernels."
+              "tex": "Built a Raspberry Pi 5 video encoder that selectively refreshes visual tokens and reuses cached features. The sender sustained \\textbf{18.3 FPS} over a 1,000-frame run.",
+              "text": "Built a Raspberry Pi 5 video encoder that selectively refreshes visual tokens and reuses cached features. The sender sustained 18.3 FPS over a 1,000-frame run."
             },
             {
-              "tex": "Reduced model state by \\textbf{93.2\\%} versus floating-point storage (458.0 to 31.4 MB); deployed a Pi 5 sender sustaining 18.3 FPS.",
-              "text": "Reduced model state by 93.2% versus floating-point storage (458.0 to 31.4 MB); deployed a Pi 5 sender sustaining 18.3 FPS."
+              "tex": "Built an evaluation pipeline that tracks reconstruction quality around moving people using fixed reference regions from the original 1080p footage.",
+              "text": "Built an evaluation pipeline that tracks reconstruction quality around moving people using fixed reference regions from the original 1080p footage."
             }
           ]
         },
         {
           "id": "research-experience--wuxi-xishan-nju-institute-of-applied-biotechnology",
           "title": "Wuxi Xishan NJU Institute of Applied Biotechnology",
-          "summary": "rSubsectionWuxi Xishan NJU Institute of Applied BiotechnologySep 2026 – PresentResearch Intern, Computational Enzyme Discovery Delivered an enzyme-discovery workbench that converts reaction and sequence queries into experimental shortlists linked to chemical structures and literature evidence. rSubsection",
-          "tex": "\\begin{rSubsection}{Wuxi Xishan NJU Institute of Applied Biotechnology}{Sep 2026 -- Present}{Research Intern, Computational Enzyme Discovery}{}\n\\item Delivered an enzyme-discovery workbench that converts reaction and sequence queries into experimental shortlists linked to chemical structures and literature evidence.\n\\end{rSubsection}",
+          "summary": "rSubsectionWuxi Xishan NJU Institute of Applied BiotechnologySep 2026 – PresentResearch Intern, Computational Enzyme Discovery Connected computational enzyme screening with experimental planning, organizing ranked candidates and their supporting evidence into shortlists for wet-lab follow-up. rSubsection",
+          "tex": "\\begin{rSubsection}{Wuxi Xishan NJU Institute of Applied Biotechnology}{Sep 2026 -- Present}{Research Intern, Computational Enzyme Discovery}{}\n\\item Connected computational enzyme screening with experimental planning, organizing ranked candidates and their supporting evidence into shortlists for wet-lab follow-up.\n\\end{rSubsection}",
           "before": "\\begin{rSubsection}{Wuxi Xishan NJU Institute of Applied Biotechnology}{Sep 2026 -- Present}{Research Intern, Computational Enzyme Discovery}{}\n",
           "after": "\\end{rSubsection}",
           "bullets": [
             {
-              "tex": "Delivered an enzyme-discovery workbench that converts reaction and sequence queries into experimental shortlists linked to chemical structures and literature evidence.",
-              "text": "Delivered an enzyme-discovery workbench that converts reaction and sequence queries into experimental shortlists linked to chemical structures and literature evidence."
+              "tex": "Connected computational enzyme screening with experimental planning, organizing ranked candidates and their supporting evidence into shortlists for wet-lab follow-up.",
+              "text": "Connected computational enzyme screening with experimental planning, organizing ranked candidates and their supporting evidence into shortlists for wet-lab follow-up."
             }
           ]
         }
@@ -185,8 +185,8 @@
         {
           "id": "selected-research-projects--evidence-grounded-enzyme-reaction-discovery-igem-2026",
           "title": "Evidence-Grounded Enzyme–Reaction Discovery (iGEM 2026)",
-          "summary": "rSubsectionEvidence-Grounded Enzyme–Reaction Discovery (iGEM 2026)2026NJU-China | Student Leader (Head of the Dry Lab) | Poster Led BRIDGE development, improving balanced top-10 recall by 173% for reaction-to-enzyme search and 250% in reverse versus EnzymeCAGE. Connected BRIDGE, COMPASS, and EDGE into an evidence-linked discovery workbench; won iGEM Gold and",
-          "tex": "\\begin{rSubsection}{Evidence-Grounded Enzyme--Reaction Discovery (iGEM 2026)}{2026}{NJU-China \\quad | \\quad Student Leader (Head of the Dry Lab) \\quad | \\quad \\cvsmalllink{https://www.runnelzhang.com/posters/igem-atlas}{Poster}}{}\n\\item Led BRIDGE development, improving balanced top-10 recall by \\textbf{173\\%} for reaction-to-enzyme search and \\textbf{250\\%} in reverse versus EnzymeCAGE.\n\\item Connected BRIDGE, COMPASS, and EDGE into an evidence-linked discovery workbench; won iGEM Gold and Best Software \\& AI Project.\n\\end{rSubsection}",
+          "summary": "rSubsectionEvidence-Grounded Enzyme–Reaction Discovery (iGEM 2026)2026NJU-China | Student Leader (Head of the Dry Lab) | Poster Led BRIDGE development, improving balanced top-10 recall by 173% for reaction-to-enzyme search and 250% in reverse versus EnzymeCAGE. Integrated the BRIDGE ranker, COMPASS query interface, and EDGE evidence graph so researchers can ",
+          "tex": "\\begin{rSubsection}{Evidence-Grounded Enzyme--Reaction Discovery (iGEM 2026)}{2026}{NJU-China \\quad | \\quad Student Leader (Head of the Dry Lab) \\quad | \\quad \\cvsmalllink{https://www.runnelzhang.com/posters/igem-atlas}{Poster}}{}\n\\item Led BRIDGE development, improving balanced top-10 recall by \\textbf{173\\%} for reaction-to-enzyme search and \\textbf{250\\%} in reverse versus EnzymeCAGE.\n\\item Integrated the BRIDGE ranker, COMPASS query interface, and EDGE evidence graph so researchers can inspect what supports each prediction.\n\\end{rSubsection}",
           "before": "\\begin{rSubsection}{Evidence-Grounded Enzyme--Reaction Discovery (iGEM 2026)}{2026}{NJU-China \\quad | \\quad Student Leader (Head of the Dry Lab) \\quad | \\quad \\cvsmalllink{https://www.runnelzhang.com/posters/igem-atlas}{Poster}}{}\n",
           "after": "\\end{rSubsection}",
           "bullets": [
@@ -195,26 +195,26 @@
               "text": "Led BRIDGE development, improving balanced top-10 recall by 173% for reaction-to-enzyme search and 250% in reverse versus EnzymeCAGE."
             },
             {
-              "tex": "Connected BRIDGE, COMPASS, and EDGE into an evidence-linked discovery workbench; won iGEM Gold and Best Software \\& AI Project.",
-              "text": "Connected BRIDGE, COMPASS, and EDGE into an evidence-linked discovery workbench; won iGEM Gold and Best Software & AI Project."
+              "tex": "Integrated the BRIDGE ranker, COMPASS query interface, and EDGE evidence graph so researchers can inspect what supports each prediction.",
+              "text": "Integrated the BRIDGE ranker, COMPASS query interface, and EDGE evidence graph so researchers can inspect what supports each prediction."
             }
           ]
         },
         {
           "id": "selected-research-projects--trace-typed-reasoning-with-attribution-certificates-and-evidence",
           "title": "TRACE: Typed Reasoning with Attribution, Certificates, and Evidence",
-          "summary": "rSubsectionTRACE: Typed Reasoning with Attribution, Certificates, and Evidence2026Formal reasoning research linked to MSRA work | Poster Built a typed reasoning graph connecting Lean, symbolic-logic, and Rzk checkers, producing proof certificates, targeted repair feedback, and replayable traces. Increased correct, evidence-verified answers by 88% over proof-",
-          "tex": "\\begin{rSubsection}{TRACE: Typed Reasoning with Attribution, Certificates, and Evidence}{2026}{Formal reasoning research linked to MSRA work \\quad | \\quad \\cvsmalllink{https://www.runnelzhang.com/posters/trace}{Poster}}{}\n\\item Built a typed reasoning graph connecting Lean, symbolic-logic, and Rzk checkers, producing proof certificates, targeted repair feedback, and replayable traces.\n\\item Increased correct, evidence-verified answers by \\textbf{88\\%} over proof-only training on ProofWriter (39.9\\% to 75.0\\%) through missing-support supervision.\n\\end{rSubsection}",
+          "summary": "rSubsectionTRACE: Typed Reasoning with Attribution, Certificates, and Evidence2026Formal reasoning research linked to MSRA work | Poster Built a typed reasoning graph that gives Lean, symbolic-logic, and Rzk checkers a shared representation of dependencies, failed checks, and repair steps. Defined three outputs for the framework: checked proofs, checked refu",
+          "tex": "\\begin{rSubsection}{TRACE: Typed Reasoning with Attribution, Certificates, and Evidence}{2026}{Formal reasoning research linked to MSRA work \\quad | \\quad \\cvsmalllink{https://www.runnelzhang.com/posters/trace}{Poster}}{}\n\\item Built a typed reasoning graph that gives Lean, symbolic-logic, and Rzk checkers a shared representation of dependencies, failed checks, and repair steps.\n\\item Defined three outputs for the framework: checked proofs, checked refutations, and witnesses that identify missing premises.\n\\end{rSubsection}",
           "before": "\\begin{rSubsection}{TRACE: Typed Reasoning with Attribution, Certificates, and Evidence}{2026}{Formal reasoning research linked to MSRA work \\quad | \\quad \\cvsmalllink{https://www.runnelzhang.com/posters/trace}{Poster}}{}\n",
           "after": "\\end{rSubsection}",
           "bullets": [
             {
-              "tex": "Built a typed reasoning graph connecting Lean, symbolic-logic, and Rzk checkers, producing proof certificates, targeted repair feedback, and replayable traces.",
-              "text": "Built a typed reasoning graph connecting Lean, symbolic-logic, and Rzk checkers, producing proof certificates, targeted repair feedback, and replayable traces."
+              "tex": "Built a typed reasoning graph that gives Lean, symbolic-logic, and Rzk checkers a shared representation of dependencies, failed checks, and repair steps.",
+              "text": "Built a typed reasoning graph that gives Lean, symbolic-logic, and Rzk checkers a shared representation of dependencies, failed checks, and repair steps."
             },
             {
-              "tex": "Increased correct, evidence-verified answers by \\textbf{88\\%} over proof-only training on ProofWriter (39.9\\% to 75.0\\%) through missing-support supervision.",
-              "text": "Increased correct, evidence-verified answers by 88% over proof-only training on ProofWriter (39.9% to 75.0%) through missing-support supervision."
+              "tex": "Defined three outputs for the framework: checked proofs, checked refutations, and witnesses that identify missing premises.",
+              "text": "Defined three outputs for the framework: checked proofs, checked refutations, and witnesses that identify missing premises."
             }
           ]
         },
@@ -239,14 +239,14 @@
         {
           "id": "selected-research-projects--bisem-edge-compute-efficient-semantic-video",
           "title": "BiSem-Edge: Compute-Efficient Semantic Video",
-          "summary": "rSubsectionBiSem-Edge: Compute-Efficient Semantic Video2026NINE Lab | Poster Cut Pi 5 encoder latency by 72% versus matched-quantization floating-point inference (1,709 to 479 ms per four-keyframe batch). Improved reconstruction PSNR by 1.18 dB over the original 64-dimensional decoder across 12 held-out cameras using compact PCA side information. rSubsection",
-          "tex": "\\begin{rSubsection}{BiSem-Edge: Compute-Efficient Semantic Video}{2026}{NINE Lab \\quad | \\quad \\cvsmalllink{https://www.runnelzhang.com/posters/bisem-edge}{Poster}}{}\n\\item Cut Pi 5 encoder latency by \\textbf{72\\%} versus matched-quantization floating-point inference (1,709 to 479 ms per four-keyframe batch).\n\\item Improved reconstruction PSNR by 1.18 dB over the original 64-dimensional decoder across 12 held-out cameras using compact PCA side information.\n\\end{rSubsection}",
+          "summary": "rSubsectionBiSem-Edge: Compute-Efficient Semantic Video2026NINE Lab | Poster Cut Pi 5 encoder latency by 72% (1,709 to 479 ms per four keyframes) with native one-bit NEON kernels versus matched-quantization floating-point inference. Improved reconstruction PSNR by 1.18 dB over the original 64-dimensional decoder across 12 held-out cameras using compact PCA s",
+          "tex": "\\begin{rSubsection}{BiSem-Edge: Compute-Efficient Semantic Video}{2026}{NINE Lab \\quad | \\quad \\cvsmalllink{https://www.runnelzhang.com/posters/bisem-edge}{Poster}}{}\n\\item Cut Pi 5 encoder latency by \\textbf{72\\%} (1,709 to 479 ms per four keyframes) with native one-bit NEON kernels versus matched-quantization floating-point inference.\n\\item Improved reconstruction PSNR by 1.18 dB over the original 64-dimensional decoder across 12 held-out cameras using compact PCA side information.\n\\end{rSubsection}",
           "before": "\\begin{rSubsection}{BiSem-Edge: Compute-Efficient Semantic Video}{2026}{NINE Lab \\quad | \\quad \\cvsmalllink{https://www.runnelzhang.com/posters/bisem-edge}{Poster}}{}\n",
           "after": "\\end{rSubsection}",
           "bullets": [
             {
-              "tex": "Cut Pi 5 encoder latency by \\textbf{72\\%} versus matched-quantization floating-point inference (1,709 to 479 ms per four-keyframe batch).",
-              "text": "Cut Pi 5 encoder latency by 72% versus matched-quantization floating-point inference (1,709 to 479 ms per four-keyframe batch)."
+              "tex": "Cut Pi 5 encoder latency by \\textbf{72\\%} (1,709 to 479 ms per four keyframes) with native one-bit NEON kernels versus matched-quantization floating-point inference.",
+              "text": "Cut Pi 5 encoder latency by 72% (1,709 to 479 ms per four keyframes) with native one-bit NEON kernels versus matched-quantization floating-point inference."
             },
             {
               "tex": "Improved reconstruction PSNR by 1.18 dB over the original 64-dimensional decoder across 12 held-out cameras using compact PCA side information.",
@@ -291,8 +291,8 @@
         {
           "id": "additional-research-posters--proco-verifiable-abstention-through-missing-support-supervision",
           "title": "ProCo: Verifiable Abstention through Missing-Support Supervision",
-          "summary": "ProCo: Verifiable Abstention through Missing-Support Supervisionhttps://www.runnelzhang.com/posters/proco-evidence2026More than doubled evidence-verified reasoning under depth shift versus proof-only training (26.5% to 55.0%).",
-          "tex": "\\posterrow{ProCo: Verifiable Abstention through Missing-Support Supervision}{https://www.runnelzhang.com/posters/proco-evidence}{2026}{More than doubled evidence-verified reasoning under depth shift versus proof-only training (26.5\\% to 55.0\\%).}",
+          "summary": "ProCo: Verifiable Abstention through Missing-Support Supervisionhttps://www.runnelzhang.com/posters/proco-evidence2026Raised correct answers backed by verified evidence by 88% over proof-only training (39.9% to 75.0%) on ProofWriter.",
+          "tex": "\\posterrow{ProCo: Verifiable Abstention through Missing-Support Supervision}{https://www.runnelzhang.com/posters/proco-evidence}{2026}{Raised correct answers backed by verified evidence by \\textbf{88\\%} over proof-only training (39.9\\% to 75.0\\%) on ProofWriter.}",
           "before": "",
           "after": "",
           "bullets": []
