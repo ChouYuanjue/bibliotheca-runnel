@@ -67,8 +67,8 @@
         {
           "id": "research-experience--tsinghua-university-natural-language-processing-lab-thunlp",
           "title": "Tsinghua University – Natural Language Processing Lab (THUNLP)",
-          "summary": "rSubsectionTsinghua University – Natural Language Processing Lab (THUNLP)Mar 2026 – PresentResearch Intern, AI for Science | Advisor: Zheni Zeng Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation. Trained models to predict drug prope",
-          "tex": "\\begin{rSubsection}{Tsinghua University -- Natural Language Processing Lab (THUNLP)}{Mar 2026 -- Present}{Research Intern, AI for Science \\quad | \\quad Advisor: Zheni Zeng}{}\n\\item Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation.\n\\item Trained models to predict drug properties such as absorption, metabolism, and toxicity, then tested them on molecular scaffolds held out from training to measure generalization to new chemical families.\n\\end{rSubsection}",
+          "summary": "rSubsectionTsinghua University – Natural Language Processing Lab (THUNLP)Mar 2026 – PresentResearch Intern, AI for Science | Advisor: Zheni Zeng Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation. Trained surrogate models for drug ab",
+          "tex": "\\begin{rSubsection}{Tsinghua University -- Natural Language Processing Lab (THUNLP)}{Mar 2026 -- Present}{Research Intern, AI for Science \\quad | \\quad Advisor: Zheni Zeng}{}\n\\item Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation.\n\\item Trained surrogate models for drug absorption, metabolism, and toxicity to screen candidate molecules before more expensive scoring.\n\\end{rSubsection}",
           "before": "\\begin{rSubsection}{Tsinghua University -- Natural Language Processing Lab (THUNLP)}{Mar 2026 -- Present}{Research Intern, AI for Science \\quad | \\quad Advisor: Zheni Zeng}{}\n",
           "after": "\\end{rSubsection}",
           "bullets": [
@@ -77,44 +77,40 @@
               "text": "Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation."
             },
             {
-              "tex": "Trained models to predict drug properties such as absorption, metabolism, and toxicity, then tested them on molecular scaffolds held out from training to measure generalization to new chemical families.",
-              "text": "Trained models to predict drug properties such as absorption, metabolism, and toxicity, then tested them on molecular scaffolds held out from training to measure generalization to new chemical families."
+              "tex": "Trained surrogate models for drug absorption, metabolism, and toxicity to screen candidate molecules before more expensive scoring.",
+              "text": "Trained surrogate models for drug absorption, metabolism, and toxicity to screen candidate molecules before more expensive scoring."
             }
           ]
         },
         {
           "id": "research-experience--microsoft-research-asia-beijing",
           "title": "Microsoft Research Asia (Beijing)",
-          "summary": "rSubsectionMicrosoft Research Asia (Beijing)Jan – Aug 2026Research Intern, AI for Mathematics | Advisor: Xian Zhang; Collaborator: Ziyu Zhou Built verifier-guided tools for Lean proof search and Rzk autoformalization, using checker feedback to localize failed proof steps. Designed controlled evaluations that isolate the effects of retrieval, search budget, a",
-          "tex": "\\begin{rSubsection}{Microsoft Research Asia (Beijing)}{Jan -- Aug 2026}{Research Intern, AI for Mathematics \\quad | \\quad Advisor: Xian Zhang; Collaborator: Ziyu Zhou}{}\n\\item Built verifier-guided tools for Lean proof search and Rzk autoformalization, using checker feedback to localize failed proof steps.\n\\item Designed controlled evaluations that isolate the effects of retrieval, search budget, and prover choice on proof success.\n\\end{rSubsection}",
+          "summary": "rSubsectionMicrosoft Research Asia (Beijing)Jan – Aug 2026Research Intern, AI for Mathematics | Advisor: Xian Zhang; Collaborator: Ziyu Zhou Built a staged Lean prover that tries a narrow set of tactics first, broadens the search on unresolved goals, and spends the remaining time on harder cases. Built an Rzk autoformalization method that guides the model th",
+          "tex": "\\begin{rSubsection}{Microsoft Research Asia (Beijing)}{Jan -- Aug 2026}{Research Intern, AI for Mathematics \\quad | \\quad Advisor: Xian Zhang; Collaborator: Ziyu Zhou}{}\n\\item Built a staged Lean prover that tries a narrow set of tactics first, broadens the search on unresolved goals, and spends the remaining time on harder cases.\n\\item Built an Rzk autoformalization method that guides the model through dependent types, boundary conditions, and nested proof witnesses, then type-checks the generated proof body.\n\\end{rSubsection}",
           "before": "\\begin{rSubsection}{Microsoft Research Asia (Beijing)}{Jan -- Aug 2026}{Research Intern, AI for Mathematics \\quad | \\quad Advisor: Xian Zhang; Collaborator: Ziyu Zhou}{}\n",
           "after": "\\end{rSubsection}",
           "bullets": [
             {
-              "tex": "Built verifier-guided tools for Lean proof search and Rzk autoformalization, using checker feedback to localize failed proof steps.",
-              "text": "Built verifier-guided tools for Lean proof search and Rzk autoformalization, using checker feedback to localize failed proof steps."
+              "tex": "Built a staged Lean prover that tries a narrow set of tactics first, broadens the search on unresolved goals, and spends the remaining time on harder cases.",
+              "text": "Built a staged Lean prover that tries a narrow set of tactics first, broadens the search on unresolved goals, and spends the remaining time on harder cases."
             },
             {
-              "tex": "Designed controlled evaluations that isolate the effects of retrieval, search budget, and prover choice on proof success.",
-              "text": "Designed controlled evaluations that isolate the effects of retrieval, search budget, and prover choice on proof success."
+              "tex": "Built an Rzk autoformalization method that guides the model through dependent types, boundary conditions, and nested proof witnesses, then type-checks the generated proof body.",
+              "text": "Built an Rzk autoformalization method that guides the model through dependent types, boundary conditions, and nested proof witnesses, then type-checks the generated proof body."
             }
           ]
         },
         {
           "id": "research-experience--nju-institute-of-intelligent-networks-and-communications-nine",
           "title": "NJU Institute of Intelligent Networks and Communications (NINE)",
-          "summary": "rSubsectionNJU Institute of Intelligent Networks and Communications (NINE)Aug 2026 – PresentResearch Intern | Supervisor: Huihong Liang; Institute Director: Kun Yang Implemented selective token refresh and temporal feature reuse in a Raspberry Pi 5 encoder, achieving 18.3 FPS in a sender-side benchmark. Built a reconstruction evaluation pipeline that measure",
-          "tex": "\\begin{rSubsection}{NJU Institute of Intelligent Networks and Communications (NINE)}{Aug 2026 -- Present}{Research Intern \\quad | \\quad Supervisor: Huihong Liang; Institute Director: Kun Yang}{}\n\\item Implemented selective token refresh and temporal feature reuse in a Raspberry Pi 5 encoder, achieving \\textbf{18.3 FPS} in a sender-side benchmark.\n\\item Built a reconstruction evaluation pipeline that measures fidelity around moving people using reference regions from the original footage.\n\\end{rSubsection}",
+          "summary": "rSubsectionNJU Institute of Intelligent Networks and Communications (NINE)Aug 2026 – PresentResearch Intern | Supervisor: Huihong Liang; Institute Director: Kun Yang Built a Raspberry Pi 5 video encoder that refreshes patches based on visual change and cache age, reusing attention states for other patches. The sender ran at 18.3 FPS . rSubsection",
+          "tex": "\\begin{rSubsection}{NJU Institute of Intelligent Networks and Communications (NINE)}{Aug 2026 -- Present}{Research Intern \\quad | \\quad Supervisor: Huihong Liang; Institute Director: Kun Yang}{}\n\\item Built a Raspberry Pi 5 video encoder that refreshes patches based on visual change and cache age, reusing attention states for other patches. The sender ran at \\textbf{18.3 FPS}.\n\\end{rSubsection}",
           "before": "\\begin{rSubsection}{NJU Institute of Intelligent Networks and Communications (NINE)}{Aug 2026 -- Present}{Research Intern \\quad | \\quad Supervisor: Huihong Liang; Institute Director: Kun Yang}{}\n",
           "after": "\\end{rSubsection}",
           "bullets": [
             {
-              "tex": "Implemented selective token refresh and temporal feature reuse in a Raspberry Pi 5 encoder, achieving \\textbf{18.3 FPS} in a sender-side benchmark.",
-              "text": "Implemented selective token refresh and temporal feature reuse in a Raspberry Pi 5 encoder, achieving 18.3 FPS in a sender-side benchmark."
-            },
-            {
-              "tex": "Built a reconstruction evaluation pipeline that measures fidelity around moving people using reference regions from the original footage.",
-              "text": "Built a reconstruction evaluation pipeline that measures fidelity around moving people using reference regions from the original footage."
+              "tex": "Built a Raspberry Pi 5 video encoder that refreshes patches based on visual change and cache age, reusing attention states for other patches. The sender ran at \\textbf{18.3 FPS}.",
+              "text": "Built a Raspberry Pi 5 video encoder that refreshes patches based on visual change and cache age, reusing attention states for other patches. The sender ran at 18.3 FPS ."
             }
           ]
         },

@@ -29,19 +29,18 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 *Research Intern, AI for Science* · Advisor: Zheni Zeng · Mar 2026 – Present
 
 - Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation.
-- Trained models to predict drug properties such as absorption, metabolism, and toxicity, then tested them on molecular scaffolds held out from training to measure generalization to new chemical families.
+- Trained surrogate models for drug absorption, metabolism, and toxicity to screen candidate molecules before more expensive scoring.
 
 ### Microsoft Research Asia (Beijing)
 *Research Intern, AI for Mathematics* · Advisor: Xian Zhang; Collaborator: Ziyu Zhou · Jan – Aug 2026
 
-- Built verifier-guided tools for Lean proof search and Rzk autoformalization, using checker feedback to localize failed proof steps.
-- Designed controlled evaluations that isolate the effects of retrieval, search budget, and prover choice on proof success.
+- Built a staged Lean prover that tries a narrow set of tactics first, broadens the search on unresolved goals, and spends the remaining time on harder cases.
+- Built an Rzk autoformalization method that guides the model through dependent types, boundary conditions, and nested proof witnesses, then type-checks the generated proof body.
 
 ### NJU Institute of Intelligent Networks and Communications (NINE)
 *Research Intern* · Supervisor: Huihong Liang; Institute Director: Kun Yang · Aug 2026 – Present
 
-- Implemented selective token refresh and temporal feature reuse in a Raspberry Pi 5 encoder, achieving **18.3 FPS** in a sender-side benchmark.
-- Built a reconstruction evaluation pipeline that measures fidelity around moving people using reference regions from the original footage.
+- Built a Raspberry Pi 5 video encoder that refreshes patches based on visual change and cache age, reusing attention states for other patches. The sender ran at **18.3 FPS**.
 
 ### Wuxi Xishan NJU Institute of Applied Biotechnology
 *Research Intern, Computational Enzyme Discovery* · Sep 2026 – Present

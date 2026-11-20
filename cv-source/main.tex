@@ -129,17 +129,16 @@ Haoran Liu\textsuperscript{*}, \textbf{Runcheng Zhang\textsuperscript{*}}, Zheni
 \begin{rSection}{Research Experience}
 \begin{rSubsection}{Tsinghua University -- Natural Language Processing Lab (THUNLP)}{Mar 2026 -- Present}{Research Intern, AI for Science \quad | \quad Advisor: Zheni Zeng}{}
 \item Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation.
-\item Trained models to predict drug properties such as absorption, metabolism, and toxicity, then tested them on molecular scaffolds held out from training to measure generalization to new chemical families.
+\item Trained surrogate models for drug absorption, metabolism, and toxicity to screen candidate molecules before more expensive scoring.
 \end{rSubsection}
 
 \begin{rSubsection}{Microsoft Research Asia (Beijing)}{Jan -- Aug 2026}{Research Intern, AI for Mathematics \quad | \quad Advisor: Xian Zhang; Collaborator: Ziyu Zhou}{}
-\item Built verifier-guided tools for Lean proof search and Rzk autoformalization, using checker feedback to localize failed proof steps.
-\item Designed controlled evaluations that isolate the effects of retrieval, search budget, and prover choice on proof success.
+\item Built a staged Lean prover that tries a narrow set of tactics first, broadens the search on unresolved goals, and spends the remaining time on harder cases.
+\item Built an Rzk autoformalization method that guides the model through dependent types, boundary conditions, and nested proof witnesses, then type-checks the generated proof body.
 \end{rSubsection}
 
 \begin{rSubsection}{NJU Institute of Intelligent Networks and Communications (NINE)}{Aug 2026 -- Present}{Research Intern \quad | \quad Supervisor: Huihong Liang; Institute Director: Kun Yang}{}
-\item Implemented selective token refresh and temporal feature reuse in a Raspberry Pi 5 encoder, achieving \textbf{18.3 FPS} in a sender-side benchmark.
-\item Built a reconstruction evaluation pipeline that measures fidelity around moving people using reference regions from the original footage.
+\item Built a Raspberry Pi 5 video encoder that refreshes patches based on visual change and cache age, reusing attention states for other patches. The sender ran at \textbf{18.3 FPS}.
 \end{rSubsection}
 
 \begin{rSubsection}{Wuxi Xishan NJU Institute of Applied Biotechnology}{Sep 2026 -- Present}{Research Intern, Computational Enzyme Discovery}{}
