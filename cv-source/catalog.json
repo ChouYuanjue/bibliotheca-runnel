@@ -67,18 +67,18 @@
         {
           "id": "research-experience--tsinghua-university-natural-language-processing-lab-thunlp",
           "title": "Tsinghua University – Natural Language Processing Lab (THUNLP)",
-          "summary": "rSubsectionTsinghua University – Natural Language Processing Lab (THUNLP)Mar 2026 – PresentResearch Intern, AI for Science | Advisor: Zheni Zeng Built a scientific discovery agent that combines molecular observations, surrogate predictions, and executable analysis to propose hypotheses and select follow-up tests on unseen scaffolds. Developed training and ev",
-          "tex": "\\begin{rSubsection}{Tsinghua University -- Natural Language Processing Lab (THUNLP)}{Mar 2026 -- Present}{Research Intern, AI for Science \\quad | \\quad Advisor: Zheni Zeng}{}\n\\item Built a scientific discovery agent that combines molecular observations, surrogate predictions, and executable analysis to propose hypotheses and select follow-up tests on unseen scaffolds.\n\\item Developed training and evaluation workflows for language models in molecular design, connecting candidate generation to property scoring and checks against multiple chemical objectives.\n\\end{rSubsection}",
+          "summary": "rSubsectionTsinghua University – Natural Language Processing Lab (THUNLP)Mar 2026 – PresentResearch Intern, AI for Science | Advisor: Zheni Zeng Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation. Trained models to predict drug prope",
+          "tex": "\\begin{rSubsection}{Tsinghua University -- Natural Language Processing Lab (THUNLP)}{Mar 2026 -- Present}{Research Intern, AI for Science \\quad | \\quad Advisor: Zheni Zeng}{}\n\\item Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation.\n\\item Trained models to predict drug properties such as absorption, metabolism, and toxicity, then tested them on molecular scaffolds held out from training to measure generalization to new chemical families.\n\\end{rSubsection}",
           "before": "\\begin{rSubsection}{Tsinghua University -- Natural Language Processing Lab (THUNLP)}{Mar 2026 -- Present}{Research Intern, AI for Science \\quad | \\quad Advisor: Zheni Zeng}{}\n",
           "after": "\\end{rSubsection}",
           "bullets": [
             {
-              "tex": "Built a scientific discovery agent that combines molecular observations, surrogate predictions, and executable analysis to propose hypotheses and select follow-up tests on unseen scaffolds.",
-              "text": "Built a scientific discovery agent that combines molecular observations, surrogate predictions, and executable analysis to propose hypotheses and select follow-up tests on unseen scaffolds."
+              "tex": "Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation.",
+              "text": "Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation."
             },
             {
-              "tex": "Developed training and evaluation workflows for language models in molecular design, connecting candidate generation to property scoring and checks against multiple chemical objectives.",
-              "text": "Developed training and evaluation workflows for language models in molecular design, connecting candidate generation to property scoring and checks against multiple chemical objectives."
+              "tex": "Trained models to predict drug properties such as absorption, metabolism, and toxicity, then tested them on molecular scaffolds held out from training to measure generalization to new chemical families.",
+              "text": "Trained models to predict drug properties such as absorption, metabolism, and toxicity, then tested them on molecular scaffolds held out from training to measure generalization to new chemical families."
             }
           ]
         },

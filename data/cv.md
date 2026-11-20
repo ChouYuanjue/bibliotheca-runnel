@@ -28,8 +28,8 @@ Haoran Liu\*, **Runcheng Zhang\***, Zheni Zeng, Yukun Yan, Zhenghao Liu.
 ### Tsinghua University — Natural Language Processing Lab (THUNLP)
 *Research Intern, AI for Science* · Advisor: Zheni Zeng · Mar 2026 – Present
 
-- Built a scientific discovery agent that combines molecular observations, surrogate predictions, and executable analysis to propose hypotheses and select follow-up tests on unseen scaffolds.
-- Developed training and evaluation workflows for language models in molecular design, connecting candidate generation to property scoring and checks against multiple chemical objectives.
+- Built a scientific discovery agent that runs Python analyses to turn molecular property predictions into testable hypotheses and select candidates for higher-fidelity evaluation.
+- Trained models to predict drug properties such as absorption, metabolism, and toxicity, then tested them on molecular scaffolds held out from training to measure generalization to new chemical families.
 
 ### Microsoft Research Asia (Beijing)
 *Research Intern, AI for Mathematics* · Advisor: Xian Zhang; Collaborator: Ziyu Zhou · Jan – Aug 2026
