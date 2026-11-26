@@ -1,0 +1,281 @@
+\notechapter{N-20261126}{Differentiation on a Cliff: From 1.58-Bit Quantization to Discrete Calculus}
+
+When a parameter space is discrete, the classical limit $\lim_{h \to 0}$ ceases to exist and ordinary derivatives vanish almost everywhere. In arithmetic geometry, mathematicians overcome this obstruction on $\operatorname{Spec} \mathbb{Z}$ by preserving algebraic identities—constructing $p$-derivations and $\delta$-rings that mimic the Leibniz rule without a continuous topology. In deep learning, training 1.58-bit ternary neural networks (weights restricted to $\{-1, 0, +1\}$) confronts an isomorphic cliff, yet resolves it through an opposite philosophy: abandoning pointwise algebraic exactness in favor of variational and dynamical descent. These notes dissect the mathematical foundations of differentiating through discrete operations, beginning with three rigorous anatomies of the Straight-Through Estimator (distributional mollification, Fenchel duality, and coarse gradients), expanding to probability simplices, polyhedral linear programs, and submodular extensions, and returning to the high-dimensional geometry that makes 1.58-bit training viable in practice.
+
+\section{Two Calculi Where Limits Fail}
+
+Classical differential calculus relies on a continuum. To differentiate a function $f$ at $x$, one probes an infinitesimal neighborhood $x + h$ and takes the limit as $h \to 0$. Whenever the underlying domain is discrete, this machinery collapses immediately.
+
+In arithmetic geometry, the integers $\mathbb{Z}$ form a discrete ring whose spectrum $\operatorname{Spec}\mathbb{Z}$ lacks a classical tangent bundle. To import differential-geometric tools from function fields into number fields, mathematicians adopt a strategy of \emph{algebraic preservation}. Rather than requiring a topology with infinitesimal neighborhoods, one defines a $\delta$-ring structure (or $p$-derivation) $\delta: A \to A$ satisfying a twisted Leibniz rule and a compatibility condition with a lift of the Frobenius endomorphism. The goal is to preserve the algebraic grammar of differentiation even when limits do not exist.
+
+Modern 1.58-bit quantization in deep learning—exemplified by BitNet b1.58, where every weight is constrained to the ternary alphabet $\{-1, 0, +1\}$ (carrying $\log_2 3 \approx 1.585$ bits of information)—hits the exact same analytical wall. In the forward pass, a continuous latent weight matrix $W \in \mathbb{R}^{m \times n}$ is projected onto the ternary lattice via an absmean-scaled rounding and clipping operator:
+\begin{equation}
+    \begin{aligned}
+    \widetilde{W} &= Q(W) = \operatorname{RoundClip}\!\left(\frac{W}{\gamma + \epsilon}, -1, 1\right),\\
+    \gamma &= \frac{1}{mn}\sum_{i=1}^m \sum_{j=1}^n |W_{ij}|.
+    \end{aligned}
+\end{equation}
+where $\epsilon > 0$ prevents division by zero and $\operatorname{RoundClip}(u, -1, 1) = \max(-1, \min(1, \operatorname{round}(u)))$.
+
+As a function of $W$, the map $Q$ is piecewise constant. Its classical derivative $\partial \widetilde{W} / \partial W$ is identically zero almost everywhere and undefined on the jump hyperplanes $|W_{ij}| = \tfrac{1}{2}\gamma$. Under the standard chain rule, backpropagation dies instantly:
+\[
+    \frac{\partial \mathcal{L}}{\partial W} = \frac{\partial \mathcal{L}}{\partial \widetilde{W}} \cdot \frac{\partial \widetilde{W}}{\partial W} = 0 \quad \text{almost everywhere.}
+\]
+
+Yet optimization theory follows a fundamentally different philosophy from arithmetic geometry. To minimize a loss function $\mathcal{L}$, an iterative algorithm does not need a surrogate gradient $g$ to satisfy pointwise algebraic identities like the Leibniz rule. It only needs \emph{dynamical and variational alignment}: on an appropriate smoothed landscape $\mathcal{L}_{\text{smooth}}$, the surrogate update must correlate positively with a genuine descent direction,
+\[
+    \langle g, \nabla \mathcal{L}_{\text{smooth}} \rangle > 0,
+\]
+so that the discrete iterates drift toward low-loss basins.
+
+This contrast—\emph{preserving algebraic laws} in number theory versus \emph{preserving variational descent} in discrete optimization—forms the guiding thread of these notes. Starting from the ubiquitous Straight-Through Estimator (STE), we first uncover why an apparently illegal gradient substitution works, then survey the broader mathematical landscape of differentiating through discrete structures, and finally examine the high-dimensional geometric reasons why ternary neural networks rival their full-precision counterparts.
+
+\section{Three Mathematical Anatomies of STE}
+
+In practice, 1.58-bit networks are trained using the Straight-Through Estimator (STE). During the forward pass, the quantized weights $\widetilde{W} = Q(W)$ are used to compute activations and loss. During the backward pass, the vanishing derivative $\partial \widetilde{W}/\partial W$ is replaced by a clipped identity indicator:
+\begin{equation}
+    \frac{\partial \widetilde{W}_{ij}}{\partial W_{ij}} \;\longleftarrow\; \mathbf{1}_{\{|W_{ij}/\gamma| \le 1\}}.
+\end{equation}
+At first glance, this looks like a brazen violation of calculus. Closer inspection reveals that clipped STE arises naturally as a limiting or approximate case of three classical mathematical frameworks.
+
+\subsection{Distributional Derivatives and Mollification}
+
+Consider the scalar ternary quantizer $q(w) = \operatorname{RoundClip}(w, -1, 1)$ for $w \in \mathbb{R}$. It jumps from $-1$ to $0$ at $w = -\tfrac{1}{2}$ and from $0$ to $+1$ at $w = +\tfrac{1}{2}$. Viewed as a Schwartz distribution in $\mathcal{D}'(\mathbb{R})$, its distributional derivative is a pair of Dirac delta impulses:
+\begin{equation}
+    q'(w) = \delta\!\left(w + \tfrac{1}{2}\right) + \delta\!\left(w - \tfrac{1}{2}\right).
+\end{equation}
+Suppose we regularize $q$ by injecting isotropic Gaussian noise $\xi \sim \mathcal{N}(0, \sigma^2)$ with density $\rho_\sigma(u) = (2\pi\sigma^2)^{-1/2} \exp(-u^2/(2\sigma^2))$. The resulting randomized smoothing (mollification) is the convolution
+\[
+    \widetilde{q}_\sigma(w) = \mathbb{E}_{\xi \sim \mathcal{N}(0, \sigma^2)}[q(w + \xi)] = (q * \rho_\sigma)(w).
+\]
+By the standard property of distributional convolution (equivalently, Stein's Lemma), differentiation passes directly onto the smooth kernel or onto $q$ in the distributional sense:
+\begin{equation}
+    \widetilde{q}_\sigma'(w) = (q' * \rho_\sigma)(w) = \rho_\sigma\!\left(w + \tfrac{1}{2}\right) + \rho_\sigma\!\left(w - \tfrac{1}{2}\right).
+\end{equation}
+Evaluate this exact derivative at the natural scale $\sigma = 0.5$ (matching the half-width of the zero bin):
+\begin{itemize}
+    \item At $w = 0$: $\widetilde{q}_{0.5}'(0) = 2 \rho_{0.5}(0.5) = \frac{2}{\sqrt{2\pi}(0.5)} e^{-1/2} \approx 0.968$.
+    \item At $w = \pm 0.5$: $\widetilde{q}_{0.5}'(\pm 0.5) = \rho_{0.5}(0) + \rho_{0.5}(1) = \frac{1}{\sqrt{2\pi}(0.5)}(1 + e^{-2}) \approx 0.906$.
+    \item At $w = \pm 1.0$: $\widetilde{q}_{0.5}'(\pm 1.0) = \rho_{0.5}(0.5) + \rho_{0.5}(1.5) \approx 0.493$, decaying rapidly to zero for $|w| > 1$.
+\end{itemize}
+The two Gaussian peaks fuse into a flat-topped window supported essentially on $[-1, 1]$ with height close to $1$. Thus, the clipped STE indicator $\mathbf{1}_{[-1,1]}(w)$ is not an arbitrary heuristic; it is a sharp rectangular approximation to the exact Gaussian-mollified distributional derivative of the ternary step function.
+
+\subsection{Convex Duality and Mirror Descent}
+
+A persistent mystery in quantized training is why one must maintain full-precision ``shadow weights'' (master weights) $W_t$ alongside the discrete weights $\widetilde{W}_t$. Convex duality provides a striking structural explanation: $W_t$ is not a redundant floating-point cache, but a \emph{dual variable} living in the dual space of Mirror Descent (specifically, Nesterov's Dual Averaging or Lazy Mirror Descent).
+
+\begin{proposition}[Ternary Quantization as a Dual Mirror Map]
+Define the box-constrained $\ell_1$ potential function $\psi: \mathbb{R} \to \mathbb{R} \cup \{+\infty\}$ by
+\begin{equation}
+    \psi(x) = \frac{1}{2}|x| + \iota_{[-1, 1]}(x),
+\end{equation}
+where $\iota_{[-1,1]}(x) = 0$ if $x \in [-1,1]$ and $+\infty$ otherwise. Its Fenchel conjugate is
+\begin{equation}
+    \psi^*(w) = \sup_{x \in [-1,1]} \left(wx - \frac{1}{2}|x|\right) = \max\!\left(0, |w| - \frac{1}{2}\right).
+\end{equation}
+Consequently, the subdifferential $\partial \psi^*(w)$ coincides with the ternary quantization operator:
+\begin{equation}
+    \partial \psi^*(w) = \begin{cases}
+        \{+1\} & \text{if } w > \tfrac{1}{2}, \\
+        [0, 1] & \text{if } w = \tfrac{1}{2}, \\
+        \{0\} & \text{if } |w| < \tfrac{1}{2}, \\
+        [-1, 0] & \text{if } w = -\tfrac{1}{2}, \\
+        \{-1\} & \text{if } w < -\tfrac{1}{2}.
+    \end{cases}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+For $w \ge 0$, the supremum of $wx - \frac{1}{2}|x|$ over $x \in [-1, 1]$ is achieved on $[0, 1]$, where the objective is $(w - \frac{1}{2})x$. If $w > \frac{1}{2}$, the unique maximizer is $x = 1$ with value $w - \frac{1}{2}$. If $0 \le w < \frac{1}{2}$, the unique maximizer is $x = 0$ with value $0$. By symmetry for $w < 0$, $\psi^*(w) = \max(0, |w| - \frac{1}{2})$. Applying Danskin's theorem (or direct subdifferential calculus for the pointwise maximum of affine functions) yields $\partial \psi^*(w)$, which agrees with $\operatorname{RoundClip}(w, -1, 1)$ everywhere except at the measure-zero threshold points $w = \pm \frac{1}{2}$.
+\end{proof}
+
+In Lazy Mirror Descent, one accumulates gradients in the dual space and maps back to the primal space via $\nabla \psi^*$:
+\begin{align}
+    W_{t+1} &= W_t - \eta_t \nabla_{\widetilde{W}} \mathcal{L}(\widetilde{W}_t), \\
+    \widetilde{W}_{t+1} &\in \partial \psi^*(W_{t+1}).
+\end{align}
+This update is formally identical to unclipped STE with shadow weights. Moreover, adding a small strongly convex quadratic regularizer $\frac{\tau}{2}x^2$ to $\psi(x)$ produces the Moreau-Yosida smoothing of $\psi^*$: the subdifferential $\partial \psi_\tau^*(w)$ becomes a continuous piecewise-linear soft-thresholding and clipping map with slope $1/\tau$ on the transition intervals, collapsing back to hard ternary quantization as $\tau \to 0^+$.
+
+\begin{remark}[The Theoretical Gap]
+It is essential to distinguish between structural analogy and a convergence proof. The discrete lattice $\{-1, 0, +1\}^d$ is non-convex; $\psi(x)$ is defined on its convex hull $[-1, 1]^d$, and because $\psi$ is not strongly convex, $\psi^*$ is not differentiable at $\pm \frac{1}{2}$. Furthermore, neural network losses $\mathcal{L}$ are highly non-convex. Therefore, classical $O(1/\sqrt{T})$ regret bounds for convex mirror descent do not directly prove convergence of BitNet b1.58; rather, mirror descent explains the \emph{geometry} of the update and the role of shadow weights.
+\end{remark}
+
+\subsection{Coarse Gradients and a Counterexample}
+
+One might be tempted to conclude that \emph{any} positive surrogate derivative works in STE. Yin et al.\ (2019) proved this false by analyzing the expected population ``coarse gradient''—the expectation of the STE update over the data distribution.
+
+\begin{example}[Instability of Unclipped Identity STE]
+Consider a single-neuron regression problem with binary quantization $q(w) = \operatorname{sign}(w)$ and ReLU-like or saturated activations, or even a simple piecewise-linear landscape where the true loss depends on a quantized threshold. Yin et al.\ showed that for a two-layer ReLU network with binary weights trained on Gaussian inputs, the expected coarse gradient computed with the unclipped identity STE ($\widetilde{q}'(w) \equiv 1$) can have a \emph{negative} inner product with the true gradient of the population risk near local minima. As a result, gradient descent with identity STE can be repelled from the true minimizer and diverge. Replacing the identity surrogate with a clipped STE ($\widetilde{q}'(w) = \mathbf{1}_{|w| \le 1}$) restricts gradient flow to the active transition region, restoring positive correlation with the descent direction and ensuring local convergence.
+\end{example}
+
+This result explains why clipping the backward pass in 1.58-bit training is not merely a numerical safeguard against exploding gradients; it is a mathematical requirement to prevent the surrogate vector field from pointing uphill.
+
+\section{Probability Simplices and Reparameterization}
+
+Rather than differentiating through a deterministic jump, a second major paradigm lifts the discrete set $\{-1, 0, +1\}$ into a continuous manifold of probability distributions: the two-dimensional probability simplex
+\begin{equation}
+    \Delta^2 = \left\{ p = (p_{-1}, p_0, p_{+1}) \in \mathbb{R}_{\ge 0}^3 : p_{-1} + p_0 + p_{+1} = 1 \right\}.
+\end{equation}
+The discrete states $-1, 0, +1$ become the three vertices of $\Delta^2$. Instead of optimizing a discrete weight $z \in \{-1, 0, +1\}$, we optimize the continuous parameters $\theta$ of a categorical distribution $p_\theta \in \Delta^2$ to minimize the expected loss $J(\theta) = \mathbb{E}_{z \sim p_\theta}[f(z)]$.
+
+\subsection{Score Function Estimators (REINFORCE)}
+
+Using the log-derivative trick $\nabla_\theta p_\theta(z) = p_\theta(z) \nabla_\theta \log p_\theta(z)$, the gradient of $J(\theta)$ can be written as an expectation without ever differentiating $f$:
+\begin{equation}
+    \nabla_\theta \mathbb{E}_{z \sim p_\theta}[f(z)] = \mathbb{E}_{z \sim p_\theta}\!\left[ f(z) \nabla_\theta \log p_\theta(z) \right].
+\end{equation}
+The elegance of REINFORCE is total generality: $f$ need not be differentiable, continuous, or even known in closed form. Its fatal flaw in large-scale quantization is variance. Because the score function $\nabla_\theta \log p_\theta(z)$ is multiplied by the full scalar loss $f(z)$ across $d$ independent weights, the variance of a single-sample Monte Carlo estimate scales linearly with the parameter dimension $d$. Even with control variates (baselines), training billions of ternary weights via REINFORCE is computationally prohibitive.
+
+\subsection{Pathwise Derivatives and Gumbel-Softmax}
+
+To reduce variance, one seeks a \emph{pathwise} (reparameterization) derivative that pushes the randomness into a fixed base distribution independent of $\theta$. For categorical variables with logits $\theta = (\theta_{-1}, \theta_0, \theta_{+1})$, the Gumbel-Max trick states that
+\[
+    z = \arg\max_{k \in \{-1, 0, +1\}} (\theta_k + g_k), \qquad g_k \overset{\text{i.i.d.}}{\sim} \operatorname{Gumbel}(0, 1),
+\]
+samples exactly from $p_\theta(k) \propto \exp(\theta_k)$. Because $\arg\max$ is still non-differentiable, the Gumbel-Softmax (or Concrete) relaxation replaces it with a temperature-controlled softmax:
+\begin{equation}
+    y_k(\theta, g; \tau) = \frac{\exp((\theta_k + g_k)/\tau)}{\sum_{j} \exp((\theta_j + g_j)/\tau)}, \qquad \tau > 0.
+\end{equation}
+As $\tau \to 0^+$, the continuous vector $y \in \Delta^2$ concentrates at the vertices of the simplex, recovering exact discrete samples, while the variance of $\nabla_\theta y$ blows up as $O(\tau^{-2})$. For $\tau > 0$, gradients are low-variance but biased relative to the discrete objective. This exposes the fundamental \emph{bias-variance trade-off} of discrete differentiation: REINFORCE is unbiased with high variance; STE and Gumbel-Softmax accept controlled bias in exchange for low variance.
+
+\subsection{Boundary Sparsity: Sparsemax and Entmax}
+
+A subtle geometric defect of standard Softmax is that its image lies strictly in the open interior of $\Delta^2$: every probability $y_k$ is strictly positive, so a relaxed weight can never attain exact zero. In 1.58-bit networks, however, the zero state plays a crucial structural role in feature filtering.
+
+This limitation is resolved by replacing Shannon entropy regularization with generalized Tsallis $\alpha$-entropy (Entmax) or quadratic regularization (Sparsemax, $\alpha = 2$). Sparsemax is defined as the Euclidean projection of logits $\theta$ onto the simplex:
+\begin{equation}
+    \operatorname{sparsemax}(\theta) = \arg\min_{p \in \Delta^2} \frac{1}{2} \|p - \theta\|_2^2.
+\end{equation}
+Because the projection onto a polytope hits its lower-dimensional faces and edges, Sparsemax and Entmax naturally assign \emph{exact zeros} to low-scoring coordinates while remaining piecewise smooth and differentiable almost everywhere.
+
+\section{Polytopes and Combinatorial Extensions}
+
+Both rounding and $\arg\max$ are special cases of a far more general mathematical object: a linear optimization oracle over a convex polytope $\mathcal{P} \subset \mathbb{R}^d$,
+\begin{equation}
+    y^*(w) = \arg\max_{y \in \mathcal{P}} \langle w, y \rangle.
+\end{equation}
+For ternary quantization, $\mathcal{P} = [-1, 1]^d$ (or a shifted $\ell_1$-penalized variant); for sorting, $\mathcal{P}$ is the permutahedron; for shortest paths, $\mathcal{P}$ is the flow polytope.
+
+Geometrically, the space of inputs $w \in \mathbb{R}^d$ is partitioned into the \emph{normal fan} of $\mathcal{P}$: a collection of polyhedral cones, each corresponding to a vertex of $\mathcal{P}$. Inside the interior of any normal cone, $y^*(w)$ is constant, so its Jacobian vanishes identically. All variation is concentrated on the lower-dimensional walls separating adjacent cones. This is the universal geometric origin of vanishing gradients in discrete layers.
+
+\subsection{Perturbed Optimizers and Fenchel-Young Losses}
+
+To differentiate through $y^*(w)$, one smooths the sharp walls of the normal fan in one of two dual ways:
+\begin{enumerate}
+    \item \textbf{Perturbed Optimizers:} Add continuous random noise $\xi$ with smooth density $\mu(\xi) \propto \exp(-\nu(\xi))$ to the input $w$ and take the expectation $y_\epsilon^*(w) = \mathbb{E}_\xi[\arg\max_{y \in \mathcal{P}} \langle w + \epsilon \xi, y \rangle]$. By integration by parts, the Jacobian is given without differentiating the oracle itself:
+    \[
+        \nabla_w y_\epsilon^*(w) = \frac{1}{\epsilon} \mathbb{E}_\xi\!\left[ y^*(w + \epsilon \xi) \, \nabla \nu(\xi)^\top \right].
+    \]
+    \item \textbf{Fenchel-Young Losses:} Regularize the linear program with a strictly convex function $\Omega(y)$ on $\mathcal{P}$, defining $\Omega^*(w) = \max_{y \in \mathcal{P}} \{\langle w, y \rangle - \Omega(y)\}$ and $y_\Omega^*(w) = \nabla \Omega^*(w)$. The associated Fenchel-Young loss between input $w$ and target $y \in \mathcal{P}$ is
+    \begin{equation}
+        L_\Omega(w; y) = \Omega^*(w) + \Omega(y) - \langle w, y \rangle \ge 0.
+    \end{equation}
+    Its gradient with respect to $w$ is simply $\nabla_w L_\Omega(w; y) = y_\Omega^*(w) - y$, bypassing the need to invert any KKT Hessian matrix.
+\end{enumerate}
+
+\subsection{The Lovász Extension and Submodularity}
+
+When the discrete domain is the Boolean hypercube $\{0,1\}^n$ and the objective is a set function $F: \{0,1\}^n \to \mathbb{R}$ (such as the Jaccard/IoU loss in image segmentation), combinatorics offers a remarkable continuous interpolation: the \emph{Lovász extension}.
+
+Every point $x \in [0, 1]^n$ induces a permutation $\pi$ sorting its coordinates in descending order: $x_{\pi(1)} \ge x_{\pi(2)} \ge \dots \ge x_{\pi(n)}$. This partitions the unit hypercube $[0,1]^n$ into $n!$ simplices (the Kuhn triangulation). On each simplex, the Lovász extension $\hat{F}: [0,1]^n \to \mathbb{R}$ is the unique affine interpolation of $F$ across the simplex vertices:
+\begin{equation}
+    \hat{F}(x) = F(\emptyset) + \sum_{i=1}^n x_{\pi(i)} \Big( F(S_i) - F(S_{i-1}) \Big), \qquad S_i = \{\pi(1), \dots, \pi(i)\}.
+\end{equation}
+A celebrated theorem of Lovász (1983) states that \emph{$\hat{F}$ is convex on $[0,1]^n$ if and only if $F$ is submodular}. When submodularity holds, $\hat{F}$ is piecewise linear, exact on all discrete vertices $\{0,1\}^n$, and admits an explicit subgradient at every point simply by sorting $x$.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}YYYY@{}}
+\toprule
+\textbf{Paradigm} & \textbf{Continuous Embedding} & \textbf{Canonical Methods} & \textbf{Core Trade-off} \\
+\midrule
+Surrogate / Mollification & Distributional / dual space & Clipped STE, Mirror Descent & Biased; non-convex gap \\
+Probability Simplex & Categorical manifold $\Delta^{K-1}$ & REINFORCE, Gumbel, Entmax & Bias vs.\ variance ($\tau \to 0$) \\
+Polyhedral Variational & Smoothed normal fan of $\mathcal{P}$ & Perturbed Opt., Fenchel-Young & High cost per-weight \\
+Combinatorial Extension & Kuhn triangulation of $[0,1]^n$ & Lovász extension & Requires submodularity \\
+\bottomrule
+\end{tabularx}
+\caption{Summary of the four mathematical paradigms for differentiating through discrete spaces.}
+\end{table}
+
+\section{1.58-Bit Training: Geometry and Dynamics}
+
+While the preceding sections explain \emph{how} gradients flow through discrete operators, they do not yet explain \emph{why} a neural network restricted to $\{-1, 0, +1\}^d$ suffers almost no degradation in expressivity or scaling behavior compared to FP16 models. The answer lies in high-dimensional geometry and optimizer dynamics.
+
+\subsection{Achlioptas's Theorem and the Power of Zero}
+
+In low dimensions, quantizing a vector to $\{-1, 0, +1\}^d$ destroys angular information. In high dimensions ($d \ge 10^3$), measure concentration reverses this intuition. A classic result of Achlioptas (2003) on the Johnson-Lindenstrauss lemma demonstrates that a random projection matrix $R \in \mathbb{R}^{k \times d}$ whose entries are drawn i.i.d.\ from the ternary distribution
+\[
+    R_{ij} = \sqrt{3} \cdot \begin{cases}
+        +1 & \text{with probability } 1/6, \\
+        0  & \text{with probability } 2/3, \\
+        -1 & \text{with probability } 1/6,
+    \end{cases}
+\]
+preserves pairwise Euclidean distances and inner products of any finite point set up to $(1 \pm \epsilon)$ distortion with high probability, matching the asymptotic guarantees of dense Gaussian matrices. High-dimensional inner product spaces are intrinsically tolerant of coarse ternary discretization.
+
+Furthermore, moving from 1-bit binary weights $\{-1, +1\}$ to 1.58-bit ternary weights $\{-1, 0, +1\}$ introduces a qualitative geometric leap. A binary weight must always contribute to every output neuron with fixed magnitude; a ternary weight gains an explicit \emph{feature-filtering gate} (the zero state). Geometrically, the ternary lattice includes all lower-dimensional coordinate subspaces, allowing the network to perform sparse subspace selection rather than merely sign-flipping dense projections.
+
+\subsection{The Shadow Weight Paradox and Optimizer Dynamics}
+
+Returning to the optimization front, practical 1.58-bit training exposes deep tensions between theory and engineering:
+\begin{itemize}
+    \item \textbf{Hysteresis and Threshold Flipping:} When a shadow weight $W_{ij}$ hovers near the quantization boundary $\pm \tfrac{1}{2}\gamma$, tiny gradient fluctuations cause $\widetilde{W}_{ij}$ to oscillate rapidly between $0$ and $\pm 1$. Because the forward pass sees a macroscopic jump of size $\gamma$ while the backward pass assumes a smooth slope of $1$, the local curvature perceived by the optimizer is severely mismatched.
+    \item \textbf{The Role of AdamW and Large Learning Rates:} Empirically, BitNet b1.58 requires significantly larger learning rates than FP16 models. In the mirror descent picture, the shadow weight $W_t$ must accumulate enough dual momentum to cross the dead-zone width $\gamma$ before any change registers in the forward pass. Adaptive normalization in AdamW rescales gradients coordinate-wise, preventing weights with small gradients from being permanently trapped in the zero bin, while decoupled weight decay pulls latent weights back toward the active region $[-1, 1]\gamma$ so they do not saturate outside the clipped STE window.
+    \item \textbf{Eliminating Shadow Weights:} Maintaining FP32 master weights negates much of the memory advantage during training. True \emph{native discrete training}—using stochastic rounding, discrete Langevin dynamics, or quantized momentum buffers without full-precision shadows—remains an active open problem where optimization theory has yet to match the empirical reliability of STE.
+\end{itemize}
+
+\section{Two Philosophies of Discrete Calculus}
+
+We began by placing arithmetic geometry and 1.58-bit deep learning side by side at the same precipice: a discrete world where $\lim_{h \to 0}$ is meaningless. Their resolutions reveal two complementary philosophies of mathematics.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}YYY@{}}
+\toprule
+\textbf{Dimension} & \textbf{Arithmetic Geometry ($\delta$-Rings)} & \textbf{Discrete Deep Learning (1.58-bit / STE)} \\
+\midrule
+Underlying Object & $\operatorname{Spec}\mathbb{Z}$ (rigid, immutable) & $\{-1, 0, +1\}^d$ (embedded in $\mathbb{R}^d$ or $\Delta^2$) \\
+Guiding Principle & Preserve algebraic laws (Leibniz, Frobenius) & Preserve variational / dynamical descent \\
+Pointwise Exactness & Strictly required & Voluntarily sacrificed for low variance \\
+Role of Geometry & Uncover hidden arithmetic tangent spaces & Exploit high-dimensional measure concentration \\
+\bottomrule
+\end{tabularx}
+\caption{Two philosophies for constructing calculus in discrete spaces.}
+\end{table}
+
+In arithmetic geometry, the discrete object is sacred; one reconstructs the rules of calculus algebraically to probe its hidden structure. In discrete optimization, the objective is dynamical; one embeds the discrete lattice into a dual space, a probability simplex, or a mollified distribution, trading pointwise exactness for a vector field that reliably guides parameters downhill. Standing on the cliff of $\{-1, 0, +1\}^d$, the Straight-Through Estimator is not a lucky accident—it is the simplest bridge between continuous dynamics and discrete geometry.
+
+\section*{References}
+\begin{enumerate}
+
+\item
+D.\ Achlioptas, ``Database-friendly random projections: Johnson-Lindenstrauss with binary coins,'' \emph{Journal of Computer and System Sciences}, vol.\ 66, no.\ 4, pp.\ 671--687, 2003.
+
+\item
+Y.\ Bengio, N.\ L\'eonard, and A.\ Courville, ``Estimating or propagating gradients through stochastic neurons for conditional computation,'' \emph{arXiv preprint arXiv:1308.3432}, 2013.
+
+\item
+Q.\ Berthet, M.\ Blondel, O.\ Teboul, M.\ Cuturi, J.-P.\ Vert, and F.\ Bach, ``Learning with differentiable perturbed optimizers,'' \emph{Advances in Neural Information Processing Systems (NeurIPS)}, vol.\ 33, 2020.
+
+\item
+M.\ Blondel, A.\ F.\ T.\ Martins, and V.\ Niculae, ``Learning with Fenchel-Young losses,'' \emph{Journal of Machine Learning Research}, vol.\ 21, no.\ 35, pp.\ 1--69, 2020.
+
+\item
+E.\ Jang, S.\ Gu, and B.\ Poole, ``Categorical reparameterization with Gumbel-Softmax,'' \emph{International Conference on Learning Representations (ICLR)}, 2017.
+
+\item
+L.\ Lov\'asz, ``Submodular functions and convexity,'' in \emph{Mathematical Programming: The State of the Art}, Springer, pp.\ 235--257, 1983.
+
+\item
+S.\ Ma et al., ``The era of 1-bit LLMs: All large language models are in 1.58 bits,'' \emph{arXiv preprint arXiv:2402.17764}, 2024.
+
+\item
+A.\ F.\ T.\ Martins and R.\ F.\ Astudillo, ``From softmax to sparsemax: A sparse model of attention and multi-label classification,'' \emph{International Conference on Machine Learning (ICML)}, 2016.
+
+\item
+P.\ Yin, J.\ Lyu, S.\ Zhang, S.\ Osher, Y.\ Qi, and J.\ Xin, ``Understanding straight-through estimator in training activation quantized neural nets,'' \emph{International Conference on Learning Representations (ICLR)}, 2019.
+
+\end{enumerate}

@@ -1,0 +1,627 @@
+\notechapter{N-20261125}{How Do You Differentiate an Integer? From Stepanov's Trick to Unitary Theta Chains}
+
+In November 2026, a four-page remark by Levent Alp\"oge circulated across number theory forums alongside a staggering claim: a Claude-assisted Lean~4 formalization of the Riemann Hypothesis.\footnote{Levent Alp\"oge's four-page overview (\texttt{alpo.ge/remark.pdf}, November 2026) and the earliest community technical notes unpacking the architecture highlighted three surprising ingredients: a one-sided analytic reduction inspired by Landau's theorem, a number-field analogue of Stepanov's elementary method, and an automorphic surrogate for high-order differentiation built from height-2 formal groups and chains of unitary theta lifts.} Whatever the ultimate verdict of the mathematical community on any particular formalization, the technical sketch inside that remark immediately triggered a wonderfully concrete question among readers:
+
+\begin{question}[title={The puzzle at the heart of the story}]
+In the world of polynomials over finite fields, the Riemann Hypothesis was proved decades ago---not only by heavy algebraic geometry, but also by a shockingly elementary trick of Stepanov that uses little more than \emph{taking derivatives of a polynomial}. To mimic that trick for ordinary prime numbers, you would somehow need to ``differentiate an integer.'' \emph{What on earth could a number-field analogue of differentiation even look like?}
+\end{question}
+
+At first glance, the phrase ``differentiating an integer'' sounds like a joke, or at best a piece of impenetrable jargon. Yet once you strip away the intimidating vocabulary---Langlands functoriality, formal groups of height~2, Bost's slope inequality, unitary theta lifts---every single piece of this story turns out to answer a simple, tangible puzzle. This note is a guided tour of those puzzles. We will keep the analytic preamble brief and spend our energy where the real magic happens: the chasm between function fields and number fields, the genius of Stepanov's polynomial trick, and the astonishing way modern arithmetic geometry rebuilds ``high-order differentiation'' on the integers.
+
+Here is a small way of keeping one's bearings before the machinery arrives. The derivative of \((t-2)^3\) tells us something rather different from its value at \(2\): the value tells us that we have a root, while the first two derivatives tell us that its order is at least three (and the nonzero third derivative tells us it is exactly three). This is a way of making a single point count three times without finding two more points. The hard part of the story is not discovering another symbol for differentiation on \(\ZZ\). It is finding an arithmetic object in which we can buy this extra multiplicity, and figuring out how much it costs.
+
+\section{A strange one-sided doorway to the Riemann Hypothesis}
+
+Before asking how to differentiate an integer, we need to know \emph{what target} we are trying to hit.
+
+The Riemann Hypothesis is usually described as a statement about cancellation: the prime numbers are supposed to fluctuate around their smooth average with errors no larger than the square root of \(x\), roughly like the random walk of a fair coin. To prove that directly, you would seemingly have to bound the prime-counting error from \emph{both} above and below---proving that primes never cluster too densely \emph{and} never vanish for too long.
+
+Here is the first surprise: \textbf{you only ever need one side.}
+
+In 1905, Edmund Landau proved a deceptively simple theorem in complex analysis. Suppose a function \(f(x)\) is eventually \emph{non-negative} (or eventually keeps one sign), and you encode it into a complex-analytic transform (a Dirichlet series or Mellin transform). If that transform has \emph{any} singularity---say, a pole coming from a zero \(\rho = \beta + i\gamma\) of \(\zeta(s)\) off the critical line---then the rightmost singularity \emph{must lie on the real axis}. Why? Intuitively, if all terms have the same sign, they interfere \emph{constructively} along the real axis; no oscillating complex phase \(n^{-i\gamma}\) can beat pure constructive alignment.
+
+Let us package the primes into a smooth, once-averaged counting error. Recall the \vocab{von Mangoldt function} \(\Lambda(n)\), which equals \(\log p\) if \(n = p^h\) is a prime power and \(0\) otherwise. Define the smoothed error function (a first-order Riesz mean)
+\begin{equation}
+  G(x) \defeq \sum_{n \le x} \Lambda(n)\!\left(\frac{x}{n} - 1\right) - x\log x + (1+\gamma)x,
+  \label{eq:N20261125-Gx}
+\end{equation}
+where \(\gamma \approx 0.5772\) is the Euler--Mascheroni constant. Why the triangular weight \((x/n - 1)\)? Unlike a sharp cutoff \(\mathbf{1}_{n\le x}\) that jumps violently every time \(x\) crosses a prime, the ramp \((x/n - 1)_+ = \max(x/n - 1, 0)\) turns on smoothly from \(0\) at \(x=n\). In the language of Mellin transforms, this extra smoothness divides the classical logarithmic derivative \(-\zeta'(s)/\zeta(s)\) by \(s(s-1)\):
+\[
+  \int_{1}^{\infty} \bigl(G(x) - \text{const}\bigr)\,x^{-s-1}\,dx
+  \;\longleftrightarrow\;
+  -\frac{\zeta'(s)}{s(s-1)\zeta(s)}.
+\]
+The denominator \(s(s-1)\) is not a trick of notation. Freeze just one prime power \(n\), and for \(\operatorname{Re}s>1\) calculate its contribution:
+\[
+ \begin{aligned}
+ \int_n^\infty \left(\frac{x}{n}-1\right)x^{-s-1}\,dx
+ &=\frac1n\frac{n^{1-s}}{s-1}-\frac{n^{-s}}s\\
+ &=\frac{n^{-s}}{s(s-1)}.
+ \end{aligned}
+\]
+Now sum with coefficients \(\Lambda(n)\). This is precisely why the ramp, rather than a step, is the natural arithmetic target. The two explicit main terms in \(G\) remove the pole contributions at \(s=1\).
+
+Now watch Landau's one-sided magic work. Suppose someone hands you a \emph{purely one-sided} upper bound: for every \(\varepsilon > 0\), there are arbitrarily large scales \(Y\) on which
+\begin{equation}
+  G(x) \le x^{\frac{1}{2}+\varepsilon}
+  \qquad \text{for all } x \in \bigl[Y,\, Y^{3/2}\bigr].
+  \label{eq:N20261125-onesided}
+\end{equation}
+(Notice you do not even need this bound for \emph{all} \(x\), only along sparse long windows \([Y, Y^{3/2}]\); taking high-order derivatives of the Laplace/Mellin integral localizes the Landau positivity argument onto such windows.) If \(\zeta(s)\) had a zero \(\rho = \beta + i\gamma\) with \(\beta > \tfrac{1}{2}\), it would contribute an oscillating wave of amplitude \(\approx x^\beta\) to \(G(x)\). Because \(\beta > \tfrac{1}{2}\), that wave would inevitably swing \emph{above} \(+x^{\frac{1}{2}+\varepsilon}\) somewhere in the long window \([Y, Y^{3/2}]\), contradicting \eqref{eq:N20261125-onesided}. Conversely, because \(\zeta(s)\) has no real zeros in \((\tfrac{1}{2},1)\), there is no real singularity to hide behind.
+
+One small subtlety is worth keeping in mind: the picture of an individual oscillating wave is an intuition, not yet the sparse-window proof. Different zeros can interfere with one another. The rigorous analytic reduction must localize high-order Mellin derivatives while controlling contributions from outside the window; this is the work done by the Landau-type argument, not by a bare cosine. A detailed account of the reduction is available in Part II, Section 1 of the November 22 working exposition of the Alp\"oge--Claude argument.\footnote{\href{https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/zeta-paper_v2.pdf}{\emph{The Alp\"oge--Claude proof of the Riemann hypothesis explained for the Riemann zeta function}}, version 2, November 22, 2026. We use this exposition for the analytic reduction and for the concrete lemniscate calculations below; its arithmetic main inequality is itself reduced to additional hypotheses.}
+
+\begin{remark}[Where Langlands and Landau--Siegel zeros enter the picture]
+In casual online discussions, people naturally ask how the \emph{Langlands program} and \emph{Landau--Siegel zeros} fit into all this.
+\begin{itemize}
+  \item \textbf{Landau--Siegel zeros} are hypothetical real zeros of Dirichlet \(L\)-functions lying freakishly close to \(s=1\). For a century, arguments about Siegel zeros (such as Deuring--Heilbronn zero repulsion and positivity tricks) have taught analytic number theorists how much mileage you can extract from \emph{one-sided positivity} rather than two-sided cancellation. That philosophy is what motivates aiming straight for the one-sided inequality \eqref{eq:N20261125-onesided}.
+  \item \textbf{The Langlands program}---specifically automorphic forms on high-rank unitary groups, theta lifts, and inner-product formulas---is not a vague philosophical backdrop here. As we will see in Section~4, it supplies the concrete \emph{measuring tape} needed to compute the exact size of the arithmetic objects we are about to construct.
+\end{itemize}
+\end{remark}
+
+With \eqref{eq:N20261125-onesided} on the table, the entire Riemann Hypothesis has been reduced to a single concrete challenge:
+\begin{quote}
+\emph{Build an arithmetic inequality that forces the smoothed prime sum \(\sum_{n\le x}\Lambda(n)(x/n - 1)\) to stay below \(x\log x - (1+\gamma)x + x^{\frac{1}{2}+\varepsilon}\).}
+\end{quote}
+To see why this is so brutally hard---and where the idea of ``differentiating an integer'' comes from---let us step back to the 19th century and watch the simplest prime upper bound in all of mathematics run headfirst into a wall.
+
+\section{Two parallel universes, and Chebyshev's floor-function wall}
+
+\subsection{The Rosetta Stone between integers and polynomials}
+
+Modern number theory lives in two parallel universes that mirror each other with uncanny precision:
+\begin{itemize}
+  \item The \vocab{number-field universe}, whose ground floor is the ring of integers \(\ZZ\) and its fraction field \(\QQ\).
+  \item The \vocab{function-field universe}, whose ground floor is the ring of polynomials \(\FF_q[t]\) over a finite field \(\FF_q\) (with \(q\) elements) and its fraction field \(\FF_q(t)\).
+\end{itemize}
+
+\begin{table}[htbp]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{@{}lYY@{}}
+\toprule
+\textbf{Concept} & \textbf{Number Field (\(\ZZ\))} & \textbf{Function Field (\(\FF_q[t]\))} \\
+\midrule
+Building blocks & Prime numbers \(p = 2, 3, 5, 7, \dots\) & Monic irreducible polynomials \(P(t)\) \\
+Size of a prime & \(\log p\) (continuous, irrational!) & \(\deg P\) (clean integer!) \\
+Number of elements of size \(\le N\) & Integers \(1 \le n \le x\) & Polynomials of degree \(\le d\) (\(q^{d+1}\) of them) \\
+Differentiation & \textbf{Missing!} & Ordinary \(d/dt\) (and Hasse derivatives) \\
+Riemann Hypothesis & Open since 1859 & \textbf{Proved!} (Hasse, Weil, Deligne; Stepanov) \\
+\bottomrule
+\end{tabularx}
+\caption{The dictionary between integers and polynomials over a finite field.}
+\label{tab:N20261125-dictionary}
+\end{table}
+
+Why was the Riemann Hypothesis proved in the function-field universe decades ago? In the standard geometric proof (Andr\'e Weil in 1948 for curves, Pierre Deligne in 1974 for higher-dimensional varieties), a function field corresponds to an algebraic curve \(C\) living over the finite field \(\FF_q\). Because \(C\) lives over a \emph{field} \(\FF_q\), you can form its Cartesian self-product \(C \times_{\FF_q} C\)---a geometric surface---and draw two curves on it: the diagonal \(\Delta\) and the graph \(\Gamma_F\) of the \vocab{Frobenius map} \(x \mapsto x^q\). The number of \(\FF_q\)-points on \(C\) is literally the number of intersection points of \(\Delta\) and \(\Gamma_F\), and the Riemann Hypothesis falls out of an intersection-number inequality (the Hodge index theorem) on that surface.
+
+Try doing that for \(\ZZ\), and everything evaporates. The ring \(\ZZ\) does not sit over a smaller base field (mathematicians jokingly call the missing base field \(\FF_1\), the ``field with one element''). Without a base field, \(\Spec \ZZ \times_{\Spec \ZZ} \Spec \ZZ\) collapses back to \(\Spec \ZZ\) itself---there is no surface, no intersection theory, and no geometric Frobenius map.
+
+\subsection{Chebyshev's 1852 trick: divisibility \(\le\) size}
+
+Before giving up on \(\ZZ\), remember that we \emph{do} have a completely elementary way to prove upper bounds on primes without any geometry at all. It is Pafnuty Chebyshev's 1852 trick, and its guiding principle fits on a bumper sticker:
+\begin{center}
+  \textbf{If a nonzero integer \(\Delta\) is divisible by \(\prod p^{e_p}\), then \(\sum_p e_p \log p \le \log |\Delta|\).}
+\end{center}
+Let us watch Chebyshev's trick in action on the central binomial coefficient
+\[
+  \Delta = \binom{2n}{n} = \frac{(2n)!}{(n!)^2}.
+\]
+Because \(\binom{2n}{n}\) is a positive integer, we can compare its \emph{divisibility} (left-hand side) with its \emph{Archimedean size} (right-hand side):
+\begin{enumerate}
+  \item \textbf{Size (right-hand side):} Since \(\binom{2n}{n}\) is one term in \((1+1)^{2n} = 2^{2n}\), we immediately have \(\binom{2n}{n} < 2^{2n}\), so
+  \[
+    \log \Delta < (2\log 2)\,n \approx 1.386\,n.
+  \]
+  (Stirling's formula sharpens this to \((2\log 2)n - \tfrac{1}{2}\log(\pi n) + O(1/n)\).)
+  \item \textbf{Divisibility (left-hand side):} By Legendre's formula, the exponent of a prime \(p\) in \(m!\) is \(v_p(m!) = \sum_{k\ge 1} \floor{m/p^k}\). Therefore, the exponent of \(p\) in \(\binom{2n}{n}\) is
+  \[
+    e_p = \sum_{k \ge 1} \!\left(\floor{\frac{2n}{p^k}} - 2\floor{\frac{n}{p^k}}\right).
+  \]
+  Every term in parentheses is either \(0\) or \(1\), and for every prime \(p\) between \(n\) and \(2n\), the \(k=1\) term is \(1\). Hence \(\sum_{n < p \le 2n} \log p \le \log \binom{2n}{n} < (2\log 2)n\).
+\end{enumerate}
+
+That five-line argument proves that the number of primes up to \(x\) is \(O(x/\log x)\)---Chebyshev's celebrated bound!
+
+\subsection{Why Chebyshev hits a brick wall: the floor-function staircase}
+
+Now ask the million-dollar question: \emph{Why can't we just push Chebyshev's ``divisibility \(\le\) size'' trick harder until it proves the Riemann Hypothesis \eqref{eq:N20261125-onesided}?}
+
+Look closely at the exponent \(e_p\) in \(n!\), namely Legendre's formula \(\sum_{k\ge 1} \floor{n/p^k}\). The culprit is staring right at us: the \vocab{floor function} \(\floor{\cdot}\).
+
+As a function of \(x/p\), the floor \(\floor{x/p}\) is a jagged staircase that jumps by \(1\) at every integer. Its average difference from the smooth ramp \(x/p - 1\) is an oscillating sawtooth of amplitude \(\tfrac{1}{2}\). Even if you take clever linear combinations of factorials (like \(\frac{(30n)!n!}{(15n)!(10n)!(6n)!}\), which Chebyshev himself used to tighten the constant from \(1.386\) down to \(1.106\)), every single prime \(p \le x\) still carries an \(O(1)\) rounding error from its floor function. Summing \(O(1)\) errors over all \(\sim x/\log x\) primes (weighted by \(\log p\)) injects an unavoidable noise of size \(\asymp x\)---a \emph{linear} error!
+
+For a tiny example, take \(x=10\) and look only at the prime \(2\). The three relevant prime powers are \(2,4,8\). In the valuation \(v_2(10!)\), their contributions are \(5,2,1\), so the answer is \(8\). The smoothed prime sum instead asks for
+\[
+ \left(\frac{10}{2}-1\right)
+ +\left(\frac{10}{4}-1\right)
+ +\left(\frac{10}{8}-1\right)=\frac{23}{4}.
+\]
+All three terms carry the same multiplier \(\log 2\). See the problem? It is not enough to make the integer \(10!\) very divisible by \(2\); we want the \emph{right amount} of divisibility, with the right main term. Multiplying the desired exponent by a large common weight is one way of making fractional exponents meaningful in a lattice calculation.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth, scale=0.95]
+  % Left panel: Chebyshev's floor function
+  \begin{scope}[shift={(0,0)}]
+    \draw[->, thick, gray!70] (-0.2,0) -- (4.6,0) node[right, font=\footnotesize, black] {\(x/p\)};
+    \draw[->, thick, gray!70] (0,-0.2) -- (0,3.4) node[above, font=\footnotesize, black] {exponent \(e_p\)};
+    % Smooth line x/p - 1/2 reference
+    \draw[dashed, gray!60] (0.5,0) -- (4.0,3.5);
+    % Staircase floor(x/p)
+    \draw[very thick, OrangeRed!85!black]
+      (0,0) -- (1,0)
+      (1,1) -- (2,1)
+      (2,2) -- (3,2)
+      (3,3) -- (4,3);
+    \foreach \k in {1,2,3} {
+      \fill[OrangeRed!85!black] (\k,\k) circle (1.8pt);
+      \draw[OrangeRed!85!black, fill=white] (\k,\k-1) circle (1.8pt);
+      \draw[dotted, OrangeRed!60] (\k,\k-1) -- (\k,\k);
+    }
+    \node[below, font=\footnotesize, OrangeRed!85!black, align=center] at (2.2,-1.06) {Jagged \(O(1)\) jumps\\ \(\implies\) linear \(O(x)\) noise!};
+    \node[below, font=\bfseries\small] at (2.2,-0.55) {Chebyshev: \(\floor{x/p}\)};
+  \end{scope}
+
+  % Right panel: Smooth ramp (x/p - 1)_+
+  \begin{scope}[shift={(6.4,0)}]
+    \draw[->, thick, gray!70] (-0.2,0) -- (4.6,0) node[right, font=\footnotesize, black] {\(x/p\)};
+    \draw[->, thick, gray!70] (0,-0.2) -- (0,3.4) node[above, font=\footnotesize, black] {exponent \(e_p\)};
+    % Smooth ramp (x/p - 1)_+
+    \draw[very thick, MidnightBlue] (0,0) -- (1,0) -- (4.2,3.2);
+    \fill[MidnightBlue] (1,0) circle (2pt);
+    \node[below, font=\scriptsize] at (1,-0.05) {\(1\)};
+    \node[below, font=\footnotesize, MidnightBlue, align=center] at (2.2,-1.06) {Zero floor jitter! Matches \(G(x)\)\\kernel \((x/p - 1)_+\) exactly};
+    \node[below, font=\bfseries\small] at (2.2,-0.55) {Target kernel: \((x/p - 1)_+\)};
+  \end{scope}
+\end{tikzpicture}
+\caption{Why Chebyshev's factorial method stalls at linear error: Legendre's formula \(\floor{x/p}\) injects an \(O(1)\) rounding error at every prime, whereas the smoothed prime sum \(G(x)\) requires the continuous piecewise-linear ramp \((x/p - 1)_+\).}
+\label{fig:N20261125-floor-vs-ramp}
+\end{figure}
+
+To prove the Riemann Hypothesis, we need the error to be not \(O(x)\), not even \(o(x)\), but \(O(x^{\frac{1}{2}+\varepsilon})\)---a square-root saving below the main term! How on earth do you squeeze a square-root saving out of an elementary ``divisibility \(\le\) size'' argument?
+
+Remarkably, in the function-field universe, someone figured out how to do \emph{exactly that} in 1969.
+
+\section{Stepanov's elementary coup: how derivatives squeeze out \(\sqrt{q}\)}
+
+For twenty years after Weil's 1948 proof of the Riemann Hypothesis for curves over finite fields, everyone assumed that the \(\sqrt{q}\) error bound was inseparable from heavy algebraic geometry (Jacobian varieties, intersection theory on surfaces, or later Grothendieck's \'etale cohomology).
+
+Then, in 1969, Sergey Stepanov stunned the mathematical world by proving Weil's bound for hyperelliptic curves using nothing more than \emph{high-school polynomials and linear algebra}. Enrico Bombieri soon streamlined Stepanov's method in 1973 into a ten-page gem that works for any smooth curve.
+
+Let us unpack Stepanov's trick on a concrete toy example, because \textbf{its core mechanism is the exact blueprint for everything that follows}.
+
+\subsection{The toy game: counting points with an auxiliary polynomial}
+
+Consider a curve over the finite field \(\FF_q\) (with \(q = p^r\) odd), say
+\[
+  C : y^2 = f(x),
+\]
+where \(f(x) \in \FF_q[x]\) is a square-free polynomial of odd degree \(d = 2g + 1\) (so \(C\) has genus \(g\)). For each \(x \in \FF_q\), the value \(f(x)\) is either \(0\), a nonzero square (giving \(2\) points \((x,\pm y)\)), or a non-square (giving \(0\) points). Since half the elements of \(\FF_q^\times\) are squares, we expect roughly \(q\) points on \(C\). The Riemann Hypothesis for \(C\) (Weil's bound) says that the actual number of points \(N_q = |C(\FF_q)|\) deviates from \(q+1\) by at most \(2g\sqrt{q}\).
+
+Let \(S \subset \FF_q\) be the set of \(x\)-coordinates where \(f(x)\) is a nonzero square, so \(N_q \approx 2|S|\). How could you prove an upper bound on \(|S|\) using only polynomials?
+
+\textbf{First attempt (too naive):} Find a nonzero polynomial \(F(x)\) that vanishes at every point \(x \in S\). Since a nonzero polynomial of degree \(D\) has at most \(D\) roots, we get \(|S| \le D\).
+\emph{Why does this fail?} By Fermat's Little Theorem, \(x^q - x\) already vanishes at \emph{every} \(x \in \FF_q\), and we do not know a much smaller polynomial that vanishes only on \(S\)---we just get the trivial bound \(|S| \le q\).
+
+\textbf{Stepanov's aha moment (force \emph{high multiplicity} \(m\)):} Do not just ask \(F(x)\) to vanish at every \(x \in S\). Force \(F(x)\) to vanish to \textbf{order at least \(m\)} at every \(x \in S\)! Then every single point of \(S\) consumes \(m\) roots of \(F\), so the root-counting bound becomes
+\begin{equation}
+  m \cdot |S| \le \deg(F)
+  \qquad \Longrightarrow \qquad
+  |S| \le \frac{\deg(F)}{m}.
+  \label{eq:N20261125-stepanov-master}
+\end{equation}
+Wait: how do we build a polynomial \(F(x)\) of controlled degree that automatically vanishes to order \(m\) at every \(x \in S\), without even knowing \emph{which} elements are in \(S\)?!
+
+Here is where the magic of \(\FF_q\) kicks in. For every \(x \in S\), we know two algebraic equations hold simultaneously:
+\[
+  x^q = x
+  \qquad \text{and} \qquad
+  f(x)^{(q-1)/2} = 1
+\]
+(the second equation is Euler's criterion for \(f(x)\) being a nonzero square!). Now construct an \vocab{auxiliary polynomial} of the special ``split-scale'' form
+\begin{equation}
+  F(x) = \sum_{j=0}^{J-1} \sum_{k=0}^{K-1} a_{j,k}(x)\, f(x)^{j\,\frac{q-1}{2}}\, x^{kq},
+  \label{eq:N20261125-auxpoly}
+\end{equation}
+where the coefficients \(a_{j,k}(x)\) are low-degree polynomials in \(x\) (of degree \(< L\)) whose coefficients are \emph{unknowns} that we will solve for using linear algebra!
+
+Watch what happens when you plug in \(x \in S\):
+\begin{itemize}
+  \item Every \(f(x)^{(q-1)/2}\) collapses to \(1\).
+  \item Every \(x^q\) collapses to \(x\).
+\end{itemize}
+So on the set \(S\), the gigantic polynomial \(F(x)\) (whose true degree is roughly \(K \cdot q\)) collapses to a \emph{tiny} polynomial of degree only \(\approx L + K\)! To force \(F(x)\) to vanish at every \(x \in S\), we only have to force that tiny collapsed polynomial to be identically zero---which costs only \(\approx L + K\) linear equations, not \(|S|\) equations!
+
+And what about forcing \(F(x)\) to vanish to \textbf{order \(m\)} at every \(x \in S\)? We simply differentiate \(F(x)\) up to \(m-1\) times and demand that every derivative also collapses to the zero polynomial on \(S\)!
+
+\subsection{The characteristic-\(p\) trap and Hasse--Schmidt derivatives}
+
+Hold on! If you try to take the \(m\)-th ordinary derivative \(\frac{d^m}{dx^m}\) over a finite field of characteristic \(p\), you hit an immediate snag:
+\[
+  \frac{d^p}{dx^p}(x^n) = n(n-1)\cdots(n-p+1)\,x^{n-p} \equiv 0 \pmod{p}
+\]
+because among any \(p\) consecutive integers, one is a multiple of \(p\)! Ordinary derivatives go completely blind as soon as the multiplicity \(m\) exceeds \(p\): they cannot distinguish a \(p\)-fold root from a \(100p\)-fold root!
+
+The fix is both elementary and profound. In characteristic \(0\), Taylor's theorem says
+\[
+  F(x + t) = \sum_{k \ge 0} \frac{F^{(k)}(x)}{k!}\,t^k.
+\]
+The only reason \(F^{(k)}(x)\) died modulo \(p\) is that it was secretly multiplied by \(k!\), which vanishes modulo \(p\) once \(k \ge p\). So simply \emph{divide by \(k!\) before reducing modulo \(p\)}! This defines the \vocab{Hasse--Schmidt derivative} (or hyperderivative) \(\mathcal{D}^{(k)}\):
+\begin{equation}
+  \mathcal{D}^{(k)}(x^n) \defeq \binom{n}{k} x^{n-k},
+  \qquad\text{so that}\qquad
+  F(x+t) = \sum_{k \ge 0} \bigl(\mathcal{D}^{(k)} F\bigr)(x)\,t^k.
+  \label{eq:N20261125-hasse}
+\end{equation}
+Because \(\binom{n}{k}\) is always an integer, \(\mathcal{D}^{(k)}\) makes perfect sense in every characteristic \(p\), and a polynomial \(F(x)\) vanishes to order \(\ge m\) at \(x_0\) if and only if \((\mathcal{D}^{(k)} F)(x_0) = 0\) for all \(0 \le k < m\). Even better: when \(\mathcal{D}^{(k)}\) hits \(x^q\) (with \(k < q\)), it kills \(x^q\) outright (\(\binom{q}{k} \equiv 0 \pmod p\) for \(0 < k < q\)), so the huge powers \(x^{kq}\) behave like \emph{constants} under low-order Hasse differentiation!
+
+Try this out over \(\FF_3\). The polynomial \(F(x)=(x-1)^3\) has ordinary derivative zero, and so does every higher ordinary derivative. In fact \(F(1+t)=t^3\). Reading off the coefficients of \(t\) gives
+\[
+ \mathcal D^{(0)}F(1)=\mathcal D^{(1)}F(1)
+ =\mathcal D^{(2)}F(1)=0,\qquad
+ \mathcal D^{(3)}F(1)=1.
+\]
+The Hasse derivatives see the root order exactly! Notice also why we must \emph{differentiate first} and substitute \(x^q=x\) afterwards: these are equal as functions on \(\FF_q\), but not as polynomials in a formal neighborhood of a point.
+
+\subsection{The magic parameter trade-off: where \(\sqrt{q}\) is born}
+
+Now let us count unknowns versus equations in Stepanov's linear system---this is one of the cleanest ``aha moments'' in all of mathematics:
+\begin{itemize}
+  \item \textbf{Number of unknowns:} We have \(J\) choices of \(j\), \(K\) choices of \(k\), and \(L\) coefficients in each \(a_{j,k}(x)\), giving roughly \(J K L\) free parameters.
+  \item \textbf{Number of linear equations:} For each of the \(m\) Hasse derivatives \(\mathcal{D}^{(0)},\allowbreak \dots,\allowbreak \mathcal{D}^{(m-1)}\), collapsing \(F\) on \(S\) produces a polynomial of degree roughly \(O(L + m\cdot d)\), giving roughly \(m \cdot (L + md)\) linear constraints.
+  \item \textbf{To guarantee a nonzero solution,} we just need \(\text{unknowns} > \text{equations}\). Choosing the parameters tightly (with \(J \approx 2\) and \(L \approx md\)) forces \(K \approx \tfrac{m}{2} + O(m^2 d / q)\) (once we also guarantee \(F \not\equiv 0\) using the independence of \(1, x^q, x^{2q}, \dots\)).
+\end{itemize}
+Now plug \(\deg(F) \approx K \cdot q + O(m \cdot \text{lower terms})\) into the master inequality \eqref{eq:N20261125-stepanov-master}:
+\[
+  |S| \le \frac{\deg(F)}{m}
+  \;\approx\;
+  \frac{q}{2} + \underbrace{c_1\,\frac{q}{m}}_{\text{shrinking with } m} + \underbrace{c_2\,m}_{\text{growing with } m}.
+\]
+Look at those two error terms!
+\begin{itemize}
+  \item If you take the multiplicity \(m\) too small (like \(m = 1\)), the first error \(q/m\) is as big as \(q\) itself.
+  \item If you push the multiplicity \(m\) too high, the cost of enforcing \(m\) derivatives inflates the degree of \(F\), and the second error \(c_2 m\) blows up.
+  \item \textbf{The sweet spot} occurs right where the two errors balance:
+  \[
+    \frac{q}{m} \asymp m
+    \qquad \Longrightarrow \qquad
+    m \asymp \sqrt{q}
+    \qquad \Longrightarrow \qquad
+    |S| \le \frac{q}{2} + O(\sqrt{q})!
+  \]
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.0]
+  \draw[->, thick, gray!70] (0,0) -- (7.6,0) node[right, font=\footnotesize, black] {\(m\)};
+  \draw[->, thick, gray!70] (0,0) -- (0,4.2) node[above, font=\footnotesize, black] {error term};
+
+  % c1 * X / m curve
+  \draw[thick, dashed, OrangeRed!80!black, domain=0.65:7.0, samples=80]
+    plot (\x, {2.2/\x});
+
+  % c2 * m line
+  \draw[thick, dashed, teal!80!black, domain=0.2:7.0, samples=40]
+    plot (\x, {0.35*\x});
+
+  % Total error curve
+  \draw[very thick, MidnightBlue, domain=0.68:6.6, samples=100]
+    plot (\x, {2.2/\x + 0.35*\x});
+  
+
+  % Minimum at m = sqrt(2.2/0.35) ~ 2.507, y ~ 1.755
+  \draw[dotted, thick, purple!80!black] (2.51,0) -- (2.51,1.76) -- (0,1.76);
+  \fill[purple!85!black] (2.51,1.76) circle (2.4pt);
+  \node[below, font=\footnotesize\bfseries, purple!80!black] at (2.51,-0.08) {\(m \asymp \sqrt{X}\) (or \(\sqrt{q}\))};
+  \node[left, font=\footnotesize\bfseries, purple!80!black] at (-0.05,1.76) {\(O(\sqrt{X})\)};
+ \draw[very thick,MidnightBlue] (.15,-.87)--(.85,-.87);
+ \node[anchor=west,font=\footnotesize] at (1,-.87) {Total error \(\approx X/m+m\)};
+ \draw[thick,dashed,OrangeRed!80!black] (.15,-1.32)--(.85,-1.32);
+ \node[anchor=west,font=\footnotesize] at (1,-1.32) {Local error \(\propto X/m\)};
+ \draw[thick,dashed,teal!80!black] (4.05,-1.32)--(4.75,-1.32);
+ \node[anchor=west,font=\footnotesize] at (4.9,-1.32) {Global overhead \(\propto m\)};
+ \node[above,font=\footnotesize] at (4,4.2) {Multiplicity / chain length \(m\)};
+\end{tikzpicture}
+\caption{The universal trade-off behind both Stepanov's proof over \(\FF_q\) and the number-field theta-chain architecture: increasing the multiplicity \(m\) crushes the per-point error like \(X/m\), but each layer adds global overhead of order \(m\). Balancing the two forces \(m \asymp \sqrt{X}\) and extracts the square-root bound.}
+\label{fig:N20261125-tradeoff}
+\end{figure}
+
+Pause and savor what just happened. Without a single cohomology group, Stepanov extracted the exact square-root bound of the Riemann Hypothesis over \(\FF_q\) by pitting \textbf{high-order local vanishing (multiplicity \(m\))} against \textbf{global polynomial degree}. And the entire engine ran on one indispensable gear: \emph{differentiation} (via Hasse derivatives).
+
+Now we are finally ready for the main event.
+
+\section{How do you differentiate an integer?}
+
+The deepest lesson of this whole story does not depend on whether any particular AI-generated formalization stands or falls under peer review. It is a lesson in mathematical translation:
+\begin{itemize}
+  \item Chebyshev's \(\binom{2n}{n}\) stalls because factorials (height~1) carry a jagged floor-function staircase \(\floor{x/p}\).
+  \item Stepanov breaks through over \(\FF_q\) by using Hasse derivatives to stack multiplicity \(m \asymp \sqrt{q}\) against polynomial degree.
+  \item Over \(\QQ\), you cannot literally differentiate an integer---so you replace the \emph{syntax} of differentiation with its \emph{function}: CM height-2 formal groups melt the floor function into the smooth ramp \((x/p^h - 1)_+\), Bost's slope inequality upgrades ``divisibility \(\le\) size'' to lattices, and a \(\sqrt{X}\)-long chain of unitary theta lifts stacks multiplicity \(m \asymp \sqrt{X}\) while the Langlands program keeps the books balanced.
+\end{itemize}
+
+\subsection{The algebraic brick wall---and the right way to reframe the question}
+
+Suppose you try to copy Stepanov's blueprint directly onto the integers \(\ZZ\). The very first thing you ask for is a derivative map \(D : \ZZ \to \ZZ\) that behaves like calculus, meaning it satisfies both:
+\begin{enumerate}
+  \item \textbf{Additivity:} \(D(a + b) = D(a) + D(b)\),
+  \item \textbf{The Leibniz product rule:} \(D(ab) = a D(b) + b D(a)\).
+\end{enumerate}
+Watch how fast this dream dies. Plug \(a = b = 1\) into the Leibniz rule:
+\[
+  D(1) = D(1 \cdot 1) = 1 \cdot D(1) + 1 \cdot D(1) = 2 D(1)
+  \qquad \Longrightarrow \qquad
+  D(1) = 0.
+\]
+Now use additivity: for every positive integer \(n = 1 + 1 + \dots + 1\),
+\[
+  D(n) = D(1) + D(1) + \dots + D(1) = n \cdot 0 = 0!
+\]
+Every additive derivation on \(\ZZ\) is \emph{identically zero}. There is no hidden calculus on the integers waiting to be discovered.
+
+\begin{moral}
+If you ask ``how do I write down a symbol \(\frac{d}{dp}\) on \(\ZZ\)?'', algebra slams the door in your face. The right question is functional, not syntactic: \textbf{what job did differentiation actually perform inside Stepanov's proof?}
+\end{moral}
+
+Look back at Section~3. Differentiation did \emph{two} concrete jobs for Stepanov:
+\begin{enumerate}
+  \item \textbf{Microscopically,} it gave a clean, tunable way to manufacture local divisibility at each prime without ugly rounding jitter.
+  \item \textbf{Macroscopically,} it could be \emph{iterated \(m\) times} to stack multiplicity \(m \asymp \sqrt{X}\) while keeping the global size under tight control.
+\end{enumerate}
+
+Translate those two jobs back into Chebyshev's ``divisibility \(\le\) size'' framework for the smoothed prime sum \(G(x)\) in \eqref{eq:N20261125-Gx}, and you get a concrete three-item \textbf{wish list} for a number-field Stepanov object \(\Delta\):
+\begin{itemize}
+  \item[\textbf{(W1)}] \textbf{Smooth prime-power divisibility:} Instead of Legendre's jagged staircase \(\floor{x/p^h}\), the \(p\)-adic divisibility exponent of \(\Delta\) must be a \emph{smooth ramp} of the form \(w(x/p^h - 1)_+\) (matching the exact kernel of \(G(x)\)), with \emph{zero} floor-function noise!
+  \item[\textbf{(W2)}] \textbf{Razor-sharp Archimedean size:} The global logarithmic size \(\log|\Delta|\) must be computable not merely to leading order, but down to a relative error of \(x^{-1/2}\)---so that the main term \(x\log x - (1+\gamma)x\) cancels out cleanly and leaves only \(O(x^{\frac{1}{2}+\varepsilon})\).
+  \item[\textbf{(W3)}] \textbf{Full prime coverage:} Even if a single geometric object only sees a subset of primes (say, primes \(p \equiv 3 \pmod 4\)), twisting by Dirichlet characters and averaging must recover all primes.
+\end{itemize}
+
+How on earth can an arithmetic object achieve (W1) and (W2)? The answer splits into a \textbf{microscopic miracle} (solving W1) and a \textbf{macroscopic engine} (solving W2 and delivering the \(\sqrt{X}\) multiplicity).
+
+\subsection{Microscopic miracle: the lemniscate, CM elliptic curves, and height-2 formal groups}
+
+Let us start with something completely familiar: the unit circle \(x^2 + y^2 = 1\). The arc length along the circle is given by the integral
+\[
+  z = \int_0^x \frac{du}{\sqrt{1-u^2}} = \arcsin(x),
+\]
+whose inverse is the ordinary sine function \(x = \sin(z) = \sum_{n\ge 0} \frac{(-1)^n}{(2n+1)!}\,z^{2n+1}\). Notice the denominator \((2n+1)!\)---or equivalently, the \(n\)-th derivative \(\sin^{(n)}(0) = \pm 1\). If you try to extract prime divisibility from the Taylor coefficients of \(e^z\) or \(\sin(z)\), you get ordinary factorials \(n!\), and Legendre's formula traps you right back inside the jagged floor-function staircase \(\floor{n/p} + \floor{n/p^2} + \cdots\).
+
+Now make one tiny, seemingly innocent change: replace \(u^2\) by \(u^4\). You get the arc length of the \vocab{lemniscate} (the classic figure-eight curve \((x^2+y^2)^2 = x^2-y^2\)), studied by Carl Friedrich Gauss at age nineteen:
+\[
+  z = \int_0^x \frac{du}{\sqrt{1-u^4}}.
+\]
+Geometrically, this integral lives on the elliptic curve
+\[
+  E : y^2 = 1 - x^4,
+\]
+which possesses an extra symmetry that ordinary circles lack: \vocab{complex multiplication (CM)} by the Gaussian integers \(\ZZ[i]\) (multiplying \(x\) by \(i\) leaves \(x^4\) unchanged!). The inverse function \(x = \operatorname{sl}(z)\) is Gauss's \vocab{lemniscate sine}, satisfying the nonlinear differential equation \(\operatorname{sl}''(z) = -2\operatorname{sl}(z)^3\) with \(\operatorname{sl}(0)=0, \operatorname{sl}'(0)=1\). Its Taylor expansion is
+\[
+  \operatorname{sl}(z) = \sum_{n \ge 0} \frac{A_n}{n!}\,z^n
+  = z - \frac{12}{5!}z^5 + \frac{3024}{9!}z^9 - \cdots,
+\]
+where the integers \(A_n = \operatorname{sl}^{(n)}(0)\) (or closely related normalized values) are the classical \vocab{Hurwitz numbers}---the elliptic-curve cousins of the Bernoulli numbers.
+
+You can get the first two nontrivial coefficients without knowing a thing about elliptic curves. Put \(x=z+c_5z^5+c_9z^9+\cdots\) in \(x''=-2x^3\); comparing the coefficients of \(z^3\) and \(z^7\) gives
+\[
+ 20c_5=-2,\qquad 72c_9=-6c_5.
+\]
+So the normalized derivatives at the origin are \(A_5=-12\) and \(A_9=3024=2^4\cdot3^3\cdot7\). There is a delicious little hint in these numbers: \(3\) and \(7\) are both inert primes in \(\ZZ[i]\). This example is only a hint of the phenomenon; the explanation comes from the reduction of the formal group.
+
+Now comes \textbf{the microscopic aha moment}: \emph{why does switching from the circle \(y^2 = 1-x^2\) to the CM elliptic curve \(y^2 = 1-x^4\) magically erase the floor function?}
+
+To see why, we need one concept from arithmetic geometry, and it is much simpler than its name suggests: a \vocab{formal group law}.
+\begin{itemize}
+  \item Near \(0\), how do you add two tiny angles on a circle? For \(x = \sin z\), the addition formula is \(x_1 \oplus x_2 = x_1\sqrt{1-x_2^2} + x_2\sqrt{1-x_1^2}\). Or even simpler, for the multiplicative group \(t = e^z - 1\), adding exponents corresponds to the power series
+  \[
+    F_{\mathbb{G}_m}(t_1, t_2) = t_1 + t_2 + t_1 t_2.
+  \]
+  If you ``multiply by \(p\)'' in this formal group (i.e.\ add \(t\) to itself \(p\) times), you get
+  \[
+    [p](t) = (1+t)^p - 1 \equiv t^p \pmod{p}.
+  \]
+  Because the leading surviving term modulo \(p\) is \(t^{p^{\mathbf{1}}}\), we say this formal group has \vocab{height \(1\)}.
+  \item Now do the exact same thing near the origin of our CM elliptic curve \(E: y^2 = 1-x^4\). Adding two points on an elliptic curve gives a formal group law \(F_E(t_1, t_2) = t_1 + t_2 + c_5 t_1 t_2(t_1^3+\cdots) + \cdots\). What happens when you multiply by a prime \(p\) modulo \(p\)?
+  \begin{itemize}
+    \item If \(p \equiv 1 \pmod 4\), \(p\) splits in \(\ZZ[i]\), and \([p](t) \equiv c\, t^p \pmod p\) (still height \(1\), ordinary reduction).
+    \item \textbf{If \(p \equiv 3 \pmod 4\)}, \(p\) stays \emph{inert} (prime) in \(\ZZ[i]\), and something miraculous happens: the coefficient of \(t^p\) vanishes modulo \(p\), so the leading surviving term jumps all the way to \(t^{p^{\mathbf{2}}}\)! We say the formal group at \(p\) has \vocab{height \(2\)} (supersingular reduction).
+  \end{itemize}
+\end{itemize}
+
+Here is a useful way to picture the word \emph{height}. In characteristic \(p\), the formal multiplication-by-\(p\) map begins with degree \(p\) in the ordinary case but degree \(p^2\) in the supersingular case. In the second case, an entire stretch of intermediate coefficients has gone missing. This is a statement about the group law, not about the numerical magnitude of a prime. It is the special arithmetic behavior of the logarithm and its inverse that eventually turns this missing stretch into a divisibility gain.
+
+What does height \(2\) do to derivatives? When you expand a function in the local logarithm coordinate \(z = \log_E(t)\) of a height-2 formal group and take its \(a\)-th derivative (producing coefficients akin to Hurwitz numbers), the extra \(p\)-divisibility forced by \([p](t) \equiv c\, t^{p^2} \pmod p\) acts like a built-in smoothing filter. Instead of Legendre's jagged \(\floor{a/p} + \floor{a/p^2} + \cdots\), the \(p\)-adic valuation of the \(a\)-th derivative at an inert prime \(p \equiv 3 \pmod 4\) behaves like the smooth geometric-series ramp
+\[
+  \frac{a}{p} + \frac{a}{p^3} + \frac{a}{p^5} + \cdots
+\]
+(at odd powers of \(p\), with even powers handled by twisting across different imaginary quadratic CM fields!). Now suppose you weight this \(a\)-th derivative against a threshold \(w\) (corresponding to the scale \(x = a/w\)): whenever the prime power \(p^h\) exceeds \(x\), the contribution cuts off cleanly at \(0\); whenever \(p^h \le x\), subtracting the weight \(w\) yields
+\begin{equation}
+  \left(\frac{a}{p^h} - w\right)_+
+  \;=\;
+  w\!\left(\frac{x}{p^h} - 1\right)_+.
+  \label{eq:N20261125-smooth-exponent}
+\end{equation}
+\textbf{Stop and stare at \eqref{eq:N20261125-smooth-exponent}!} The jagged floor function \(\floor{x/p^h}\) has completely vanished! In its place sits \(w(x/p^h - 1)_+\)---the \emph{exact} continuous piecewise-linear ramp inside the smoothed prime error \(G(x)\) from \eqref{eq:N20261125-Gx}!
+
+By moving from the circle (height~1) to a CM elliptic curve (height~2), geometry itself has melted away Chebyshev's floor-function wall. (And by varying the imaginary quadratic field \(K\) and twisting by Dirichlet characters, every prime \(p\) becomes inert in plenty of CM fields, taking care of wish-list item (W3) as well.)
+
+We should distinguish the beautiful ramp from the precise integer divisibility theorem that motivates it. For the lemniscate sine at an inert prime, the model estimate reads
+\[
+ v_p(A_a)\ \geq\
+ \left\lfloor\frac{ap}{p^2-1}\right\rfloor
+ =\left\lfloor\frac ap+\frac a{p^3}
+                  +\frac a{p^5}+\cdots\right\rfloor
+ \quad(A_a\ne0).
+\]
+The right-hand side has one final rounding, rather than a separately rounded summand for every power. It is a lower bound, not an equality of valuations, and by itself it still cannot give the desired prime sum. For example \(A_9\) has \(v_3(A_9)=3\), exactly the lower bound \(\lfloor27/8\rfloor\). To eliminate the accumulated cost of rounding, control size, and handle split primes, the actual proposed construction uses special theta kernels, weights, and comparisons of lattices. This is the difference between discovering the right local shape and having a global arithmetic inequality. The working exposition cited above proves the lemniscate estimate and isolates further hypotheses for the theta-kernel estimates.
+
+\subsection{Macroscopic engine: from integers to lattices, Bost's slope inequality, and \(\sqrt{X}\)-long theta chains}
+
+We have conquered the floor function (W1). Now we face the harder half of the mountain: \textbf{(W2) Archimedean precision and \(\sqrt{X}\) multiplicity.}
+
+If you try to run Chebyshev's inequality \(\sum e_p \log p \le \log |\Delta|\) on a \emph{single} integer \(\Delta\) (like one Hurwitz number or one determinant of Hurwitz numbers), you run into a brutal fact of life: a single number has no internal structure to tune. Its Archimedean size \(\log|\Delta|\) carries uncontrolled secondary errors that drown out the tiny \(O(x^{\frac{1}{2}+\varepsilon})\) signal we are hunting for.
+
+Here is where modern Arakelov geometry and the Langlands program step onto the stage in three interlocking moves.
+
+\subsubsection*{Move 1: Upgrade a single integer to a linear map between integer lattices}
+
+Think of an integer \(n \in \ZZ\) as a \(1 \times 1\) linear map \(\ZZ \xrightarrow{\times n} \ZZ\). Its divisibility is measured by \(p\)-adic valuations \(v_p(n)\), and its size is \(|n|\). What is the higher-dimensional generalization of a nonzero integer?
+
+It is a nonzero \textbf{linear map between two Euclidean lattices}
+\[
+  \varphi : \Lambda_1 \longrightarrow \Lambda_2,
+\]
+where each lattice \(\Lambda_i \cong \ZZ^{r_i}\) is equipped with a Hermitian inner product (a \vocab{Hermitian vector bundle} over \(\Spec \ZZ\) in Arakelov geometry). Think of \(\Lambda_1\) and \(\Lambda_2\) as grids of points in \(\CC^{r_1}\) and \(\CC^{r_2}\):
+\begin{itemize}
+  \item The \textbf{local divisibility} of \(\varphi\) at a prime \(p\) is measured by how much \(\varphi\) shrinks the \(p\)-adic lattice (i.e.\ the local index or \(p\)-adic valuation of its matrix entries / elementary divisors).
+  \item The \textbf{Archimedean size} of \(\varphi\) is measured by its operator norm \(\|\varphi\|_{\mathrm{op}}\)---how much \(\varphi\) stretches Euclidean lengths.
+\end{itemize}
+In this lattice world, Chebyshev's baby inequality ``divisibility \(\le\) size'' grows up into \vocab{Jean-Beno\^it Bost's slope inequality}. What is the \emph{slope} of a lattice \(\Lambda\)? Intuitively, the \vocab{Arakelov degree} \(\widehat{\deg}(\Lambda) = -\log \operatorname{covol}(\Lambda)\) measures how tightly packed the grid points are (small covolume = high degree), and the \vocab{slope} \(\mu(\Lambda) = \widehat{\deg}(\Lambda)/\rank(\Lambda)\) is the average packing density per dimension. Just as a skewed lattice can have some very short directions and some very long directions, every Hermitian lattice has a canonical \emph{Harder--Narasimhan filtration} slicing it from densest sublattices to sparsest quotients. Bost's slope inequality says, in essence:
+\begin{quote}
+\emph{If \(\varphi : \Lambda_1 \to \Lambda_2\) is an injective (or well-controlled) map between lattices, then the maximal slope of \(\Lambda_2\) plus \(\log\|\varphi\|_{\mathrm{op}}\) must dominate the minimal slope of \(\Lambda_1\) plus all the \(p\)-adic divisibility \(\varphi\) picks up along the way.}
+\end{quote}
+If this sounds abstract, consider the rank-one case with ordinary metrics. Let \(\varphi:\ZZ\to\ZZ\) send \(1\) to a nonzero integer \(n\). Its image has index \(|n|\), its norm is \(|n|\), and
+\[
+  \log[\ZZ:\varphi(\ZZ)]
+     =\sum_p v_p(n)\log p=\log\|\varphi\|_{\mathrm{op}}.
+\]
+In rank two, replace \(n\) by \(A=\operatorname{diag}(12,18)\). The index of the image is \(\det A=216=2^3\cdot3^3\), whereas \(\|A\|_{\mathrm{op}}=18\). We have
+\[
+  3\log2+3\log3=\log216\leq2\log18.
+\]
+The determinant measures the combined divisibility in both directions; the operator norm bounds the stretching in each direction. In a general Hermitian lattice, covolumes also enter the comparison. Bost's slope machinery makes precisely this sort of bookkeeping flexible enough to work with sublattices and quotient lattices, rather than just a square matrix in the standard metric.
+
+By upgrading from a single integer to a high-rank lattice map, we suddenly gain \emph{spectral room}: we can use Harder--Narasimhan truncation to slice away bad low-slope directions, and we can feed the map into an iterative machine.
+
+\subsubsection*{Move 2: Chaining unitary theta lifts = differentiating \(m\) times}
+
+Now comes the centerpiece of Alp\"oge's remark---the answer to the group chat's question \emph{``Wait, so what IS the number-field analogue of differentiation?''}
+
+Remember how Stepanov achieved the \(\sqrt{q}\) bound in Section~3: he did not differentiate just once; he applied Hasse derivatives \(m\) times to build up \textbf{multiplicity \(m \asymp \sqrt{q}\)}. How do you iterate ``raising the multiplicity'' \(m\) times on lattice maps over a number field?
+
+\textbf{You chain together \(m\) theta lifts across a sequence of unitary groups:}
+\begin{equation}
+  U(X_0) \xrightarrow{\;\Theta_1\;} U(X_1) \xrightarrow{\;\Theta_2\;} U(X_2) \xrightarrow{\;\Theta_3\;} \cdots \xrightarrow{\;\Theta_m\;} U(X_m).
+  \label{eq:N20261125-theta-chain}
+\end{equation}
+
+Let us demystify every word in that sentence so you can actually \emph{picture} it!
+\begin{itemize}
+  \item \textbf{What is a totally definite unitary group \(U(X_j)\)?} Start with a Hermitian lattice \(X_j\) over the ring of integers \(\mathcal{O}_K\) of an imaginary quadratic field \(K\) (like \(\ZZ[i]\)), equipped with a positive-definite Hermitian inner product (just like ordinary Euclidean length in \(\CC^n\)). The group \(U(X_j)\) is simply the group of rotations/symmetries preserving that inner product. Because the form is \emph{totally definite}, the space of automorphic forms on \(U(X_j)\) is not some terrifying infinite-dimensional PDE space---it is just a \textbf{finite-dimensional space of functions on a finite set of lattice classes} (the genus of \(X_j\))!
+  \item \textbf{What is a theta lift \(U(X_{j-1}) \to U(X_j)\)?} Think of a \vocab{theta kernel} \(\Theta(g, h)\) as a harmonic two-way bridge (an integral transform, like the Fourier transform, built from summing Gaussian bells \(e^{-\pi \|v\|^2}\) over a lattice). Given an automorphic form \(f\) on \(U(X_{j-1})\), integrating \(f\) against the theta kernel produces a new automorphic form \(\Theta(f)\) on \(U(X_j)\):
+  \[
+    \bigl(\Theta_j f\bigr)(h) = \int_{[U(X_{j-1})]} \Theta_j(g, h)\, f(g)\,dg.
+  \]
+  Because our groups are totally definite, this ``integral'' is really a \emph{finite weighted sum}---a concrete linear map between finite-dimensional Hermitian lattices!
+  \item \textbf{Why does chaining \(m\) theta lifts act like ``differentiating \(m\) times''?} At each link \(U(X_{j-1}) \to U(X_j)\) in the chain \eqref{eq:N20261125-theta-chain}, the theta kernel is coupled to the CM height-2 local data from Section~4.2, injecting a fresh layer of smooth \(p\)-adic divisibility into the lattice map. Passing a vector through \(m\) consecutive theta bridges stacks \(m\) layers of local divisibility on top of one another in a natively automorphic way---the exact number-field counterpart of forcing an auxiliary polynomial to vanish to order \(m\)!
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth,
+  grp/.style={draw=MidnightBlue, fill=MidnightBlue!6, rounded corners=4pt,
+              minimum width=1.45cm, minimum height=0.85cm, font=\small\bfseries, align=center},
+  lbl/.style={font=\scriptsize, align=center}]
+
+  \node[grp] (u0) at (0,0) {\(U(X_0)\)};
+  \node[grp] (u1) at (2.7,0) {\(U(X_1)\)};
+  \node[grp] (u2) at (5.4,0) {\(U(X_2)\)};
+  \node[font=\large\bfseries, MidnightBlue] (dots) at (7.5,0) {\(\cdots\)};
+  \node[grp] (um) at (9.6,0) {\(U(X_m)\)};
+
+  \draw[->, very thick, purple!80!black] (u0) -- node[above, lbl, purple!80!black] {\(\Theta_1\)} (u1);
+  \draw[->, very thick, purple!80!black] (u1) -- node[above, lbl, purple!80!black] {\(\Theta_2\)} (u2);
+  \draw[->, very thick, purple!80!black] (u2) -- (dots);
+  \draw[->, very thick, purple!80!black] (dots) -- node[above, lbl, purple!80!black] {\(\Theta_m\)} (um);
+
+  % Bottom bracket drawn manually without extra TikZ libraries
+  \draw[thick, teal!80!black] (-0.75,-0.75) -- (-0.75,-0.95) -- (10.35,-0.95) -- (10.35,-0.75);
+  \draw[thick, teal!80!black] (4.8,-0.95) -- (4.8,-1.15);
+  \node[below, font=\footnotesize, teal!80!black, align=center] at (4.8,-1.15)
+    {Chain length \(m \asymp \sqrt{X}\): each theta link stacks a fresh layer of CM height-2 divisibility\\
+     while Rallis / Siegel--Weil / Chowla--Selberg / GGP pin down the exact Archimedean norm};
+\end{tikzpicture}
+\caption{The macroscopic engine: chaining \(m \asymp \sqrt{X}\) theta lifts across totally definite unitary groups builds an automorphic surrogate for \(m\)-fold multiplicity, feeding directly into Bost's slope inequality.}
+\label{fig:N20261125-theta-chain}
+\end{figure}
+
+To get a feel for what a theta kernel does, forget automorphic representations for a moment and look at the Gaussian sum on \(\ZZ[i]\):
+\[
+ K(z)=\sum_{\lambda\in\ZZ[i]}e^{-\pi|\lambda|^2+\lambda z}.
+\]
+The Gaussian controls convergence, so differentiation at the origin simply inserts the polynomial weight \(\lambda^a\):
+\[
+ K^{(a)}(0)=\sum_{\lambda\in\ZZ[i]}\lambda^a
+                                  e^{-\pi|\lambda|^2}.
+\]
+Rotating the lattice by \(i\) leaves the sum unchanged except for a factor \(i^a\); thus the derivative is zero unless \(4\mid a\). One can already see the arithmetic symmetry reaching straight into the analytic calculation! The actual theta lifts are far more structured than this toy series. In particular, divisibility of their normalized kernels, non-vanishing, and the necessary bounds on ranks and norms have to be established for the chosen chain; they do not follow merely from composing arbitrary integral maps.
+
+And now you can also see \textbf{why the Langlands program was indispensable} (answering the opening lines of the group chat: \emph{``massive amounts of Langlands''}). If you chain \(m\) arbitrary matrices together, you have no idea how big the resulting operator norm is---or even whether the product collapses to zero! For theta lifts on unitary groups, however, the Langlands machinery hands you an exact accounting ledger at every single hop:
+\begin{itemize}\setlength{\itemsep}{3pt}\setlength{\parsep}{0pt}
+  \item \textbf{Rallis inner product formula:} Computes the exact \(L^2\)-norm \(\langle \Theta(f), \Theta(f) \rangle\) of a theta lift in terms of the central value of an \(L\)-function! This guarantees the lift does not collapse to zero and pins down the Archimedean size.
+  \item \textbf{Seesaw identities:} Let you flip an integral on a huge group to a simpler integral on a smaller paired group, keeping the chain algebraically tractable.
+  \item \textbf{Siegel--Weil mass formula \& Chowla--Selberg formula:} Compute the exact global volumes (covolumes of lattices) and CM periods down to the explicit constants---including the exact \(x\log x - (1+\gamma)x\) main term that must cancel!
+  \item \textbf{Relative trace formulas \& Gan--Gross--Prasad (GGP) periods:} Control the cross-terms and non-vanishing of period integrals along the chain, ensuring that the Bost slope inequality yields an honest bound on the primes.
+\end{itemize}
+
+\subsubsection*{Move 3: The punchline---why the chain length is \(m \asymp \sqrt{X}\)}
+
+This was the detail Alp\"oge singled out in his remark as the most jaw-dropping surprise suggested by Claude: \emph{for a von Mangoldt prime sum of length \(X\), take the length of the unitary theta-lift chain to be \(m \asymp \sqrt{X}\).}
+
+Once you have seen Stepanov's proof in Section~3, that number \(\sqrt{X}\) suddenly clicks with a loud, unmistakable \emph{aha!}
+\begin{itemize}\setlength{\itemsep}{3pt}\setlength{\parsep}{0pt}
+  \item Every extra link in the theta chain \eqref{eq:N20261125-theta-chain} raises the effective multiplicity by \(1\), dividing the truncation/local error by \(m\)---giving an error contribution of order \(X / m\).
+  \item Conversely, every link in the chain introduces its own automorphic overhead (from the rank, conductor, and Archimedean norm accounting in Bost's slope inequality), accumulating an error of order \(m\).
+\end{itemize}
+Just as in Figure~\ref{fig:N20261125-tradeoff}, minimizing \(\frac{X}{m} + m\) forces
+\[
+  m \asymp \sqrt{X},
+\]
+which produces the target upper bound \(G(x) \le x^{\frac{1}{2}+\varepsilon}\)! Across fifty-seven years and two completely different mathematical worlds, Stepanov's optimal derivative order \(m \asymp \sqrt{q}\) over \(\FF_q\) and the optimal theta-lift chain length \(m \asymp \sqrt{X}\) over \(\QQ\) are \textbf{the exact same mathematical phenomenon}.
+
+\enlargethispage{1.5\baselineskip}
+\subsection{A field guide to other ``derivatives of integers''}
+
+To appreciate how bold this automorphic strategy really is, it helps to place it alongside the other famous ways mathematicians have tried to break the algebraic brick wall of Section~4.1 and ``differentiate'' \(\ZZ\). Every approach has to sacrifice something:
+
+\begingroup
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.0}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.23\linewidth}Y@{}}
+\toprule
+\textbf{Approach} & \textbf{Comparison} \\
+\midrule
+\textbf{Ordinary derivation} & \emph{Mechanism:} \(D(ab)=aD(b)+bD(a)\) and \(D(a+b)=D(a)+D(b)\); \emph{Trade-off:} Nothing (and therefore collapses to \(D \equiv 0\) on \(\ZZ\)); \emph{Application:} Works on \(\FF_q[t]\) and \(\CC[x]\); dead on \(\ZZ\). \\
+\addlinespace[1pt]
+\textbf{Arithmetic derivative} & \emph{Mechanism:} \(p' = 1\), \((ab)' = a'b + ab'\); \emph{Trade-off:} Additivity; \emph{Application:} Cute elementary puzzles (Goldbach/twin-prime reformulations); too rigid for analytic bounds. \\
+\addlinespace[1pt]
+\textbf{Buium's \(p\)-derivation (\(\delta\)-rings)} & \emph{Mechanism:} \(\delta_p(x) = \dfrac{x - x^p}{p}\) (Fermat quotient); \emph{Trade-off:} Linearity (\(\delta_p(x+y)\) picks up a binomial carry term); \emph{Application:} Arithmetic differential equations; foundation of Bhatt--Scholze prismatic cohomology. \\
+\addlinespace[1pt]
+\textbf{Diophantine height / Wronskians} & \emph{Mechanism:} Replace derivative order by Arakelov height \& index; \emph{Trade-off:} Explicit operator \(D\); \emph{Application:} Roth's theorem, Schmidt subspace theorem, Vojta's conjecture. \\
+\addlinespace[1pt]
+\textbf{CM height-2 + Theta chains} & \emph{Mechanism:} Height-2 formal groups (smooth \(p\)-divisibility) + \(m\asymp\sqrt{X}\) unitary theta lifts + Bost slope; \emph{Trade-off:} Working with a single integer (promotes to lattice maps); \emph{Application:} Directly mimics Stepanov's \(m\)-fold multiplicity for smoothed prime sums \(G(x)\). \\
+\bottomrule
+\end{tabularx}
+\caption{A field guide to number-field analogues of differentiation.}
+\label{tab:N20261125-derivatives-guide}
+\end{table}
+\endgroup
+
+It is worth pausing for thirty seconds on \textbf{Alexandru Buium's \(p\)-derivation}, because it is the most famous ``arithmetic derivative'' in modern algebraic geometry and explains why people initially guess it whenever they hear ``differentiating an integer.'' By Fermat's Little Theorem, \(x^p \equiv x \pmod p\) for every integer \(x\), so the \vocab{Fermat quotient}
+\[
+  \delta_p(x) \defeq \frac{x - x^p}{p}
+\]
+is always an integer! Think of \(x^p\) as the shadow of the Frobenius map lifted from \(\FF_p\) back up to \(\ZZ\); then \(\delta_p(x)\) measures the \emph{first-order rate of change of \(x\) in the \(p\)-adic direction}. Buium built an entire theory of arithmetic differential equations from \(\delta_p\), and rings equipped with such an operator (\vocab{\(\delta\)-rings}) later became a cornerstone of Bhatt and Scholze's prismatic cohomology.
+
+Here is what the twisted product rule actually looks like in the sign convention just used. Since \(x^p=x-p\delta_p(x)\), multiplying the two identities for \(x\) and \(y\) and dividing the difference by \(p\) gives
+\[
+ \delta_p(xy)
+ =x\delta_p(y)+y\delta_p(x)-p\delta_p(x)\delta_p(y).
+\]
+The last term is the price of making the Frobenius lift visible over the integers. For \(p=3\), for instance, \(\delta_3(2)=-2\) and \(\delta_3(4)=-20\); the ordinary Leibniz rule would have given \(-8\), and the extra term contributes \(-12\). With this one calculation, the distinction between ordinary differentiation and arithmetic differentiation becomes remarkably concrete.
+
+Yet notice the philosophical contrast. Buium's \(\delta_p\) works \emph{one prime \(p\) at a time} and tries to define an explicit algebraic operator directly on numbers. By contrast, the Stepanov-to-theta-chain philosophy zooms out and asks: \emph{we do not need a literal unary operator \(x \mapsto x'\) on \(\ZZ\); we need a global machine that simultaneously assigns every prime \(p\) a smooth divisibility ramp \((x/p^h - 1)_+\) and lets us stack that divisibility \(m \asymp \sqrt{X}\) times while keeping exact track of Archimedean volume.}

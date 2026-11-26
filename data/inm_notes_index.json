@@ -4,9 +4,9 @@
     "subtitle": "A dated archive of mathematical notes reconstructed into an English TeX book.",
     "fullPdf": "/notes/inm.pdf",
     "oldArchive": "https://github.com/ChouYuanjue/Informal_Notes_on_Mathematics",
-    "noteCount": 170,
+    "noteCount": 175,
     "volumeCount": 13,
-    "source": "E:/INM-TeX"
+    "source": "E:\\INM-TeX"
   },
   "volumes": [
     "Foundations of Mathematics",
@@ -32,6 +32,105 @@
     "2021"
   ],
   "notes": [
+    {
+      "id": "N-20261126",
+      "date": "2026-11-26",
+      "year": "2026",
+      "month": "Nov",
+      "day": "26",
+      "title": "Differentiation on a Cliff: From 1.58-Bit Quantization to Discrete Calculus",
+      "volume": "Machine Learning and Inference",
+      "sectionCount": 6,
+      "sections": [
+        "Two Calculi Where Limits Fail",
+        "Three Mathematical Anatomies of STE",
+        "Probability Simplices and Reparameterization",
+        "Polytopes and Combinatorial Extensions",
+        "1.58-Bit Training: Geometry and Dynamics",
+        "Two Philosophies of Discrete Calculus"
+      ],
+      "pdf": "/notes/2026/N-20261126.pdf",
+      "tex": "/notes/2026/N-20261126.tex"
+    },
+    {
+      "id": "N-20261125",
+      "date": "2026-11-25",
+      "year": "2026",
+      "month": "Nov",
+      "day": "25",
+      "title": "How Do You Differentiate an Integer? From Stepanov's Trick to Unitary Theta Chains",
+      "volume": "Number Theory",
+      "sectionCount": 4,
+      "sections": [
+        "A strange one-sided doorway to the Riemann Hypothesis",
+        "Two parallel universes, and Chebyshev's floor-function wall",
+        "Stepanov's elementary coup: how derivatives squeeze out $\\sqrt{q}$",
+        "How do you differentiate an integer?"
+      ],
+      "pdf": "/notes/2026/N-20261125.pdf",
+      "tex": "/notes/2026/N-20261125.tex"
+    },
+    {
+      "id": "N-20261124",
+      "date": "2026-11-24",
+      "year": "2026",
+      "month": "Nov",
+      "day": "24",
+      "title": "Tensors, Degenerations, and the Nine-Fourths Exponent",
+      "volume": "Matrix Analysis and Computation",
+      "sectionCount": 6,
+      "sections": [
+        "The algebraic stage: tensors, rank, and border rank",
+        "Strassen's asymptotic spectrum",
+        "Separating a shared tensor leg",
+        "Elementary perspectives and arbitrary fields",
+        "The dual side: tensor networks and list distinctness",
+        "Open structural questions"
+      ],
+      "pdf": "/notes/2026/N-20261124.pdf",
+      "tex": "/notes/2026/N-20261124.tex"
+    },
+    {
+      "id": "N-20261121",
+      "date": "2026-11-21",
+      "year": "2026",
+      "month": "Nov",
+      "day": "21",
+      "title": "Hyperbolic Neural Networks and Proper Velocity Space",
+      "volume": "Machine Learning and Inference",
+      "sectionCount": 9,
+      "sections": [
+        "Why trees choke flat space",
+        "How neural networks live on curves",
+        "Two classic models and their flaws",
+        "Proper velocity from special relativity",
+        "Pulling back the metric",
+        "Addition without associativity",
+        "Linear layers as signed distances",
+        "Building a full PV network"
+      ],
+      "pdf": "/notes/2026/N-20261121.pdf",
+      "tex": "/notes/2026/N-20261121.tex"
+    },
+    {
+      "id": "N-20261119",
+      "date": "2026-11-19",
+      "year": "2026",
+      "month": "Nov",
+      "day": "19",
+      "title": "A Categorical Derivation of Lebesgue Integration",
+      "volume": "Real and Complex Analysis",
+      "sectionCount": 5,
+      "sections": [
+        "Introduction: Why Characterize Lebesgue Integration Universally?",
+        "Self-Similarity of $[0,1]$ and the Universal Property of $L^p[0,1]$",
+        "Notable Consequences and Surprises",
+        "General Finite Measure Spaces: Universal Property of the $L^p$ Functor",
+        "Concluding Remarks"
+      ],
+      "pdf": "/notes/2026/N-20261119.pdf",
+      "tex": "/notes/2026/N-20261119.tex"
+    },
     {
       "id": "N-20261110",
       "date": "2026-11-10",

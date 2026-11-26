@@ -1,0 +1,221 @@
+\notechapter{N-20261119}{A Categorical Derivation of Lebesgue Integration}
+
+Tom Leinster's paper \emph{A categorical derivation of Lebesgue integration} reminded me of a small misunderstanding I recalled in \emph{Almost Nowhere, Yet Everywhere}. As a child, I had taken the title of Oxtoby's \emph{Measure and Category} to promise some meeting of measure theory and category theory, only to discover that its category was Baire's. Here, quite independently of Oxtoby's subject, is something rather close to the connection I had imagined. Leinster begins with the simple observation that concatenating two functions on the two halves of $[0,1]$ averages their integrals, and turns it into a universal property characterizing $L^p[0,1]$ and Lebesgue integration. This note explores how that observation leads to the main results of his paper.\footnote{T. Leinster, \emph{A categorical derivation of Lebesgue integration}, J. London Math. Soc. 107 (2023), 1959--1982; \href{https://arxiv.org/abs/2011.00412}{arXiv:2011.00412}.}
+
+\section{Introduction: Why Characterize Lebesgue Integration Universally?}
+
+Lebesgue integration is one of the most fundamental notions in modern analysis, yet its standard construction is notoriously intricate. To define $L^1[0,1]$ and $\int_0^1$, a typical real analysis course proceeds through null sets, almost-everywhere convergence, step functions, monotone limits, differences of such limits, well-definedness of the integral, and finally quotienting by almost-everywhere equality.
+
+In algebra and topology, genuinely fundamental objects are not merely constructed; they are characterized uniquely up to canonical isomorphism by a \textbf{universal property}. For instance, the natural numbers $(\mathbb{N}, 0, s)$ (where $s(n) = n+1$) form the \textbf{initial object} in the category of triples $(X, x, r)$ consisting of a set $X$, a point $x \in X$, and an endomap $r : X \to X$. Initiality says that for any $(X, x, r)$ there is a unique sequence $(x_n)_{n \ge 0}$ with $x_0 = x$ and $x_{n+1} = r(x_n)$.
+
+Leinster brings this exact paradigm to measure theory in two main theorems:
+\begin{itemize}
+    \item \textbf{Theorem A (The interval $[0,1]$):} For $1 \le p < \infty$, $(L^p[0,1], \mathbf{1}, \gamma)$ is the initial object in a category $\mathcal{A}_p$ of Banach spaces equipped with minimal extra structure. This characterization makes no mention of $[0,1]$, $\sigma$-algebras, or Lebesgue measure, yet uniquely forces both $L^p[0,1]$ and the integral $\int_0^1$.
+    \item \textbf{Theorem B (General finite measure spaces):} Viewing $L^p$ as a functor from finite measure spaces to Banach spaces, the pair $(L^p, \mathbf{1})$ is again the initial object in a suitable functor category.
+\end{itemize}
+
+Initiality delivers uniqueness at \textbf{two levels}: the object itself is unique up to unique isomorphism, and its morphism to any other object is strictly unique. As we will see, the latter immediately yields the uniqueness of the Lebesgue integral.
+
+\section{Self-Similarity of $[0,1]$ and the Universal Property of $L^p[0,1]$}
+
+\subsection{Banach Spaces and the $p$-Mean Direct Sum}
+
+Fix the base field $\mathbb{F} = \mathbb{R}$ or $\mathbb{C}$. Let $\mathbf{Ban}$ denote the category of Banach spaces over $\mathbb{F}$ and \textbf{linear contractions} (linear operators $T$ with $\|T\| \le 1$). In $\mathbf{Ban}$, the isomorphisms are precisely the \textbf{isometric isomorphisms}.
+
+For $1 \le p < \infty$ and two Banach spaces $V, W$, define their \textbf{$p$-mean direct sum} $V \oplus_p W$ to be the vector space $V \oplus W$ equipped with the normalized $p$-power mean norm:
+\[
+    \|(v, w)\|_p = \left( \frac{\|v\|^p + \|w\|^p}{2} \right)^{1/p}.
+\]
+When $p = 1$, this is simply the arithmetic mean norm $\|(v, w)\|_1 = \frac{1}{2}(\|v\| + \|w\|)$. That factor of $1/2$ quietly encodes the notion of averaging directly into the categorical structure.
+
+\begin{definition}[The category $\mathcal{A}_p$]
+Let $1 \le p < \infty$. Define the category $\mathcal{A}_p$ as follows:
+\begin{itemize}
+    \item \textbf{Objects} are triples $(V, v, \delta)$ where $V \in \mathbf{Ban}$, $v \in V$ satisfies $\|v\| \le 1$, and $\delta : V \oplus_p V \to V$ is a linear contraction satisfying the normalization condition
+    \[
+        \delta(v, v) = v.
+    \]
+    \item \textbf{Morphisms} $\theta : (V', v', \delta') \to (V, v, \delta)$ are linear contractions $\theta : V' \to V$ such that $\theta(v') = v$ and
+    \[
+        \theta(\delta'(x, y)) = \delta(\theta(x), \theta(y)) \qquad \text{for all } x, y \in V'.
+    \]
+\end{itemize}
+\end{definition}
+
+Now consider $L^p[0,1]$. Let $\mathbf{1} \in L^p[0,1]$ be the constant function $1$, which has $\|\mathbf{1}\|_p = 1$. Define the concatenation map $\gamma : L^p[0,1] \oplus_p L^p[0,1] \to L^p[0,1]$ by
+\[
+    \gamma(f, g)(x) =
+    \begin{cases}
+        f(2x), & 0 \le x < \tfrac{1}{2}, \\
+        g(2x - 1), & \tfrac{1}{2} \le x \le 1.
+    \end{cases}
+\]
+A direct calculation gives
+\[
+    \begin{aligned}
+ \|\gamma(f,g)\|_p^p
+ &=\int_0^{1/2}|f(2x)|^p\,dx+
+      \int_{1/2}^1|g(2x-1)|^p\,dx\\
+ &=\tfrac12\|f\|_p^p+\tfrac12\|g\|_p^p
+ =\|(f,g)\|_p^p.
+\end{aligned}
+\]
+Hence $\gamma$ is an isometric isomorphism (in particular, a linear contraction), and clearly $\gamma(\mathbf{1}, \mathbf{1}) = \mathbf{1}$. Thus $(L^p[0,1], \mathbf{1}, \gamma)$ is an object of $\mathcal{A}_p$.
+
+\subsection{Main Theorem and Proof Sketch}
+
+\begin{theorem}[Leinster, Theorem 2.1]
+For every $1 \le p < \infty$, $(L^p[0,1], \mathbf{1}, \gamma)$ is the initial object of $\mathcal{A}_p$.
+\end{theorem}
+
+Equivalently, for any $(V, v, \delta) \in \mathcal{A}_p$, there exists a \textbf{unique} linear contraction $\theta : L^p[0,1] \to V$ such that $\theta(\mathbf{1}) = v$ and
+\[
+    \theta(\gamma(f, g)) = \delta(\theta(f), \theta(g)) \qquad \text{for all } f, g \in L^p[0,1].
+\]
+
+\begin{proof}[Proof Sketch]
+The proof relies on dyadic subdivision of $[0,1]$ and approximation by dyadic step functions.
+
+For each integer $n \ge 0$, let $E_n \subset L^p[0,1]$ be the $2^n$-dimensional subspace of step functions that are constant on each dyadic interval $[k 2^{-n}, (k+1) 2^{-n})$ ($0 \le k < 2^n$). Two key properties hold:
+\begin{enumerate}
+    \item $E_0 = \operatorname{span}\{\mathbf{1}\} \cong \mathbb{F}$, and for each $n \ge 0$, restricting $\gamma$ gives an isometric isomorphism
+    \[
+        E_n \oplus_p E_n \xrightarrow{\ \sim\ } E_{n+1}.
+    \]
+    \item Let $E = \bigcup_{n \ge 0} E_n$. Because $p < \infty$, dyadic step functions are dense in all step functions, and hence $E$ is dense in $L^p[0,1]$. Categorically, $L^p[0,1]$ is the colimit of the chain $E_0 \hookrightarrow E_1 \hookrightarrow E_2 \hookrightarrow \cdots$ in $\mathbf{Ban}$.
+\end{enumerate}
+
+\textbf{Uniqueness:} If $\theta : (L^p[0,1], \mathbf{1}, \gamma) \to (V, v, \delta)$ is a morphism in $\mathcal{A}_p$, then $\theta$ is uniquely determined on $E_0$ by $\theta(\mathbf{1}) = v$. By induction, if $\theta$ is uniquely determined on $E_n$, then the relation $\theta(\gamma(f, g)) = \delta(\theta(f), \theta(g))$ determines it uniquely on $E_{n+1}$. Thus $\theta$ is unique on the dense subspace $E$, and by continuity it is unique on all of $L^p[0,1]$.
+
+\textbf{Existence:} Inductively construct linear contractions $\theta_n : E_n \to V$ by setting $\theta_0(c \cdot \mathbf{1}) = c v$ (contractive since $\|v\| \le 1$) and $\theta_{n+1} = \delta \circ (\theta_n \oplus_p \theta_n) \circ \gamma^{-1}$. Since $\delta$ and $\theta_n$ are contractions, so is $\theta_{n+1}$. Using $\delta(v, v) = v$, one checks inductively that $\theta_{n+1}|_{E_n} = \theta_n$. The family $\{\theta_n\}$ therefore assembles into a linear contraction on $E$, which extends uniquely to $\theta : L^p[0,1] \to V$ and automatically satisfies the morphism axioms of $\mathcal{A}_p$.
+\end{proof}
+
+\subsection{Deriving the Lebesgue Integral Immediately}
+
+For $p = 1$, take the base field $\mathbb{F}$ with basepoint $1 \in \mathbb{F}$ and the arithmetic mean map
+\[
+    m : \mathbb{F} \oplus_1 \mathbb{F} \to \mathbb{F}, \qquad m(a, b) = \frac{a + b}{2}.
+\]
+Since $|m(a,b)| \le \frac{1}{2}(|a| + |b|) = \|(a,b)\|_1$ and $m(1,1) = 1$, the triple $(\mathbb{F}, 1, m)$ is an object of $\mathcal{A}_1$. Initiality immediately yields:
+
+\begin{corollary}[Uniqueness of the Lebesgue integral]
+There is a unique linear contraction $I : L^1[0,1] \to \mathbb{F}$ such that:
+\begin{enumerate}
+    \item $I(\mathbf{1}) = 1$;
+    \item $I(\gamma(f, g)) = \frac{1}{2}\bigl(I(f) + I(g)\bigr)$ for all $f, g \in L^1[0,1]$.
+\end{enumerate}
+This unique map is the Lebesgue integral $I(f) = \int_0^1 f$.
+\end{corollary}
+
+The statement of this corollary requires no category theory at all, yet it is striking: the averaging rule under concatenation, together with normalization and contractivity, uniquely pins down the Lebesgue integral among all bounded linear functionals on $L^1[0,1]$.
+
+\section{Notable Consequences and Surprises}
+
+\subsection{Why $p = \infty$ Yields the Cantor Space Instead of $L^\infty[0,1]$}
+
+The interval theorem assumes $1 \le p < \infty$. What happens at $p = \infty$?
+
+For $p = \infty$, the direct sum $V \oplus_\infty W$ carries the max norm $\|(v, w)\|_\infty = \max(\|v\|, \|w\|)$, and we can define $\mathcal{A}_\infty$ verbatim. However, in the proof of the interval theorem, a crucial step fails: the union $E = \bigcup_{n \ge 0} E_n$ of dyadic step functions is \textbf{not} dense in $L^\infty[0,1]$ under the essential supremum norm.
+
+What, then, is the completion of $E$ in the supremum norm? Each $E_n$ is canonically isomorphic to the space of functions on $\{0,1\}^n$ with the max norm. As $n \to \infty$, the colimit of these spaces in $\mathbf{Ban}$ is the space $C(\{0,1\}^{\mathbb{N}})$ of continuous functions on the Cantor space $\{0,1\}^{\mathbb{N}}$.
+
+\begin{proposition}[Leinster, Proposition 2.6]
+The initial object of $\mathcal{A}_\infty$ is $(C(\{0,1\}^{\mathbb{N}}), \mathbf{1}, \gamma)$, not $L^\infty[0,1]$.
+\end{proposition}
+
+The distinction is one of completion, not of measure-space isomorphism. The binary-expansion map identifies the fair-coin product measure on the Cantor space with Lebesgue measure, up to null sets; this also identifies their $L^\infty$ spaces. But the uniform completion of finite-coordinate functions is only $C(\{0,1\}^{\mathbb N})$, whereas measurable simple functions, not merely dyadic step functions, are dense in $L^\infty$. At finite $p$ the dyadic functions suffice for norm density.
+
+Moreover, since $\|(v,w)\|_p \le \|(v,w)\|_\infty$, every object of $\mathcal{A}_p$ ($1 \le p < \infty$) is automatically an object of $\mathcal{A}_\infty$. Combining initiality of $C(\{0,1\}^{\mathbb{N}})$ with the standard binary-expansion surjection $\{0,1\}^{\mathbb{N}} \twoheadrightarrow [0,1]$, Leinster naturally recovers the canonical inclusion $C[0,1] \to L^p[0,1]$ (Proposition 2.8).
+
+\subsection{Recovering Elements of $L^1[0,1]$ as Functions (Meckes's Observation)}
+
+Since the interval theorem characterizes $L^1[0,1]$ purely abstractly, one might ask: given an abstract Banach space satisfying this universal property, how do we recover its elements as actual functions on $[0,1]$?
+
+Mark Meckes provided an elegant answer (Proposition 2.4). Let $C_*[0,1] = \{F \in C[0,1] : F(0) = 0\}$ with the supremum norm, choose the identity function $\mathrm{id}(x) = x$ as basepoint, and define $\delta : C_*[0,1] \oplus_1 C_*[0,1] \to C_*[0,1]$ by
+\[
+    \delta(F, G)(x) =
+    \begin{cases}
+        \tfrac{1}{2} F(2x), & 0 \le x \le \tfrac{1}{2}, \\
+        \tfrac{1}{2} F(1) + \tfrac{1}{2} G(2x - 1), & \tfrac{1}{2} \le x \le 1.
+    \end{cases}
+\]
+One checks directly that $(C_*[0,1], \mathrm{id}, \delta) \in \mathcal{A}_1$. By initiality of $L^1[0,1]$, there is a unique morphism
+\[
+    \Phi : L^1[0,1] \longrightarrow C_*[0,1].
+\]
+Concretely, $\Phi$ is indefinite integration:
+\[
+    (\Phi f)(x) = \int_0^x f(t) \, dt.
+\]
+Differentiating $\Phi f$ (via the Lebesgue differentiation theorem) recovers $f$ almost everywhere as a concrete function on $[0,1]$.
+
+\subsection{Conjugate Pairings, Sequence Spaces, and Adámek's Theorem}
+
+Iterating the universal property of $(L^p[0,1], \mathbf{1}, \gamma)$ yields several further classical structures:
+\begin{itemize}
+    \item \textbf{Hölder / conjugate pairings:} For conjugate exponents $\frac{1}{p} + \frac{1}{q} = 1$, without ever defining pointwise multiplication of functions, the universal property uniquely produces the canonical bilinear pairing $L^p[0,1] \times L^q[0,1] \to \mathbb{F}$, namely $(f, g) \mapsto \int_0^1 fg$ (Proposition 2.10).
+    \item \textbf{Sequence spaces $\ell^p$ and $c_0$:} The universal property of $L^p[0,1]$ stems from the self-similarity $[0,1] \cong [0, \frac{1}{2}] \cup [\frac{1}{2}, 1]$. Replacing $[0,1]$ with the self-similar set $\mathbb{N} \cong \{0\} \sqcup \mathbb{N}$ yields analogous initial-object characterizations of $\ell^p$ ($1 \le p < \infty$) and $c_0$ (Proposition 2.11).
+    \item \textbf{From characterization to construction (Adámek's theorem):} Category theory does not merely characterize $L^p[0,1]$; it constructs it. On the category of pointed Banach spaces, $(L^p[0,1], \mathbf{1}, \gamma)$ is the initial algebra for the endofunctor $V \mapsto V \oplus_p V$. By Adámek's initial algebra theorem, iterating this endofunctor from the initial object and taking the colimit automatically produces $\varinjlim E_n = L^p[0,1]$ (Remark 2.12).
+\end{itemize}
+
+\section{General Finite Measure Spaces: Universal Property of the $L^p$ Functor}
+
+Theorem A is remarkable for avoiding measure-theoretic prerequisites altogether, but it relies on the self-similarity of $[0,1]$. For a general finite measure space $(X, \Sigma, \mu)$, there is no canonical splitting into two halves. Section 3 of Leinster's paper addresses this via \textbf{Theorem B}. (Note that Theorem A is \emph{not} a special case of Theorem B: Theorem B starts from the category of finite measure spaces, whereas Theorem A never mentions measure spaces.)
+
+\subsection{Functoriality on Finite Measure Spaces}
+
+On finite measure spaces, $L^1$ exhibits two natural functorialities:
+\begin{enumerate}
+    \item For a \textbf{measure-preserving map} $f : X \to Y$, pullback $f^* : L^1(Y) \to L^1(X)$ is contravariant.
+    \item For a \textbf{measure-preserving embedding} $i : X \hookrightarrow Y$ (viewing $X$ as a measurable subset of $Y$), extension by zero $i_* : L^1(X) \to L^1(Y)$ is covariant.
+\end{enumerate}
+
+To unify both, Leinster introduces the category $\mathbf{Mea}$ of finite measure spaces and \textbf{measure-preserving partial maps}. This makes $L^1$ a contravariant functor $L^1 : \mathbf{Mea}^{\mathrm{op}} \to \mathbf{Ban}$, equipped with a canonical element $\mathbf{1}_X \in L^1(X)$ (the constant function $1$) for every finite measure space $X$.
+
+\subsection{Initiality in the Functor Category $\mathcal{B}$}
+
+Write $\mathcal B_p$ for the category of pairs $(F,v)$, where $F:\mathbf{Mea}^{\mathrm{op}}\to\mathbf{Ban}$ and $v_X\in F(X)$ for each finite measure space $X$. For an embedding $i:Y\hookrightarrow X$, write $F_i:F(Y)\to F(X)$ for the map associated to its partial inverse. For a measurable partition $X=Y\sqcup Z$ with inclusions $i,j$, the axioms are:
+\begin{enumerate}
+ \item $F_i(v_Y)+F_j(v_Z)=v_X$.
+ \item If $s:X\to Y$ is measure-preserving and defined everywhere, then $F(s)(v_Y)=v_X$.
+ \item $\|v_X\|\leq\mu(X)^{1/p}$.
+ \item $\|F_i(u)+F_j(w)\|\leq(\|u\|^p+\|w\|^p)^{1/p}$ for $u\in F(Y)$, $w\in F(Z)$.
+\end{enumerate}
+At $p=\infty$, the last bound becomes the maximum, and the bound on $\|v_X\|$ is $1$ for positive total measure and $0$ for zero measure. At $p=1$, the last axiom follows from contractivity and the triangle inequality. Morphisms are natural transformations preserving all $v_X$. The embedding-only category $\mathcal B_{\mathrm{emb},p}$ has the same definition with covariant functors on embeddings and without axiom 2. Put $\mathcal B=\mathcal B_1$.
+
+\begin{theorem}[Leinster, Theorem B / Theorem 3.7]
+The pair $(L^1, \mathbf{1})$ is the initial object of $\mathcal{B}$. More generally, with the appropriate $p$-norm axioms, $(L^p, \mathbf{1})$ is the initial object of $\mathcal{B}_p$ for every $p \in [1, \infty]$.
+\end{theorem}
+\begin{proof}
+For a measurable set $A\subseteq X$, let $v_A^X=F_{i_A}(v_A)$. Naturality on inclusions forces the image of its indicator to be $v_A^X$. Thus on measurable simple functions the only possible map is
+\[
+ \theta_X\left(\sum_{r=1}^m c_r\mathbf{1}_{A_r}\right)
+       =\sum_{r=1}^m c_r v_{A_r}^X,
+\]
+where the $A_r$ are pairwise disjoint. The first axiom gives invariance under refinement, so this formula is well-defined and linear. The third and fourth axioms yield
+\[
+ \|\theta_X(f)\|\leq
+ \left(\sum_r |c_r|^p\mu(A_r)\right)^{1/p}=\|f\|_p.
+\]
+For $p=\infty$ the same argument gives the essential supremum bound. In particular, the map annihilates functions vanishing almost everywhere. It extends uniquely by density from simple functions to $L^p(X)$. Naturality for embeddings follows directly from the indicator formula; for total measure-preserving maps it follows by taking inverse images of measurable sets and applying axiom 2. Every partial measure-preserving map is a restriction to its domain followed by a total measure-preserving map, so these two naturality statements suffice. This proves existence and uniqueness, including in the embedding-only category.
+\end{proof}
+
+Just as in Theorem A, the Lebesgue integral emerges as a unique morphism: let $\mathbb{F}$ denote the constant functor sending every finite measure space to $\mathbb{F}$, and let $t_X = \mu(X) \in \mathbb{F}$ be the total measure of $X$. Then $(\mathbb{F}, t) \in \mathcal{B}$, and the unique natural transformation
+\[
+    (L^1, \mathbf{1}) \longrightarrow (\mathbb{F}, t)
+\]
+has component at $X$ given precisely by the Lebesgue integral $\int_X - \, d\mu : L^1(X) \to \mathbb{F}$.
+
+Two further variants in Section 3 are worth noting:
+\begin{itemize}
+    \item \textbf{Embeddings only ($\mathcal{B}_{\mathrm{emb}}$):} Even if one restricts morphisms in $\mathbf{Mea}$ to measure-preserving embeddings, $(L^1, \mathbf{1})$ remains initial. This naturally yields the map $(f, \mu) \mapsto f \, d\mu$ (Proposition 3.10), allowing one to recover elements of $L^1(X)$ as equivalence classes of functions via the Radon--Nikodym theorem.
+    \item \textbf{The Hilbert space case ($L^2$):} For $p = 2$, taking values in Hilbert spaces yields an even simpler universal characterization of $L^2$ (Proposition 3.11).
+\end{itemize}
+
+\section{Concluding Remarks}
+
+Classically, integration is understood from two viewpoints: geometrically as ``area under a curve,'' and analytically as the inverse of differentiation. Tom Leinster's paper opens a third perspective: \textbf{characterization by universal property}.
+
+Looking back across the results, the same principle recurs in several guises. On the unit interval, the simple act of concatenating two functions onto the left and right halves---combined with the $p$-power mean norm---is enough to single out $L^p[0,1]$ for $1 \le p < \infty$, while the very same universal property at $p = \infty$ reveals the Cantor space $C(\{0,1\}^{\mathbb{N}})$. Moving to arbitrary finite measure spaces, the $L^p$ functor itself is uniquely pinned down as an initial object. In every case, the Lebesgue integral requires no separate construction: it appears automatically as the unique morphism into the base field.
+
+As Leinster himself notes, this categorical viewpoint does not replace the deep theorems of real analysis (such as dominated convergence or Fubini's theorem). Rather, it clarifies the conceptual architecture: $L^p$ spaces and Lebesgue integration are not ad hoc technical artifacts, but the unique structures forced into existence by the elementary notions of Banach spaces and averaging.

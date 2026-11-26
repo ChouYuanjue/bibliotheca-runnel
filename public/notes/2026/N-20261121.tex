@@ -1,0 +1,377 @@
+\notechapter{N-20261121}{Hyperbolic Neural Networks and Proper Velocity Space}
+
+Almost every modern neural network lives in flat Euclidean space \(\mathbb{R}^n\). We add feature vectors, multiply them by weight matrices, take inner products, and rarely pause to ask whether the ambient geometry matches the structure of the data. Yet the moment you try to draw a simple binary tree on a flat sheet of paper, you run into a geometric traffic jam: ten levels down, over a thousand leaves must squeeze into a disk whose circumference grows only linearly with its radius.
+
+What if the space itself expanded exponentially as you walked outward? That is the core idea of \vocab{hyperbolic neural networks} (HNNs)---a corner of geometric deep learning that tends to look impenetrable to most AI researchers because it blends Riemannian geometry, non-associative algebra, and special relativity. This note unpacks the subject from the ground up, leading to \emph{Proper Velocity Neural Networks} (PVNN) by Ziheng Chen, Zihan Su, Bernhard Sch\"olkopf, and Nicu Sebe (ICLR 2026),\footnote{Ziheng Chen, Zihan Su, Bernhard Sch\"olkopf, and Nicu Sebe, \href{https://openreview.net/forum?id=UDIYU1X3vC}{\emph{Proper Velocity Neural Networks}}, ICLR 2026. The algebraic framework of proper-velocity gyrovector spaces is developed in Abraham A. Ungar, \emph{Analytic Hyperbolic Geometry and Albert Einstein's Special Theory of Relativity}, World Scientific, 2022.} which resolves the worst numerical headaches of hyperbolic deep learning by borrowing an old coordinate trick from Einstein's relativity.
+
+\section{Why trees choke flat space}
+
+Consider a rooted binary tree of depth \(r\). At distance \(r\) from the root, there are \(2^r\) leaves, and the total number of nodes within distance \(r\) is \(2^{r+1}-1\). Now try to place those nodes in the Euclidean plane \(\mathbb{R}^2\) so that graph distance roughly matches Euclidean distance. A disk of radius \(r\) has circumference \(2\pi r\) and area \(\pi r^2\). Both grow polynomially in \(r\), whereas the tree grows exponentially. Even in higher-dimensional Euclidean space \(\mathbb{R}^n\), ball volume grows as \(r^n\); for a fixed dimension \(n\), an exponential tree will eventually crush its leaves together.
+
+In a space of constant negative curvature \(K<0\)---the \vocab{hyperbolic space}---parallel geodesics diverge rather than staying equidistant. Picture a saddle surface (or a piece of crocheted hyperbolic coral) that flares outward equally in every direction. In the hyperbolic plane of curvature \(K<0\), the circumference and area of a geodesic disk of radius \(r\) are
+\[
+  C_K(r) = \frac{2\pi}{\sqrt{-K}}\sinh(\sqrt{-K}\,r),
+  \qquad
+  A_K(r) = \frac{2\pi}{-K}\bigl(\cosh(\sqrt{-K}\,r) - 1\bigr).
+\]
+For small \(r\), \(\sinh(\sqrt{-K}\,r)\approx \sqrt{-K}\,r\), so hyperbolic space looks locally flat and recovers \(2\pi r\) and \(\pi r^2\). For large \(r\), however, both circumference and area grow like \(e^{\sqrt{-K}\,r}\). Hyperbolic space is, quite literally, a continuous version of a tree.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth, every node/.style={font=\small}]
+  % Left: Euclidean crowding
+  \begin{scope}[shift={(0,0)}]
+    \draw[thick, gray!70, fill=gray!5] (0,0) circle (1.75);
+    \draw[dashed, gray!55] (0,0) circle (0.65);
+    \draw[dashed, gray!55] (0,0) circle (1.25);
+    % Root
+    \fill[MidnightBlue] (0,0) circle (2.2pt);
+    % Level 1 (3 children)
+    \foreach \a in {90, 210, 330} {
+      \draw[thick, MidnightBlue!80] (0,0) -- (\a:0.65);
+      \fill[MidnightBlue] (\a:0.65) circle (1.8pt);
+      % Level 2 (2 children each)
+      \foreach \da in {-24, 24} {
+        \draw[MidnightBlue!65] (\a:0.65) -- (\a+\da:1.25);
+        \fill[MidnightBlue] (\a+\da:1.25) circle (1.5pt);
+        % Level 3 (crowded near rim)
+        \foreach \db in {-11, 11} {
+          \draw[OrangeRed!75] (\a+\da:1.25) -- (\a+\da+\db:1.62);
+          \fill[OrangeRed!85!black] (\a+\da+\db:1.62) circle (1.3pt);
+        }
+      }
+    }
+    \node[below, font=\bfseries\small] at (0,-2.0) {Euclidean plane \(\mathbb{R}^2\)};
+    \node[below, font=\footnotesize, align=center] at (0,-2.42) {Circumference \(\propto r\)\\Outer leaves collide};
+  \end{scope}
+
+  % Right: Hyperbolic branching (Poincare disk schematic)
+  \begin{scope}[shift={(6.2,0)}]
+    \draw[thick, purple!75!black, fill=purple!4] (0,0) circle (1.75);
+    % Geodesic-like flaring tree
+    \fill[purple!85!black] (0,0) circle (2.2pt);
+    \foreach \a in {90, 210, 330} {
+      \draw[thick, purple!80!black] (0,0) -- (\a:0.62);
+      \fill[purple!85!black] (\a:0.62) circle (1.8pt);
+      \foreach \da in {-32, 32} {
+        \draw[purple!70!black] (\a:0.62) to[out=\a, in=\a+\da+180] (\a+\da:1.22);
+        \fill[purple!85!black] (\a+\da:1.22) circle (1.5pt);
+        \foreach \db in {-14, 14} {
+          \draw[teal!75!black] (\a+\da:1.22) to[out=\a+\da, in=\a+\da+\db+180] (\a+\da+\db:1.58);
+          \fill[teal!80!black] (\a+\da+\db:1.58) circle (1.3pt);
+        }
+      }
+    }
+    \node[below, font=\bfseries\small] at (0,-2.0) {Hyperbolic disk (\(K<0\))};
+    \node[below, font=\footnotesize, align=center] at (0,-2.42) {Circumference \(\propto \sinh(\sqrt{-K}\,r)\)\\Equal hyperbolic spacing at every depth};
+  \end{scope}
+\end{tikzpicture}
+\caption{In Euclidean space, exponential branching crowds leaves together. In hyperbolic space, geodesic distance expands rapidly near the rim, so outer branches stay well separated in intrinsic distance even when drawn in a finite disk.}
+\label{fig:N20261121-tree-crowding}
+\end{figure}
+
+This is why hyperbolic embeddings appear in machine learning wherever data has hidden hierarchy: WordNet taxonomies, citation and disease-transmission graphs, phylogenetic and genomic sequences, vision--language concepts (general categories near the origin, specific instances near the rim), and hierarchical EEG or brain-network representations. A low-dimensional hyperbolic space can represent a tree with far less distortion than a flat space of much higher dimension.
+
+\section{How neural networks live on curves}
+
+If you have never worked with geometric deep learning, the first puzzle is purely mechanical: \emph{how can a neural network even run on a curved space?}
+
+Take a single Euclidean layer, \(y = \sigma(Wx + b)\). On a curved Riemannian manifold \(\mathcal{M}\), almost every symbol in that equation stops making sense:
+\begin{enumerate}
+  \item \textbf{No vector addition.} Adding two points \(x+b\) on a sphere or saddle does not land on the manifold; a manifold has no intrinsic origin or linear structure.
+  \item \textbf{No matrix multiplication.} Multiplying coordinates by a matrix \(W\) generally throws points off \(\mathcal{M}\).
+  \item \textbf{No global comparison of directions.} A gradient at point \(x\) lives in the \emph{tangent space} \(T_x\mathcal{M}\) (the flat plane touching \(\mathcal{M}\) at \(x\)). You cannot add a momentum vector from \(T_x\mathcal{M}\) to a new gradient in \(T_y\mathcal{M}\) without first transporting it.
+\end{enumerate}
+
+Differential geometry supplies four standard primitives to replace flat vector algebra:
+\begin{itemize}
+  \item \textbf{Exponential map} \(\operatorname{Exp}_x(v)\in\mathcal{M}\): start at \(x\), launch with tangent velocity \(v\in T_x\mathcal{M}\), and travel along the straightest possible curve (a \emph{geodesic}) for unit time. In \(\mathbb{R}^n\), \(\operatorname{Exp}_x(v)=x+v\).
+  \item \textbf{Logarithmic map} \(\operatorname{Log}_x(y)\in T_x\mathcal{M}\): the inverse of \(\operatorname{Exp}_x\). Stand at \(x\), aim toward \(y\), and read off the initial velocity vector needed to reach \(y\) in unit time. In \(\mathbb{R}^n\), \(\operatorname{Log}_x(y)=y-x\).
+  \item \textbf{Parallel transport} \(\mathrm{PT}_{x\to y}(v)\in T_y\mathcal{M}\): slide a tangent vector \(v\) from \(x\) to \(y\) along the geodesic connecting them without rotating or stretching it.
+  \item \textbf{Geodesic distance} \(d(x,y) = \|\operatorname{Log}_x(y)\|_{g_x}\): the length of the shortest curve on \(\mathcal{M}\) between \(x\) and \(y\).
+\end{itemize}
+
+\begin{remark}[The tangent-space shortcut and its limit]
+The simplest way to build a hyperbolic layer is to cheat: pick a basepoint \(0\in\mathcal{M}\), map inputs to the flat tangent space \(T_0\mathcal{M}\cong\mathbb{R}^n\) via \(\operatorname{Log}_0\), apply an ordinary Euclidean layer \(W(\cdot)+b\), and map back via \(\operatorname{Exp}_0\). Early hyperbolic networks used this detour heavily. It works, but repeatedly projecting back and forth to \(T_0\mathcal{M}\) distorts geometry far from the origin and adds extra transcendental calls. Modern hyperbolic networks therefore seek \emph{intrinsic} layers---especially classifiers and fully connected layers---defined directly by hyperbolic distances and geodesic hyperplanes.
+\end{remark}
+
+\section{Two classic models and their flaws}
+
+Just as Earth is one sphere that cartographers draw using different map projections (Mercator, stereographic, gnomonic), hyperbolic space of curvature \(K<0\) is one unique Riemannian manifold up to isometry. To write PyTorch code, however, you must choose coordinates. Nearly all prior hyperbolic neural networks choose one of two classical models:
+
+\begin{enumerate}
+  \item \textbf{The Poincar\'e ball} \(\mathbb{P}_K^n = \{y\in\mathbb{R}^n : \|y\|^2 < -1/K\}\).
+  Its metric is a conformal rescaling of the Euclidean inner product:
+  \[
+    g_y^{\mathbb{P}}(u,v) = (\lambda_y^K)^2\langle u,v\rangle,
+    \qquad
+    \lambda_y^K = \frac{2}{1+K\|y\|^2}.
+  \]
+  Angles look right, and every operator has a closed form. \emph{The catch is the boundary.} Because geodesic distance from the origin is \(d_{\mathbb{P}}(0,y) = \frac{2}{\sqrt{-K}}\tanh^{-1}(\sqrt{-K}\|y\|)\), a point at hyperbolic radius \(r\) sits at Euclidean norm \(\|y\| = \frac{1}{\sqrt{-K}}\tanh(\frac{\sqrt{-K}}{2}r)\). When \(K=-1\) and \(r=18\), \(1-\|y\| \approx 3\times 10^{-8}\), which already hits the resolution floor of 32-bit floating point (\(\mathrm{FP32}\)). Points snap onto the boundary, \(\lambda_y^K\to\infty\), and gradients vanish to \(10^{-11}\text{--}10^{-13}\).
+
+  \item \textbf{The hyperboloid (Lorentz) model} \(\mathbb{H}_K^n = \{x=(x_s,x_t)\in\mathbb{R}^{n+1} : \langle x,x\rangle_{\mathcal{L}} = 1/K,\ x_t > 0\}\), where the Minkowski bilinear form is \(\langle u,v\rangle_{\mathcal{L}} = \langle u_s,v_s\rangle - u_t v_t\).
+  Because the coordinates are unbounded, points do not pile up against a finite wall. \emph{The catch is the quadratic shell constraint.} Every activation must stay strictly on the sheet \(\|x_s\|^2 - x_t^2 = 1/K\). In \(\mathrm{FP32}\), rounding errors in \(\cosh\) and \(\sinh\) quickly knock points off the hyperboloid: by radius \(r=10\), shell violations reach \(100\%\) without aggressive re-projection, and large radii trigger gradient explosion and \texttt{NaN}s.
+\end{enumerate}
+
+This creates a frustrating dilemma for practitioners. The Poincar\'e ball is unconstrained locally but trapped inside a finite ball; the hyperboloid is unbounded but trapped on a fragile quadratic shell in \(\mathbb{R}^{n+1}\). Is there a coordinate chart of hyperbolic space that covers \emph{all of \(\mathbb{R}^n\)} with no boundary and no ambient constraint?
+
+\section{Proper velocity from special relativity}
+
+Yes---and physicists have used it for over a century.
+
+In special relativity, let \(s = 1/\sqrt{-K} > 0\) play the role of the speed of light. A particle's ordinary coordinate velocity \(v = \mathrm{d}\mathbf{r}/\mathrm{d}t\) can never reach \(s\), so it is confined to the open ball \(\{v\in\mathbb{R}^n : \|v\|^2 < -1/K\}\). As a rocket accelerates forever, its coordinate velocity \(v\) crowds asymptotically against the sphere \(\|v\|=s\). That physical speed-of-light barrier is mathematically identical to the boundary crowding of bounded hyperbolic models.
+
+Relativists sidestep this bottleneck by defining \vocab{proper velocity} (also called \emph{celerity}): the spatial displacement divided by the \emph{traveler's own wristwatch} (proper time \(\tau\)) rather than laboratory time \(t\). Since \(\mathrm{d}t/\mathrm{d}\tau = \gamma_v = (1+K\|v\|^2)^{-1/2}\) is the Lorentz factor,
+\[
+  x = \frac{\mathrm{d}\mathbf{r}}{\mathrm{d}\tau} = \gamma_v v \in \mathbb{R}^n.
+\]
+As \(\|v\|\to s\), \(\gamma_v\to\infty\), so proper velocity stretches the bounded velocity ball smoothly onto the \emph{entire} Euclidean space \(\mathbb{R}^n\). Solving \(x=\gamma_v v\) for \(v\) yields
+\[
+  \|x\|^2 = \frac{\|v\|^2}{1+K\|v\|^2}
+  \quad\Longrightarrow\quad
+  1 - K\|x\|^2 = \frac{1}{1+K\|v\|^2} = \gamma_v^2.
+\]
+Define the \vocab{beta factor} on the \vocab{Proper Velocity (PV) space} \(\mathbb{PV}_K^n = \mathbb{R}^n\) by
+\begin{equation}
+  \beta_x = \frac{1}{\sqrt{1-K\|x\|^2}} \in (0,1],
+  \qquad (K<0).
+  \label{eq:N20261121-beta}
+\end{equation}
+Since \(\beta_x = \gamma_v^{-1}\), the map \(v = \beta_x x\) compresses all of \(\mathbb{R}^n\) smoothly back into the open ball \(\|v\|<s\).
+
+\begin{remark}[From Beltrami--Klein to Poincar\'e]
+The relativistic coordinate velocity \(v=\beta_x x\) actually lands in the \emph{Beltrami--Klein model} \(\mathbb{K}_K^n\), where geodesics are straight Euclidean chords. Passing from \(\mathbb{K}_K^n\) to the Poincar\'e ball \(\mathbb{P}_K^n\) is a standard radial rescaling \(v = \frac{2}{1+K\|y\|^2}y\) (geometrically, halving hyperbolic radius from the origin). Composing \(x\mapsto \beta_x x\) with the Klein-to-Poincar\'e map gives the clean global diffeomorphism \(\pi:\mathbb{PV}_K^n \xrightarrow{\sim} \mathbb{P}_K^n\):
+\begin{equation}
+  y = \pi(x) = \frac{\beta_x}{1+\beta_x}\,x = \frac{x}{1+\sqrt{1-K\|x\|^2}},
+  \qquad
+  \pi^{-1}(y) = \frac{2}{1+K\|y\|^2}\,y.
+  \label{eq:N20261121-pi}
+\end{equation}
+\end{remark}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth, every node/.style={font=\small}]
+  % Left: Poincare ball
+  \begin{scope}[shift={(0,0)}]
+    \draw[thick, MidnightBlue, fill=TealBlue!5] (0,0) circle (1.6);
+    \draw[dashed, gray!70] (0,0) circle (1.08);
+    \draw[dashed, gray!70] (0,0) circle (0.54);
+    \fill[purple] (1.42,0.45) circle (2pt) node[above left, font=\footnotesize] {\(y\)};
+    \node[below, font=\bfseries\small] at (0,-1.88) {Poincar\'e ball \(\mathbb{P}_K^n\)};
+    \node[below, font=\footnotesize, align=center] at (0,-2.3) {Bounded \(\|y\|<1/\sqrt{-K}\)\\Conformal factor \(\lambda_y^K\to\infty\)};
+  \end{scope}
+
+  % Center arrows
+  \draw[->, thick, purple!75!black] (2.0,0.3) -- node[above, font=\footnotesize] {\(\pi^{-1}(y)=\frac{2}{1+K\|y\|^2}y\)} (4.7,0.3);
+  \draw[<-, thick, ForestGreen!75!black] (2.0,-0.3) -- node[below, font=\footnotesize] {\(\pi(x)=\frac{\beta_x}{1+\beta_x}x\)} (4.7,-0.3);
+
+  % Right: PV space
+  \begin{scope}[shift={(6.7,0)}]
+    \draw[->, gray!75] (-1.75,0) -- (1.75,0);
+    \draw[->, gray!75] (0,-1.6) -- (0,1.6);
+    \draw[dotted, teal!75!black] (0,0) circle (0.52);
+    \draw[dotted, teal!75!black] (0,0) circle (1.02);
+    \draw[dotted, teal!75!black] (0,0) circle (1.52);
+    \fill[purple] (1.28,0.68) circle (2pt) node[above right, font=\footnotesize] {\(x\in\mathbb{R}^n\)};
+    \node[below, font=\bfseries\small] at (0,-1.88) {Proper Velocity \(\mathbb{PV}_K^n=\mathbb{R}^n\)};
+    \node[below, font=\footnotesize, align=center] at (0,-2.3) {Unconstrained \(\mathbb{R}^n\)\\Radius \(r=\frac{1}{\sqrt{-K}}\sinh^{-1}(\sqrt{-K}\|x\|)\)};
+  \end{scope}
+\end{tikzpicture}
+\caption{The global isometry \(\pi:\mathbb{PV}_K^n\to\mathbb{P}_K^n\) unwinds the crowded rim of the Poincar\'e ball smoothly onto all of \(\mathbb{R}^n\).}
+\label{fig:N20261121-pv-isometry}
+\end{figure}
+
+\section{Pulling back the metric}
+
+Proper Velocity space is \emph{not} a new curved manifold; it is the exact same hyperbolic space of constant curvature \(K<0\), wearing a much friendlier coordinate system. To see its Riemannian metric on \(\mathbb{R}^n\), we simply pull back the Poincar\'e metric \(g^{\mathbb{P}}\) along \(\pi\).
+
+First check that \(\pi(x)\) automatically lands strictly inside \(\mathbb{P}_K^n\) for every \(x\in\mathbb{R}^n\):
+\begin{equation}
+  1 + K\|\pi(x)\|^2
+  = 1 + \frac{K\|x\|^2}{\bigl(1+\sqrt{1-K\|x\|^2}\bigr)^2}
+  = \frac{2\sqrt{1-K\|x\|^2}}{1+\sqrt{1-K\|x\|^2}}
+  = \frac{2\beta_x}{1+\beta_x} > 0.
+  \label{eq:N20261121-conf-identity}
+\end{equation}
+No clipping, no projection, no shell check.
+
+\begin{proposition}[PV Riemannian metric]
+Pulling back \(g_y^{\mathbb{P}}(u,v) = (\lambda_y^K)^2\langle u,v\rangle\) along \(\pi:\mathbb{PV}_K^n\to\mathbb{P}_K^n\) yields the metric on \(\mathbb{PV}_K^n=\mathbb{R}^n\):
+\begin{equation}
+  g_x(u,v) = \langle u,v\rangle + K\beta_x^2\,\langle x,u\rangle\langle x,v\rangle,
+  \qquad \forall x\in\mathbb{PV}_K^n,\ \forall u,v\in T_x\mathbb{PV}_K^n\cong\mathbb{R}^n.
+  \label{eq:N20261121-metric}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Differentiating \(y=\pi(x)=\frac{\beta_x}{1+\beta_x}x\) using \(\nabla\beta_x = K\beta_x^3 x\) gives
+\[
+  \mathrm{d}\pi_x(u) = \frac{\beta_x}{1+\beta_x}\left(u + \frac{K\beta_x^2}{1+\beta_x}\langle x,u\rangle x\right).
+\]
+By \eqref{eq:N20261121-conf-identity}, the conformal factor at \(y=\pi(x)\) is \(\lambda_y^K = \frac{2}{1+K\|y\|^2} = \frac{1+\beta_x}{\beta_x}\), which cancels the prefactor cleanly:
+\[
+  \lambda_{\pi(x)}^K\,\mathrm{d}\pi_x(u) = u + \frac{K\beta_x^2}{1+\beta_x}\langle x,u\rangle x.
+\]
+Taking the Euclidean inner product of \(\lambda_{\pi(x)}^K\mathrm{d}\pi_x(u)\) and \(\lambda_{\pi(x)}^K\mathrm{d}\pi_x(v)\) gives
+\[
+  g_x(u,v) = \langle u,v\rangle + \left(\frac{2K\beta_x^2}{1+\beta_x} + \frac{K^2\beta_x^4\|x\|^2}{(1+\beta_x)^2}\right)\langle x,u\rangle\langle x,v\rangle.
+\]
+Since \(K\|x\|^2 = 1-\beta_x^{-2} = -\frac{1-\beta_x^2}{\beta_x^2}\), the coefficient in parentheses reduces to
+\[
+  K\beta_x^2\,\frac{2(1+\beta_x)-(1-\beta_x^2)}{(1+\beta_x)^2}
+  = K\beta_x^2\,\frac{1+2\beta_x+\beta_x^2}{(1+\beta_x)^2}
+  = K\beta_x^2. \qedhere
+\]
+\end{proof}
+
+Look at how well-behaved \eqref{eq:N20261121-metric} is compared to the isotropic blow-up of the Poincar\'e ball:
+\begin{itemize}
+  \item \textbf{Tangential directions} (\(\langle x,u\rangle=0\)): \(g_x(u,u)=\|u\|^2\) is purely Euclidean. Moving sideways at large radius suffers zero metric distortion.
+  \item \textbf{Radial direction} (\(u=x\)): since \(1+K\beta_x^2\|x\|^2 = \beta_x^2\), we have \(g_x(x,x) = \beta_x^2\|x\|^2 = \frac{\|x\|^2}{1-K\|x\|^2} \to -1/K\). Thus the Euclidean coordinate norm \(\|x\|\) grows exponentially in geodesic radius \(r\): \(\|x\| = \frac{1}{\sqrt{-K}}\sinh(\sqrt{-K}\,r)\).
+\end{itemize}
+In fact, the PV coordinate vector \(x\) is simply the \emph{spatial part} \(x_s\) of the hyperboloid point \((x_s,x_t)\in\mathbb{H}_K^n\), with the time coordinate \(x_t = \sqrt{1-K\|x\|^2}/\sqrt{-K} = (\sqrt{-K}\beta_x)^{-1}\) solved out algebraically instead of stored as a fragile extra coordinate! That single observation explains why PV inherits the unboundedness of the hyperboloid while completely eliminating its shell-violation errors.
+
+\section{Addition without associativity}
+
+Now we can demystify the symbols \(x\oplus_{\mathrm{U}} y\), \(t\otimes_{\mathrm{U}} y\), and \(\mathrm{gyr}[x,y]\) that make hyperbolic papers look alien.
+
+In flat space, translating by \(x\) and then by \(y\) is the same as translating by \(y\) and then by \(x\), and grouping \((x+y)+z\) does not matter. On a curved space, curvature breaks both commutativity and associativity. If you compose two non-collinear Lorentz boosts in special relativity, the result is not a pure boost: it is a boost followed by a spatial rotation (the \emph{Thomas--Wigner rotation}). Abraham Ungar formalized this phenomenon into \vocab{gyrovector spaces}: curved analogues of vector spaces where a canonical orthogonal rotation---the \vocab{gyration} \(\mathrm{gyr}[x,y]\)---repairs the broken axioms:
+\[
+  x\oplus y = \mathrm{gyr}[x,y](y\oplus x),
+  \qquad
+  x\oplus(y\oplus z) = (x\oplus y)\oplus \mathrm{gyr}[x,y]z.
+\]
+
+\begin{definition}[PV gyroaddition and gyroscalar multiplication]
+On \(\mathbb{PV}_K^n=\mathbb{R}^n\) with \(\beta_x=(1-K\|x\|^2)^{-1/2}\), the \vocab{PV gyroaddition} \(\oplus_{\mathrm{U}}\) and \vocab{PV scalar multiplication} \(\otimes_{\mathrm{U}}\) are
+\begin{align}
+  x\oplus_{\mathrm{U}} y
+  &= x + y + \left\{\frac{1-\beta_y}{\beta_y} - K\frac{\beta_x}{1+\beta_x}\langle x,y\rangle\right\}x,
+  \label{eq:N20261121-gyroadd} \\
+  t\otimes_{\mathrm{U}} y
+  &= \frac{1}{\sqrt{-K}}\sinh\!\left(t\sinh^{-1}\!\bigl(\sqrt{-K}\|y\|\bigr)\right)\frac{y}{\|y\|}
+  \qquad (y\neq 0,\ t\otimes_{\mathrm{U}} 0 = 0).
+  \label{eq:N20261121-gyroscale}
+\end{align}
+\end{definition}
+
+Check the flat limit \(K\to 0^-\): \(\beta_x,\beta_y\to 1\), so the curly bracket in \eqref{eq:N20261121-gyroadd} vanishes and \(x\oplus_{\mathrm{U}} y \to x+y\), while \eqref{eq:N20261121-gyroscale} reduces to \(ty\). Better still, unlike M\"obius addition on \(\mathbb{P}_K^n\), the denominators \(\beta_y>0\) and \(1+\beta_x>1\) can never approach zero for any \(x,y\in\mathbb{R}^n\).
+
+Because \(\pi:\mathbb{PV}_K^n\to\mathbb{P}_K^n\) is an isometry, every Riemannian operator on \(\mathbb{PV}_K^n\) is obtained by conjugating the Poincar\'e-ball operator along \(\pi\). At the origin \(x=0\), the formulas are remarkably simple:
+\begin{align}
+  \operatorname{Exp}_0(v) &= \frac{1}{\sqrt{-K}}\sinh\!\bigl(\sqrt{-K}\|v\|\bigr)\frac{v}{\|v\|}, &
+  \operatorname{Log}_0(y) &= \frac{1}{\sqrt{-K}}\sinh^{-1}\!\bigl(\sqrt{-K}\|y\|\bigr)\frac{y}{\|y\|}, \label{eq:N20261121-origin-explog} \\
+  d_{\mathbb{PV}}(0,y) &= \frac{1}{\sqrt{-K}}\sinh^{-1}\!\bigl(\sqrt{-K}\|y\|\bigr), &
+  \mathrm{PT}_{0\to y}(v) &= v - K\frac{\beta_y}{1+\beta_y}\langle y,v\rangle y. \label{eq:N20261121-origin-pt}
+\end{align}
+For an arbitrary basepoint \(x\in\mathbb{PV}_K^n\), left gyrotranslation \(y\mapsto z=(-x)\oplus_{\mathrm{U}} y\) shifts \(x\) isometrically to the origin, giving Theorem~4.3 of Chen et al.:
+\begin{align}
+  \operatorname{Exp}_x(v) &= x \oplus_{\mathrm{U}} \left(\frac{1}{\sqrt{-K}}\sinh\!\left(\frac{\sqrt{-K}(1+\beta_x)}{\beta_x}\|\mathrm{d}\pi_x(v)\|\right)\frac{\mathrm{d}\pi_x(v)}{\|\mathrm{d}\pi_x(v)\|}\right), \label{eq:N20261121-exp} \\
+  \operatorname{Log}_x(y) &= \sigma(x,y)\,z + \tau(x,y)\langle x,z\rangle x, \label{eq:N20261121-log} \\
+  d_{\mathbb{PV}}(x,y) &= \frac{2}{\sqrt{-K}}\tanh^{-1}\!\Bigl(\sqrt{-K}\,\|\pi((-x)\oplus_{\mathrm{U}} y)\|\Bigr), \label{eq:N20261121-dist}
+\end{align}
+where \(\sigma(x,y) = \frac{2}{\sqrt{-K}}\frac{\tanh^{-1}(\sqrt{-K}\|\pi(z)\|)}{\|z\|}\) and \(\tau(x,y) = \frac{2\beta_x}{1+\beta_x}\frac{\sqrt{-K}\tanh^{-1}(\sqrt{-K}\|\pi(z)\|)}{\|z\|}\). Conversely, gyro-operations are completely characterized by Riemannian ones (Theorem~4.4):
+\[
+  x\oplus_{\mathrm{U}} y = \operatorname{Exp}_x\!\bigl(\mathrm{PT}_{0\to x}(\operatorname{Log}_0(y))\bigr),
+  \qquad
+  t\otimes_{\mathrm{U}} x = \operatorname{Exp}_0\!\bigl(t\operatorname{Log}_0(x)\bigr).
+\]
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}l Y Y Y@{}}
+\toprule
+\textbf{Property} & \textbf{Poincar\'e ball \(\mathbb{P}_K^n\)} & \textbf{Hyperboloid \(\mathbb{H}_K^n\)} & \textbf{Proper Velocity \(\mathbb{PV}_K^n\)} \\
+\midrule
+Domain & \(\|y\|^2 < -1/K\) in \(\mathbb{R}^n\) & \(\langle x,x\rangle_{\mathcal{L}}=1/K,\ x_t>0\) in \(\mathbb{R}^{n+1}\) & Unconstrained \(\mathbb{R}^n\) \\
+Metric \(g_x(u,v)\) & \((\lambda_x^K)^2\langle u,v\rangle\) & \(\langle u_s,v_s\rangle - u_t v_t\) & \(\langle u,v\rangle + K\beta_x^2\langle x,u\rangle\langle x,v\rangle\) \\
+\(\operatorname{Exp}_0(v)\) & \(\tanh(c\|v\|)\,\dfrac{v}{c\|v\|}\) & \(\begin{aligned}[t]&\bigl(\sinh(c\|v\|)\,\tfrac{v}{c\|v\|},\\&\;\tfrac{\cosh(c\|v\|)}{c}\bigr)\end{aligned}\) & \(\sinh(c\|v\|)\,\dfrac{v}{c\|v\|}\) \\
+FP32 failure & Boundary saturation; vanishing gradients & Shell drift (\(100\%\) by \(r=10\)); \texttt{NaN} gradients & No boundary or shell; only raw \(\sinh\) ceiling \\
+\bottomrule
+\end{tabularx}
+\caption{Three isometric models of \(n\)-dimensional hyperbolic space of curvature \(K<0\), writing \(c=\sqrt{-K}\).}
+\label{tab:N20261121-models}
+\end{table}
+
+\begin{caution}[title={Caution: One honest numerical limit}]
+Eliminating boundaries does not make floating point infinite. In \eqref{eq:N20261121-gyroscale}, \(\sinh(t\sinh^{-1}(\sqrt{-K}\|y\|))\) grows like \(\|y\|^t\), and \(\sinh(u)\) still overflows \(\mathrm{FP32}\) near \(u\approx 89.4\). What PV removes is the \emph{premature} collapse that destroys \(\mathbb{P}_K^n\) around \(r\approx 18\) and \(\mathbb{H}_K^n\) around \(r\approx 10\).
+\end{caution}
+
+\section{Linear layers as signed distances}
+
+We now reach the geometric trick that makes modern hyperbolic neural networks practical. How do you build a linear classifier or fully connected layer without multiplying curved points by matrices?
+
+Start in ordinary Euclidean space. A linear logit \(v_k(x) = \langle w_k, x\rangle + b_k\) can be rewritten by pulling out \(\|w_k\|\) and writing \(b_k = -\|w_k\| r_k\):
+\[
+  v_k(x) = \|w_k\|\bigl(\langle \hat{w}_k, x\rangle - r_k\bigr)
+  = \|w_k\|\cdot \operatorname{sign}\!\bigl(\langle \hat{w}_k, x - p_k\rangle\bigr)\,d_{\mathbb{E}}(x, H_{\hat{w}_k, p_k}),
+\]
+where \(\hat{w}_k = w_k/\|w_k\|\) is a unit normal and \(H_{\hat{w}_k, p_k}\) is the decision hyperplane at signed distance \(r_k\) from the origin. Read that equation aloud: \emph{a Euclidean linear layer simply measures the signed distance from \(x\) to \(m\) hyperplanes, weighted by \(\|w_k\|\).}
+
+This formulation (due to Lebanon--Lafferty, Ganea--B\'ecigneul--Hofmann, and Shimizu et al.) transfers directly to hyperbolic space. Replace each hyperplane by a \vocab{gyrohyperplane} \(H_{z_k,r_k}\)---the geodesic submanifold passing through \(p_k=\operatorname{Exp}_0(r_k\hat{z}_k)\) orthogonal to \(\hat{z}_k=z_k/\|z_k\|\). Crucially, the learnable parameters \((z_k,r_k)\in\mathbb{R}^n\times\mathbb{R}\) live in ordinary Euclidean space, so standard optimizers (SGD, AdamW) train them directly with no manifold constraints.
+
+\begin{proposition}[PV MLR and PV fully connected layer]
+For \(x\in\mathbb{PV}_K^n\) and Euclidean parameters \(z_k\in\mathbb{R}^n\), \(r_k\in\mathbb{R}\), the signed-margin score \(v_k(x)\) for class \(k\) has the closed form (Theorem~5.2)
+\begin{equation}
+  v_k(x) = \frac{\|z_k\|}{\sqrt{-K}}\sinh^{-1}\!\left(\frac{\sqrt{-K}}{\|z_k\|}\cosh(\sqrt{-K}r_k)\langle x,z_k\rangle - \sinh(\sqrt{-K}r_k)\sqrt{1-K\|x\|^2}\right).
+  \label{eq:N20261121-pvmlr}
+\end{equation}
+As \(K\to 0^-\), \(v_k(x)\to \langle x,z_k\rangle - r_k\|z_k\|\), recovering Euclidean affine logits. Mapping the vector \((v_1(x),\ldots,v_m(x))\) back onto \(\mathbb{PV}_K^m\) gives the \vocab{PV fully connected (FC) layer} (Theorem~5.3):
+\begin{equation}
+  y_k = \frac{1}{\sqrt{-K}}\sinh\!\bigl(\sqrt{-K}\,v_k(x)\bigr),
+  \qquad 1\leq k\leq m.
+  \label{eq:N20261121-pvfc}
+\end{equation}
+\end{proposition}
+
+\begin{proof}[Derivation of \eqref{eq:N20261121-pvmlr}]
+Let \(y = \pi(x) = \frac{\beta_x}{1+\beta_x}x \in \mathbb{P}_K^n\). On the Poincar\'e ball, the signed geodesic distance from \(y\) to the gyrohyperplane with unit normal \(\hat{z}_k=z_k/\|z_k\|\) at offset \(r_k\) is
+\[
+  \tilde{d}_k(y) = \frac{1}{\sqrt{-K}}\sinh^{-1}\!\left(\frac{2\sqrt{-K}\langle y,\hat{z}_k\rangle\cosh(\sqrt{-K}r_k) - (1-K\|y\|^2)\sinh(\sqrt{-K}r_k)}{1+K\|y\|^2}\right).
+\]
+By \eqref{eq:N20261121-conf-identity}, \(1+K\|y\|^2 = \frac{2\beta_x}{1+\beta_x}\). A parallel calculation gives
+\[
+  1 - K\|y\|^2
+  = 1 - \frac{K\|x\|^2}{(1+\beta_x)^2\beta_x^{-2}}
+  = 1 + \frac{\beta_x^2-1}{(1+\beta_x)^2}
+  = \frac{2\beta_x(1+\beta_x)}{(1+\beta_x)^2}
+  = \frac{2}{1+\beta_x}.
+\]
+Dividing numerator and denominator by \(\frac{2\beta_x}{1+\beta_x}\) simplifies the two ratios cleanly:
+\[
+  \frac{2\langle y,\hat{z}_k\rangle}{1+K\|y\|^2} = \langle x,\hat{z}_k\rangle,
+  \qquad
+  \frac{1-K\|y\|^2}{1+K\|y\|^2} = \beta_x^{-1} = \sqrt{1-K\|x\|^2}.
+\]
+Multiplying \(\tilde{d}_k(\pi(x))\) by \(\|z_k\|\) yields \eqref{eq:N20261121-pvmlr}.
+\end{proof}
+
+Notice the algebraic elegance of composing \eqref{eq:N20261121-pvmlr} with \eqref{eq:N20261121-pvfc}: whenever \(\|z_k\|=1\), \(\sinh\) cancels \(\sinh^{-1}\) outright, reducing \(y_k\) to a direct combination of \(\langle x,z_k\rangle\) and \(\sqrt{1-K\|x\|^2}\).
+
+\section{Building a full PV network}
+
+Once the PV FC layer is in place, the rest of the deep-learning toolkit drops in with surprising simplicity precisely because \(\mathbb{PV}_K^n = \mathbb{R}^n\) as a set:
+\begin{itemize}
+  \item \textbf{PV Convolution.} To convolve over a patch \((x_{i_1},\ldots,x_{i_k})\), simply concatenate the vectors in \(\mathbb{R}^{kn}\) and apply a PV FC layer. In the Poincar\'e ball, naive concatenation can push the norm past \(1/\sqrt{-K}\) and requires rescaling; in \(\mathbb{PV}_K^n\), concatenation is always valid.
+  \item \textbf{PV Activation.} One can either conjugate a nonlinearity \(\sigma\) through the origin tangent space, \(x\mapsto \operatorname{Exp}_0(\sigma(\operatorname{Log}_0(x)))\), or apply \(\sigma(x)\) \emph{directly} on \(\mathbb{R}^n\)---since \(\mathbb{R}^n\) has no boundary to violate. Remarkably, the paper's ablations show direct Euclidean activations match or outperform tangent-conjugated ones.
+  \item \textbf{PV Batch Normalization.} Replace Euclidean mean and variance with the Fr\'echet mean \(\mu = \argmin_{y\in\mathbb{PV}_K^n}\frac{1}{N}\sum_{i=1}^N d_{\mathbb{PV}}(x_i,y)^2\) and Fr\'echet variance \(\nu^2 = \frac{1}{N}\sum_{i=1}^N d_{\mathbb{PV}}(x_i,\mu)^2\), then center, rescale, and shift via gyro-operations:
+  \[
+    \tilde{x}_i = \beta \oplus_{\mathrm{U}} \left(\frac{s}{\sqrt{\nu^2+\epsilon}} \otimes_{\mathrm{U}} \bigl((-\mu)\oplus_{\mathrm{U}} x_i\bigr)\right).
+  \]
+\end{itemize}
+
+\section{What changes in practice}
+
+Does this coordinate change actually matter outside theory? The experiments in Chen et al.\ (ICLR 2026) highlight two clear payoffs:
+\begin{itemize}
+  \item \textbf{Floating-point stability.} Under \(\mathrm{FP32}\) scaling \(r\otimes_{\mathcal{H}} x\) across radii \(r\in[1,1000]\), \(\mathbb{PV}_K^n\) records \(0\%\) failure and has no manifold constraint to violate. Over the same range, \(\mathbb{H}_K^n\) violates its hyperboloid shell \(100\%\) of the time from \(r=10\) onward and hits \texttt{NaN} gradients, while \(\mathbb{P}_K^n\) suffers vanishing gradients (\(10^{-11}\text{--}10^{-13}\)). Meanwhile, \(\mathbb{PV}_K^n\) maintains stable gradient norms (\(10^{-4}\text{--}10^{-6}\)) and sub-\(10^{-7}\) round-trip error \(\|\operatorname{Log}_0(\operatorname{Exp}_0(v))-v\|\).
+  \item \textbf{Consistent downstream gains.} Replacing standard hyperbolic layers with PV layers improves or matches strong hyperbolic baselines across ResNet-18 image classification (CIFAR-10/100), hyperbolic graph learning (especially strongly tree-like graphs such as Disease with \(\delta=0\) and Airport with \(\delta=1\), as well as PubMed and Cora), and genomic transposable-element classification.
+\end{itemize}
+
+\begin{moral}
+Differential geometry tells us that \(\mathbb{P}_K^n\), \(\mathbb{H}_K^n\), and \(\mathbb{PV}_K^n\) are the \emph{exact same} Riemannian manifold. Numerical analysis tells us that floating-point hardware cares deeply about which coordinates you choose. Proper Velocity Neural Networks succeed by trading a bounded ball or a fragile quadratic shell for an unconstrained global chart on \(\mathbb{R}^n\)---keeping all the tree-embedding geometry of hyperbolic space while letting standard deep-learning machinery run smoothly.
+\end{moral}
