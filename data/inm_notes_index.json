@@ -2,7 +2,7 @@
   "project": {
     "title": "INM: Informal Notes on Mathematics",
     "subtitle": "A dated archive of mathematical notes reconstructed into an English TeX book.",
-    "fullPdf": "/notes/inm.pdf",
+    "fullPdf": "/notes/inm.pdf?edition=947bcf25b0c2",
     "oldArchive": "https://github.com/ChouYuanjue/Informal_Notes_on_Mathematics",
     "noteCount": 175,
     "volumeCount": 13,
@@ -49,8 +49,8 @@
         "1.58-Bit Training: Geometry and Dynamics",
         "Two Philosophies of Discrete Calculus"
       ],
-      "pdf": "/notes/2026/N-20261126.pdf",
-      "tex": "/notes/2026/N-20261126.tex"
+      "pdf": "/notes/2026/N-20261126.pdf?edition=2c8bfdbb4f1d",
+      "tex": "/notes/2026/N-20261126.tex?edition=b3b741131a59"
     },
     {
       "id": "N-20261125",
@@ -67,8 +67,8 @@
         "Stepanov's elementary coup: how derivatives squeeze out $\\sqrt{q}$",
         "How do you differentiate an integer?"
       ],
-      "pdf": "/notes/2026/N-20261125.pdf",
-      "tex": "/notes/2026/N-20261125.tex"
+      "pdf": "/notes/2026/N-20261125.pdf?edition=47b5f48782d3",
+      "tex": "/notes/2026/N-20261125.tex?edition=286dfd127f20"
     },
     {
       "id": "N-20261124",
@@ -87,8 +87,8 @@
         "The dual side: tensor networks and list distinctness",
         "Open structural questions"
       ],
-      "pdf": "/notes/2026/N-20261124.pdf",
-      "tex": "/notes/2026/N-20261124.tex"
+      "pdf": "/notes/2026/N-20261124.pdf?edition=78d618d59523",
+      "tex": "/notes/2026/N-20261124.tex?edition=8212fcbf8b8d"
     },
     {
       "id": "N-20261121",
@@ -109,8 +109,8 @@
         "Linear layers as signed distances",
         "Building a full PV network"
       ],
-      "pdf": "/notes/2026/N-20261121.pdf",
-      "tex": "/notes/2026/N-20261121.tex"
+      "pdf": "/notes/2026/N-20261121.pdf?edition=79c00ec4dfe1",
+      "tex": "/notes/2026/N-20261121.tex?edition=2a033bd3a80f"
     },
     {
       "id": "N-20261119",
@@ -128,8 +128,8 @@
         "General Finite Measure Spaces: Universal Property of the $L^p$ Functor",
         "Concluding Remarks"
       ],
-      "pdf": "/notes/2026/N-20261119.pdf",
-      "tex": "/notes/2026/N-20261119.tex"
+      "pdf": "/notes/2026/N-20261119.pdf?edition=0acbbcdad575",
+      "tex": "/notes/2026/N-20261119.tex?edition=c1493f6edbd3"
     },
     {
       "id": "N-20261110",
@@ -150,8 +150,8 @@
         "The usual form of the theorem",
         "An odd-degree explanation"
       ],
-      "pdf": "/notes/2026/N-20261110.pdf",
-      "tex": "/notes/2026/N-20261110.tex"
+      "pdf": "/notes/2026/N-20261110.pdf?edition=6ac91001c0d3",
+      "tex": "/notes/2026/N-20261110.tex?edition=cb192a5bbb7e"
     },
     {
       "id": "N-20261109",
@@ -172,8 +172,8 @@
         "Forty-five tritangent planes",
         "A double-six"
       ],
-      "pdf": "/notes/2026/N-20261109.pdf",
-      "tex": "/notes/2026/N-20261109.tex"
+      "pdf": "/notes/2026/N-20261109.pdf?edition=0a193eb41087",
+      "tex": "/notes/2026/N-20261109.tex?edition=003b702eae4a"
     },
     {
       "id": "N-20261108",
@@ -193,8 +193,8 @@
         "A complete iterated-logarithm bound",
         "Where the inverse Ackermann function enters"
       ],
-      "pdf": "/notes/2026/N-20261108.pdf",
-      "tex": "/notes/2026/N-20261108.tex"
+      "pdf": "/notes/2026/N-20261108.pdf?edition=b7d5652ee945",
+      "tex": "/notes/2026/N-20261108.tex?edition=151df9cf252f"
     },
     {
       "id": "N-20261107",
@@ -215,8 +215,8 @@
         "Avoiding a word",
         "The tail remembers the distribution"
       ],
-      "pdf": "/notes/2026/N-20261107.pdf",
-      "tex": "/notes/2026/N-20261107.tex"
+      "pdf": "/notes/2026/N-20261107.pdf?edition=94ab8442f6f1",
+      "tex": "/notes/2026/N-20261107.tex?edition=734c880c8351"
     },
     {
       "id": "N-20261105",
@@ -237,8 +237,8 @@
         "A dependence with zero correlation",
         "The geometry of choosing a coupling"
       ],
-      "pdf": "/notes/2026/N-20261105.pdf",
-      "tex": "/notes/2026/N-20261105.tex"
+      "pdf": "/notes/2026/N-20261105.pdf?edition=1ffeef3b2bad",
+      "tex": "/notes/2026/N-20261105.tex?edition=9399c94246d7"
     },
     {
       "id": "N-20261030",
@@ -259,8 +259,8 @@
         "From two branch points to every permutation",
         "Differential equations remember loops too"
       ],
-      "pdf": "/notes/2026/N-20261030.pdf",
-      "tex": "/notes/2026/N-20261030.tex"
+      "pdf": "/notes/2026/N-20261030.pdf?edition=a3e2735a44c5",
+      "tex": "/notes/2026/N-20261030.tex?edition=3a4d1e6b349b"
     },
     {
       "id": "N-20261026",
@@ -281,8 +281,8 @@
         "Extending a measure from open sets",
         "The Grothendieck topology induced by a measure"
       ],
-      "pdf": "/notes/2026/N-20261026.pdf",
-      "tex": "/notes/2026/N-20261026.tex"
+      "pdf": "/notes/2026/N-20261026.pdf?edition=f2f1b6c6fe9e",
+      "tex": "/notes/2026/N-20261026.tex?edition=a2f94a30007f"
     },
     {
       "id": "N-20261020",
@@ -303,8 +303,8 @@
         "What does a homeomorphism remember?",
         "Two different ways to ignore small sets"
       ],
-      "pdf": "/notes/2026/N-20261020.pdf",
-      "tex": "/notes/2026/N-20261020.tex"
+      "pdf": "/notes/2026/N-20261020.pdf?edition=dbcd7e502334",
+      "tex": "/notes/2026/N-20261020.tex?edition=e1ae5bdcc206"
     },
     {
       "id": "N-20261017",
@@ -325,8 +325,8 @@
         "Muon orthogonalizes a momentum matrix",
         "The memory advantage has an exact accounting"
       ],
-      "pdf": "/notes/2026/N-20261017.pdf",
-      "tex": "/notes/2026/N-20261017.tex"
+      "pdf": "/notes/2026/N-20261017.pdf?edition=a675f785164f",
+      "tex": "/notes/2026/N-20261017.tex?edition=bf89d68e720f"
     },
     {
       "id": "N-20261016",
@@ -347,8 +347,8 @@
         "Poissonization",
         "Random set partitions"
       ],
-      "pdf": "/notes/2026/N-20261016.pdf",
-      "tex": "/notes/2026/N-20261016.tex"
+      "pdf": "/notes/2026/N-20261016.pdf?edition=028cb725ea9c",
+      "tex": "/notes/2026/N-20261016.tex?edition=8d208d7c665a"
     },
     {
       "id": "N-20261015",
@@ -369,8 +369,8 @@
         "The discrete derivative",
         "A partition's geometry"
       ],
-      "pdf": "/notes/2026/N-20261015.pdf",
-      "tex": "/notes/2026/N-20261015.tex"
+      "pdf": "/notes/2026/N-20261015.pdf?edition=10a649ecb338",
+      "tex": "/notes/2026/N-20261015.tex?edition=951c06450ae1"
     },
     {
       "id": "N-20261009",
@@ -391,8 +391,8 @@
         "Looking for a sparse description",
         "Can two sparse explanations agree exactly?"
       ],
-      "pdf": "/notes/2026/N-20261009.pdf",
-      "tex": "/notes/2026/N-20261009.tex"
+      "pdf": "/notes/2026/N-20261009.pdf?edition=c33ad82038e6",
+      "tex": "/notes/2026/N-20261009.tex?edition=cfa87ab36da6"
     },
     {
       "id": "N-20260621",
@@ -412,8 +412,8 @@
         "Finite intervals have a spectral gap",
         "Diffusion increases entropy and dissipates information"
       ],
-      "pdf": "/notes/2026/N-20260621.pdf",
-      "tex": "/notes/2026/N-20260621.tex"
+      "pdf": "/notes/2026/N-20260621.pdf?edition=a4224c64e762",
+      "tex": "/notes/2026/N-20260621.tex?edition=3a2bb89568db"
     },
     {
       "id": "N-20260620",
@@ -434,8 +434,8 @@
         "Fourier modes are reflected travelling waves",
         "Damping shows exactly what energy conservation uses"
       ],
-      "pdf": "/notes/2026/N-20260620.pdf",
-      "tex": "/notes/2026/N-20260620.tex"
+      "pdf": "/notes/2026/N-20260620.pdf?edition=50a0a9b82dae",
+      "tex": "/notes/2026/N-20260620.tex?edition=f798e4477d52"
     },
     {
       "id": "N-20260619",
@@ -454,8 +454,8 @@
         "Shocks versus Rarefactions",
         "Entropy and Time Direction"
       ],
-      "pdf": "/notes/2026/N-20260619.pdf",
-      "tex": "/notes/2026/N-20260619.tex"
+      "pdf": "/notes/2026/N-20260619.pdf?edition=4e6a4ed7399c",
+      "tex": "/notes/2026/N-20260619.tex?edition=ded0835f40ce"
     },
     {
       "id": "N-20260618",
@@ -473,8 +473,8 @@
         "Initial and boundary conditions select solutions",
         "Differential operators and response kernels"
       ],
-      "pdf": "/notes/2026/N-20260618.pdf",
-      "tex": "/notes/2026/N-20260618.tex"
+      "pdf": "/notes/2026/N-20260618.pdf?edition=f763a4faf37f",
+      "tex": "/notes/2026/N-20260618.tex?edition=773700bda462"
     },
     {
       "id": "N-20260617",
@@ -495,8 +495,8 @@
         "Heat and waves act differently on the same coordinates",
         "Fourier series can represent distributions"
       ],
-      "pdf": "/notes/2026/N-20260617.pdf",
-      "tex": "/notes/2026/N-20260617.tex"
+      "pdf": "/notes/2026/N-20260617.pdf?edition=a8fcf6e3ae4d",
+      "tex": "/notes/2026/N-20260617.tex?edition=758b638a5a4d"
     },
     {
       "id": "N-20260616",
@@ -514,8 +514,8 @@
         "The converse needs more information",
         "Oscillatory improper integrals behave similarly"
       ],
-      "pdf": "/notes/2026/N-20260616.pdf",
-      "tex": "/notes/2026/N-20260616.tex"
+      "pdf": "/notes/2026/N-20260616.pdf?edition=ff6370a726b0",
+      "tex": "/notes/2026/N-20260616.tex?edition=4ba82dcda4b5"
     },
     {
       "id": "N-20260615",
@@ -536,8 +536,8 @@
         "Stokes turns local rotation into boundary circulation",
         "Circulation across Two Surfaces"
       ],
-      "pdf": "/notes/2026/N-20260615.pdf",
-      "tex": "/notes/2026/N-20260615.tex"
+      "pdf": "/notes/2026/N-20260615.pdf?edition=02467f6f8e8f",
+      "tex": "/notes/2026/N-20260615.tex?edition=ed5dfaadcfc5"
     },
     {
       "id": "N-20260604",
@@ -558,8 +558,8 @@
         "Jacobi and Gauss–Seidel seen on the same example",
         "Residuals are visible; errors are not"
       ],
-      "pdf": "/notes/2026/N-20260604.pdf",
-      "tex": "/notes/2026/N-20260604.tex"
+      "pdf": "/notes/2026/N-20260604.pdf?edition=b6610092931f",
+      "tex": "/notes/2026/N-20260604.tex?edition=2f9ed2f187e5"
     },
     {
       "id": "N-20260603",
@@ -580,8 +580,8 @@
         "Why inverse-like algebra can fail",
         "Updating a pseudoinverse one column at a time"
       ],
-      "pdf": "/notes/2026/N-20260603.pdf",
-      "tex": "/notes/2026/N-20260603.tex"
+      "pdf": "/notes/2026/N-20260603.pdf?edition=91f89d22841a",
+      "tex": "/notes/2026/N-20260603.tex?edition=ec7085b6061b"
     },
     {
       "id": "N-20260602",
@@ -602,8 +602,8 @@
         "Rank factorization removes redundant coordinates",
         "SVD chooses orthogonal coordinates on both sides"
       ],
-      "pdf": "/notes/2026/N-20260602.pdf",
-      "tex": "/notes/2026/N-20260602.tex"
+      "pdf": "/notes/2026/N-20260602.pdf?edition=5320f239bfc5",
+      "tex": "/notes/2026/N-20260602.tex?edition=12bbf69ed225"
     },
     {
       "id": "N-20260417",
@@ -621,8 +621,8 @@
         "Cohomology of the Punctured Plane",
         "Holomorphic one-forms lead to Cauchy and residues"
       ],
-      "pdf": "/notes/2026/N-20260417.pdf",
-      "tex": "/notes/2026/N-20260417.tex"
+      "pdf": "/notes/2026/N-20260417.pdf?edition=7bcfab622735",
+      "tex": "/notes/2026/N-20260417.tex?edition=0ccf932f41e8"
     },
     {
       "id": "N-20260416",
@@ -641,8 +641,8 @@
         "A vector field gives a one-form and a two-form",
         "Nonorientability is a genuine obstruction"
       ],
-      "pdf": "/notes/2026/N-20260416.pdf",
-      "tex": "/notes/2026/N-20260416.tex"
+      "pdf": "/notes/2026/N-20260416.pdf?edition=8222d82e47cb",
+      "tex": "/notes/2026/N-20260416.tex?edition=49dcdc74bf09"
     },
     {
       "id": "N-20260408",
@@ -661,8 +661,8 @@
         "Projection changes can force a split of the domain",
         "Coarea is slicing along nonlinear level sets"
       ],
-      "pdf": "/notes/2026/N-20260408.pdf",
-      "tex": "/notes/2026/N-20260408.tex"
+      "pdf": "/notes/2026/N-20260408.pdf?edition=10971aca1beb",
+      "tex": "/notes/2026/N-20260408.tex?edition=2dcf9bffa0ba"
     },
     {
       "id": "N-20260406",
@@ -682,8 +682,8 @@
         "Probability and Spherical Shells",
         "Divergence measures volume growth of a moving solid"
       ],
-      "pdf": "/notes/2026/N-20260406.pdf",
-      "tex": "/notes/2026/N-20260406.tex"
+      "pdf": "/notes/2026/N-20260406.pdf?edition=f6ef6e2aaeb9",
+      "tex": "/notes/2026/N-20260406.tex?edition=24d2bfe9d601"
     },
     {
       "id": "N-20260405",
@@ -702,8 +702,8 @@
         "Global Overcounting by a Jacobian",
         "Coarea counts fibers of a nonlinear function"
       ],
-      "pdf": "/notes/2026/N-20260405.pdf",
-      "tex": "/notes/2026/N-20260405.tex"
+      "pdf": "/notes/2026/N-20260405.pdf?edition=ab1beb5eba26",
+      "tex": "/notes/2026/N-20260405.tex?edition=a3fa54fb586d"
     },
     {
       "id": "N-20260403",
@@ -724,8 +724,8 @@
         "A worked average-value example",
         "The region decides the order of integration"
       ],
-      "pdf": "/notes/2026/N-20260403.pdf",
-      "tex": "/notes/2026/N-20260403.tex"
+      "pdf": "/notes/2026/N-20260403.pdf?edition=31dfd4942a2e",
+      "tex": "/notes/2026/N-20260403.tex?edition=033a69474dc5"
     },
     {
       "id": "N-20260325",
@@ -745,8 +745,8 @@
         "Constrained extrema",
         "Endpoint and boundary warnings"
       ],
-      "pdf": "/notes/2026/N-20260325.pdf",
-      "tex": "/notes/2026/N-20260325.tex"
+      "pdf": "/notes/2026/N-20260325.pdf?edition=37e661b7d022",
+      "tex": "/notes/2026/N-20260325.tex?edition=67eea18d145c"
     },
     {
       "id": "N-20260318",
@@ -767,8 +767,8 @@
         "Counting Eigenvalues with Gershgorin",
         "Gershgorin after Diagonal Scaling"
       ],
-      "pdf": "/notes/2026/N-20260318.pdf",
-      "tex": "/notes/2026/N-20260318.tex"
+      "pdf": "/notes/2026/N-20260318.pdf?edition=ee67a1876cc0",
+      "tex": "/notes/2026/N-20260318.tex?edition=5cc5ca7559a6"
     },
     {
       "id": "N-20260314",
@@ -789,8 +789,8 @@
         "Local extrema template",
         "Common failure modes"
       ],
-      "pdf": "/notes/2026/N-20260314.pdf",
-      "tex": "/notes/2026/N-20260314.tex"
+      "pdf": "/notes/2026/N-20260314.pdf?edition=0bd71917110d",
+      "tex": "/notes/2026/N-20260314.tex?edition=d53803b3219f"
     },
     {
       "id": "N-20260313",
@@ -811,8 +811,8 @@
         "A shape table",
         "When Implicit Linearization Fails"
       ],
-      "pdf": "/notes/2026/N-20260313.pdf",
-      "tex": "/notes/2026/N-20260313.tex"
+      "pdf": "/notes/2026/N-20260313.pdf?edition=ede42da4fb3c",
+      "tex": "/notes/2026/N-20260313.tex?edition=9bbb4c6f9579"
     },
     {
       "id": "N-20260312",
@@ -833,8 +833,8 @@
         "A tiny data change can reverse the solution",
         "Forward error, residual, and backward error"
       ],
-      "pdf": "/notes/2026/N-20260312.pdf",
-      "tex": "/notes/2026/N-20260312.tex"
+      "pdf": "/notes/2026/N-20260312.pdf?edition=29142f87048f",
+      "tex": "/notes/2026/N-20260312.tex?edition=213ee262e473"
     },
     {
       "id": "N-20260311",
@@ -855,8 +855,8 @@
         "Unitary transformations preserve Euclidean geometry",
         "Schatten Norms"
       ],
-      "pdf": "/notes/2026/N-20260311.pdf",
-      "tex": "/notes/2026/N-20260311.tex"
+      "pdf": "/notes/2026/N-20260311.pdf?edition=127c1bb3bba8",
+      "tex": "/notes/2026/N-20260311.tex?edition=0d38c77e2d0b"
     },
     {
       "id": "N-20260306",
@@ -877,8 +877,8 @@
         "Mixed partial derivatives",
         "The main lesson"
       ],
-      "pdf": "/notes/2026/N-20260306.pdf",
-      "tex": "/notes/2026/N-20260306.tex"
+      "pdf": "/notes/2026/N-20260306.pdf?edition=502d0648ecad",
+      "tex": "/notes/2026/N-20260306.tex?edition=df92b1c021a1"
     },
     {
       "id": "N-20260305",
@@ -899,8 +899,8 @@
         "The Pythagorean proof of optimality",
         "Orthonormal coordinates remove the Gram matrix"
       ],
-      "pdf": "/notes/2026/N-20260305.pdf",
-      "tex": "/notes/2026/N-20260305.tex"
+      "pdf": "/notes/2026/N-20260305.pdf?edition=1728948394f4",
+      "tex": "/notes/2026/N-20260305.tex?edition=efa94397821a"
     },
     {
       "id": "N-20260304",
@@ -921,8 +921,8 @@
         "Connectedness and path-connectedness",
         "What this vocabulary controls"
       ],
-      "pdf": "/notes/2026/N-20260304.pdf",
-      "tex": "/notes/2026/N-20260304.tex"
+      "pdf": "/notes/2026/N-20260304.pdf?edition=502f2089868c",
+      "tex": "/notes/2026/N-20260304.tex?edition=c1de79a243fa"
     },
     {
       "id": "N-20260303",
@@ -943,8 +943,8 @@
         "A taxonomy of matrix properties",
         "Choosing the Right Matrix Invariant"
       ],
-      "pdf": "/notes/2026/N-20260303.pdf",
-      "tex": "/notes/2026/N-20260303.tex"
+      "pdf": "/notes/2026/N-20260303.pdf?edition=206825a7b4e9",
+      "tex": "/notes/2026/N-20260303.tex?edition=5888913f5a92"
     },
     {
       "id": "N-20260302",
@@ -963,8 +963,8 @@
         "Symmetry, equivariance, and category-like thinking",
         "Maps that remember the right information"
       ],
-      "pdf": "/notes/2026/N-20260302.pdf",
-      "tex": "/notes/2026/N-20260302.tex"
+      "pdf": "/notes/2026/N-20260302.pdf?edition=cbfd048bc285",
+      "tex": "/notes/2026/N-20260302.tex?edition=269ad91092ef"
     },
     {
       "id": "N-20260106",
@@ -985,8 +985,8 @@
         "Why a cosine integral leads to the Poisson kernel",
         "Variation Bounds from Derivatives"
       ],
-      "pdf": "/notes/2026/N-20260106.pdf",
-      "tex": "/notes/2026/N-20260106.tex"
+      "pdf": "/notes/2026/N-20260106.pdf?edition=e3b04f116bc3",
+      "tex": "/notes/2026/N-20260106.tex?edition=d60d39532e73"
     },
     {
       "id": "N-20260105",
@@ -1007,8 +1007,8 @@
         "Functions on Eigenspaces",
         "Rayleigh quotients define the Loewner order"
       ],
-      "pdf": "/notes/2026/N-20260105.pdf",
-      "tex": "/notes/2026/N-20260105.tex"
+      "pdf": "/notes/2026/N-20260105.pdf?edition=32839d8f8f7d",
+      "tex": "/notes/2026/N-20260105.tex?edition=89b04d6167e7"
     },
     {
       "id": "N-20260103",
@@ -1029,8 +1029,8 @@
         "The minimal polynomial reduces every high power",
         "Primary Projectors from CRT"
       ],
-      "pdf": "/notes/2026/N-20260103.pdf",
-      "tex": "/notes/2026/N-20260103.tex"
+      "pdf": "/notes/2026/N-20260103.pdf?edition=3ba02f4d2a2e",
+      "tex": "/notes/2026/N-20260103.tex?edition=a2535f8603c5"
     },
     {
       "id": "N-20251217",
@@ -1051,8 +1051,8 @@
         "The parity of a swap is what survives",
         "Finite sets and stable spheres"
       ],
-      "pdf": "/notes/2025/N-20251217.pdf",
-      "tex": "/notes/2025/N-20251217.tex"
+      "pdf": "/notes/2025/N-20251217.pdf?edition=a9a09e20924d",
+      "tex": "/notes/2025/N-20251217.tex?edition=77ad32c58be0"
     },
     {
       "id": "N-20251210",
@@ -1070,8 +1070,8 @@
         "Definite Integrals and Averages",
         "Improper integration and quadrature error"
       ],
-      "pdf": "/notes/2025/N-20251210.pdf",
-      "tex": "/notes/2025/N-20251210.tex"
+      "pdf": "/notes/2025/N-20251210.pdf?edition=8d15972dc6da",
+      "tex": "/notes/2025/N-20251210.tex?edition=52af5054278e"
     },
     {
       "id": "N-20251202",
@@ -1092,8 +1092,8 @@
         "Spectral Theorem by Induction",
         "Spectral Projectors and Functions"
       ],
-      "pdf": "/notes/2025/N-20251202.pdf",
-      "tex": "/notes/2025/N-20251202.tex"
+      "pdf": "/notes/2025/N-20251202.pdf?edition=4da1b6f1c713",
+      "tex": "/notes/2025/N-20251202.tex?edition=8260c76b1f73"
     },
     {
       "id": "N-20251128",
@@ -1114,8 +1114,8 @@
         "Dimension four and logarithmic corrections",
         "How the three methods fit together"
       ],
-      "pdf": "/notes/2025/N-20251128.pdf",
-      "tex": "/notes/2025/N-20251128.tex"
+      "pdf": "/notes/2025/N-20251128.pdf?edition=aec8646a102e",
+      "tex": "/notes/2025/N-20251128.tex?edition=8c177a7790cc"
     },
     {
       "id": "N-20251127",
@@ -1136,8 +1136,8 @@
         "Why convergence gives the upper bound",
         "Relation with SLE"
       ],
-      "pdf": "/notes/2025/N-20251127.pdf",
-      "tex": "/notes/2025/N-20251127.tex"
+      "pdf": "/notes/2025/N-20251127.pdf?edition=5666d8456ad2",
+      "tex": "/notes/2025/N-20251127.tex?edition=7499ee29a849"
     },
     {
       "id": "N-20251126",
@@ -1157,8 +1157,8 @@
         "How dimension changes the story",
         "The broader lesson"
       ],
-      "pdf": "/notes/2025/N-20251126.pdf",
-      "tex": "/notes/2025/N-20251126.tex"
+      "pdf": "/notes/2025/N-20251126.pdf?edition=4d8b7d36d2fe",
+      "tex": "/notes/2025/N-20251126.tex?edition=70061ef6164f"
     },
     {
       "id": "N-20251114",
@@ -1179,8 +1179,8 @@
         "The theta-link is the point where one universe breaks",
         "The log-link does not restore naive equality"
       ],
-      "pdf": "/notes/2025/N-20251114.pdf",
-      "tex": "/notes/2025/N-20251114.tex"
+      "pdf": "/notes/2025/N-20251114.pdf?edition=f9c67bf5ac1c",
+      "tex": "/notes/2025/N-20251114.tex?edition=cc824cd31f76"
     },
     {
       "id": "N-20251113",
@@ -1201,8 +1201,8 @@
         "The Log-Link and Additive Structure",
         "The log-theta-lattice"
       ],
-      "pdf": "/notes/2025/N-20251113.pdf",
-      "tex": "/notes/2025/N-20251113.tex"
+      "pdf": "/notes/2025/N-20251113.pdf?edition=af788ac92285",
+      "tex": "/notes/2025/N-20251113.tex?edition=efdc17994620"
     },
     {
       "id": "N-20251112",
@@ -1223,8 +1223,8 @@
         "The Cauchy Criterion",
         "Pointwise versus Uniform Continuity"
       ],
-      "pdf": "/notes/2025/N-20251112.pdf",
-      "tex": "/notes/2025/N-20251112.tex"
+      "pdf": "/notes/2025/N-20251112.pdf?edition=2a2728c0c503",
+      "tex": "/notes/2025/N-20251112.tex?edition=5868356d5acb"
     },
     {
       "id": "N-20251110",
@@ -1245,8 +1245,8 @@
         "Recurrences of Determinants",
         "Cramer's rule lives only on the invertible open set"
       ],
-      "pdf": "/notes/2025/N-20251110.pdf",
-      "tex": "/notes/2025/N-20251110.tex"
+      "pdf": "/notes/2025/N-20251110.pdf?edition=228514d5fd9d",
+      "tex": "/notes/2025/N-20251110.tex?edition=ead942def026"
     },
     {
       "id": "N-20251109",
@@ -1267,8 +1267,8 @@
         "A vector-space sanity check",
         "A module example: multiplication by an integer"
       ],
-      "pdf": "/notes/2025/N-20251109.pdf",
-      "tex": "/notes/2025/N-20251109.tex"
+      "pdf": "/notes/2025/N-20251109.pdf?edition=4e3c5708b76f",
+      "tex": "/notes/2025/N-20251109.tex?edition=090e61f0a146"
     },
     {
       "id": "N-20251108",
@@ -1286,8 +1286,8 @@
         "An arbitrary solution is not an optimal solution",
         "A dimension identity survives the choice of rank"
       ],
-      "pdf": "/notes/2025/N-20251108.pdf",
-      "tex": "/notes/2025/N-20251108.tex"
+      "pdf": "/notes/2025/N-20251108.pdf?edition=06ad4f60746f",
+      "tex": "/notes/2025/N-20251108.tex?edition=bc9028861fd9"
     },
     {
       "id": "N-20251011",
@@ -1308,8 +1308,8 @@
         "Training as ELBO maximization",
         "Decoder likelihoods and reconstruction losses"
       ],
-      "pdf": "/notes/2025/N-20251011.pdf",
-      "tex": "/notes/2025/N-20251011.tex"
+      "pdf": "/notes/2025/N-20251011.pdf?edition=a27e305cb0b4",
+      "tex": "/notes/2025/N-20251011.tex?edition=f9223ae4c1d9"
     },
     {
       "id": "N-20251010",
@@ -1330,8 +1330,8 @@
         "Closed-form KL for diagonal Gaussians",
         "Negative ELBO as a loss"
       ],
-      "pdf": "/notes/2025/N-20251010.pdf",
-      "tex": "/notes/2025/N-20251010.tex"
+      "pdf": "/notes/2025/N-20251010.pdf?edition=ada2ff5d9af1",
+      "tex": "/notes/2025/N-20251010.tex?edition=0c6a3702023a"
     },
     {
       "id": "N-20251009",
@@ -1349,8 +1349,8 @@
         "When Prior Sampling Fails",
         "Recognition is a fast approximate inverse"
       ],
-      "pdf": "/notes/2025/N-20251009.pdf",
-      "tex": "/notes/2025/N-20251009.tex"
+      "pdf": "/notes/2025/N-20251009.pdf?edition=73bc54607d7c",
+      "tex": "/notes/2025/N-20251009.tex?edition=4063806bee4c"
     },
     {
       "id": "N-20251008",
@@ -1368,8 +1368,8 @@
         "An Exactly Solvable Variational Example",
         "Why a neural encoder is useful"
       ],
-      "pdf": "/notes/2025/N-20251008.pdf",
-      "tex": "/notes/2025/N-20251008.tex"
+      "pdf": "/notes/2025/N-20251008.pdf?edition=26f63b836ecc",
+      "tex": "/notes/2025/N-20251008.tex?edition=82d9e522065e"
     },
     {
       "id": "N-20250926",
@@ -1386,8 +1386,8 @@
         "Reverse-mode derivatives as cotangent pullbacks",
         "A numerical gradient and a useful consistency check"
       ],
-      "pdf": "/notes/2025/N-20250926.pdf",
-      "tex": "/notes/2025/N-20250926.tex"
+      "pdf": "/notes/2025/N-20250926.pdf?edition=10e8f459a01e",
+      "tex": "/notes/2025/N-20250926.tex?edition=9cc62622c7e5"
     },
     {
       "id": "N-20250707",
@@ -1408,8 +1408,8 @@
         "What about crossings themselves?",
         "One crossing, one allowed computation"
       ],
-      "pdf": "/notes/2025/N-20250707.pdf",
-      "tex": "/notes/2025/N-20250707.tex"
+      "pdf": "/notes/2025/N-20250707.pdf?edition=1f4180937b6c",
+      "tex": "/notes/2025/N-20250707.tex?edition=c47dcc74304b"
     },
     {
       "id": "N-20250705",
@@ -1429,8 +1429,8 @@
         "Invariants, coinvariants, and labels",
         "From probes to colorings"
       ],
-      "pdf": "/notes/2025/N-20250705.pdf",
-      "tex": "/notes/2025/N-20250705.tex"
+      "pdf": "/notes/2025/N-20250705.pdf?edition=de7c56b0d3c1",
+      "tex": "/notes/2025/N-20250705.tex?edition=5bdc2b95dd00"
     },
     {
       "id": "N-20250301",
@@ -1447,8 +1447,8 @@
         "Three Charts of a Conic",
         "From Functions to Sections"
       ],
-      "pdf": "/notes/2025/N-20250301.pdf",
-      "tex": "/notes/2025/N-20250301.tex"
+      "pdf": "/notes/2025/N-20250301.pdf?edition=9021e6032e93",
+      "tex": "/notes/2025/N-20250301.tex?edition=65baeabb4a49"
     },
     {
       "id": "N-20250211",
@@ -1469,8 +1469,8 @@
         "Möbius transformations",
         "A hierarchy of invariants"
       ],
-      "pdf": "/notes/2025/N-20250211.pdf",
-      "tex": "/notes/2025/N-20250211.tex"
+      "pdf": "/notes/2025/N-20250211.pdf?edition=b71e0d552e79",
+      "tex": "/notes/2025/N-20250211.tex?edition=3a2e74e01297"
     },
     {
       "id": "N-20250118",
@@ -1487,8 +1487,8 @@
         "Arithmetic and local prime information",
         "Invisible Infinitesimal Structure"
       ],
-      "pdf": "/notes/2025/N-20250118.pdf",
-      "tex": "/notes/2025/N-20250118.tex"
+      "pdf": "/notes/2025/N-20250118.pdf?edition=067c4f5c03de",
+      "tex": "/notes/2025/N-20250118.tex?edition=6abdf5148905"
     },
     {
       "id": "N-20241026",
@@ -1507,8 +1507,8 @@
         "Branches and Infinitesimal Directions",
         "Morphisms reverse arrows on rings"
       ],
-      "pdf": "/notes/2024/N-20241026.pdf",
-      "tex": "/notes/2024/N-20241026.tex"
+      "pdf": "/notes/2024/N-20241026.pdf?edition=fdafa9ff2b7e",
+      "tex": "/notes/2024/N-20241026.tex?edition=9d641a73117a"
     },
     {
       "id": "N-20240914",
@@ -1527,8 +1527,8 @@
         "Riemann–Roch counts sections and obstructions",
         "Ramification is another kind of local multiplicity"
       ],
-      "pdf": "/notes/2024/N-20240914.pdf",
-      "tex": "/notes/2024/N-20240914.tex"
+      "pdf": "/notes/2024/N-20240914.pdf?edition=1f5a32bfe3fb",
+      "tex": "/notes/2024/N-20240914.tex?edition=49117e585a03"
     },
     {
       "id": "N-20240727",
@@ -1548,8 +1548,8 @@
         "The infinite-stability reading",
         "The finite clues"
       ],
-      "pdf": "/notes/2024/N-20240727.pdf",
-      "tex": "/notes/2024/N-20240727.tex"
+      "pdf": "/notes/2024/N-20240727.pdf?edition=5cd87c69c9e1",
+      "tex": "/notes/2024/N-20240727.tex?edition=9dfa7d4ea2a3"
     },
     {
       "id": "N-20240608",
@@ -1568,8 +1568,8 @@
         "Projective closure remembers a missing intersection",
         "Elimination sees the same multiplicity in one variable"
       ],
-      "pdf": "/notes/2024/N-20240608.pdf",
-      "tex": "/notes/2024/N-20240608.tex"
+      "pdf": "/notes/2024/N-20240608.pdf?edition=4ab6b5bbdc84",
+      "tex": "/notes/2024/N-20240608.tex?edition=8c9bfb4482a2"
     },
     {
       "id": "N-20240518",
@@ -1589,8 +1589,8 @@
         "Conics and the choice of an affine window",
         "A conic can be parametrized by a projective line"
       ],
-      "pdf": "/notes/2024/N-20240518.pdf",
-      "tex": "/notes/2024/N-20240518.tex"
+      "pdf": "/notes/2024/N-20240518.pdf?edition=f15a3336b968",
+      "tex": "/notes/2024/N-20240518.tex?edition=5e26006bcf75"
     },
     {
       "id": "N-20240427",
@@ -1611,8 +1611,8 @@
         "The divergence theorem as a three-form computation",
         "A closed form can remember a hole"
       ],
-      "pdf": "/notes/2024/N-20240427.pdf",
-      "tex": "/notes/2024/N-20240427.tex"
+      "pdf": "/notes/2024/N-20240427.pdf?edition=2473ae37402e",
+      "tex": "/notes/2024/N-20240427.tex?edition=e9745136b5f6"
     },
     {
       "id": "N-20240413",
@@ -1633,8 +1633,8 @@
         "Two pictures of tangent vectors",
         "Regular values: one clean machine for making manifolds"
       ],
-      "pdf": "/notes/2024/N-20240413.pdf",
-      "tex": "/notes/2024/N-20240413.tex"
+      "pdf": "/notes/2024/N-20240413.pdf?edition=c59d2d16f4be",
+      "tex": "/notes/2024/N-20240413.tex?edition=fb6553b7332e"
     },
     {
       "id": "N-20240330",
@@ -1655,8 +1655,8 @@
         "Euler Characteristic from Chain Complexes",
         "Degree on the circle is winding made algebraic"
       ],
-      "pdf": "/notes/2024/N-20240330.pdf",
-      "tex": "/notes/2024/N-20240330.tex"
+      "pdf": "/notes/2024/N-20240330.pdf?edition=45e61e6157a4",
+      "tex": "/notes/2024/N-20240330.tex?edition=ada5625fcbc4"
     },
     {
       "id": "N-20240323",
@@ -1677,8 +1677,8 @@
         "Separating a point from a closed convex set",
         "Planar graphs and Euler-type counting"
       ],
-      "pdf": "/notes/2024/N-20240323.pdf",
-      "tex": "/notes/2024/N-20240323.tex"
+      "pdf": "/notes/2024/N-20240323.pdf?edition=74ed6a8dbbdc",
+      "tex": "/notes/2024/N-20240323.tex?edition=1c03e4fc2ffa"
     },
     {
       "id": "N-20240211",
@@ -1699,8 +1699,8 @@
         "Existence inside a sheaf topos is a local assertion",
         "What Defines an Elementary Topos"
       ],
-      "pdf": "/notes/2024/N-20240211.pdf",
-      "tex": "/notes/2024/N-20240211.tex"
+      "pdf": "/notes/2024/N-20240211.pdf?edition=ccc9db8d20c6",
+      "tex": "/notes/2024/N-20240211.tex?edition=cae2ccac7a5b"
     },
     {
       "id": "N-20230801",
@@ -1721,8 +1721,8 @@
         "The Hitchin map records global eigenvalue data",
         "Theta Characteristics in Rank Two"
       ],
-      "pdf": "/notes/2023/N-20230801.pdf",
-      "tex": "/notes/2023/N-20230801.tex"
+      "pdf": "/notes/2023/N-20230801.pdf?edition=f841a7f31d20",
+      "tex": "/notes/2023/N-20230801.tex?edition=5071d8e662c3"
     },
     {
       "id": "N-20230710",
@@ -1743,8 +1743,8 @@
         "Modern applications",
         "Two points expose three notions of sameness"
       ],
-      "pdf": "/notes/2023/N-20230710.pdf",
-      "tex": "/notes/2023/N-20230710.tex"
+      "pdf": "/notes/2023/N-20230710.pdf?edition=48d7d5bae1e5",
+      "tex": "/notes/2023/N-20230710.tex?edition=c9ff78b17dea"
     },
     {
       "id": "N-20230316",
@@ -1765,8 +1765,8 @@
         "Existence versus Banach Iteration",
         "Schauder's Fixed-Point Theorem"
       ],
-      "pdf": "/notes/2023/N-20230316.pdf",
-      "tex": "/notes/2023/N-20230316.tex"
+      "pdf": "/notes/2023/N-20230316.pdf?edition=f8f4a8f4760f",
+      "tex": "/notes/2023/N-20230316.tex?edition=69dc4e67f96b"
     },
     {
       "id": "N-20230314",
@@ -1787,8 +1787,8 @@
         "Natural transformations are equivariant maps",
         "From Adjunctions to Monads"
       ],
-      "pdf": "/notes/2023/N-20230314.pdf",
-      "tex": "/notes/2023/N-20230314.tex"
+      "pdf": "/notes/2023/N-20230314.pdf?edition=b501b5df451d",
+      "tex": "/notes/2023/N-20230314.tex?edition=e3bf5387bc44"
     },
     {
       "id": "N-20230313",
@@ -1807,8 +1807,8 @@
         "Recovering injection and surjection in sets",
         "Two ways the analogy can fail"
       ],
-      "pdf": "/notes/2023/N-20230313.pdf",
-      "tex": "/notes/2023/N-20230313.tex"
+      "pdf": "/notes/2023/N-20230313.pdf?edition=7beaed1a557d",
+      "tex": "/notes/2023/N-20230313.tex?edition=05f16a7f16a9"
     },
     {
       "id": "N-20230311",
@@ -1829,8 +1829,8 @@
         "Fatou and dominated convergence control general limits",
         "Escape and Concentration of Mass"
       ],
-      "pdf": "/notes/2023/N-20230311.pdf",
-      "tex": "/notes/2023/N-20230311.tex"
+      "pdf": "/notes/2023/N-20230311.pdf?edition=053121207675",
+      "tex": "/notes/2023/N-20230311.tex?edition=05270c4701cb"
     },
     {
       "id": "N-20230310",
@@ -1849,8 +1849,8 @@
         "Why the exponent threshold really matters",
         "Jensen's inequality and entropy"
       ],
-      "pdf": "/notes/2023/N-20230310.pdf",
-      "tex": "/notes/2023/N-20230310.tex"
+      "pdf": "/notes/2023/N-20230310.pdf?edition=dc6881dfca81",
+      "tex": "/notes/2023/N-20230310.tex?edition=be7ffb815141"
     },
     {
       "id": "N-20230225",
@@ -1871,8 +1871,8 @@
         "Derivatives from Standard Parts",
         "Hyperfinite sums recover the Riemann integral"
       ],
-      "pdf": "/notes/2023/N-20230225.pdf",
-      "tex": "/notes/2023/N-20230225.tex"
+      "pdf": "/notes/2023/N-20230225.pdf?edition=ba3ff7219a3e",
+      "tex": "/notes/2023/N-20230225.tex?edition=21c7dd632ab5"
     },
     {
       "id": "N-20230223",
@@ -1889,8 +1889,8 @@
         "Determinants and Trigonometric Recurrences",
         "Why the algebra and trigonometry agree"
       ],
-      "pdf": "/notes/2023/N-20230223.pdf",
-      "tex": "/notes/2023/N-20230223.tex"
+      "pdf": "/notes/2023/N-20230223.pdf?edition=c0579d69fd49",
+      "tex": "/notes/2023/N-20230223.tex?edition=efa4f8bf765a"
     },
     {
       "id": "N-20230220",
@@ -1911,8 +1911,8 @@
         "Tangent lives on a projective line",
         "A dependency graph for the proofs"
       ],
-      "pdf": "/notes/2023/N-20230220.pdf",
-      "tex": "/notes/2023/N-20230220.tex"
+      "pdf": "/notes/2023/N-20230220.pdf?edition=82cff2058b74",
+      "tex": "/notes/2023/N-20230220.tex?edition=11c2b68b6635"
     },
     {
       "id": "N-20230217",
@@ -1933,8 +1933,8 @@
         "Inputs and Outputs of Tensors",
         "Contractions and Invariants"
       ],
-      "pdf": "/notes/2023/N-20230217.pdf",
-      "tex": "/notes/2023/N-20230217.tex"
+      "pdf": "/notes/2023/N-20230217.pdf?edition=6505c18f9a78",
+      "tex": "/notes/2023/N-20230217.tex?edition=4e501dbffd95"
     },
     {
       "id": "N-20230209",
@@ -1955,8 +1955,8 @@
         "Bilinear forms are not linear operators",
         "Symmetric and skew parts"
       ],
-      "pdf": "/notes/2023/N-20230209.pdf",
-      "tex": "/notes/2023/N-20230209.tex"
+      "pdf": "/notes/2023/N-20230209.pdf?edition=f23d2ba60dee",
+      "tex": "/notes/2023/N-20230209.tex?edition=c5c065f3578c"
     },
     {
       "id": "N-20230205",
@@ -1977,8 +1977,8 @@
         "Contraction of Alternating Forms",
         "Volume and the Levi–Civita Symbol"
       ],
-      "pdf": "/notes/2023/N-20230205.pdf",
-      "tex": "/notes/2023/N-20230205.tex"
+      "pdf": "/notes/2023/N-20230205.pdf?edition=a0e755ab8ad2",
+      "tex": "/notes/2023/N-20230205.tex?edition=0ddc4d6c37e8"
     },
     {
       "id": "N-20230201",
@@ -1999,8 +1999,8 @@
         "Gauss-law viewpoint",
         "Harmonic potential"
       ],
-      "pdf": "/notes/2023/N-20230201.pdf",
-      "tex": "/notes/2023/N-20230201.tex"
+      "pdf": "/notes/2023/N-20230201.pdf?edition=84fc01323ed9",
+      "tex": "/notes/2023/N-20230201.tex?edition=0aec9da94f62"
     },
     {
       "id": "N-20230127",
@@ -2021,8 +2021,8 @@
         "Cyclotomic Factors under Powers",
         "Möbius inversion reconstructs the exact-order factor"
       ],
-      "pdf": "/notes/2023/N-20230127.pdf",
-      "tex": "/notes/2023/N-20230127.tex"
+      "pdf": "/notes/2023/N-20230127.pdf?edition=4318de911e0c",
+      "tex": "/notes/2023/N-20230127.tex?edition=a0d3b4f274ed"
     },
     {
       "id": "N-20230123",
@@ -2041,8 +2041,8 @@
         "Differentiating enclosed area recovers the period",
         "Canonical Coordinate Changes"
       ],
-      "pdf": "/notes/2023/N-20230123.pdf",
-      "tex": "/notes/2023/N-20230123.tex"
+      "pdf": "/notes/2023/N-20230123.pdf?edition=c49df1fd3fe7",
+      "tex": "/notes/2023/N-20230123.tex?edition=06ce5a66d0aa"
     },
     {
       "id": "N-20230119",
@@ -2060,8 +2060,8 @@
         "The Euler Line from Vectors",
         "What changes when the allowed transformations change?"
       ],
-      "pdf": "/notes/2023/N-20230119.pdf",
-      "tex": "/notes/2023/N-20230119.tex"
+      "pdf": "/notes/2023/N-20230119.pdf?edition=4d2386e67b27",
+      "tex": "/notes/2023/N-20230119.tex?edition=0ba07e967387"
     },
     {
       "id": "N-20230118",
@@ -2082,8 +2082,8 @@
         "Helly's Theorem via Radon",
         "Carathéodory's Reduction"
       ],
-      "pdf": "/notes/2023/N-20230118.pdf",
-      "tex": "/notes/2023/N-20230118.tex"
+      "pdf": "/notes/2023/N-20230118.pdf?edition=caa720860cfd",
+      "tex": "/notes/2023/N-20230118.tex?edition=1c8045447570"
     },
     {
       "id": "N-20230117",
@@ -2101,8 +2101,8 @@
         "Regularity makes Cauchy's equation rigid",
         "From iterated intervals to symbolic dynamics"
       ],
-      "pdf": "/notes/2023/N-20230117.pdf",
-      "tex": "/notes/2023/N-20230117.tex"
+      "pdf": "/notes/2023/N-20230117.pdf?edition=338694b8d8b5",
+      "tex": "/notes/2023/N-20230117.tex?edition=ba24b0fd48c1"
     },
     {
       "id": "N-20230116",
@@ -2123,8 +2123,8 @@
         "Iterates and Cycle Lengths",
         "Left inverses, right inverses, and what they prove"
       ],
-      "pdf": "/notes/2023/N-20230116.pdf",
-      "tex": "/notes/2023/N-20230116.tex"
+      "pdf": "/notes/2023/N-20230116.pdf?edition=e16093e47048",
+      "tex": "/notes/2023/N-20230116.tex?edition=5e35a918a1c9"
     },
     {
       "id": "N-20230107",
@@ -2142,8 +2142,8 @@
         "The local model is a fold",
         "An intersection diagram can be replaced by a proof"
       ],
-      "pdf": "/notes/2023/N-20230107.pdf",
-      "tex": "/notes/2023/N-20230107.tex"
+      "pdf": "/notes/2023/N-20230107.pdf?edition=277df13b5357",
+      "tex": "/notes/2023/N-20230107.tex?edition=5881f708c60f"
     },
     {
       "id": "N-20221229",
@@ -2164,8 +2164,8 @@
         "The Klein bottle",
         "Polygon schemata for surfaces"
       ],
-      "pdf": "/notes/2022/N-20221229.pdf",
-      "tex": "/notes/2022/N-20221229.tex"
+      "pdf": "/notes/2022/N-20221229.pdf?edition=b4d906123a21",
+      "tex": "/notes/2022/N-20221229.tex?edition=91da0dcbeacc"
     },
     {
       "id": "N-20221228",
@@ -2182,8 +2182,8 @@
         "Products use the opposite continuity test",
         "When quotients behave badly"
       ],
-      "pdf": "/notes/2022/N-20221228.pdf",
-      "tex": "/notes/2022/N-20221228.tex"
+      "pdf": "/notes/2022/N-20221228.pdf?edition=54516ebe8d75",
+      "tex": "/notes/2022/N-20221228.tex?edition=a125d2345300"
     },
     {
       "id": "N-20221227",
@@ -2201,8 +2201,8 @@
         "Final Topology and Quotients",
         "Functorial invariants turn geometry into algebra"
       ],
-      "pdf": "/notes/2022/N-20221227.pdf",
-      "tex": "/notes/2022/N-20221227.tex"
+      "pdf": "/notes/2022/N-20221227.pdf?edition=f9ac9820d050",
+      "tex": "/notes/2022/N-20221227.tex?edition=05fe7cdec21d"
     },
     {
       "id": "N-20221223",
@@ -2223,8 +2223,8 @@
         "Continuous maps induce homomorphisms",
         "Van Kampen assembles groups from overlapping pieces"
       ],
-      "pdf": "/notes/2022/N-20221223.pdf",
-      "tex": "/notes/2022/N-20221223.tex"
+      "pdf": "/notes/2022/N-20221223.pdf?edition=6958f24fc604",
+      "tex": "/notes/2022/N-20221223.tex?edition=b36362ae9a42"
     },
     {
       "id": "N-20221222",
@@ -2245,8 +2245,8 @@
         "Connected versus Path-Connected",
         "Local Path-Connectedness"
       ],
-      "pdf": "/notes/2022/N-20221222.pdf",
-      "tex": "/notes/2022/N-20221222.tex"
+      "pdf": "/notes/2022/N-20221222.pdf?edition=a6ce45f6f8ed",
+      "tex": "/notes/2022/N-20221222.tex?edition=8f81b37f4ece"
     },
     {
       "id": "N-20221221",
@@ -2267,8 +2267,8 @@
         "The universal property makes completion unique",
         "Homeomorphism forgets the uniform scale of closeness"
       ],
-      "pdf": "/notes/2022/N-20221221.pdf",
-      "tex": "/notes/2022/N-20221221.tex"
+      "pdf": "/notes/2022/N-20221221.pdf?edition=cc2ee9ce3129",
+      "tex": "/notes/2022/N-20221221.tex?edition=26f6e4634efb"
     },
     {
       "id": "N-20221218",
@@ -2287,8 +2287,8 @@
         "Closed and Bounded in Infinite Dimensions",
         "Completeness also makes dense properties coexist"
       ],
-      "pdf": "/notes/2022/N-20221218.pdf",
-      "tex": "/notes/2022/N-20221218.tex"
+      "pdf": "/notes/2022/N-20221218.pdf?edition=f77a52b0b3de",
+      "tex": "/notes/2022/N-20221218.tex?edition=82d21ffa507f"
     },
     {
       "id": "N-20221217",
@@ -2309,8 +2309,8 @@
         "Solving a reciprocal functional equation completely",
         "Tangency Changes Solution Counts"
       ],
-      "pdf": "/notes/2022/N-20221217.pdf",
-      "tex": "/notes/2022/N-20221217.tex"
+      "pdf": "/notes/2022/N-20221217.pdf?edition=4f8ba3a779b8",
+      "tex": "/notes/2022/N-20221217.tex?edition=8a63639a68a8"
     },
     {
       "id": "N-20221214",
@@ -2331,8 +2331,8 @@
         "Laczkovich's positive theorem",
         "First idea: work in the torus"
       ],
-      "pdf": "/notes/2022/N-20221214.pdf",
-      "tex": "/notes/2022/N-20221214.tex"
+      "pdf": "/notes/2022/N-20221214.pdf?edition=fc6b308dacf9",
+      "tex": "/notes/2022/N-20221214.tex?edition=d2017cdd63b2"
     },
     {
       "id": "N-20221211",
@@ -2353,8 +2353,8 @@
         "Reverse mode: pull sensitivity backward",
         "Second-Order Automatic Differentiation"
       ],
-      "pdf": "/notes/2022/N-20221211.pdf",
-      "tex": "/notes/2022/N-20221211.tex"
+      "pdf": "/notes/2022/N-20221211.pdf?edition=7a322cbe1a97",
+      "tex": "/notes/2022/N-20221211.tex?edition=a6a7eb51913b"
     },
     {
       "id": "N-20221210",
@@ -2374,8 +2374,8 @@
         "The same coefficients form a probability distribution",
         "From choosing subsets to assembling structures"
       ],
-      "pdf": "/notes/2022/N-20221210.pdf",
-      "tex": "/notes/2022/N-20221210.tex"
+      "pdf": "/notes/2022/N-20221210.pdf?edition=21a15a8d3674",
+      "tex": "/notes/2022/N-20221210.tex?edition=593d21bad206"
     },
     {
       "id": "N-20221209",
@@ -2396,8 +2396,8 @@
         "Symmetry counting needs stabilizers",
         "The main diagnostic for a counting problem"
       ],
-      "pdf": "/notes/2022/N-20221209.pdf",
-      "tex": "/notes/2022/N-20221209.tex"
+      "pdf": "/notes/2022/N-20221209.pdf?edition=45cd0e7444f0",
+      "tex": "/notes/2022/N-20221209.tex?edition=a04b6a27fca5"
     },
     {
       "id": "N-20221207",
@@ -2414,8 +2414,8 @@
         "The finite-field version is Cauchy–Davenport",
         "Venn diagrams are coordinate decompositions"
       ],
-      "pdf": "/notes/2022/N-20221207.pdf",
-      "tex": "/notes/2022/N-20221207.tex"
+      "pdf": "/notes/2022/N-20221207.pdf?edition=95e06913f247",
+      "tex": "/notes/2022/N-20221207.tex?edition=40ab15d61534"
     },
     {
       "id": "N-20221205",
@@ -2436,8 +2436,8 @@
         "Products of Generating Functions",
         "Recurrences and Coin Change"
       ],
-      "pdf": "/notes/2022/N-20221205.pdf",
-      "tex": "/notes/2022/N-20221205.tex"
+      "pdf": "/notes/2022/N-20221205.pdf?edition=298b82c80661",
+      "tex": "/notes/2022/N-20221205.tex?edition=a2a999414276"
     },
     {
       "id": "N-20221126",
@@ -2455,8 +2455,8 @@
         "Primitive roots give discrete-logarithm coordinates",
         "Fourier Theory of the Unit Group"
       ],
-      "pdf": "/notes/2022/N-20221126.pdf",
-      "tex": "/notes/2022/N-20221126.tex"
+      "pdf": "/notes/2022/N-20221126.pdf?edition=75d0ff768d51",
+      "tex": "/notes/2022/N-20221126.tex?edition=90051037c9b3"
     },
     {
       "id": "N-20221120",
@@ -2477,8 +2477,8 @@
         "The same formulas work over finite fields",
         "One point generates the entire eight-element example"
       ],
-      "pdf": "/notes/2022/N-20221120.pdf",
-      "tex": "/notes/2022/N-20221120.tex"
+      "pdf": "/notes/2022/N-20221120.pdf?edition=b1a00a6827b3",
+      "tex": "/notes/2022/N-20221120.tex?edition=93666fa71b5b"
     },
     {
       "id": "N-20221119",
@@ -2499,8 +2499,8 @@
         "Möbius inversion removes previous divisor sums",
         "Euler Products and Factorization"
       ],
-      "pdf": "/notes/2022/N-20221119.pdf",
-      "tex": "/notes/2022/N-20221119.tex"
+      "pdf": "/notes/2022/N-20221119.pdf?edition=a554dda85847",
+      "tex": "/notes/2022/N-20221119.tex?edition=35d2ee4f6c22"
     },
     {
       "id": "N-20221107",
@@ -2521,8 +2521,8 @@
         "Endpoint blow-up is a failure of local invertibility",
         "Three examples that use different ideas"
       ],
-      "pdf": "/notes/2022/N-20221107.pdf",
-      "tex": "/notes/2022/N-20221107.tex"
+      "pdf": "/notes/2022/N-20221107.pdf?edition=b798c74c9bcf",
+      "tex": "/notes/2022/N-20221107.tex?edition=c6dfc250648e"
     },
     {
       "id": "N-20221105",
@@ -2540,8 +2540,8 @@
         "The product constraint produces a sharp inequality",
         "Quadratics give the exact local model"
       ],
-      "pdf": "/notes/2022/N-20221105.pdf",
-      "tex": "/notes/2022/N-20221105.tex"
+      "pdf": "/notes/2022/N-20221105.pdf?edition=eb97f5a11c87",
+      "tex": "/notes/2022/N-20221105.tex?edition=70f6eb9cb924"
     },
     {
       "id": "N-20221031",
@@ -2562,8 +2562,8 @@
         "Invertible Integer Row Operations",
         "Smith normal form diagonalizes divisibility"
       ],
-      "pdf": "/notes/2022/N-20221031.pdf",
-      "tex": "/notes/2022/N-20221031.tex"
+      "pdf": "/notes/2022/N-20221031.pdf?edition=ebde2dafe7ce",
+      "tex": "/notes/2022/N-20221031.tex?edition=473703e4549a"
     },
     {
       "id": "N-20221030",
@@ -2584,8 +2584,8 @@
         "Euler's function counts the unit group",
         "Euler's theorem is Lagrange's theorem in disguise"
       ],
-      "pdf": "/notes/2022/N-20221030.pdf",
-      "tex": "/notes/2022/N-20221030.tex"
+      "pdf": "/notes/2022/N-20221030.pdf?edition=986baa4deb33",
+      "tex": "/notes/2022/N-20221030.tex?edition=f12371524967"
     },
     {
       "id": "N-20221013",
@@ -2606,8 +2606,8 @@
         "Remainders as Interpolation Data",
         "Polynomial CRT and Uniqueness"
       ],
-      "pdf": "/notes/2022/N-20221013.pdf",
-      "tex": "/notes/2022/N-20221013.tex"
+      "pdf": "/notes/2022/N-20221013.pdf?edition=08566bcc71a1",
+      "tex": "/notes/2022/N-20221013.tex?edition=dd231c37a604"
     },
     {
       "id": "N-20221012",
@@ -2628,8 +2628,8 @@
         "Minkowski's Inequality via Duality",
         "Cauchy's Engel form is projection geometry in disguise"
       ],
-      "pdf": "/notes/2022/N-20221012.pdf",
-      "tex": "/notes/2022/N-20221012.tex"
+      "pdf": "/notes/2022/N-20221012.pdf?edition=784491512215",
+      "tex": "/notes/2022/N-20221012.tex?edition=72aaaaa2b8e1"
     },
     {
       "id": "N-20221005",
@@ -2648,8 +2648,8 @@
         "The feedback formula counts internal paths",
         "Negation as testing against possible opponents"
       ],
-      "pdf": "/notes/2022/N-20221005.pdf",
-      "tex": "/notes/2022/N-20221005.tex"
+      "pdf": "/notes/2022/N-20221005.pdf?edition=beb5cf325573",
+      "tex": "/notes/2022/N-20221005.tex?edition=9579de905e9c"
     },
     {
       "id": "N-20221002",
@@ -2667,8 +2667,8 @@
         "Factor Degrees and Möbius Inversion",
         "Evaluation Codes from Polynomials"
       ],
-      "pdf": "/notes/2022/N-20221002.pdf",
-      "tex": "/notes/2022/N-20221002.tex"
+      "pdf": "/notes/2022/N-20221002.pdf?edition=67ed55d23dca",
+      "tex": "/notes/2022/N-20221002.tex?edition=62c498cef1f8"
     },
     {
       "id": "N-20220918",
@@ -2686,8 +2686,8 @@
         "Harmonic reflection modulo a prime",
         "Prime-power valuations clarify the method"
       ],
-      "pdf": "/notes/2022/N-20220918.pdf",
-      "tex": "/notes/2022/N-20220918.tex"
+      "pdf": "/notes/2022/N-20220918.pdf?edition=ca955db7dc4e",
+      "tex": "/notes/2022/N-20220918.tex?edition=9062e4679ea9"
     },
     {
       "id": "N-20220913",
@@ -2705,8 +2705,8 @@
         "The Chinese remainder theorem builds solutions",
         "Odd powers and the arithmetic of a reflection"
       ],
-      "pdf": "/notes/2022/N-20220913.pdf",
-      "tex": "/notes/2022/N-20220913.tex"
+      "pdf": "/notes/2022/N-20220913.pdf?edition=427dc982920f",
+      "tex": "/notes/2022/N-20220913.tex?edition=273788a77277"
     },
     {
       "id": "N-20220911",
@@ -2727,8 +2727,8 @@
         "The Moving Line and Its Circle",
         "A general conic is an affine quadratic form"
       ],
-      "pdf": "/notes/2022/N-20220911.pdf",
-      "tex": "/notes/2022/N-20220911.tex"
+      "pdf": "/notes/2022/N-20220911.pdf?edition=383421a4cc2e",
+      "tex": "/notes/2022/N-20220911.tex?edition=0eb99c31a02b"
     },
     {
       "id": "N-20220813",
@@ -2749,8 +2749,8 @@
         "Winding number is the period of $dz/(z-a)$",
         "Closed need not mean exact on a punctured domain"
       ],
-      "pdf": "/notes/2022/N-20220813.pdf",
-      "tex": "/notes/2022/N-20220813.tex"
+      "pdf": "/notes/2022/N-20220813.pdf?edition=ea26a558ae82",
+      "tex": "/notes/2022/N-20220813.tex?edition=391f1a4e9e15"
     },
     {
       "id": "N-20220811",
@@ -2771,8 +2771,8 @@
         "A product constraint and AM–GM",
         "Three rays turn a radical into a triangle"
       ],
-      "pdf": "/notes/2022/N-20220811.pdf",
-      "tex": "/notes/2022/N-20220811.tex"
+      "pdf": "/notes/2022/N-20220811.pdf?edition=2d3625a23894",
+      "tex": "/notes/2022/N-20220811.tex?edition=ca5740e6d095"
     },
     {
       "id": "N-20220810",
@@ -2791,8 +2791,8 @@
         "Coordinate geometry is an inner-product calculation",
         "A matrix version of the same square argument"
       ],
-      "pdf": "/notes/2022/N-20220810.pdf",
-      "tex": "/notes/2022/N-20220810.tex"
+      "pdf": "/notes/2022/N-20220810.pdf?edition=33aeb162b7e7",
+      "tex": "/notes/2022/N-20220810.tex?edition=4f4627e78f45"
     },
     {
       "id": "N-20220808",
@@ -2810,8 +2810,8 @@
         "Induction Meets Fourier Analysis",
         "Why subset sums become nearly uniform"
       ],
-      "pdf": "/notes/2022/N-20220808.pdf",
-      "tex": "/notes/2022/N-20220808.tex"
+      "pdf": "/notes/2022/N-20220808.pdf?edition=dd32d19c0632",
+      "tex": "/notes/2022/N-20220808.tex?edition=05fe741abe63"
     },
     {
       "id": "N-20220806",
@@ -2831,8 +2831,8 @@
         "Closure, fixed points, and stable iteration",
         "A small algebraic side problem"
       ],
-      "pdf": "/notes/2022/N-20220806.pdf",
-      "tex": "/notes/2022/N-20220806.tex"
+      "pdf": "/notes/2022/N-20220806.pdf?edition=4a6e120b3628",
+      "tex": "/notes/2022/N-20220806.tex?edition=d4ba8289c4a2"
     },
     {
       "id": "N-20220803",
@@ -2849,8 +2849,8 @@
         "Geometric sequences, sums, and telescoping",
         "Generating functions and second-order recurrences"
       ],
-      "pdf": "/notes/2022/N-20220803.pdf",
-      "tex": "/notes/2022/N-20220803.tex"
+      "pdf": "/notes/2022/N-20220803.pdf?edition=2d06c46e96a7",
+      "tex": "/notes/2022/N-20220803.tex?edition=b51f6659e45a"
     },
     {
       "id": "N-20220802",
@@ -2871,8 +2871,8 @@
         "The ambiguous triangle is a real geometric bifurcation",
         "The circle group explains why frequencies add"
       ],
-      "pdf": "/notes/2022/N-20220802.pdf",
-      "tex": "/notes/2022/N-20220802.tex"
+      "pdf": "/notes/2022/N-20220802.pdf?edition=473f88579a11",
+      "tex": "/notes/2022/N-20220802.tex?edition=5c60a8e4418b"
     },
     {
       "id": "N-20220801",
@@ -2891,8 +2891,8 @@
         "Sigma-algebras make countable questions measurable",
         "Topology from Boolean Algebra"
       ],
-      "pdf": "/notes/2022/N-20220801.pdf",
-      "tex": "/notes/2022/N-20220801.tex"
+      "pdf": "/notes/2022/N-20220801.pdf?edition=11ae5df8d6c0",
+      "tex": "/notes/2022/N-20220801.tex?edition=6cc6809ee829"
     },
     {
       "id": "N-20220728",
@@ -2913,8 +2913,8 @@
         "Why three dimensions are exceptional",
         "Cartesian Products of Data"
       ],
-      "pdf": "/notes/2022/N-20220728.pdf",
-      "tex": "/notes/2022/N-20220728.tex"
+      "pdf": "/notes/2022/N-20220728.pdf?edition=001126f4b10f",
+      "tex": "/notes/2022/N-20220728.tex?edition=84a7bd87f2f0"
     },
     {
       "id": "N-20220725",
@@ -2934,8 +2934,8 @@
         "Minors are the matrix of an exterior-power map",
         "Cramer's rule is alternating multilinearity again"
       ],
-      "pdf": "/notes/2022/N-20220725.pdf",
-      "tex": "/notes/2022/N-20220725.tex"
+      "pdf": "/notes/2022/N-20220725.pdf?edition=d9a025dd7444",
+      "tex": "/notes/2022/N-20220725.tex?edition=0f179eb26be2"
     },
     {
       "id": "N-20220723",
@@ -2956,8 +2956,8 @@
         "A Fourier Filter for Subset Counts",
         "Chord lengths depend only on modular distance"
       ],
-      "pdf": "/notes/2022/N-20220723.pdf",
-      "tex": "/notes/2022/N-20220723.tex"
+      "pdf": "/notes/2022/N-20220723.pdf?edition=83c993c9e63f",
+      "tex": "/notes/2022/N-20220723.tex?edition=6c4309f32ddd"
     },
     {
       "id": "N-20220721",
@@ -2975,8 +2975,8 @@
         "Jensen turns changes of viewpoint into inequalities",
         "Merging outcomes can only erase relative entropy"
       ],
-      "pdf": "/notes/2022/N-20220721.pdf",
-      "tex": "/notes/2022/N-20220721.tex"
+      "pdf": "/notes/2022/N-20220721.pdf?edition=a1469ba6ee21",
+      "tex": "/notes/2022/N-20220721.tex?edition=3fb1f367f2ac"
     },
     {
       "id": "N-20220720",
@@ -2993,8 +2993,8 @@
         "Permutations, positions, and binomial coefficients",
         "Counting orbits under symmetry"
       ],
-      "pdf": "/notes/2022/N-20220720.pdf",
-      "tex": "/notes/2022/N-20220720.tex"
+      "pdf": "/notes/2022/N-20220720.pdf?edition=963e2b9f9a65",
+      "tex": "/notes/2022/N-20220720.tex?edition=34449505c4a5"
     },
     {
       "id": "N-20220719",
@@ -3014,8 +3014,8 @@
         "The three-perpendicular theorem as a dot product",
         "Incidence has an affine and a projective layer"
       ],
-      "pdf": "/notes/2022/N-20220719.pdf",
-      "tex": "/notes/2022/N-20220719.tex"
+      "pdf": "/notes/2022/N-20220719.pdf?edition=aa72994b9911",
+      "tex": "/notes/2022/N-20220719.tex?edition=6412ac2b1def"
     },
     {
       "id": "N-20220718",
@@ -3032,8 +3032,8 @@
         "Repeated Roots of Linear Recurrences",
         "Two Constructions of Spaces"
       ],
-      "pdf": "/notes/2022/N-20220718.pdf",
-      "tex": "/notes/2022/N-20220718.tex"
+      "pdf": "/notes/2022/N-20220718.pdf?edition=9afba2f5c295",
+      "tex": "/notes/2022/N-20220718.tex?edition=61c6f3a31cc6"
     },
     {
       "id": "N-20220717",
@@ -3054,8 +3054,8 @@
         "Second-order recurrences are matrix powers",
         "Generating functions turn shifts into multiplication"
       ],
-      "pdf": "/notes/2022/N-20220717.pdf",
-      "tex": "/notes/2022/N-20220717.tex"
+      "pdf": "/notes/2022/N-20220717.pdf?edition=f022650e8f91",
+      "tex": "/notes/2022/N-20220717.tex?edition=4ebdabfc7be9"
     },
     {
       "id": "N-20220716",
@@ -3075,8 +3075,8 @@
         "An ellipse area constraint requires specified vertices",
         "Polarity packages tangent equations"
       ],
-      "pdf": "/notes/2022/N-20220716.pdf",
-      "tex": "/notes/2022/N-20220716.tex"
+      "pdf": "/notes/2022/N-20220716.pdf?edition=b24615411fb5",
+      "tex": "/notes/2022/N-20220716.tex?edition=1ea46df3e48a"
     },
     {
       "id": "N-20220715",
@@ -3093,8 +3093,8 @@
         "Rational density and the real coordinate line",
         "Dedekind cuts: defining addition and additive inverses"
       ],
-      "pdf": "/notes/2022/N-20220715.pdf",
-      "tex": "/notes/2022/N-20220715.tex"
+      "pdf": "/notes/2022/N-20220715.pdf?edition=3d94a85c85a9",
+      "tex": "/notes/2022/N-20220715.tex?edition=ddd7c6de045c"
     },
     {
       "id": "N-20220713",
@@ -3111,8 +3111,8 @@
         "Dedekind cuts and the order completion",
         "Metric spaces, dense subspaces, and Cauchy completion"
       ],
-      "pdf": "/notes/2022/N-20220713.pdf",
-      "tex": "/notes/2022/N-20220713.tex"
+      "pdf": "/notes/2022/N-20220713.pdf?edition=21eaee03cf77",
+      "tex": "/notes/2022/N-20220713.tex?edition=8d324d0003fa"
     },
     {
       "id": "N-20220710",
@@ -3130,8 +3130,8 @@
         "Embedding rational numbers into an Archimedean field",
         "Completeness begins where rational arithmetic stops"
       ],
-      "pdf": "/notes/2022/N-20220710.pdf",
-      "tex": "/notes/2022/N-20220710.tex"
+      "pdf": "/notes/2022/N-20220710.pdf?edition=575bb751cd4a",
+      "tex": "/notes/2022/N-20220710.tex?edition=d668a54fc7cd"
     },
     {
       "id": "N-20220708",
@@ -3150,8 +3150,8 @@
         "Inversion of the Three Circles",
         "A circle has an algebraic test, too"
       ],
-      "pdf": "/notes/2022/N-20220708.pdf",
-      "tex": "/notes/2022/N-20220708.tex"
+      "pdf": "/notes/2022/N-20220708.pdf?edition=6b1c38f23b02",
+      "tex": "/notes/2022/N-20220708.tex?edition=fd82ec1c70ea"
     },
     {
       "id": "N-20220628",
@@ -3169,8 +3169,8 @@
         "Integration by parts is the product rule in reverse",
         "The same calculus rules survive in differential forms"
       ],
-      "pdf": "/notes/2022/N-20220628.pdf",
-      "tex": "/notes/2022/N-20220628.tex"
+      "pdf": "/notes/2022/N-20220628.pdf?edition=6611afd2257c",
+      "tex": "/notes/2022/N-20220628.tex?edition=c43b5212d34f"
     },
     {
       "id": "N-20220615",
@@ -3188,8 +3188,8 @@
         "Three equal disks force an equilateral configuration",
         "Symmetric rational equations live on projective ratios"
       ],
-      "pdf": "/notes/2022/N-20220615.pdf",
-      "tex": "/notes/2022/N-20220615.tex"
+      "pdf": "/notes/2022/N-20220615.pdf?edition=812d75c1c2e8",
+      "tex": "/notes/2022/N-20220615.tex?edition=7f2924c442b8"
     },
     {
       "id": "N-20220501",
@@ -3210,8 +3210,8 @@
         "When a boundary pushes back: an inequality example",
         "Second-order silence and global existence"
       ],
-      "pdf": "/notes/2022/N-20220501.pdf",
-      "tex": "/notes/2022/N-20220501.tex"
+      "pdf": "/notes/2022/N-20220501.pdf?edition=426a016da5f3",
+      "tex": "/notes/2022/N-20220501.tex?edition=fe291b1000e9"
     },
     {
       "id": "N-20220417",
@@ -3232,8 +3232,8 @@
         "Triangle substitutions encode the boundary conditions",
         "Schur's Inequality and Ordering"
       ],
-      "pdf": "/notes/2022/N-20220417.pdf",
-      "tex": "/notes/2022/N-20220417.tex"
+      "pdf": "/notes/2022/N-20220417.pdf?edition=71580fad1ee4",
+      "tex": "/notes/2022/N-20220417.tex?edition=69bb1d33c6d8"
     },
     {
       "id": "N-20220412",
@@ -3254,8 +3254,8 @@
         "Rank and Minimal Factorizations",
         "Trace and Cyclic Contraction"
       ],
-      "pdf": "/notes/2022/N-20220412.pdf",
-      "tex": "/notes/2022/N-20220412.tex"
+      "pdf": "/notes/2022/N-20220412.pdf?edition=bf57dd385bc5",
+      "tex": "/notes/2022/N-20220412.tex?edition=8b892f7864c8"
     },
     {
       "id": "N-20220411",
@@ -3273,8 +3273,8 @@
         "The polar factorization of an invertible map",
         "Conditioning is more precise than the determinant"
       ],
-      "pdf": "/notes/2022/N-20220411.pdf",
-      "tex": "/notes/2022/N-20220411.tex"
+      "pdf": "/notes/2022/N-20220411.pdf?edition=dd869b677123",
+      "tex": "/notes/2022/N-20220411.tex?edition=0b3825e28fab"
     },
     {
       "id": "N-20220409",
@@ -3295,8 +3295,8 @@
         "Parametric Differentiation",
         "Determinants inherit a multinomial Leibniz rule"
       ],
-      "pdf": "/notes/2022/N-20220409.pdf",
-      "tex": "/notes/2022/N-20220409.tex"
+      "pdf": "/notes/2022/N-20220409.pdf?edition=2ee4fe7a180d",
+      "tex": "/notes/2022/N-20220409.tex?edition=4b096c578607"
     },
     {
       "id": "N-20220407",
@@ -3314,8 +3314,8 @@
         "Annihilators and Quotients",
         "Why changing the scalars changes the theory"
       ],
-      "pdf": "/notes/2022/N-20220407.pdf",
-      "tex": "/notes/2022/N-20220407.tex"
+      "pdf": "/notes/2022/N-20220407.pdf?edition=fa2522e1ce7f",
+      "tex": "/notes/2022/N-20220407.tex?edition=58c74c83301a"
     },
     {
       "id": "N-20220405",
@@ -3336,8 +3336,8 @@
         "Finite fields and Galois theory",
         "Why complex analysis meets Hessians"
       ],
-      "pdf": "/notes/2022/N-20220405.pdf",
-      "tex": "/notes/2022/N-20220405.tex"
+      "pdf": "/notes/2022/N-20220405.pdf?edition=5b79786b8a1f",
+      "tex": "/notes/2022/N-20220405.tex?edition=ca03ba7fe749"
     },
     {
       "id": "N-20220323",
@@ -3357,8 +3357,8 @@
         "Holomorphic functions are analytic",
         "Zeros are isolated unless the whole function vanishes"
       ],
-      "pdf": "/notes/2022/N-20220323.pdf",
-      "tex": "/notes/2022/N-20220323.tex"
+      "pdf": "/notes/2022/N-20220323.pdf?edition=c507b891c9f2",
+      "tex": "/notes/2022/N-20220323.tex?edition=7e9cb879f36c"
     },
     {
       "id": "N-20220321",
@@ -3379,8 +3379,8 @@
         "The DFT as Character Coordinates",
         "Fourier Characters and Circulants"
       ],
-      "pdf": "/notes/2022/N-20220321.pdf",
-      "tex": "/notes/2022/N-20220321.tex"
+      "pdf": "/notes/2022/N-20220321.pdf?edition=4689eea826fa",
+      "tex": "/notes/2022/N-20220321.tex?edition=8ac01d607b8d"
     },
     {
       "id": "N-20220320",
@@ -3400,8 +3400,8 @@
         "Continuity versus uniform continuity",
         "Taylor's formula as an error statement"
       ],
-      "pdf": "/notes/2022/N-20220320.pdf",
-      "tex": "/notes/2022/N-20220320.tex"
+      "pdf": "/notes/2022/N-20220320.pdf?edition=734cd3c87c41",
+      "tex": "/notes/2022/N-20220320.tex?edition=7b6c789e582a"
     },
     {
       "id": "N-20220319",
@@ -3420,8 +3420,8 @@
         "The fundamental theorem connects both operations",
         "What changes when one changes the norm"
       ],
-      "pdf": "/notes/2022/N-20220319.pdf",
-      "tex": "/notes/2022/N-20220319.tex"
+      "pdf": "/notes/2022/N-20220319.pdf?edition=08ddbd4c23e1",
+      "tex": "/notes/2022/N-20220319.tex?edition=b5f090339e3b"
     },
     {
       "id": "N-20220315",
@@ -3438,8 +3438,8 @@
         "Constrained extrema are the same rank failure",
         "Stationary points do not imply global extrema"
       ],
-      "pdf": "/notes/2022/N-20220315.pdf",
-      "tex": "/notes/2022/N-20220315.tex"
+      "pdf": "/notes/2022/N-20220315.pdf?edition=b27d9bfcb710",
+      "tex": "/notes/2022/N-20220315.tex?edition=83fdb33f35db"
     },
     {
       "id": "N-20220212",
@@ -3460,8 +3460,8 @@
         "Degree and multiplicity",
         "Local power form is not global"
       ],
-      "pdf": "/notes/2022/N-20220212.pdf",
-      "tex": "/notes/2022/N-20220212.tex"
+      "pdf": "/notes/2022/N-20220212.pdf?edition=38eca7c6d1e8",
+      "tex": "/notes/2022/N-20220212.tex?edition=b51f0dc064ef"
     },
     {
       "id": "N-20220205",
@@ -3479,8 +3479,8 @@
         "Uniform Truth in KM",
         "Choice: global convenience and the NF obstruction"
       ],
-      "pdf": "/notes/2022/N-20220205.pdf",
-      "tex": "/notes/2022/N-20220205.tex"
+      "pdf": "/notes/2022/N-20220205.pdf?edition=4d974846ff28",
+      "tex": "/notes/2022/N-20220205.tex?edition=9aa5fbb3b915"
     },
     {
       "id": "N-20220131",
@@ -3501,8 +3501,8 @@
         "Evaluation turns Cantor's paradox into a proof",
         "Choice means splitting a surjection"
       ],
-      "pdf": "/notes/2022/N-20220131.pdf",
-      "tex": "/notes/2022/N-20220131.tex"
+      "pdf": "/notes/2022/N-20220131.pdf?edition=b8eff6260a54",
+      "tex": "/notes/2022/N-20220131.tex?edition=3fc2f9f0ba3e"
     },
     {
       "id": "N-20220123",
@@ -3521,8 +3521,8 @@
         "A modular form with the same Euler factors",
         "Complex Multiplication and Symmetry"
       ],
-      "pdf": "/notes/2022/N-20220123.pdf",
-      "tex": "/notes/2022/N-20220123.tex"
+      "pdf": "/notes/2022/N-20220123.pdf?edition=3ac72fc051b7",
+      "tex": "/notes/2022/N-20220123.tex?edition=e6401d3cc67c"
     },
     {
       "id": "N-20211007",
@@ -3543,8 +3543,8 @@
         "Tate Curves and Local Parameters",
         "Normalised degree as log-volume"
       ],
-      "pdf": "/notes/2021/N-20211007.pdf",
-      "tex": "/notes/2021/N-20211007.tex"
+      "pdf": "/notes/2021/N-20211007.pdf?edition=6a1697d04a9e",
+      "tex": "/notes/2021/N-20211007.tex?edition=4fa9ceba249c"
     },
     {
       "id": "N-20210806",
@@ -3565,8 +3565,8 @@
         "Why distinct Hopf fibers are linked",
         "The long exact sequence records the same twist"
       ],
-      "pdf": "/notes/2021/N-20210806.pdf",
-      "tex": "/notes/2021/N-20210806.tex"
+      "pdf": "/notes/2021/N-20210806.pdf?edition=52f2edcbc1b1",
+      "tex": "/notes/2021/N-20210806.tex?edition=5c77e66c349a"
     },
     {
       "id": "N-20210804",
@@ -3585,8 +3585,8 @@
         "Stone's theorem and the role of ultrafilter extension",
         "Why the correspondence reverses arrows"
       ],
-      "pdf": "/notes/2021/N-20210804.pdf",
-      "tex": "/notes/2021/N-20210804.tex"
+      "pdf": "/notes/2021/N-20210804.pdf?edition=fb7f6c995a6d",
+      "tex": "/notes/2021/N-20210804.tex?edition=352acffd4b23"
     },
     {
       "id": "N-20210721",
@@ -3607,8 +3607,8 @@
         "Functions beyond Ordinary Points",
         "Why an open set is a different kind of truth"
       ],
-      "pdf": "/notes/2021/N-20210721.pdf",
-      "tex": "/notes/2021/N-20210721.tex"
+      "pdf": "/notes/2021/N-20210721.pdf?edition=892238dbe02c",
+      "tex": "/notes/2021/N-20210721.tex?edition=d9b323f3ead6"
     },
     {
       "id": "N-20210621",
@@ -3629,8 +3629,8 @@
         "Negative coefficients and the Hopf antipode",
         "What happens when an arrow is reversed?"
       ],
-      "pdf": "/notes/2021/N-20210621.pdf",
-      "tex": "/notes/2021/N-20210621.tex"
+      "pdf": "/notes/2021/N-20210621.pdf?edition=c8481c6a18ff",
+      "tex": "/notes/2021/N-20210621.tex?edition=59a6c1fee78a"
     },
     {
       "id": "N-20210207",
@@ -3651,8 +3651,8 @@
         "Infinite cardinals and finite disturbance",
         "Concrete encodings behind the arithmetic"
       ],
-      "pdf": "/notes/2021/N-20210207.pdf",
-      "tex": "/notes/2021/N-20210207.tex"
+      "pdf": "/notes/2021/N-20210207.pdf?edition=8470e6e4bdab",
+      "tex": "/notes/2021/N-20210207.tex?edition=6ec51e7a3744"
     },
     {
       "id": "N-20210206",
@@ -3671,8 +3671,8 @@
         "Integers and induction",
         "Division, gcd, and congruence"
       ],
-      "pdf": "/notes/2021/N-20210206.pdf",
-      "tex": "/notes/2021/N-20210206.tex"
+      "pdf": "/notes/2021/N-20210206.pdf?edition=ee0bd71eb368",
+      "tex": "/notes/2021/N-20210206.tex?edition=02e639f68043"
     },
     {
       "id": "N-20210204",
@@ -3692,8 +3692,8 @@
         "One-sided inverses",
         "A right inverse hides a choice function"
       ],
-      "pdf": "/notes/2021/N-20210204.pdf",
-      "tex": "/notes/2021/N-20210204.tex"
+      "pdf": "/notes/2021/N-20210204.pdf?edition=e6f386dbed9c",
+      "tex": "/notes/2021/N-20210204.tex?edition=cdc4dd8cd345"
     }
   ]
 }

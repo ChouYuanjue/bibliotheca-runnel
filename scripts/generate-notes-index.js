@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const HOMEPAGE_ROOT = path.join(__dirname, '..');
 const INM_ROOT = process.env.INM_TEX_DIR || 'E:/INM-TeX';
@@ -21,6 +22,12 @@ function copyIfExists(src, dst) {
   ensureDir(path.dirname(dst));
   fs.copyFileSync(src, dst);
   return true;
+}
+
+// A changed file must have a different URL, even if the note ID is unchanged.
+function versionedAssetUrl(url, file) {
+  const revision = crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex').slice(0, 12);
+  return url + '?edition=' + revision;
 }
 
 function readBracedArgument(text, openBraceIndex) {
@@ -248,8 +255,8 @@ function buildArchive() {
         volume: volumeMap.get(id) || 'Unsorted',
         sectionCount: sections.length,
         sections: sections.slice(0, 8),
-        pdf: pdfCopied ? `/notes/${year}/${id}.pdf` : null,
-        tex: texCopied ? `/notes/${year}/${id}.tex` : null,
+        pdf: pdfCopied ? versionedAssetUrl(`/notes/${year}/${id}.pdf`, path.join(yearDir, id + ".pdf")) : null,
+        tex: texCopied ? versionedAssetUrl(`/notes/${year}/${id}.tex`, path.join(yearDir, id + ".tex")) : null,
       };
     })
     .sort((a, b) => b.date.localeCompare(a.date));
@@ -266,7 +273,7 @@ function buildArchive() {
     project: {
       title: 'INM: Informal Notes on Mathematics',
       subtitle: 'A dated archive of mathematical notes reconstructed into an English TeX book.',
-      fullPdf: fullPdfCopied ? '/notes/inm.pdf' : null,
+      fullPdf: fullPdfCopied ? versionedAssetUrl('/notes/inm.pdf', path.join(PUBLIC_NOTES_DIR, 'inm.pdf')) : null,
       oldArchive: 'https://github.com/ChouYuanjue/Informal_Notes_on_Mathematics',
       noteCount: notes.length,
       volumeCount: new Set(notes.map((note) => note.volume).filter((volume) => volume !== 'Unsorted')).size,
